@@ -1313,7 +1313,7 @@ body {
     .nav-inner { padding: 16px 20px; }
     .nav-center { display: none; }
     .nav-toggle { display: block; }
-    .nav-cta .btn-nav { display: none; }
+    .nav-cta { display: none !important; }
 
     /* Class schedule — stack on mobile */
     .class-schedule thead { display: none; }
