@@ -95,6 +95,72 @@
         </div>
     </nav>
 
+    <!-- FALLING LEAVES EFFECT -->
+    <style>
+        .leaves {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+        .leaf {
+            position: absolute;
+            top: -30px;
+            font-size: 16px;
+            opacity: 0;
+            animation: leaffall linear infinite;
+        }
+        @keyframes leaffall {
+            0% { opacity: 0; transform: translateY(-30px) rotate(0deg) translateX(0); }
+            10% { opacity: 0.7; }
+            50% { transform: translateY(50vh) rotate(180deg) translateX(var(--sway)); }
+            90% { opacity: 0.5; }
+            100% { opacity: 0; transform: translateY(100vh) rotate(360deg) translateX(calc(var(--sway) * -1)); }
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top,
+                rgba(180, 100, 30, 0.06) 0%,
+                transparent 100%);
+            z-index: 3;
+            pointer-events: none;
+        }
+        .stat-number {
+            text-shadow: 0 0 20px rgba(200, 120, 40, 0.3);
+        }
+    </style>
+    <div class="leaves" id="leaves"></div>
+    <script>
+        (function() {
+            const container = document.getElementById('leaves');
+            const chars = ['\u{1F342}', '\u{1F341}', '\u{1F343}'];
+            for (let i = 0; i < 30; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                leaf.textContent = chars[Math.floor(Math.random() * chars.length)];
+                const left = Math.random() * 100;
+                const dur = Math.random() * 8 + 8;
+                const delay = Math.random() * 12;
+                const size = Math.random() * 10 + 12;
+                const sway = (Math.random() - 0.5) * 150;
+                leaf.style.cssText =
+                    'left:' + left + '%;font-size:' + size + 'px;' +
+                    'animation-duration:' + dur + 's;animation-delay:' + delay + 's;' +
+                    '--sway:' + sway + 'px;';
+                container.appendChild(leaf);
+            }
+        })();
+    </script>
+
     <section class="hero">
         <div class="hero-video-wrap">
             <video autoplay muted loop playsinline>
