@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranger School Prep — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="winter.html">Winter</a></li>
+                        <li><a href="spring.html">Spring</a></li>
+                        <li><a href="summer.html">Summer</a></li>
+                        <li><a href="fall.html">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Ranger School Prep — Complete Guide</h1>
+        <p class="section-desc fade-in">7 modules covering everything you need to know before Day 1. Physical standards, land nav, packing lists, tactical tasks, and phase-specific intel.</p>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Physical Standards</a>
+                <a href="#mod2" class="course-sidebar-link">2. Land Navigation</a>
+                <a href="#mod3" class="course-sidebar-link">3. Packing List Deep Dive</a>
+                <a href="#mod4" class="course-sidebar-link">4. Tactical Tasks (RTT)</a>
+                <a href="#mod5" class="course-sidebar-link">5. Patrol Base Operations</a>
+                <a href="#mod6" class="course-sidebar-link">6. Orders Process</a>
+                <a href="#mod7" class="course-sidebar-link">7. Phase-Specific Tips</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Physical Standards & Training Plan</div>
+                    <p>Physical fitness is the foundation. You cannot fake it, and you cannot cram it. If you show up to Ranger School out of shape, you will be recycled or dropped during RAP week.</p>
+
+                    <p><strong>RAP Week Physical Standards:</strong></p>
+                    <ul>
+                        <li>RPFT: 49 push-ups, 59 sit-ups, 6-mile run in 40:00 (5-mile at some classes)</li>
+                        <li>Combat Water Survival Test (CWST): 15m swim in full gear, 3m drop blindfolded</li>
+                        <li>12-Mile Ruck March: 35 lbs dry + weapon, under 3:00:00</li>
+                        <li>5-Mile Run: Complete in formation, no fallouts</li>
+                        <li>Terrain Association / Land Nav: Day and Night courses</li>
+                    </ul>
+
+                    <p><strong>Training Plan Guidance:</strong></p>
+                    <p>Start training at least 12 weeks before your report date. Focus on three areas: running, rucking, and upper body endurance. A solid weekly plan includes:</p>
+                    <ul>
+                        <li>3x/week: Running (intervals + long slow distance)</li>
+                        <li>2x/week: Rucking (build from 25 lbs to 50 lbs, 4-12 miles)</li>
+                        <li>4x/week: Push-ups and sit-ups (high volume, timed sets)</li>
+                        <li>2x/week: Swimming (if weak — CWST is pass/fail)</li>
+                    </ul>
+
+                    <p>The goal is not to peak on Day 1. You need to sustain performance across 61+ days of sleep deprivation, calorie deficit, and continuous operations. Build an aerobic base, not just strength.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module" id="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Land Navigation Mastery</div>
+                    <p>Land nav is tested during RAP week and is a primary reason students are dropped. You must pass both the day and night courses to continue.</p>
+
+                    <p><strong>Day Land Nav:</strong></p>
+                    <ul>
+                        <li>Find 4 of 6 points in 5 hours</li>
+                        <li>Terrain association is king — don't rely solely on pace count</li>
+                        <li>Use terrain features: hilltops, saddles, draws, ridges, spurs</li>
+                        <li>Attack points: Navigate to a nearby feature, then walk in</li>
+                    </ul>
+
+                    <p><strong>Night Land Nav:</strong></p>
+                    <ul>
+                        <li>Find 3 of 4 points in 3 hours</li>
+                        <li>No visible horizon — pace count becomes critical</li>
+                        <li>Use handrails: roads, streams, ridgelines, power lines</li>
+                        <li>Backstops: linear features you cannot cross</li>
+                    </ul>
+
+                    <p><strong>Key Skills:</strong></p>
+                    <ul>
+                        <li>Plotting 8-digit grid coordinates</li>
+                        <li>Declination and G-M angle adjustment</li>
+                        <li>Pace count (know yours on flat and uphill)</li>
+                        <li>Lensatic compass: centerhold and compass-to-cheek</li>
+                        <li>Map reading: contour intervals, colors, symbols</li>
+                    </ul>
+
+                    <p>Practice at Fort Benning-style terrain if possible. If not, any wooded area with a 1:50,000 map works. Do night iterations — you will be exhausted and the terrain will look different.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module" id="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Packing List Deep Dive</div>
+                    <p>Your packing list is your life for 61+ days. Pack wrong and you suffer. Pack right and you have one less thing to worry about.</p>
+
+                    <p><strong>Golden Rules:</strong></p>
+                    <ul>
+                        <li>Every item must earn its weight — if you can't justify it, leave it</li>
+                        <li>Waterproof everything: use dry bags and wet weather bags</li>
+                        <li>Label your gear with your name and roster number</li>
+                        <li>Pack your ruck the same way every time — muscle memory matters in the dark</li>
+                    </ul>
+
+                    <p><strong>Essential Categories:</strong></p>
+                    <ul>
+                        <li><strong>Clothing:</strong> Broken-in boots (2 pair recommended), socks (12+ pair), base layers, beanie, gloves</li>
+                        <li><strong>Gear:</strong> Ruck, sleep system, poncho + liner (woobie), 550 cord, bungees</li>
+                        <li><strong>Tactical:</strong> Compass, protractor, pens/pencils, Rite in Rain, map cases, chem lights</li>
+                        <li><strong>Hygiene:</strong> Foot powder, soap, razor, microfiber towels, dental picks</li>
+                        <li><strong>Admin:</strong> Notebook, pens, letter writing material, sheet protectors</li>
+                    </ul>
+
+                    <p>Check your season-specific page for items tailored to your class date: <a href="winter.html" style="color: var(--color-gold);">Winter</a> | <a href="spring.html" style="color: var(--color-gold);">Spring</a> | <a href="summer.html" style="color: var(--color-gold);">Summer</a> | <a href="fall.html" style="color: var(--color-gold);">Fall</a></p>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module" id="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Tactical Tasks (RTT)</div>
+                    <p>Ranger Tactical Tasks are tested on RAP week Day 4. You must pass 5 of 7. No re-tests. Scoring below 5/7 is a MAJOR MINUS.</p>
+
+                    <p><strong>The 7 Tasks:</strong></p>
+                    <ol>
+                        <li><strong>RTT 1:</strong> Maintain an M249 Machine Gun — disassemble, inspect, reassemble, functions check</li>
+                        <li><strong>RTT 2:</strong> Clear, Load, Reduce Stoppage, Unload & Clear M249</li>
+                        <li><strong>RTT 3:</strong> Maintain an M240B Machine Gun — same standard as M249</li>
+                        <li><strong>RTT 4:</strong> Clear, Load, Reduce Stoppage, Unload & Clear M240B</li>
+                        <li><strong>RTT 5:</strong> Employ a Claymore Mine — set up, aim, arm, fire, recover</li>
+                        <li><strong>RTT 6:</strong> Communicate by ASIP Radio — program, establish comms, send message</li>
+                        <li><strong>RTT 7:</strong> Communicate by MBITR Radio — same standard on different platform</li>
+                    </ol>
+
+                    <p>The graders follow the TM exactly. There is no partial credit — it's GO or NO-GO. Practice hands-on with the actual equipment if possible. If you can't access the weapons, study the TM steps and visualize.</p>
+
+                    <p><a href="resources.html#rtt" style="color: var(--color-gold);">View the full RTT breakdown on the Resources page &rarr;</a></p>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module" id="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Patrol Base Operations</div>
+                    <p>You will spend most of your time in Ranger School in a patrol base (PB). Knowing how to set one up and run it is critical for your patrol grade.</p>
+
+                    <p><strong>Patrol Base Priorities of Work:</strong></p>
+                    <ol>
+                        <li>Security — establish 360-degree security immediately</li>
+                        <li>Withdraw Plan — know the rally point and signal</li>
+                        <li>Communication — establish comms with higher, send LACE report</li>
+                        <li>Weapons Maintenance — clean, inspect, functions check</li>
+                        <li>Hygiene — foot care, change socks, eat</li>
+                        <li>Sleep Plan — rotating rest, guard shifts</li>
+                        <li>Rehearsals — leader's recon, sand table, full rehearsal</li>
+                    </ol>
+
+                    <p><strong>Key Positions:</strong></p>
+                    <ul>
+                        <li><strong>PL (Patrol Leader):</strong> Owns the PB. Directs priorities of work, issues FRAGO, runs rehearsals</li>
+                        <li><strong>PSG (Platoon Sergeant):</strong> Manages internal PB operations, sleep plan, LACE, resupply</li>
+                        <li><strong>SL (Squad Leader):</strong> Runs squad sector, assigns guard shifts, accountability</li>
+                        <li><strong>TL (Team Leader):</strong> Two-man sector, controls fire team, reports up</li>
+                    </ul>
+
+                    <p>The most common failure point is time management. You have limited time to plan, brief, rehearse, and execute. Start planning the moment you get the OPORD — don't wait until you're in the PB.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module" id="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Orders Process (OPORD / FRAGO)</div>
+                    <p>The 5-paragraph OPORD is the backbone of tactical planning. You will receive, write, and brief OPORDs constantly. If you are graded as PL, your OPORD brief is a major component of your patrol grade.</p>
+
+                    <p><strong>5-Paragraph OPORD:</strong></p>
+                    <ol>
+                        <li><strong>Situation:</strong> Enemy forces, friendly forces, terrain & weather, civil considerations</li>
+                        <li><strong>Mission:</strong> Who, what, when, where, why (the 5 W's)</li>
+                        <li><strong>Execution:</strong> Concept of the operation, scheme of maneuver, tasks to subordinate units, coordinating instructions</li>
+                        <li><strong>Sustainment:</strong> Class I-V supply, medical plan, EPW handling, LACE report</li>
+                        <li><strong>Command & Signal:</strong> Succession of command, signal plan, frequencies, call signs, challenge & password</li>
+                    </ol>
+
+                    <p><strong>Troop Leading Procedures (TLPs):</strong></p>
+                    <ol>
+                        <li>Receive the mission</li>
+                        <li>Issue a warning order</li>
+                        <li>Make a tentative plan</li>
+                        <li>Initiate movement</li>
+                        <li>Conduct reconnaissance</li>
+                        <li>Complete the plan</li>
+                        <li>Issue the order</li>
+                        <li>Supervise and refine</li>
+                    </ol>
+
+                    <p>Practice writing and briefing OPORDs before you go. Time yourself — you will have to brief under pressure with sleep deprivation. A terrain model kit (TMK) helps significantly. <a href="course-tmk.html" style="color: var(--color-gold);">See the TMK Build Guide &rarr;</a></p>
+                </div>
+
+                <!-- MODULE 7 -->
+                <div class="course-module" id="mod7">
+                    <div class="course-module-label">Module 7</div>
+                    <div class="course-module-title">Phase-Specific Tips</div>
+
+                    <p><strong>Benning Phase (RAP Week + Darby):</strong></p>
+                    <ul>
+                        <li>RAP week is the filter — physical standards, land nav, RTT, and peer evals</li>
+                        <li>Darby is your first graded patrol. Expect ambushes, raids, and movement to contact</li>
+                        <li>Focus on teamwork — RIs watch how you treat your Ranger buddies</li>
+                        <li>Terrain: Flat, pine forests, sandy soil</li>
+                    </ul>
+
+                    <p><strong>Mountain Phase (Dahlonega):</strong></p>
+                    <ul>
+                        <li>Steep terrain, heavy rucks, knot test, rappelling</li>
+                        <li>Cold weather in winter classes — hypothermia is a real risk</li>
+                        <li>Learn your knots: square, bowline, rappel seat, figure-eight, clove hitch, prusik</li>
+                        <li>Patrols are longer and harder. Elevation gain makes everything worse</li>
+                    </ul>
+
+                    <p><strong>Florida Phase (Eglin AFB / Santa Rosa Island):</strong></p>
+                    <ul>
+                        <li>Swamp operations, small boat movements, coastal raids</li>
+                        <li>Bugs, snakes, alligators — permethrin everything in spring/summer</li>
+                        <li>Water crossings with gear. Know your waterproofing procedures</li>
+                        <li>This is the final phase — mental toughness matters most here</li>
+                    </ul>
+
+                    <p>Each phase builds on the last. The lessons from Darby carry into Mountains and Florida. Stay consistent, don't quit, and take care of your Ranger buddies.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Firebase Auth + Course Gate -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI, initCourseGate } from './auth.js';
+        initAuthUI();
+        initCourseGate();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>

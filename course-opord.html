@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPORD & Orders Process — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="winter.html">Winter</a></li>
+                        <li><a href="spring.html">Spring</a></li>
+                        <li><a href="summer.html">Summer</a></li>
+                        <li><a href="fall.html">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">OPORD &amp; Orders Process</h1>
+        <p class="section-desc fade-in">Master the 5-paragraph operations order, troop leading procedures, and tactical planning. Your OPORD brief is a major component of your patrol grade.</p>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. TLP Overview</a>
+                <a href="#mod2" class="course-sidebar-link">2. Warning Order</a>
+                <a href="#mod3" class="course-sidebar-link">3. Mission Analysis</a>
+                <a href="#mod4" class="course-sidebar-link">4. COA Development</a>
+                <a href="#mod5" class="course-sidebar-link">5. 5-Para OPORD</a>
+                <a href="#mod6" class="course-sidebar-link">6. FRAGO</a>
+                <a href="#mod7" class="course-sidebar-link">7. Brief Delivery</a>
+                <a href="#mod8" class="course-sidebar-link">8. Product Creation</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">TLP Overview</div>
+                    <p>Troop Leading Procedures are the 8-step framework that guides a leader from receiving a mission to executing it. TLPs are not strictly sequential — many steps happen in parallel, and you will revisit earlier steps as the situation develops. Mastering TLPs is what separates leaders who control the operation from those who react to it.</p>
+
+                    <p><strong>The 8 Troop Leading Procedures:</strong></p>
+                    <ol>
+                        <li><strong>Receive the Mission:</strong> Understand the higher commander's intent, identify specified and implied tasks, and determine the timeline. Begin your time analysis immediately.</li>
+                        <li><strong>Issue a Warning Order:</strong> Push initial information to subordinates as soon as possible. This allows parallel planning at every level. Do not wait until you have a complete plan.</li>
+                        <li><strong>Make a Tentative Plan:</strong> Conduct mission analysis, develop courses of action, and wargame them. Use METT-TC as your framework.</li>
+                        <li><strong>Initiate Movement:</strong> Begin positioning forces. This may happen before the plan is finalized — move to gain a tactical advantage or save time.</li>
+                        <li><strong>Conduct Reconnaissance:</strong> Confirm or deny assumptions from your tentative plan. Leader's recon of the objective area, route, and key terrain.</li>
+                        <li><strong>Complete the Plan:</strong> Refine the tentative plan based on recon findings. Finalize graphics, timelines, and coordination measures.</li>
+                        <li><strong>Issue the Order:</strong> Brief the OPORD using a terrain model. Ensure every member understands the plan, their role, and the contingencies.</li>
+                        <li><strong>Supervise and Refine:</strong> Conduct rehearsals, inspect subordinates' preparations, and adjust the plan as needed. This step continues through execution.</li>
+                    </ol>
+
+                    <p><strong>The 1/3 &ndash; 2/3 Rule:</strong></p>
+                    <p>Use no more than 1/3 of available time for your own planning. Give the remaining 2/3 to your subordinates so they can plan, prepare, and rehearse. This is one of the most violated principles in Ranger School. Leaders who consume all available time planning leave their squads unprepared.</p>
+
+                    <p><strong>Parallel Planning:</strong></p>
+                    <p>While you are developing the full plan, your subordinates should be conducting their own preparations based on the warning order: drawing ammunition, conducting precombat checks, preparing for movement. Parallel planning is the mechanism that makes the 1/3 &ndash; 2/3 rule work.</p>
+
+                    <p>Time management is the single most critical skill in the orders process. An average plan executed on time will always beat a perfect plan delivered late.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module" id="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Warning Order</div>
+                    <p>The warning order (WARNORD) is the first communication you push to subordinates after receiving the mission. Its purpose is simple: give your people enough information to start preparing while you continue planning. Speed matters — issue the WARNORD as soon as possible, even if it is incomplete.</p>
+
+                    <p><strong>5 Elements of a Warning Order:</strong></p>
+                    <ol>
+                        <li><strong>Situation:</strong> Brief summary of enemy and friendly situation. What do we know right now?</li>
+                        <li><strong>Mission:</strong> Tentative mission statement or at minimum the type of operation (ambush, raid, movement to contact, area reconnaissance).</li>
+                        <li><strong>General Instructions:</strong> Timeline, uniform, equipment common to all. Special equipment requirements (demo, breach kit, litters).</li>
+                        <li><strong>Specific Instructions:</strong> Tasks to specific subordinate elements. Who needs to do what right now — e.g., "Alpha team draw ammunition," "Bravo team prepare litters."</li>
+                        <li><strong>Timeline:</strong> Key times — WARNORD time, OPORD brief time, SP time, LD time, H-hour. This drives everything.</li>
+                    </ol>
+
+                    <p><strong>Key Principles:</strong></p>
+                    <ul>
+                        <li>Brevity matters — this is not the OPORD. Get the essential information out fast.</li>
+                        <li>Issue ASAP after receiving the mission. Every minute you hold the WARNORD is a minute your subordinates cannot use for preparation.</li>
+                        <li>Enables parallel planning — while you are developing courses of action, your team leaders are conducting precombat checks and inspections.</li>
+                        <li>Update with subsequent WARNORDs as the situation develops. You can issue multiple WARNORDs before the full OPORD.</li>
+                    </ul>
+
+                    <p>In Ranger School, the RI will note how quickly you issue a WARNORD after receiving the mission. Sitting on information while your squad stands around waiting is a fast way to earn a negative spot report.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module" id="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Mission Analysis</div>
+                    <p>Mission analysis is the intellectual foundation of the entire orders process. This is where you break down what you have been told, determine what you need to do, and build the framework for your plan. The primary tool is METT-TC.</p>
+
+                    <p><strong>METT-TC:</strong></p>
+                    <ul>
+                        <li><strong>Mission:</strong> Restate the mission in your own words using the 5 W's — who, what, when, where, and why. The "why" connects your mission to the higher commander's intent.</li>
+                        <li><strong>Enemy:</strong> Composition, disposition, strength, capabilities, most likely course of action (MLCOA), most dangerous course of action (MDCOA). What can the enemy do to disrupt your plan?</li>
+                        <li><strong>Terrain:</strong> Analyze using OAKOC — Observation &amp; fields of fire, Avenues of approach, Key terrain, Obstacles, Cover &amp; concealment. Know the ground before you fight on it.</li>
+                        <li><strong>Troops:</strong> What assets do you have? Weapons, personnel, attachments, equipment status. What is your combat power relative to the enemy?</li>
+                        <li><strong>Time:</strong> How much time do you have? Work backward from H-hour. Build your reverse timeline. Apply the 1/3 &ndash; 2/3 rule.</li>
+                        <li><strong>Civilians:</strong> Civil considerations that affect the operation. In Ranger School this is usually minimal, but in real-world operations it is critical.</li>
+                    </ul>
+
+                    <p><strong>Restating the Mission:</strong></p>
+                    <p>The restated mission must answer: Who is executing? What is the task and purpose? When does it happen? Where is the objective? Why are we doing this (connection to higher intent)? If you cannot clearly restate the mission, you do not understand it — go back and clarify with higher.</p>
+
+                    <p><strong>Task Analysis:</strong></p>
+                    <ul>
+                        <li><strong>Specified Tasks:</strong> Explicitly stated in the higher OPORD. These are non-negotiable.</li>
+                        <li><strong>Implied Tasks:</strong> Not stated but must be accomplished to achieve the mission (e.g., if the mission requires crossing a river, river crossing operations is an implied task).</li>
+                        <li><strong>Essential Tasks:</strong> The tasks that define mission success. Everything else supports these.</li>
+                    </ul>
+
+                    <p><strong>Constraints and Limitations:</strong></p>
+                    <ul>
+                        <li><strong>Constraints:</strong> Things you must do — "maintain communications with higher at all times."</li>
+                        <li><strong>Limitations:</strong> Things you cannot do — "do not cross PL Bravo before 0300."</li>
+                    </ul>
+
+                    <p><strong>IPB (Intelligence Preparation of the Battlefield):</strong></p>
+                    <p>Define the battlefield environment, describe the battlefield effects, evaluate the threat, and determine threat courses of action. In practice at the platoon level, this means studying your map, identifying likely enemy positions, and understanding how terrain channels movement.</p>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module" id="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">COA Development</div>
+                    <p>After completing mission analysis, you develop courses of action. A COA is a possible plan that accomplishes the mission. Developing multiple COAs and wargaming them against the enemy is how you arrive at the best plan — not just the first idea that comes to mind.</p>
+
+                    <p><strong>COA Development Steps:</strong></p>
+                    <ol>
+                        <li>Analyze relative combat power</li>
+                        <li>Generate options (at least 2 COAs when time permits)</li>
+                        <li>Array initial forces — determine how to organize your element for the mission</li>
+                        <li>Develop the scheme of maneuver — how you move, where you attack, where you support</li>
+                        <li>Assign tasks to subordinate units</li>
+                        <li>Prepare COA statements and sketches</li>
+                    </ol>
+
+                    <p><strong>OAKOC (Terrain Analysis for COA):</strong></p>
+                    <ul>
+                        <li><strong>Observation &amp; Fields of Fire:</strong> Where can you see and shoot? Where can the enemy see and shoot? Where are the dead spaces?</li>
+                        <li><strong>Avenues of Approach:</strong> How can you get to the objective? How can the enemy reinforce or withdraw? Identify primary and alternate routes.</li>
+                        <li><strong>Key Terrain:</strong> Ground that provides a marked advantage to whoever controls it. Hilltops, bridges, intersections, commanding ridgelines.</li>
+                        <li><strong>Obstacles:</strong> Natural and man-made features that impede movement — rivers, cliffs, wire, minefields, dense vegetation.</li>
+                        <li><strong>Cover &amp; Concealment:</strong> Cover stops bullets (defilade, walls, thick trees). Concealment hides you (vegetation, shadows, dead space). Know the difference.</li>
+                    </ul>
+
+                    <p><strong>Wargaming Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Box Method:</strong> Analyze the COA at each critical event (e.g., actions at the ORP, movement to the objective, actions on the objective, withdrawal). Simple and effective for time-constrained environments.</li>
+                        <li><strong>Avenue-in-Depth:</strong> Focus on one avenue of approach and wargame the entire operation along it. Good for movement to contact or route-based operations.</li>
+                        <li><strong>Belt Method:</strong> Divide the area of operations into cross-compartments (belts) and analyze each sequentially. Good for defensive operations or operations across broad frontages.</li>
+                    </ul>
+
+                    <p><strong>Selecting the Best COA:</strong></p>
+                    <p>Evaluate each COA against criteria: Does it accomplish the mission? Is it feasible given your resources and time? Is it distinguishable from other COAs? Is it acceptable in terms of risk? In Ranger School, time pressure usually limits you to one well-developed COA — make it count.</p>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module" id="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">The 5-Paragraph OPORD</div>
+                    <p>The 5-paragraph operations order is the standard format for communicating a tactical plan. Every leader in the Army uses this format. In Ranger School, your ability to write and brief a clear, complete OPORD directly impacts your patrol grade. Know this format cold.</p>
+
+                    <p><strong>Paragraph 1 — Situation:</strong></p>
+                    <p>Set the stage. Your subordinates need to understand the battlefield before they can understand the plan.</p>
+                    <ul>
+                        <li><strong>Enemy Forces:</strong> Composition (what type of unit), disposition (where they are), strength (how many), capabilities (weapons, equipment, training level), most likely course of action (MLCOA), and most dangerous course of action (MDCOA). Paint a picture of the threat.</li>
+                        <li><strong>Friendly Forces:</strong> Higher unit's mission and intent. Adjacent units — who is to your left, right, front, rear, and what are they doing? How does your mission fit into the bigger picture?</li>
+                        <li><strong>Terrain &amp; Weather:</strong> OAKOC analysis. How does the terrain affect both friendly and enemy operations? Weather conditions — visibility, precipitation, temperature, moon illumination, and their impact on the mission.</li>
+                        <li><strong>Civil Considerations:</strong> Civilian population, infrastructure, cultural factors that affect operations. In Ranger School scenarios, this is typically minimal but should be addressed.</li>
+                    </ul>
+
+                    <p><strong>Paragraph 2 — Mission:</strong></p>
+                    <p>One sentence. The 5 W's: Who (your unit), What (the tactical task — attack, ambush, recon, defend), When (time), Where (grid coordinate or named objective), Why (purpose — the connection to higher commander's intent). This is the most important sentence in the entire order. If your mission statement is unclear, the entire operation is at risk.</p>
+
+                    <p><strong>Paragraph 3 — Execution:</strong></p>
+                    <p>The heart of the order. This is your plan.</p>
+                    <ul>
+                        <li><strong>Commander's Intent:</strong> Purpose, key tasks, and end state. What does success look like?</li>
+                        <li><strong>Concept of the Operation:</strong> The big picture — how the operation unfolds from start to finish in 3&ndash;5 sentences. Describe the operation in phases if applicable.</li>
+                        <li><strong>Scheme of Maneuver:</strong> Detailed movement plan. How each element moves, in what formation, along what route, to what position. This is where you assign the main effort and supporting effort.</li>
+                        <li><strong>Tasks to Subordinate Units:</strong> Specific tasks for each squad, team, or individual. "Alpha team — support by fire from the north." "Bravo team — assault through the objective from the east." Every element must know its task and purpose.</li>
+                        <li><strong>Coordinating Instructions:</strong>
+                            <ul>
+                                <li>Priority Intelligence Requirements (PIR) — what do you need to know about the enemy?</li>
+                                <li>Commander's Critical Information Requirements (CCIR)</li>
+                                <li>Timeline — SP, LD, phase lines, H-hour, consolidation time</li>
+                                <li>Rules of Engagement (ROE)</li>
+                                <li>Actions on Contact — what to do if you encounter the enemy before reaching the objective</li>
+                                <li>Actions at danger areas (linear, open, intersections)</li>
+                                <li>Abort criteria — conditions under which the mission is abandoned</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <p><strong>Paragraph 4 — Sustainment:</strong></p>
+                    <p>Logistics and support. Your plan does not work if your people run out of ammunition, water, or medical supplies.</p>
+                    <ul>
+                        <li><strong>Class I (Rations):</strong> Meal plan, distribution, when and where to eat.</li>
+                        <li><strong>Class II (Clothing/Equipment):</strong> Special equipment draw, uniform requirements.</li>
+                        <li><strong>Class III (POL):</strong> Fuel for vehicles if applicable.</li>
+                        <li><strong>Class V (Ammunition):</strong> Basic load, special munitions (demo, Claymores), resupply plan.</li>
+                        <li><strong>Medical Plan:</strong> CCP location, CASEVAC plan, aid &amp; litter teams, 9-line MEDEVAC format.</li>
+                        <li><strong>EPW Handling:</strong> How to handle enemy prisoners of war — the 5 S's (search, silence, segregate, speed, safeguard).</li>
+                        <li><strong>LACE Report Format:</strong> Liquids, Ammunition, Casualties, Equipment — report format for combat status updates.</li>
+                        <li><strong>Resupply Procedures:</strong> When, where, and how to resupply. Emergency resupply plan.</li>
+                    </ul>
+
+                    <p><strong>Paragraph 5 — Command &amp; Signal:</strong></p>
+                    <p>How you communicate and who is in charge.</p>
+                    <ul>
+                        <li><strong>Command Post Location:</strong> Where the PL will be during the operation.</li>
+                        <li><strong>Succession of Command:</strong> If the PL goes down — PSG, then 1st SL, then 2nd SL, etc. Everyone must know the order.</li>
+                        <li><strong>Signal Plan:</strong> Primary, alternate, contingency, emergency (PACE) communications plan.</li>
+                        <li><strong>Frequencies &amp; Call Signs:</strong> Platoon net, company net, and any additional nets. Call signs for each element.</li>
+                        <li><strong>Challenge &amp; Password:</strong> Near and far recognition signals. Running password.</li>
+                        <li><strong>Pyrotechnics:</strong> Signal meanings — green star cluster = shift fire, red star cluster = abort, etc.</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module" id="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">FRAGO</div>
+                    <p>A Fragmentary Order (FRAGO) is an abbreviated form of the OPORD used to communicate changes to an existing order. When the situation changes — new intelligence, change in mission, time-sensitive information — you do not re-brief the entire OPORD. You issue a FRAGO that addresses only the elements that have changed.</p>
+
+                    <p><strong>When to Issue a FRAGO:</strong></p>
+                    <ul>
+                        <li>Change in mission from higher headquarters</li>
+                        <li>New enemy intelligence that affects the plan</li>
+                        <li>Time-sensitive changes that cannot wait for a full OPORD</li>
+                        <li>Significant change in friendly situation (casualties, attachments, equipment loss)</li>
+                        <li>Change in timeline or phase lines</li>
+                        <li>Transition between phases of an operation</li>
+                    </ul>
+
+                    <p><strong>FRAGO Format:</strong></p>
+                    <p>The FRAGO follows the same 5-paragraph structure as the OPORD, but only includes paragraphs and sub-paragraphs that have changed. If the situation (Para 1) and sustainment (Para 4) remain the same, skip them and focus on the changed execution (Para 3).</p>
+                    <ol>
+                        <li><strong>Situation:</strong> Only if enemy or friendly situation has changed</li>
+                        <li><strong>Mission:</strong> Only if the mission has changed (new task/purpose)</li>
+                        <li><strong>Execution:</strong> Most commonly changed — new scheme of maneuver, updated tasks, revised timeline</li>
+                        <li><strong>Sustainment:</strong> Only if logistics or medical plan has changed</li>
+                        <li><strong>Command &amp; Signal:</strong> Only if command relationships or signal plan has changed</li>
+                    </ol>
+
+                    <p><strong>Key Principles:</strong></p>
+                    <ul>
+                        <li><strong>Brevity:</strong> A FRAGO should take 2&ndash;5 minutes to brief, not 20. Cover only what changed.</li>
+                        <li><strong>Verbal or Written:</strong> FRAGOs can be issued verbally in the field or written if time permits. In Ranger School, most FRAGOs are verbal.</li>
+                        <li><strong>Reference the Base Order:</strong> Always reference the original OPORD so subordinates know what is unchanged. "FRAGO to OPORD 01-26. All elements of the base order remain in effect except..."</li>
+                        <li><strong>Confirm Understanding:</strong> After issuing a FRAGO, backbrief subordinates to ensure they understand the changes.</li>
+                    </ul>
+
+                    <p><strong>Common Ranger School FRAGO Scenarios:</strong></p>
+                    <ul>
+                        <li>Mission change from raid to ambush after reaching the ORP</li>
+                        <li>Change in objective location based on new intel</li>
+                        <li>Timeline adjustment due to delayed movement</li>
+                        <li>Task reorganization after taking simulated casualties</li>
+                        <li>Change in extraction plan or linkup point</li>
+                    </ul>
+
+                    <p>The ability to rapidly assess a changed situation and issue a clear, concise FRAGO is one of the hallmarks of a competent tactical leader. RIs specifically evaluate this skill.</p>
+                </div>
+
+                <!-- MODULE 7 -->
+                <div class="course-module" id="mod7">
+                    <div class="course-module-label">Module 7</div>
+                    <div class="course-module-title">Brief Delivery</div>
+                    <p>Writing a good OPORD is only half the battle. You must deliver it clearly and confidently under pressure — typically sleep-deprived, time-constrained, and in front of an RI who is evaluating every word. How you brief is as important as what you brief.</p>
+
+                    <p><strong>Using a Terrain Model:</strong></p>
+                    <p>Brief your OPORD over a terrain model whenever possible. The terrain model is a physical representation of the area of operations built on the ground using natural materials, MRE trash, or a Terrain Model Kit (TMK). <a href="course-tmk.html" style="color: var(--color-gold);">See the TMK Build Guide course for construction details &rarr;</a></p>
+                    <ul>
+                        <li>Orient the terrain model to north</li>
+                        <li>Include the objective, routes, phase lines, rally points, support by fire positions, and key terrain</li>
+                        <li>Use string or cord for routes and boundaries</li>
+                        <li>Label features with index cards or Rite in Rain strips</li>
+                        <li>Point to features as you brief each paragraph — make it visual</li>
+                    </ul>
+
+                    <p><strong>Brief Delivery Techniques:</strong></p>
+                    <ul>
+                        <li>Stand where everyone can see both you and the terrain model</li>
+                        <li>Speak loudly and clearly — project your voice, do not mumble</li>
+                        <li>Make eye contact with your subordinate leaders</li>
+                        <li>Use a pointer (stick, pen) to reference terrain features as you brief</li>
+                        <li>Follow the 5-paragraph format in order — do not skip around</li>
+                        <li>Pause after each paragraph and ask "Any questions on [paragraph]?"</li>
+                        <li>Keep it under 20 minutes for a platoon-level OPORD</li>
+                    </ul>
+
+                    <p><strong>Rehearsal Types:</strong></p>
+                    <p>After the OPORD brief, conduct rehearsals to validate the plan and ensure understanding.</p>
+                    <ol>
+                        <li><strong>Full Dress Rehearsal:</strong> Execute the entire operation at full speed with all personnel and equipment. Most time-consuming but most effective. Rarely feasible in Ranger School due to time constraints.</li>
+                        <li><strong>Reduced Force Rehearsal:</strong> Key leaders walk through the operation with their element representatives. Good balance of time and effectiveness.</li>
+                        <li><strong>Sand Table Rehearsal:</strong> Leaders talk through the operation over the terrain model, moving markers to represent their elements. Most common in Ranger School.</li>
+                        <li><strong>Map Rehearsal:</strong> Leaders talk through the operation using the map and overlay. Least effective but fastest when time is extremely limited.</li>
+                    </ol>
+
+                    <p><strong>Backbrief Subordinates:</strong></p>
+                    <p>After the rehearsal, have each subordinate leader brief back their task and purpose, routes, timelines, and contingencies. If they cannot articulate the plan, the brief failed — not them. Fix it before you step off.</p>
+
+                    <p><strong>RI Evaluation Criteria:</strong></p>
+                    <p>RIs evaluate your OPORD brief on three primary dimensions:</p>
+                    <ul>
+                        <li><strong>Clarity:</strong> Is the plan understandable? Can a tired Ranger student follow it?</li>
+                        <li><strong>Completeness:</strong> Did you cover all 5 paragraphs? Are tasks assigned to every element? Are contingencies addressed?</li>
+                        <li><strong>Confidence:</strong> Do you own the plan? Do you deliver it with authority? Hesitation and uncertainty are contagious — if you do not believe in the plan, neither will your squad.</li>
+                    </ul>
+
+                    <p>Practice your brief delivery before Ranger School. Time yourself. Brief to a wall, brief to friends, brief to anyone who will listen. The format becomes second nature with repetition.</p>
+                </div>
+
+                <!-- MODULE 8 -->
+                <div class="course-module" id="mod8">
+                    <div class="course-module-label">Module 8</div>
+                    <div class="course-module-title">Product Creation</div>
+                    <p>Planning products are the physical documents and visual aids that support the OPORD. They translate your plan from words into graphics that subordinates can reference during execution. In Ranger School, the quality of your planning products directly reflects the quality of your planning.</p>
+
+                    <p><strong>Range Cards:</strong></p>
+                    <ul>
+                        <li>Completed by each fighting position</li>
+                        <li>Shows sector of fire, primary and alternate direction of fire (PDF/ADF), TRPs (target reference points), dead space, and maximum engagement line</li>
+                        <li>Include distance markers, terrain features, and weapon data</li>
+                        <li>Use DA Form 5517-R (Range Card) or Rite in Rain equivalent</li>
+                    </ul>
+
+                    <p><strong>Sector Sketches:</strong></p>
+                    <ul>
+                        <li>Squad-level product that combines all range cards into a single picture</li>
+                        <li>Shows interlocking fields of fire, dead space, obstacles, and key terrain</li>
+                        <li>Identifies gaps in coverage and areas of vulnerability</li>
+                        <li>Critical for defensive operations and patrol base security</li>
+                    </ul>
+
+                    <p><strong>Patrol Overlay:</strong></p>
+                    <ul>
+                        <li>Acetate or clear sheet placed over the map</li>
+                        <li>Shows routes (primary and alternate), phase lines, checkpoints, rally points (ORP, IRP, en route), objective, support by fire positions, and boundaries</li>
+                        <li>Use standard military symbols and colors (blue for friendly, red for enemy)</li>
+                        <li>Every leader should carry a copy or have the overlay memorized</li>
+                    </ul>
+
+                    <p><strong>Route Planning:</strong></p>
+                    <ul>
+                        <li>Plot primary and alternate routes on the map</li>
+                        <li>Identify danger areas along each route (linear, open, intersections) and plan crossing techniques</li>
+                        <li>Calculate distance and time using pace count and terrain factors</li>
+                        <li>Identify checkpoints and rally points along the route — features that are identifiable on the ground and on the map</li>
+                        <li>Plan offset navigation to avoid getting lost — aim off to one side of your target so you know which way to turn</li>
+                    </ul>
+
+                    <p><strong>Acetate &amp; Rite in Rain Techniques:</strong></p>
+                    <ul>
+                        <li>Use fine-point permanent markers on acetate (Staedtler Lumocolors recommended)</li>
+                        <li>Rite in Rain paper works in the rain — regular paper disintegrates</li>
+                        <li>Pre-cut acetate sheets to map size before you go to the field</li>
+                        <li>Carry extra markers — they die fast in cold weather</li>
+                        <li>Use different colors for different elements: routes, objectives, enemy positions, friendly positions</li>
+                    </ul>
+
+                    <p><strong>Terrain Model Construction:</strong></p>
+                    <p>The terrain model is the centerpiece of your OPORD brief. Build it with enough detail that subordinates can visualize the objective area and their role in the operation. <a href="course-tmk.html" style="color: var(--color-gold);">See the full TMK Build Guide for detailed construction techniques &rarr;</a></p>
+                    <ul>
+                        <li>Orient to north with a compass</li>
+                        <li>Outline the area of operations with cord or sticks</li>
+                        <li>Build up terrain — hills with dirt mounds, draws with depressions, ridgelines with raised earth</li>
+                        <li>Mark water features with blue items, roads with white cord, vegetation with actual leaves or grass</li>
+                        <li>Place the objective, rally points, support positions, and routes</li>
+                        <li>Label everything with Rite in Rain strips or index cards</li>
+                        <li>A good terrain model takes 15&ndash;20 minutes to build — factor this into your timeline</li>
+                    </ul>
+
+                    <p><strong>Integration with TMK:</strong></p>
+                    <p>A pre-built Terrain Model Kit saves significant time in the field. Having standardized materials (colored cord, pre-cut symbols, label materials) means you can construct a terrain model in half the time of scrounging materials from the woods. <a href="course-tmk.html" style="color: var(--color-gold);">Build your TMK before Ranger School &rarr;</a></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Firebase Auth + Course Gate -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI, initCourseGate } from './auth.js';
+        initAuthUI();
+        initCourseGate();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                                    <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="winter.html">Winter</a></li>
+                        <li><a href="spring.html">Spring</a></li>
+                        <li><a href="summer.html">Summer</a></li>
+                        <li><a href="fall.html">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-video-wrap">
+            <video autoplay muted loop playsinline>
+                <!-- Replace: spring footage — swamp phase, Florida, rain -->
+                <!-- <source src="videos/spring.mp4" type="video/mp4"> -->
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="section-label" style="margin-bottom: var(--space-md);">March / April / May</div>
+            <h1 class="hero-headline">Spring Ranger</h1>
+            <p class="hero-sub">Florida phase in the spring means relentless bugs and wet conditions. 100% DEET, permethrin-treated gear, and waterproof everything keeps you in the fight.</p>
+            <div class="hero-cta">
+                <a href="shop.html?season=spring" class="btn btn-primary">Shop Spring Gear</a>
+                <a href="#packing" class="btn btn-outline">View Packing List</a>
+            </div>
+        </div>
+        <div class="scroll-indicator"><div class="scroll-line"></div>Scroll</div>
+    </section>
+
+    <div class="stat-bar">
+        <div class="stat-bar-inner">
+            <div class="stat-item fade-in"><div class="stat-number">100%</div><div class="stat-label">DEET Required</div></div>
+            <div class="stat-item fade-in"><div class="stat-number">90°+</div><div class="stat-label">Humidity Feels Like</div></div>
+            <div class="stat-item fade-in"><div class="stat-number">24/7</div><div class="stat-label">Bug Exposure</div></div>
+            <div class="stat-item fade-in"><div class="stat-number">61</div><div class="stat-label">Days in the Suck</div></div>
+        </div>
+    </div>
+
+    <section class="section" id="packing">
+        <div class="section-label fade-in">Spring Packing List</div>
+        <h2 class="section-title fade-in">Bug Season & Wet Weather Loadout</h2>
+        <p class="section-desc fade-in">Spring means bugs and rain. Gear tagged "seasonal" is critical for this window.</p>
+
+        <div class="bento-grid bento-3 stagger">
+            <div class="packing-category fade-in">
+                <div class="packing-cat-title">Bug & Wet Weather</div>
+                <div class="packing-item"><span class="packing-item-name">Bug Spray (100% DEET)</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
+                <div class="packing-item"><span class="packing-item-name">Permethrin-Treated Uniform</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
+                <div class="packing-item"><span class="packing-item-name">Bug Net (Head)</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
+                <div class="packing-item"><span class="packing-item-name">Poncho & Liner</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Wet Weather Bags</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Waterproof Spray for Gear</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
+                <div class="packing-item"><span class="packing-item-name">Tarps</span><span class="packing-item-tag tag-essential">Essential</span></div>
+            </div>
+            <div class="packing-category fade-in">
+                <div class="packing-cat-title">Standard Gear</div>
+                <div class="packing-item"><span class="packing-item-name">Ruck (ALICE / MOLLE)</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Patrol Cap</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Boots (Broken In)</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Boot Laces (Spare)</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">550 Cord</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Eye Pro (Clear)</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Ear Pro (Foam Plugs)</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Knives (Folding/Fixed)</span><span class="packing-item-tag tag-essential">Essential</span></div>
+            </div>
+            <div class="packing-category fade-in">
+                <div class="packing-cat-title">Consumables</div>
+                <div class="packing-item"><span class="packing-item-name">Foot Powder</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Anti-Chafe Balm</span><span class="packing-item-tag tag-optional">Optional</span></div>
+                <div class="packing-item"><span class="packing-item-name">Moleskin</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Duct Tape</span><span class="packing-item-tag tag-optional">Optional</span></div>
+                <div class="packing-item"><span class="packing-item-name">Sewing Kit</span><span class="packing-item-tag tag-optional">Optional</span></div>
+                <div class="packing-item"><span class="packing-item-name">Steel Wool</span><span class="packing-item-tag tag-optional">Optional</span></div>
+            </div>
+        </div>
+
+        <!-- Extra packing categories -->
+        <div class="bento-grid bento-3 stagger" style="margin-top: var(--space-md);">
+            <div class="packing-category fade-in">
+                <div class="packing-cat-title">Tactical Accessories</div>
+                <div class="packing-item"><span class="packing-item-name">Chem Lights (All Colors)</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Cat Eye Bands</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Batteries (AA/AAA/CR123A)</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Watches</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Lensatic Compass</span><span class="packing-item-tag tag-essential">Essential</span></div>
+            </div>
+            <div class="packing-category fade-in">
+                <div class="packing-cat-title">Admin & Writing</div>
+                <div class="packing-item"><span class="packing-item-name">Rite in the Rain Notebook</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Rite in the Rain Pens</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Map Cases</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Sheet Protectors</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Spray Paint (All Colors)</span><span class="packing-item-tag tag-essential">Essential</span></div>
+            </div>
+            <div class="packing-category fade-in">
+                <div class="packing-cat-title">Hygiene</div>
+                <div class="packing-item"><span class="packing-item-name">Microfiber Towels</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Soap (Bar)</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Shaving Kit</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Dental Cleaning Picks</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Dawn Dish Soap</span><span class="packing-item-tag tag-optional">Optional</span></div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-2xl);">
+            <a href="shop.html?season=spring" class="btn btn-primary">Shop All Spring Items</a>
+        </div>
+    </section>
+
+    <section class="section" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="section-label fade-in">Recommended</div>
+        <h2 class="section-title fade-in">Spring Gear Picks</h2>
+        <div class="product-grid stagger">
+            <div class="product-card fade-in">
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(60,45,70,0.8), rgba(40,30,50,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">REPEL 100</span></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Repel</div><div class="product-name">Bug Repellent — 98% DEET (4 oz)</div><div class="product-price">$7.99</div><div class="product-tag">Spring Essential</div>
+                    <button class="snipcart-add-item" data-item-id="bug-repellent-98-deet-4-oz" data-item-name="Bug Repellent — 98% DEET (4 oz)" data-item-price="7.99" data-item-url="/spring.html" data-item-description="Bug Repellent — 98% DEET (4 oz)">Add to Cart — $7.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in">
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(60,45,70,0.8), rgba(40,30,50,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">SAWYER</span></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Sawyer</div><div class="product-name">Permethrin Spray — 24 oz</div><div class="product-price">$14.99</div><div class="product-tag">Spring Essential</div>
+                    <button class="snipcart-add-item" data-item-id="permethrin-spray-24-oz" data-item-name="Permethrin Spray — 24 oz" data-item-price="14.99" data-item-url="/spring.html" data-item-description="Permethrin Spray — 24 oz">Add to Cart — $14.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in">
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">USGI</span></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">USGI Surplus</div><div class="product-name">Wet Weather Bags (2-Pack)</div><div class="product-price">$8.99</div><div class="product-tag">Gear — Wet Weather</div>
+                    <button class="snipcart-add-item" data-item-id="wet-weather-bags-2-pack" data-item-name="Wet Weather Bags (2-Pack)" data-item-price="8.99" data-item-url="/spring.html" data-item-description="Wet Weather Bags (2-Pack)">Add to Cart — $8.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in">
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">KIWI<br>CAMP DRY</span></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Kiwi</div><div class="product-name">Waterproof Spray — Camp Dry 10.5 oz</div><div class="product-price">$8.99</div><div class="product-tag">Gear — Wet Weather</div>
+                    <button class="snipcart-add-item" data-item-id="waterproof-spray-camp-dry-10-5-oz" data-item-name="Waterproof Spray — Camp Dry 10.5 oz" data-item-price="8.99" data-item-url="/spring.html" data-item-description="Waterproof Spray — Camp Dry 10.5 oz">Add to Cart — $8.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in">
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO</span></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Rothco</div><div class="product-name">Poncho Liner (Woobie)</div><div class="product-price">$54.99</div><div class="product-tag">Gear — All Seasons</div>
+                    <button class="snipcart-add-item" data-item-id="poncho-liner-woobie" data-item-name="Poncho Liner (Woobie)" data-item-price="54.99" data-item-url="/spring.html" data-item-description="Poncho Liner (Woobie)">Add to Cart — $54.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in">
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO</span></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Rothco</div><div class="product-name">Poncho — G.I. Type Rip-Stop</div><div class="product-price">$44.99</div><div class="product-tag">Gear — All Seasons</div>
+                    <button class="snipcart-add-item" data-item-id="poncho-g-i-type-rip-stop" data-item-name="Poncho — G.I. Type Rip-Stop" data-item-price="44.99" data-item-url="/spring.html" data-item-description="Poncho — G.I. Type Rip-Stop">Add to Cart — $44.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in">
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(55,35,20,0.8), rgba(40,25,15,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">CYALUME</span></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Cyalume</div><div class="product-name">Chem Lights — All Colors (10-Pack)</div><div class="product-price">$24.99</div><div class="product-tag">Tactical — Essential</div>
+                    <button class="snipcart-add-item" data-item-id="chem-lights-all-colors-10-pack" data-item-name="Chem Lights — All Colors (10-Pack)" data-item-price="24.99" data-item-url="/spring.html" data-item-description="Chem Lights — All Colors (10-Pack)">Add to Cart — $24.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in">
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO</span></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Rothco</div><div class="product-name">550 Cord — 100ft (All Colors)</div><div class="product-price">$9.99</div><div class="product-tag">Gear — Essential</div>
+                    <button class="snipcart-add-item" data-item-id="550-cord-100ft-all-colors" data-item-name="550 Cord — 100ft (All Colors)" data-item-price="9.99" data-item-url="/spring.html" data-item-description="550 Cord — 100ft (All Colors)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="full-section" style="min-height: 50vh;">
+        <div class="section-video-wrap"><video autoplay muted loop playsinline><!-- <source src="videos/summer.mp4" type="video/mp4"> --></video></div>
+        <div class="full-section-overlay overlay-center"></div>
+        <div class="full-section-content" style="text-align: center;">
+            <div class="section-label">Next Season</div>
+            <h2 class="section-title" style="max-width: 500px; margin: 0 auto var(--space-lg);">Summer Ranger</h2>
+            <p style="color: rgba(255,255,255,0.5); margin-bottom: var(--space-xl);">Heat is the enemy you can't outrun.</p>
+            <a href="summer.html" class="btn btn-outline">Explore Summer &rarr;</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom"><div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Firebase Auth -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI } from './auth.js';
+        initAuthUI();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>

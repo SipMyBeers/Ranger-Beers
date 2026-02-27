@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12-Week Ranger Prep — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <style>
+        .workout-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0 2rem;
+            font-size: 0.92rem;
+        }
+        .workout-table thead th {
+            background: linear-gradient(135deg, #C5B358, #a89a3e);
+            color: #000;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.7rem 0.8rem;
+            text-align: left;
+            font-size: 0.82rem;
+        }
+        .workout-table tbody td {
+            background: rgba(255,255,255,0.03);
+            color: rgba(255,255,255,0.88);
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            vertical-align: top;
+        }
+        .workout-table tbody tr:nth-child(even) td {
+            background: rgba(255,255,255,0.06);
+        }
+        .workout-table tbody tr:hover td {
+            background: rgba(197,179,88,0.08);
+        }
+        .workout-table .day-cell {
+            font-weight: 600;
+            color: #C5B358;
+            white-space: nowrap;
+            min-width: 80px;
+        }
+        .workout-table .rest-row td {
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+        }
+        .week-label {
+            display: inline-block;
+            background: rgba(197,179,88,0.15);
+            color: #C5B358;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.7rem;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+        }
+        .standards-box {
+            background: rgba(197,179,88,0.08);
+            border-left: 3px solid #C5B358;
+            padding: 1rem 1.2rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.5rem 0;
+        }
+        .standards-box strong {
+            color: #C5B358;
+        }
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .pillar-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            text-align: center;
+        }
+        .pillar-card .pillar-icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.4rem;
+        }
+        .pillar-card .pillar-name {
+            font-weight: 700;
+            color: #C5B358;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+        .pillar-card .pillar-desc {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.6);
+        }
+        .pillar-card.primary {
+            border-color: #C5B358;
+            background: rgba(197,179,88,0.08);
+        }
+        .tip-box {
+            background: rgba(197,179,88,0.06);
+            border: 1px solid rgba(197,179,88,0.2);
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            margin: 1.2rem 0;
+        }
+        .tip-box .tip-label {
+            font-weight: 700;
+            color: #C5B358;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.4rem;
+        }
+        .progression-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .progression-step {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.7);
+        }
+        .progression-arrow {
+            color: #C5B358;
+            font-weight: 700;
+        }
+        .progression-step.active {
+            border-color: #C5B358;
+            color: #C5B358;
+            background: rgba(197,179,88,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="winter.html">Winter</a></li>
+                        <li><a href="spring.html">Spring</a></li>
+                        <li><a href="summer.html">Summer</a></li>
+                        <li><a href="fall.html">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">12-Week Ranger Prep Program</h1>
+        <p class="section-desc fade-in">A structured 12-week training program to get you physically ready for Ranger School. Running is the foundation &mdash; everything else builds on top of it.</p>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Program Overview</a>
+                <a href="#mod2" class="course-sidebar-link">2. Weeks 1-4: Base Building</a>
+                <a href="#mod3" class="course-sidebar-link">3. Weeks 5-8: Endurance</a>
+                <a href="#mod4" class="course-sidebar-link">4. Weeks 9-12: Peak</a>
+                <a href="#mod5" class="course-sidebar-link">5. Plate Carrier &amp; Barefoot</a>
+                <a href="#mod6" class="course-sidebar-link">6. Nutrition &amp; Recovery</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+
+                <!-- MODULE 1: Program Overview -->
+                <div class="course-module" id="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Program Overview</div>
+                    <p>This is a 12-week progressive training program designed with one goal: arrive at Ranger School with a strong aerobic base, not just peak strength. Ranger School is 61+ days of sleep deprivation, calorie deficit, and continuous operations. You need to sustain performance across the entire course &mdash; not just RAP week.</p>
+
+                    <p><strong>Weekly Structure:</strong> 5&ndash;6 training days, 1 full rest day. The program is built around four pillars, with running as the clear primary focus.</p>
+
+                    <div class="pillar-grid">
+                        <div class="pillar-card primary">
+                            <div class="pillar-name">Running</div>
+                            <div class="pillar-desc">Primary pillar. Aerobic base, intervals, plate carrier runs, and barefoot training.</div>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-name">Rucking</div>
+                            <div class="pillar-desc">Weekly ruck marches building to 12 miles at 35 lbs under 3:00.</div>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-name">Upper Body Endurance</div>
+                            <div class="pillar-desc">Push-ups and sit-ups, high volume, timed sets for RPFT prep.</div>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-name">Swimming</div>
+                            <div class="pillar-desc">CWST prep &mdash; 15m swim in ACUs, 3m blindfolded drop.</div>
+                        </div>
+                    </div>
+
+                    <p>The focus is <strong>RUNNING</strong>. It is the foundation of everything else. Your aerobic capacity determines how well you ruck, how fast you recover between patrols, and whether you can keep up during 5-mile formation runs on zero sleep. If you only have time for one thing, run.</p>
+
+                    <div class="standards-box">
+                        <strong>RPFT Standards to Hit:</strong>
+                        <ul style="margin: 0.5rem 0 0; padding-left: 1.2rem;">
+                            <li>49 push-ups (2 minutes)</li>
+                            <li>59 sit-ups (2 minutes)</li>
+                            <li>Sub-40:00 5-mile run</li>
+                            <li>12-mile ruck in under 3:00:00 (35 lbs dry)</li>
+                        </ul>
+                    </div>
+
+                    <p>These are minimums. You should be exceeding all of them comfortably before you report. If you are borderline on any standard, you are already behind.</p>
+                </div>
+
+                <!-- MODULE 2: Weeks 1-4 -->
+                <div class="course-module" id="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Weeks 1&ndash;4: Base Building</div>
+                    <p>The first four weeks are about building your aerobic foundation. You are not going hard yet &mdash; you are building the engine. Easy runs should feel conversational. Intervals should be controlled, not all-out. The goal is consistency without injury.</p>
+
+                    <!-- WEEK 1 -->
+                    <div class="week-label">Week 1</div>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Day</th><th>Primary</th><th>Secondary</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Monday</td><td>3-mile easy run</td><td>Push-ups: 4 x max reps (2-min rest)</td><td>Conversational pace</td></tr>
+                            <tr><td class="day-cell">Tuesday</td><td>Plate carrier run: 2 mi @ 15 lbs</td><td>Sit-ups: 4 x max reps (2-min rest)</td><td>Soft surface preferred</td></tr>
+                            <tr><td class="day-cell">Wednesday</td><td>Intervals: 400m x 6 (90s rest)</td><td>Push-ups: 4 x max reps</td><td>Controlled effort, not all-out</td></tr>
+                            <tr><td class="day-cell">Thursday</td><td>3-mile tempo run</td><td>Sit-ups: 4 x max reps</td><td>Comfortably hard pace</td></tr>
+                            <tr><td class="day-cell">Friday</td><td>Ruck: 4 miles @ 25 lbs</td><td>Push-ups: 4 x max reps</td><td>15:00/mile pace target</td></tr>
+                            <tr><td class="day-cell">Saturday</td><td>Long run: 4 miles easy</td><td>Swimming: 20 min CWST prep</td><td>Slow and steady</td></tr>
+                            <tr class="rest-row"><td class="day-cell">Sunday</td><td>Barefoot run: 1 mi on grass</td><td>Rest / light stretch</td><td>Forefoot strike focus</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- WEEK 2 -->
+                    <div class="week-label">Week 2</div>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Day</th><th>Primary</th><th>Secondary</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Monday</td><td>3-mile easy run</td><td>Push-ups: 4 x max reps (2-min rest)</td><td>Conversational pace</td></tr>
+                            <tr><td class="day-cell">Tuesday</td><td>Plate carrier run: 2 mi @ 15 lbs</td><td>Sit-ups: 4 x max reps (2-min rest)</td><td>Soft surface preferred</td></tr>
+                            <tr><td class="day-cell">Wednesday</td><td>Intervals: 400m x 7 (90s rest)</td><td>Push-ups: 4 x max reps</td><td>Add 1 rep from Week 1</td></tr>
+                            <tr><td class="day-cell">Thursday</td><td>3-mile tempo run</td><td>Sit-ups: 4 x max reps</td><td>Push pace slightly</td></tr>
+                            <tr><td class="day-cell">Friday</td><td>Ruck: 4 miles @ 25 lbs</td><td>Push-ups: 4 x max reps</td><td>Work on stride consistency</td></tr>
+                            <tr><td class="day-cell">Saturday</td><td>Long run: 4.5 miles easy</td><td>Swimming: 20 min CWST prep</td><td>Build distance gradually</td></tr>
+                            <tr class="rest-row"><td class="day-cell">Sunday</td><td>Barefoot run: 1 mi on grass</td><td>Rest / light stretch</td><td>Focus on cadence (180+ spm)</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- WEEK 3 -->
+                    <div class="week-label">Week 3</div>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Day</th><th>Primary</th><th>Secondary</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Monday</td><td>3.5-mile easy run</td><td>Push-ups: 5 x max reps (2-min rest)</td><td>Slight distance increase</td></tr>
+                            <tr><td class="day-cell">Tuesday</td><td>Plate carrier run: 2 mi @ 15 lbs</td><td>Sit-ups: 5 x max reps (2-min rest)</td><td>Maintain form under weight</td></tr>
+                            <tr><td class="day-cell">Wednesday</td><td>Intervals: 400m x 7 (90s rest)</td><td>Push-ups: 5 x max reps</td><td>Target consistent split times</td></tr>
+                            <tr><td class="day-cell">Thursday</td><td>3.5-mile tempo run</td><td>Sit-ups: 5 x max reps</td><td>Sustain tempo for full distance</td></tr>
+                            <tr><td class="day-cell">Friday</td><td>Ruck: 5 miles @ 25 lbs</td><td>Push-ups: 5 x max reps</td><td>Add 1 mile from Week 1-2</td></tr>
+                            <tr><td class="day-cell">Saturday</td><td>Long run: 5 miles easy</td><td>Swimming: 25 min CWST prep</td><td>Practice relaxed breathing</td></tr>
+                            <tr class="rest-row"><td class="day-cell">Sunday</td><td>Barefoot run: 1 mi on grass</td><td>Rest / foam rolling</td><td>Foot strengthening drills after</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- WEEK 4 -->
+                    <div class="week-label">Week 4</div>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Day</th><th>Primary</th><th>Secondary</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Monday</td><td>3.5-mile easy run</td><td>Push-ups: 5 x max reps (2-min rest)</td><td>Conversational pace</td></tr>
+                            <tr><td class="day-cell">Tuesday</td><td>Plate carrier run: 2.5 mi @ 15 lbs</td><td>Sit-ups: 5 x max reps (2-min rest)</td><td>Bump distance by 0.5 mi</td></tr>
+                            <tr><td class="day-cell">Wednesday</td><td>Intervals: 400m x 8 (90s rest)</td><td>Push-ups: 5 x max reps</td><td>Peak interval volume for Phase 1</td></tr>
+                            <tr><td class="day-cell">Thursday</td><td>3.5-mile tempo run</td><td>Sit-ups: 5 x max reps</td><td>Record your time for baseline</td></tr>
+                            <tr><td class="day-cell">Friday</td><td>Ruck: 5 miles @ 25 lbs</td><td>Push-ups: 5 x max reps</td><td>Focus on pace consistency</td></tr>
+                            <tr><td class="day-cell">Saturday</td><td>Long run: 6 miles easy</td><td>Swimming: 25 min CWST prep</td><td>Longest run of Phase 1</td></tr>
+                            <tr class="rest-row"><td class="day-cell">Sunday</td><td>Barefoot run: 1 mi on grass</td><td>Full rest / stretch</td><td>Transition week &mdash; recover well</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="tip-box">
+                        <div class="tip-label">Phase 1 Key Takeaway</div>
+                        <p style="margin: 0;">If you are hitting these workouts consistently with no injury, you are on track. Do not skip the easy days or turn them into hard days. The aerobic base is built on volume at low intensity, not by redlining every session.</p>
+                    </div>
+                </div>
+
+                <!-- MODULE 3: Weeks 5-8 -->
+                <div class="course-module" id="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Weeks 5&ndash;8: Endurance Phase</div>
+                    <p>Phase 2 increases both volume and intensity. Your aerobic base from the first 4 weeks supports longer runs, heavier rucks, and faster intervals. This is where you start simulating the demands of Ranger School.</p>
+
+                    <p><strong>Key Changes:</strong></p>
+                    <ul>
+                        <li>Long run builds to 8 miles</li>
+                        <li>Intervals shift to 800m repeats x 6</li>
+                        <li>Plate carrier increases to 20&ndash;25 lbs, 3-mile runs, 2x/week (Tue/Thu)</li>
+                        <li>Barefoot running progresses to track surface, 1.5&ndash;2 miles</li>
+                        <li>5-mile run time trial at Week 6</li>
+                        <li>Rucking increases to 6&ndash;8 miles, 30&ndash;35 lbs</li>
+                        <li>Push-ups/sit-ups shift to timed sets (2 min max reps) mimicking RPFT format</li>
+                        <li>Swimming: CWST simulation (15m swim in ACUs)</li>
+                    </ul>
+
+                    <!-- WEEK 5 -->
+                    <div class="week-label">Week 5</div>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Day</th><th>Primary</th><th>Secondary</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Monday</td><td>4-mile easy run</td><td>Push-ups: 2-min max x 3 sets</td><td>RPFT-style timed sets start</td></tr>
+                            <tr><td class="day-cell">Tuesday</td><td>Plate carrier run: 3 mi @ 20 lbs</td><td>Sit-ups: 2-min max x 3 sets</td><td>Increase weight and distance</td></tr>
+                            <tr><td class="day-cell">Wednesday</td><td>Intervals: 800m x 4 (2-min rest)</td><td>Push-ups: 2-min max x 3 sets</td><td>Transition to 800m repeats</td></tr>
+                            <tr><td class="day-cell">Thursday</td><td>Plate carrier run: 3 mi @ 20 lbs</td><td>Sit-ups: 2-min max x 3 sets</td><td>2nd plate carrier session/week</td></tr>
+                            <tr><td class="day-cell">Friday</td><td>Ruck: 6 miles @ 30 lbs</td><td>Push-ups: 2-min max x 2 sets</td><td>Increase ruck weight and distance</td></tr>
+                            <tr><td class="day-cell">Saturday</td><td>Long run: 6.5 miles easy</td><td>Swimming: CWST simulation</td><td>15m swim in ACUs if possible</td></tr>
+                            <tr class="rest-row"><td class="day-cell">Sunday</td><td>Barefoot run: 1.5 mi on track</td><td>Rest / foam rolling</td><td>Progress to track surface</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- WEEK 6 -->
+                    <div class="week-label">Week 6 &mdash; Time Trial Week</div>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Day</th><th>Primary</th><th>Secondary</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Monday</td><td>3-mile easy run (recovery)</td><td>Push-ups: 2-min max x 3 sets</td><td>Light day before time trial</td></tr>
+                            <tr><td class="day-cell">Tuesday</td><td>Plate carrier run: 3 mi @ 20 lbs</td><td>Sit-ups: 2-min max x 3 sets</td><td>Maintain plate carrier volume</td></tr>
+                            <tr><td class="day-cell">Wednesday</td><td><strong>5-MILE TIME TRIAL</strong></td><td>Record time &mdash; target sub-40:00</td><td>Full effort. Know where you stand.</td></tr>
+                            <tr><td class="day-cell">Thursday</td><td>Plate carrier run: 3 mi @ 20 lbs</td><td>Sit-ups: 2-min max x 3 sets</td><td>Easy effort &mdash; recover from TT</td></tr>
+                            <tr><td class="day-cell">Friday</td><td>Ruck: 6 miles @ 30 lbs</td><td>Push-ups: 2-min max x 2 sets</td><td>Steady pace, focus on form</td></tr>
+                            <tr><td class="day-cell">Saturday</td><td>Long run: 7 miles easy</td><td>Swimming: CWST simulation</td><td>Keep easy after time trial week</td></tr>
+                            <tr class="rest-row"><td class="day-cell">Sunday</td><td>Barefoot run: 1.5 mi on track</td><td>Full rest / stretch</td><td>Recover and assess time trial</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- WEEK 7 -->
+                    <div class="week-label">Week 7</div>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Day</th><th>Primary</th><th>Secondary</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Monday</td><td>4-mile easy run</td><td>Push-ups: 2-min max x 4 sets</td><td>Increase push-up volume</td></tr>
+                            <tr><td class="day-cell">Tuesday</td><td>Plate carrier run: 3 mi @ 25 lbs</td><td>Sit-ups: 2-min max x 4 sets</td><td>Bump plate carrier weight</td></tr>
+                            <tr><td class="day-cell">Wednesday</td><td>Intervals: 800m x 5 (2-min rest)</td><td>Push-ups: 2-min max x 3 sets</td><td>Add 1 interval rep</td></tr>
+                            <tr><td class="day-cell">Thursday</td><td>Plate carrier run: 3 mi @ 25 lbs</td><td>Sit-ups: 2-min max x 3 sets</td><td>Focus on upright posture</td></tr>
+                            <tr><td class="day-cell">Friday</td><td>Ruck: 7 miles @ 30 lbs</td><td>Push-ups: 2-min max x 2 sets</td><td>Build ruck distance</td></tr>
+                            <tr><td class="day-cell">Saturday</td><td>Long run: 7.5 miles easy</td><td>Swimming: CWST simulation</td><td>Practice treading water in kit</td></tr>
+                            <tr class="rest-row"><td class="day-cell">Sunday</td><td>Barefoot run: 1.5 mi on track</td><td>Rest / foam rolling</td><td>Towel scrunches + calf raises</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- WEEK 8 -->
+                    <div class="week-label">Week 8</div>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Day</th><th>Primary</th><th>Secondary</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Monday</td><td>4.5-mile easy run</td><td>Push-ups: 2-min max x 4 sets</td><td>Peak easy run distance for Phase 2</td></tr>
+                            <tr><td class="day-cell">Tuesday</td><td>Plate carrier run: 3 mi @ 25 lbs</td><td>Sit-ups: 2-min max x 4 sets</td><td>Consistent effort under weight</td></tr>
+                            <tr><td class="day-cell">Wednesday</td><td>Intervals: 800m x 6 (2-min rest)</td><td>Push-ups: 2-min max x 3 sets</td><td>Peak interval volume for Phase 2</td></tr>
+                            <tr><td class="day-cell">Thursday</td><td>Plate carrier run: 3 mi @ 25 lbs</td><td>Sit-ups: 2-min max x 3 sets</td><td>Record split times</td></tr>
+                            <tr><td class="day-cell">Friday</td><td>Ruck: 8 miles @ 35 lbs</td><td>Push-ups: 2-min max x 2 sets</td><td>Peak ruck for Phase 2 &mdash; RPFT weight</td></tr>
+                            <tr><td class="day-cell">Saturday</td><td>Long run: 8 miles easy</td><td>Swimming: CWST full simulation</td><td>Longest run of Phase 2</td></tr>
+                            <tr class="rest-row"><td class="day-cell">Sunday</td><td>Barefoot run: 2 mi on track</td><td>Full rest / stretch</td><td>Transition week &mdash; recover for Phase 3</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="tip-box">
+                        <div class="tip-label">Phase 2 Key Takeaway</div>
+                        <p style="margin: 0;">After your Week 6 time trial, you should know exactly where you stand on the 5-mile run. If you are over 42 minutes, you need to add an extra running day. If you are under 38, you are in a strong position. Adjust the remaining weeks based on your result.</p>
+                    </div>
+                </div>
+
+                <!-- MODULE 4: Weeks 9-12 -->
+                <div class="course-module" id="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Weeks 9&ndash;12: Peak Phase</div>
+                    <p>This is where everything comes together. You are training at your highest volume and intensity through Week 10, then tapering in Week 12 so you arrive at Ranger School fresh, not broken. Week 11 includes a full RPFT practice test.</p>
+
+                    <p><strong>Key Changes:</strong></p>
+                    <ul>
+                        <li>5-mile runs 2x/week at race pace</li>
+                        <li>Long run peaks at 10 miles in Week 10</li>
+                        <li>Plate carrier increases to 30&ndash;35 lbs, 4&ndash;5 mile runs</li>
+                        <li>Barefoot running progresses to smooth trail, 2&ndash;3 miles</li>
+                        <li>Combined events: ruck then run, swim then ruck</li>
+                        <li>Rucking peaks at 12 miles, 35 lbs dry, target sub-3:00</li>
+                        <li>Week 11: RPFT practice test</li>
+                        <li>Week 12: taper all volume by 40%, maintain intensity</li>
+                    </ul>
+
+                    <!-- WEEK 9 -->
+                    <div class="week-label">Week 9</div>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Day</th><th>Primary</th><th>Secondary</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Monday</td><td>5-mile run at race pace</td><td>Push-ups: 2-min max x 4 sets</td><td>Target sub-8:00/mile pace</td></tr>
+                            <tr><td class="day-cell">Tuesday</td><td>Plate carrier run: 4 mi @ 30 lbs</td><td>Sit-ups: 2-min max x 4 sets</td><td>Significant weight/distance jump</td></tr>
+                            <tr><td class="day-cell">Wednesday</td><td>Intervals: 800m x 6 (90s rest)</td><td>Push-ups: 2-min max x 3 sets</td><td>Shorter rest between intervals</td></tr>
+                            <tr><td class="day-cell">Thursday</td><td>5-mile run at race pace</td><td>Sit-ups: 2-min max x 3 sets</td><td>2nd race-pace session</td></tr>
+                            <tr><td class="day-cell">Friday</td><td>Ruck: 10 miles @ 35 lbs</td><td>Push-ups: 2-min max x 2 sets</td><td>Ruck then run 1 mile after</td></tr>
+                            <tr><td class="day-cell">Saturday</td><td>Long run: 9 miles easy</td><td>Swimming: CWST full simulation</td><td>Keep it easy after hard week</td></tr>
+                            <tr class="rest-row"><td class="day-cell">Sunday</td><td>Barefoot run: 2 mi on trail</td><td>Rest / ice bath</td><td>Progress to smooth trail surface</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- WEEK 10 -->
+                    <div class="week-label">Week 10 &mdash; Peak Volume</div>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Day</th><th>Primary</th><th>Secondary</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Monday</td><td>5-mile run at race pace</td><td>Push-ups: 2-min max x 4 sets</td><td>Push for sub-38:00 if able</td></tr>
+                            <tr><td class="day-cell">Tuesday</td><td>Plate carrier run: 4 mi @ 30 lbs</td><td>Sit-ups: 2-min max x 4 sets</td><td>Maintain weight, focus on form</td></tr>
+                            <tr><td class="day-cell">Wednesday</td><td>Intervals: 800m x 6 (90s rest)</td><td>Push-ups: 2-min max x 4 sets</td><td>Peak interval session</td></tr>
+                            <tr><td class="day-cell">Thursday</td><td>Plate carrier run: 5 mi @ 30 lbs</td><td>Sit-ups: 2-min max x 3 sets</td><td>Longest plate carrier run</td></tr>
+                            <tr><td class="day-cell">Friday</td><td>Combined: Ruck 6 mi then run 2 mi</td><td>Push-ups: 2-min max x 2 sets</td><td>Simulate patrol-to-movement</td></tr>
+                            <tr><td class="day-cell">Saturday</td><td><strong>Long run: 10 miles easy</strong></td><td>Swimming: 15m swim then ruck 2 mi</td><td>Peak long run of entire program</td></tr>
+                            <tr class="rest-row"><td class="day-cell">Sunday</td><td>Barefoot run: 2.5 mi on trail</td><td>Full rest / ice bath / stretch</td><td>Recover fully &mdash; big week ahead</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- WEEK 11 -->
+                    <div class="week-label">Week 11 &mdash; RPFT Practice Test</div>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Day</th><th>Primary</th><th>Secondary</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Monday</td><td>4-mile easy run</td><td>Push-ups: 2-min max x 3 sets</td><td>Light day before practice RPFT</td></tr>
+                            <tr><td class="day-cell">Tuesday</td><td>Plate carrier run: 4 mi @ 35 lbs</td><td>Sit-ups: 2-min max x 3 sets</td><td>Peak plate carrier weight</td></tr>
+                            <tr><td class="day-cell">Wednesday</td><td><strong>RPFT PRACTICE TEST</strong></td><td>Push-ups + sit-ups + 5-mile run</td><td>Full test. Record all scores.</td></tr>
+                            <tr><td class="day-cell">Thursday</td><td>3-mile easy recovery run</td><td>Light stretching only</td><td>Active recovery after test</td></tr>
+                            <tr><td class="day-cell">Friday</td><td><strong>12-mile ruck @ 35 lbs</strong></td><td>Target sub-3:00:00</td><td>Full RPFT ruck distance. Peak event.</td></tr>
+                            <tr><td class="day-cell">Saturday</td><td>5-mile easy run</td><td>Swimming: CWST full simulation</td><td>Recovery run, keep it light</td></tr>
+                            <tr class="rest-row"><td class="day-cell">Sunday</td><td>Barefoot run: 3 mi on trail</td><td>Full rest / foam roll / ice bath</td><td>Peak barefoot distance</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- WEEK 12 -->
+                    <div class="week-label">Week 12 &mdash; Taper</div>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Day</th><th>Primary</th><th>Secondary</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Monday</td><td>3-mile run at race pace</td><td>Push-ups: 2-min max x 2 sets</td><td>Reduced volume, maintain intensity</td></tr>
+                            <tr><td class="day-cell">Tuesday</td><td>Plate carrier run: 2 mi @ 25 lbs</td><td>Sit-ups: 2-min max x 2 sets</td><td>Drop weight and distance 40%</td></tr>
+                            <tr><td class="day-cell">Wednesday</td><td>Intervals: 400m x 4 (2-min rest)</td><td>Push-ups: 2-min max x 2 sets</td><td>Short, sharp intervals only</td></tr>
+                            <tr><td class="day-cell">Thursday</td><td>3-mile easy run</td><td>Sit-ups: 2-min max x 2 sets</td><td>Conversational pace</td></tr>
+                            <tr><td class="day-cell">Friday</td><td>Ruck: 4 miles @ 25 lbs</td><td>Push-ups: 2-min max x 2 sets</td><td>Light ruck to stay loose</td></tr>
+                            <tr><td class="day-cell">Saturday</td><td>3-mile easy run</td><td>Light swimming / stretching</td><td>Keep the legs moving</td></tr>
+                            <tr class="rest-row"><td class="day-cell">Sunday</td><td>Full rest</td><td>Full rest</td><td>You are ready. Trust the training.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="tip-box">
+                        <div class="tip-label">Taper Week Warning</div>
+                        <p style="margin: 0;">Do not panic-train during taper week. The fitness you have built over 11 weeks will not disappear in 7 days. But an injury from overdoing it in the final week will follow you into Day 1. Reduce volume by 40%, keep intensity the same, sleep as much as possible, and hydrate aggressively.</p>
+                    </div>
+                </div>
+
+                <!-- MODULE 5: Plate Carrier & Barefoot -->
+                <div class="course-module" id="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Running Focus: Plate Carrier &amp; Barefoot</div>
+                    <p>Two specialized running programs run alongside your standard training throughout the 12 weeks. Both serve distinct purposes and require careful progression to avoid injury.</p>
+
+                    <h3 style="color: #C5B358; margin-top: 2rem;">Plate Carrier Running</h3>
+
+                    <p><strong>Why:</strong> Builds strength endurance for carrying kit during patrols. At Ranger School, you will move under load constantly &mdash; on patrols, road marches, and movements to contact. Plate carrier running trains your body to maintain running form and aerobic output while bearing weight.</p>
+
+                    <p><strong>Equipment:</strong> A weighted vest or plate carrier with removable plates. Start light and add plates as you progress. If you only have a ruck, it works &mdash; but a vest distributes weight better for running.</p>
+
+                    <p><strong>12-Week Weight Progression:</strong></p>
+                    <div class="progression-bar">
+                        <span class="progression-step">Wk 1&ndash;4: 15 lbs</span>
+                        <span class="progression-arrow">&rarr;</span>
+                        <span class="progression-step">Wk 5&ndash;6: 20 lbs</span>
+                        <span class="progression-arrow">&rarr;</span>
+                        <span class="progression-step">Wk 7&ndash;8: 25 lbs</span>
+                        <span class="progression-arrow">&rarr;</span>
+                        <span class="progression-step">Wk 9&ndash;10: 30 lbs</span>
+                        <span class="progression-arrow">&rarr;</span>
+                        <span class="progression-step active">Wk 11&ndash;12: 35 lbs</span>
+                    </div>
+
+                    <p><strong>Distance Progression:</strong> Start at 2 miles, build to 5 miles by Week 10.</p>
+
+                    <p><strong>Form Tips:</strong></p>
+                    <ul>
+                        <li>Slightly shorter stride than normal running</li>
+                        <li>Higher cadence to compensate for reduced stride length</li>
+                        <li>Upright posture &mdash; do not lean forward excessively</li>
+                        <li>Keep core engaged to prevent lower back strain</li>
+                        <li>Run on soft surfaces (grass, dirt trail) when possible to protect joints</li>
+                    </ul>
+
+                    <p><strong>Recovery:</strong> Allow 48 hours between plate carrier sessions. This is load-bearing impact training and your joints need time to adapt. Do not stack plate carrier runs on consecutive days.</p>
+
+                    <h3 style="color: #C5B358; margin-top: 2.5rem;">Barefoot Running</h3>
+
+                    <p><strong>Why:</strong> Strengthens feet, improves proprioception (your body's awareness of foot placement), and reduces overstriding. At Ranger School, your feet take a beating. Stronger feet with better mechanics means fewer blisters, fewer stress fractures, and better performance under fatigue.</p>
+
+                    <p><strong>Technique Fundamentals:</strong></p>
+                    <ul>
+                        <li><strong>Forefoot/midfoot strike</strong> &mdash; not heel. Land on the ball of your foot.</li>
+                        <li><strong>Short stride</strong> &mdash; feet land directly under your hips, not in front</li>
+                        <li><strong>High cadence</strong> &mdash; target 180+ steps per minute</li>
+                        <li><strong>Land under hips</strong> &mdash; if your foot lands ahead of your center of mass, you are overstriding</li>
+                    </ul>
+
+                    <p><strong>Surface Progression:</strong></p>
+                    <div class="progression-bar">
+                        <span class="progression-step">Wk 1&ndash;4: Grass</span>
+                        <span class="progression-arrow">&rarr;</span>
+                        <span class="progression-step">Wk 5&ndash;8: Track</span>
+                        <span class="progression-arrow">&rarr;</span>
+                        <span class="progression-step active">Wk 9&ndash;12: Smooth Trail</span>
+                    </div>
+
+                    <p><strong>Distance Progression:</strong> Start at 0.5&ndash;1 mile, build to 3 miles by Week 11. Do not rush this. Barefoot running loads your calves, Achilles, and foot muscles differently than shod running.</p>
+
+                    <p><strong>Foot Strengthening Drills</strong> (do after every barefoot session):</p>
+                    <ul>
+                        <li><strong>Towel scrunches:</strong> Place a towel flat on the floor. Use your toes to scrunch it toward you. 3 sets.</li>
+                        <li><strong>Marble pickups:</strong> Pick up marbles or small objects with your toes. 20 reps per foot.</li>
+                        <li><strong>Calf raises:</strong> Single-leg calf raises on a step. 3 x 15 per leg.</li>
+                        <li><strong>Single-leg balance:</strong> Stand on one foot, eyes closed. Hold 30 seconds per leg. 3 sets.</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <div class="tip-label">Injury Rule</div>
+                        <p style="margin: 0;">Stop immediately if you feel sharp pain during barefoot running. Dull soreness in the calves or arches after the first few sessions is normal (adaptation). Sharp, localized pain is not. If it hurts, stop, ice it, and return to grass at a shorter distance.</p>
+                    </div>
+                </div>
+
+                <!-- MODULE 6: Nutrition & Recovery -->
+                <div class="course-module" id="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Nutrition &amp; Recovery</div>
+                    <p>Training this hard without fueling and recovering properly is a recipe for injury, overtraining, and showing up to Ranger School already broken. This module covers how to eat, sleep, and recover during the 12-week program.</p>
+
+                    <h3 style="color: #C5B358; margin-top: 1.5rem;">Calorie Needs</h3>
+                    <p>During heavy training weeks (Weeks 5&ndash;11), you need <strong>3,500&ndash;4,500 calories per day</strong> depending on your body weight and training volume. You are running, rucking, swimming, and doing calisthenics &mdash; you cannot maintain this on a standard 2,000-calorie diet.</p>
+
+                    <h3 style="color: #C5B358; margin-top: 1.5rem;">Macronutrient Breakdown</h3>
+                    <table class="workout-table">
+                        <thead>
+                            <tr><th>Macro</th><th>Priority</th><th>Target</th><th>Why</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="day-cell">Carbohydrates</td><td>Primary fuel</td><td>50&ndash;60% of calories</td><td>Fuels running volume. Glycogen is your primary energy source for aerobic work.</td></tr>
+                            <tr><td class="day-cell">Protein</td><td>Recovery</td><td>0.8&ndash;1g per lb bodyweight</td><td>Muscle repair, tendon/ligament health. Do not skimp on this.</td></tr>
+                            <tr><td class="day-cell">Fat</td><td>Hormone support</td><td>20&ndash;30% of calories</td><td>Supports testosterone, joint health, and sustained energy.</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3 style="color: #C5B358; margin-top: 1.5rem;">Hydration</h3>
+                    <p>Minimum: <strong>half your bodyweight in ounces per day</strong>. A 180-lb athlete needs at least 90 oz of water daily. On long run or ruck days, add 20&ndash;30 oz with electrolytes. Urine should be pale yellow &mdash; if it is dark, you are behind.</p>
+
+                    <h3 style="color: #C5B358; margin-top: 1.5rem;">Sleep</h3>
+                    <p><strong>7&ndash;8 hours per night.</strong> You will not get this at Ranger School &mdash; you will average 1&ndash;3 hours for weeks at a time. That makes pre-course sleep even more important. Your body adapts, repairs muscle, and consolidates motor learning during sleep. Cutting sleep during training undermines everything else you are doing.</p>
+
+                    <p>Think of it as banking sleep. You cannot fully "store" it, but arriving at Ranger School well-rested vs. sleep-deprived makes a measurable difference in your first week of performance.</p>
+
+                    <h3 style="color: #C5B358; margin-top: 1.5rem;">Recovery Protocols</h3>
+                    <ul>
+                        <li><strong>Foam rolling:</strong> 10&ndash;15 minutes after every training session. Focus on quads, IT band, calves, and glutes.</li>
+                        <li><strong>Stretching:</strong> Static stretching after workouts (not before). Hip flexors, hamstrings, calves, and shoulders.</li>
+                        <li><strong>Ice baths:</strong> After long runs (7+ miles) and peak ruck sessions. 10&ndash;15 minutes in cold water (50&ndash;60&deg;F). Reduces inflammation and speeds recovery.</li>
+                        <li><strong>Active recovery:</strong> On rest days, walk 20&ndash;30 minutes. Do not sit all day &mdash; light movement promotes blood flow and recovery.</li>
+                    </ul>
+
+                    <h3 style="color: #C5B358; margin-top: 1.5rem;">Injury Management</h3>
+                    <p>The number one rule: <strong>do not push through sharp pain.</strong> Dull muscle soreness is training adaptation. Sharp, localized pain is a warning sign. Common injuries during this program:</p>
+                    <ul>
+                        <li><strong>Shin splints:</strong> Reduce running volume, run on softer surfaces, check shoe wear</li>
+                        <li><strong>IT band syndrome:</strong> Foam roll aggressively, reduce hill running, stretch hip flexors</li>
+                        <li><strong>Plantar fasciitis:</strong> Roll a frozen water bottle under your foot, reduce barefoot volume</li>
+                        <li><strong>Stress fractures:</strong> See medical immediately. Do not run on a suspected stress fracture. Period.</li>
+                    </ul>
+                    <p>If an injury sidelines you for more than a week, adjust the program &mdash; skip back a phase and rebuild. It is better to arrive at Ranger School slightly undertrained than injured.</p>
+
+                    <h3 style="color: #C5B358; margin-top: 1.5rem;">Pre-Ranger School Nutrition Prep</h3>
+                    <p>Starting in Week 9, begin preparing your body for the calorie deficit you will face at Ranger School:</p>
+                    <ul>
+                        <li><strong>Practice eating MREs:</strong> Eat 1&ndash;2 MREs per week to acclimate your gut. Know which MRE components have the most calories (pound cake, cheese spread, peanut butter).</li>
+                        <li><strong>Calorie deficit simulation:</strong> One day per week in Weeks 9&ndash;11, eat only 1,500 calories while still training. This teaches your body to perform underfueled &mdash; a daily reality at Ranger School.</li>
+                        <li><strong>Pre-load before report date:</strong> In the final week, eat at a slight surplus (500+ calories above maintenance). You will burn through these reserves quickly once the course starts.</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <div class="tip-label">Final Thought</div>
+                        <p style="margin: 0;">The 12 weeks before Ranger School are the only time you have full control over your training, nutrition, sleep, and recovery. Once you report, those variables are taken from you. Use this time wisely. Be disciplined, be consistent, and trust the process. The work you put in now will carry you when everything else is stripped away.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Firebase Auth + Course Gate -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI, initCourseGate } from './auth.js';
+        initAuthUI();
+        initCourseGate();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>

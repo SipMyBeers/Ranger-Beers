@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruck Endurance Builder — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="winter.html">Winter</a></li>
+                        <li><a href="spring.html">Spring</a></li>
+                        <li><a href="summer.html">Summer</a></li>
+                        <li><a href="fall.html">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Ruck Endurance Builder</h1>
+        <p class="section-desc fade-in">The 12-mile ruck march is a RAP Week gate. 35 lbs dry, under 3 hours. This progressive program builds you up to crush the standard.</p>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Overview</a>
+                <a href="#mod2" class="course-sidebar-link">2. Equipment Setup</a>
+                <a href="#mod3" class="course-sidebar-link">3. Weeks 1-2: Foundation</a>
+                <a href="#mod4" class="course-sidebar-link">4. Weeks 3-4: Load Building</a>
+                <a href="#mod5" class="course-sidebar-link">5. Weeks 5-6: Distance & Speed</a>
+                <a href="#mod6" class="course-sidebar-link">6. Foot Care</a>
+                <a href="#mod7" class="course-sidebar-link">7. Pacing & Nutrition</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Overview</div>
+                    <p>The 12-mile ruck march standard: 35 lbs dry weight + weapon, complete in under 3:00:00 (15:00/mile pace). This is a RAP Week gate &mdash; fail it and you're done.</p>
+
+                    <p>But rucking at Ranger School goes far beyond the 12-miler: you'll ruck daily for 61+ days with 50&ndash;80 lbs in patrol. This program builds the foundation.</p>
+
+                    <p>The goal is not just to pass the 12-miler but to make rucking sustainable for the entire course. If you can only barely pass the ruck march on Day 1, you will be destroyed by the cumulative load over the following weeks. You need a reserve &mdash; both physical and mental &mdash; that only comes from progressive, disciplined training.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module" id="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Equipment Setup</div>
+
+                    <p><strong>Ruck Selection:</strong></p>
+                    <ul>
+                        <li>ALICE pack (medium or large) or MOLLE II</li>
+                        <li>Use a frame &mdash; it distributes weight to your hips and keeps the load stable</li>
+                    </ul>
+
+                    <p><strong>Weight Distribution:</strong></p>
+                    <ul>
+                        <li>Heaviest items high and close to your back</li>
+                        <li>Use weight plates or sandbags for training &mdash; not loose items that shift</li>
+                    </ul>
+
+                    <p><strong>Training Pack List:</strong></p>
+                    <ul>
+                        <li>Weight plates or sandbags (secured so they don't move)</li>
+                        <li>Water source (hydration bladder or canteens)</li>
+                        <li>First aid kit</li>
+                    </ul>
+
+                    <p><strong>Boot Selection:</strong></p>
+                    <ul>
+                        <li>Broken-in boots &mdash; match what you'll wear at Ranger School</li>
+                        <li>Do NOT train in new boots. Break them in over 4+ weeks before starting this program</li>
+                    </ul>
+
+                    <p><strong>Sock System:</strong></p>
+                    <ul>
+                        <li>Liner sock + wool/synthetic outer sock</li>
+                        <li>The liner wicks moisture away from your skin, the outer sock provides cushion</li>
+                    </ul>
+
+                    <p><strong>Lace Technique:</strong></p>
+                    <ul>
+                        <li>Tight in the heel to lock your foot in place</li>
+                        <li>Looser over the top of the foot to allow circulation</li>
+                    </ul>
+
+                    <p><strong>Ruck Posture:</strong></p>
+                    <ul>
+                        <li>Lean slightly forward &mdash; let the weight sit over your hips</li>
+                        <li>Hips under the load, quick short steps</li>
+                        <li>Avoid leaning back or overstriding &mdash; both waste energy and cause injury</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module" id="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Weeks 1&ndash;2: Foundation</div>
+                    <p><strong>Goal:</strong> Build ruck tolerance. Walk, don't run. Focus on form and foot care.</p>
+
+                    <p><strong>Ruck 2x/week:</strong></p>
+                    <ul>
+                        <li><strong>Workout 1:</strong> 3 miles, 25 lbs, easy pace (18:00/mile)</li>
+                        <li><strong>Workout 2:</strong> 4 miles, 25 lbs, moderate pace (16:00/mile)</li>
+                    </ul>
+
+                    <p><strong>Daily:</strong></p>
+                    <ul>
+                        <li>10-minute loaded carry (25 lbs) &mdash; walk around the block</li>
+                    </ul>
+
+                    <p><strong>Mobility &amp; Recovery:</strong></p>
+                    <ul>
+                        <li>Do hip, ankle, and shoulder mobility before and after each ruck</li>
+                        <li>Ice feet after if needed</li>
+                        <li>Check feet for hotspots after every session</li>
+                    </ul>
+
+                    <p>These first two weeks are about building a base. Resist the urge to go heavy or fast. Your connective tissue, joints, and feet need time to adapt to loaded movement. Injuries here will derail the entire program.</p>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module" id="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Weeks 3&ndash;4: Load Building</div>
+                    <p><strong>Goal:</strong> Increase weight and introduce supplemental training.</p>
+
+                    <p><strong>Ruck 2x/week:</strong></p>
+                    <ul>
+                        <li><strong>Workout 1:</strong> 5 miles, 30 lbs, moderate pace</li>
+                        <li><strong>Workout 2:</strong> 6 miles, 30 lbs, goal pace (15:30/mile)</li>
+                    </ul>
+
+                    <p><strong>Supplemental Training:</strong></p>
+                    <ul>
+                        <li><strong>Stair/Hill Repeats 1x/week:</strong> 30 lbs, 10 flights or 200 ft elevation gain, 4&ndash;6 sets</li>
+                        <li><strong>Ruck-to-Run Transitions:</strong> After ruck, drop pack and run 1 mile at your 5-mile run pace</li>
+                    </ul>
+
+                    <p><strong>Foot Care:</strong></p>
+                    <ul>
+                        <li>Check for hotspots after every ruck</li>
+                        <li>Apply moleskin at the first sign of irritation &mdash; do not wait for a blister to form</li>
+                    </ul>
+
+                    <p>The ruck-to-run transition is critical for Ranger School. You will frequently need to drop your ruck and sprint to an objective or react to contact. Train your legs to switch gears under fatigue.</p>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module" id="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Weeks 5&ndash;6: Distance &amp; Speed</div>
+                    <p><strong>Goal:</strong> Peak distance and speed. Validate with a 12-mile time trial.</p>
+
+                    <p><strong>Ruck 2&ndash;3x/week:</strong></p>
+                    <ul>
+                        <li><strong>Workout 1:</strong> 8 miles, 35 lbs, goal pace (15:00/mile)</li>
+                        <li><strong>Workout 2:</strong> 6 miles, 35 lbs, fast pace (14:30/mile)</li>
+                        <li><strong>Workout 3:</strong> 4 miles, 35 lbs, speed ruck (shuffle/walk combo)</li>
+                    </ul>
+
+                    <p><strong>Week 6 &mdash; 12-Mile Time Trial:</strong></p>
+                    <ul>
+                        <li>35 lbs dry weight</li>
+                        <li>Target: sub-3:00:00</li>
+                        <li>Use a measured route and carry your full training kit</li>
+                        <li>If you fail, repeat Week 5 and re-test</li>
+                    </ul>
+
+                    <p><strong>Post-Trial Recovery:</strong></p>
+                    <ul>
+                        <li>Recovery week: reduce volume by 50%</li>
+                        <li>Focus on mobility, foot care, and light cardio</li>
+                    </ul>
+
+                    <p>The time trial is your validation event. Treat it like the real thing &mdash; same boots, same socks, same pack, same weight. No surprises on test day.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module" id="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Foot Care</div>
+                    <p>This is the most critical section. Blisters end more ruck marches than fatigue does. Prevention is everything.</p>
+
+                    <p><strong>Blister Prevention:</strong></p>
+                    <ul>
+                        <li>Properly fitted boots &mdash; half size up from running shoes</li>
+                        <li>Break in boots over 4+ weeks with progressively longer walks</li>
+                        <li>Moisture management: change socks at halftime on the 12-miler</li>
+                        <li>Liner sock + outer sock system (never single-layer cotton)</li>
+                    </ul>
+
+                    <p><strong>Hotspot Treatment:</strong></p>
+                    <ul>
+                        <li>Stop immediately when you feel a hotspot</li>
+                        <li>Apply moleskin or Leukotape BEFORE a blister forms</li>
+                        <li>Ignoring a hotspot guarantees a blister &mdash; fix it now or pay later</li>
+                    </ul>
+
+                    <p><strong>Blister Treatment:</strong></p>
+                    <ul>
+                        <li>Do NOT pop unless medically necessary</li>
+                        <li>If popped: clean with alcohol, apply antibiotic ointment + moleskin donut</li>
+                        <li>Cover with a breathable bandage and monitor for infection</li>
+                    </ul>
+
+                    <p><strong>Toenails:</strong></p>
+                    <ul>
+                        <li>Trim straight across &mdash; short but not too short</li>
+                        <li>Trim 1 week before the 12-miler (not the day before)</li>
+                    </ul>
+
+                    <p><strong>Products:</strong></p>
+                    <ul>
+                        <li><strong>Foot Powder:</strong> Gold Bond &mdash; apply before and at halftime</li>
+                        <li><strong>Anti-Chafe:</strong> Desitin for chafing, Body Glide for friction zones</li>
+                        <li><strong>Socks:</strong> Injinji toe socks (excellent blister prevention between toes)</li>
+                        <li><strong>Tape:</strong> Leukotape &mdash; sticks better than moleskin in wet conditions</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 7 -->
+                <div class="course-module" id="mod7">
+                    <div class="course-module-label">Module 7</div>
+                    <div class="course-module-title">Pacing &amp; Nutrition</div>
+
+                    <p><strong>Pacing Strategy:</strong></p>
+                    <ul>
+                        <li>The 12-miler is 15:00/mile pace &mdash; a fast walk / slow shuffle</li>
+                        <li>Practice your pace on measured routes</li>
+                        <li>Use a watch or pace beads to stay consistent</li>
+                        <li>Consistent pace beats sprinting and walking &mdash; never go out hot and fade</li>
+                    </ul>
+
+                    <p><strong>Pre-Ruck Nutrition:</strong></p>
+                    <ul>
+                        <li>Eat complex carbs 2 hours before the ruck march</li>
+                        <li>Avoid heavy fats or fiber that could cause GI distress</li>
+                    </ul>
+
+                    <p><strong>During the Ruck:</strong></p>
+                    <ul>
+                        <li>Bring 2 gel packs or candy for miles 6 and 9</li>
+                        <li>Hydrate: 500ml per 2 miles minimum</li>
+                        <li>Electrolytes: add to one water source (not both)</li>
+                    </ul>
+
+                    <p><strong>Post-Ruck Recovery:</strong></p>
+                    <ul>
+                        <li>Recovery meal within 30 minutes &mdash; protein + carbs</li>
+                        <li>Stretch hips, calves, and shoulders</li>
+                        <li>Elevate feet and ice if swollen</li>
+                    </ul>
+
+                    <p><strong>Weight Management:</strong></p>
+                    <ul>
+                        <li>Weigh your ruck on a scale before every training session &mdash; no guessing</li>
+                        <li>On test day, weigh with all gear (water, food, first aid) to ensure you are at 35 lbs dry</li>
+                        <li>At Ranger School, RIs will weigh your ruck. Under 35 lbs is a failure</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Firebase Auth + Course Gate -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI, initCourseGate } from './auth.js';
+        initAuthUI();
+        initCourseGate();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>

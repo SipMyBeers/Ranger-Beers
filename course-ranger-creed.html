@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranger Creed Mastery — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="winter.html">Winter</a></li>
+                        <li><a href="spring.html">Spring</a></li>
+                        <li><a href="summer.html">Summer</a></li>
+                        <li><a href="fall.html">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Ranger Creed Mastery</h1>
+        <p class="section-desc fade-in">The Ranger Creed is the foundation of the Ranger ethos. You will recite it every single day. This course breaks down each stanza, teaches memorization techniques, and tests your recall.</p>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Sections</div>
+                <a href="#full-creed" class="course-sidebar-link active">Full Creed</a>
+                <a href="#stanza-1" class="course-sidebar-link">Stanza 1 Analysis</a>
+                <a href="#stanza-2" class="course-sidebar-link">Stanza 2 Analysis</a>
+                <a href="#stanza-3" class="course-sidebar-link">Stanza 3 Analysis</a>
+                <a href="#stanza-4" class="course-sidebar-link">Stanza 4 Analysis</a>
+                <a href="#stanza-5" class="course-sidebar-link">Stanza 5 Analysis</a>
+                <a href="#stanza-6" class="course-sidebar-link">Stanza 6 Analysis</a>
+                <a href="#memorization" class="course-sidebar-link">Memorization Tips</a>
+                <a href="#voice-assessment" class="course-sidebar-link">Voice Assessment</a>
+                <a href="#practice" class="course-sidebar-link">Text Assessment</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+
+                <!-- FULL CREED -->
+                <div class="course-module" id="full-creed">
+                    <div class="course-module-label">The Ranger Creed</div>
+                    <div class="course-module-title">Full Text</div>
+
+                    <div class="creed-card" style="text-align: left;">
+                        <p class="creed-stanza"><strong>Recognizing</strong> that I volunteered as a Ranger, fully knowing the hazards of my chosen profession, I will always endeavor to uphold the prestige, honor, and high esprit de corps of my Ranger Regiment.</p>
+                        <p class="creed-stanza"><strong>Acknowledging</strong> the fact that a Ranger is a more elite soldier, who arrives at the cutting edge of battle by land, sea, or air, I accept the fact that as a Ranger, my country expects me to move further, faster, and fight harder than any other soldier.</p>
+                        <p class="creed-stanza"><strong>Never</strong> shall I fail my comrades. I will always keep myself mentally alert, physically strong, and morally straight, and I will shoulder more than my share of the task, whatever it may be, one hundred percent and then some.</p>
+                        <p class="creed-stanza"><strong>Gallantly</strong> will I show the world that I am a specially selected and well-trained soldier. My courtesy to superior officers, neatness of dress, and care of equipment shall set the example for others to follow.</p>
+                        <p class="creed-stanza"><strong>Energetically</strong> will I meet the enemies of my country. I shall defeat them on the field of battle for I am better trained and will fight with all my might. Surrender is not a Ranger word. I will never leave a fallen comrade to fall into the hands of the enemy and under no circumstances will I ever embarrass my country.</p>
+                        <p class="creed-stanza"><strong>Readily</strong> will I display the intestinal fortitude required to fight on to the Ranger objective and complete the mission, though I be the lone survivor.</p>
+                        <div class="creed-closer" style="text-align: center;">Rangers Lead the Way!</div>
+                    </div>
+                </div>
+
+                <!-- STANZA ANALYSES -->
+                <div class="course-module" id="stanza-1">
+                    <div class="course-module-label">Stanza 1</div>
+                    <div class="course-module-title">"Recognizing..."</div>
+                    <p><em>"Recognizing that I volunteered as a Ranger, fully knowing the hazards of my chosen profession, I will always endeavor to uphold the prestige, honor, and high esprit de corps of my Ranger Regiment."</em></p>
+                    <p><strong>Key Theme: Voluntary Service & Pride</strong></p>
+                    <p>You chose this. Nobody forced you to be here. This stanza establishes personal accountability — you knew what you were signing up for, and you commit to upholding the standard of those who came before you. "Esprit de corps" means the common spirit of the unit — pride, fellowship, and loyalty to the Regiment.</p>
+                    <p><strong>Memory Anchor:</strong> Think "I CHOSE this" — voluntary, hazards, prestige.</p>
+                </div>
+
+                <div class="course-module" id="stanza-2">
+                    <div class="course-module-label">Stanza 2</div>
+                    <div class="course-module-title">"Acknowledging..."</div>
+                    <p><em>"Acknowledging the fact that a Ranger is a more elite soldier, who arrives at the cutting edge of battle by land, sea, or air, I accept the fact that as a Ranger, my country expects me to move further, faster, and fight harder than any other soldier."</em></p>
+                    <p><strong>Key Theme: Higher Standard</strong></p>
+                    <p>Rangers are held to a higher standard than conventional forces. "Cutting edge of battle" — Rangers are first in. "Land, sea, or air" — Rangers are multi-domain. The expectation is clear: further, faster, harder. No excuses.</p>
+                    <p><strong>Memory Anchor:</strong> Think "ELITE — further, faster, harder" — the three pillars.</p>
+                </div>
+
+                <div class="course-module" id="stanza-3">
+                    <div class="course-module-label">Stanza 3</div>
+                    <div class="course-module-title">"Never shall I fail..."</div>
+                    <p><em>"Never shall I fail my comrades. I will always keep myself mentally alert, physically strong, and morally straight, and I will shoulder more than my share of the task, whatever it may be, one hundred percent and then some."</em></p>
+                    <p><strong>Key Theme: Teamwork & Self-Discipline</strong></p>
+                    <p>The three pillars: mentally alert, physically strong, morally straight. This is about never being the weak link. "One hundred percent and then some" — always give more than what's asked. Your Ranger buddy depends on you.</p>
+                    <p><strong>Memory Anchor:</strong> Think "NEVER FAIL — mind, body, morals — 100% and then some."</p>
+                </div>
+
+                <div class="course-module" id="stanza-4">
+                    <div class="course-module-label">Stanza 4</div>
+                    <div class="course-module-title">"Gallantly..."</div>
+                    <p><em>"Gallantly will I show the world that I am a specially selected and well-trained soldier. My courtesy to superior officers, neatness of dress, and care of equipment shall set the example for others to follow."</em></p>
+                    <p><strong>Key Theme: Professionalism & Standards</strong></p>
+                    <p>"Gallantly" — with bravery and show. This stanza is about professional appearance and conduct. Rangers set the example in everything: how they dress, how they maintain gear, how they address leaders. The standard is the standard.</p>
+                    <p><strong>Memory Anchor:</strong> Think "SET THE EXAMPLE — courtesy, dress, equipment."</p>
+                </div>
+
+                <div class="course-module" id="stanza-5">
+                    <div class="course-module-label">Stanza 5</div>
+                    <div class="course-module-title">"Energetically..."</div>
+                    <p><em>"Energetically will I meet the enemies of my country. I shall defeat them on the field of battle for I am better trained and will fight with all my might. Surrender is not a Ranger word. I will never leave a fallen comrade to fall into the hands of the enemy and under no circumstances will I ever embarrass my country."</em></p>
+                    <p><strong>Key Theme: Combat Ethos & Loyalty</strong></p>
+                    <p>This is the warrior stanza. Three commitments: fight with everything you have, never surrender, never leave a fallen comrade. "Under no circumstances will I ever embarrass my country" — your conduct reflects on every Ranger who came before you.</p>
+                    <p><strong>Memory Anchor:</strong> Think "FIGHT — no surrender, no man left behind, no embarrassment."</p>
+                </div>
+
+                <div class="course-module" id="stanza-6">
+                    <div class="course-module-label">Stanza 6</div>
+                    <div class="course-module-title">"Readily..."</div>
+                    <p><em>"Readily will I display the intestinal fortitude required to fight on to the Ranger objective and complete the mission, though I be the lone survivor."</em></p>
+                    <p><strong>Key Theme: Guts & Mission Completion</strong></p>
+                    <p>"Intestinal fortitude" — guts, courage, the will to keep going when everything says stop. Even alone, you complete the mission. This is the essence of what makes a Ranger: the refusal to quit.</p>
+                    <p><strong>Memory Anchor:</strong> Think "GUTS — lone survivor — complete the mission."</p>
+                    <p style="color: var(--color-gold); font-weight: 700; font-size: 18px; margin-top: var(--space-lg);">Rangers Lead the Way!</p>
+                </div>
+
+                <!-- MEMORIZATION TECHNIQUES -->
+                <div class="course-module" id="memorization">
+                    <div class="course-module-label">Study Technique</div>
+                    <div class="course-module-title">Memorization Tips</div>
+                    <p><strong>The R-A-N-G-E-R Method:</strong></p>
+                    <p>Each stanza begins with a letter that spells RANGER:</p>
+                    <ul>
+                        <li><strong>R</strong> — Recognizing</li>
+                        <li><strong>A</strong> — Acknowledging</li>
+                        <li><strong>N</strong> — Never</li>
+                        <li><strong>G</strong> — Gallantly</li>
+                        <li><strong>E</strong> — Energetically</li>
+                        <li><strong>R</strong> — Readily</li>
+                    </ul>
+
+                    <p><strong>Daily Practice Schedule:</strong></p>
+                    <ol>
+                        <li>Read the full creed out loud every morning</li>
+                        <li>Cover one stanza and recite from memory. Check. Repeat</li>
+                        <li>Write each stanza by hand — physical writing aids memory</li>
+                        <li>Recite to a buddy and have them check you</li>
+                        <li>Record yourself and listen back — catch dropped words</li>
+                    </ol>
+
+                    <p><strong>Common Mistakes to Avoid:</strong></p>
+                    <ul>
+                        <li>"esprit de corps" — often mispronounced or skipped</li>
+                        <li>"one hundred percent and then some" — people say "110%" instead</li>
+                        <li>"intestinal fortitude" — don't skip or paraphrase</li>
+                        <li>Stanza 5 is the longest — practice it separately</li>
+                    </ul>
+                </div>
+
+                <!-- VOICE ASSESSMENT -->
+                <div class="course-module" id="voice-assessment">
+                    <div class="course-module-label">Voice Assessment</div>
+                    <div class="course-module-title">Recite the Creed</div>
+                    <p>Speak each stanza out loud. Your speech is compared word-by-word against the correct text. Score 80%+ to unlock the next stanza. <strong>This is how you'll be tested in Ranger School — out loud, under pressure.</strong></p>
+
+                    <div id="voice-no-support" style="display: none; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 12px; padding: 16px; margin-bottom: var(--space-xl);">
+                        <p style="margin: 0; color: #ef4444; font-size: 13px;">Your browser does not support speech recognition. Use the text assessment below, or try Chrome or Edge.</p>
+                    </div>
+
+                    <div id="voice-stanzas"></div>
+
+                    <div id="voice-overall" style="display: none; text-align: center; margin-top: var(--space-2xl); padding: var(--space-xl); background: rgba(197,179,88,0.06); border: 1px solid rgba(197,179,88,0.3); border-radius: 12px;">
+                        <div style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--color-gold);" id="voice-total-score"></div>
+                        <div style="font-size: 15px; color: var(--color-text-secondary); margin-top: var(--space-sm);" id="voice-total-verdict"></div>
+                    </div>
+                </div>
+
+                <!-- PRACTICE ASSESSMENT -->
+                <div class="course-module" id="practice">
+                    <div class="course-module-label">Knowledge Check</div>
+                    <div class="course-module-title">Practice Assessment</div>
+                    <p>Type each stanza from memory — no peeking. This is the same assessment available on the <a href="resources.html#creed" style="color: var(--color-gold);">Resources page</a>.</p>
+
+                    <div id="course-creed-quiz" style="margin-top: var(--space-xl);">
+                        <div style="margin-bottom: var(--space-xl);">
+                            <label style="display: block; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-sm);">Stanza 1 — "Recognizing..."</label>
+                            <textarea class="form-textarea" id="cc-1" rows="3" placeholder="Recognizing that I volunteered as a Ranger..." style="width: 100%;"></textarea>
+                        </div>
+                        <div style="margin-bottom: var(--space-xl);">
+                            <label style="display: block; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-sm);">Stanza 2 — "Acknowledging..."</label>
+                            <textarea class="form-textarea" id="cc-2" rows="3" placeholder="Acknowledging the fact that a Ranger is..." style="width: 100%;"></textarea>
+                        </div>
+                        <div style="margin-bottom: var(--space-xl);">
+                            <label style="display: block; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-sm);">Stanza 3 — "Never shall I..."</label>
+                            <textarea class="form-textarea" id="cc-3" rows="3" placeholder="Never shall I fail my comrades..." style="width: 100%;"></textarea>
+                        </div>
+                        <div style="margin-bottom: var(--space-xl);">
+                            <label style="display: block; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-sm);">Stanza 4 — "Gallantly..."</label>
+                            <textarea class="form-textarea" id="cc-4" rows="3" placeholder="Gallantly will I show the world..." style="width: 100%;"></textarea>
+                        </div>
+                        <div style="margin-bottom: var(--space-xl);">
+                            <label style="display: block; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-sm);">Stanza 5 — "Energetically..."</label>
+                            <textarea class="form-textarea" id="cc-5" rows="4" placeholder="Energetically will I meet the enemies..." style="width: 100%;"></textarea>
+                        </div>
+                        <div style="margin-bottom: var(--space-xl);">
+                            <label style="display: block; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-sm);">Stanza 6 — "Readily..."</label>
+                            <textarea class="form-textarea" id="cc-6" rows="2" placeholder="Readily will I display..." style="width: 100%;"></textarea>
+                        </div>
+
+                        <div style="text-align: center; margin-top: var(--space-xl);">
+                            <button type="button" id="cc-check" class="btn btn-primary" style="min-width: 250px;">Check My Creed</button>
+                        </div>
+
+                        <div id="cc-results" style="display: none; margin-top: var(--space-2xl);">
+                            <div style="text-align: center; margin-bottom: var(--space-xl);">
+                                <div id="cc-score" style="font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; color: var(--color-gold); margin-bottom: var(--space-sm);"></div>
+                                <div id="cc-verdict" style="font-size: 15px; color: var(--color-text-secondary);"></div>
+                            </div>
+                            <div id="cc-feedback"></div>
+                            <div style="text-align: center; margin-top: var(--space-xl);">
+                                <button type="button" id="cc-retry" class="btn btn-outline" style="min-width: 200px;">Try Again</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Voice Assessment Styles -->
+    <style>
+        .voice-stanza {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: var(--space-xl);
+            margin-bottom: var(--space-lg);
+            transition: all 0.3s ease;
+        }
+        .voice-stanza.locked {
+            opacity: 0.4;
+            pointer-events: none;
+            filter: grayscale(0.5);
+        }
+        .voice-stanza.unlocked {
+            border-color: rgba(197,179,88,0.2);
+        }
+        .voice-stanza-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+        }
+        .voice-stanza-label {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+        }
+        .voice-stanza-score {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 2px 10px;
+            border-radius: 4px;
+        }
+        .voice-stanza-text {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            line-height: 1.7;
+            margin-bottom: var(--space-lg);
+            font-style: italic;
+        }
+        .voice-controls {
+            display: flex;
+            gap: var(--space-sm);
+            align-items: center;
+            margin-bottom: var(--space-md);
+        }
+        .voice-start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid rgba(197,179,88,0.3);
+            background: transparent;
+            color: var(--color-gold);
+            transition: all 0.2s ease;
+        }
+        .voice-start-btn:hover {
+            background: rgba(197,179,88,0.1);
+            border-color: var(--color-gold);
+        }
+        .voice-start-btn.recording {
+            background: rgba(239,68,68,0.15);
+            border-color: #ef4444;
+            color: #ef4444;
+            animation: pulse-red 1.5s infinite;
+        }
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(239,68,68,0); }
+        }
+        .voice-stop-btn {
+            display: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid #ef4444;
+            background: rgba(239,68,68,0.15);
+            color: #ef4444;
+            transition: all 0.2s ease;
+        }
+        .voice-stop-btn:hover {
+            background: rgba(239,68,68,0.25);
+        }
+        .voice-interim {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            min-height: 20px;
+            font-style: italic;
+            margin-bottom: var(--space-sm);
+        }
+        .voice-diff {
+            display: none;
+            line-height: 2;
+            font-size: 15px;
+            margin-top: var(--space-md);
+        }
+        .voice-word-correct { color: #22c55e; }
+        .voice-word-wrong { color: #ef4444; text-decoration: line-through; }
+        .voice-word-missing { color: #ef4444; opacity: 0.5; font-style: italic; }
+        .voice-word-extra { color: #f59e0b; }
+        .voice-critique {
+            display: none;
+            margin-top: var(--space-md);
+            padding: var(--space-md);
+            background: rgba(245,158,11,0.08);
+            border: 1px solid rgba(245,158,11,0.2);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+        .voice-lock-icon::before { content: '🔒 '; }
+        .voice-fallback-input {
+            width: 100%;
+            margin-bottom: var(--space-sm);
+        }
+    </style>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ── Creed Data ──
+        const creedStanzas = [
+            { label: 'Stanza 1 — "Recognizing..."', text: "Recognizing that I volunteered as a Ranger, fully knowing the hazards of my chosen profession, I will always endeavor to uphold the prestige, honor, and high esprit de corps of my Ranger Regiment." },
+            { label: 'Stanza 2 — "Acknowledging..."', text: "Acknowledging the fact that a Ranger is a more elite soldier, who arrives at the cutting edge of battle by land, sea, or air, I accept the fact that as a Ranger, my country expects me to move further, faster, and fight harder than any other soldier." },
+            { label: 'Stanza 3 — "Never..."', text: "Never shall I fail my comrades. I will always keep myself mentally alert, physically strong, and morally straight, and I will shoulder more than my share of the task, whatever it may be, one hundred percent and then some." },
+            { label: 'Stanza 4 — "Gallantly..."', text: "Gallantly will I show the world that I am a specially selected and well-trained soldier. My courtesy to superior officers, neatness of dress, and care of equipment shall set the example for others to follow." },
+            { label: 'Stanza 5 — "Energetically..."', text: "Energetically will I meet the enemies of my country. I shall defeat them on the field of battle for I am better trained and will fight with all my might. Surrender is not a Ranger word. I will never leave a fallen comrade to fall into the hands of the enemy and under no circumstances will I ever embarrass my country." },
+            { label: 'Stanza 6 — "Readily..."', text: "Readily will I display the intestinal fortitude required to fight on to the Ranger objective and complete the mission, though I be the lone survivor." }
+        ];
+
+        const commonMistakes = {
+            'esprit': 'Pronunciation tip: "esprit de corps" is pronounced "eh-SPREE duh KOR" — it means the common spirit and pride of the unit.',
+            'intestinal': '"Intestinal fortitude" means guts — the courage to keep going. Don\'t paraphrase this as "strength" or "courage."',
+            'one hundred': 'The creed says "one hundred percent and then some" — not "110%" or "a hundred percent."',
+            'endeavor': '"Endeavor" means to try hard — make sure you\'re not saying "endure" instead.',
+            'embarrass': 'Common misspelling when typed, but in speech: make sure you say "embarrass my country" not just "embarrass."'
+        };
+
+        // ── Speech Recognition Setup ──
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const hasSpeech = !!SpeechRecognition;
+
+        // ── Score Persistence ──
+        const STORAGE_KEY = 'ranger-creed-voice-scores';
+        function loadScores() {
+            try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+        }
+        function saveScore(idx, score) {
+            const scores = loadScores();
+            scores[idx] = Math.max(scores[idx] || 0, score);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(scores));
+        }
+
+        // ── Word Diff Algorithm ──
+        function normalizeWord(w) { return w.toLowerCase().replace(/[^a-z0-9]/g, ''); }
+
+        function wordDiff(expected, spoken) {
+            const expWords = expected.split(/\s+/).filter(Boolean);
+            const spkWords = spoken.split(/\s+/).filter(Boolean);
+            const expNorm = expWords.map(normalizeWord);
+            const spkNorm = spkWords.map(normalizeWord);
+
+            // LCS-based alignment
+            const m = expNorm.length, n = spkNorm.length;
+            const dp = Array.from({length: m+1}, () => Array(n+1).fill(0));
+            for (let i = 1; i <= m; i++)
+                for (let j = 1; j <= n; j++)
+                    dp[i][j] = expNorm[i-1] === spkNorm[j-1] ? dp[i-1][j-1]+1 : Math.max(dp[i-1][j], dp[i][j-1]);
+
+            // Backtrack to build alignment
+            const result = [];
+            let i = m, j = n;
+            const aligned = [];
+            while (i > 0 || j > 0) {
+                if (i > 0 && j > 0 && expNorm[i-1] === spkNorm[j-1]) {
+                    aligned.unshift({ type: 'correct', expected: expWords[i-1], spoken: spkWords[j-1] });
+                    i--; j--;
+                } else if (j > 0 && (i === 0 || dp[i][j-1] >= dp[i-1][j])) {
+                    aligned.unshift({ type: 'extra', spoken: spkWords[j-1] });
+                    j--;
+                } else {
+                    aligned.unshift({ type: 'missing', expected: expWords[i-1] });
+                    i--;
+                }
+            }
+
+            const correct = aligned.filter(a => a.type === 'correct').length;
+            const total = expWords.length;
+            const score = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+            return { aligned, score, correct, total };
+        }
+
+        function renderDiff(aligned) {
+            return aligned.map(a => {
+                if (a.type === 'correct') return '<span class="voice-word-correct">' + a.expected + '</span>';
+                if (a.type === 'missing') return '<span class="voice-word-missing">' + a.expected + '</span>';
+                if (a.type === 'extra') return '<span class="voice-word-extra">' + a.spoken + '</span>';
+                return '<span class="voice-word-wrong">' + a.spoken + '</span>';
+            }).join(' ');
+        }
+
+        function getCritique(stanzaText, spoken) {
+            const tips = [];
+            const spokenLower = spoken.toLowerCase();
+            for (const [key, tip] of Object.entries(commonMistakes)) {
+                if (stanzaText.toLowerCase().includes(key) && !spokenLower.includes(key)) {
+                    tips.push(tip);
+                }
+            }
+            return tips;
+        }
+
+        // ── Build Voice UI ──
+        function buildVoiceUI() {
+            const container = document.getElementById('voice-stanzas');
+            const scores = loadScores();
+
+            creedStanzas.forEach((stanza, idx) => {
+                const isUnlocked = idx === 0 || (scores[idx - 1] && scores[idx - 1] >= 80);
+                const bestScore = scores[idx] || 0;
+                const scoreColor = bestScore >= 80 ? '#22c55e' : bestScore >= 50 ? '#f59e0b' : '#ef4444';
+                const scoreLabel = bestScore >= 80 ? 'GO' : bestScore > 0 ? 'NO-GO' : '';
+
+                const div = document.createElement('div');
+                div.className = 'voice-stanza ' + (isUnlocked ? 'unlocked' : 'locked');
+                div.id = 'voice-s-' + idx;
+                div.innerHTML =
+                    '<div class="voice-stanza-header">' +
+                        '<span class="voice-stanza-label">' + (isUnlocked ? '' : '<span class="voice-lock-icon"></span>') + stanza.label + '</span>' +
+                        (bestScore > 0 ? '<span class="voice-stanza-score" style="background:' + scoreColor + '22;color:' + scoreColor + ';border:1px solid ' + scoreColor + '44;">' + scoreLabel + ' — ' + bestScore + '%</span>' : '') +
+                    '</div>' +
+                    '<div class="voice-stanza-text">' + stanza.text + '</div>' +
+                    '<div class="voice-controls">' +
+                        (hasSpeech ?
+                            '<button class="voice-start-btn" data-idx="' + idx + '">Start Speaking</button>' +
+                            '<button class="voice-stop-btn" data-idx="' + idx + '">Stop</button>'
+                        :
+                            '<textarea class="form-textarea voice-fallback-input" data-idx="' + idx + '" rows="3" placeholder="Type the stanza from memory..."></textarea>' +
+                            '<button class="voice-start-btn" data-idx="' + idx + '">Check Text</button>'
+                        ) +
+                    '</div>' +
+                    '<div class="voice-interim" id="voice-interim-' + idx + '"></div>' +
+                    '<div class="voice-diff" id="voice-diff-' + idx + '"></div>' +
+                    '<div class="voice-critique" id="voice-critique-' + idx + '"></div>';
+
+                container.appendChild(div);
+            });
+
+            // Attach event listeners
+            if (hasSpeech) {
+                container.querySelectorAll('.voice-start-btn').forEach(btn => {
+                    btn.addEventListener('click', () => startRecording(parseInt(btn.dataset.idx)));
+                });
+                container.querySelectorAll('.voice-stop-btn').forEach(btn => {
+                    btn.addEventListener('click', () => stopRecording(parseInt(btn.dataset.idx)));
+                });
+            } else {
+                document.getElementById('voice-no-support').style.display = 'block';
+                container.querySelectorAll('.voice-start-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const idx = parseInt(btn.dataset.idx);
+                        const textarea = container.querySelector('.voice-fallback-input[data-idx="' + idx + '"]');
+                        processResult(idx, textarea.value);
+                    });
+                });
+            }
+        }
+
+        // ── Recording Logic ──
+        let activeRecognition = null;
+
+        function startRecording(idx) {
+            if (activeRecognition) { activeRecognition.abort(); activeRecognition = null; }
+
+            const recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = 'en-US';
+
+            const startBtn = document.querySelector('.voice-start-btn[data-idx="' + idx + '"]');
+            const stopBtn = document.querySelector('.voice-stop-btn[data-idx="' + idx + '"]');
+            const interimEl = document.getElementById('voice-interim-' + idx);
+            const diffEl = document.getElementById('voice-diff-' + idx);
+            const critiqueEl = document.getElementById('voice-critique-' + idx);
+
+            // Reset previous results
+            diffEl.style.display = 'none';
+            critiqueEl.style.display = 'none';
+            interimEl.textContent = 'Listening...';
+
+            startBtn.classList.add('recording');
+            startBtn.textContent = 'Recording...';
+            stopBtn.style.display = 'inline-block';
+
+            let finalTranscript = '';
+
+            recognition.onresult = (event) => {
+                let interim = '';
+                finalTranscript = '';
+                for (let i = 0; i < event.results.length; i++) {
+                    if (event.results[i].isFinal) {
+                        finalTranscript += event.results[i][0].transcript + ' ';
+                    } else {
+                        interim += event.results[i][0].transcript;
+                    }
+                }
+                interimEl.textContent = finalTranscript + interim || 'Listening...';
+            };
+
+            recognition.onend = () => {
+                startBtn.classList.remove('recording');
+                startBtn.textContent = 'Start Speaking';
+                stopBtn.style.display = 'none';
+                activeRecognition = null;
+                if (finalTranscript.trim()) {
+                    processResult(idx, finalTranscript.trim());
+                } else {
+                    interimEl.textContent = 'No speech detected. Try again.';
+                }
+            };
+
+            recognition.onerror = (event) => {
+                startBtn.classList.remove('recording');
+                startBtn.textContent = 'Start Speaking';
+                stopBtn.style.display = 'none';
+                activeRecognition = null;
+                if (event.error === 'no-speech') {
+                    interimEl.textContent = 'No speech detected. Try again.';
+                } else if (event.error === 'not-allowed') {
+                    interimEl.textContent = 'Microphone access denied. Check browser permissions.';
+                } else {
+                    interimEl.textContent = 'Error: ' + event.error + '. Try again.';
+                }
+            };
+
+            recognition.start();
+            activeRecognition = recognition;
+        }
+
+        function stopRecording(idx) {
+            if (activeRecognition) { activeRecognition.stop(); }
+        }
+
+        // ── Process & Display Result ──
+        function processResult(idx, spoken) {
+            const stanza = creedStanzas[idx];
+            const { aligned, score, correct, total } = wordDiff(stanza.text, spoken);
+
+            const interimEl = document.getElementById('voice-interim-' + idx);
+            const diffEl = document.getElementById('voice-diff-' + idx);
+            const critiqueEl = document.getElementById('voice-critique-' + idx);
+            const stanzaEl = document.getElementById('voice-s-' + idx);
+
+            interimEl.textContent = correct + '/' + total + ' words correct';
+            diffEl.innerHTML = renderDiff(aligned);
+            diffEl.style.display = 'block';
+
+            // Critique
+            const tips = getCritique(stanza.text, spoken);
+            if (tips.length > 0) {
+                critiqueEl.innerHTML = '<strong>Tips:</strong><br>' + tips.map(t => '• ' + t).join('<br>');
+                critiqueEl.style.display = 'block';
+            }
+
+            // Update score badge
+            const header = stanzaEl.querySelector('.voice-stanza-header');
+            const existingBadge = header.querySelector('.voice-stanza-score');
+            const scoreColor = score >= 80 ? '#22c55e' : score >= 50 ? '#f59e0b' : '#ef4444';
+            const scoreLabel = score >= 80 ? 'GO' : 'NO-GO';
+            const badgeHTML = '<span class="voice-stanza-score" style="background:' + scoreColor + '22;color:' + scoreColor + ';border:1px solid ' + scoreColor + '44;">' + scoreLabel + ' — ' + score + '%</span>';
+            if (existingBadge) existingBadge.outerHTML = badgeHTML;
+            else header.insertAdjacentHTML('beforeend', badgeHTML);
+
+            // Save score and unlock next
+            saveScore(idx, score);
+            if (score >= 80 && idx < creedStanzas.length - 1) {
+                const nextEl = document.getElementById('voice-s-' + (idx + 1));
+                if (nextEl && nextEl.classList.contains('locked')) {
+                    nextEl.classList.remove('locked');
+                    nextEl.classList.add('unlocked');
+                    const lockIcon = nextEl.querySelector('.voice-lock-icon');
+                    if (lockIcon) lockIcon.remove();
+                }
+            }
+
+            // Check if all stanzas scored
+            const scores = loadScores();
+            const allScored = creedStanzas.every((_, i) => scores[i] && scores[i] > 0);
+            if (allScored) {
+                const avg = Math.round(creedStanzas.reduce((sum, _, i) => sum + (scores[i] || 0), 0) / creedStanzas.length);
+                const overallEl = document.getElementById('voice-overall');
+                overallEl.style.display = 'block';
+                document.getElementById('voice-total-score').textContent = avg + '%';
+                let verdict;
+                if (avg >= 90) verdict = 'Outstanding. You know the Creed. RLTW.';
+                else if (avg >= 70) verdict = 'Solid — keep drilling the weak stanzas.';
+                else if (avg >= 50) verdict = 'Getting there. Focus on the red words.';
+                else verdict = 'Keep practicing. Recite it out loud every day.';
+                document.getElementById('voice-total-verdict').textContent = verdict;
+            }
+        }
+
+        // Initialize voice UI when DOM is ready
+        buildVoiceUI();
+
+        // ── Text Assessment (original) ──
+        const creedAnswers = creedStanzas.map(s => s.text);
+        creedAnswers[5] += ' Rangers lead the way!';
+
+        function textNormalize(text) {
+            return text.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+        }
+
+        function textSimilarity(a, b) {
+            const wordsA = textNormalize(a).split(' ');
+            const wordsB = textNormalize(b).split(' ');
+            if (wordsB.length === 0) return 0;
+            let matches = 0;
+            wordsA.forEach(w => { if (wordsB.includes(w)) matches++; });
+            return Math.round((matches / Math.max(wordsA.length, wordsB.length)) * 100);
+        }
+
+        document.getElementById('cc-check').addEventListener('click', function() {
+            let totalScore = 0;
+            let feedbackHTML = '';
+            for (let i = 1; i <= 6; i++) {
+                const input = document.getElementById('cc-' + i).value.trim();
+                const answer = creedAnswers[i - 1];
+                const score = input.length === 0 ? 0 : textSimilarity(answer, input);
+                totalScore += score;
+                const color = score >= 80 ? '#22c55e' : score >= 50 ? '#f59e0b' : '#ef4444';
+                const label = score >= 80 ? 'GO' : score >= 50 ? 'PARTIAL' : 'NO-GO';
+                feedbackHTML += '<div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; margin-bottom: 12px;">';
+                feedbackHTML += '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">';
+                feedbackHTML += '<span style="font-size: 13px; font-weight: 600; color: var(--color-gold);">Stanza ' + i + '</span>';
+                feedbackHTML += '<span style="font-size: 12px; font-weight: 700; letter-spacing: 1px; padding: 2px 10px; background: ' + color + '22; color: ' + color + '; border: 1px solid ' + color + '44;">' + label + ' — ' + score + '%</span>';
+                feedbackHTML += '</div>';
+                feedbackHTML += '<div style="font-size: 13px; color: var(--color-text-muted); line-height: 1.6;">' + answer + '</div>';
+                feedbackHTML += '</div>';
+            }
+            const avg = Math.round(totalScore / 6);
+            document.getElementById('cc-score').textContent = avg + '%';
+            let verdict;
+            if (avg >= 90) verdict = 'Outstanding. You know the Creed. RLTW.';
+            else if (avg >= 70) verdict = 'Solid effort — keep drilling it.';
+            else if (avg >= 40) verdict = 'Needs work. Memorize it cold before Day 1.';
+            else verdict = 'Print it, tape it to your wall, recite it daily.';
+            document.getElementById('cc-verdict').textContent = verdict;
+            document.getElementById('cc-feedback').innerHTML = feedbackHTML;
+            document.getElementById('cc-results').style.display = 'block';
+            document.getElementById('cc-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        document.getElementById('cc-retry').addEventListener('click', function() {
+            for (let i = 1; i <= 6; i++) document.getElementById('cc-' + i).value = '';
+            document.getElementById('cc-results').style.display = 'none';
+            document.getElementById('course-creed-quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    </script>
+
+    <!-- Firebase Auth + Course Gate -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI, initCourseGate } from './auth.js';
+        initAuthUI();
+        initCourseGate();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranger Tactical Tasks — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+</head>
+<body>
+
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown"><a href="index.html">Home</a><ul class="nav-dropdown-menu"><li><a href="index.html">Home</a></li><li class="nav-dropdown-divider"></li><li><span class="nav-dropdown-label">Phases</span></li><li><a href="index.html#rap">RAP Week</a></li><li><a href="index.html#darby">Darby Phase</a></li><li><a href="index.html#mountains">Mountain Phase</a></li><li><a href="index.html#florida">Swamp Phase</a></li></ul></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown"><a href="shop.html">Shop</a><ul class="nav-dropdown-menu"><li><a href="shop.html">Full Shop</a></li><li class="nav-dropdown-divider"></li><li><span class="nav-dropdown-label">Seasons</span></li><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li><li class="nav-dropdown-divider"></li><li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li></ul></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown"><a href="courses.html">Courses</a><ul class="nav-dropdown-menu"><li><a href="courses.html">All Courses</a></li><li class="nav-dropdown-divider"></li><li><span class="nav-dropdown-label">Training</span></li><li><a href="course-ranger-prep.html">Ranger School Prep</a></li><li><a href="course-land-nav.html">Land Navigation</a></li><li><a href="course-knots.html">Knots &amp; Rope</a></li><li><a href="course-rtts.html">RTTs</a></li><li><a href="course-opord.html">OPORD</a></li><li class="nav-dropdown-divider"></li><li><span class="nav-dropdown-label">Knowledge</span></li><li><a href="course-ranger-creed.html">Ranger Creed</a></li><li><a href="course-medical.html">Medical</a></li><li class="nav-dropdown-divider"></li><li><span class="nav-dropdown-label">Fitness</span></li><li><a href="course-workout-12week.html">12-Week Prep</a></li><li><a href="course-workout-pt.html">PT &amp; Running</a></li><li><a href="course-workout-ruck.html">Ruck Endurance</a></li><li class="nav-dropdown-divider"></li><li><span class="nav-dropdown-label">Build</span></li><li><a href="course-tmk.html">TMK Build Guide</a></li><li class="nav-dropdown-divider"></li><li><a href="courses.html#bundles">Course Bundles</a></li></ul></li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown"><a href="standards.html">Standards</a><ul class="nav-dropdown-menu"><li><a href="standards.html#grading">Grading System</a></li><li><a href="standards.html#pt-standards">PT Standards</a></li><li><a href="standards.html#rtt">RTT Standards</a></li></ul></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info"><span class="nav-user-name" id="nav-user-name"></span><button class="nav-sign-out" id="nav-sign-out">Sign Out</button></div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Ranger Tactical Tasks (RTTs)</h1>
+        <p class="section-desc fade-in">7 hands-on tasks tested on RAP Week Day 4. You must pass 5 of 7. No retests. This course walks through every step for each task.</p>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Overview &amp; Scoring</a>
+                <a href="#mod2" class="course-sidebar-link">2. RTT #1: M249 Maintenance</a>
+                <a href="#mod3" class="course-sidebar-link">3. RTT #2: M249 Operations</a>
+                <a href="#mod4" class="course-sidebar-link">4. RTT #3: M240B Maintenance</a>
+                <a href="#mod5" class="course-sidebar-link">5. RTT #4: M240B Operations</a>
+                <a href="#mod6" class="course-sidebar-link">6. RTT #5: Claymore Mine</a>
+                <a href="#mod7" class="course-sidebar-link">7. RTT #6: SINCGARS Radio</a>
+                <a href="#mod8" class="course-sidebar-link">8. RTT #7: MBITR Radio</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Overview &amp; Scoring</div>
+                    <p>Ranger Tactical Tasks (RTTs) are tested on RAP Week Day 4. You must pass 5 out of 7 tasks. Every task is graded GO/NO-GO. There is no partial credit. There are no retests.</p>
+
+                    <p><strong>How It Works:</strong></p>
+                    <ul>
+                        <li>Each task follows the Technical Manual (TM) exactly</li>
+                        <li>Graders use a checklist — if you miss a step, it's a NO-GO</li>
+                        <li>You must achieve at least 5 of 7 GOs to pass</li>
+                        <li>Scoring below 5/7 is a MAJOR MINUS and will result in a Day 4 drop</li>
+                    </ul>
+
+                    <p><strong>The 7 Tasks:</strong></p>
+                    <ol>
+                        <li>Maintain an M249 Machine Gun (disassemble, inspect, reassemble)</li>
+                        <li>Operate an M249 Machine Gun (clear, load, reduce stoppage, unload)</li>
+                        <li>Maintain an M240B Machine Gun (disassemble, inspect, reassemble)</li>
+                        <li>Operate an M240B Machine Gun (clear, load, reduce stoppage, unload)</li>
+                        <li>Employ a Claymore Mine (set up, aim, arm, fire, recover)</li>
+                        <li>Communicate by SINCGARS/ASIP Radio (program, establish comms)</li>
+                        <li>Communicate by MBITR Radio (program, establish comms)</li>
+                    </ol>
+
+                    <p><strong>Preparation Tips:</strong></p>
+                    <ul>
+                        <li>Hands-on practice is essential — repetition builds muscle memory</li>
+                        <li>Study the TM steps for each weapon system and piece of equipment</li>
+                        <li>If you cannot access actual equipment, visualize the steps in sequence</li>
+                        <li>Practice under time pressure and in poor lighting to simulate test conditions</li>
+                    </ul>
+
+                    <p>Do not rely on being "smart enough to figure it out" on test day. The graders are watching for specific steps in a specific order. If you skip one, you fail that task.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module" id="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">RTT #1: M249 Maintenance</div>
+                    <p><strong>Task:</strong> Disassemble, inspect, and reassemble the M249 Squad Automatic Weapon (SAW).</p>
+
+                    <p><strong>Disassembly Steps (in order):</strong></p>
+                    <ol>
+                        <li>Clear the weapon — ensure the chamber is empty and the bolt is forward</li>
+                        <li>Remove the barrel — lift the barrel-locking lever, pull barrel forward and out</li>
+                        <li>Open the feed cover — press the feed cover latch and lift</li>
+                        <li>Remove the bolt and operating rod assembly — pull the charging handle to the rear and lift out the bolt/op rod assembly</li>
+                        <li>Remove the trigger mechanism — push out the trigger pin and lift the trigger group out</li>
+                    </ol>
+
+                    <p><strong>Inspection:</strong></p>
+                    <ul>
+                        <li>Inspect all components for cracks, excessive wear, carbon buildup, and corrosion</li>
+                        <li>Check the bore for obstructions</li>
+                        <li>Verify the gas regulator is clean and functional</li>
+                        <li>Inspect the feed tray and feed pawls for wear</li>
+                    </ul>
+
+                    <p><strong>Reassembly:</strong></p>
+                    <p>Reassemble in reverse order of disassembly: trigger mechanism, bolt/operating rod assembly, close feed cover, replace barrel.</p>
+
+                    <p><strong>Functions Check:</strong></p>
+                    <ul>
+                        <li>Place weapon on SAFE — pull trigger, bolt should not move</li>
+                        <li>Place weapon on FIRE — pull trigger, bolt should go forward</li>
+                        <li>Charge the weapon — pull charging handle to rear, release</li>
+                    </ul>
+
+                    <p><strong>Common Failures:</strong></p>
+                    <ul>
+                        <li>Disassembling components in the wrong order</li>
+                        <li>Forgetting to clear the weapon before disassembly</li>
+                        <li>Skipping the functions check after reassembly</li>
+                        <li>Failing to inspect individual components (just rushing through)</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module" id="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">RTT #2: M249 Operations</div>
+                    <p><strong>Task:</strong> Clear, load, reduce a stoppage, unload, and clear the M249 SAW.</p>
+
+                    <p><strong>Clear the Weapon:</strong></p>
+                    <ol>
+                        <li>Place the weapon on SAFE</li>
+                        <li>Pull the charging handle to the rear and lock the bolt back</li>
+                        <li>Open the feed cover and inspect the chamber — ensure it is empty</li>
+                        <li>Return the bolt forward on an empty chamber</li>
+                        <li>Close the feed cover</li>
+                    </ol>
+
+                    <p><strong>Load the Weapon:</strong></p>
+                    <ol>
+                        <li>Open the feed cover</li>
+                        <li>Place the linked ammunition on the feed tray with the open side of the links facing down</li>
+                        <li>Ensure the first round is against the cartridge stop</li>
+                        <li>Close the feed cover — press down firmly until it clicks</li>
+                        <li>Pull the charging handle to the rear and release — this chambers the first round</li>
+                        <li>Place weapon on FIRE when ready to engage</li>
+                    </ol>
+
+                    <p><strong>Reduce a Stoppage — SPORTS:</strong></p>
+                    <ul>
+                        <li><strong>S</strong>lap — slap upward on the magazine/feed tray</li>
+                        <li><strong>P</strong>ull — pull the charging handle to the rear</li>
+                        <li><strong>O</strong>bserve — observe the chamber for a round or obstruction</li>
+                        <li><strong>R</strong>elease — release the charging handle (do not ride it forward)</li>
+                        <li><strong>T</strong>ap — tap the forward assist (if applicable)</li>
+                        <li><strong>S</strong>hoot — attempt to fire</li>
+                    </ul>
+
+                    <p><strong>Unload and Clear:</strong></p>
+                    <ol>
+                        <li>Place the weapon on SAFE</li>
+                        <li>Open the feed cover and remove ammunition</li>
+                        <li>Pull the charging handle to the rear and lock the bolt back</li>
+                        <li>Inspect the chamber — ensure it is empty</li>
+                        <li>Return the bolt forward, close the feed cover</li>
+                        <li>Place the weapon on SAFE</li>
+                    </ol>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module" id="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">RTT #3: M240B Maintenance</div>
+                    <p><strong>Task:</strong> Disassemble, inspect, and reassemble the M240B Medium Machine Gun.</p>
+
+                    <p>The M240B maintenance procedure follows the same general concept as the M249 but differs in the specific disassembly sequence and component handling. The M240B is a heavier weapon with different internal components.</p>
+
+                    <p><strong>Disassembly Steps (in order):</strong></p>
+                    <ol>
+                        <li>Clear the weapon — ensure the chamber is empty and the bolt is forward</li>
+                        <li>Remove the barrel — unlock the barrel-locking lever, rotate and pull barrel forward</li>
+                        <li>Open the feed tray and remove the feed tray assembly</li>
+                        <li>Remove the bolt and operating rod assembly — pull charging handle to the rear, lift assembly out</li>
+                        <li>Remove the trigger group — push the trigger pin out and separate</li>
+                        <li>Remove the buffer assembly — pull the buffer assembly out of the receiver to the rear</li>
+                    </ol>
+
+                    <p><strong>Key Differences from M249:</strong></p>
+                    <ul>
+                        <li>The M240B has a separate buffer assembly that must be removed</li>
+                        <li>The feed tray lifts out as a complete assembly</li>
+                        <li>The barrel is heavier — handle with care and use the carrying handle</li>
+                        <li>The bolt and operating rod assembly is larger and heavier</li>
+                    </ul>
+
+                    <p><strong>Inspection:</strong></p>
+                    <ul>
+                        <li>Inspect all components for cracks, wear, and corrosion</li>
+                        <li>Check the bore and gas system for obstructions</li>
+                        <li>Verify the buffer assembly spring tension</li>
+                        <li>Inspect the feed tray pawls and cam</li>
+                    </ul>
+
+                    <p><strong>Reassembly:</strong></p>
+                    <p>Reassemble in reverse order: buffer assembly, trigger group, bolt/operating rod assembly, feed tray, barrel.</p>
+
+                    <p><strong>Functions Check:</strong></p>
+                    <ul>
+                        <li>Charge the weapon and place on SAFE — pull trigger, bolt should not release</li>
+                        <li>Place on FIRE — pull trigger, bolt should go forward</li>
+                        <li>Verify the barrel is properly seated and locked</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module" id="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">RTT #4: M240B Operations</div>
+                    <p><strong>Task:</strong> Clear, load, reduce a stoppage, unload, and clear the M240B.</p>
+
+                    <p><strong>Clear the Weapon:</strong></p>
+                    <ol>
+                        <li>Place the weapon on SAFE</li>
+                        <li>Pull the charging handle to the rear and lock the bolt back</li>
+                        <li>Lift the feed tray cover and inspect the chamber</li>
+                        <li>Ensure the chamber is empty</li>
+                        <li>Return the bolt forward and close the feed tray cover</li>
+                    </ol>
+
+                    <p><strong>Load the Weapon:</strong></p>
+                    <ol>
+                        <li>Lift the feed tray cover</li>
+                        <li>Place linked ammunition on the feed tray from the left side — first round against the cartridge stop</li>
+                        <li>Close the feed tray cover firmly</li>
+                        <li>Pull the charging handle to the rear and release to chamber the first round</li>
+                        <li>Place weapon on FIRE when ready to engage</li>
+                    </ol>
+
+                    <p><strong>Reduce a Stoppage — SPORTS for M240B:</strong></p>
+                    <ul>
+                        <li><strong>S</strong>lap — slap upward on the feed tray assembly</li>
+                        <li><strong>P</strong>ull — pull the charging handle to the rear</li>
+                        <li><strong>O</strong>bserve — observe the chamber for a round or casing</li>
+                        <li><strong>R</strong>elease — release the charging handle sharply</li>
+                        <li><strong>T</strong>ap — tap the forward assist</li>
+                        <li><strong>S</strong>hoot — attempt to fire</li>
+                    </ul>
+
+                    <p><strong>Differences from M249 Operations:</strong></p>
+                    <ul>
+                        <li>Ammunition feeds from the left side on the M240B</li>
+                        <li>The feed tray cover is larger and heavier</li>
+                        <li>Headspace and timing checks may be required (if applicable to your test)</li>
+                        <li>Charging handle location and operation differs</li>
+                    </ul>
+
+                    <p><strong>Unload and Clear:</strong></p>
+                    <ol>
+                        <li>Place the weapon on SAFE</li>
+                        <li>Lift the feed tray cover and remove ammunition</li>
+                        <li>Pull the charging handle to the rear and lock the bolt back</li>
+                        <li>Inspect the chamber — confirm empty</li>
+                        <li>Return the bolt forward, close the feed tray cover</li>
+                        <li>Place the weapon on SAFE</li>
+                    </ol>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module" id="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">RTT #5: Claymore Mine (M18A1)</div>
+                    <p><strong>Task:</strong> Set up, aim, arm, fire, and recover an M18A1 Claymore antipersonnel mine.</p>
+
+                    <p><strong>"FRONT TOWARD ENEMY"</strong> — the most important marking on the mine. Get this wrong and you kill friendlies.</p>
+
+                    <p><strong>Components:</strong></p>
+                    <ul>
+                        <li><strong>M18A1 Mine:</strong> Curved, rectangular, olive drab. Contains 700 steel balls and 1.5 lbs of C-4 explosive</li>
+                        <li><strong>M57 Firing Device (Clacker):</strong> Hand-held electrical initiator</li>
+                        <li><strong>M4 Blasting Cap Assembly:</strong> Connects the firing wire to the mine</li>
+                        <li><strong>Electric Firing Wire:</strong> 100-foot spool connects clacker to blasting cap</li>
+                        <li><strong>Bandolier:</strong> Carries the mine and all accessories</li>
+                    </ul>
+
+                    <p><strong>Emplacement Steps:</strong></p>
+                    <ol>
+                        <li>Select a position with clear fields of fire and good concealment</li>
+                        <li>Open the legs on the bottom of the mine and press into the ground</li>
+                        <li>Ensure "FRONT TOWARD ENEMY" faces the kill zone</li>
+                        <li>Aim the mine using the sighting slit on top — the mine covers a 60-degree arc, optimally effective at 50 meters</li>
+                        <li>Unroll the firing wire back to the firing position (minimum 16 meters)</li>
+                        <li>Connect the M4 blasting cap to the mine's detonator well</li>
+                        <li>Connect the firing wire to the M57 clacker</li>
+                    </ol>
+
+                    <p><strong>Arm and Fire:</strong></p>
+                    <ul>
+                        <li>Ensure all friendlies are behind the mine and in cover</li>
+                        <li>Remove the safety bail on the M57 clacker</li>
+                        <li>Squeeze the clacker handle firmly 3 times to generate sufficient electrical charge</li>
+                    </ul>
+
+                    <p><strong>Recovery (reverse order):</strong></p>
+                    <ol>
+                        <li>Disconnect the firing wire from the clacker</li>
+                        <li>Move forward to the mine position</li>
+                        <li>Disconnect the blasting cap from the mine</li>
+                        <li>Fold the legs and repack the mine into the bandolier</li>
+                        <li>Recover all wire and components</li>
+                    </ol>
+
+                    <p><strong>Safety:</strong></p>
+                    <ul>
+                        <li>The backblast area extends 16 meters behind the mine — no personnel in this zone</li>
+                        <li>Always confirm "FRONT TOWARD ENEMY" before connecting the blasting cap</li>
+                        <li>Never connect the clacker to the firing wire until ready to arm</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 7 -->
+                <div class="course-module" id="mod7">
+                    <div class="course-module-label">Module 7</div>
+                    <div class="course-module-title">RTT #6: SINCGARS Radio (AN/PRC-119 ASIP)</div>
+                    <p><strong>Task:</strong> Program and operate the AN/PRC-119 ASIP (Advanced System Improvement Program) SINCGARS radio.</p>
+
+                    <p><strong>Setup Steps:</strong></p>
+                    <ol>
+                        <li>Install the battery — ensure proper seating and connection</li>
+                        <li>Attach the antenna — hand-tighten the antenna base to the radio connector</li>
+                        <li>Turn the radio ON — rotate the function switch to ON</li>
+                        <li>Set the mode to SC (Single Channel) for basic operations</li>
+                        <li>Enter the assigned frequency using the channel/frequency selector</li>
+                        <li>Load the fill (COMSEC key) if required by the grader</li>
+                        <li>Set the volume to a usable level</li>
+                    </ol>
+
+                    <p><strong>Establish Communications:</strong></p>
+                    <ol>
+                        <li>Key the handset (press PTT — Push To Talk)</li>
+                        <li>Conduct a radio check: "_____ this is _____, radio check, over"</li>
+                        <li>Wait for response: "This is _____, roger, out" or "Lima Charlie, out"</li>
+                    </ol>
+
+                    <p><strong>Send a Report:</strong></p>
+                    <p>You may be asked to send a 9-Line MEDEVAC request or a SALUTE report. Know the formats:</p>
+                    <ul>
+                        <li><strong>SALUTE:</strong> Size, Activity, Location, Unit, Time, Equipment</li>
+                        <li><strong>9-Line MEDEVAC:</strong> Location, call sign/frequency, # of patients by precedence, special equipment, # of patients by type, security at pickup site, method of marking, patient nationality/status, NBC contamination</li>
+                    </ul>
+
+                    <p><strong>Troubleshooting:</strong></p>
+                    <ul>
+                        <li>No power — check battery connection, try a fresh battery</li>
+                        <li>No comms — verify antenna connection is tight and antenna is not damaged</li>
+                        <li>Wrong frequency — double-check the assigned frequency against the signal plan</li>
+                        <li>Weak signal — extend the antenna fully, move to higher ground if possible</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 8 -->
+                <div class="course-module" id="mod8">
+                    <div class="course-module-label">Module 8</div>
+                    <div class="course-module-title">RTT #7: MBITR Radio (AN/PRC-148)</div>
+                    <p><strong>Task:</strong> Program and operate the AN/PRC-148 Multiband Inter/Intra Team Radio (MBITR).</p>
+
+                    <p>The MBITR is a smaller, lighter radio than the ASIP but follows the same fundamental communications procedures. The primary differences are in the form factor and menu system.</p>
+
+                    <p><strong>Setup Steps:</strong></p>
+                    <ol>
+                        <li>Power on the radio — press and hold the power button until the display activates</li>
+                        <li>Navigate the menu system using the front-panel buttons</li>
+                        <li>Select the correct channel or navigate to manual frequency entry</li>
+                        <li>Enter the assigned frequency</li>
+                        <li>Verify the frequency is displayed correctly on the screen</li>
+                        <li>Set squelch and volume to appropriate levels</li>
+                    </ol>
+
+                    <p><strong>Differences from the ASIP:</strong></p>
+                    <ul>
+                        <li><strong>Size:</strong> The MBITR is significantly smaller and lighter — handheld vs. manpack</li>
+                        <li><strong>Menu System:</strong> The MBITR uses a digital display with push-button navigation instead of rotary dials</li>
+                        <li><strong>Power:</strong> Uses a smaller rechargeable battery</li>
+                        <li><strong>Same Comms Procedures:</strong> Radio checks, report formats (SALUTE, 9-Line), and prowords are identical</li>
+                    </ul>
+
+                    <p><strong>Establish Communications:</strong></p>
+                    <ol>
+                        <li>Press and hold PTT on the side of the radio</li>
+                        <li>Conduct a radio check using proper call signs and prowords</li>
+                        <li>Release PTT and wait for response</li>
+                    </ol>
+
+                    <p><strong>Common Failures:</strong></p>
+                    <ul>
+                        <li>Entering the wrong frequency — double-check against the signal plan before transmitting</li>
+                        <li>Not pressing PTT correctly — hold firmly for the full duration of your transmission</li>
+                        <li>Forgetting proper prowords and call signs — practice radio etiquette before test day</li>
+                        <li>Failing to verify the display shows the correct frequency before attempting comms</li>
+                    </ul>
+
+                    <p>Both radio tasks are straightforward if you practice the sequence. The key is knowing where the buttons are, entering the correct frequency, and following proper radio procedures. Do not rush — methodical execution beats speed on test day.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer"><div class="footer-inner"><div class="footer-top"><div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div><div class="footer-nav"><div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div><div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div><div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div></div></div><div class="footer-bottom"><div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div></div></div></footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Firebase Auth + Course Gate -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI, initCourseGate } from './auth.js';
+        initAuthUI();
+        initCourseGate();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>

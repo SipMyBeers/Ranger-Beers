@@ -1,0 +1,2670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <style>
+        /* Shop-specific styles */
+        .shop-hero {
+            padding-top: 140px;
+            padding-bottom: var(--space-3xl);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-lg);
+        }
+
+        .filter-divider {
+            width: 1px;
+            background: rgba(255, 255, 255, 0.12);
+            margin: 4px 6px;
+        }
+
+        .filter-group-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.25);
+            margin-bottom: var(--space-xs);
+        }
+
+        .filter-btn {
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: transparent;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .filter-btn:hover {
+            border-color: rgba(255, 255, 255, 0.35);
+            color: var(--color-white);
+        }
+
+        .filter-btn.active {
+            background: var(--color-gold);
+            color: var(--color-bg);
+            border-color: var(--color-gold);
+        }
+
+        .shop-count {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-lg);
+        }
+
+        .product-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            background: rgba(197, 179, 88, 0.2);
+            color: var(--color-gold);
+            border: 1px solid rgba(197, 179, 88, 0.4);
+            margin-bottom: var(--space-xs);
+        }
+
+        .product-variant {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .product-brand {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(197, 179, 88, 0.6);
+            margin-bottom: 2px;
+        }
+
+        /* Product image placeholders with category colors */
+        .product-img-wrap {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .product-img-wrap .img-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.2);
+            text-align: center;
+            padding: 0 var(--space-md);
+            z-index: 1;
+        }
+
+        .product-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Category color overlays */
+        .cat-clothing { background: linear-gradient(135deg, rgba(55,65,81,0.8), rgba(31,41,55,0.95)); }
+        .cat-gear { background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95)); }
+        .cat-tactical { background: linear-gradient(135deg, rgba(55,35,20,0.8), rgba(40,25,15,0.95)); }
+        .cat-hygiene { background: linear-gradient(135deg, rgba(30,45,65,0.8), rgba(20,30,45,0.95)); }
+        .cat-admin { background: linear-gradient(135deg, rgba(50,45,30,0.8), rgba(35,32,20,0.95)); }
+        .cat-books { background: linear-gradient(135deg, rgba(45,30,50,0.8), rgba(30,20,35,0.95)); }
+        .cat-custom { background: linear-gradient(135deg, rgba(60,50,20,0.8), rgba(40,35,15,0.95)); border-bottom: 2px solid rgba(197,179,88,0.3); }
+        .cat-tmk { background: linear-gradient(135deg, rgba(40,50,35,0.8), rgba(25,35,22,0.95)); }
+        .cat-products { background: linear-gradient(135deg, rgba(45,40,35,0.8), rgba(30,28,22,0.95)); }
+        .cat-program { background: linear-gradient(135deg, rgba(35,35,55,0.8), rgba(22,22,38,0.95)); }
+        .cat-consumables { background: linear-gradient(135deg, rgba(60,45,30,0.8), rgba(42,32,20,0.95)); }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="winter.html">Winter</a></li>
+                        <li><a href="spring.html">Spring</a></li>
+                        <li><a href="summer.html">Summer</a></li>
+                        <li><a href="fall.html">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- SHOP HEADER -->
+    <div class="section shop-hero">
+        <div class="section-label fade-in">Storefront</div>
+        <h1 class="section-title fade-in">Supply Shop</h1>
+        <p class="section-desc fade-in">Everything you need for Ranger School. Filter by category or season.</p>
+
+        <!-- FILTERS — Seasons (multi-select) -->
+        <div class="filter-group-season">
+            <div class="filter-group-label fade-in">Season</div>
+            <div class="filter-bar fade-in">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="winter">Winter</button>
+                <button class="filter-btn" data-filter="spring">Spring</button>
+                <button class="filter-btn" data-filter="summer">Summer</button>
+                <button class="filter-btn" data-filter="fall">Fall</button>
+            </div>
+        </div>
+
+        <!-- FILTERS — Categories (multi-select) -->
+        <div class="filter-group-category">
+            <div class="filter-group-label fade-in">Category</div>
+            <div class="filter-bar fade-in">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="packing">Packing List</button>
+                <button class="filter-btn" data-filter="gear">Gear</button>
+                <button class="filter-btn" data-filter="clothing">Clothing</button>
+                <button class="filter-btn" data-filter="hygiene">Hygiene</button>
+                <button class="filter-btn" data-filter="tactical">Tactical</button>
+                <button class="filter-btn" data-filter="admin">Admin</button>
+                <button class="filter-btn" data-filter="books">Books</button>
+                <button class="filter-btn" data-filter="custom">Custom</button>
+                <button class="filter-btn" data-filter="consumables">Consumables</button>
+                <button class="filter-btn" data-filter="products">Products</button>
+                <button class="filter-btn" data-filter="tmk">TMK</button>
+                <button class="filter-btn" data-filter="rtt">RTT</button>
+                <button class="filter-btn" data-filter="workout">Workout Plans</button>
+                <button class="filter-btn" data-filter="study">Study Material</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <section class="section" style="padding-top: var(--space-2xl);">
+        <div class="shop-count fade-in">Showing <strong>193</strong> items</div>
+
+        <div class="product-grid stagger">
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- CUSTOM / SIGNATURE ITEMS               -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="custom packing">
+                <div class="product-img-wrap cat-custom"><div class="img-label">Ranger Beers<br>Custom</div></div>
+                <div class="product-info">
+                    <div class="product-badge">Pre-Order</div>
+                    <div class="product-brand">Ranger Beers Signature</div>
+                    <div class="product-name">Custom Patrol Cap</div>
+                    <div class="product-price">$39.99</div>
+                    <div class="product-variant">VS-17 panel inside, cat eyes on back</div>
+                    <div class="product-tag">Ranger Beers Signature</div>
+                
+                    <button class="snipcart-add-item" data-item-id="custom-patrol-cap" data-item-name="Custom Patrol Cap" data-item-price="39.99" data-item-url="/shop.html" data-item-description="Custom Patrol Cap">Add to Cart — $39.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="custom clothing winter packing">
+                <div class="product-img-wrap cat-custom"><div class="img-label">Ranger Beers<br>Custom</div></div>
+                <div class="product-info">
+                    <div class="product-badge">Pre-Order</div>
+                    <div class="product-brand">Ranger Beers Signature</div>
+                    <div class="product-name">Waffle Bottoms w/ Velcro Legs</div>
+                    <div class="product-price">$59.99</div>
+                    <div class="product-variant">ECWCS Gen III grid fleece, easy pull-off velcro</div>
+                    <div class="product-tag">Ranger Beers Signature</div>
+                
+                    <button class="snipcart-add-item" data-item-id="waffle-bottoms-w-velcro-legs" data-item-name="Waffle Bottoms w/ Velcro Legs" data-item-price="59.99" data-item-url="/shop.html" data-item-description="Waffle Bottoms w/ Velcro Legs">Add to Cart — $59.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- CLOTHING & LAYERS                      -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="clothing packing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">Hanes<br>XTemp</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Hanes</div>
+                    <div class="product-name">Socks — Hanes XTemp (12-Pack)</div>
+                    <div class="product-price">$18.99</div>
+                    <div class="product-variant">FreshIQ odor protection, X-Temp moisture wicking</div>
+                    <div class="product-tag">Clothing — All Seasons</div>
+                
+                    <button class="snipcart-add-item" data-item-id="socks-hanes-xtemp-12-pack" data-item-name="Socks — Hanes XTemp (12-Pack)" data-item-price="18.99" data-item-url="/shop.html" data-item-description="Socks — Hanes XTemp (12-Pack)">Add to Cart — $18.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="clothing packing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">Darn Tough<br>T4021</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Darn Tough Vermont</div>
+                    <div class="product-name">Socks — Darn Tough Boot</div>
+                    <div class="product-price">$30.00</div>
+                    <div class="product-variant">Merino wool, lifetime guarantee, NAVAIR approved</div>
+                    <div class="product-tag">Clothing — Premium</div>
+                
+                    <button class="snipcart-add-item" data-item-id="socks-darn-tough-boot" data-item-name="Socks — Darn Tough Boot" data-item-price="30.00" data-item-url="/shop.html" data-item-description="Socks — Darn Tough Boot">Add to Cart — $30.00</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="clothing packing winter fall">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">Rothco<br>Watch Cap</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Rothco</div>
+                    <div class="product-name">Beanie (Black)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Acrylic watch cap, double-layer, Made in USA</div>
+                    <div class="product-tag">Clothing — Winter / Fall</div>
+                
+                    <button class="snipcart-add-item" data-item-id="beanie-black" data-item-name="Beanie (Black)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Beanie (Black)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="clothing packing winter fall">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">Mechanix<br>M-Pact</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Mechanix Wear</div>
+                    <div class="product-name">Gloves (Tactical)</div>
+                    <div class="product-price">$34.99</div>
+                    <div class="product-variant">D3O palm padding, touchscreen compatible</div>
+                    <div class="product-tag">Clothing — Winter / Fall</div>
+                
+                    <button class="snipcart-add-item" data-item-id="gloves-tactical" data-item-name="Gloves (Tactical)" data-item-price="34.99" data-item-url="/shop.html" data-item-description="Gloves (Tactical)">Add to Cart — $34.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="clothing packing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">Garmont<br>T8 Bifida</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Garmont</div>
+                    <div class="product-name">Boots — Garmont T8 Bifida</div>
+                    <div class="product-price">$179.99</div>
+                    <div class="product-variant">Coyote, AR 670-1 compliant, suede leather</div>
+                    <div class="product-tag">Clothing — All Seasons</div>
+                
+                    <button class="snipcart-add-item" data-item-id="boots-garmont-t8-bifida" data-item-name="Boots — Garmont T8 Bifida" data-item-price="179.99" data-item-url="/shop.html" data-item-description="Boots — Garmont T8 Bifida">Add to Cart — $179.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="clothing packing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">Rothco<br>72"</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Rothco</div>
+                    <div class="product-name">Boot Laces (3-Pack)</div>
+                    <div class="product-price">$7.99</div>
+                    <div class="product-variant">72" nylon, heat-formed tips, 3 pairs</div>
+                    <div class="product-tag">Clothing — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="boot-laces-3-pack" data-item-name="Boot Laces (3-Pack)" data-item-price="7.99" data-item-url="/shop.html" data-item-description="Boot Laces (3-Pack)">Add to Cart — $7.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- SLEEP SYSTEM                           -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Therm-a-Rest<br>Z Lite SOL</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Therm-a-Rest</div>
+                    <div class="product-name">Sleeping Mat / Pad</div>
+                    <div class="product-price">$54.99</div>
+                    <div class="product-variant">Closed-cell foam, ThermaCapture reflective, R-Value 2.0</div>
+                    <div class="product-tag">Gear — All Seasons</div>
+                
+                    <button class="snipcart-add-item" data-item-id="sleeping-mat-pad" data-item-name="Sleeping Mat / Pad" data-item-price="54.99" data-item-url="/shop.html" data-item-description="Sleeping Mat / Pad">Add to Cart — $54.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- WEATHER PROTECTION                     -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="gear packing spring fall">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Wet Weather</div></div>
+                <div class="product-info">
+                    <div class="product-brand">USGI Surplus</div>
+                    <div class="product-name">Wet Weather Bags</div>
+                    <div class="product-price">$8.99</div>
+                    <div class="product-variant">NSN 8465-00-261-6909, rubberized nylon, waterproof</div>
+                    <div class="product-tag">Gear — Spring / Fall</div>
+                
+                    <button class="snipcart-add-item" data-item-id="wet-weather-bags" data-item-name="Wet Weather Bags" data-item-price="8.99" data-item-url="/shop.html" data-item-description="Wet Weather Bags">Add to Cart — $8.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">6 Mil<br>Heavy Duty</div></div>
+                <div class="product-info">
+                    <div class="product-badge">New</div>
+                    <div class="product-brand">Plasticplace</div>
+                    <div class="product-name">Contractor Bags — 6 Mil (5-Pack)</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">42 gal, 33"x48", thickest available — waterproof ruck liner</div>
+                    <div class="product-tag">Gear — Waterproof</div>
+                
+                    <button class="snipcart-add-item" data-item-id="contractor-bags-6-mil-5-pack" data-item-name="Contractor Bags — 6 Mil (5-Pack)" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Contractor Bags — 6 Mil (5-Pack)">Add to Cart — $12.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing hygiene">
+                <div class="product-img-wrap cat-gear"><div class="img-label">LOKSAK<br>aLOKSAK</div></div>
+                <div class="product-info">
+                    <div class="product-badge">New</div>
+                    <div class="product-brand">LOKSAK</div>
+                    <div class="product-name">Waterproof Bags — Small Multi Pack</div>
+                    <div class="product-price">$14.99</div>
+                    <div class="product-variant">4 bags (5x4, 4x7, 6x6, 9x6) — waterproof to 200ft</div>
+                    <div class="product-tag">Gear — Waterproof</div>
+                
+                    <button class="snipcart-add-item" data-item-id="waterproof-bags-small-multi-pack" data-item-name="Waterproof Bags — Small Multi Pack" data-item-price="14.99" data-item-url="/shop.html" data-item-description="Waterproof Bags — Small Multi Pack">Add to Cart — $14.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing hygiene">
+                <div class="product-img-wrap cat-gear"><div class="img-label">LOKSAK<br>Medium</div></div>
+                <div class="product-info">
+                    <div class="product-brand">LOKSAK</div>
+                    <div class="product-name">Waterproof Bags — Medium Multi Pack</div>
+                    <div class="product-price">$19.99</div>
+                    <div class="product-variant">4 bags (4x7, 6x6, 9x6, 12x12) — electronics & docs</div>
+                    <div class="product-tag">Gear — Waterproof</div>
+                
+                    <button class="snipcart-add-item" data-item-id="waterproof-bags-medium-multi-pack" data-item-name="Waterproof Bags — Medium Multi Pack" data-item-price="19.99" data-item-url="/shop.html" data-item-description="Waterproof Bags — Medium Multi Pack">Add to Cart — $19.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing spring">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Kiwi<br>Camp Dry</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Kiwi</div>
+                    <div class="product-name">Waterproof Spray for Gear</div>
+                    <div class="product-price">$8.99</div>
+                    <div class="product-variant">10.5 oz heavy duty water repellent</div>
+                    <div class="product-tag">Gear — Wet Weather</div>
+                
+                    <button class="snipcart-add-item" data-item-id="waterproof-spray-for-gear" data-item-name="Waterproof Spray for Gear" data-item-price="8.99" data-item-url="/shop.html" data-item-description="Waterproof Spray for Gear">Add to Cart — $8.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Rothco<br>GI Poncho</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Rothco</div>
+                    <div class="product-name">Ponchos</div>
+                    <div class="product-price">$44.99</div>
+                    <div class="product-variant">56"x90" rip-stop, snap closures, grommeted corners</div>
+                    <div class="product-tag">Gear — All Seasons</div>
+                
+                    <button class="snipcart-add-item" data-item-id="ponchos" data-item-name="Ponchos" data-item-price="44.99" data-item-url="/shop.html" data-item-description="Ponchos">Add to Cart — $44.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">OD Green<br>Canvas</div></div>
+                <div class="product-info">
+                    <div class="product-name">Tarps</div>
+                    <div class="product-price">$49.99</div>
+                    <div class="product-variant">10 oz canvas, OD green, reinforced grommets</div>
+                    <div class="product-tag">Gear — All Seasons</div>
+                
+                    <button class="snipcart-add-item" data-item-id="tarps" data-item-name="Tarps" data-item-price="49.99" data-item-url="/shop.html" data-item-description="Tarps">Add to Cart — $49.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Rothco<br>Woobie</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Rothco</div>
+                    <div class="product-name">Poncho Liner (Woobie)</div>
+                    <div class="product-price">$54.99</div>
+                    <div class="product-variant">62"x82" rip-stop polyester, corner tie strings</div>
+                    <div class="product-tag">Gear — All Seasons</div>
+                
+                    <button class="snipcart-add-item" data-item-id="poncho-liner-woobie" data-item-name="Poncho Liner (Woobie)" data-item-price="54.99" data-item-url="/shop.html" data-item-description="Poncho Liner (Woobie)">Add to Cart — $54.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- LIGHTING & SIGNALING                   -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="tactical packing">
+                <div class="product-img-wrap cat-tactical"><div class="img-label">Cyalume<br>ChemLight</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Cyalume</div>
+                    <div class="product-name">Chem Lights (10-Pack)</div>
+                    <div class="product-price">$24.99</div>
+                    <div class="product-variant">Red, Green, Blue, IR, Yellow — 6" 12hr</div>
+                    <div class="product-tag">Tactical — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="chem-lights-10-pack" data-item-name="Chem Lights (10-Pack)" data-item-price="24.99" data-item-url="/shop.html" data-item-description="Chem Lights (10-Pack)">Add to Cart — $24.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tactical packing">
+                <div class="product-img-wrap cat-tactical"><div class="img-label">5ive Star<br>Cat Eyes</div></div>
+                <div class="product-info">
+                    <div class="product-brand">5ive Star Gear</div>
+                    <div class="product-name">Cat Eye Bands</div>
+                    <div class="product-price">$6.99</div>
+                    <div class="product-variant">Mil-Spec MIL-B-1851F, OD Green</div>
+                    <div class="product-tag">Tactical — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="cat-eye-bands" data-item-name="Cat Eye Bands" data-item-price="6.99" data-item-url="/shop.html" data-item-description="Cat Eye Bands">Add to Cart — $6.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- CORDAGE & TAPE                         -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Rothco<br>550 Cord</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Rothco</div>
+                    <div class="product-name">550 Cord (100ft)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Type III, 7-strand, multiple colors</div>
+                    <div class="product-tag">Gear — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="550-cord-100ft" data-item-name="550 Cord (100ft)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="550 Cord (100ft)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">3M Scotch<br>Vinyl 35</div></div>
+                <div class="product-info">
+                    <div class="product-brand">3M Scotch</div>
+                    <div class="product-name">Electrical Tape (5-Color Pack)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Vinyl 35, fade-resistant, multiple colors</div>
+                    <div class="product-tag">Gear — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="electrical-tape-5-color-pack" data-item-name="Electrical Tape (5-Color Pack)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Electrical Tape (5-Color Pack)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Gorilla<br>Duct Tape</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Gorilla</div>
+                    <div class="product-name">Duct Tape — Gorilla</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">1.88" x 35 yd, black — toughest on the market</div>
+                    <div class="product-tag">Gear — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="duct-tape-gorilla" data-item-name="Duct Tape — Gorilla" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Duct Tape — Gorilla">Add to Cart — $12.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Mil-Spec<br>100 MPH</div></div>
+                <div class="product-info">
+                    <div class="product-badge">New</div>
+                    <div class="product-brand">5col / Nashua 357</div>
+                    <div class="product-name">100 MPH Tape — OD Green</div>
+                    <div class="product-price">$21.99</div>
+                    <div class="product-variant">2" x 60 yd, Berry Compliant, NSN 7510-00-266-5016</div>
+                    <div class="product-tag">Gear — Mil-Spec</div>
+                
+                    <button class="snipcart-add-item" data-item-id="100-mph-tape-od-green" data-item-name="100 MPH Tape — OD Green" data-item-price="21.99" data-item-url="/shop.html" data-item-description="100 MPH Tape — OD Green">Add to Cart — $21.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="admin packing">
+                <div class="product-img-wrap cat-admin"><div class="img-label">Scotch<br>Magic Tape</div></div>
+                <div class="product-info">
+                    <div class="product-brand">3M Scotch</div>
+                    <div class="product-name">Clear Tape</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-tag">Admin — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="clear-tape" data-item-name="Clear Tape" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Clear Tape">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Raine<br>Mil Sewing</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Raine Inc.</div>
+                    <div class="product-name">Sewing Kit (Military)</div>
+                    <div class="product-price">$14.99</div>
+                    <div class="product-variant">135 yd thread, needles, pins, mil buttons, scissors</div>
+                    <div class="product-tag">Gear — Field Repair</div>
+                
+                    <button class="snipcart-add-item" data-item-id="sewing-kit-military" data-item-name="Sewing Kit (Military)" data-item-price="14.99" data-item-url="/shop.html" data-item-description="Sewing Kit (Military)">Add to Cart — $14.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- TOOLS & BLADES                         -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Folding<br>Fixed Blade</div></div>
+                <div class="product-info">
+                    <div class="product-name">Knives (Folding / Fixed Blade)</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-tag">Gear — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="knives-folding-fixed-blade" data-item-name="Knives (Folding / Fixed Blade)" data-item-price="29.99" data-item-url="/shop.html" data-item-description="Knives (Folding / Fixed Blade)">Add to Cart — $29.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Brillo<br>Soap Pads</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Brillo</div>
+                    <div class="product-name">Steel Wool Soap Pads (18ct)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-tag">Gear — Field Utility</div>
+                
+                    <button class="snipcart-add-item" data-item-id="steel-wool-soap-pads-18ct" data-item-name="Steel Wool Soap Pads (18ct)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Steel Wool Soap Pads (18ct)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- HYGIENE & PERSONAL CARE                -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="hygiene packing">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">GEAR AID<br>Tactical</div></div>
+                <div class="product-info">
+                    <div class="product-brand">GEAR AID</div>
+                    <div class="product-name">Microfiber Towels</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">PT Pod 20"x32" OD Green, snap loop, zippered pocket</div>
+                    <div class="product-tag">Hygiene — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="microfiber-towels" data-item-name="Microfiber Towels" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Microfiber Towels">Add to Cart — $12.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="hygiene packing">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">DenTek<br>Floss Picks</div></div>
+                <div class="product-info">
+                    <div class="product-brand">DenTek</div>
+                    <div class="product-name">Dental Cleaning Picks (150ct)</div>
+                    <div class="product-price">$3.99</div>
+                    <div class="product-tag">Hygiene — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="dental-cleaning-picks-150ct" data-item-name="Dental Cleaning Picks (150ct)" data-item-price="3.99" data-item-url="/shop.html" data-item-description="Dental Cleaning Picks (150ct)">Add to Cart — $3.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="hygiene packing">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">Mr. Clean<br>Magic Eraser</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Mr. Clean</div>
+                    <div class="product-name">Magic Erasers</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-tag">Hygiene — Barracks</div>
+                
+                    <button class="snipcart-add-item" data-item-id="magic-erasers" data-item-name="Magic Erasers" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Magic Erasers">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="hygiene packing">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">Ivory<br>Bar Soap</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Ivory</div>
+                    <div class="product-name">Soap (Bar)</div>
+                    <div class="product-price">$2.99</div>
+                    <div class="product-variant">3.1 oz individually wrapped</div>
+                    <div class="product-tag">Hygiene — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="soap-bar" data-item-name="Soap (Bar)" data-item-price="2.99" data-item-url="/shop.html" data-item-description="Soap (Bar)">Add to Cart — $2.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="hygiene packing">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">Dawn<br>Professional</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Dawn</div>
+                    <div class="product-name">Dawn Dish Soap</div>
+                    <div class="product-price">$5.99</div>
+                    <div class="product-variant">38 oz Professional Manual Pot &amp; Pan</div>
+                    <div class="product-tag">Hygiene — Field Utility</div>
+                
+                    <button class="snipcart-add-item" data-item-id="dawn-dish-soap" data-item-name="Dawn Dish Soap" data-item-price="5.99" data-item-url="/shop.html" data-item-description="Dawn Dish Soap">Add to Cart — $5.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="hygiene packing">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">Twin Blade<br>Razor Kit</div></div>
+                <div class="product-info">
+                    <div class="product-name">Shaving Kit (10-Pack Razors)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">Disposable twin blade, individually wrapped</div>
+                    <div class="product-tag">Hygiene — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="shaving-kit-10-pack-razors" data-item-name="Shaving Kit (10-Pack Razors)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Shaving Kit (10-Pack Razors)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="hygiene packing summer">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">Body Glide<br>Original</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Body Glide</div>
+                    <div class="product-name">Body Glide Anti-Chafe (1.5 oz)</div>
+                    <div class="product-price">$10.99</div>
+                    <div class="product-tag">Hygiene — Summer Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="body-glide-anti-chafe-1-5-oz" data-item-name="Body Glide Anti-Chafe (1.5 oz)" data-item-price="10.99" data-item-url="/shop.html" data-item-description="Body Glide Anti-Chafe (1.5 oz)">Add to Cart — $10.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="hygiene packing spring summer">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">Repel 100<br>98% DEET</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Repel</div>
+                    <div class="product-name">Bug Repellent — 100% DEET (4 oz)</div>
+                    <div class="product-price">$7.99</div>
+                    <div class="product-variant">Repel 100, 98.11% DEET pump spray</div>
+                    <div class="product-tag">Hygiene — Spring / Summer</div>
+                
+                    <button class="snipcart-add-item" data-item-id="bug-repellent-100-deet-4-oz" data-item-name="Bug Repellent — 100% DEET (4 oz)" data-item-price="7.99" data-item-url="/shop.html" data-item-description="Bug Repellent — 100% DEET (4 oz)">Add to Cart — $7.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="hygiene packing summer">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">Coppertone<br>SPF 50</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Coppertone</div>
+                    <div class="product-name">Sunscreen SPF 50+ (7 oz)</div>
+                    <div class="product-price">$11.99</div>
+                    <div class="product-variant">Sport, water resistant 80min</div>
+                    <div class="product-tag">Hygiene — Summer Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="sunscreen-spf-50-7-oz" data-item-name="Sunscreen SPF 50+ (7 oz)" data-item-price="11.99" data-item-url="/shop.html" data-item-description="Sunscreen SPF 50+ (7 oz)">Add to Cart — $11.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="hygiene packing">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">Gold Bond<br>Foot Powder</div></div>
+                <div class="product-info">
+                    <div class="product-badge">New</div>
+                    <div class="product-brand">Gold Bond</div>
+                    <div class="product-name">Foot Powder — Max Strength (4 oz)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Talc-free, medicated, odor control &amp; itch relief</div>
+                    <div class="product-tag">Hygiene — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="foot-powder-max-strength-4-oz" data-item-name="Foot Powder — Max Strength (4 oz)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Foot Powder — Max Strength (4 oz)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="hygiene packing">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">Dr. Scholl's<br>Moleskin</div></div>
+                <div class="product-info">
+                    <div class="product-badge">New</div>
+                    <div class="product-brand">Dr. Scholl's</div>
+                    <div class="product-name">Moleskin Padding Roll</div>
+                    <div class="product-price">$7.99</div>
+                    <div class="product-variant">24" x 4 5/8" — cut to any size, blister prevention</div>
+                    <div class="product-tag">Hygiene — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="moleskin-padding-roll" data-item-name="Moleskin Padding Roll" data-item-price="7.99" data-item-url="/shop.html" data-item-description="Moleskin Padding Roll">Add to Cart — $7.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="hygiene packing">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">ChapStick<br>Classic</div></div>
+                <div class="product-info">
+                    <div class="product-badge">New</div>
+                    <div class="product-brand">ChapStick</div>
+                    <div class="product-name">Lip Balm</div>
+                    <div class="product-price">$1.99</div>
+                    <div class="product-variant">Classic original skin protectant</div>
+                    <div class="product-tag">Hygiene — Optional</div>
+                
+                    <button class="snipcart-add-item" data-item-id="lip-balm" data-item-name="Lip Balm" data-item-price="1.99" data-item-url="/shop.html" data-item-description="Lip Balm">Add to Cart — $1.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- EYE & EAR PROTECTION                   -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">ESS<br>Crossbow</div></div>
+                <div class="product-info">
+                    <div class="product-brand">ESS</div>
+                    <div class="product-name">Eye Pro — ESS Crossbow 2X APEL</div>
+                    <div class="product-price">$69.99</div>
+                    <div class="product-variant">2-lens kit (clear + smoke), APEL approved</div>
+                    <div class="product-tag">Gear — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="eye-pro-ess-crossbow-2x-apel" data-item-name="Eye Pro — ESS Crossbow 2X APEL" data-item-price="69.99" data-item-url="/shop.html" data-item-description="Eye Pro — ESS Crossbow 2X APEL">Add to Cart — $69.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="gear packing">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Howard Leight<br>MAX-1</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Howard Leight</div>
+                    <div class="product-name">Ear Pro — Foam Plugs (10-Pair)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">NRR 33, uncorded, orange</div>
+                    <div class="product-tag">Gear — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="ear-pro-foam-plugs-10-pair" data-item-name="Ear Pro — Foam Plugs (10-Pair)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Ear Pro — Foam Plugs (10-Pair)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- NAVIGATION & WATCHES                   -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="tactical packing">
+                <div class="product-img-wrap cat-tactical"><div class="img-label">Casio<br>G-Shock</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Casio</div>
+                    <div class="product-name">Watch — G-Shock DW5600E</div>
+                    <div class="product-price">$54.99</div>
+                    <div class="product-variant">200m water resist, shock resist, stopwatch, alarm</div>
+                    <div class="product-tag">Tactical — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="watch-g-shock-dw5600e" data-item-name="Watch — G-Shock DW5600E" data-item-price="54.99" data-item-url="/shop.html" data-item-description="Watch — G-Shock DW5600E">Add to Cart — $54.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tactical packing">
+                <div class="product-img-wrap cat-tactical"><div class="img-label">Cammenga<br>J582T</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Cammenga</div>
+                    <div class="product-name">Wrist Compass (Tritium)</div>
+                    <div class="product-price">$49.99</div>
+                    <div class="product-variant">Tritium micro-lights, -50F to 150F operating</div>
+                    <div class="product-tag">Tactical — Navigation</div>
+                
+                    <button class="snipcart-add-item" data-item-id="wrist-compass-tritium" data-item-name="Wrist Compass (Tritium)" data-item-price="49.99" data-item-url="/shop.html" data-item-description="Wrist Compass (Tritium)">Add to Cart — $49.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tactical packing">
+                <div class="product-img-wrap cat-tactical"><div class="img-label">Cammenga<br>3H Tritium</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Cammenga</div>
+                    <div class="product-name">Lensatic Compass — 3H Tritium</div>
+                    <div class="product-price">$109.99</div>
+                    <div class="product-variant">7 tritium micro-lights, 12+ yr glow, MIL-PRF-10436N</div>
+                    <div class="product-tag">Tactical — Navigation</div>
+                
+                    <button class="snipcart-add-item" data-item-id="lensatic-compass-3h-tritium" data-item-name="Lensatic Compass — 3H Tritium" data-item-price="109.99" data-item-url="/shop.html" data-item-description="Lensatic Compass — 3H Tritium">Add to Cart — $109.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- WEAPONS ACCESSORIES                    -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="tactical packing">
+                <div class="product-img-wrap cat-tactical"><div class="img-label">Norotos<br>Rhino II</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Norotos</div>
+                    <div class="product-name">Rhino Mount (Helmet NVG)</div>
+                    <div class="product-price">$49.99</div>
+                    <div class="product-variant">Surplus Grade A/B, titanium bayonet interface</div>
+                    <div class="product-tag">Tactical — Weapons / NVG</div>
+                
+                    <button class="snipcart-add-item" data-item-id="rhino-mount-helmet-nvg" data-item-name="Rhino Mount (Helmet NVG)" data-item-price="49.99" data-item-url="/shop.html" data-item-description="Rhino Mount (Helmet NVG)">Add to Cart — $49.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tactical packing">
+                <div class="product-img-wrap cat-tactical"><div class="img-label">Mil-Spec<br>M4/AR-15</div></div>
+                <div class="product-info">
+                    <div class="product-name">Bolt Retaining Pin (M4)</div>
+                    <div class="product-price">$5.99</div>
+                    <div class="product-tag">Tactical — Weapons</div>
+                
+                    <button class="snipcart-add-item" data-item-id="bolt-retaining-pin-m4" data-item-name="Bolt Retaining Pin (M4)" data-item-price="5.99" data-item-url="/shop.html" data-item-description="Bolt Retaining Pin (M4)">Add to Cart — $5.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tactical packing">
+                <div class="product-img-wrap cat-tactical"><div class="img-label">USGI<br>M23 BFA</div></div>
+                <div class="product-info">
+                    <div class="product-brand">USGI Surplus</div>
+                    <div class="product-name">BFA / Blank Firing Adapter (M4)</div>
+                    <div class="product-price">$7.99</div>
+                    <div class="product-variant">NSN 1005-01-361-8208, yellow M23</div>
+                    <div class="product-tag">Tactical — Weapons</div>
+                
+                    <button class="snipcart-add-item" data-item-id="bfa-blank-firing-adapter-m4" data-item-name="BFA / Blank Firing Adapter (M4)" data-item-price="7.99" data-item-url="/shop.html" data-item-description="BFA / Blank Firing Adapter (M4)">Add to Cart — $7.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- BATTERIES                              -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="tactical packing">
+                <div class="product-img-wrap cat-tactical"><div class="img-label">Energizer<br>Industrial</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Energizer</div>
+                    <div class="product-name">Batteries — AA (4-Pack)</div>
+                    <div class="product-price">$3.99</div>
+                    <div class="product-tag">Tactical — Power</div>
+                
+                    <button class="snipcart-add-item" data-item-id="batteries-aa-4-pack" data-item-name="Batteries — AA (4-Pack)" data-item-price="3.99" data-item-url="/shop.html" data-item-description="Batteries — AA (4-Pack)">Add to Cart — $3.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tactical packing">
+                <div class="product-img-wrap cat-tactical"><div class="img-label">Energizer<br>Industrial</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Energizer</div>
+                    <div class="product-name">Batteries — AAA (4-Pack)</div>
+                    <div class="product-price">$3.99</div>
+                    <div class="product-tag">Tactical — Power</div>
+                
+                    <button class="snipcart-add-item" data-item-id="batteries-aaa-4-pack" data-item-name="Batteries — AAA (4-Pack)" data-item-price="3.99" data-item-url="/shop.html" data-item-description="Batteries — AAA (4-Pack)">Add to Cart — $3.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tactical packing">
+                <div class="product-img-wrap cat-tactical"><div class="img-label">SureFire<br>CR123A</div></div>
+                <div class="product-info">
+                    <div class="product-brand">SureFire</div>
+                    <div class="product-name">Batteries — NVG CR123A (2-Pack)</div>
+                    <div class="product-price">$6.99</div>
+                    <div class="product-tag">Tactical — Power</div>
+                
+                    <button class="snipcart-add-item" data-item-id="batteries-nvg-cr123a-2-pack" data-item-name="Batteries — NVG CR123A (2-Pack)" data-item-price="6.99" data-item-url="/shop.html" data-item-description="Batteries — NVG CR123A (2-Pack)">Add to Cart — $6.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- BOOKS & REFERENCE                      -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="books study">
+                <div class="product-img-wrap cat-books"><div class="img-label">TC 3-21.76<br>Sept 2025</div></div>
+                <div class="product-info">
+                    <div class="product-name">Ranger Handbook (TC 3-21.76)</div>
+                    <div class="product-price">$17.99</div>
+                    <div class="product-variant">Latest edition, pocket size 5"x6"</div>
+                    <div class="product-tag">Books — Must Have</div>
+                
+                    <button class="snipcart-add-item" data-item-id="ranger-handbook-tc-3-21-76" data-item-name="Ranger Handbook (TC 3-21.76)" data-item-price="17.99" data-item-url="/shop.html" data-item-description="Ranger Handbook (TC 3-21.76)">Add to Cart — $17.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="books study">
+                <div class="product-img-wrap cat-books"><div class="img-label">75th Ranger<br>Regt 2022</div></div>
+                <div class="product-info">
+                    <div class="product-name">Ranger Medic Handbook</div>
+                    <div class="product-price">$15.99</div>
+                    <div class="product-variant">Official 2022 edition, 75th Ranger Regiment</div>
+                    <div class="product-tag">Books — Reference</div>
+                
+                    <button class="snipcart-add-item" data-item-id="ranger-medic-handbook" data-item-name="Ranger Medic Handbook" data-item-price="15.99" data-item-url="/shop.html" data-item-description="Ranger Medic Handbook">Add to Cart — $15.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="books study">
+                <div class="product-img-wrap cat-books"><div class="img-label">Military<br>Reference</div></div>
+                <div class="product-info">
+                    <div class="product-name">Military Reference Books</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-tag">Books — Study</div>
+                
+                    <button class="snipcart-add-item" data-item-id="military-reference-books" data-item-name="Military Reference Books" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Military Reference Books">Add to Cart — $12.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- ADMIN & WRITING                        -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="admin packing">
+                <div class="product-img-wrap cat-admin"><div class="img-label">Rite in the Rain<br>No. 946</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Rite in the Rain</div>
+                    <div class="product-name">All-Weather Notebook (4"x6")</div>
+                    <div class="product-price">$5.99</div>
+                    <div class="product-variant">Polydura cover, universal pattern, 50 sheets</div>
+                    <div class="product-tag">Admin — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="all-weather-notebook-4-x6" data-item-name="All-Weather Notebook (4"x6")" data-item-price="5.99" data-item-url="/shop.html" data-item-description="All-Weather Notebook (4"x6")">Add to Cart — $5.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="admin packing">
+                <div class="product-img-wrap cat-admin"><div class="img-label">Rite in the Rain<br>No. 97</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Rite in the Rain</div>
+                    <div class="product-name">All-Weather Metal Pen</div>
+                    <div class="product-price">$15.99</div>
+                    <div class="product-variant">Steel casing, pressurized cartridge, -30F to 250F</div>
+                    <div class="product-tag">Admin — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="all-weather-metal-pen" data-item-name="All-Weather Metal Pen" data-item-price="15.99" data-item-url="/shop.html" data-item-description="All-Weather Metal Pen">Add to Cart — $15.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="admin packing">
+                <div class="product-img-wrap cat-admin"><div class="img-label">Letter<br>Writing Kit</div></div>
+                <div class="product-info">
+                    <div class="product-name">Letter Writing Material</div>
+                    <div class="product-price">$8.99</div>
+                    <div class="product-variant">Lined stationery, envelopes, stamps</div>
+                    <div class="product-tag">Admin — Morale</div>
+                
+                    <button class="snipcart-add-item" data-item-id="letter-writing-material" data-item-name="Letter Writing Material" data-item-price="8.99" data-item-url="/shop.html" data-item-description="Letter Writing Material">Add to Cart — $8.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="admin packing">
+                <div class="product-img-wrap cat-admin"><div class="img-label">Rothco<br>Map Case</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Rothco</div>
+                    <div class="product-name">Map Cases</div>
+                    <div class="product-price">$24.99</div>
+                    <div class="product-variant">14.75"x12.5", weather-resistant, drainage grommets</div>
+                    <div class="product-tag">Admin — Navigation</div>
+                
+                    <button class="snipcart-add-item" data-item-id="map-cases" data-item-name="Map Cases" data-item-price="24.99" data-item-url="/shop.html" data-item-description="Map Cases">Add to Cart — $24.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="admin packing">
+                <div class="product-img-wrap cat-admin"><div class="img-label">Heavy Duty<br>50-Pack</div></div>
+                <div class="product-info">
+                    <div class="product-name">Sheet Protectors (50-Pack)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-tag">Admin — Essential</div>
+                
+                    <button class="snipcart-add-item" data-item-id="sheet-protectors-50-pack" data-item-name="Sheet Protectors (50-Pack)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Sheet Protectors (50-Pack)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="admin packing">
+                <div class="product-img-wrap cat-admin"><div class="img-label">Krylon<br>Camouflage</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Krylon</div>
+                    <div class="product-name">Spray Paint (Camo Colors)</div>
+                    <div class="product-price">$7.99</div>
+                    <div class="product-variant">Non-reflective ultra-flat, Black/Olive/Khaki/Brown/Green</div>
+                    <div class="product-tag">Admin — Field Use</div>
+                
+                    <button class="snipcart-add-item" data-item-id="spray-paint-camo-colors" data-item-name="Spray Paint (Camo Colors)" data-item-price="7.99" data-item-url="/shop.html" data-item-description="Spray Paint (Camo Colors)">Add to Cart — $7.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- GUM                                     -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="packing consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Wrigley's<br>5-Flavor</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Wrigley's</div>
+                    <div class="product-name">Classic Variety Pack (40 Packs)</div>
+                    <div class="product-price">$19.99</div>
+                    <div class="product-variant">8 each: Juicy Fruit, Big Red, Doublemint, Spearmint, Winterfresh</div>
+                    <div class="product-tag">Gum — Best Value</div>
+                
+                    <button class="snipcart-add-item" data-item-id="classic-variety-pack-40-packs" data-item-name="Classic Variety Pack (40 Packs)" data-item-price="19.99" data-item-url="/shop.html" data-item-description="Classic Variety Pack (40 Packs)">Add to Cart — $19.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Juicy<br>Fruit</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Wrigley's</div>
+                    <div class="product-name">Juicy Fruit (20-Pack)</div>
+                    <div class="product-price">$15.99</div>
+                    <div class="product-variant">5 sticks per pack, 100 sticks total</div>
+                    <div class="product-tag">Gum — Fruit</div>
+                
+                    <button class="snipcart-add-item" data-item-id="juicy-fruit-20-pack" data-item-name="Juicy Fruit (20-Pack)" data-item-price="15.99" data-item-url="/shop.html" data-item-description="Juicy Fruit (20-Pack)">Add to Cart — $15.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Big<br>Red</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Wrigley's</div>
+                    <div class="product-name">Big Red Cinnamon (20-Pack)</div>
+                    <div class="product-price">$15.99</div>
+                    <div class="product-variant">5 sticks per pack, 100 sticks total</div>
+                    <div class="product-tag">Gum — Cinnamon</div>
+                
+                    <button class="snipcart-add-item" data-item-id="big-red-cinnamon-20-pack" data-item-name="Big Red Cinnamon (20-Pack)" data-item-price="15.99" data-item-url="/shop.html" data-item-description="Big Red Cinnamon (20-Pack)">Add to Cart — $15.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Trident<br>Original</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Trident</div>
+                    <div class="product-name">Trident Original Sugar Free (15-Pack)</div>
+                    <div class="product-price">$11.99</div>
+                    <div class="product-variant">14 sticks per pack, 210 pieces total</div>
+                    <div class="product-tag">Gum — Mint</div>
+                
+                    <button class="snipcart-add-item" data-item-id="trident-original-sugar-free-15-pack" data-item-name="Trident Original Sugar Free (15-Pack)" data-item-price="11.99" data-item-url="/shop.html" data-item-description="Trident Original Sugar Free (15-Pack)">Add to Cart — $11.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Trident<br>Spearmint</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Trident</div>
+                    <div class="product-name">Trident Spearmint Sugar Free (15-Pack)</div>
+                    <div class="product-price">$11.99</div>
+                    <div class="product-variant">14 sticks per pack, 210 pieces total</div>
+                    <div class="product-tag">Gum — Mint</div>
+                
+                    <button class="snipcart-add-item" data-item-id="trident-spearmint-sugar-free-15-pack" data-item-name="Trident Spearmint Sugar Free (15-Pack)" data-item-price="11.99" data-item-url="/shop.html" data-item-description="Trident Spearmint Sugar Free (15-Pack)">Add to Cart — $11.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Trident<br>Fruit Variety</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Trident</div>
+                    <div class="product-name">Trident Fruit Variety Pack (20-Pack)</div>
+                    <div class="product-price">$15.99</div>
+                    <div class="product-variant">Tropical Twist, Watermelon Twist, Island Berry Lime — 14 sticks each</div>
+                    <div class="product-tag">Gum — Fruit Variety</div>
+                
+                    <button class="snipcart-add-item" data-item-id="trident-fruit-variety-pack-20-pack" data-item-name="Trident Fruit Variety Pack (20-Pack)" data-item-price="15.99" data-item-url="/shop.html" data-item-description="Trident Fruit Variety Pack (20-Pack)">Add to Cart — $15.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Extra<br>Mint Variety</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Extra</div>
+                    <div class="product-name">Extra Mint Variety Pack (18-Pack)</div>
+                    <div class="product-price">$18.99</div>
+                    <div class="product-variant">Polar Ice, Spearmint, Peppermint — 15 sticks each, 270 total</div>
+                    <div class="product-tag">Gum — Mint Variety</div>
+                
+                    <button class="snipcart-add-item" data-item-id="extra-mint-variety-pack-18-pack" data-item-name="Extra Mint Variety Pack (18-Pack)" data-item-price="18.99" data-item-url="/shop.html" data-item-description="Extra Mint Variety Pack (18-Pack)">Add to Cart — $18.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Orbit<br>Spearmint</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Orbit</div>
+                    <div class="product-name">Orbit Spearmint Sugar Free (12-Pack)</div>
+                    <div class="product-price">$16.99</div>
+                    <div class="product-variant">14 sticks per pack, 168 pieces total</div>
+                    <div class="product-tag">Gum — Mint</div>
+                
+                    <button class="snipcart-add-item" data-item-id="orbit-spearmint-sugar-free-12-pack" data-item-name="Orbit Spearmint Sugar Free (12-Pack)" data-item-price="16.99" data-item-url="/shop.html" data-item-description="Orbit Spearmint Sugar Free (12-Pack)">Add to Cart — $16.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">5 Gum<br>Cobalt</div></div>
+                <div class="product-info">
+                    <div class="product-brand">5 Gum</div>
+                    <div class="product-name">5 Gum Peppermint Cobalt (10-Pack)</div>
+                    <div class="product-price">$17.99</div>
+                    <div class="product-variant">15 sticks per pack, 150 pieces total</div>
+                    <div class="product-tag">Gum — Mint</div>
+                
+                    <button class="snipcart-add-item" data-item-id="5-gum-peppermint-cobalt-10-pack" data-item-name="5 Gum Peppermint Cobalt (10-Pack)" data-item-price="17.99" data-item-url="/shop.html" data-item-description="5 Gum Peppermint Cobalt (10-Pack)">Add to Cart — $17.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Hubba<br>Bubba</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Hubba Bubba</div>
+                    <div class="product-name">Hubba Bubba Bubble Tape (6-Pack)</div>
+                    <div class="product-price">$8.99</div>
+                    <div class="product-variant">Original flavor, 6 ft per tape</div>
+                    <div class="product-tag">Gum — Bubble</div>
+                
+                    <button class="snipcart-add-item" data-item-id="hubba-bubba-bubble-tape-6-pack" data-item-name="Hubba Bubba Bubble Tape (6-Pack)" data-item-price="8.99" data-item-url="/shop.html" data-item-description="Hubba Bubba Bubble Tape (6-Pack)">Add to Cart — $8.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- NICOTINE-FREE DIP & ENERGY POUCHES      -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Smokey<br>Mountain</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Smokey Mountain</div>
+                    <div class="product-name">Herbal Snuff — Wintergreen (Long Cut)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">100% tobacco-free, nicotine-free</div>
+                    <div class="product-tag">Dip Alternative — Nicotine Free</div>
+                
+                    <button class="snipcart-add-item" data-item-id="herbal-snuff-wintergreen-long-cut" data-item-name="Herbal Snuff — Wintergreen (Long Cut)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Herbal Snuff — Wintergreen (Long Cut)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Smokey<br>Mountain</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Smokey Mountain</div>
+                    <div class="product-name">Herbal Snuff — Mint (Pouches)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">100% tobacco-free, nicotine-free</div>
+                    <div class="product-tag">Dip Alternative — Nicotine Free</div>
+                
+                    <button class="snipcart-add-item" data-item-id="herbal-snuff-mint-pouches" data-item-name="Herbal Snuff — Mint (Pouches)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Herbal Snuff — Mint (Pouches)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Smokey<br>Mountain</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Smokey Mountain</div>
+                    <div class="product-name">Herbal Snuff — Straight (Long Cut)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">100% tobacco-free, nicotine-free</div>
+                    <div class="product-tag">Dip Alternative — Nicotine Free</div>
+                
+                    <button class="snipcart-add-item" data-item-id="herbal-snuff-straight-long-cut" data-item-name="Herbal Snuff — Straight (Long Cut)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Herbal Snuff — Straight (Long Cut)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Smokey<br>Mountain</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Smokey Mountain</div>
+                    <div class="product-name">Herbal Snuff — Arctic Mint (Pouches)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">Caffeinated, tobacco-free, nicotine-free</div>
+                    <div class="product-tag">Dip Alternative — Caffeinated</div>
+                
+                    <button class="snipcart-add-item" data-item-id="herbal-snuff-arctic-mint-pouches" data-item-name="Herbal Snuff — Arctic Mint (Pouches)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Herbal Snuff — Arctic Mint (Pouches)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Teaza<br>Energy</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Teaza</div>
+                    <div class="product-name">Energy Pouches — Wintergreen</div>
+                    <div class="product-price">$5.99</div>
+                    <div class="product-variant">50-100mg caffeine per pouch, nicotine-free, sugar-free</div>
+                    <div class="product-tag">Energy Pouches — Caffeine</div>
+                
+                    <button class="snipcart-add-item" data-item-id="energy-pouches-wintergreen" data-item-name="Energy Pouches — Wintergreen" data-item-price="5.99" data-item-url="/shop.html" data-item-description="Energy Pouches — Wintergreen">Add to Cart — $5.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Teaza<br>Energy</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Teaza</div>
+                    <div class="product-name">Energy Pouches — Cool Mint</div>
+                    <div class="product-price">$5.99</div>
+                    <div class="product-variant">50-100mg caffeine per pouch, nicotine-free, sugar-free</div>
+                    <div class="product-tag">Energy Pouches — Caffeine</div>
+                
+                    <button class="snipcart-add-item" data-item-id="energy-pouches-cool-mint" data-item-name="Energy Pouches — Cool Mint" data-item-price="5.99" data-item-url="/shop.html" data-item-description="Energy Pouches — Cool Mint">Add to Cart — $5.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Black<br>Buffalo</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Black Buffalo</div>
+                    <div class="product-name">ZERO Pouches — Wintergreen</div>
+                    <div class="product-price">$5.99</div>
+                    <div class="product-variant">Zero nicotine, zero tobacco — made from edible green leaves</div>
+                    <div class="product-tag">Dip Alternative — Nicotine Free</div>
+                
+                    <button class="snipcart-add-item" data-item-id="zero-pouches-wintergreen" data-item-name="ZERO Pouches — Wintergreen" data-item-price="5.99" data-item-url="/shop.html" data-item-description="ZERO Pouches — Wintergreen">Add to Cart — $5.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="consumables">
+                <div class="product-img-wrap cat-consumables"><div class="img-label">Black<br>Buffalo</div></div>
+                <div class="product-info">
+                    <div class="product-brand">Black Buffalo</div>
+                    <div class="product-name">ZERO Long Cut — Mint</div>
+                    <div class="product-price">$5.99</div>
+                    <div class="product-variant">Zero nicotine, zero tobacco — made from edible green leaves</div>
+                    <div class="product-tag">Dip Alternative — Nicotine Free</div>
+                
+                    <button class="snipcart-add-item" data-item-id="zero-long-cut-mint" data-item-name="ZERO Long Cut — Mint" data-item-price="5.99" data-item-url="/shop.html" data-item-description="ZERO Long Cut — Mint">Add to Cart — $5.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- MISC / COMMUNICATION                   -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="packing">
+                <div class="product-img-wrap cat-admin"><div class="img-label">TracFone<br>Prepaid</div></div>
+                <div class="product-info">
+                    <div class="product-brand">TracFone</div>
+                    <div class="product-name">Prepaid Phone Cards</div>
+                    <div class="product-price">$20.00</div>
+                    <div class="product-variant">Unlimited talk/text + 4GB data, 30 days</div>
+                    <div class="product-tag">Communication</div>
+                
+                    <button class="snipcart-add-item" data-item-id="prepaid-phone-cards" data-item-name="Prepaid Phone Cards" data-item-price="20.00" data-item-url="/shop.html" data-item-description="Prepaid Phone Cards">Add to Cart — $20.00</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PROGRAMS & COURSES                     -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="workout">
+                <div class="product-img-wrap cat-program"><div class="img-label">12-Week<br>Program</div></div>
+                <div class="product-info">
+                    <div class="product-name">12-Week Ranger Prep</div>
+                    <div class="product-price">$49.99</div>
+                    <div class="product-tag">Workout Program</div>
+                
+                    <button class="snipcart-add-item" data-item-id="12-week-ranger-prep" data-item-name="12-Week Ranger Prep" data-item-price="49.99" data-item-url="/shop.html" data-item-description="12-Week Ranger Prep">Add to Cart — $49.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="workout">
+                <div class="product-img-wrap cat-program"><div class="img-label">Ruck<br>Program</div></div>
+                <div class="product-info">
+                    <div class="product-name">Ruck Endurance Builder</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-tag">Workout Program</div>
+                
+                    <button class="snipcart-add-item" data-item-id="ruck-endurance-builder" data-item-name="Ruck Endurance Builder" data-item-price="29.99" data-item-url="/shop.html" data-item-description="Ruck Endurance Builder">Add to Cart — $29.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="study">
+                <div class="product-img-wrap cat-program"><div class="img-label">Battle<br>Drills</div></div>
+                <div class="product-info">
+                    <div class="product-name">Battle Drills Masterclass</div>
+                    <div class="product-price">$39.99</div>
+                    <div class="product-tag">Study Material</div>
+                
+                    <button class="snipcart-add-item" data-item-id="battle-drills-masterclass" data-item-name="Battle Drills Masterclass" data-item-price="39.99" data-item-url="/shop.html" data-item-description="Battle Drills Masterclass">Add to Cart — $39.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="study">
+                <div class="product-img-wrap cat-program"><div class="img-label">Land Nav<br>Course</div></div>
+                <div class="product-info">
+                    <div class="product-name">Land Nav Crash Course</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-tag">Study Material</div>
+                
+                    <button class="snipcart-add-item" data-item-id="land-nav-crash-course" data-item-name="Land Nav Crash Course" data-item-price="29.99" data-item-url="/shop.html" data-item-description="Land Nav Crash Course">Add to Cart — $29.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- TERRAIN MODEL KIT (TMK)                -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="tmk products packing">
+                <div class="product-img-wrap cat-tmk"><div class="img-label">Complete<br>TMK</div></div>
+                <div class="product-info">
+                    <div class="product-badge">Best Seller</div>
+                    <div class="product-brand">Ranger Beers</div>
+                    <div class="product-name">Complete Terrain Model Kit</div>
+                    <div class="product-price">$34.99</div>
+                    <div class="product-variant">Yarn, symbols, markers, stakes, bag — OPORD ready</div>
+                    <div class="product-tag">TMK — All-in-One</div>
+                
+                    <button class="snipcart-add-item" data-item-id="complete-terrain-model-kit" data-item-name="Complete Terrain Model Kit" data-item-price="34.99" data-item-url="/shop.html" data-item-description="Complete Terrain Model Kit">Add to Cart — $34.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tmk products packing">
+                <div class="product-img-wrap cat-tmk"><div class="img-label">5-Color<br>Yarn Set</div></div>
+                <div class="product-info">
+                    <div class="product-name">Colored Yarn Set (5 Colors)</div>
+                    <div class="product-price">$6.99</div>
+                    <div class="product-variant">Red, White, Yellow, Black, Blue</div>
+                    <div class="product-tag">TMK — Grid Lines & Boundaries</div>
+                
+                    <button class="snipcart-add-item" data-item-id="colored-yarn-set-5-colors" data-item-name="Colored Yarn Set (5 Colors)" data-item-price="6.99" data-item-url="/shop.html" data-item-description="Colored Yarn Set (5 Colors)">Add to Cart — $6.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tmk products packing">
+                <div class="product-img-wrap cat-tmk"><div class="img-label">Laminated<br>Symbols</div></div>
+                <div class="product-info">
+                    <div class="product-name">Laminated Unit Symbol Set</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">Squad/platoon cutouts — weighted w/ pennies</div>
+                    <div class="product-tag">TMK — Symbols</div>
+                
+                    <button class="snipcart-add-item" data-item-id="laminated-unit-symbol-set" data-item-name="Laminated Unit Symbol Set" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Laminated Unit Symbol Set">Add to Cart — $12.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tmk products packing">
+                <div class="product-img-wrap cat-tmk"><div class="img-label">Legend<br>Markers</div></div>
+                <div class="product-info">
+                    <div class="product-name">Laminated Legend Markers</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">SBF, ABF, CCP, ORP, LOA, & more</div>
+                    <div class="product-tag">TMK — Symbols</div>
+                
+                    <button class="snipcart-add-item" data-item-id="laminated-legend-markers" data-item-name="Laminated Legend Markers" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Laminated Legend Markers">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tmk products packing">
+                <div class="product-img-wrap cat-tmk"><div class="img-label">EXPO<br>Vis-a-Vis</div></div>
+                <div class="product-info">
+                    <div class="product-brand">EXPO</div>
+                    <div class="product-name">Wet Erase Markers (8-Color)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Fine tip, write on laminated surfaces</div>
+                    <div class="product-tag">TMK — Writing on Laminates</div>
+                
+                    <button class="snipcart-add-item" data-item-id="wet-erase-markers-8-color" data-item-name="Wet Erase Markers (8-Color)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Wet Erase Markers (8-Color)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tmk products packing">
+                <div class="product-img-wrap cat-tmk"><div class="img-label">Golf Tees<br>50-Pack</div></div>
+                <div class="product-info">
+                    <div class="product-name">Golf Tees — TMK Stakes (50-Pack)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">2-3/4" wood, anchor yarn into the ground</div>
+                    <div class="product-tag">TMK — Anchoring</div>
+                
+                    <button class="snipcart-add-item" data-item-id="golf-tees-tmk-stakes-50-pack" data-item-name="Golf Tees — TMK Stakes (50-Pack)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Golf Tees — TMK Stakes (50-Pack)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="tmk products packing">
+                <div class="product-img-wrap cat-tmk"><div class="img-label">TMK<br>Storage</div></div>
+                <div class="product-info">
+                    <div class="product-name">TMK Storage Bag</div>
+                    <div class="product-price">$6.99</div>
+                    <div class="product-variant">Zippered pouch — fits in ruck</div>
+                    <div class="product-tag">TMK — Storage</div>
+                
+                    <button class="snipcart-add-item" data-item-id="tmk-storage-bag" data-item-name="TMK Storage Bag" data-item-price="6.99" data-item-url="/shop.html" data-item-description="TMK Storage Bag">Add to Cart — $6.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PRODUCT CREATION                       -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="products packing">
+                <div class="product-img-wrap cat-products"><div class="img-label">18" Wood<br>Stakes</div></div>
+                <div class="product-info">
+                    <div class="product-name">Sector Stakes Kit (12-Pack)</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">Pre-cut 18" hardwood stakes for fighting positions</div>
+                    <div class="product-tag">Products — Defensive Ops</div>
+                
+                    <button class="snipcart-add-item" data-item-id="sector-stakes-kit-12-pack" data-item-name="Sector Stakes Kit (12-Pack)" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Sector Stakes Kit (12-Pack)">Add to Cart — $12.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="products packing admin">
+                <div class="product-img-wrap cat-products"><div class="img-label">Laminated<br>ACE Card</div></div>
+                <div class="product-info">
+                    <div class="product-name">ACE Report Cards (Laminated, 3-Pack)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">Pre-formatted Ammo/Casualties/Equipment</div>
+                    <div class="product-tag">Products — Reporting</div>
+                
+                    <button class="snipcart-add-item" data-item-id="ace-report-cards-laminated-3-pack" data-item-name="ACE Report Cards (Laminated, 3-Pack)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="ACE Report Cards (Laminated, 3-Pack)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="products packing">
+                <div class="product-img-wrap cat-products"><div class="img-label">Flaming<br>Rocks</div></div>
+                <div class="product-info">
+                    <div class="product-name">Flaming Rocks</div>
+                    <div class="product-price">$8.99</div>
+                    <div class="product-tag">Products — Field Craft</div>
+                
+                    <button class="snipcart-add-item" data-item-id="flaming-rocks" data-item-name="Flaming Rocks" data-item-price="8.99" data-item-url="/shop.html" data-item-description="Flaming Rocks">Add to Cart — $8.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="products packing admin">
+                <div class="product-img-wrap cat-products"><div class="img-label">DA 5517<br>Range Card</div></div>
+                <div class="product-info">
+                    <div class="product-name">Range Card Templates (Laminated, 3-Pack)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">DA Form 5517 — reusable with wet erase markers</div>
+                    <div class="product-tag">Products — Defensive Ops</div>
+                
+                    <button class="snipcart-add-item" data-item-id="range-card-templates-laminated-3-pack" data-item-name="Range Card Templates (Laminated, 3-Pack)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Range Card Templates (Laminated, 3-Pack)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="products packing admin">
+                <div class="product-img-wrap cat-products"><div class="img-label">Sector<br>Sketch</div></div>
+                <div class="product-info">
+                    <div class="product-name">Sector Sketch Templates (Laminated, 3-Pack)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">Squad & platoon sector sketches</div>
+                    <div class="product-tag">Products — Defensive Ops</div>
+                
+                    <button class="snipcart-add-item" data-item-id="sector-sketch-templates-laminated-3-pack" data-item-name="Sector Sketch Templates (Laminated, 3-Pack)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Sector Sketch Templates (Laminated, 3-Pack)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="products packing admin">
+                <div class="product-img-wrap cat-products"><div class="img-label">OPORD<br>5-Para</div></div>
+                <div class="product-info">
+                    <div class="product-name">OPORD Planning Board</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Laminated 5-paragraph format, dry erase</div>
+                    <div class="product-tag">Products — Planning</div>
+                
+                    <button class="snipcart-add-item" data-item-id="opord-planning-board" data-item-name="OPORD Planning Board" data-item-price="9.99" data-item-url="/shop.html" data-item-description="OPORD Planning Board">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="products packing">
+                <div class="product-img-wrap cat-products"><div class="img-label">MRE<br>Cardboard</div></div>
+                <div class="product-info">
+                    <div class="product-name">MRE Cardboard Sleeves (10-Pack)</div>
+                    <div class="product-price">$6.99</div>
+                    <div class="product-variant">Weather-resistant writing surfaces</div>
+                    <div class="product-tag">Products — Field Expedient</div>
+                
+                    <button class="snipcart-add-item" data-item-id="mre-cardboard-sleeves-10-pack" data-item-name="MRE Cardboard Sleeves (10-Pack)" data-item-price="6.99" data-item-url="/shop.html" data-item-description="MRE Cardboard Sleeves (10-Pack)">Add to Cart — $6.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- RTT (RANGER TACTICAL TASKS)            -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="rtt study">
+                <div class="product-img-wrap cat-program"><div class="img-label">RTT<br>Trainup</div></div>
+                <div class="product-info">
+                    <div class="product-badge">New</div>
+                    <div class="product-name">RTT Trainup Course</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-variant">All 7 Ranger Tactical Tasks — step by step</div>
+                    <div class="product-tag">RTT — Must Pass 5 of 7</div>
+                
+                    <button class="snipcart-add-item" data-item-id="rtt-trainup-course" data-item-name="RTT Trainup Course" data-item-price="29.99" data-item-url="/shop.html" data-item-description="RTT Trainup Course">Add to Cart — $29.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PRODUCT & TMK COURSES                  -->
+            <!-- ═══════════════════════════════════════ -->
+            <div class="product-card fade-in" data-category="tmk study">
+                <div class="product-img-wrap cat-program"><div class="img-label">TMK<br>Course</div></div>
+                <div class="product-info">
+                    <div class="product-badge">New</div>
+                    <div class="product-name">Terrain Model Building Course</div>
+                    <div class="product-price">$19.99</div>
+                    <div class="product-variant">Macro & micro terrain models — OPORD brief ready</div>
+                    <div class="product-tag">TMK — Course</div>
+                
+                    <button class="snipcart-add-item" data-item-id="terrain-model-building-course" data-item-name="Terrain Model Building Course" data-item-price="19.99" data-item-url="/shop.html" data-item-description="Terrain Model Building Course">Add to Cart — $19.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="products study">
+                <div class="product-img-wrap cat-program"><div class="img-label">Product<br>Creation</div></div>
+                <div class="product-info">
+                    <div class="product-badge">New</div>
+                    <div class="product-name">Product Creation Course</div>
+                    <div class="product-price">$19.99</div>
+                    <div class="product-variant">Range cards, sector sketches, ACE reports, OPORDs</div>
+                    <div class="product-tag">Products — Course</div>
+                
+                    <button class="snipcart-add-item" data-item-id="product-creation-course" data-item-name="Product Creation Course" data-item-price="19.99" data-item-url="/shop.html" data-item-description="Product Creation Course">Add to Cart — $19.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — ADMIN                   -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing admin">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Orders</div></div>
+                <div class="product-info">
+                    <div class="product-name">Orders to Ranger School (5 copies)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">Five hard copies — DA Form 1610 TDY/TCS orders</div>
+                    <div class="product-tag">Packing List — Admin</div>
+                    <button class="snipcart-add-item" data-item-id="orders-ranger-school" data-item-name="Orders to Ranger School (5 copies)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Orders to Ranger School (5 copies)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing admin">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>DD-93</div></div>
+                <div class="product-info">
+                    <div class="product-name">DD-93/SGLV</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">Record of Emergency Data & SGLI Election — 2 copies each</div>
+                    <div class="product-tag">Packing List — Admin</div>
+                    <button class="snipcart-add-item" data-item-id="dd93-sglv" data-item-name="DD-93/SGLV" data-item-price="4.99" data-item-url="/shop.html" data-item-description="DD-93/SGLV">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing admin">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>STP</div></div>
+                <div class="product-info">
+                    <div class="product-name">STP (Soldier Training Publication)</div>
+                    <div class="product-price">$6.99</div>
+                    <div class="product-variant">Individual training record — STP 21-1-SMCT, 2 copies</div>
+                    <div class="product-tag">Packing List — Admin</div>
+                    <button class="snipcart-add-item" data-item-id="stp-soldier-training" data-item-name="STP (Soldier Training Publication)" data-item-price="6.99" data-item-url="/shop.html" data-item-description="STP (Soldier Training Publication)">Add to Cart — $6.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing admin">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Airborne</div></div>
+                <div class="product-info">
+                    <div class="product-name">Airborne Certificate/Orders (if applicable)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">Airborne qualification certificate — 2 copies</div>
+                    <div class="product-tag">Packing List — Admin</div>
+                    <button class="snipcart-add-item" data-item-id="airborne-certificate" data-item-name="Airborne Certificate/Orders (if applicable)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Airborne Certificate/Orders (if applicable)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing admin">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Physical</div></div>
+                <div class="product-info">
+                    <div class="product-name">Ranger Physical (DA 2808 & 2807-1)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Medical exam forms — must be within 90 days of class date</div>
+                    <div class="product-tag">Packing List — Admin</div>
+                    <button class="snipcart-add-item" data-item-id="ranger-physical" data-item-name="Ranger Physical (DA 2808 & 2807-1)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Ranger Physical (DA 2808 & 2807-1)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing admin">
+                <div class="product-img-wrap cat-gear"><div class="img-label">DoD<br>ID Card</div></div>
+                <div class="product-info">
+                    <div class="product-name">ID Card</div>
+                    <div class="product-price">$0.00</div>
+                    <div class="product-variant">Common Access Card (CAC) — military issued</div>
+                    <div class="product-tag">Packing List — Admin</div>
+                    <button class="snipcart-add-item" data-item-id="id-card-cac" data-item-name="ID Card" data-item-price="0.00" data-item-url="/shop.html" data-item-description="ID Card">Add to Cart — $0.00</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing admin">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Dog Tags</div></div>
+                <div class="product-info">
+                    <div class="product-name">ID Tags with Breakaway Chain & Medical Alert</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">2 sets stainless dog tags with breakaway chain</div>
+                    <div class="product-tag">Packing List — Admin</div>
+                    <button class="snipcart-add-item" data-item-id="id-tags-dog-tags" data-item-name="ID Tags with Breakaway Chain & Medical Alert" data-item-price="12.99" data-item-url="/shop.html" data-item-description="ID Tags with Breakaway Chain & Medical Alert">Add to Cart — $12.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — RUCKSACK SYSTEM         -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>Rucksack</div></div>
+                <div class="product-info">
+                    <div class="product-name">Rucksack Large Field Pack MOLLE</div>
+                    <div class="product-price">$149.99</div>
+                    <div class="product-variant">MOLLE II Large Ruck — 4,000 cu in, OCP/UCP</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="rucksack-molle" data-item-name="Rucksack Large Field Pack MOLLE" data-item-price="149.99" data-item-url="/shop.html" data-item-description="Rucksack Large Field Pack MOLLE">Add to Cart — $149.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>Frame</div></div>
+                <div class="product-info">
+                    <div class="product-name">Pack Frame MOLLE</div>
+                    <div class="product-price">$79.99</div>
+                    <div class="product-variant">Aluminum/polymer external frame — load distribution</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="pack-frame-molle" data-item-name="Pack Frame MOLLE" data-item-price="79.99" data-item-url="/shop.html" data-item-description="Pack Frame MOLLE">Add to Cart — $79.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>Sustainment</div></div>
+                <div class="product-info">
+                    <div class="product-name">Sustainment Pouch (x2)</div>
+                    <div class="product-price">$24.99</div>
+                    <div class="product-variant">2x MOLLE side pouches — quick-access storage</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="sustainment-pouch" data-item-name="Sustainment Pouch (x2)" data-item-price="24.99" data-item-url="/shop.html" data-item-description="Sustainment Pouch (x2)">Add to Cart — $24.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>Waist Belt</div></div>
+                <div class="product-info">
+                    <div class="product-name">Molded Waist Belt</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-variant">Padded MOLLE waist belt — hip load transfer</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="molded-waist-belt" data-item-name="Molded Waist Belt" data-item-price="29.99" data-item-url="/shop.html" data-item-description="Molded Waist Belt">Add to Cart — $29.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>Straps</div></div>
+                <div class="product-info">
+                    <div class="product-name">Enhanced Frame Shoulder Straps MOLLE</div>
+                    <div class="product-price">$34.99</div>
+                    <div class="product-variant">Padded shoulder straps with sternum strap</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="shoulder-straps-molle" data-item-name="Enhanced Frame Shoulder Straps MOLLE" data-item-price="34.99" data-item-url="/shop.html" data-item-description="Enhanced Frame Shoulder Straps MOLLE">Add to Cart — $34.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>Buckle</div></div>
+                <div class="product-info">
+                    <div class="product-name">Buckle, Male Shoulder Suspension (x2)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">2x male buckle clips — shoulder strap to frame</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="buckle-shoulder-suspension" data-item-name="Buckle, Male Shoulder Suspension (x2)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Buckle, Male Shoulder Suspension (x2)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>Load Lifter</div></div>
+                <div class="product-info">
+                    <div class="product-name">Load Lifter Attachment Strap (x2)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">2x straps — pull load closer, 45-degree angle</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="load-lifter-strap" data-item-name="Load Lifter Attachment Strap (x2)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Load Lifter Attachment Strap (x2)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — HELMET & PROTECTION     -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing gear tactical">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>ACH</div></div>
+                <div class="product-info">
+                    <div class="product-name">Helmet, Advanced Combat (Subdued Color)</div>
+                    <div class="product-price">$199.99</div>
+                    <div class="product-variant">ACH/ECH — Kevlar composite, NIJ Level IIIA</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="ach-helmet" data-item-name="Helmet, Advanced Combat (Subdued Color)" data-item-price="199.99" data-item-url="/shop.html" data-item-description="Helmet, Advanced Combat (Subdued Color)">Add to Cart — $199.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear tactical">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Pad Set</div></div>
+                <div class="product-info">
+                    <div class="product-name">Pad Set, Advanced Combat Helmet</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-variant">7-pad Velcro kit — comfort and impact absorption</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="ach-pad-set" data-item-name="Pad Set, Advanced Combat Helmet" data-item-price="29.99" data-item-url="/shop.html" data-item-description="Pad Set, Advanced Combat Helmet">Add to Cart — $29.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear tactical">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>NVG Mount</div></div>
+                <div class="product-info">
+                    <div class="product-name">ACH Bracket / Rhino Mount / J Arm</div>
+                    <div class="product-price">$34.99</div>
+                    <div class="product-variant">NVG mounting system — bracket, rhino arm, J-arm</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="nvg-mount-rhino-arm" data-item-name="ACH Bracket / Rhino Mount / J Arm" data-item-price="34.99" data-item-url="/shop.html" data-item-description="ACH Bracket / Rhino Mount / J Arm">Add to Cart — $34.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear tactical">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Cat-Eyes</div></div>
+                <div class="product-info">
+                    <div class="product-name">Cat-Eyes Band PASGT</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">Luminescent IR band — rear helmet night marker</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="cat-eyes-band" data-item-name="Cat-Eyes Band PASGT" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Cat-Eyes Band PASGT">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear tactical">
+                <div class="product-img-wrap cat-gear"><div class="img-label">APEL<br>Eye Pro</div></div>
+                <div class="product-info">
+                    <div class="product-name">Eye Protection APEL (Clear Lens)</div>
+                    <div class="product-price">$49.99</div>
+                    <div class="product-variant">Ballistic eyewear — APEL approved, clear lens</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="eye-protection-apel" data-item-name="Eye Protection APEL (Clear Lens)" data-item-price="49.99" data-item-url="/shop.html" data-item-description="Eye Protection APEL (Clear Lens)">Add to Cart — $49.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — TAP & POUCHES           -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing tactical">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>TAP</div></div>
+                <div class="product-info">
+                    <div class="product-name">MOLLE Tactical Assault Panel (TAP)</div>
+                    <div class="product-price">$59.99</div>
+                    <div class="product-variant">Fighting load carrier — H-harness or vest style</div>
+                    <div class="product-tag">Packing List — Tactical</div>
+                    <button class="snipcart-add-item" data-item-id="tactical-assault-panel" data-item-name="MOLLE Tactical Assault Panel (TAP)" data-item-price="59.99" data-item-url="/shop.html" data-item-description="MOLLE Tactical Assault Panel (TAP)">Add to Cart — $59.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing tactical">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>Canteen Pouch</div></div>
+                <div class="product-info">
+                    <div class="product-name">Pouch, 1 QT Canteen-General (x2)</div>
+                    <div class="product-price">$14.99</div>
+                    <div class="product-variant">2x MOLLE canteen pouches — fits 1QT canteen</div>
+                    <div class="product-tag">Packing List — Tactical</div>
+                    <button class="snipcart-add-item" data-item-id="canteen-pouch-1qt" data-item-name="Pouch, 1 QT Canteen-General (x2)" data-item-price="14.99" data-item-url="/shop.html" data-item-description="Pouch, 1 QT Canteen-General (x2)">Add to Cart — $14.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing tactical">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>Grenade Pouch</div></div>
+                <div class="product-info">
+                    <div class="product-name">Pouch, Hand Grenade (x2)</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">2x MOLLE grenade pouches — snap closure</div>
+                    <div class="product-tag">Packing List — Tactical</div>
+                    <button class="snipcart-add-item" data-item-id="grenade-pouch" data-item-name="Pouch, Hand Grenade (x2)" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Pouch, Hand Grenade (x2)">Add to Cart — $12.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing tactical">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>Mag Pouch</div></div>
+                <div class="product-info">
+                    <div class="product-name">Pouch, M4 Two Magazine (x3)</div>
+                    <div class="product-price">$14.99</div>
+                    <div class="product-variant">3x double-mag pouches — holds 6 magazines total</div>
+                    <div class="product-tag">Packing List — Tactical</div>
+                    <button class="snipcart-add-item" data-item-id="m4-magazine-pouch" data-item-name="Pouch, M4 Two Magazine (x3)" data-item-price="14.99" data-item-url="/shop.html" data-item-description="Pouch, M4 Two Magazine (x3)">Add to Cart — $14.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — NAVIGATION              -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Cammenga<br>Compass</div></div>
+                <div class="product-info">
+                    <div class="product-name">Compass, Lensatic</div>
+                    <div class="product-price">$49.99</div>
+                    <div class="product-variant">Tritium lensatic — Cammenga 3H mil-spec</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="compass-lensatic" data-item-name="Compass, Lensatic" data-item-price="49.99" data-item-url="/shop.html" data-item-description="Compass, Lensatic">Add to Cart — $49.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — MAGAZINES & BFA         -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing tactical">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>M4 Mag</div></div>
+                <div class="product-info">
+                    <div class="product-name">Magazine, M4 30-round (x7)</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">7x 30-round USGI or EPM magazines</div>
+                    <div class="product-tag">Packing List — Tactical</div>
+                    <button class="snipcart-add-item" data-item-id="m4-magazine-30rd" data-item-name="Magazine, M4 30-round (x7)" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Magazine, M4 30-round (x7)">Add to Cart — $12.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing tactical">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>BFA</div></div>
+                <div class="product-info">
+                    <div class="product-name">Adapter, Firing (M4 Yellow)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Yellow blank firing adapter — M4 muzzle mount</div>
+                    <div class="product-tag">Packing List — Tactical</div>
+                    <button class="snipcart-add-item" data-item-id="blank-firing-adapter" data-item-name="Adapter, Firing (M4 Yellow)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Adapter, Firing (M4 Yellow)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — WATER & HYDRATION       -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Canteen 1QT</div></div>
+                <div class="product-info">
+                    <div class="product-name">Canteen 1QT (x2)</div>
+                    <div class="product-price">$14.99</div>
+                    <div class="product-variant">2x 1-quart canteens — primary TAP water source</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="canteen-1qt" data-item-name="Canteen 1QT (x2)" data-item-price="14.99" data-item-url="/shop.html" data-item-description="Canteen 1QT (x2)">Add to Cart — $14.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Canteen 2QT</div></div>
+                <div class="product-info">
+                    <div class="product-name">Canteen, Water 2QT</div>
+                    <div class="product-price">$16.99</div>
+                    <div class="product-variant">2-quart collapsible canteen — extra water capacity</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="canteen-2qt" data-item-name="Canteen, Water 2QT" data-item-price="16.99" data-item-url="/shop.html" data-item-description="Canteen, Water 2QT">Add to Cart — $16.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>2QT Cover</div></div>
+                <div class="product-info">
+                    <div class="product-name">Cover Canteen 2QT</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">MOLLE insulated cover for 2QT canteen</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="canteen-cover-2qt" data-item-name="Cover Canteen 2QT" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Cover Canteen 2QT">Add to Cart — $12.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>Hydration</div></div>
+                <div class="product-info">
+                    <div class="product-name">Carrier, Hydration System w/ Bladder</div>
+                    <div class="product-price">$39.99</div>
+                    <div class="product-variant">MOLLE hydration carrier — tube routing channel</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="hydration-carrier" data-item-name="Carrier, Hydration System w/ Bladder" data-item-price="39.99" data-item-url="/shop.html" data-item-description="Carrier, Hydration System w/ Bladder">Add to Cart — $39.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">CamelBak<br>Bladder</div></div>
+                <div class="product-info">
+                    <div class="product-name">Bladder, Hydration w/ Bite Valve (70 oz min)</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-variant">70 oz+ hydration bladder with bite valve</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="hydration-bladder" data-item-name="Bladder, Hydration w/ Bite Valve (70 oz min)" data-item-price="29.99" data-item-url="/shop.html" data-item-description="Bladder, Hydration w/ Bite Valve (70 oz min)">Add to Cart — $29.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Canteen Cup</div></div>
+                <div class="product-info">
+                    <div class="product-name">Cup Water Canteen</div>
+                    <div class="product-price">$14.99</div>
+                    <div class="product-variant">Stainless steel — nests under 1QT, heats water</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="canteen-cup" data-item-name="Cup Water Canteen" data-item-price="14.99" data-item-url="/shop.html" data-item-description="Cup Water Canteen">Add to Cart — $14.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — CLOTHING & LAYERS       -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">ECWCS<br>L1 Drawers</div></div>
+                <div class="product-info">
+                    <div class="product-name">GEN III Level 1 LW CW Drawers (x2)</div>
+                    <div class="product-price">$34.99</div>
+                    <div class="product-variant">2x silk-weight base layer bottoms — moisture wicking</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="ecwcs-l1-drawers" data-item-name="GEN III Level 1 LW CW Drawers (x2)" data-item-price="34.99" data-item-url="/shop.html" data-item-description="GEN III Level 1 LW CW Drawers (x2)">Add to Cart — $34.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">ECWCS<br>L2 Drawers</div></div>
+                <div class="product-info">
+                    <div class="product-name">GEN III Level 2 Mid-Weight CW Drawers (x2)</div>
+                    <div class="product-price">$39.99</div>
+                    <div class="product-variant">2x grid fleece base layer bottoms — cold weather</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="ecwcs-l2-drawers" data-item-name="GEN III Level 2 Mid-Weight CW Drawers (x2)" data-item-price="39.99" data-item-url="/shop.html" data-item-description="GEN III Level 2 Mid-Weight CW Drawers (x2)">Add to Cart — $39.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">ECWCS<br>L1 Shirt</div></div>
+                <div class="product-info">
+                    <div class="product-name">GEN III Level 1 LW CW Undershirt (x2)</div>
+                    <div class="product-price">$34.99</div>
+                    <div class="product-variant">2x silk-weight base layer tops — crew neck</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="ecwcs-l1-undershirt" data-item-name="GEN III Level 1 LW CW Undershirt (x2)" data-item-price="34.99" data-item-url="/shop.html" data-item-description="GEN III Level 1 LW CW Undershirt (x2)">Add to Cart — $34.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">ECWCS<br>L2 Shirt</div></div>
+                <div class="product-info">
+                    <div class="product-name">GEN III Level 2 Midweight CW Undershirt (x2)</div>
+                    <div class="product-price">$44.99</div>
+                    <div class="product-variant">2x grid fleece quarter-zip tops — cold weather</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="ecwcs-l2-undershirt" data-item-name="GEN III Level 2 Midweight CW Undershirt (x2)" data-item-price="44.99" data-item-url="/shop.html" data-item-description="GEN III Level 2 Midweight CW Undershirt (x2)">Add to Cart — $44.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">USGI<br>Neck Gaiter</div></div>
+                <div class="product-info">
+                    <div class="product-name">Gaiter Neck (x2)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">2x fleece neck gaiters — cold weather, multi-use</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="neck-gaiter" data-item-name="Gaiter Neck (x2)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Gaiter Neck (x2)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">Massif<br>Combat Gloves</div></div>
+                <div class="product-info">
+                    <div class="product-name">Gloves Combat</div>
+                    <div class="product-price">$24.99</div>
+                    <div class="product-variant">Fire-resistant tactical gloves — dexterity for weapons</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="gloves-combat" data-item-name="Gloves Combat" data-item-price="24.99" data-item-url="/shop.html" data-item-description="Gloves Combat">Add to Cart — $24.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">USGI<br>Work Gloves</div></div>
+                <div class="product-info">
+                    <div class="product-name">Work Gloves, Heavy Duty (Leather)</div>
+                    <div class="product-price">$19.99</div>
+                    <div class="product-variant">Leather work gloves — digging, wire, construction</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="gloves-work-leather" data-item-name="Work Gloves, Heavy Duty (Leather)" data-item-price="19.99" data-item-url="/shop.html" data-item-description="Work Gloves, Heavy Duty (Leather)">Add to Cart — $19.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">USGI<br>CW Gloves</div></div>
+                <div class="product-info">
+                    <div class="product-name">Gloves, Cold Weather Flyers / ICW</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-variant">Cold weather flyers or ICW system — insulated</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="gloves-cold-weather" data-item-name="Gloves, Cold Weather Flyers / ICW" data-item-price="29.99" data-item-url="/shop.html" data-item-description="Gloves, Cold Weather Flyers / ICW">Add to Cart — $29.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">USGI<br>Overshoes</div></div>
+                <div class="product-info">
+                    <div class="product-name">Overshoes, Vinyl</div>
+                    <div class="product-price">$24.99</div>
+                    <div class="product-variant">Vinyl boot covers — wet weather, trench foot prevention</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="overshoes-vinyl" data-item-name="Overshoes, Vinyl" data-item-price="24.99" data-item-url="/shop.html" data-item-description="Overshoes, Vinyl">Add to Cart — $24.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">Belleville<br>ICW Boots</div></div>
+                <div class="product-info">
+                    <div class="product-name">Boots, Intermediate Cold Weather</div>
+                    <div class="product-price">$149.99</div>
+                    <div class="product-variant">Insulated waterproof boots — Mountains phase</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="boots-cold-weather" data-item-name="Boots, Intermediate Cold Weather" data-item-price="149.99" data-item-url="/shop.html" data-item-description="Boots, Intermediate Cold Weather">Add to Cart — $149.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">ECWCS<br>Gore-Tex JKT</div></div>
+                <div class="product-info">
+                    <div class="product-name">Extreme Wet/Cold Weather Jacket Level VI</div>
+                    <div class="product-price">$149.99</div>
+                    <div class="product-variant">Gore-Tex Level 6 — waterproof, windproof, breathable</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="ecwcs-l6-jacket" data-item-name="Extreme Wet/Cold Weather Jacket Level VI" data-item-price="149.99" data-item-url="/shop.html" data-item-description="Extreme Wet/Cold Weather Jacket Level VI">Add to Cart — $149.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">ECWCS<br>Gore-Tex TRS</div></div>
+                <div class="product-info">
+                    <div class="product-name">Trousers Wet Weather / ECWCS Level VI</div>
+                    <div class="product-price">$129.99</div>
+                    <div class="product-variant">Gore-Tex over-trousers — side zips, drawstring waist</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="ecwcs-l6-trousers" data-item-name="Trousers Wet Weather / ECWCS Level VI" data-item-price="129.99" data-item-url="/shop.html" data-item-description="Trousers Wet Weather / ECWCS Level VI">Add to Cart — $129.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">OCP<br>Patrol Cap</div></div>
+                <div class="product-info">
+                    <div class="product-name">Cap, Patrol ACU (x2)</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">2x OCP patrol caps — name tape and rank sewn on</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="patrol-cap-acu" data-item-name="Cap, Patrol ACU (x2)" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Cap, Patrol ACU (x2)">Add to Cart — $12.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">OCP<br>ACU Coat</div></div>
+                <div class="product-info">
+                    <div class="product-name">Coat, ACU/OCP (x4)</div>
+                    <div class="product-price">$49.99</div>
+                    <div class="product-variant">4x OCP combat coats — name tapes, rank, patches</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="coat-acu-ocp" data-item-name="Coat, ACU/OCP (x4)" data-item-price="49.99" data-item-url="/shop.html" data-item-description="Coat, ACU/OCP (x4)">Add to Cart — $49.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">OCP<br>ACU Trousers</div></div>
+                <div class="product-info">
+                    <div class="product-name">Trousers, ACU/OCP (x4)</div>
+                    <div class="product-price">$44.99</div>
+                    <div class="product-variant">4x OCP combat trousers — cargo pockets, hemmed</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="trousers-acu-ocp" data-item-name="Trousers, ACU/OCP (x4)" data-item-price="44.99" data-item-url="/shop.html" data-item-description="Trousers, ACU/OCP (x4)">Add to Cart — $44.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">USGI<br>T-Shirts</div></div>
+                <div class="product-info">
+                    <div class="product-name">T-Shirts, Tan 499 (x7)</div>
+                    <div class="product-price">$24.99</div>
+                    <div class="product-variant">7x Tan 499 undershirts — moisture wicking</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="tshirts-tan-499" data-item-name="T-Shirts, Tan 499 (x7)" data-item-price="24.99" data-item-url="/shop.html" data-item-description="T-Shirts, Tan 499 (x7)">Add to Cart — $24.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">USGI<br>Rigger Belt</div></div>
+                <div class="product-info">
+                    <div class="product-name">Belt, brown non-elastic (rigger style)</div>
+                    <div class="product-price">$19.99</div>
+                    <div class="product-variant">Coyote rigger belt — doubles as extraction harness</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="belt-rigger" data-item-name="Belt, brown non-elastic (rigger style)" data-item-price="19.99" data-item-url="/shop.html" data-item-description="Belt, brown non-elastic (rigger style)">Add to Cart — $19.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">Darn Tough<br>Boot Socks</div></div>
+                <div class="product-info">
+                    <div class="product-name">Socks, cushion sole wool blend (x7 min)</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-variant">7x wool-blend boot socks — change twice daily</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="socks-wool-blend" data-item-name="Socks, cushion sole wool blend (x7 min)" data-item-price="29.99" data-item-url="/shop.html" data-item-description="Socks, cushion sole wool blend (x7 min)">Add to Cart — $29.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">Garmont<br>HW Boots</div></div>
+                <div class="product-info">
+                    <div class="product-name">Boots, Hot Weather Desert (x2)</div>
+                    <div class="product-price">$159.99</div>
+                    <div class="product-variant">2x hot weather boots — broken in before arrival</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="boots-hot-weather" data-item-name="Boots, Hot Weather Desert (x2)" data-item-price="159.99" data-item-url="/shop.html" data-item-description="Boots, Hot Weather Desert (x2)">Add to Cart — $159.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">APFU<br>PT Uniform</div></div>
+                <div class="product-info">
+                    <div class="product-name">PT Uniform (Full Set)</div>
+                    <div class="product-price">$69.99</div>
+                    <div class="product-variant">APFU set — shorts, shirt, jacket, pants</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="pt-uniform" data-item-name="PT Uniform (Full Set)" data-item-price="69.99" data-item-url="/shop.html" data-item-description="PT Uniform (Full Set)">Add to Cart — $69.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">USGI<br>PT Socks</div></div>
+                <div class="product-info">
+                    <div class="product-name">Socks, white/black PT (x2)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">2x athletic PT socks — ankle length</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="socks-pt" data-item-name="Socks, white/black PT (x2)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Socks, white/black PT (x2)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">USGI<br>Watch Cap</div></div>
+                <div class="product-info">
+                    <div class="product-name">Watch Cap, Black Micro Fleece</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Black fleece beanie — cold weather head protection</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="watch-cap-fleece" data-item-name="Watch Cap, Black Micro Fleece" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Watch Cap, Black Micro Fleece">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">USGI<br>PT Belt</div></div>
+                <div class="product-info">
+                    <div class="product-name">Belt, reflective (high vis yellow)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">High-vis reflective PT belt — safety and accountability</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="belt-reflective-pt" data-item-name="Belt, reflective (high vis yellow)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Belt, reflective (high vis yellow)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing clothing">
+                <div class="product-img-wrap cat-clothing"><div class="img-label">USGI<br>PT Shoes</div></div>
+                <div class="product-info">
+                    <div class="product-name">PT Shoes</div>
+                    <div class="product-price">$79.99</div>
+                    <div class="product-variant">Running shoes — broken in, for RAP week 5-mile run</div>
+                    <div class="product-tag">Packing List — Clothing</div>
+                    <button class="snipcart-add-item" data-item-id="pt-shoes" data-item-name="PT Shoes" data-item-price="79.99" data-item-url="/shop.html" data-item-description="PT Shoes">Add to Cart — $79.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — WET WEATHER             -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Poncho</div></div>
+                <div class="product-info">
+                    <div class="product-name">Poncho Wet Weather or Tarpaulin</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-variant">Ripstop nylon poncho — rain, shelter, ground cloth</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="poncho-wet-weather" data-item-name="Poncho Wet Weather or Tarpaulin" data-item-price="29.99" data-item-url="/shop.html" data-item-description="Poncho Wet Weather or Tarpaulin">Add to Cart — $29.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — STORAGE                 -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Stuff Sack LG</div></div>
+                <div class="product-info">
+                    <div class="product-name">Stuff Sack, LRG</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Large compression sack — sleeping bag storage</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="stuff-sack-large" data-item-name="Stuff Sack, LRG" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Stuff Sack, LRG">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Stuff Sack SM</div></div>
+                <div class="product-info">
+                    <div class="product-name">Stuff Sack, SML</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Small compression sack — base layer organization</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="stuff-sack-small" data-item-name="Stuff Sack, SML" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Stuff Sack, SML">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Dry Bag</div></div>
+                <div class="product-info">
+                    <div class="product-name">Bag Clothing Waterproof (x2)</div>
+                    <div class="product-price">$14.99</div>
+                    <div class="product-variant">2x waterproof dry bags — clothing and sleep system</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="waterproof-bag" data-item-name="Bag Clothing Waterproof (x2)" data-item-price="14.99" data-item-url="/shop.html" data-item-description="Bag Clothing Waterproof (x2)">Add to Cart — $14.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — SLEEP SYSTEM            -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MSS<br>Bivy Cover</div></div>
+                <div class="product-info">
+                    <div class="product-name">Bivy Cover, Modular System</div>
+                    <div class="product-price">$79.99</div>
+                    <div class="product-variant">Gore-Tex waterproof outer shell — MSS component</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="bivy-cover" data-item-name="Bivy Cover, Modular System" data-item-price="79.99" data-item-url="/shop.html" data-item-description="Bivy Cover, Modular System">Add to Cart — $79.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MSS<br>ICW Bag</div></div>
+                <div class="product-info">
+                    <div class="product-name">Sleeping Bag ICW (Winter-Gray)</div>
+                    <div class="product-price">$129.99</div>
+                    <div class="product-variant">Gray mummy bag — rated to -10F with full MSS</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="sleeping-bag-icw" data-item-name="Sleeping Bag ICW (Winter-Gray)" data-item-price="129.99" data-item-url="/shop.html" data-item-description="Sleeping Bag ICW (Winter-Gray)">Add to Cart — $129.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MSS<br>Patrol Bag</div></div>
+                <div class="product-info">
+                    <div class="product-name">Sleeping Bag (Patrol-Green)</div>
+                    <div class="product-price">$89.99</div>
+                    <div class="product-variant">Green patrol bag — rated to 35F standalone</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="sleeping-bag-patrol" data-item-name="Sleeping Bag (Patrol-Green)" data-item-price="89.99" data-item-url="/shop.html" data-item-description="Sleeping Bag (Patrol-Green)">Add to Cart — $89.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Sleep Pad</div></div>
+                <div class="product-info">
+                    <div class="product-name">Mat Sleeping Pad / PT Mat</div>
+                    <div class="product-price">$24.99</div>
+                    <div class="product-variant">Closed-cell foam pad — ground insulation, PT mat</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="sleeping-pad" data-item-name="Mat Sleeping Pad / PT Mat" data-item-price="24.99" data-item-url="/shop.html" data-item-description="Mat Sleeping Pad / PT Mat">Add to Cart — $24.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — HYGIENE                 -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing hygiene">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">USGI<br>Razor</div></div>
+                <div class="product-info">
+                    <div class="product-name">Razor, shaving (non electric)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Disposable razor — shave daily, bring several</div>
+                    <div class="product-tag">Packing List — Hygiene</div>
+                    <button class="snipcart-add-item" data-item-id="razor-shaving" data-item-name="Razor, shaving (non electric)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Razor, shaving (non electric)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing hygiene">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">Gillette<br>Razor Blades</div></div>
+                <div class="product-info">
+                    <div class="product-name">Razor Blades (x12)</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">12x replacement cartridges — lasts 61+ days</div>
+                    <div class="product-tag">Packing List — Hygiene</div>
+                    <button class="snipcart-add-item" data-item-id="razor-blades" data-item-name="Razor Blades (x12)" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Razor Blades (x12)">Add to Cart — $12.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing hygiene">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">USGI<br>Shave Cream</div></div>
+                <div class="product-info">
+                    <div class="product-name">Shaving Cream</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">Travel size shaving cream or gel</div>
+                    <div class="product-tag">Packing List — Hygiene</div>
+                    <button class="snipcart-add-item" data-item-id="shaving-cream" data-item-name="Shaving Cream" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Shaving Cream">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing hygiene">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">USGI<br>Toothbrush</div></div>
+                <div class="product-info">
+                    <div class="product-name">Toothbrush (non-electric)</div>
+                    <div class="product-price">$3.99</div>
+                    <div class="product-variant">Manual toothbrush with cover/case</div>
+                    <div class="product-tag">Packing List — Hygiene</div>
+                    <button class="snipcart-add-item" data-item-id="toothbrush" data-item-name="Toothbrush (non-electric)" data-item-price="3.99" data-item-url="/shop.html" data-item-description="Toothbrush (non-electric)">Add to Cart — $3.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing hygiene">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">USGI<br>Toothpaste</div></div>
+                <div class="product-info">
+                    <div class="product-name">Toothpaste (large tube)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">6 oz tube — must last 61+ days</div>
+                    <div class="product-tag">Packing List — Hygiene</div>
+                    <button class="snipcart-add-item" data-item-id="toothpaste" data-item-name="Toothpaste (large tube)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Toothpaste (large tube)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing hygiene">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">USGI<br>Towels LG</div></div>
+                <div class="product-info">
+                    <div class="product-name">Towels, large (x2, green/brown)</div>
+                    <div class="product-price">$14.99</div>
+                    <div class="product-variant">2x large subdued towels — drying, pillow, padding</div>
+                    <div class="product-tag">Packing List — Hygiene</div>
+                    <button class="snipcart-add-item" data-item-id="towels-large" data-item-name="Towels, large (x2, green/brown)" data-item-price="14.99" data-item-url="/shop.html" data-item-description="Towels, large (x2, green/brown)">Add to Cart — $14.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing hygiene">
+                <div class="product-img-wrap cat-hygiene"><div class="img-label">USGI<br>Washcloth</div></div>
+                <div class="product-info">
+                    <div class="product-name">Towels, wash cloth (x2, green/brown)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">2x subdued wash cloths — face, body, general use</div>
+                    <div class="product-tag">Packing List — Hygiene</div>
+                    <button class="snipcart-add-item" data-item-id="towels-washcloth" data-item-name="Towels, wash cloth (x2, green/brown)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Towels, wash cloth (x2, green/brown)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════ -->
+            <!-- PACKING LIST — TOOLS & SUPPLIES        -->
+            <!-- ═══════════════════════════════════════ -->
+
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Ear Plugs</div></div>
+                <div class="product-info">
+                    <div class="product-name">Ear Plugs with Case (Triple Flange min)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">Triple-flange hearing protection with case</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="ear-plugs" data-item-name="Ear Plugs with Case (Triple Flange min)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Ear Plugs with Case (Triple Flange min)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Protractor</div></div>
+                <div class="product-info">
+                    <div class="product-name">Protractor (GTA 5-2-12)</div>
+                    <div class="product-price">$6.99</div>
+                    <div class="product-variant">Military map protractor — 1:25K and 1:50K scales</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="protractor-military" data-item-name="Protractor (GTA 5-2-12)" data-item-price="6.99" data-item-url="/shop.html" data-item-description="Protractor (GTA 5-2-12)">Add to Cart — $6.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Sharpie<br>Markers</div></div>
+                <div class="product-info">
+                    <div class="product-name">Alcohol Marker, permanent (4 pack)</div>
+                    <div class="product-price">$6.99</div>
+                    <div class="product-variant">4-pack permanent markers — black, red, blue, green</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="permanent-markers" data-item-name="Alcohol Marker, permanent (4 pack)" data-item-price="6.99" data-item-url="/shop.html" data-item-description="Alcohol Marker, permanent (4 pack)">Add to Cart — $6.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">NATO<br>Camo Stick</div></div>
+                <div class="product-info">
+                    <div class="product-name">Camouflage Stick (x3, green/loam)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">3x NATO camo face paint sticks — green and loam</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="camo-face-paint" data-item-name="Camouflage Stick (x3, green/loam)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Camouflage Stick (x3, green/loam)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>Assault Pack</div></div>
+                <div class="product-info">
+                    <div class="product-name">Pack, Assault, MOLLE</div>
+                    <div class="product-price">$59.99</div>
+                    <div class="product-variant">3-day assault pack — clips to ruck or standalone</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="assault-pack-molle" data-item-name="Pack, Assault, MOLLE" data-item-price="59.99" data-item-url="/shop.html" data-item-description="Pack, Assault, MOLLE">Add to Cart — $59.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">OCP<br>Name Tapes</div></div>
+                <div class="product-info">
+                    <div class="product-name">Name-Tape, Cloth sew-on (x4)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">4x OCP sew-on name tapes — replacement/extra</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="name-tapes" data-item-name="Name-Tape, Cloth sew-on (x4)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Name-Tape, Cloth sew-on (x4)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">MOLLE<br>E-Tool Carrier</div></div>
+                <div class="product-info">
+                    <div class="product-name">Carrier, Intrenching</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">MOLLE E-tool carrier — snap closure, ruck mount</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="e-tool-carrier" data-item-name="Carrier, Intrenching" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Carrier, Intrenching">Add to Cart — $12.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>E-Tool</div></div>
+                <div class="product-info">
+                    <div class="product-name">Intrenching Tool, Hand (E-Tool)</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-variant">Tri-fold entrenching tool — shovel and pick config</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="e-tool" data-item-name="Intrenching Tool, Hand (E-Tool)" data-item-price="29.99" data-item-url="/shop.html" data-item-description="Intrenching Tool, Hand (E-Tool)">Add to Cart — $29.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Knee Pads</div></div>
+                <div class="product-info">
+                    <div class="product-name">Knee Pad Set</div>
+                    <div class="product-price">$19.99</div>
+                    <div class="product-variant">Strap-on knee pads — tactical kneeling and crawls</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="knee-pads" data-item-name="Knee Pad Set" data-item-price="19.99" data-item-url="/shop.html" data-item-description="Knee Pad Set">Add to Cart — $19.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Black Tape</div></div>
+                <div class="product-info">
+                    <div class="product-name">Black Tape, friction/electrical (x2 rolls)</div>
+                    <div class="product-price">$6.99</div>
+                    <div class="product-variant">2x rolls — noise discipline, repairs, marking</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="black-tape" data-item-name="Black Tape, friction/electrical (x2 rolls)" data-item-price="6.99" data-item-url="/shop.html" data-item-description="Black Tape, friction/electrical (x2 rolls)">Add to Cart — $6.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">APEL<br>Rx Glasses</div></div>
+                <div class="product-info">
+                    <div class="product-name">Eye glasses, prescription (x2, if required)</div>
+                    <div class="product-price">$49.99</div>
+                    <div class="product-variant">2x prescription inserts — APEL approved</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="prescription-glasses" data-item-name="Eye glasses, prescription (x2, if required)" data-item-price="49.99" data-item-url="/shop.html" data-item-description="Eye glasses, prescription (x2, if required)">Add to Cart — $49.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Civvies</div></div>
+                <div class="product-info">
+                    <div class="product-name">Civilian clothes (Shirt, Pants, Jacket)</div>
+                    <div class="product-price">$39.99</div>
+                    <div class="product-variant">1 set civilian clothes — travel to/from school</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="civilian-clothes" data-item-name="Civilian clothes (Shirt, Pants, Jacket)" data-item-price="39.99" data-item-url="/shop.html" data-item-description="Civilian clothes (Shirt, Pants, Jacket)">Add to Cart — $39.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">OTIS<br>Cleaning Kit</div></div>
+                <div class="product-info">
+                    <div class="product-name">Cleaning Kit, Gun (complete)</div>
+                    <div class="product-price">$24.99</div>
+                    <div class="product-variant">M4 cleaning kit — bore brush, CLP, patches, rod</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="weapon-cleaning-kit" data-item-name="Cleaning Kit, Gun (complete)" data-item-price="24.99" data-item-url="/shop.html" data-item-description="Cleaning Kit, Gun (complete)">Add to Cart — $24.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Fox 40<br>Whistle</div></div>
+                <div class="product-info">
+                    <div class="product-name">Whistle (subdued color)</div>
+                    <div class="product-price">$6.99</div>
+                    <div class="product-variant">Pea-less emergency whistle — 115 dB, subdued</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="whistle-subdued" data-item-name="Whistle (subdued color)" data-item-price="6.99" data-item-url="/shop.html" data-item-description="Whistle (subdued color)">Add to Cart — $6.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Combo Locks</div></div>
+                <div class="product-info">
+                    <div class="product-name">Combination Locks (x3, no key locks)</div>
+                    <div class="product-price">$12.99</div>
+                    <div class="product-variant">3x combination padlocks — locker, duffel, footlocker</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="combination-locks" data-item-name="Combination Locks (x3, no key locks)" data-item-price="12.99" data-item-url="/shop.html" data-item-description="Combination Locks (x3, no key locks)">Add to Cart — $12.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Energizer<br>Batteries</div></div>
+                <div class="product-info">
+                    <div class="product-name">Batteries (AA/AAA/123 cell)</div>
+                    <div class="product-price">$14.99</div>
+                    <div class="product-variant">Lithium batteries — AA, AAA, CR123A mix</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="batteries" data-item-name="Batteries (AA/AAA/123 cell)" data-item-price="14.99" data-item-url="/shop.html" data-item-description="Batteries (AA/AAA/123 cell)">Add to Cart — $14.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Petzl<br>Headlamp</div></div>
+                <div class="product-info">
+                    <div class="product-name">Headlamp (red/white compatible)</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-variant">Red/white headlamp — used every night, subdued color</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="headlamp" data-item-name="Headlamp (red/white compatible)" data-item-price="29.99" data-item-url="/shop.html" data-item-description="Headlamp (red/white compatible)">Add to Cart — $29.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Lum Tape</div></div>
+                <div class="product-info">
+                    <div class="product-name">Luminous tape 1"x6" strip</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">Glow-in-dark photoluminescent tape strip</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="luminous-tape" data-item-name="Luminous tape 1&quot;x6&quot; strip" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Luminous tape 1&quot;x6&quot; strip">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>550 Cord</div></div>
+                <div class="product-info">
+                    <div class="product-name">Nylon Cord 550 type (300 ft)</div>
+                    <div class="product-price">$14.99</div>
+                    <div class="product-variant">300 ft paracord — 550 lb tensile, OD green</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="paracord-550" data-item-name="Nylon Cord 550 type (300 ft)" data-item-price="14.99" data-item-url="/shop.html" data-item-description="Nylon Cord 550 type (300 ft)">Add to Cart — $14.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Fisher<br>Pens</div></div>
+                <div class="product-info">
+                    <div class="product-name">Pens (black)</div>
+                    <div class="product-price">$4.99</div>
+                    <div class="product-variant">Black ink pens — bring several, all-weather preferred</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="pens-black" data-item-name="Pens (black)" data-item-price="4.99" data-item-url="/shop.html" data-item-description="Pens (black)">Add to Cart — $4.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Pencils</div></div>
+                <div class="product-info">
+                    <div class="product-name">Pencils</div>
+                    <div class="product-price">$3.99</div>
+                    <div class="product-variant">Standard and mechanical pencils — map work</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="pencils" data-item-name="Pencils" data-item-price="3.99" data-item-url="/shop.html" data-item-description="Pencils">Add to Cart — $3.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">Rite in Rain<br>Notebooks</div></div>
+                <div class="product-info">
+                    <div class="product-name">Notebook, pocket size (x2)</div>
+                    <div class="product-price">$9.99</div>
+                    <div class="product-variant">2x waterproof pocket notebooks — OPORDs and notes</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="notebook-pocket" data-item-name="Notebook, pocket size (x2)" data-item-price="9.99" data-item-url="/shop.html" data-item-description="Notebook, pocket size (x2)">Add to Cart — $9.99</button>
+                </div>
+            </div>
+            <div class="product-card fade-in" data-category="packing gear">
+                <div class="product-img-wrap cat-gear"><div class="img-label">USGI<br>Sewing Kit</div></div>
+                <div class="product-info">
+                    <div class="product-name">Sewing Kit</div>
+                    <div class="product-price">$6.99</div>
+                    <div class="product-variant">Compact field sewing kit — needles, OCP thread</div>
+                    <div class="product-tag">Packing List — Gear</div>
+                    <button class="snipcart-add-item" data-item-id="sewing-kit" data-item-name="Sewing Kit" data-item-price="6.99" data-item-url="/shop.html" data-item-description="Sewing Kit">Add to Cart — $6.99</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- TERRAIN MODEL KIT — FEATURE SECTION                -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="section" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="section-label fade-in">Terrain Model Kit</div>
+        <h2 class="section-title fade-in">Build the Brief That Gets You a GO</h2>
+        <p class="section-desc fade-in">Every graded patrol requires a terrain model for your OPORD brief. You need a macro model (big picture — route to objective) and a micro model (zoomed in — actions on the OBJ). Build them right and the RI sees a leader who knows their plan.</p>
+
+        <div class="bento-grid bento-2 stagger" style="margin-bottom: var(--space-2xl);">
+            <div class="glass-card fade-in" style="text-align: center;">
+                <div class="product-img-wrap cat-tmk" style="aspect-ratio: 16/10; margin-bottom: var(--space-md);"><div class="img-label">Macro Terrain Model Example</div></div>
+                <div class="card-title">Macro Terrain Model</div>
+                <p class="card-desc">Shows the big picture — current position, route, phase lines, checkpoints, and ORP location. Built first during WARNO development. Used to brief Paragraph 1 (Situation) and movement plan.</p>
+            </div>
+            <div class="glass-card fade-in" style="text-align: center;">
+                <div class="product-img-wrap cat-tmk" style="aspect-ratio: 16/10; margin-bottom: var(--space-md);"><div class="img-label">Micro Terrain Model Example</div></div>
+                <div class="card-title">Micro / Objective Terrain Model</div>
+                <p class="card-desc">Zoomed in on the objective area — assault positions, support-by-fire, security, LOA, and specific team positions. Used for Paragraph 3 (Execution) and rehearsals.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="resources.html#study" class="btn btn-outline-gold" style="margin-right: var(--space-md);">TMK Building Course</a>
+            <a href="resources.html#study" class="btn btn-outline-gold">Product Creation Course</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Ranger School Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ── Multi-Select Filters ──────────────────
+        const seasonBtns = document.querySelectorAll('.filter-group-season .filter-btn');
+        const catBtns = document.querySelectorAll('.filter-group-category .filter-btn');
+        const cards = document.querySelectorAll('.product-card');
+
+        function applyFilters() {
+            const activeSeasons = [...seasonBtns].filter(b => b.classList.contains('active') && b.dataset.filter !== 'all').map(b => b.dataset.filter);
+            const activeCats = [...catBtns].filter(b => b.classList.contains('active') && b.dataset.filter !== 'all').map(b => b.dataset.filter);
+
+            let count = 0;
+            cards.forEach(card => {
+                const cats = card.dataset.category || '';
+                const seasonMatch = activeSeasons.length === 0 || activeSeasons.some(s => cats.includes(s));
+                const catMatch = activeCats.length === 0 || activeCats.some(c => cats.includes(c));
+                const show = seasonMatch && catMatch;
+                card.style.display = show ? '' : 'none';
+                if (show) count++;
+            });
+            document.querySelector('.shop-count strong').textContent = count;
+        }
+
+        // Season buttons — toggle active, "All" clears others
+        seasonBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (btn.dataset.filter === 'all') {
+                    seasonBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                } else {
+                    seasonBtns.forEach(b => { if (b.dataset.filter === 'all') b.classList.remove('active'); });
+                    btn.classList.toggle('active');
+                    if (![...seasonBtns].some(b => b.classList.contains('active'))) {
+                        seasonBtns[0].classList.add('active');
+                    }
+                }
+                applyFilters();
+            });
+        });
+
+        // Category buttons — same toggle logic
+        catBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (btn.dataset.filter === 'all') {
+                    catBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                } else {
+                    catBtns.forEach(b => { if (b.dataset.filter === 'all') b.classList.remove('active'); });
+                    btn.classList.toggle('active');
+                    if (![...catBtns].some(b => b.classList.contains('active'))) {
+                        catBtns[0].classList.add('active');
+                    }
+                }
+                applyFilters();
+            });
+        });
+    </script>
+
+    <!-- Firebase Auth -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI } from './auth.js';
+        initAuthUI();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>

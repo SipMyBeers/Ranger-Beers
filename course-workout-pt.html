@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Test & Running — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="winter.html">Winter</a></li>
+                        <li><a href="spring.html">Spring</a></li>
+                        <li><a href="summer.html">Summer</a></li>
+                        <li><a href="fall.html">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">PT Test & Running</h1>
+        <p class="section-desc fade-in">Standards-focused training for the Ranger Physical Fitness Test. Running is your most important physical attribute — this course makes it the priority.</p>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. RPFT Standards</a>
+                <a href="#mod2" class="course-sidebar-link">2. Push-up Program</a>
+                <a href="#mod3" class="course-sidebar-link">3. Sit-up Program</a>
+                <a href="#mod4" class="course-sidebar-link">4. Chin-up Program</a>
+                <a href="#mod5" class="course-sidebar-link">5. 5-Mile Run Plan</a>
+                <a href="#mod6" class="course-sidebar-link">6. Plate Carrier Running</a>
+                <a href="#mod7" class="course-sidebar-link">7. Barefoot Running</a>
+                <a href="#mod8" class="course-sidebar-link">8. Test Day Strategy</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">RPFT Standards</div>
+                    <p>The Ranger Physical Fitness Test is a GO/NO-GO event. One failure can result in a potential recycle. These are the full standards — know them cold.</p>
+
+                    <p><strong>Push-ups: 49 minimum in 2 minutes</strong></p>
+                    <ul>
+                        <li>Arms must be fully extended at the top</li>
+                        <li>Chest must touch the ground at the bottom</li>
+                        <li>No resting on the ground — you can rest in the up position only</li>
+                    </ul>
+
+                    <p><strong>Sit-ups: 59 minimum in 2 minutes</strong></p>
+                    <ul>
+                        <li>Arms crossed on chest (NOT behind head like the APFT)</li>
+                        <li>Shoulder blades must touch the ground on the way down</li>
+                    </ul>
+
+                    <p><strong>Chin-ups: 6 minimum</strong></p>
+                    <ul>
+                        <li>Dead hang start (arms fully extended)</li>
+                        <li>Chin must break the plane above the bar</li>
+                        <li>No kipping, swinging, or momentum</li>
+                    </ul>
+
+                    <p><strong>5-Mile Run: 40:00 or under</strong></p>
+                    <ul>
+                        <li>That is an 8:00/mile pace</li>
+                        <li>Flat course, typically on a road or track</li>
+                    </ul>
+
+                    <p><strong>Critical Reminder:</strong> These are MINIMUMS. Aim to exceed every standard by 20% or more for a buffer. Ranger School breaks you down physically — you will lose fitness during the course. Show up with a cushion, not a razor-thin margin. One failure = potential recycle. Scoring is GO/NO-GO.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module" id="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Push-up Program</div>
+                    <p>An 8-week progressive push-up program designed to take you well past the 49 minimum. Goal: 70+ for a comfortable buffer.</p>
+
+                    <p><strong>Week 1-2: Volume Base</strong></p>
+                    <ul>
+                        <li>5 sets of max reps, 90 seconds rest between sets</li>
+                        <li>4 days per week (Mon, Tue, Thu, Fri)</li>
+                        <li>Record your numbers — track progress</li>
+                    </ul>
+
+                    <p><strong>Week 3-4: Pyramid Sets</strong></p>
+                    <ul>
+                        <li>Pyramid: 10 - 15 - 20 - 15 - 10 reps</li>
+                        <li>60 seconds rest between sets</li>
+                        <li>Increase pyramid peak by 5 each week if hitting all reps</li>
+                    </ul>
+
+                    <p><strong>Week 5-6: Timed Sets</strong></p>
+                    <ul>
+                        <li>Timed 2-minute max rep sets, 3 times daily (morning, midday, evening)</li>
+                        <li>This builds the specific endurance you need for test day</li>
+                        <li>Rest 3-4 minutes between sets if doing back-to-back</li>
+                    </ul>
+
+                    <p><strong>Week 7-8: Weighted + Max Effort</strong></p>
+                    <ul>
+                        <li>Weighted push-ups (plate on back or weighted vest) for sets of 15-20</li>
+                        <li>Followed by bodyweight max rep sets</li>
+                        <li>The bodyweight sets will feel easy after weighted work</li>
+                    </ul>
+
+                    <p><strong>Variations to Include:</strong></p>
+                    <ul>
+                        <li>Wide grip — targets chest</li>
+                        <li>Diamond — targets triceps</li>
+                        <li>Decline (feet elevated) — targets upper chest and shoulders</li>
+                    </ul>
+
+                    <p><strong>Form Emphasis:</strong> Full range of motion on every rep. Don't sag your hips — maintain a rigid plank. Full lockout at the top. Bad reps don't count on test day. Test yourself every 2 weeks to track progress.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module" id="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Sit-up Program</div>
+                    <p>An 8-week progressive program with the same structure as the push-up program. Goal: 75+ for buffer.</p>
+
+                    <p><strong>Week 1-2: Volume Base</strong></p>
+                    <ul>
+                        <li>5 sets of max reps, 90 seconds rest</li>
+                        <li>4 days per week</li>
+                    </ul>
+
+                    <p><strong>Week 3-4: Pyramid Sets</strong></p>
+                    <ul>
+                        <li>Pyramid: 15 - 20 - 25 - 20 - 15 reps</li>
+                        <li>60 seconds rest between sets</li>
+                    </ul>
+
+                    <p><strong>Week 5-6: Timed Sets</strong></p>
+                    <ul>
+                        <li>Timed 2-minute max rep sets, 3 times daily</li>
+                        <li>Find your rhythm and maintain it — don't start too fast and burn out</li>
+                    </ul>
+
+                    <p><strong>Week 7-8: Weighted + Max Effort</strong></p>
+                    <ul>
+                        <li>Weighted sit-ups (plate on chest) for sets of 20</li>
+                        <li>Followed by bodyweight max rep sets</li>
+                    </ul>
+
+                    <p><strong>Supplementary Exercises:</strong></p>
+                    <ul>
+                        <li>Flutter kicks — 4-count, sets of 30</li>
+                        <li>Leg raises — 3 sets of 15</li>
+                        <li>These build core endurance that directly supports sit-up performance</li>
+                    </ul>
+
+                    <p><strong>Form — Critical Differences from APFT:</strong></p>
+                    <ul>
+                        <li>Arms crossed on chest — NOT behind the head like the old APFT standard</li>
+                        <li>Shoulder blades must touch the ground on the down phase</li>
+                        <li>Common mistakes: feet bouncing off the ground, not fully touching shoulder blades down</li>
+                        <li>Practice the exact RPFT form — muscle memory matters under fatigue</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module" id="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Chin-up Program</div>
+                    <p>Chin-ups are the hardest standard for many candidates. Dead hang chin-ups only — palms facing you. Goal: 12+ for a solid buffer.</p>
+
+                    <p><strong>Week 1-2: Build the Foundation</strong></p>
+                    <ul>
+                        <li>If you can't do 6: start with negatives — jump up to the top position, slow descent over 5 seconds</li>
+                        <li>5 sets of negatives, 3-4 times per week</li>
+                        <li>If you can do 6+: 5 sets of max reps, 2 minutes rest</li>
+                    </ul>
+
+                    <p><strong>Week 3-4: Assisted Work</strong></p>
+                    <ul>
+                        <li>Band-assisted chin-ups for higher volume</li>
+                        <li>Or partner-assisted (spotter holds feet lightly)</li>
+                        <li>Aim for sets of 8-10 with assistance</li>
+                    </ul>
+
+                    <p><strong>Week 5-6: Weighted Chin-ups</strong></p>
+                    <ul>
+                        <li>Add 10-25 lbs with a dip belt or weighted vest</li>
+                        <li>Sets of 3-5 reps, 3 minutes rest</li>
+                        <li>Follow with bodyweight max rep sets</li>
+                    </ul>
+
+                    <p><strong>Week 7-8: Peak + Max Rep</strong></p>
+                    <ul>
+                        <li>Increase weighted chin-up load</li>
+                        <li>Max rep bodyweight sets daily</li>
+                        <li>"Grease the groove" — do 50-70% of your max throughout the day</li>
+                    </ul>
+
+                    <p><strong>Grip Strength Work:</strong></p>
+                    <ul>
+                        <li>Farmer's carries — heavy dumbbells or kettlebells, 3 sets of 60 seconds</li>
+                        <li>Dead hangs for time — 3 sets to failure, aim for 60+ seconds</li>
+                        <li>Towel chin-ups — drape a towel over the bar, grip the towel</li>
+                        <li>Grip strength directly translates to chin-up performance and rope climbing</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module" id="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">5-Mile Run Plan</div>
+                    <p>THE most important physical event. If you can run, you can survive Ranger School. If you can't, nothing else matters. 12-week progressive run plan. Goal: sub-37:00 for buffer.</p>
+
+                    <p><strong>Week 1-4: Build the Base</strong></p>
+                    <ul>
+                        <li>Build to 20 miles per week</li>
+                        <li>Weekly structure: 3 easy runs + 1 interval session + 1 long run</li>
+                        <li>Easy runs: conversational pace, 30-40 minutes</li>
+                        <li>Long run: start at 5 miles, build to 7 miles by Week 4</li>
+                    </ul>
+
+                    <p><strong>Week 5-8: Build Volume + Speed</strong></p>
+                    <ul>
+                        <li>Build to 30 miles per week</li>
+                        <li>Add tempo runs at goal pace (8:00/mile)</li>
+                        <li>Weekly structure: 2 easy + 1 interval + 1 tempo + 1 long run</li>
+                        <li>Long run: build to 8-9 miles</li>
+                    </ul>
+
+                    <p><strong>Week 9-12: Peak Phase</strong></p>
+                    <ul>
+                        <li>Peak at 35 miles per week</li>
+                        <li>5-mile time trials every 2 weeks</li>
+                        <li>Sharpen speed with shorter, faster intervals</li>
+                        <li>Taper in Week 12 if test is at the end</li>
+                    </ul>
+
+                    <p><strong>Interval Workouts:</strong></p>
+                    <ul>
+                        <li>400m repeats: 8-12 x 400m at 1:45-1:50, 90 seconds rest</li>
+                        <li>800m repeats: 4-6 x 800m at 3:40-3:50, 2 minutes rest</li>
+                        <li>Mile repeats: 3-4 x 1 mile at 7:30-7:45, 3 minutes rest</li>
+                    </ul>
+
+                    <p><strong>Tempo Runs:</strong> 3-4 miles at goal pace (8:00/mile) — comfortably hard, not all-out. These teach your body to sustain race pace.</p>
+
+                    <p><strong>Long Runs:</strong> Start at 5 miles, build to 10 miles. Run at easy pace (9:00-9:30/mile). Build aerobic engine and mental toughness for sustained effort.</p>
+
+                    <p><strong>Recovery Runs:</strong> Easy pace, 20-30 minutes. Active recovery — promotes blood flow without adding training stress.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module" id="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Plate Carrier Running</div>
+                    <p>Ranger School involves constant movement under load. A dedicated plate carrier running program prepares your body for the reality of the course.</p>
+
+                    <p><strong>Equipment:</strong></p>
+                    <ul>
+                        <li>Plate carrier or weighted vest with 15-45 lb capacity</li>
+                        <li>Ensure the vest fits snug — no bouncing or shifting</li>
+                        <li>Start light and progress — ego lifting leads to injury</li>
+                    </ul>
+
+                    <p><strong>Progressive Load Schedule:</strong></p>
+                    <ul>
+                        <li><strong>Weeks 1-4:</strong> 15 lbs, 2 miles</li>
+                        <li><strong>Weeks 5-8:</strong> 20-25 lbs, 3 miles</li>
+                        <li><strong>Weeks 9-12:</strong> 30-35 lbs, 4-5 miles</li>
+                    </ul>
+
+                    <p><strong>Form Adjustments:</strong></p>
+                    <ul>
+                        <li>Slightly forward lean from the ankles (not the waist)</li>
+                        <li>Shorter stride than unloaded running</li>
+                        <li>Higher cadence: aim for 170-180 steps per minute</li>
+                        <li>Keep your core engaged — the weight wants to pull you into hyperextension</li>
+                    </ul>
+
+                    <p><strong>Surface:</strong> Prefer grass or trail to reduce joint impact. Avoid concrete when possible — the added load multiplies impact forces significantly.</p>
+
+                    <p><strong>Schedule:</strong></p>
+                    <ul>
+                        <li>2x per week maximum</li>
+                        <li>Never back-to-back days — your joints need recovery</li>
+                        <li>Don't do plate carrier running on the same day as heavy lower body lifting</li>
+                    </ul>
+
+                    <p><strong>Cool Down:</strong></p>
+                    <ul>
+                        <li>10 minutes easy walk after every session</li>
+                        <li>Stretch hip flexors and shoulders — these tighten under load</li>
+                        <li>Foam roll IT band, quads, and calves</li>
+                    </ul>
+
+                    <p><strong>Common Injuries & Prevention:</strong></p>
+                    <ul>
+                        <li><strong>Lower back strain:</strong> Strengthen your core — planks, dead bugs, bird dogs</li>
+                        <li><strong>Knee pain:</strong> Reduce load, check form, strengthen VMO (vastus medialis)</li>
+                        <li><strong>Shin splints:</strong> Reduce mileage, check footwear, run on softer surfaces</li>
+                        <li>If pain persists beyond 48 hours, take a full week off loaded running</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 7 -->
+                <div class="course-module" id="mod7">
+                    <div class="course-module-label">Module 7</div>
+                    <div class="course-module-title">Barefoot Running</div>
+                    <p>A complete barefoot running guide. Your feet contain 26 bones, 33 joints, and over 100 muscles, tendons, and ligaments each. Barefoot running strengthens these intrinsic structures, reduces heel strike tendency, and improves proprioception and ground feel — valuable for land navigation.</p>
+
+                    <p><strong>Technique:</strong></p>
+                    <ul>
+                        <li>Forefoot or midfoot strike — NOT heel</li>
+                        <li>Land under your center of mass, not out in front</li>
+                        <li>Quick, light steps — think "hot coals"</li>
+                        <li>Cadence: 180+ steps per minute</li>
+                        <li>Relax your shoulders and arms — tension wastes energy</li>
+                    </ul>
+
+                    <p><strong>Surface Progression:</strong></p>
+                    <ul>
+                        <li><strong>Weeks 1-4:</strong> Manicured grass only, 0.5-1 mile</li>
+                        <li><strong>Weeks 5-8:</strong> Rubber track, 1-2 miles</li>
+                        <li><strong>Weeks 9-12:</strong> Smooth dirt trail, 2-3 miles</li>
+                        <li>Never jump ahead in surface progression — your skin and connective tissue need time to adapt</li>
+                    </ul>
+
+                    <p><strong>Foot Strengthening Exercises:</strong></p>
+                    <ul>
+                        <li>Towel scrunches: 3 sets of 30, daily</li>
+                        <li>Marble pickups: pick up marbles with your toes, 2-3 minutes per foot</li>
+                        <li>Single-leg calf raises: 3 sets of 15 each leg</li>
+                        <li>Balance board: 3 sets of 60 seconds each leg</li>
+                        <li>Toe yoga: spread all toes wide, then lift big toe independently while others stay down</li>
+                    </ul>
+
+                    <p><strong>Warning Signs — Stop Immediately For:</strong></p>
+                    <ul>
+                        <li>Sharp pain anywhere in the foot</li>
+                        <li>Numbness or tingling in the toes</li>
+                        <li>Pain that changes your gait (limping)</li>
+                    </ul>
+
+                    <p><strong>Normal Adaptation (Expect This):</strong> Muscle soreness in the calves and arches for the first 2-3 weeks is completely normal. This is your foot musculature strengthening. Manage with ice, gentle stretching, and rest days between barefoot sessions.</p>
+                </div>
+
+                <!-- MODULE 8 -->
+                <div class="course-module" id="mod8">
+                    <div class="course-module-label">Module 8</div>
+                    <div class="course-module-title">Test Day Strategy</div>
+                    <p>How you approach RPFT day matters almost as much as your fitness level. Smart pacing and preparation can add reps and shave time.</p>
+
+                    <p><strong>Night Before:</strong></p>
+                    <ul>
+                        <li>Carb load — pasta, rice, bread. Nothing new or experimental</li>
+                        <li>Hydrate — sip water throughout the evening, don't chug right before bed</li>
+                        <li>8 hours of sleep — lay out your PT uniform the night before</li>
+                    </ul>
+
+                    <p><strong>Morning Of:</strong></p>
+                    <ul>
+                        <li>Light breakfast 2 hours before test time — banana, toast, coffee if you use it</li>
+                        <li>Dynamic warmup: leg swings, arm circles, high knees, butt kicks, push-up walkouts</li>
+                        <li>No static stretching before the test — it reduces power output</li>
+                    </ul>
+
+                    <p><strong>Push-ups Strategy:</strong></p>
+                    <ul>
+                        <li>Pace yourself the first minute — steady rhythm, full reps</li>
+                        <li>Brief rest in the up position at 60 seconds if needed (5-10 seconds max)</li>
+                        <li>Max effort the last 30 seconds — empty the tank</li>
+                        <li>Every rep must count — bad form reps get no-repped by the grader</li>
+                    </ul>
+
+                    <p><strong>Sit-ups Strategy:</strong></p>
+                    <ul>
+                        <li>Find a rhythm and don't stop moving</li>
+                        <li>Breathe out on the way up, in on the way down</li>
+                        <li>If you stop, it's extremely hard to restart — keep momentum</li>
+                    </ul>
+
+                    <p><strong>Chin-ups Strategy:</strong></p>
+                    <ul>
+                        <li>Full dead hang between reps — this actually saves energy by letting your biceps rest briefly</li>
+                        <li>Steady pace, no rushing</li>
+                        <li>Don't kip or swing — the grader will no-rep you and you waste energy</li>
+                        <li>Grip the bar firmly before your first rep — chalk your hands if allowed</li>
+                    </ul>
+
+                    <p><strong>5-Mile Run Strategy:</strong></p>
+                    <ul>
+                        <li>Negative split: second half faster than the first</li>
+                        <li>Start at 8:15/mile pace — don't get caught up in the initial surge</li>
+                        <li>Settle in by Mile 2 at 8:00 pace</li>
+                        <li>Pick it up at Mile 4 to 7:45 pace</li>
+                        <li>Finish strong the last half mile</li>
+                    </ul>
+
+                    <p><strong>Mental Game:</strong></p>
+                    <ul>
+                        <li>Break the run into 1-mile segments — don't think about all 5 at once</li>
+                        <li>Don't sprint the first mile — the number one mistake candidates make</li>
+                        <li>Find a pace partner running your target time</li>
+                        <li>Remember: this is the first gate. Everything else depends on getting through it</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Firebase Auth + Course Gate -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI, initCourseGate } from './auth.js';
+        initAuthUI();
+        initCourseGate();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>

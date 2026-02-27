@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knots &amp; Rope Work — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="winter.html">Winter</a></li>
+                        <li><a href="spring.html">Spring</a></li>
+                        <li><a href="summer.html">Summer</a></li>
+                        <li><a href="fall.html">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Knots &amp; Rope Work</h1>
+        <p class="section-desc fade-in">Master the knots you'll need for Mountain Phase. The standard is 5 of 6 knots tied correctly in 5 minutes &mdash; practice until you can do them blindfolded.</p>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Overview &amp; Standards</a>
+                <a href="#mod2" class="course-sidebar-link">2. Figure-Eight Knot</a>
+                <a href="#mod3" class="course-sidebar-link">3. Bowline</a>
+                <a href="#mod4" class="course-sidebar-link">4. Clove Hitch</a>
+                <a href="#mod5" class="course-sidebar-link">5. Water Knot</a>
+                <a href="#mod6" class="course-sidebar-link">6. Rappel Seat</a>
+                <a href="#mod7" class="course-sidebar-link">7. Square Knot</a>
+                <a href="#mod8" class="course-sidebar-link">8. Prusik Knot</a>
+                <a href="#mod9" class="course-sidebar-link">9. Timed Practice</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Overview &amp; Standards</div>
+                    <p>The Mountain Phase knot test is a critical gate at Camp Merrill, Dahlonega, Georgia. You must tie 5 of 6 knots correctly within 5 minutes. Failure to pass the knot test will result in a recycle back to the beginning of Mountain Phase.</p>
+
+                    <p><strong>Test Standards:</strong></p>
+                    <ul>
+                        <li>5 of 6 knots must be tied correctly in 5 minutes</li>
+                        <li>Each knot must be tied to standard with no twists and correct dressing</li>
+                        <li>Tails must meet minimum length requirements (varies by knot)</li>
+                        <li>Knots are inspected visually and by function &mdash; they must hold under load</li>
+                        <li>No partial credit: each knot is GO or NO-GO</li>
+                    </ul>
+
+                    <p><strong>Rope Types You'll Encounter:</strong></p>
+                    <ul>
+                        <li><strong>Kernmantle Rope:</strong> Primary climbing/rappelling rope. Inner core (kern) provides strength, outer sheath (mantle) provides protection. Do not step on it, drag it over edges, or expose it to chemicals</li>
+                        <li><strong>Tubular Nylon Webbing:</strong> Flat, hollow webbing used for anchors, hasty rappel seats, and slings. Tied with the water knot</li>
+                        <li><strong>550 Cord (Parachute Cord):</strong> Utility cord rated to 550 lbs. Used for prusik loops, lashing, and general field use. Not rated for life-safety loads on its own</li>
+                    </ul>
+
+                    <p><strong>Safety Considerations:</strong></p>
+                    <ul>
+                        <li>Always inspect rope for fraying, cuts, or chemical damage before use</li>
+                        <li>Never step on a climbing rope &mdash; grit works into the sheath and weakens the kern</li>
+                        <li>Tie safety knots (overhands) on all tails when the knot is load-bearing</li>
+                        <li>A knot reduces rope strength by 25-40% depending on type &mdash; account for this</li>
+                        <li>When in doubt, retie. A clean knot is a safe knot</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module" id="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Figure-Eight Knot</div>
+                    <p>The figure-eight is the primary tie-in knot for rappelling. It is strong, easy to inspect visually, and does not bind under load the way an overhand does. This is the knot you will use most at Ranger School.</p>
+
+                    <p><strong>Step-by-Step (Figure-Eight on a Bight):</strong></p>
+                    <ol>
+                        <li>Form a bight (loop) in the rope approximately 18 inches from the working end</li>
+                        <li>Pass the bight over the standing part to form a loop</li>
+                        <li>Pass the bight under the standing part (around it)</li>
+                        <li>Pass the bight back through the original loop</li>
+                        <li>Dress the knot &mdash; pull all four strands tight, remove twists</li>
+                    </ol>
+
+                    <p><strong>Figure-Eight Retrace (Follow-Through):</strong></p>
+                    <ol>
+                        <li>Tie a loose figure-eight in the rope, leaving a long working end</li>
+                        <li>Pass the working end through your harness tie-in point</li>
+                        <li>Retrace the figure-eight by following the original knot in reverse with the working end</li>
+                        <li>The finished knot should show 5 parallel sets of double strands</li>
+                        <li>Leave a minimum 6-inch tail and tie a safety overhand</li>
+                    </ol>
+
+                    <p><strong>Common Mistakes:</strong></p>
+                    <ul>
+                        <li>Not dressing the knot &mdash; strands should lay parallel, not twisted or crossed</li>
+                        <li>Twists in the bight or retrace &mdash; makes the knot harder to inspect and weakens it</li>
+                        <li>Tail too short &mdash; must be at least 6 inches from the knot body</li>
+                        <li>Confusing with an overhand &mdash; the figure-eight has one extra half-twist</li>
+                    </ul>
+
+                    <p><strong>When to Use:</strong> Rappel tie-in, anchoring to a fixed point, end-of-rope stopper knot. This is your default life-safety knot.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module" id="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Bowline</div>
+                    <p>The bowline is known as "the rescue knot." It creates a fixed loop that will not slip or tighten under load, making it ideal for rescue scenarios where a loop must be placed around a casualty.</p>
+
+                    <p><strong>Step-by-Step:</strong></p>
+                    <ol>
+                        <li>Form a small loop in the standing part of the rope (the "hole")</li>
+                        <li>Pass the working end up through the loop &mdash; "the rabbit comes out of the hole"</li>
+                        <li>Pass the working end around behind the standing part &mdash; "goes around the tree"</li>
+                        <li>Pass the working end back down through the loop &mdash; "and back in the hole"</li>
+                        <li>Dress the knot by holding the loop and pulling the standing part tight</li>
+                    </ol>
+
+                    <p><strong>Security:</strong></p>
+                    <ul>
+                        <li>The bowline <strong>requires a safety knot</strong> &mdash; tie an overhand knot with the tail around the loop</li>
+                        <li>Without a safety knot, the bowline can work loose when unloaded or when the rope is shaken</li>
+                        <li>Leave at least a 6-inch tail for the safety knot</li>
+                    </ul>
+
+                    <p><strong>Common Mistakes:</strong></p>
+                    <ul>
+                        <li>Loop orientation wrong &mdash; the working end must come up through the loop, not down</li>
+                        <li>No safety knot &mdash; this is an automatic NO-GO on the test</li>
+                        <li>Capsizing the knot by not dressing it properly</li>
+                        <li>Tying a slip knot instead &mdash; the working end must go around the standing part and back through the same loop</li>
+                    </ul>
+
+                    <p><strong>When to Use:</strong> Rescue operations (placing a loop around a casualty), tying to an anchor point, any situation requiring a non-slip loop.</p>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module" id="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Clove Hitch</div>
+                    <p>The clove hitch is a quick-attachment knot used to secure a rope to a carabiner, pole, or tree. It can be tied with one hand, making it invaluable in mountaineering situations where your other hand is occupied.</p>
+
+                    <p><strong>Step-by-Step (on a Carabiner):</strong></p>
+                    <ol>
+                        <li>Form two loops in the rope &mdash; both in the same direction</li>
+                        <li>Place the second loop on top of the first</li>
+                        <li>Clip both loops into the carabiner</li>
+                        <li>Dress by pulling both strands tight</li>
+                    </ol>
+
+                    <p><strong>Step-by-Step (One-Handed, on a Pole):</strong></p>
+                    <ol>
+                        <li>Reach around the pole and grasp the rope</li>
+                        <li>Bring the working end over the standing part, forming a loop around the pole</li>
+                        <li>Reach around the pole again, above the first wrap</li>
+                        <li>Tuck the working end under the second wrap</li>
+                        <li>Pull tight to dress</li>
+                    </ol>
+
+                    <p><strong>Advantages:</strong></p>
+                    <ul>
+                        <li>Adjustable under load &mdash; you can slide it to reposition without untying</li>
+                        <li>Quick to tie and untie</li>
+                        <li>Can be tied with one hand</li>
+                    </ul>
+
+                    <p><strong>Disadvantages:</strong></p>
+                    <ul>
+                        <li>Can slip if not loaded from both sides equally</li>
+                        <li>Not recommended as a sole anchor knot for life-safety applications</li>
+                        <li>Requires constant tension to remain secure</li>
+                    </ul>
+
+                    <p><strong>When to Use:</strong> Intermediate anchor points, securing rope to a rappel point, quick attachment to a carabiner during mountaineering operations.</p>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module" id="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Water Knot</div>
+                    <p>The water knot is the standard method for joining two pieces of flat tubular nylon webbing. It is the only approved knot for webbing at Ranger School because it lays flat and distributes load evenly across the material.</p>
+
+                    <p><strong>Step-by-Step:</strong></p>
+                    <ol>
+                        <li>Tie a loose overhand knot in the end of one piece of webbing</li>
+                        <li>Take the second piece of webbing and feed its working end into the overhand knot, entering from the opposite side</li>
+                        <li>Retrace the overhand knot exactly &mdash; the second piece must follow the path of the first piece in the opposite direction</li>
+                        <li>Pull all four tails to dress the knot &mdash; the webbing must lay flat with no twists</li>
+                        <li>Leave at least 4-inch tails on both sides</li>
+                    </ol>
+
+                    <p><strong>Common Mistakes:</strong></p>
+                    <ul>
+                        <li>Webbing twists inside the knot &mdash; the webbing must lay perfectly flat throughout</li>
+                        <li>Tails too short &mdash; must be at least 4 inches on both sides</li>
+                        <li>Retracing in the same direction instead of the opposite direction &mdash; this creates a weak knot that will slip</li>
+                        <li>Not dressing the knot tightly &mdash; loose water knots can work free under cyclic loading</li>
+                    </ul>
+
+                    <p><strong>When to Use:</strong> Building anchors with tubular nylon webbing, constructing a hasty rappel seat from webbing, creating slings for anchor points. Any time you need to join or form a loop in flat webbing.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module" id="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Rappel Seat (Swiss Seat)</div>
+                    <p>The rappel seat is an emergency harness constructed from a single piece of rope or tubular nylon webbing. When a manufactured harness is not available, the Swiss seat allows you to safely rappel. You must be able to build one quickly and correctly.</p>
+
+                    <p><strong>Step-by-Step Construction:</strong></p>
+                    <ol>
+                        <li>Find the center of your rope/webbing and place it at the small of your back</li>
+                        <li>Bring both ends around to the front and tie a single overhand knot at your navel</li>
+                        <li>Take each end and pass it between your legs, front to back</li>
+                        <li>Bring each end up over the hip on the same side (each tail goes over its own hip)</li>
+                        <li>Pass each end under the waist wrap from top to bottom on each side</li>
+                        <li>Bring both ends back to the front center</li>
+                        <li>Double up critical wraps where the rope passes between your legs for comfort and safety</li>
+                        <li>Secure with a square knot at the front center, at your navel</li>
+                        <li>Tie overhand safety knots on both tails</li>
+                    </ol>
+
+                    <p><strong>Fit Check:</strong></p>
+                    <ul>
+                        <li>The seat must sit comfortably at the waist, not riding up to the ribs or dropping to the hips</li>
+                        <li>The carabiner clip-in point should be centered at your front, at the square knot</li>
+                        <li>You should be able to sit back in the seat with your weight supported evenly</li>
+                        <li>All wraps should be snug but not cutting off circulation</li>
+                        <li>No twists in the webbing/rope at any point</li>
+                    </ul>
+
+                    <p><strong>Common Mistakes:</strong></p>
+                    <ul>
+                        <li>Not doubling the leg wraps &mdash; single wraps will cut into your legs under load</li>
+                        <li>Square knot not centered &mdash; the carabiner must clip in at the centerline of your body</li>
+                        <li>Forgetting safety knots on the tails of the square knot</li>
+                        <li>Too loose &mdash; the seat will shift and you'll lose control on rappel</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 7 -->
+                <div class="course-module" id="mod7">
+                    <div class="course-module-label">Module 7</div>
+                    <div class="course-module-title">Square Knot</div>
+                    <p>The square knot joins two ropes of equal diameter. Its primary use at Ranger School is securing the rappel seat. The key phrase to remember: "Right over left, left over right."</p>
+
+                    <p><strong>Step-by-Step:</strong></p>
+                    <ol>
+                        <li>Hold one end in each hand</li>
+                        <li>Cross the right end over the left end and tuck it under &mdash; "right over left"</li>
+                        <li>Now cross the left end over the right end and tuck it under &mdash; "left over right"</li>
+                        <li>Pull both ends to dress the knot flat</li>
+                        <li>The finished knot should lay flat with both tails exiting on the same side as their standing parts</li>
+                    </ol>
+
+                    <p><strong>Verification:</strong></p>
+                    <ul>
+                        <li>The knot must be dressed flat &mdash; it should look symmetrical</li>
+                        <li>Both loops should interlock cleanly with no twists</li>
+                        <li>If the tails exit on opposite sides, you have a granny knot (wrong)</li>
+                    </ul>
+
+                    <p><strong>Common Mistakes:</strong></p>
+                    <ul>
+                        <li>Creating a granny knot &mdash; tying "right over left, right over left" (both same direction). A granny knot will slip under load</li>
+                        <li>Not dressing the knot flat &mdash; strands should lay parallel and symmetrical</li>
+                        <li>Forgetting safety knots &mdash; tie an overhand safety on both tails</li>
+                    </ul>
+
+                    <p><strong>When to Use:</strong> Securing the rappel seat, joining two ropes of equal diameter, any situation requiring a flat binding knot. Always add safety knots on both tails for any load-bearing application.</p>
+                </div>
+
+                <!-- MODULE 8 -->
+                <div class="course-module" id="mod8">
+                    <div class="course-module-label">Module 8</div>
+                    <div class="course-module-title">Prusik Knot</div>
+                    <p>The prusik is a friction hitch used for ascending a fixed rope or as a safety backup on rappel. When loaded, it grips the host rope. When unloaded, it slides freely. This makes it essential for self-rescue scenarios.</p>
+
+                    <p><strong>Step-by-Step:</strong></p>
+                    <ol>
+                        <li>Take a loop of cord (prusik loop) and place the knotted end behind the host rope</li>
+                        <li>Pass the loop around the host rope and back through itself</li>
+                        <li>Repeat for a minimum of 3 wraps around the host rope</li>
+                        <li>Ensure all wraps lay flat and parallel &mdash; no twists or crossings</li>
+                        <li>Dress the knot by pushing all wraps together tightly</li>
+                        <li>Test: pull down on the loop &mdash; it should grip. Push the wraps up &mdash; it should slide</li>
+                    </ol>
+
+                    <p><strong>Critical Requirements:</strong></p>
+                    <ul>
+                        <li>The prusik cord must be smaller diameter than the host rope (typically 7mm cord on 11mm rope)</li>
+                        <li>Minimum 3 wraps &mdash; more wraps increase friction for slippery or wet ropes</li>
+                        <li>The cord must grip when loaded and slide when unloaded &mdash; test every time you tie it</li>
+                        <li>If the cord is the same diameter as the host rope, the prusik will not grip</li>
+                    </ul>
+
+                    <p><strong>When to Use:</strong></p>
+                    <ul>
+                        <li><strong>Self-Rescue:</strong> Ascending a fixed rope if you cannot be pulled up</li>
+                        <li><strong>Ascending Fixed Rope:</strong> Two prusiks alternated &mdash; one for feet, one for waist &mdash; to climb a rope</li>
+                        <li><strong>Belay Backup:</strong> Attached below your rappel device as an autoblock safety</li>
+                        <li><strong>Hauling Systems:</strong> Used as a ratchet in mechanical advantage systems</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 9 -->
+                <div class="course-module" id="mod9">
+                    <div class="course-module-label">Module 9</div>
+                    <div class="course-module-title">Timed Practice</div>
+                    <p>The knot test at Camp Merrill gives you 5 minutes to tie 6 knots, of which you must get 5 correct. That is less than 1 minute per knot. The only way to pass under stress is to practice until the knots are automatic &mdash; muscle memory, not thinking.</p>
+
+                    <p><strong>Practice Framework:</strong></p>
+                    <ol>
+                        <li>Set a timer for 5 minutes</li>
+                        <li>Tie all 6 test knots in sequence: figure-eight, bowline, clove hitch, water knot, square knot, prusik</li>
+                        <li>When the timer stops, assess each knot against the checklist below</li>
+                        <li>Record your time and score. Repeat daily until you consistently pass</li>
+                    </ol>
+
+                    <p><strong>Self-Assessment Checklist (for each knot):</strong></p>
+                    <ul>
+                        <li>Is the knot correctly formed? (correct type, not a different knot)</li>
+                        <li>Is the knot dressed properly? (no twists, strands parallel)</li>
+                        <li>Are tails the correct minimum length? (6" for most, 4" for water knot)</li>
+                        <li>Are safety knots tied where required? (bowline, square knot)</li>
+                        <li>Would this knot hold under load? (pull-test it)</li>
+                    </ul>
+
+                    <p><strong>Advanced Practice Tips:</strong></p>
+                    <ul>
+                        <li><strong>Eyes closed:</strong> Practice tying each knot blindfolded. At Mountain Phase you may be tying knots in the dark, in rain, with numb fingers</li>
+                        <li><strong>With gloves on:</strong> You will be wearing gloves during mountaineering operations. Practice with the same gloves you'll wear at Ranger School</li>
+                        <li><strong>When cold and tired:</strong> Wake up early, go outside in the cold, and practice. This simulates Mountain Phase conditions &mdash; sleep-deprived, cold, and mentally drained</li>
+                        <li><strong>After physical exertion:</strong> Do a hard workout, then immediately practice your knots. Fine motor skills degrade when you're exhausted</li>
+                        <li><strong>Teach someone else:</strong> If you can teach each knot clearly, you truly know it</li>
+                    </ul>
+
+                    <p>The standard is not "can you tie these knots." The standard is "can you tie these knots perfectly, under pressure, when you haven't slept in 36 hours and your hands are numb." Train to that standard.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Firebase Auth + Course Gate -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI, initCourseGate } from './auth.js';
+        initAuthUI();
+        initCourseGate();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>

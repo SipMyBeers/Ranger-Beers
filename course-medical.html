@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Readiness — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="winter.html">Winter</a></li>
+                        <li><a href="spring.html">Spring</a></li>
+                        <li><a href="summer.html">Summer</a></li>
+                        <li><a href="fall.html">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Medical Readiness</h1>
+        <p class="section-desc fade-in">Don't get sent home on Day 0 for missing paperwork or a treatable condition. This course covers in-processing medical requirements, injury prevention, and what to watch for during the course.</p>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Overview</a>
+                <a href="#mod2" class="course-sidebar-link">2. Required Documents</a>
+                <a href="#mod3" class="course-sidebar-link">3. Non-Waiverable Conditions</a>
+                <a href="#mod4" class="course-sidebar-link">4. Top Medical Issues</a>
+                <a href="#mod5" class="course-sidebar-link">5. Cellulitis Prevention</a>
+                <a href="#mod6" class="course-sidebar-link">6. Flora &amp; Fauna</a>
+                <a href="#mod7" class="course-sidebar-link">7. Heat Acclimatization</a>
+                <a href="#mod8" class="course-sidebar-link">8. Injury Prevention</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Overview</div>
+                    <p>Medical readiness is one of the top reasons candidates are dropped before training begins. It is entirely preventable, and yet it catches soldiers off guard every single class. If your paperwork isn't right or you have an unresolved medical condition, you will not start Ranger School — full stop.</p>
+
+                    <p><strong>Key Facts:</strong></p>
+                    <ul>
+                        <li>Approximately 40% of Ranger School injuries are musculoskeletal — stress fractures, sprains, and overuse injuries</li>
+                        <li>Prevention starts months before Day 1, not at the schoolhouse</li>
+                        <li>Administrative medical holds remove candidates before they ever get a chance to train</li>
+                        <li>Environmental injuries (heat, cold, cellulitis) account for a significant portion of medical drops during the course</li>
+                    </ul>
+
+                    <p>This course covers the administrative requirements you must have squared away, the most common medical issues that drop students, and how to stay healthy through 61+ days of continuous operations under calorie deficit and sleep deprivation. Every module here can save your slot.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module" id="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Required Documents</div>
+                    <p>Missing a single document at in-processing can put you on administrative hold or get you sent home. Do not trust your unit to have everything in order — verify it yourself, and bring multiple copies of everything.</p>
+
+                    <p><strong>Required Medical Documents:</strong></p>
+                    <ul>
+                        <li><strong>DD Form 2808</strong> — Report of Medical Examination (physical exam, must be current within 2 years of your report date)</li>
+                        <li><strong>DD Form 2807-1</strong> — Report of Medical History (self-reported medical history, accompanies the 2808)</li>
+                        <li><strong>Current HIV Test</strong> — Must be within the required timeframe per current policy</li>
+                        <li><strong>Dental Readiness</strong> — Class 1 or Class 2 only. Class 3 or 4 dental will get you removed. Get a dental exam and any work done well in advance</li>
+                        <li><strong>Eye Exam</strong> — Current vision screening on file</li>
+                        <li><strong>Waivers</strong> — Any required medical waivers for pre-existing conditions must be approved and in hand before you arrive</li>
+                        <li><strong>Immunization Records</strong> — All immunizations must be current per Army standards</li>
+                    </ul>
+
+                    <p><strong>Pro Tips:</strong></p>
+                    <ul>
+                        <li>Bring at least 3 copies of every document in a waterproof folder</li>
+                        <li>Your medical records will be reviewed during in-processing — any discrepancies or missing items result in immediate administrative hold or removal</li>
+                        <li>Start gathering documents 90+ days out. Some tests and exams take time to schedule</li>
+                        <li>Keep a digital backup (photos on your phone) of every document</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module" id="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Non-Waiverable Conditions</div>
+                    <p>Certain medical conditions will get you sent home immediately with no exceptions. There is no arguing, no waiver, and no second chance at in-processing. Know these before you waste a slot.</p>
+
+                    <p><strong>Conditions That Will Remove You:</strong></p>
+                    <ul>
+                        <li>Pregnancy</li>
+                        <li>Certain cardiac conditions (arrhythmias, structural defects, etc.)</li>
+                        <li>Uncontrolled asthma</li>
+                        <li>Recent surgeries — varies by type, but typically requires a 6-12 month waiting period post-operation</li>
+                        <li>Certain orthopedic hardware (plates, screws, rods) depending on location and surgical history</li>
+                        <li>Unresolved medical profiles (temporary or permanent profiles that restrict duty)</li>
+                    </ul>
+
+                    <p><strong>What You Need to Do:</strong></p>
+                    <ul>
+                        <li>See your unit PA (Physician Assistant) or brigade surgeon at least 90 days before your report date</li>
+                        <li>Get a full physical and disclose everything — they will find it at the schoolhouse anyway</li>
+                        <li>If you have a condition that might be an issue, start the waiver process immediately</li>
+                        <li>If you had surgery in the last 12 months, confirm with medical that you are cleared for unrestricted duty</li>
+                        <li>Resolve all profiles before your report date. An active profile = no Ranger School</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module" id="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Top Medical Issues</div>
+                    <p>Understanding what drops students medically allows you to prevent it. These are the most common medical reasons soldiers are removed from Ranger School during the course.</p>
+
+                    <p><strong>Most Common Medical Drops & Injuries:</strong></p>
+                    <ul>
+                        <li><strong>Stress Fractures</strong> — Feet (metatarsals) and tibias are the most common. Caused by overuse, improper footwear, and insufficient pre-training. Often show up in weeks 2-4</li>
+                        <li><strong>Ankle Sprains & Breaks</strong> — Uneven terrain, night movement, heavy loads. One bad step ends your course</li>
+                        <li><strong>Cellulitis</strong> — Bacterial skin infection, especially prevalent in Florida Phase swamp operations. Can escalate rapidly</li>
+                        <li><strong>Rhabdomyolysis</strong> — Muscle breakdown from extreme exertion. Dark urine is the warning sign. Report immediately — this can kill you</li>
+                        <li><strong>Hypothermia</strong> — Winter classes, especially Mountain Phase. Wet + cold + exhaustion + calorie deficit = rapid heat loss</li>
+                        <li><strong>Heat Injuries</strong> — Summer classes. Heat exhaustion and heat stroke. Can be fatal if not treated immediately</li>
+                        <li><strong>Dehydration</strong> — Chronic issue across all phases. Contributes to nearly every other medical condition on this list</li>
+                        <li><strong>Blisters Leading to Infection</strong> — Untreated blisters in dirty field conditions become infected quickly, leading to cellulitis or worse</li>
+                    </ul>
+
+                    <p><strong>Injury Breakdown by Category:</strong></p>
+                    <ul>
+                        <li>~40% Musculoskeletal (stress fractures, sprains, breaks, overuse)</li>
+                        <li>~15% Environmental (heat, cold, hypothermia, heat stroke)</li>
+                        <li>~10% Illness (infections, GI issues, respiratory)</li>
+                        <li>Remaining: combination injuries, aggravation of pre-existing conditions, and other</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module" id="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Cellulitis Prevention</div>
+                    <p>Cellulitis is one of the biggest medical threats in Florida Phase and a leading cause of medical drops during swamp operations. It is entirely preventable if you take it seriously.</p>
+
+                    <p><strong>What It Is:</strong></p>
+                    <p>Cellulitis is a bacterial skin infection that spreads through the skin's deeper layers. It causes redness, swelling, warmth, and pain. Left untreated, it can enter the bloodstream and become life-threatening. In the swamp environment, bacteria thrive — and any break in the skin is an entry point.</p>
+
+                    <p><strong>How It Starts:</strong></p>
+                    <ul>
+                        <li>Cuts, scrapes, and abrasions from movement through dense vegetation</li>
+                        <li>Blisters that pop or are popped intentionally</li>
+                        <li>Insect bites that are scratched open</li>
+                        <li>Any open wound exposed to swamp water</li>
+                    </ul>
+
+                    <p><strong>Prevention:</strong></p>
+                    <ul>
+                        <li>Treat ALL cuts immediately with antibiotic ointment — carry it on your person, not buried in your ruck</li>
+                        <li>Change socks frequently — wet feet are vulnerable feet</li>
+                        <li>Keep feet dry when possible (this is hard in Florida, but every opportunity matters)</li>
+                        <li>Do not pop blisters — keep them intact as a natural barrier</li>
+                        <li>Use moleskin before hotspots become blisters — prevention is easier than treatment</li>
+                        <li>Air out your feet during any halt or patrol base setup</li>
+                    </ul>
+
+                    <p><strong>Treatment:</strong></p>
+                    <p>Cellulitis requires antibiotics. If you notice redness spreading from a wound, a red streak moving up your limb, increasing warmth, or swelling — report to medics immediately. Draw a line around the redness with a pen so you can track whether it is spreading. Do not wait. Cellulitis that spreads can end your career, not just your Ranger School class.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module" id="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Flora &amp; Fauna</div>
+                    <p>Ranger School takes you through some of the most hostile terrain in the southeastern United States. Knowing what can hurt you — and how to avoid it — is essential survival knowledge.</p>
+
+                    <p><strong>Snake Identification:</strong></p>
+                    <ul>
+                        <li><strong>Copperhead</strong> — Hourglass-patterned body, copper-colored head. Found in wooded and rocky areas. Benning and Mountain Phase</li>
+                        <li><strong>Water Moccasin (Cottonmouth)</strong> — Dark body, white mouth interior. Found near water. All phases, especially Florida</li>
+                        <li><strong>Timber Rattlesnake</strong> — Dark crossbands, rattling tail. Found in forests and rocky terrain. Mountain Phase</li>
+                        <li><strong>Eastern Diamondback Rattlesnake</strong> — Largest venomous snake in North America. Diamond pattern. Florida Phase</li>
+                    </ul>
+
+                    <p><strong>Spider Identification:</strong></p>
+                    <ul>
+                        <li><strong>Brown Recluse</strong> — Violin-shaped marking on back. Found in dark, sheltered areas. Bite causes necrotic tissue</li>
+                        <li><strong>Black Widow</strong> — Shiny black body with red hourglass marking. Found in woodpiles, under rocks, and in outhouses</li>
+                    </ul>
+
+                    <p><strong>Plants & Insects:</strong></p>
+                    <ul>
+                        <li><strong>Poison Ivy / Oak / Sumac</strong> — "Leaves of three, let it be." Learn to identify all three. Contact causes severe rash. Wash exposed skin with cold water ASAP</li>
+                        <li><strong>Fire Ants</strong> — Aggressive when disturbed. Stings cause painful welts. Do not set your ruck down on a fire ant mound</li>
+                        <li><strong>Ticks</strong> — Carry Lyme disease and other infections. Check your entire body daily. Remove with steady, even pressure — do not twist</li>
+                        <li><strong>Alligators</strong> — Florida Phase. Maintain distance. They are in the water you will be wading through</li>
+                    </ul>
+
+                    <p><strong>Prevention Protocol:</strong></p>
+                    <ul>
+                        <li>Permethrin-treat all uniforms, boots, and gear before each phase</li>
+                        <li>Tuck pants into boots — seal entry points</li>
+                        <li>Shake out boots every morning before putting them on</li>
+                        <li>Check for ticks daily during hygiene windows</li>
+                        <li>Use insect repellent on exposed skin</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 7 -->
+                <div class="course-module" id="mod7">
+                    <div class="course-module-label">Module 7</div>
+                    <div class="course-module-title">Heat Acclimatization</div>
+                    <p>Environmental injuries — both heat and cold — account for approximately 15% of all medical drops. Proper acclimatization and awareness can prevent most of them.</p>
+
+                    <p><strong>Heat Acclimatization Protocol:</strong></p>
+                    <ul>
+                        <li>Begin at least 14 days before your report date with progressive heat exposure</li>
+                        <li>Start with 30-minute sessions and build to 90+ minutes of exertion in the heat</li>
+                        <li>Train in conditions similar to what you will face — if you're attending a summer class, train outside in the heat, not in an air-conditioned gym</li>
+                        <li>Your body adapts by increasing sweat rate, lowering core temperature, and improving cardiovascular efficiency</li>
+                    </ul>
+
+                    <p><strong>Hydration:</strong></p>
+                    <ul>
+                        <li>Drink before you are thirsty — thirst means you are already behind</li>
+                        <li>Use electrolytes (salt packets, electrolyte tablets) — water alone is not enough during sustained exertion</li>
+                        <li>Monitor urine color: clear to light yellow is the goal</li>
+                        <li>Do not over-hydrate — hyponatremia (low sodium from excessive water intake) is also dangerous</li>
+                    </ul>
+
+                    <p><strong>Heat Injury Progression:</strong></p>
+                    <ol>
+                        <li><strong>Heat Cramps</strong> — Muscle cramps from electrolyte loss. Rest, hydrate, stretch. Earliest warning sign</li>
+                        <li><strong>Heat Exhaustion</strong> — Heavy sweating, weakness, nausea, dizziness, headache. Move to shade, hydrate, cool the body</li>
+                        <li><strong>Heat Stroke</strong> — Medical emergency. Confusion, cessation of sweating, core temperature above 104&deg;F, altered mental status. Call medics immediately — this is life-threatening</li>
+                    </ol>
+
+                    <p><strong>Summer Class Specifics:</strong></p>
+                    <p>Benning Phase in summer regularly sees heat indices above 110&deg;F. Florida Phase combines heat with high humidity and water immersion. Your body's cooling mechanisms are already compromised by calorie deficit and sleep deprivation — take every opportunity to hydrate and cool down.</p>
+
+                    <p><strong>Cold Weather Equivalent:</strong></p>
+                    <ul>
+                        <li><strong>Layering</strong> — Base layer (moisture wicking), insulating layer, outer shell (wind/water protection). Adjust layers to prevent sweating during movement</li>
+                        <li><strong>Vapor Barrier</strong> — Use plastic bags between sock layers to prevent moisture from reaching insulation</li>
+                        <li><strong>Buddy Checks</strong> — Check your Ranger buddy's face, ears, fingers, and toes for signs of frostbite and hypothermia. Slurred speech, confusion, and shivering that stops are emergency signs</li>
+                        <li>Winter Mountain Phase is where most cold weather injuries occur — know the signs and act fast</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 8 -->
+                <div class="course-module" id="mod8">
+                    <div class="course-module-label">Module 8</div>
+                    <div class="course-module-title">Injury Prevention</div>
+                    <p>The best medical strategy at Ranger School is to not get injured in the first place. Pre-habilitation (pre-hab), proper foot care, nutrition awareness, and knowing when to report are the keys to staying in the fight for 61+ days.</p>
+
+                    <p><strong>Pre-Hab Exercises:</strong></p>
+                    <ul>
+                        <li><strong>Ankle Strengthening</strong> — Single-leg balance drills, resistance band inversion/eversion, calf raises. Ankles are the #1 injury site</li>
+                        <li><strong>Hip Mobility</strong> — Hip flexor stretches, pigeon pose, lateral band walks. Tight hips lead to knee and back problems under load</li>
+                        <li><strong>Core Stability</strong> — Planks, dead bugs, bird dogs, pallof presses. Your core stabilizes everything when carrying a ruck</li>
+                    </ul>
+
+                    <p><strong>Foot Care:</strong></p>
+                    <ul>
+                        <li><strong>Proper Boot Fitting</strong> — Break in your boots over months, not weeks. Your feet will swell during the course — size up half a size. Bring two broken-in pairs</li>
+                        <li><strong>Sock Rotation</strong> — Change socks at every opportunity. Carry at least 12 pairs. Wring out wet socks and hang them to dry on your ruck</li>
+                        <li><strong>Moleskin Application</strong> — Apply moleskin to hotspots before they become blisters. Cut a donut shape around existing blisters to relieve pressure without popping them</li>
+                        <li><strong>Toenail Trimming</strong> — Trim straight across, not curved. Long toenails cause bruising and loss under heavy rucking. Trim them before each phase</li>
+                    </ul>
+
+                    <p><strong>Nutrition Considerations:</strong></p>
+                    <ul>
+                        <li>You will operate at a severe calorie deficit for 61+ days — your body will break down muscle and fat for energy</li>
+                        <li>Eat everything you are given. Do not skip meals regardless of how tired you are</li>
+                        <li>Prioritize calorie-dense foods when choices are available</li>
+                        <li>Your immune system weakens significantly under sustained calorie deficit — minor infections become major problems</li>
+                    </ul>
+
+                    <p><strong>Sleep Management:</strong></p>
+                    <ul>
+                        <li>You will average 1-3 hours of sleep per day. Every minute counts</li>
+                        <li>Sleep when told to sleep — do not use rest time for other tasks</li>
+                        <li>Micro-naps (5-10 minutes) during halts can help sustain cognitive function</li>
+                        <li>Sleep deprivation degrades decision-making, reaction time, and immune function</li>
+                    </ul>
+
+                    <p><strong>When to Report vs. When to Push Through:</strong></p>
+                    <p>The rule is simple: <strong>Life, Limb, Eyesight.</strong> If a condition threatens your life, could cost you a limb, or endangers your eyesight — report to medics immediately. Everything else is a judgment call, but here are guidelines:</p>
+                    <ul>
+                        <li><strong>Always report:</strong> Rhabdomyolysis symptoms (dark urine), spreading infection, chest pain, head injuries, altered mental status, inability to bear weight</li>
+                        <li><strong>Push through with self-care:</strong> Blisters, minor muscle soreness, minor cuts, fatigue, hunger</li>
+                        <li>When in doubt, tell a buddy and monitor. If it gets worse, report</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Firebase Auth + Course Gate -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI, initCourseGate } from './auth.js';
+        initAuthUI();
+        initCourseGate();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>

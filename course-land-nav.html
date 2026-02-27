@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Navigation — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="winter.html">Winter</a></li>
+                        <li><a href="spring.html">Spring</a></li>
+                        <li><a href="summer.html">Summer</a></li>
+                        <li><a href="fall.html">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Land Navigation</h1>
+        <p class="section-desc fade-in">Master terrain association, map reading, lensatic compass work, and point plotting. 8 modules covering everything you need to crush the day and night land nav courses during RAP Week.</p>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Map Reading Basics</a>
+                <a href="#mod2" class="course-sidebar-link">2. Grid Coordinates &amp; Plotting</a>
+                <a href="#mod3" class="course-sidebar-link">3. Compass Work (Lensatic)</a>
+                <a href="#mod4" class="course-sidebar-link">4. Terrain Association</a>
+                <a href="#mod5" class="course-sidebar-link">5. Intersection &amp; Resection</a>
+                <a href="#mod6" class="course-sidebar-link">6. Day Land Nav Strategy</a>
+                <a href="#mod7" class="course-sidebar-link">7. Night Land Nav Strategy</a>
+                <a href="#mod8" class="course-sidebar-link">8. Practice Scenarios</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Map Reading Basics</div>
+                    <p>Before you step into the woods, you need to understand the tool that keeps you from getting lost. The 1:50,000 scale military topographic map is your primary navigation tool at Ranger School. Every centimeter on the map represents 500 meters on the ground.</p>
+
+                    <p><strong>Map Scale:</strong></p>
+                    <ul>
+                        <li>Standard military maps are 1:50,000 scale</li>
+                        <li>1 cm on the map = 500 m on the ground</li>
+                        <li>1 grid square = 1,000 m x 1,000 m (1 km x 1 km)</li>
+                        <li>Contour interval is typically 10 m (some maps use 20 m) — check the marginal information</li>
+                    </ul>
+
+                    <p><strong>The 5 Map Colors:</strong></p>
+                    <ul>
+                        <li><strong>Black:</strong> Man-made features — buildings, roads, boundaries, labels</li>
+                        <li><strong>Blue:</strong> Water — rivers, streams, lakes, swamps, marshes</li>
+                        <li><strong>Green:</strong> Vegetation — forests, orchards, dense brush</li>
+                        <li><strong>Brown:</strong> Contour lines — terrain relief, elevation, cuts, fills</li>
+                        <li><strong>Red:</strong> Major roads, built-up areas, special features</li>
+                    </ul>
+
+                    <p><strong>Marginal Information:</strong></p>
+                    <p>The margins of the map contain critical data you must know how to read:</p>
+                    <ul>
+                        <li>Sheet name and number — identifies the specific map</li>
+                        <li>Scale and contour interval — confirms distance relationships</li>
+                        <li>Declination diagram — shows the relationship between true north, magnetic north, and grid north</li>
+                        <li>Legend — explains all symbols used on the map</li>
+                        <li>Grid reference box — shows how to build a coordinate</li>
+                        <li>Date of production — older maps may not reflect current terrain changes</li>
+                    </ul>
+
+                    <p><strong>Declination Diagram:</strong></p>
+                    <p>The declination diagram shows three norths: true north (star), grid north (GN), and magnetic north (MN). The G-M angle is the difference between grid north and magnetic north. You will use this to convert between grid azimuths (from the map) and magnetic azimuths (from your compass). Get this wrong and every azimuth you shoot will be off.</p>
+
+                    <p><strong>Grid Square Identification:</strong></p>
+                    <p>Grid lines run north-south (eastings) and east-west (northings). To identify a grid square, read the easting number first (right), then the northing number (up). This gives you a 4-digit coordinate that identifies a 1 km x 1 km area.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module" id="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Grid Coordinates &amp; Plotting</div>
+                    <p>Grid coordinates are how you communicate location on a military map. The precision of your coordinate depends on the number of digits you use. At Ranger School, you will plot 6-digit and 8-digit coordinates.</p>
+
+                    <p><strong>Coordinate Types:</strong></p>
+                    <ul>
+                        <li><strong>4-digit grid:</strong> Identifies a 1,000 m x 1,000 m area (e.g., 1884)</li>
+                        <li><strong>6-digit grid:</strong> Identifies a 100 m x 100 m area (e.g., 188845) — minimum standard for most tasks</li>
+                        <li><strong>8-digit grid:</strong> Identifies a 10 m x 10 m area (e.g., 18848456) — required for land nav point plotting</li>
+                    </ul>
+
+                    <p><strong>The Rule: "Read Right and Up"</strong></p>
+                    <p>Always read the easting (horizontal/right) value first, then the northing (vertical/up) value. This is universal across all military maps. Getting this backwards will put you in a completely wrong location.</p>
+
+                    <p><strong>Using a Military Protractor:</strong></p>
+                    <ul>
+                        <li>Place the protractor on the map with the crosshairs at the intersection of the grid lines for your grid square</li>
+                        <li>The protractor's scales (1:25,000 and 1:50,000) line up along the grid lines</li>
+                        <li>Read right along the bottom scale to get the last digits of your easting</li>
+                        <li>Read up along the side scale to get the last digits of your northing</li>
+                        <li>For 6-digit: estimate to the nearest 100 m (one digit)</li>
+                        <li>For 8-digit: estimate to the nearest 10 m (two digits)</li>
+                    </ul>
+
+                    <p><strong>Plotting a Point:</strong></p>
+                    <ol>
+                        <li>Identify the grid square from the first two digits of each pair</li>
+                        <li>Place the protractor at the lower-left corner of that grid square</li>
+                        <li>Align the protractor scales with the grid lines</li>
+                        <li>Read right to the easting value, then up to the northing value</li>
+                        <li>Mark the point with a pin prick or small dot</li>
+                    </ol>
+
+                    <p><strong>Practice:</strong></p>
+                    <p>Plot at least 20 points before you arrive at Ranger School. Use a real 1:50,000 map and protractor. Time yourself — at RAP Week you need speed and accuracy under stress. Common mistakes include reading left instead of right, swapping easting and northing, and using the wrong protractor scale.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module" id="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Compass Work (Lensatic)</div>
+                    <p>The lensatic compass is your primary direction-finding tool. You will use it every day at Ranger School — during land nav, patrols, and movement. Master it before you arrive.</p>
+
+                    <p><strong>Parts of the Lensatic Compass:</strong></p>
+                    <ul>
+                        <li><strong>Cover:</strong> Contains the sighting wire (used for compass-to-cheek)</li>
+                        <li><strong>Base:</strong> Contains the floating dial with degree markings and luminous indicators</li>
+                        <li><strong>Lens (rear sight):</strong> Magnifies the dial for precise readings</li>
+                        <li><strong>Bezel ring:</strong> Click ring with 120 clicks (3 degrees per click), used for night navigation</li>
+                        <li><strong>Thumb loop:</strong> Used for centerhold technique</li>
+                    </ul>
+
+                    <p><strong>Centerhold Technique:</strong></p>
+                    <p>Open the compass to the fullest position. Place your thumb through the thumb loop. Hold the compass at waist level, steady against your body. Align the sighting wire with a distant object. Read the azimuth under the fixed black index line. This technique is faster and works well during day movement.</p>
+
+                    <p><strong>Compass-to-Cheek Technique:</strong></p>
+                    <p>Open the cover to about 60 degrees. Open the lens to about 45 degrees. Place your thumb through the thumb loop. Raise the compass to your cheek, looking through the lens and sighting wire simultaneously. Align the sighting wire with the target. Read the azimuth through the lens. This technique is more accurate and used when precision matters.</p>
+
+                    <p><strong>Shooting an Azimuth:</strong></p>
+                    <ol>
+                        <li>Determine your desired azimuth (from map or given)</li>
+                        <li>Hold the compass using centerhold or compass-to-cheek</li>
+                        <li>Rotate your body until the desired azimuth is under the index line</li>
+                        <li>Look up and identify a point on that azimuth (a tree, rock, terrain feature)</li>
+                        <li>Walk to that point. Repeat.</li>
+                    </ol>
+
+                    <p><strong>Back Azimuth:</strong></p>
+                    <p>The back azimuth is the opposite direction. If your azimuth is less than 180, add 180. If greater than 180, subtract 180. Example: azimuth 045 = back azimuth 225. You use back azimuths for resection, checking your direction, and retracing your route.</p>
+
+                    <p><strong>Declination / G-M Angle Adjustment:</strong></p>
+                    <ul>
+                        <li>Grid azimuth (from map) to magnetic azimuth (for compass): apply the G-M angle</li>
+                        <li>If the magnetic north arrow is to the right (east) of grid north: <em>subtract</em> the G-M angle from the grid azimuth to get magnetic</li>
+                        <li>If the magnetic north arrow is to the left (west) of grid north: <em>add</em> the G-M angle to the grid azimuth to get magnetic</li>
+                        <li>Memory aid: "Right is Less, Left is More" (for grid to magnetic conversion)</li>
+                    </ul>
+
+                    <p><strong>Night Use:</strong></p>
+                    <p>The lensatic compass has tritium markings that glow in the dark. The bezel ring has 120 clicks — each click is 3 degrees. Set your azimuth using the bezel ring before it gets dark. At night, align the luminous north arrow with the luminous line on the bezel, then follow the sighting wire. Practice this in daylight first.</p>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module" id="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Terrain Association</div>
+                    <p>Terrain association is the most important land navigation skill you can develop. It is the ability to look at the map, look at the ground, and know where you are based on the shape of the land. At Ranger School, terrain association is king — it is faster and more reliable than pace count alone.</p>
+
+                    <p><strong>5 Major Terrain Features:</strong></p>
+                    <ul>
+                        <li><strong>Hilltop:</strong> An area of high ground. Contour lines form closed circles. The highest point is inside the smallest circle.</li>
+                        <li><strong>Ridge:</strong> A line of high ground with a long axis. Contour lines form a "U" or "V" pointing away from high ground.</li>
+                        <li><strong>Valley:</strong> Low ground between two ridges. Contour lines form a "U" or "V" pointing toward high ground.</li>
+                        <li><strong>Saddle:</strong> A low point between two hilltops. Looks like an hourglass in contour lines.</li>
+                        <li><strong>Depression:</strong> Low ground surrounded by higher ground. Contour lines are closed circles with tick marks pointing inward (downhill).</li>
+                    </ul>
+
+                    <p><strong>5 Minor Terrain Features:</strong></p>
+                    <ul>
+                        <li><strong>Draw:</strong> A less-developed stream course. Contour lines form a "V" pointing uphill. Water flows through draws.</li>
+                        <li><strong>Spur:</strong> A short ridge extending from a hilltop or ridge. Contour lines form a "V" pointing downhill (away from high ground).</li>
+                        <li><strong>Cliff:</strong> A vertical or near-vertical slope. Contour lines are very close together or overlap.</li>
+                        <li><strong>Cut:</strong> A man-made feature where earth has been removed (road cuts). Shown by brown lines with tick marks pointing to the lower ground.</li>
+                        <li><strong>Fill:</strong> A man-made feature where earth has been added (road embankments). Shown by brown lines with tick marks pointing to the higher ground.</li>
+                    </ul>
+
+                    <p><strong>Navigation Techniques Using Terrain:</strong></p>
+                    <ul>
+                        <li><strong>Catching Features:</strong> Large, obvious features near your destination that you cannot miss — a hilltop, a road junction, a stream bend. Navigate to the catching feature, then walk in to the point.</li>
+                        <li><strong>Handrails:</strong> Linear features you can follow — roads, streams, ridgelines, power lines, fence lines. Travel along them to stay on route without constant compass checks.</li>
+                        <li><strong>Attack Points:</strong> An easily identifiable feature near your objective. Navigate to the attack point first, then use a precise short movement (azimuth + pace count) to reach the exact point.</li>
+                        <li><strong>Backstops:</strong> A linear feature beyond your objective that tells you that you have gone too far — a road, river, or ridgeline behind the point. If you hit the backstop, you know to turn around.</li>
+                    </ul>
+
+                    <p>The key to terrain association is constant map-to-ground comparison. Every 100-200 meters, look at the map, look at the terrain, and confirm your position. Know what terrain features you should see ahead, behind, left, and right. If the terrain does not match the map, stop and figure out why before you keep moving.</p>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module" id="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Intersection &amp; Resection</div>
+                    <p>Intersection and resection are techniques for determining location using a map and compass. Both rely on shooting azimuths to known points and plotting lines on the map.</p>
+
+                    <p><strong>Modified Resection (Determining Your Location):</strong></p>
+                    <p>You use resection when you are at an unknown location and need to find where you are on the map. You need at least two known points that you can see.</p>
+                    <ol>
+                        <li>Orient your map to north using your compass</li>
+                        <li>Identify two (preferably three) known points visible on both the ground and the map</li>
+                        <li>Shoot a magnetic azimuth to the first known point</li>
+                        <li>Convert the magnetic azimuth to a grid azimuth (apply G-M angle)</li>
+                        <li>Compute the back azimuth (add or subtract 180)</li>
+                        <li>On the map, place your protractor on the known point and draw a line along the back azimuth</li>
+                        <li>Repeat for the second known point</li>
+                        <li>Where the two lines intersect on the map is your location</li>
+                        <li>A third line provides confirmation and increases accuracy</li>
+                    </ol>
+
+                    <p><strong>Intersection (Determining a Distant Point):</strong></p>
+                    <p>You use intersection when you are at a known location and need to determine the location of a distant point (such as an enemy position).</p>
+                    <ol>
+                        <li>You need two known positions with a clear line of sight to the unknown point</li>
+                        <li>From position 1: shoot a magnetic azimuth to the unknown point</li>
+                        <li>Convert to grid azimuth and plot the line from position 1 on the map</li>
+                        <li>Move to position 2 (or have another observer there): shoot a magnetic azimuth to the same unknown point</li>
+                        <li>Convert to grid azimuth and plot the line from position 2 on the map</li>
+                        <li>Where the two lines cross is the location of the unknown point</li>
+                    </ol>
+
+                    <p><strong>When to Use Each:</strong></p>
+                    <ul>
+                        <li><strong>Resection:</strong> You are lost or uncertain of your position. You can see identifiable features on the map. Most common use during land nav.</li>
+                        <li><strong>Intersection:</strong> You need to locate a distant object. Used more in tactical situations — calling for fire, reporting enemy positions.</li>
+                    </ul>
+
+                    <p>Practice both techniques. At Ranger School, modified resection can save you when you are disoriented. Being able to quickly orient your map, shoot two azimuths, and plot your location is a skill worth drilling until it is automatic.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module" id="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Day Land Nav Strategy</div>
+                    <p>Day land nav at Ranger School is a critical RAP Week gate. The standard is 4 of 6 points in 5 hours. Fail and you are recycled or dropped. This is not just a test of map skills — it is a test of strategy, time management, and physical fitness.</p>
+
+                    <p><strong>RAP Week Standard:</strong></p>
+                    <ul>
+                        <li>Find 4 of 6 points in 5 hours</li>
+                        <li>Points are spread across the course — each may be 1-3 km apart</li>
+                        <li>You navigate alone — no Ranger buddy</li>
+                        <li>You carry your weapon and LBE/fighting load</li>
+                    </ul>
+
+                    <p><strong>Route Planning:</strong></p>
+                    <ul>
+                        <li>Before you step off, study the map. Identify all 6 points and plan your route order.</li>
+                        <li>Start with the closest or easiest points to build confidence and bank time.</li>
+                        <li>Plan routes using terrain features — not just straight-line azimuths.</li>
+                        <li>Identify catching features, attack points, handrails, and backstops for every leg.</li>
+                        <li>Mark alternate routes in case your primary route is blocked or confusing.</li>
+                    </ul>
+
+                    <p><strong>Pace Count:</strong></p>
+                    <ul>
+                        <li>Establish your pace count on flat ground and on uphill terrain before the course</li>
+                        <li>Typical pace count: 62-68 paces per 100 m on flat ground (with load)</li>
+                        <li>Add 10-15% for uphill, thick vegetation, or rough terrain</li>
+                        <li>Use pace count as a backup — terrain association should be your primary method</li>
+                        <li>Use pace beads or count on your fingers to track distance</li>
+                    </ul>
+
+                    <p><strong>Terrain Association is King:</strong></p>
+                    <p>Do not navigate by pace count and azimuth alone. That method works on flat, featureless terrain — Fort Moore (Benning) is not featureless. Use terrain association: know what features you should see, confirm them as you move, and adjust. Use your compass to confirm direction, not as your sole navigation method.</p>
+
+                    <p><strong>Attack Points:</strong></p>
+                    <p>Navigate to a large, easy-to-find feature near your point (a hilltop, road intersection, stream junction). Once you are at the attack point, use a precise azimuth and pace count for the short remaining distance to the point marker.</p>
+
+                    <p><strong>Time Management:</strong></p>
+                    <ul>
+                        <li>5 hours / 6 points = roughly 50 minutes per point (but you only need 4)</li>
+                        <li>If you cannot find a point after 15-20 minutes of searching, move on</li>
+                        <li>Do not spend all your time on one difficult point — get the easy ones first</li>
+                        <li>Keep moving. Standing still burns time and does not help you find your point.</li>
+                    </ul>
+
+                    <p><strong>Common Mistakes:</strong></p>
+                    <ul>
+                        <li>Plotting the point wrong before you even step off</li>
+                        <li>Relying only on pace count and azimuth instead of terrain association</li>
+                        <li>Not knowing your pace count on different terrain</li>
+                        <li>Spending too long at one point instead of moving on</li>
+                        <li>Not using attack points and catching features</li>
+                        <li>Panicking when lost instead of stopping, orienting the map, and using resection</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 7 -->
+                <div class="course-module" id="mod7">
+                    <div class="course-module-label">Module 7</div>
+                    <div class="course-module-title">Night Land Nav Strategy</div>
+                    <p>Night land nav is the other critical RAP Week gate. The standard varies by class — typically 1 of 3 points or 3 of 4 points. You will be tired, it will be dark, and the terrain will look completely different than it did during the day. Pace count and linear features become your best friends.</p>
+
+                    <p><strong>RAP Week Standard:</strong></p>
+                    <ul>
+                        <li>Find 1 of 3 points (some classes require 3 of 4) in 3 hours</li>
+                        <li>Same course area as day land nav — different point locations</li>
+                        <li>You navigate alone with a red-lens flashlight</li>
+                        <li>Pre-plot your points and plan routes during daylight if possible</li>
+                    </ul>
+
+                    <p><strong>Pace Count Becomes Critical:</strong></p>
+                    <p>At night, you cannot see terrain features well enough to rely on terrain association alone. Pace count is your primary distance measurement tool. Know your pace count cold — flat, uphill, downhill, through brush. Use pace beads. Do not lose count.</p>
+
+                    <p><strong>Use Handrails:</strong></p>
+                    <ul>
+                        <li><strong>Roads:</strong> Easy to follow, stay on the edge to avoid traffic</li>
+                        <li><strong>Streams:</strong> Follow the sound of water, stay on one bank</li>
+                        <li><strong>Ridgelines:</strong> Follow the high ground — you can feel the slope on both sides</li>
+                        <li><strong>Power lines:</strong> Cleared corridors that are easy to follow</li>
+                        <li><strong>Fence lines:</strong> Can be followed by touch if necessary</li>
+                    </ul>
+
+                    <p><strong>Backstops:</strong></p>
+                    <p>A backstop is a linear feature beyond your point that tells you you have gone too far. Before you step off, identify a backstop for every leg. Examples: a road that runs perpendicular to your route, a creek you should not cross, a ridgeline beyond the point. If you hit the backstop, you know to turn around and search.</p>
+
+                    <p><strong>Red Lens Use:</strong></p>
+                    <ul>
+                        <li>Use your red-lens flashlight only when you need to check the map or compass</li>
+                        <li>Shield the light with your body to preserve your night vision</li>
+                        <li>Let your eyes adapt to darkness — it takes 20-30 minutes for full adaptation</li>
+                        <li>Do not look directly at any white light source — it destroys your night vision instantly</li>
+                    </ul>
+
+                    <p><strong>Pre-Plot Routes in Daylight:</strong></p>
+                    <ul>
+                        <li>Plot all your night points and plan routes before darkness falls</li>
+                        <li>Write down azimuths and distances for every leg on a card or your hand</li>
+                        <li>Identify handrails, backstops, and attack points for each leg</li>
+                        <li>Set your bezel ring to your first azimuth before it gets dark</li>
+                        <li>Memorize the first leg so you can step off immediately</li>
+                    </ul>
+
+                    <p><strong>Avoid Panic Navigation:</strong></p>
+                    <p>When you are lost at night, every instinct tells you to keep moving faster. Do the opposite. Stop. Pull out your map. Orient it with your compass. Figure out what terrain features are around you. Use resection if you can identify known points. Make a deliberate decision, then move with purpose. Running through the woods at night is how you get hurt and how you fail the course.</p>
+                </div>
+
+                <!-- MODULE 8 -->
+                <div class="course-module" id="mod8">
+                    <div class="course-module-label">Module 8</div>
+                    <div class="course-module-title">Practice Scenarios</div>
+                    <p>Knowing the theory is not enough — you have to practice. These exercises will build the speed and accuracy you need before RAP Week.</p>
+
+                    <p><strong>Exercise 1: Grid Plotting Drill</strong></p>
+                    <p>Get a 1:50,000 map and protractor. Have someone give you 10 random 8-digit grid coordinates. Plot each one and mark it. Time yourself — you should be able to plot a point in under 60 seconds. Check your work by having the person verify the locations. Repeat until you are consistently accurate and fast.</p>
+
+                    <p><strong>Exercise 2: Terrain Feature Identification</strong></p>
+                    <p>Look at a section of a 1:50,000 map. For each of the following, find and circle an example on the map:</p>
+                    <ul>
+                        <li>Hilltop</li>
+                        <li>Saddle</li>
+                        <li>Ridge</li>
+                        <li>Valley</li>
+                        <li>Depression</li>
+                        <li>Draw</li>
+                        <li>Spur</li>
+                        <li>Cliff</li>
+                    </ul>
+                    <p>Quiz yourself: point to a random spot on the map and ask, "What terrain feature am I on?" You should be able to answer immediately by reading the contour lines.</p>
+
+                    <p><strong>Exercise 3: Point-to-Point Navigation</strong></p>
+                    <p>Go to a wooded area with a map. Plot 4-6 points. Navigate to each using terrain association and compass. Track your pace count. After finding each point (or after a set time limit), check your actual location against where you think you are. This builds the most transferable skill for Ranger School land nav.</p>
+
+                    <p><strong>Exercise 4: Night Iteration</strong></p>
+                    <p>Repeat Exercise 3 at night with only a red-lens flashlight. Pre-plot routes during daylight. Use handrails and backstops. Practice using your bezel ring. Do this at least 3-4 times before Ranger School — the first time will be rough, but each iteration builds confidence and skill.</p>
+
+                    <p><strong>Exercise 5: Resection Drill</strong></p>
+                    <p>Go to a location where you can see at least two identifiable features on the map (hilltops, towers, road intersections). Shoot azimuths to each, convert to grid, compute back azimuths, and plot on the map. Your plotted position should be within 100 m of your actual GPS position. Repeat from different locations.</p>
+
+                    <p><strong>Exercise 6: Timed Full Simulation</strong></p>
+                    <p>Set up a 6-point course in a training area. Give yourself 5 hours. Navigate to all 6 points, carrying your ruck and weapon (or equivalent weight). This is the closest you can get to the real thing. Track which points you found, how long each took, and what mistakes you made. Debrief yourself honestly.</p>
+
+                    <p><strong>Full Standards &amp; Requirements:</strong></p>
+                    <p>For the complete land navigation standards, grading criteria, and pass/fail requirements, see the <a href="standards.html" style="color: var(--color-gold);">Standards page</a>.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Firebase Auth + Course Gate -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI, initCourseGate } from './auth.js';
+        initAuthUI();
+        initCourseGate();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMK Build Guide — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="winter.html">Winter</a></li>
+                        <li><a href="spring.html">Spring</a></li>
+                        <li><a href="summer.html">Summer</a></li>
+                        <li><a href="fall.html">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">TMK Build Guide</h1>
+        <p class="section-desc fade-in">Complete terrain model kit assembly instructions. A good terrain model can make or break your OPORD brief. Build one that gets you a GO.</p>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Sections</div>
+                <a href="#overview" class="course-sidebar-link active">Overview</a>
+                <a href="#supply-list" class="course-sidebar-link">Supply List</a>
+                <a href="#assembly" class="course-sidebar-link">Assembly Steps</a>
+                <a href="#micro" class="course-sidebar-link">Micro Terrain Model</a>
+                <a href="#macro" class="course-sidebar-link">Macro Terrain Model</a>
+                <a href="#labeling" class="course-sidebar-link">Labeling & Symbols</a>
+                <a href="#briefing" class="course-sidebar-link">Briefing Tips</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+
+                <!-- OVERVIEW -->
+                <div class="course-module" id="overview">
+                    <div class="course-module-label">Section 1</div>
+                    <div class="course-module-title">What is a Terrain Model Kit?</div>
+                    <p>A Terrain Model Kit (TMK) is a portable set of supplies used to build a 3D representation of the terrain for your OPORD brief. It helps your squad or platoon visualize the objective area, routes, phase lines, and scheme of maneuver.</p>
+
+                    <p><strong>Why it matters:</strong></p>
+                    <ul>
+                        <li>RIs expect a terrain model for every OPORD brief</li>
+                        <li>A clear terrain model shows you understand the terrain and can communicate your plan</li>
+                        <li>It helps subordinate leaders and team members visualize the mission</li>
+                        <li>A poor or missing terrain model will hurt your patrol grade</li>
+                    </ul>
+
+                    <p><strong>When you'll use it:</strong></p>
+                    <p>Every time you're the PL or PSG and need to brief an OPORD. In Ranger School, that's often. You'll build one quickly in the PB before your brief. Speed and clarity matter — practice building one before you go.</p>
+                </div>
+
+                <!-- SUPPLY LIST -->
+                <div class="course-module" id="supply-list">
+                    <div class="course-module-label">Section 2</div>
+                    <div class="course-module-title">Supply List</div>
+                    <p>Everything you need to build a complete TMK. Most of these items are available in the <a href="shop.html" style="color: var(--color-gold);">Ranger Beers shop</a>.</p>
+
+                    <p><strong>Core Supplies:</strong></p>
+                    <ul>
+                        <li><strong>550 Cord (50 ft):</strong> For routes, phase lines, boundaries — <a href="shop.html" style="color: var(--color-gold);">Shop &rarr;</a></li>
+                        <li><strong>Engineer Tape (roll):</strong> Mark objectives, rally points, attack positions</li>
+                        <li><strong>Yarn / String (multiple colors):</strong> Routes (blue = friendly, red = enemy, green = alternate)</li>
+                        <li><strong>Index Cards:</strong> Labels for OBJ, SP, RP, phase lines, grid coordinates</li>
+                        <li><strong>Markers (fine tip, multiple colors):</strong> Red, blue, green, black minimum</li>
+                        <li><strong>Chem Lights (multiple colors):</strong> Mark key terrain features at night — <a href="shop.html" style="color: var(--color-gold);">Shop &rarr;</a></li>
+                    </ul>
+
+                    <p><strong>Terrain Representation:</strong></p>
+                    <ul>
+                        <li><strong>Sand / Dirt:</strong> Available on-site. Use to build ridges, hills, draws</li>
+                        <li><strong>Sticks / Pine Needles:</strong> Trees, vegetation, woodlines</li>
+                        <li><strong>Rocks:</strong> Buildings, structures, checkpoints</li>
+                        <li><strong>MRE Boxes (cut up):</strong> Buildings, bridges, structures</li>
+                        <li><strong>Ammo / Brass:</strong> Individual positions, weapons placements</li>
+                    </ul>
+
+                    <p><strong>Tools:</strong></p>
+                    <ul>
+                        <li><strong>Protractor & Compass:</strong> Orient the model to north — <a href="shop.html" style="color: var(--color-gold);">Shop &rarr;</a></li>
+                        <li><strong>Map of the AO:</strong> Reference for accuracy</li>
+                        <li><strong>Rite in Rain Notebook:</strong> Notes during construction — <a href="shop.html" style="color: var(--color-gold);">Shop &rarr;</a></li>
+                    </ul>
+                </div>
+
+                <!-- ASSEMBLY -->
+                <div class="course-module" id="assembly">
+                    <div class="course-module-label">Section 3</div>
+                    <div class="course-module-title">Assembly Steps</div>
+
+                    <p><strong>Step 1 — Select & Clear the Area</strong></p>
+                    <p>Find a flat area approximately 6x6 feet. Clear debris. If in a PB, use the area near where you'll brief.</p>
+
+                    <p><strong>Step 2 — Orient to North</strong></p>
+                    <p>Use your compass to determine north. Mark it with a stick and label. All terrain features must be oriented correctly relative to north.</p>
+
+                    <p><strong>Step 3 — Establish Scale</strong></p>
+                    <p>Determine the scale of your model. Example: 1 pace = 100 meters. Mark the scale with a label card. Consistency matters more than exact precision.</p>
+
+                    <p><strong>Step 4 — Build Terrain Features</strong></p>
+                    <p>Using dirt/sand, build the major terrain features in the AO:</p>
+                    <ul>
+                        <li>Hills and ridges — mound dirt</li>
+                        <li>Draws and valleys — create depressions</li>
+                        <li>Water features — blue yarn or chem lights</li>
+                        <li>Roads and trails — 550 cord or sticks</li>
+                        <li>Woodlines — pine needles or grass</li>
+                    </ul>
+
+                    <p><strong>Step 5 — Mark Key Points</strong></p>
+                    <p>Place label cards for:</p>
+                    <ul>
+                        <li>OBJ (Objective) — use engineer tape or a prominent marker</li>
+                        <li>SP (Start Point), RP (Rally Point), ORP (Objective Rally Point)</li>
+                        <li>PL (Phase Lines) — use different color yarn for each</li>
+                        <li>Grid coordinates on each label</li>
+                    </ul>
+
+                    <p><strong>Step 6 — Add Friendly & Enemy Positions</strong></p>
+                    <ul>
+                        <li>Blue markers/yarn = friendly forces and routes</li>
+                        <li>Red markers/yarn = known and suspected enemy positions</li>
+                        <li>Use standard military symbols on label cards</li>
+                    </ul>
+
+                    <p><strong>Step 7 — Rehearse Your Brief</strong></p>
+                    <p>Walk through your OPORD using the terrain model. Point to features as you brief them. Practice transitions between paragraphs. Time yourself — you'll be under time pressure.</p>
+                </div>
+
+                <!-- MICRO TERRAIN MODEL -->
+                <div class="course-module" id="micro">
+                    <div class="course-module-label">Section 4</div>
+                    <div class="course-module-title">Micro Terrain Model</div>
+                    <p>A micro terrain model represents a small area of operations — typically a 1-2 km zone focused on your squad's immediate objective. This is the most common type you'll build in Ranger School.</p>
+
+                    <p><strong>When to Build a Micro Model:</strong></p>
+                    <ul>
+                        <li>Squad-level operations (ambush, raid, recon)</li>
+                        <li>When your AO is small and detail matters</li>
+                        <li>When you need to show individual fighting positions</li>
+                        <li>For rehearsals where every team member needs to understand their exact position</li>
+                    </ul>
+
+                    <p><strong>Scale & Size:</strong></p>
+                    <ul>
+                        <li>Covers 1-2 km of terrain</li>
+                        <li>Physical model size: 4x4 to 6x6 feet</li>
+                        <li>Scale: approximately 1 pace = 50 meters</li>
+                        <li>Higher detail — show individual buildings, tree lines, fighting positions</li>
+                    </ul>
+
+                    <p><strong>Construction Steps:</strong></p>
+                    <ol>
+                        <li><strong>Map study:</strong> Identify all terrain features within the 1-2 km AO from your map</li>
+                        <li><strong>Clear and orient:</strong> Standard north arrow and scale card</li>
+                        <li><strong>Build close terrain first:</strong> Immediate area around the objective — buildings, walls, woodlines, roads</li>
+                        <li><strong>Add individual positions:</strong> Use ammo brass, sticks, or small rocks for each team member's position</li>
+                        <li><strong>Mark the objective in detail:</strong> Show entry points, breaching locations, consolidation points</li>
+                        <li><strong>Show fields of fire:</strong> Use yarn or string to show sectors, engagement areas, dead space</li>
+                        <li><strong>Add the scheme of maneuver:</strong> Assault, support, and security element routes with different color yarn</li>
+                    </ol>
+
+                    <p><strong>Key Details to Include:</strong></p>
+                    <ul>
+                        <li>Individual positions for each fire team member</li>
+                        <li>Limit of advance (LOA)</li>
+                        <li>Consolidation and reorganization points</li>
+                        <li>Casualty collection point (CCP)</li>
+                        <li>EPW collection point</li>
+                        <li>Alternate and supplementary positions</li>
+                    </ul>
+
+                    <p>The micro model is where most patrol grades are won or lost. If your squad can walk up to the terrain model and instantly understand their position, sector, and task — you've built a good one.</p>
+                </div>
+
+                <!-- MACRO TERRAIN MODEL -->
+                <div class="course-module" id="macro">
+                    <div class="course-module-label">Section 5</div>
+                    <div class="course-module-title">Macro Terrain Model</div>
+                    <p>A macro terrain model covers a larger area of operations — typically 5-10 km — and is used for platoon or company-level planning. You'll build these less often, but they're critical for understanding the big picture.</p>
+
+                    <p><strong>When to Build a Macro Model:</strong></p>
+                    <ul>
+                        <li>Platoon or company-level operations</li>
+                        <li>Movement to contact across a large AO</li>
+                        <li>When multiple objectives or phase lines are involved</li>
+                        <li>Planning a multi-day operation with multiple phases</li>
+                    </ul>
+
+                    <p><strong>Scale & Size:</strong></p>
+                    <ul>
+                        <li>Covers 5-10 km of terrain</li>
+                        <li>Physical model size: 6x6 to 8x8 feet</li>
+                        <li>Scale: approximately 1 pace = 200-500 meters</li>
+                        <li>Lower detail — focus on major terrain features, not individual positions</li>
+                    </ul>
+
+                    <p><strong>Construction Steps:</strong></p>
+                    <ol>
+                        <li><strong>Map study:</strong> Identify major terrain features across the full AO — ridgelines, valleys, rivers, roads, towns</li>
+                        <li><strong>Clear and orient:</strong> Larger area needed. Standard north arrow and scale card</li>
+                        <li><strong>Build major terrain:</strong> Focus on dominant features — hills, ridge systems, major water crossings, MSRs (Main Supply Routes)</li>
+                        <li><strong>Mark phase lines:</strong> Use different color yarn for each PL. Label with name and grid</li>
+                        <li><strong>Show multiple objectives:</strong> If the operation has multiple OBJs, clearly label each with grid and name</li>
+                        <li><strong>Add routes:</strong> Primary, alternate, and contingency routes for the full movement</li>
+                        <li><strong>Mark known enemy positions:</strong> Use broader area markers (diamonds on cards) rather than individual positions</li>
+                    </ol>
+
+                    <p><strong>Key Details to Include:</strong></p>
+                    <ul>
+                        <li>All phase lines with names and grids</li>
+                        <li>Check points and rally points along the route</li>
+                        <li>Main Supply Routes (MSRs) and Alternate Supply Routes (ASRs)</li>
+                        <li>Key terrain features (hilltops that dominate the AO, major ridge systems)</li>
+                        <li>Boundaries (left and right limits)</li>
+                        <li>Fire support coordination measures (if applicable)</li>
+                        <li>Assembly areas and attack positions</li>
+                    </ul>
+
+                    <p><strong>Macro vs. Micro — When to Use Each:</strong></p>
+                    <ul>
+                        <li><strong>Macro first:</strong> Brief the big picture to the full platoon — where we're going, how we're getting there, what the phases are</li>
+                        <li><strong>Micro second:</strong> Break into squads and brief the detailed actions-on at the objective</li>
+                        <li>In Ranger School, you often build both: a quick macro for the platoon OPORD, then a detailed micro for the squad rehearsal</li>
+                    </ul>
+                </div>
+
+                <!-- LABELING -->
+                <div class="course-module" id="labeling">
+                    <div class="course-module-label">Section 6</div>
+                    <div class="course-module-title">Labeling & Military Symbols</div>
+                    <p>Use standard military symbology on your labels. RIs will check for this.</p>
+
+                    <p><strong>Common Symbols:</strong></p>
+                    <ul>
+                        <li><strong>Rectangle (blue):</strong> Friendly unit</li>
+                        <li><strong>Diamond (red):</strong> Enemy unit</li>
+                        <li><strong>X inside rectangle:</strong> Infantry</li>
+                        <li><strong>Dot inside diamond:</strong> Known enemy position</li>
+                        <li><strong>? inside diamond:</strong> Suspected enemy position</li>
+                        <li><strong>Arrow:</strong> Direction of movement/attack</li>
+                    </ul>
+
+                    <p><strong>Label Card Format:</strong></p>
+                    <ul>
+                        <li>Name of feature (e.g., "OBJ EAGLE")</li>
+                        <li>8-digit grid coordinate</li>
+                        <li>Altitude if relevant</li>
+                        <li>Write large and clear — people will be reading from 6+ feet away</li>
+                    </ul>
+                </div>
+
+                <!-- BRIEFING TIPS -->
+                <div class="course-module" id="briefing">
+                    <div class="course-module-label">Section 7</div>
+                    <div class="course-module-title">Briefing Tips</div>
+
+                    <p><strong>During the Brief:</strong></p>
+                    <ul>
+                        <li>Stand behind the model, facing your squad/platoon</li>
+                        <li>Use a stick or pointer to indicate features — don't step on the model</li>
+                        <li>Brief north to south, or in the direction of movement</li>
+                        <li>Reference grid coordinates for every named point</li>
+                        <li>Use the terrain model during Paragraph 3 (Execution) especially</li>
+                    </ul>
+
+                    <p><strong>Common Mistakes:</strong></p>
+                    <ul>
+                        <li>Model not oriented to north</li>
+                        <li>No scale indicator</li>
+                        <li>Missing labels or grid coordinates</li>
+                        <li>Model too small to see or too large to brief from one position</li>
+                        <li>Not rehearsing — you should be able to brief without reading your notes</li>
+                    </ul>
+
+                    <p><strong>Pro Tips:</strong></p>
+                    <ul>
+                        <li>Pre-make your label cards in the PB before building the model</li>
+                        <li>Keep your TMK supplies in a single bag/pouch for quick access</li>
+                        <li>Practice building a terrain model in under 15 minutes</li>
+                        <li>If you're the PSG, help the PL set up — it's a team effort</li>
+                    </ul>
+
+                    <p>A solid terrain model shows the RI that you understand the terrain, have a plan, and can communicate it clearly. That's what gets you a GO.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Firebase Auth + Course Gate -->
+    <script type="module" src="auth.js"></script>
+    <script type="module">
+        import { initAuthUI, initCourseGate } from './auth.js';
+        initAuthUI();
+        initCourseGate();
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+</body>
+</html>
