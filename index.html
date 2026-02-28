@@ -87,6 +87,7 @@
                         <li><a href="timeline.html">Pre-Ranger Timeline</a></li>
                         <li><a href="faq.html">FAQ from Graduates</a></li>
                         <li><a href="family.html">Family &amp; Spouse Guide</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><a href="resources.html">Study &amp; Downloads</a></li>
                     </ul>
@@ -1417,6 +1418,30 @@
     </section>
 
 
+    <!-- STAY INFORMED — Newsletter Signup -->
+    <section class="section" id="newsletter" style="text-align:center; padding-bottom:var(--space-3xl);">
+        <span class="section-label">Stay Informed</span>
+        <h2 class="section-title">Get Ranger School Intel</h2>
+        <p class="section-desc" style="max-width:540px; margin:0 auto var(--space-xl);">Class dates, gear drops, new courses, and tips from tab holders — straight to your inbox. No spam. Unsubscribe anytime.</p>
+
+        <!-- Success message (shown via JS when ?subscribed=1) -->
+        <div id="subscribe-success" style="display:none; background:rgba(197,179,88,0.12); border:1px solid var(--color-gold); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-gold); font-weight:600;">
+            You're in. Watch your inbox for Ranger School intel.
+        </div>
+
+        <form action="https://formsubmit.co/dzbeers747@gmail.com" method="POST" style="display:flex; gap:var(--space-sm); max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;">
+            <!-- FormSubmit hidden fields -->
+            <input type="hidden" name="_subject" value="New Ranger Beers Subscriber">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://ranger-beers.com/index.html?subscribed=1">
+            <input type="text" name="_honey" style="display:none;">
+
+            <input type="email" name="email" class="form-input" placeholder="Your email address" required style="flex:1 1 260px;">
+            <button type="submit" class="btn btn-primary" style="flex:0 0 auto; padding:0 var(--space-lg);">Subscribe</button>
+        </form>
+    </section>
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-inner">
@@ -1439,6 +1464,17 @@
     </footer>
 
     <script>
+        // ── Newsletter subscribe success check ──
+        (function() {
+            if (new URLSearchParams(window.location.search).get('subscribed') === '1') {
+                var msg = document.getElementById('subscribe-success');
+                if (msg) {
+                    msg.style.display = 'block';
+                    msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        })();
+
         // Nav scroll effect
         window.addEventListener('scroll', () => {
             document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
@@ -1517,8 +1553,8 @@
     </script>
 
     <!-- Snipcart E-Commerce -->
-    <!-- TODO: Replace YOUR_SNIPCART_PUBLIC_KEY with your key from https://app.snipcart.com -->
-    <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_KEY" data-config-modal-style="side"></div>
+    <!-- TODO: Replace Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4 with your key from https://app.snipcart.com -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
     <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
 
     <!-- Botpress AI Chatbot -->

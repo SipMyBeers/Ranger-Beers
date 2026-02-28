@@ -3,19 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recycle &amp; Recovery Guide — Ranger Beers Supply Co.</title>
+    <title>About — Ranger Beers Supply Co.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <style>
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl) var(--space-3xl);
+        }
+        .about-block {
+            margin-bottom: var(--space-3xl);
+        }
+        .about-block-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: var(--space-sm);
+        }
+        .about-block-title {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+        }
+        .about-block-text {
+            font-size: 17px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.65);
+        }
+        .about-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--color-gold);
+            opacity: 0.3;
+            margin-bottom: var(--space-3xl);
+        }
+        .about-cta-section {
+            text-align: center;
+            padding: var(--space-3xl) var(--space-xl);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .about-cta-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: var(--space-sm);
+        }
+        .about-cta-sub {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: var(--space-xl);
+        }
+        .about-cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+        .about-cta-buttons .btn {
+            padding: 14px 36px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-primary {
+            background: var(--color-gold);
+            color: #000;
+        }
+        .btn-primary:hover {
+            background: #d4c46a;
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--color-gold);
+            border: 1px solid rgba(197, 179, 88, 0.4);
+        }
+        .btn-outline:hover {
+            border-color: var(--color-gold);
+            background: rgba(197, 179, 88, 0.08);
+        }
+    </style>
 </head>
 <body>
 
-    <!-- NAV -->
-    <nav class="nav scrolled" id="nav">
+    <!-- NAV: Shop | Winter Spring Summer Fall | Resources -->
+    <nav class="nav" id="nav">
         <div class="nav-inner">
             <a href="index.html" class="nav-brand">Ranger Beers</a>
+
                         <ul class="nav-center">
                 <li class="nav-dropdown">
                     <a href="index.html">Home</a>
@@ -101,6 +187,7 @@
                     </ul>
                 </li>
             </ul>
+
             <div class="nav-cta">
                 <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
                 <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
@@ -109,72 +196,63 @@
                     <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
                 </div>
             </div>
-            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
     <!-- HERO -->
     <div class="section course-hero">
-        <div class="section-label fade-in">Course</div>
-        <h1 class="section-title fade-in">Recycle &amp; Recovery Guide</h1>
-        <p class="section-desc fade-in">What happens if you fail a phase, how recycling works, staying motivated through setbacks, and the path back to graduation. No shame in the recycle game.</p>
-        <div class="course-hero-meta fade-in">
-            <span class="course-price-tag">Free</span>
-            <span class="course-tag tag-phase">All Phases</span>
-            <span class="course-tag tag-type">Knowledge</span>
-            <span class="course-tag tag-bundle">Free</span>
-        </div>
-        <div style="margin-top: var(--space-lg);" class="fade-in">
-            <span style="display: inline-block; padding: 10px 28px; border: 1px solid rgba(75,181,67,0.4); background: rgba(75,181,67,0.1); color: #4bb543; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border-radius: 8px;">Free Course — Sign In to Access</span>
-        </div>
+        <div class="section-label fade-in">About</div>
+        <h1 class="section-title fade-in">About Ranger Beers</h1>
+        <p class="section-desc fade-in">The story behind the gear, the courses, and the cold ones at Victory Pond.</p>
     </div>
 
-    <!-- LOGIN GATE -->
-    <div id="login-gate" class="login-gate" style="display: none;">
-        <div class="login-gate-card">
-            <div class="login-gate-title">Sign In to Access</div>
-            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
-            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
-            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+    <!-- ABOUT CONTENT -->
+    <div class="about-content">
+
+        <!-- Our Mission -->
+        <div class="about-block fade-in">
+            <div class="about-block-label">01</div>
+            <h2 class="about-block-title">Our Mission</h2>
+            <p class="about-block-text">We exist to give every Ranger School candidate the gear, knowledge, and confidence to earn their tab. No fluff. No shortcuts. Just the tools you need to survive 61 days of the hardest leadership course in the world.</p>
         </div>
+        <div class="about-divider fade-in"></div>
+
+        <!-- Who We Are -->
+        <div class="about-block fade-in">
+            <div class="about-block-label">02</div>
+            <h2 class="about-block-title">Who We Are</h2>
+            <p class="about-block-text">Built by Ranger-qualified soldiers who've been through the suck. We know what works because we've used it — in the mountains, the swamp, and everywhere in between. Every product we recommend, every course we teach, comes from firsthand experience.</p>
+        </div>
+        <div class="about-divider fade-in"></div>
+
+        <!-- Why This Exists -->
+        <div class="about-block fade-in">
+            <div class="about-block-label">03</div>
+            <h2 class="about-block-title">Why This Exists</h2>
+            <p class="about-block-text">Too many candidates show up underprepared. Wrong gear. Wrong mindset. No plan. We built Ranger Beers to be the one-stop shop that fixes that — seasonal packing lists, course bundles, pre-Ranger timelines, and the voice-tested Ranger Creed trainer.</p>
+        </div>
+        <div class="about-divider fade-in"></div>
+
+        <!-- The Name -->
+        <div class="about-block fade-in">
+            <div class="about-block-label">04</div>
+            <h2 class="about-block-title">The Name</h2>
+            <p class="about-block-text">"Ranger Beers" — the ones you earn after graduation. The cold ones waiting at Victory Pond. Everything we do points toward that moment.</p>
+        </div>
+
     </div>
 
-    <!-- COURSE CONTENT -->
-    <div id="course-content" style="display: none;">
-        <div class="course-layout">
-            <nav class="course-sidebar">
-                <div class="course-sidebar-title">Modules</div>
-                <a href="#mod1" class="course-sidebar-link active">1. How Recycling Works</a>
-                <a href="#mod2" class="course-sidebar-link">2. The Day After You Fail</a>
-                <a href="#mod3" class="course-sidebar-link">3. Training During the Wait</a>
-                <a href="#mod4" class="course-sidebar-link">4. Coming Back Stronger</a>
-            </nav>
-
-            <div class="course-content-area">
-                <div class="course-module" id="mod1">
-                    <div class="course-module-label">Module 1</div>
-                    <div class="course-module-title">How Recycling Works</div>
-                    <p>Content coming soon. This module will cover the recycle process from start to finish — what triggers a recycle, the different types (peer, performance, medical, academic), how the cadre make the call, and what phase you get inserted back into.</p>
-                </div>
-
-                <div class="course-module" id="mod2">
-                    <div class="course-module-label">Module 2</div>
-                    <div class="course-module-title">The Day After You Fail</div>
-                    <p>Content coming soon. This module will cover what actually happens the day you get the news — the administrative steps, calling home, the mental gut-punch, moving to the recycle barracks, and how to handle the first 48 hours with your head straight.</p>
-                </div>
-
-                <div class="course-module" id="mod3">
-                    <div class="course-module-label">Module 3</div>
-                    <div class="course-module-title">Training During the Wait</div>
-                    <p>Content coming soon. This module will cover how to spend your time in the Gulag productively — physical training plans, studying weak areas, helping new classes, details and work assignments, and staying sharp instead of letting the wait break you down.</p>
-                </div>
-
-                <div class="course-module" id="mod4">
-                    <div class="course-module-label">Module 4</div>
-                    <div class="course-module-title">Coming Back Stronger</div>
-                    <p>Content coming soon. This module will cover the mindset shift for your second attempt — leveraging experience, avoiding the same mistakes, dealing with being older than your new squad, and the stories of Rangers who recycled and still earned the tab.</p>
-                </div>
-            </div>
+    <!-- CTA SECTION -->
+    <div class="about-cta-section">
+        <h2 class="about-cta-title fade-in">Ready to Start?</h2>
+        <p class="about-cta-sub fade-in">Get the gear and the knowledge. Earn your tab.</p>
+        <div class="about-cta-buttons fade-in">
+            <a href="shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="courses.html" class="btn btn-outline">Browse Courses</a>
         </div>
     </div>
 
@@ -182,7 +260,10 @@
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-top">
-                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Ranger School Supply Co.</div>
+                </div>
                 <div class="footer-nav">
                     <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="shop.html?season=winter">Winter</a></li><li><a href="shop.html?season=spring">Spring</a></li><li><a href="shop.html?season=summer">Summer</a></li><li><a href="shop.html?season=fall">Fall</a></li></ul></div>
                     <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="courses.html">Courses</a></li><li><a href="inventory.html">Packing List</a></li><li><a href="resources.html">Resources</a></li></ul></div>
@@ -197,32 +278,75 @@
     </footer>
 
     <script>
-window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // ── Mobile Nav Toggle + Accordion ──
         (function() {
             const toggle = document.querySelector('.nav-toggle');
             const navCenter = document.querySelector('.nav-center');
             if (!toggle || !navCenter) return;
-            toggle.addEventListener('click', function(e) { e.stopPropagation(); const isOpen = navCenter.classList.toggle('mobile-open'); toggle.classList.toggle('active', isOpen); document.body.style.overflow = isOpen ? 'hidden' : ''; });
-            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) { link.addEventListener('click', function(e) { if (window.innerWidth > 768) return; e.preventDefault(); e.stopPropagation(); const parent = this.closest('.nav-dropdown'); const wasOpen = parent.classList.contains('mobile-expanded'); navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); }); if (!wasOpen) parent.classList.add('mobile-expanded'); }); });
-            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) { a.addEventListener('click', function() { navCenter.classList.remove('mobile-open'); toggle.classList.remove('active'); document.body.style.overflow = ''; navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); }); }); });
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                });
+            });
         })();
-        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
     </script>
 
+    <!-- Firebase Auth -->
     <script type="module" src="auth.js"></script>
     <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
+        import { initAuthUI } from './auth.js';
         initAuthUI();
-        initCourseGate();
     </script>
 
+    <!-- Snipcart E-Commerce -->
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
     <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
 
+    <!-- Botpress AI Chatbot -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script>
-        window.botpress.init({ botId: 'YOUR_BOT_ID', clientId: 'YOUR_CLIENT_ID', botName: 'Ranger Buddy', botDescription: 'Ranger School gear & prep assistant', themeColor: '#C5B358', textColor: '#FFFFFF', backgroundColor: '#000000', greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?' });
+        window.botpress.init({
+            botId: 'YOUR_BOT_ID',
+            clientId: 'YOUR_CLIENT_ID',
+            botName: 'Ranger Buddy',
+            botDescription: 'Ranger School gear & prep assistant',
+            themeColor: '#C5B358',
+            textColor: '#FFFFFF',
+            backgroundColor: '#000000',
+            greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
     </script>
 </body>
 </html>
