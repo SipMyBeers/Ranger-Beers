@@ -172,6 +172,232 @@
         <div class="creed-hero-sub fade-in">Rangers Lead the Way</div>
     </section>
 
+    <!-- SEASON SELECTOR — Weather Theme Toggle -->
+    <style>
+        /* ── Season Weather Effects ──────────────── */
+        .weather-layer {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+            display: none;
+        }
+        .weather-layer.active { display: block; }
+
+        /* Snowflakes */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: snowfall linear infinite;
+        }
+        @keyframes snowfall {
+            0% { opacity: 0; transform: translateY(-10px) translateX(0); }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(100vh) translateX(var(--drift)); }
+        }
+
+        /* Raindrops */
+        .raindrop {
+            position: absolute;
+            top: -20px;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(180, 200, 220, 0.4));
+            animation: rainfall linear infinite;
+        }
+        @keyframes rainfall {
+            0% { opacity: 0; transform: translateY(-20px); }
+            10% { opacity: 1; }
+            100% { opacity: 0.3; transform: translateY(100vh); }
+        }
+
+        /* Heat haze */
+        .heat-haze-layer {
+            position: fixed;
+            bottom: 0; left: 0;
+            width: 100%; height: 30vh;
+            pointer-events: none;
+            z-index: 998;
+            background: linear-gradient(to top, rgba(255, 160, 50, 0.04) 0%, transparent 100%);
+            animation: haze-shimmer 3s ease-in-out infinite;
+            display: none;
+        }
+        .heat-haze-layer.active { display: block; }
+        @keyframes haze-shimmer {
+            0%, 100% { opacity: 0.6; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.02); }
+        }
+        .heat-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 998;
+            width: 2px; height: 2px;
+            background: rgba(255, 200, 50, 0.3);
+            border-radius: 50%;
+            animation: heat-rise linear infinite;
+            display: none;
+        }
+        .heat-particle.active { display: block; }
+        @keyframes heat-rise {
+            0% { opacity: 0; transform: translateY(0) scale(1); }
+            20% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(-40vh) scale(0); }
+        }
+
+        /* Falling leaves */
+        .leaf {
+            position: absolute;
+            top: -30px;
+            font-size: 16px;
+            opacity: 0;
+            animation: leaffall linear infinite;
+        }
+        @keyframes leaffall {
+            0% { opacity: 0; transform: translateY(-30px) rotate(0deg) translateX(0); }
+            10% { opacity: 0.7; }
+            50% { transform: translateY(50vh) rotate(180deg) translateX(var(--sway)); }
+            90% { opacity: 0.5; }
+            100% { opacity: 0; transform: translateY(100vh) rotate(360deg) translateX(calc(var(--sway) * -1)); }
+        }
+
+        /* ── Season Selector Cards ───────────────── */
+        .season-selector-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+        }
+        .season-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-lg) var(--space-md);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: inherit;
+            overflow: hidden;
+        }
+        .season-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .season-card[data-season="winter"]::before { background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08), transparent 70%); }
+        .season-card[data-season="spring"]::before { background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.08), transparent 70%); }
+        .season-card[data-season="summer"]::before { background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08), transparent 70%); }
+        .season-card[data-season="fall"]::before { background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.08), transparent 70%); }
+
+        .season-card:hover { border-color: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+        .season-card:hover::before { opacity: 1; }
+
+        .season-card.active { border-color: var(--color-gold); }
+        .season-card.active::before { opacity: 1; }
+        .season-card.active[data-season="winter"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
+        .season-card.active[data-season="spring"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.15); }
+        .season-card.active[data-season="summer"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
+        .season-card.active[data-season="fall"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239, 68, 68, 0.15); }
+
+        .season-card-icon { font-size: 2.5rem; margin-bottom: var(--space-sm); position: relative; }
+        .season-card-name {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-white);
+            margin-bottom: 4px;
+            position: relative;
+        }
+        .season-card-months {
+            font-size: 11px;
+            color: var(--color-text-secondary);
+            letter-spacing: 1px;
+            position: relative;
+        }
+        .season-card-link {
+            display: inline-block;
+            margin-top: var(--space-sm);
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-gold-dim);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .season-card-link:hover { color: var(--color-gold); }
+
+        .season-clear-btn {
+            display: none;
+            margin: var(--space-md) auto 0;
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .season-clear-btn:hover { border-color: rgba(255, 255, 255, 0.3); color: var(--color-white); }
+        .season-clear-btn.visible { display: block; }
+
+        @media (max-width: 768px) {
+            .season-selector-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+
+    <!-- Weather effect containers (hidden until activated) -->
+    <div class="weather-layer" id="weather-winter"></div>
+    <div class="weather-layer" id="weather-spring"></div>
+    <div class="weather-layer" id="weather-fall"></div>
+    <div class="heat-haze-layer" id="weather-summer-haze"></div>
+
+    <section class="section" style="padding-bottom: var(--space-lg);">
+        <div class="section-label fade-in">Seasons</div>
+        <h2 class="section-title fade-in">What Kind of Ranger Will You Be?</h2>
+        <p class="section-desc fade-in">Your class date determines your season. Each one has its own hell. Pick yours.</p>
+
+        <div class="season-selector-grid stagger">
+            <div class="season-card fade-in" data-season="winter">
+                <div class="season-card-icon">&#10052;</div>
+                <div class="season-card-name">Winter</div>
+                <div class="season-card-months">Dec &mdash; Feb</div>
+                <a href="winter.html" class="season-card-link" onclick="event.stopPropagation();">View Gear &rarr;</a>
+            </div>
+            <div class="season-card fade-in" data-season="spring">
+                <div class="season-card-icon">&#127783;</div>
+                <div class="season-card-name">Spring</div>
+                <div class="season-card-months">Mar &mdash; May</div>
+                <a href="spring.html" class="season-card-link" onclick="event.stopPropagation();">View Gear &rarr;</a>
+            </div>
+            <div class="season-card fade-in" data-season="summer">
+                <div class="season-card-icon">&#9728;</div>
+                <div class="season-card-name">Summer</div>
+                <div class="season-card-months">Jun &mdash; Aug</div>
+                <a href="summer.html" class="season-card-link" onclick="event.stopPropagation();">View Gear &rarr;</a>
+            </div>
+            <div class="season-card fade-in" data-season="fall">
+                <div class="season-card-icon">&#127810;</div>
+                <div class="season-card-name">Fall</div>
+                <div class="season-card-months">Sep &mdash; Nov</div>
+                <a href="fall.html" class="season-card-link" onclick="event.stopPropagation();">View Gear &rarr;</a>
+            </div>
+        </div>
+        <button class="season-clear-btn" id="season-clear">Clear Effect</button>
+    </section>
+
     <!-- RANGER CREED -->
     <section class="section creed-section" style="padding-top: var(--space-xl);">
 
@@ -304,36 +530,6 @@
                     <tr><td class="schedule-class">RC 11-27</td><td>08 Sep 2027</td><td>11 Nov 2027</td><td><span class="season-tag fall">Fall</span></td></tr>
                 </tbody>
             </table>
-        </div>
-    </section>
-
-    <!-- WHAT KIND OF RANGER -->
-    <section class="section">
-        <div class="section-label fade-in">Seasons</div>
-        <h2 class="section-title fade-in">What Kind of Ranger Will You Be?</h2>
-        <p class="section-desc fade-in">Your class date determines your season. Each one has its own hell. Pick yours.</p>
-
-        <div class="bento-grid bento-4 stagger">
-            <a href="winter.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
-                <div class="card-icon">❄️</div>
-                <div class="card-title">A Winter Ranger?</div>
-                <p class="card-desc">Dec — Feb. Hypothermia is the enemy. Layers, hand warmers, and the will to keep moving when everything is frozen.</p>
-            </a>
-            <a href="spring.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
-                <div class="card-icon">🌧️</div>
-                <div class="card-title">A Spring Ranger?</div>
-                <p class="card-desc">Mar — May. Rain that never stops. Bugs that never quit. Permethrin everything and embrace the suck.</p>
-            </a>
-            <a href="summer.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
-                <div class="card-icon">☀️</div>
-                <div class="card-title">A Summer Ranger?</div>
-                <p class="card-desc">Jun — Aug. Heat cats everywhere. Electrolytes, cooling towels, and pray for shade on the OBJ.</p>
-            </a>
-            <a href="fall.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
-                <div class="card-icon">🍂</div>
-                <div class="card-title">A Fall Ranger?</div>
-                <p class="card-desc">Sep — Nov. Starts hot, ends cold. The season that can't make up its mind. Pack for both.</p>
-            </a>
         </div>
     </section>
 
@@ -861,6 +1057,101 @@
                     navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
                 });
             });
+        })();
+
+        // ── Season Theme Switcher ─────────────────
+        (function() {
+            var STORAGE_KEY = 'ranger-beers-season';
+            var winterContainer = document.getElementById('weather-winter');
+            var springContainer = document.getElementById('weather-spring');
+            var fallContainer   = document.getElementById('weather-fall');
+            var summerHaze      = document.getElementById('weather-summer-haze');
+            var summerParticles = [];
+            var clearBtn        = document.getElementById('season-clear');
+            var cards           = document.querySelectorAll('.season-card');
+
+            function populateWinter() {
+                if (winterContainer.children.length > 0) return;
+                for (var i = 0; i < 50; i++) {
+                    var f = document.createElement('div');
+                    f.className = 'snowflake';
+                    var sz = Math.random() * 4 + 1;
+                    f.style.cssText = 'width:' + sz + 'px;height:' + sz + 'px;left:' + (Math.random()*100) + '%;animation-duration:' + (Math.random()*8+6) + 's;animation-delay:' + (Math.random()*10) + 's;--drift:' + ((Math.random()-0.5)*100) + 'px;';
+                    winterContainer.appendChild(f);
+                }
+            }
+            function populateSpring() {
+                if (springContainer.children.length > 0) return;
+                for (var i = 0; i < 60; i++) {
+                    var d = document.createElement('div');
+                    d.className = 'raindrop';
+                    d.style.cssText = 'left:' + (Math.random()*100) + '%;height:' + (Math.random()*15+10) + 'px;animation-duration:' + (Math.random()*0.5+0.6) + 's;animation-delay:' + (Math.random()*2) + 's;';
+                    springContainer.appendChild(d);
+                }
+            }
+            function populateSummer() {
+                if (summerParticles.length > 0) return;
+                for (var i = 0; i < 20; i++) {
+                    var p = document.createElement('div');
+                    p.className = 'heat-particle';
+                    var sz = Math.random() * 3 + 1;
+                    p.style.cssText = 'left:' + (Math.random()*100) + '%;bottom:' + (Math.random()*30) + '%;width:' + sz + 'px;height:' + sz + 'px;animation-duration:' + (Math.random()*4+4) + 's;animation-delay:' + (Math.random()*6) + 's;';
+                    document.body.appendChild(p);
+                    summerParticles.push(p);
+                }
+            }
+            function populateFall() {
+                if (fallContainer.children.length > 0) return;
+                var chars = ['\u{1F342}', '\u{1F341}', '\u{1F343}'];
+                for (var i = 0; i < 25; i++) {
+                    var l = document.createElement('div');
+                    l.className = 'leaf';
+                    l.textContent = chars[Math.floor(Math.random() * chars.length)];
+                    l.style.cssText = 'left:' + (Math.random()*100) + '%;font-size:' + (Math.random()*10+12) + 'px;animation-duration:' + (Math.random()*8+8) + 's;animation-delay:' + (Math.random()*12) + 's;--sway:' + ((Math.random()-0.5)*150) + 'px;';
+                    fallContainer.appendChild(l);
+                }
+            }
+
+            function clearAll() {
+                winterContainer.classList.remove('active');
+                springContainer.classList.remove('active');
+                fallContainer.classList.remove('active');
+                summerHaze.classList.remove('active');
+                summerParticles.forEach(function(p) { p.classList.remove('active'); });
+                cards.forEach(function(c) { c.classList.remove('active'); });
+                clearBtn.classList.remove('visible');
+            }
+
+            function setSeason(season) {
+                clearAll();
+                if (!season) {
+                    localStorage.removeItem(STORAGE_KEY);
+                    return;
+                }
+                localStorage.setItem(STORAGE_KEY, season);
+                var card = document.querySelector('.season-card[data-season="' + season + '"]');
+                if (card) card.classList.add('active');
+                clearBtn.classList.add('visible');
+
+                if (season === 'winter')  { populateWinter();  winterContainer.classList.add('active'); }
+                if (season === 'spring')  { populateSpring();  springContainer.classList.add('active'); }
+                if (season === 'summer')  { populateSummer();  summerHaze.classList.add('active'); summerParticles.forEach(function(p) { p.classList.add('active'); }); }
+                if (season === 'fall')    { populateFall();    fallContainer.classList.add('active'); }
+            }
+
+            cards.forEach(function(card) {
+                card.addEventListener('click', function() {
+                    var season = this.getAttribute('data-season');
+                    var wasActive = this.classList.contains('active');
+                    setSeason(wasActive ? null : season);
+                });
+            });
+
+            clearBtn.addEventListener('click', function() { setSeason(null); });
+
+            // Restore saved season
+            var saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) setSeason(saved);
         })();
 
         // Fade-in on scroll
