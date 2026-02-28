@@ -270,16 +270,54 @@
                     <div class="course-module-title">Recite the Creed</div>
                     <p>Speak each stanza out loud. Your speech is compared word-by-word against the correct text. Score 80%+ to unlock the next stanza. <strong>This is how you'll be tested in Ranger School — out loud, under pressure.</strong></p>
 
+                    <!-- Mode Toggle -->
+                    <div style="display: flex; gap: 8px; margin-bottom: var(--space-lg); flex-wrap: wrap; align-items: center;">
+                        <button class="voice-mode-btn active" id="mode-stanza">Stanza by Stanza</button>
+                        <button class="voice-mode-btn" id="mode-full">Full Creed Challenge</button>
+                        <button class="voice-mode-btn" id="mode-timed">Timed Drill</button>
+                        <span style="margin-left: auto; font-size: 12px; color: var(--color-text-muted);" id="voice-attempt-count"></span>
+                    </div>
+
                     <div id="voice-no-support" style="display: none; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 12px; padding: 16px; margin-bottom: var(--space-xl);">
                         <p style="margin: 0; color: #ef4444; font-size: 13px;">Your browser does not support speech recognition. Use the text assessment below, or try Chrome or Edge.</p>
                     </div>
 
+                    <!-- Timer Display (hidden until timed mode) -->
+                    <div id="voice-timer" style="display: none; text-align: center; margin-bottom: var(--space-lg);">
+                        <div id="timer-display" style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; font-family: var(--font-tactical); color: var(--color-gold);">0:00</div>
+                        <div id="timer-label" style="font-size: 12px; color: var(--color-text-muted); letter-spacing: 1px; text-transform: uppercase;">Elapsed Time</div>
+                    </div>
+
+                    <!-- Full Creed Mode Panel -->
+                    <div id="voice-full-mode" style="display: none;">
+                        <div style="background: rgba(197,179,88,0.06); border: 1px solid rgba(197,179,88,0.2); border-radius: 12px; padding: var(--space-xl); margin-bottom: var(--space-lg); text-align: center;">
+                            <div style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: var(--space-md);">Recite the entire Ranger Creed from start to finish — all 6 stanzas plus "Rangers Lead The Way!"</div>
+                            <button class="voice-start-btn" id="full-creed-start" style="font-size: 15px; padding: 14px 32px;">Start Full Creed</button>
+                            <button class="voice-stop-btn" id="full-creed-stop" style="font-size: 15px; padding: 14px 32px;">Stop Recording</button>
+                        </div>
+                        <div class="voice-interim" id="full-creed-interim"></div>
+                        <div class="voice-diff" id="full-creed-diff"></div>
+                        <div id="full-creed-results" style="display: none; text-align: center; margin-top: var(--space-xl); padding: var(--space-xl); background: rgba(197,179,88,0.06); border: 1px solid rgba(197,179,88,0.3); border-radius: 12px;">
+                            <div id="full-creed-score" style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; color: var(--color-gold);"></div>
+                            <div id="full-creed-time" style="font-size: 14px; color: var(--color-text-muted); margin-top: 4px;"></div>
+                            <div id="full-creed-verdict" style="font-size: 15px; color: var(--color-text-secondary); margin-top: var(--space-sm);"></div>
+                        </div>
+                    </div>
+
+                    <!-- Stanza Mode (default) -->
                     <div id="voice-stanzas"></div>
 
                     <div id="voice-overall" style="display: none; text-align: center; margin-top: var(--space-2xl); padding: var(--space-xl); background: rgba(197,179,88,0.06); border: 1px solid rgba(197,179,88,0.3); border-radius: 12px;">
                         <div style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--color-gold);" id="voice-total-score"></div>
                         <div style="font-size: 15px; color: var(--color-text-secondary); margin-top: var(--space-sm);" id="voice-total-verdict"></div>
                     </div>
+
+                    <!-- Reset + Stats -->
+                    <div style="display: flex; gap: var(--space-sm); justify-content: center; margin-top: var(--space-xl); flex-wrap: wrap;">
+                        <button id="voice-reset" style="font-size: 12px; padding: 8px 16px; border: 1px solid rgba(239,68,68,0.3); background: transparent; color: #ef4444; border-radius: 6px; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;">Reset All Scores</button>
+                        <button id="voice-history-btn" style="font-size: 12px; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.12); background: transparent; color: var(--color-text-muted); border-radius: 6px; cursor: pointer; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;">View History</button>
+                    </div>
+                    <div id="voice-history" style="display: none; margin-top: var(--space-lg); max-height: 300px; overflow-y: auto;"></div>
                 </div>
 
                 <!-- PRACTICE ASSESSMENT -->
@@ -484,6 +522,65 @@
             width: 100%;
             margin-bottom: var(--space-sm);
         }
+        .voice-mode-btn {
+            font-family: var(--font-display);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: transparent;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.25s;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+        }
+        .voice-mode-btn:hover {
+            border-color: rgba(255,255,255,0.35);
+            color: var(--color-white);
+        }
+        .voice-mode-btn.active {
+            background: var(--color-gold);
+            color: var(--color-bg);
+            border-color: var(--color-gold);
+        }
+        .voice-start-btn {
+            min-height: 44px;
+            min-width: 140px;
+        }
+        .voice-stop-btn {
+            min-height: 44px;
+        }
+        .voice-history-entry {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 13px;
+        }
+        .voice-history-entry:last-child { border-bottom: none; }
+        .voice-history-date { color: var(--color-text-muted); }
+        .voice-history-score { font-weight: 700; }
+        .voice-confidence-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 2px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+        .voice-confidence-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        @keyframes timer-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        #timer-display.running {
+            animation: timer-pulse 1s infinite;
+        }
     </style>
 
     <script>
@@ -542,8 +639,10 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
             { label: 'Stanza 3 — "Never..."', text: "Never shall I fail my comrades. I will always keep myself mentally alert, physically strong, and morally straight, and I will shoulder more than my share of the task, whatever it may be, one hundred percent and then some." },
             { label: 'Stanza 4 — "Gallantly..."', text: "Gallantly will I show the world that I am a specially selected and well-trained soldier. My courtesy to superior officers, neatness of dress, and care of equipment shall set the example for others to follow." },
             { label: 'Stanza 5 — "Energetically..."', text: "Energetically will I meet the enemies of my country. I shall defeat them on the field of battle for I am better trained and will fight with all my might. Surrender is not a Ranger word. I will never leave a fallen comrade to fall into the hands of the enemy and under no circumstances will I ever embarrass my country." },
-            { label: 'Stanza 6 — "Readily..."', text: "Readily will I display the intestinal fortitude required to fight on to the Ranger objective and complete the mission, though I be the lone survivor." }
+            { label: 'Stanza 6 — "Readily..."', text: "Readily will I display the intestinal fortitude required to fight on to the Ranger objective and complete the mission, though I be the lone survivor. Rangers lead the way!" }
         ];
+
+        const fullCreedText = creedStanzas.map(s => s.text).join(' ');
 
         const commonMistakes = {
             'esprit': 'Pronunciation tip: "esprit de corps" is pronounced "eh-SPREE duh KOR" — it means the common spirit and pride of the unit.',
@@ -559,6 +658,7 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
 
         // ── Score Persistence ──
         const STORAGE_KEY = 'ranger-creed-voice-scores';
+        const HISTORY_KEY = 'ranger-creed-voice-history';
         function loadScores() {
             try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
         }
@@ -566,6 +666,48 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
             const scores = loadScores();
             scores[idx] = Math.max(scores[idx] || 0, score);
             localStorage.setItem(STORAGE_KEY, JSON.stringify(scores));
+        }
+        function loadHistory() {
+            try { return JSON.parse(localStorage.getItem(HISTORY_KEY)) || []; } catch { return []; }
+        }
+        function saveAttempt(mode, score, time) {
+            const history = loadHistory();
+            history.unshift({ mode: mode, score: score, time: time, date: new Date().toISOString() });
+            if (history.length > 50) history.length = 50;
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+            updateAttemptCount();
+        }
+        function updateAttemptCount() {
+            var h = loadHistory();
+            var el = document.getElementById('voice-attempt-count');
+            if (el) el.textContent = h.length > 0 ? h.length + ' attempt' + (h.length !== 1 ? 's' : '') : '';
+        }
+
+        // ── Timer ──
+        var timerInterval = null;
+        var timerStart = 0;
+        function startTimer() {
+            timerStart = Date.now();
+            var display = document.getElementById('timer-display');
+            display.classList.add('running');
+            clearInterval(timerInterval);
+            timerInterval = setInterval(function() {
+                var elapsed = Math.floor((Date.now() - timerStart) / 1000);
+                var min = Math.floor(elapsed / 60);
+                var sec = elapsed % 60;
+                display.textContent = min + ':' + (sec < 10 ? '0' : '') + sec;
+            }, 250);
+        }
+        function stopTimer() {
+            clearInterval(timerInterval);
+            var display = document.getElementById('timer-display');
+            display.classList.remove('running');
+            return Math.floor((Date.now() - timerStart) / 1000);
+        }
+        function formatTime(seconds) {
+            var min = Math.floor(seconds / 60);
+            var sec = seconds % 60;
+            return min + ':' + (sec < 10 ? '0' : '') + sec;
         }
 
         // ── Word Diff Algorithm ──
@@ -585,7 +727,6 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
                     dp[i][j] = expNorm[i-1] === spkNorm[j-1] ? dp[i-1][j-1]+1 : Math.max(dp[i-1][j], dp[i][j-1]);
 
             // Backtrack to build alignment
-            const result = [];
             let i = m, j = n;
             const aligned = [];
             while (i > 0 || j > 0) {
@@ -628,9 +769,32 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
             return tips;
         }
 
+        // ── Mode Switching ──
+        var currentMode = 'stanza';
+        document.getElementById('mode-stanza').addEventListener('click', function() { switchMode('stanza'); });
+        document.getElementById('mode-full').addEventListener('click', function() { switchMode('full'); });
+        document.getElementById('mode-timed').addEventListener('click', function() { switchMode('timed'); });
+
+        function switchMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.voice-mode-btn').forEach(function(b) { b.classList.remove('active'); });
+            document.getElementById('mode-' + (mode === 'timed' ? 'timed' : mode)).classList.add('active');
+
+            document.getElementById('voice-stanzas').style.display = (mode === 'stanza' || mode === 'timed') ? '' : 'none';
+            document.getElementById('voice-full-mode').style.display = mode === 'full' ? '' : 'none';
+            document.getElementById('voice-timer').style.display = mode === 'timed' ? '' : 'none';
+            document.getElementById('voice-overall').style.display = 'none';
+
+            if (mode === 'timed') {
+                document.getElementById('timer-display').textContent = '0:00';
+                document.getElementById('timer-label').textContent = 'Start any stanza to begin timer';
+            }
+        }
+
         // ── Build Voice UI ──
         function buildVoiceUI() {
             const container = document.getElementById('voice-stanzas');
+            container.innerHTML = '';
             const scores = loadScores();
 
             creedStanzas.forEach((stanza, idx) => {
@@ -658,6 +822,7 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
                         ) +
                     '</div>' +
                     '<div class="voice-interim" id="voice-interim-' + idx + '"></div>' +
+                    '<div class="voice-confidence-bar"><div class="voice-confidence-fill" id="voice-conf-' + idx + '" style="width:0%;background:#666;"></div></div>' +
                     '<div class="voice-diff" id="voice-diff-' + idx + '"></div>' +
                     '<div class="voice-critique" id="voice-critique-' + idx + '"></div>';
 
@@ -682,35 +847,48 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
                     });
                 });
             }
+
+            updateAttemptCount();
         }
 
         // ── Recording Logic ──
         let activeRecognition = null;
+        var timedFirstStanza = true;
 
         function startRecording(idx) {
             if (activeRecognition) { activeRecognition.abort(); activeRecognition = null; }
+
+            // Start timer in timed mode
+            if (currentMode === 'timed' && timedFirstStanza) {
+                startTimer();
+                timedFirstStanza = false;
+                document.getElementById('timer-label').textContent = 'Elapsed Time';
+            }
 
             const recognition = new SpeechRecognition();
             recognition.continuous = true;
             recognition.interimResults = true;
             recognition.lang = 'en-US';
 
-            const startBtn = document.querySelector('.voice-start-btn[data-idx="' + idx + '"]');
-            const stopBtn = document.querySelector('.voice-stop-btn[data-idx="' + idx + '"]');
+            const startBtn = document.querySelector('#voice-stanzas .voice-start-btn[data-idx="' + idx + '"]');
+            const stopBtn = document.querySelector('#voice-stanzas .voice-stop-btn[data-idx="' + idx + '"]');
             const interimEl = document.getElementById('voice-interim-' + idx);
             const diffEl = document.getElementById('voice-diff-' + idx);
             const critiqueEl = document.getElementById('voice-critique-' + idx);
+            const confEl = document.getElementById('voice-conf-' + idx);
 
             // Reset previous results
             diffEl.style.display = 'none';
             critiqueEl.style.display = 'none';
             interimEl.textContent = 'Listening...';
+            if (confEl) { confEl.style.width = '0%'; confEl.style.background = '#666'; }
 
             startBtn.classList.add('recording');
             startBtn.textContent = 'Recording...';
             stopBtn.style.display = 'inline-block';
 
             let finalTranscript = '';
+            let bestConfidence = 0;
 
             recognition.onresult = (event) => {
                 let interim = '';
@@ -718,11 +896,18 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
                 for (let i = 0; i < event.results.length; i++) {
                     if (event.results[i].isFinal) {
                         finalTranscript += event.results[i][0].transcript + ' ';
+                        bestConfidence = Math.max(bestConfidence, event.results[i][0].confidence || 0);
                     } else {
                         interim += event.results[i][0].transcript;
                     }
                 }
                 interimEl.textContent = finalTranscript + interim || 'Listening...';
+                // Update confidence bar
+                if (confEl && bestConfidence > 0) {
+                    var pct = Math.round(bestConfidence * 100);
+                    confEl.style.width = pct + '%';
+                    confEl.style.background = pct >= 80 ? '#22c55e' : pct >= 50 ? '#f59e0b' : '#ef4444';
+                }
             };
 
             recognition.onend = () => {
@@ -755,7 +940,7 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
             activeRecognition = recognition;
         }
 
-        function stopRecording(idx) {
+        function stopRecording() {
             if (activeRecognition) { activeRecognition.stop(); }
         }
 
@@ -791,6 +976,8 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
 
             // Save score and unlock next
             saveScore(idx, score);
+            saveAttempt('stanza-' + (idx + 1), score, null);
+
             if (score >= 80 && idx < creedStanzas.length - 1) {
                 const nextEl = document.getElementById('voice-s-' + (idx + 1));
                 if (nextEl && nextEl.classList.contains('locked')) {
@@ -815,8 +1002,146 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
                 else if (avg >= 50) verdict = 'Getting there. Focus on the red words.';
                 else verdict = 'Keep practicing. Recite it out loud every day.';
                 document.getElementById('voice-total-verdict').textContent = verdict;
+
+                // Stop timer if in timed mode
+                if (currentMode === 'timed') {
+                    var elapsed = stopTimer();
+                    document.getElementById('timer-label').textContent = 'Total time: ' + formatTime(elapsed);
+                    saveAttempt('timed-all', avg, elapsed);
+                }
             }
         }
+
+        // ── Full Creed Mode ──
+        (function() {
+            var fullStartBtn = document.getElementById('full-creed-start');
+            var fullStopBtn = document.getElementById('full-creed-stop');
+            if (!fullStartBtn) return;
+
+            fullStartBtn.addEventListener('click', function() {
+                if (!hasSpeech) { alert('Speech recognition requires Chrome or Edge.'); return; }
+                if (activeRecognition) { activeRecognition.abort(); activeRecognition = null; }
+
+                var recognition = new SpeechRecognition();
+                recognition.continuous = true;
+                recognition.interimResults = true;
+                recognition.lang = 'en-US';
+
+                var interimEl = document.getElementById('full-creed-interim');
+                var diffEl = document.getElementById('full-creed-diff');
+                var resultsEl = document.getElementById('full-creed-results');
+
+                diffEl.style.display = 'none';
+                resultsEl.style.display = 'none';
+                interimEl.textContent = 'Listening — recite the entire creed...';
+
+                fullStartBtn.classList.add('recording');
+                fullStartBtn.textContent = 'Recording...';
+                fullStopBtn.style.display = 'inline-block';
+
+                startTimer();
+                document.getElementById('voice-timer').style.display = '';
+
+                var finalTranscript = '';
+
+                recognition.onresult = function(event) {
+                    var interim = '';
+                    finalTranscript = '';
+                    for (var i = 0; i < event.results.length; i++) {
+                        if (event.results[i].isFinal) {
+                            finalTranscript += event.results[i][0].transcript + ' ';
+                        } else {
+                            interim += event.results[i][0].transcript;
+                        }
+                    }
+                    interimEl.textContent = finalTranscript + interim || 'Listening...';
+                };
+
+                recognition.onend = function() {
+                    var elapsed = stopTimer();
+                    fullStartBtn.classList.remove('recording');
+                    fullStartBtn.textContent = 'Start Full Creed';
+                    fullStopBtn.style.display = 'none';
+                    activeRecognition = null;
+
+                    if (finalTranscript.trim()) {
+                        var result = wordDiff(fullCreedText, finalTranscript.trim());
+                        diffEl.innerHTML = renderDiff(result.aligned);
+                        diffEl.style.display = 'block';
+                        interimEl.textContent = result.correct + '/' + result.total + ' words correct';
+
+                        document.getElementById('full-creed-score').textContent = result.score + '%';
+                        document.getElementById('full-creed-time').textContent = 'Time: ' + formatTime(elapsed);
+                        var verdict;
+                        if (result.score >= 95) verdict = 'RANGER QUALIFIED. You know the Creed cold. RLTW!';
+                        else if (result.score >= 85) verdict = 'Strong performance. Tighten up the weak spots.';
+                        else if (result.score >= 70) verdict = 'Good effort — keep drilling daily.';
+                        else if (result.score >= 50) verdict = 'Getting there. Break it into stanzas and master each one.';
+                        else verdict = 'Back to basics. Master each stanza individually first.';
+                        document.getElementById('full-creed-verdict').textContent = verdict;
+                        resultsEl.style.display = 'block';
+                        resultsEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        saveAttempt('full-creed', result.score, elapsed);
+                    } else {
+                        interimEl.textContent = 'No speech detected. Try again.';
+                    }
+                };
+
+                recognition.onerror = function(event) {
+                    stopTimer();
+                    fullStartBtn.classList.remove('recording');
+                    fullStartBtn.textContent = 'Start Full Creed';
+                    fullStopBtn.style.display = 'none';
+                    activeRecognition = null;
+                    if (event.error === 'not-allowed') {
+                        interimEl.textContent = 'Microphone access denied. Check browser permissions.';
+                    } else {
+                        interimEl.textContent = 'Error: ' + event.error;
+                    }
+                };
+
+                recognition.start();
+                activeRecognition = recognition;
+            });
+
+            fullStopBtn.addEventListener('click', function() {
+                if (activeRecognition) activeRecognition.stop();
+            });
+        })();
+
+        // ── Reset Scores ──
+        document.getElementById('voice-reset').addEventListener('click', function() {
+            if (!confirm('Reset all voice assessment scores? This cannot be undone.')) return;
+            localStorage.removeItem(STORAGE_KEY);
+            timedFirstStanza = true;
+            document.getElementById('timer-display').textContent = '0:00';
+            document.getElementById('voice-overall').style.display = 'none';
+            buildVoiceUI();
+        });
+
+        // ── History ──
+        document.getElementById('voice-history-btn').addEventListener('click', function() {
+            var el = document.getElementById('voice-history');
+            if (el.style.display === 'none' || !el.style.display) {
+                var history = loadHistory();
+                if (history.length === 0) {
+                    el.innerHTML = '<div style="text-align:center;color:var(--color-text-muted);font-size:13px;padding:var(--space-lg);">No attempts yet. Start reciting!</div>';
+                } else {
+                    el.innerHTML = history.map(function(h) {
+                        var d = new Date(h.date);
+                        var dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+                        var scoreColor = h.score >= 80 ? '#22c55e' : h.score >= 50 ? '#f59e0b' : '#ef4444';
+                        var timeStr = h.time ? ' — ' + formatTime(h.time) : '';
+                        return '<div class="voice-history-entry"><span class="voice-history-date">' + dateStr + '</span><span>' + h.mode + timeStr + '</span><span class="voice-history-score" style="color:' + scoreColor + '">' + h.score + '%</span></div>';
+                    }).join('');
+                }
+                el.style.display = 'block';
+                this.textContent = 'Hide History';
+            } else {
+                el.style.display = 'none';
+                this.textContent = 'View History';
+            }
+        });
 
         // Initialize voice UI when DOM is ready
         buildVoiceUI();

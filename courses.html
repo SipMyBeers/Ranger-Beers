@@ -542,18 +542,29 @@
         <h2 class="section-title fade-in">Book a Call</h2>
         <p class="section-desc fade-in">Have questions about Ranger School prep or want to schedule a 1-on-1 coaching session? Send us a message.</p>
 
-        <form id="contact-form" style="max-width: 560px; margin: 0 auto;" onsubmit="return false;">
+        <!-- FORMSUBMIT.CO: Replace YOUR_EMAIL_HERE with your real email, then submit the form once to activate -->
+        <form id="contact-form" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" style="max-width: 560px; margin: 0 auto;">
+            <!-- Formsubmit config -->
+            <input type="hidden" name="_subject" value="New Ranger Beers Contact Form Submission">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://ranger-beers.com/courses.html?sent=1#contact">
+            <input type="text" name="_honey" style="display:none">
+
             <div style="margin-bottom: var(--space-lg);">
                 <label style="display: block; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-xs);">Name</label>
-                <input type="text" class="form-input" placeholder="Your name" required style="width: 100%;">
+                <input type="text" name="name" class="form-input" placeholder="Your name" required style="width: 100%;">
             </div>
             <div style="margin-bottom: var(--space-lg);">
                 <label style="display: block; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-xs);">Email</label>
-                <input type="email" class="form-input" placeholder="your@email.com" required style="width: 100%;">
+                <input type="email" name="email" class="form-input" placeholder="your@email.com" required style="width: 100%;">
             </div>
             <div style="margin-bottom: var(--space-xl);">
                 <label style="display: block; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-xs);">Message</label>
-                <textarea class="form-textarea" rows="5" placeholder="Tell us about your Ranger School timeline, questions, or coaching interests..." required style="width: 100%;"></textarea>
+                <textarea name="message" class="form-textarea" rows="5" placeholder="Tell us about your Ranger School timeline, questions, or coaching interests..." required style="width: 100%;"></textarea>
+            </div>
+            <div id="form-success" style="display:none; text-align:center; padding: var(--space-lg); background: rgba(75,181,67,0.1); border: 1px solid rgba(75,181,67,0.3); border-radius: var(--radius-md); margin-bottom: var(--space-lg);">
+                <p style="color: #4bb543; font-weight: 600; margin: 0;">Message sent! We'll get back to you ASAP.</p>
             </div>
             <div style="text-align: center;">
                 <button type="submit" class="btn btn-primary" style="min-width: 200px;">Send Message</button>
@@ -582,6 +593,13 @@
     <script>
 
 window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+
+        // ── Contact Form: show success message on return from Formsubmit ──
+        if (new URLSearchParams(window.location.search).get('sent') === '1') {
+            const s = document.getElementById('form-success');
+            if (s) { s.style.display = 'block'; document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); }
+            history.replaceState(null, '', window.location.pathname + '#contact');
+        }
 
         // ── Mobile Nav Toggle + Accordion ──
         (function() {
