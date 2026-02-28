@@ -36,10 +36,10 @@
                         <li><a href="shop.html">Full Shop</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><span class="nav-dropdown-label">Seasons</span></li>
-                        <li><a href="winter.html">Winter</a></li>
-                        <li><a href="spring.html">Spring</a></li>
-                        <li><a href="summer.html">Summer</a></li>
-                        <li><a href="fall.html">Fall</a></li>
+                        <li><a href="shop.html?season=winter">Winter</a></li>
+                        <li><a href="shop.html?season=spring">Spring</a></li>
+                        <li><a href="shop.html?season=summer">Summer</a></li>
+                        <li><a href="shop.html?season=fall">Fall</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
                     </ul>
@@ -56,24 +56,40 @@
                         <li><a href="course-knots.html">Knots &amp; Rope</a></li>
                         <li><a href="course-rtts.html">RTTs</a></li>
                         <li><a href="course-opord.html">OPORD</a></li>
+                        <li><a href="course-battle-drills.html">Battle Drills</a></li>
+                        <li><a href="course-patrol-base.html">Patrol Base Ops</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><span class="nav-dropdown-label">Knowledge</span></li>
                         <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
                         <li><a href="course-medical.html">Medical</a></li>
+                        <li><a href="course-nutrition.html">Nutrition &amp; Fueling</a></li>
+                        <li><a href="course-mental-toughness.html">Mental Toughness</a></li>
+                        <li><a href="course-recycle.html">Recycle &amp; Recovery</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><span class="nav-dropdown-label">Fitness</span></li>
                         <li><a href="course-workout-12week.html">12-Week Prep</a></li>
                         <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
                         <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
                         <li class="nav-dropdown-divider"></li>
-                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><span class="nav-dropdown-label">Hands-On</span></li>
                         <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li><a href="course-water-survival.html">Water Confidence</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><a href="courses.html#bundles">Course Bundles</a></li>
                     </ul>
                 </li>
                 <li class="nav-sep"></li>
-                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="inventory.html">Packing List</a></li>
+                        <li><a href="timeline.html">Pre-Ranger Timeline</a></li>
+                        <li><a href="faq.html">FAQ from Graduates</a></li>
+                        <li><a href="family.html">Family &amp; Spouse Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="resources.html">Study &amp; Downloads</a></li>
+                    </ul>
+                </li>
                 <li class="nav-sep"></li>
                 <li class="nav-dropdown">
                     <a href="standards.html">Standards</a>
@@ -103,76 +119,220 @@
         <p class="section-desc fade-in">In-depth training guides built from Ranger School experience. Sign in with a free account to access all course content.</p>
     </div>
 
+    <!-- FILTER BAR -->
+    <style>
+        .course-filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: var(--space-lg) var(--space-xl) 0;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+        .filter-btn {
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: transparent;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.25s;
+            border-radius: 6px;
+        }
+        .filter-btn:hover {
+            border-color: rgba(255, 255, 255, 0.35);
+            color: var(--color-white);
+        }
+        .filter-btn.active {
+            background: var(--color-gold);
+            color: var(--color-bg);
+            border-color: var(--color-gold);
+        }
+        .course-count {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            text-align: center;
+            padding: var(--space-md) var(--space-xl) 0;
+        }
+        .course-no-results {
+            text-align: center;
+            padding: var(--space-3xl) var(--space-xl);
+            color: var(--color-text-muted);
+            font-size: 15px;
+            display: none;
+        }
+    </style>
+
+    <div class="course-filter-bar">
+        <button class="filter-btn active" data-filter="all">All Courses</button>
+        <button class="filter-btn" data-filter="free">Free</button>
+        <button class="filter-btn" data-filter="basic">Basic</button>
+        <button class="filter-btn" data-filter="advanced">Advanced</button>
+        <button class="filter-btn" data-filter="full">Full Access</button>
+    </div>
+    <div class="course-count" id="course-count">Showing 17 of 17 courses</div>
+
     <!-- COURSE CATALOG -->
-    <section class="section" style="padding-top: var(--space-2xl);">
-        <div class="course-card-grid stagger">
-            <a href="course-ranger-prep.html" class="course-card fade-in">
-                <div class="course-card-badge">7 Modules</div>
-                <div class="course-card-title">Ranger School Prep — Complete Guide</div>
-                <div class="course-card-desc">Everything you need to know before Day 1. Physical standards, land nav, packing list deep dive, tactical tasks, patrol base ops, the orders process, and phase-specific tips.</div>
-                <div class="course-card-meta">Comprehensive &bull; All Phases &bull; Free with account</div>
-            </a>
-            <a href="course-ranger-creed.html" class="course-card fade-in">
+    <section class="section" style="padding-top: var(--space-lg);">
+        <div class="course-card-grid stagger" id="course-grid">
+            <!-- Ranger Creed — basic advanced full -->
+            <a href="course-ranger-creed.html" class="course-card fade-in" data-tier="basic advanced full">
                 <div class="course-card-badge">Creed Mastery</div>
                 <div class="course-card-title">Ranger Creed Mastery</div>
                 <div class="course-card-desc">Full creed text with stanza-by-stanza analysis, memorization techniques, and a practice assessment. You will recite this every single day — know it cold.</div>
                 <div class="course-card-meta">Knowledge &bull; Memorization &bull; Free with account</div>
+                <div class="course-card-price">$3</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">All Phases</span><span class="course-tag tag-type">Knowledge</span><span class="course-tag tag-bundle">Basic+</span></div>
             </a>
-            <a href="course-tmk.html" class="course-card fade-in">
-                <div class="course-card-badge">Build Guide</div>
-                <div class="course-card-title">TMK Build Guide</div>
-                <div class="course-card-desc">Complete terrain model kit assembly instructions with supply list and links to shop products. Build a terrain model that gets you a GO on your OPORD brief.</div>
-                <div class="course-card-meta">Tactical &bull; Hands-On &bull; Free with account</div>
-            </a>
-            <a href="course-land-nav.html" class="course-card fade-in">
-                <div class="course-card-badge">Navigation</div>
-                <div class="course-card-title">Land Navigation Course</div>
-                <div class="course-card-desc">Master terrain association, map reading, compass work, and point plotting. Day and night land nav are RAP Week gates — this course covers everything from basic map skills to advanced resection techniques.</div>
-                <div class="course-card-meta">Navigation &bull; RAP Week Prep &bull; Free with account</div>
-            </a>
-            <a href="course-medical.html" class="course-card fade-in">
+            <!-- Medical — basic advanced full -->
+            <a href="course-medical.html" class="course-card fade-in" data-tier="basic advanced full">
                 <div class="course-card-badge">Medical</div>
                 <div class="course-card-title">Medical Readiness</div>
                 <div class="course-card-desc">In-processing medical requirements, CIF issue checklist, injury prevention, and what to do if you get hurt during the course. Don't get sent home on Day 0 for missing paperwork.</div>
                 <div class="course-card-meta">Medical &bull; Admin &bull; Free with account</div>
+                <div class="course-card-price">$3</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">RAP Week</span><span class="course-tag tag-type">Admin</span><span class="course-tag tag-bundle">Basic+</span></div>
             </a>
-            <a href="course-knots.html" class="course-card fade-in">
-                <div class="course-card-badge">9 Modules</div>
-                <div class="course-card-title">Knots &amp; Rope Work</div>
-                <div class="course-card-desc">Master the knots you'll need for Mountain Phase. Figure-eight, bowline, clove hitch, water knot, rappel seat, square knot, and prusik — 5 of 6 in 5 minutes.</div>
-                <div class="course-card-meta">Mountain Phase &bull; Hands-On &bull; Free with account</div>
-            </a>
-            <a href="course-rtts.html" class="course-card fade-in">
-                <div class="course-card-badge">8 Modules</div>
-                <div class="course-card-title">Ranger Tactical Tasks (RTTs)</div>
-                <div class="course-card-desc">All 7 RTTs with step-by-step procedures, GO/NO-GO criteria, and time standards. M249, M240B, Claymore, SINCGARS, and MBITR — pass 5 of 7.</div>
-                <div class="course-card-meta">RAP Week &bull; Tactical &bull; Free with account</div>
-            </a>
-            <a href="course-opord.html" class="course-card fade-in">
+            <!-- OPORD — basic advanced full -->
+            <a href="course-opord.html" class="course-card fade-in" data-tier="basic advanced full">
                 <div class="course-card-badge">8 Modules</div>
                 <div class="course-card-title">OPORD &amp; Orders Process</div>
                 <div class="course-card-desc">Master the 5-paragraph operations order, troop leading procedures, and tactical planning. Your OPORD brief is a major component of your patrol grade.</div>
                 <div class="course-card-meta">Leadership &bull; Planning &bull; Free with account</div>
+                <div class="course-card-price">$5</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">All Phases</span><span class="course-tag tag-type">Leadership</span><span class="course-tag tag-bundle">Basic+</span></div>
             </a>
-            <a href="course-workout-12week.html" class="course-card fade-in">
+            <!-- Nutrition — basic advanced full (NEW) -->
+            <a href="course-nutrition.html" class="course-card fade-in" data-tier="basic advanced full">
+                <div class="course-card-badge">5 Modules</div>
+                <div class="course-card-title">Nutrition &amp; Fueling Guide</div>
+                <div class="course-card-desc">MRE strategy, calorie management, hydration under stress, and how to maximize nutrition when you're running on 1-2 meals a day for 62 days.</div>
+                <div class="course-card-meta">Knowledge &bull; Pre-Ranger &bull; Free with account</div>
+                <div class="course-card-price">$3</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">Pre-Ranger</span><span class="course-tag tag-type">Knowledge</span><span class="course-tag tag-bundle">Basic+</span></div>
+            </a>
+            <!-- Mental Toughness — basic advanced full (NEW) -->
+            <a href="course-mental-toughness.html" class="course-card fade-in" data-tier="basic advanced full">
+                <div class="course-card-badge">5 Modules</div>
+                <div class="course-card-title">Mental Toughness &amp; Resilience</div>
+                <div class="course-card-desc">Sleep deprivation management, stress inoculation, quitting prevention, and the mental game that separates graduates from recycles.</div>
+                <div class="course-card-meta">Knowledge &bull; All Phases &bull; Free with account</div>
+                <div class="course-card-price">$3</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">All Phases</span><span class="course-tag tag-type">Knowledge</span><span class="course-tag tag-bundle">Basic+</span></div>
+            </a>
+            <!-- Land Nav — advanced full -->
+            <a href="course-land-nav.html" class="course-card fade-in" data-tier="advanced full">
+                <div class="course-card-badge">Navigation</div>
+                <div class="course-card-title">Land Navigation Course</div>
+                <div class="course-card-desc">Master terrain association, map reading, compass work, and point plotting. Day and night land nav are RAP Week gates — this course covers everything from basic map skills to advanced resection techniques.</div>
+                <div class="course-card-meta">Navigation &bull; RAP Week Prep &bull; Free with account</div>
+                <div class="course-card-price">$5</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">RAP Week</span><span class="course-tag tag-type">Navigation</span><span class="course-tag tag-bundle">Advanced+</span></div>
+            </a>
+            <!-- Knots — advanced full -->
+            <a href="course-knots.html" class="course-card fade-in" data-tier="advanced full">
+                <div class="course-card-badge">9 Modules</div>
+                <div class="course-card-title">Knots &amp; Rope Work</div>
+                <div class="course-card-desc">Master the knots you'll need for Mountain Phase. Figure-eight, bowline, clove hitch, water knot, rappel seat, square knot, and prusik — 5 of 6 in 5 minutes.</div>
+                <div class="course-card-meta">Mountain Phase &bull; Hands-On &bull; Free with account</div>
+                <div class="course-card-price">$5</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">Mountain Phase</span><span class="course-tag tag-type">Hands-On</span><span class="course-tag tag-bundle">Advanced+</span></div>
+            </a>
+            <!-- RTTs — advanced full -->
+            <a href="course-rtts.html" class="course-card fade-in" data-tier="advanced full">
+                <div class="course-card-badge">8 Modules</div>
+                <div class="course-card-title">Ranger Tactical Tasks (RTTs)</div>
+                <div class="course-card-desc">All 7 RTTs with step-by-step procedures, GO/NO-GO criteria, and time standards. M249, M240B, Claymore, SINCGARS, and MBITR — pass 5 of 7.</div>
+                <div class="course-card-meta">RAP Week &bull; Tactical &bull; Free with account</div>
+                <div class="course-card-price">$5</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">RAP Week</span><span class="course-tag tag-type">Tactical</span><span class="course-tag tag-bundle">Advanced+</span></div>
+            </a>
+            <!-- TMK — advanced full -->
+            <a href="course-tmk.html" class="course-card fade-in" data-tier="advanced full">
+                <div class="course-card-badge">Build Guide</div>
+                <div class="course-card-title">TMK Build Guide</div>
+                <div class="course-card-desc">Complete terrain model kit assembly instructions with supply list and links to shop products. Build a terrain model that gets you a GO on your OPORD brief.</div>
+                <div class="course-card-meta">Tactical &bull; Hands-On &bull; Free with account</div>
+                <div class="course-card-price">$3</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">All Phases</span><span class="course-tag tag-type">Build Guide</span><span class="course-tag tag-bundle">Advanced+</span></div>
+            </a>
+            <!-- Battle Drills — advanced full (NEW) -->
+            <a href="course-battle-drills.html" class="course-card fade-in" data-tier="advanced full">
+                <div class="course-card-badge">6 Modules</div>
+                <div class="course-card-title">Battle Drills</div>
+                <div class="course-card-desc">React to contact, ambush, IED, and more. Battle drills are graded on every patrol — know them cold so you can execute under sleep deprivation and stress.</div>
+                <div class="course-card-meta">Tactical &bull; All Phases &bull; Free with account</div>
+                <div class="course-card-price">$5</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">All Phases</span><span class="course-tag tag-type">Tactical</span><span class="course-tag tag-bundle">Advanced+</span></div>
+            </a>
+            <!-- Patrol Base Ops — advanced full (NEW) -->
+            <a href="course-patrol-base.html" class="course-card fade-in" data-tier="advanced full">
+                <div class="course-card-badge">6 Modules</div>
+                <div class="course-card-title">Patrol Base Operations</div>
+                <div class="course-card-desc">Priorities of work, security plan, stand-to, and daily patrol base requirements. You'll occupy a patrol base every single night — get it right from Day 1.</div>
+                <div class="course-card-meta">Tactical &bull; All Phases &bull; Free with account</div>
+                <div class="course-card-price">$5</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">All Phases</span><span class="course-tag tag-type">Tactical</span><span class="course-tag tag-bundle">Advanced+</span></div>
+            </a>
+            <!-- Water Confidence — advanced full (NEW) -->
+            <a href="course-water-survival.html" class="course-card fade-in" data-tier="advanced full">
+                <div class="course-card-badge">4 Modules</div>
+                <div class="course-card-title">Water Confidence &amp; Swamp Survival</div>
+                <div class="course-card-desc">Water confidence test preparation, stream crossings, equipment waterproofing, and Florida Phase swamp operations. The water confidence test is a Swamp Phase gate.</div>
+                <div class="course-card-meta">Hands-On &bull; Swamp Phase &bull; Free with account</div>
+                <div class="course-card-price">$3</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">Swamp Phase</span><span class="course-tag tag-type">Hands-On</span><span class="course-tag tag-bundle">Advanced+</span></div>
+            </a>
+            <!-- Ranger Prep — full -->
+            <a href="course-ranger-prep.html" class="course-card fade-in" data-tier="full">
+                <div class="course-card-badge">7 Modules</div>
+                <div class="course-card-title">Ranger School Prep — Complete Guide</div>
+                <div class="course-card-desc">Everything you need to know before Day 1. Physical standards, land nav, packing list deep dive, tactical tasks, patrol base ops, the orders process, and phase-specific tips.</div>
+                <div class="course-card-meta">Comprehensive &bull; All Phases &bull; Free with account</div>
+                <div class="course-card-price">$10</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">All Phases</span><span class="course-tag tag-type">Comprehensive</span><span class="course-tag tag-bundle">Full Access</span></div>
+            </a>
+            <!-- 12-Week — full -->
+            <a href="course-workout-12week.html" class="course-card fade-in" data-tier="full">
                 <div class="course-card-badge">12 Weeks</div>
                 <div class="course-card-title">12-Week Ranger Prep Program</div>
                 <div class="course-card-desc">Structured 12-week training program with running as the foundation. Includes plate carrier runs, barefoot running, rucking, and upper body endurance progressions.</div>
                 <div class="course-card-meta">Fitness &bull; Running Focus &bull; Free with account</div>
+                <div class="course-card-price">$8</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">Pre-Ranger</span><span class="course-tag tag-type">Fitness</span><span class="course-tag tag-bundle">Full Access</span></div>
             </a>
-            <a href="course-workout-pt.html" class="course-card fade-in">
+            <!-- PT Test — full -->
+            <a href="course-workout-pt.html" class="course-card fade-in" data-tier="full">
                 <div class="course-card-badge">8 Modules</div>
                 <div class="course-card-title">PT Test &amp; Running</div>
                 <div class="course-card-desc">Standards-focused training for the RPFT. Dedicated programs for push-ups, sit-ups, chin-ups, 5-mile run, plate carrier running, and barefoot running technique.</div>
                 <div class="course-card-meta">Fitness &bull; Standards &bull; Free with account</div>
+                <div class="course-card-price">$5</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">Pre-Ranger</span><span class="course-tag tag-type">Fitness</span><span class="course-tag tag-bundle">Full Access</span></div>
             </a>
-            <a href="course-workout-ruck.html" class="course-card fade-in">
+            <!-- Ruck — full -->
+            <a href="course-workout-ruck.html" class="course-card fade-in" data-tier="full">
                 <div class="course-card-badge">7 Modules</div>
                 <div class="course-card-title">Ruck Endurance Builder</div>
                 <div class="course-card-desc">Progressive ruck march program building to the 12-mile standard (35 lbs dry, under 3 hours). Equipment setup, foot care, pacing, and nutrition.</div>
                 <div class="course-card-meta">Fitness &bull; Rucking &bull; Free with account</div>
+                <div class="course-card-price">$5</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">Pre-Ranger</span><span class="course-tag tag-type">Fitness</span><span class="course-tag tag-bundle">Full Access</span></div>
+            </a>
+            <!-- Recycle — free (NEW) -->
+            <a href="course-recycle.html" class="course-card fade-in" data-tier="free">
+                <div class="course-card-badge">4 Modules</div>
+                <div class="course-card-title">Recycle &amp; Recovery Guide</div>
+                <div class="course-card-desc">What happens if you fail a phase, how recycling works, staying motivated through setbacks, and the path back to graduation. No shame in the recycle game.</div>
+                <div class="course-card-meta">Knowledge &bull; All Phases &bull; Free</div>
+                <div class="course-card-price">Free</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">All Phases</span><span class="course-tag tag-type">Knowledge</span><span class="course-tag tag-bundle">Free</span></div>
             </a>
         </div>
+        <div class="course-no-results" id="course-no-results">No courses match this filter.</div>
     </section>
 
     <!-- COURSE BUNDLES -->
@@ -313,14 +473,16 @@
             <div class="bundle-card fade-in">
                 <div class="bundle-tier">Basic</div>
                 <div class="bundle-price">$10</div>
-                <div class="bundle-period">one-time</div>
+                <div class="bundle-period">one-time &bull; 5 courses</div>
                 <ul class="bundle-features">
                     <li>Ranger Creed Mastery</li>
                     <li>Medical Readiness</li>
                     <li>OPORD &amp; Orders Process</li>
+                    <li>Nutrition &amp; Fueling Guide</li>
+                    <li>Mental Toughness &amp; Resilience</li>
                     <li class="disabled">Land Navigation Course</li>
-                    <li class="disabled">Knots &amp; Rope Work</li>
-                    <li class="disabled">RTTs Course</li>
+                    <li class="disabled">Battle Drills &amp; Patrol Base</li>
+                    <li class="disabled">Knots, RTTs &amp; Water Confidence</li>
                     <li class="disabled">Fitness Courses (3)</li>
                     <li class="disabled">Ranger School Prep</li>
                     <li class="disabled">1-on-1 Coaching Sessions</li>
@@ -332,15 +494,16 @@
             <div class="bundle-card featured fade-in">
                 <div class="bundle-tier">Advanced</div>
                 <div class="bundle-price">$25</div>
-                <div class="bundle-period">one-time</div>
+                <div class="bundle-period">one-time &bull; 12 courses</div>
                 <ul class="bundle-features">
-                    <li>Ranger Creed Mastery</li>
-                    <li>Medical Readiness</li>
-                    <li>OPORD &amp; Orders Process</li>
+                    <li>All Basic Courses (5)</li>
                     <li>Land Navigation Course</li>
                     <li>Knots &amp; Rope Work</li>
                     <li>RTTs Course</li>
                     <li>TMK Build Guide</li>
+                    <li>Battle Drills</li>
+                    <li>Patrol Base Operations</li>
+                    <li>Water Confidence &amp; Swamp</li>
                     <li class="disabled">Fitness Courses (3)</li>
                     <li class="disabled">Ranger School Prep</li>
                     <li class="disabled">1-on-1 Coaching Sessions</li>
@@ -352,13 +515,15 @@
             <div class="bundle-card fade-in">
                 <div class="bundle-tier">Full Access</div>
                 <div class="bundle-price">$50</div>
-                <div class="bundle-period">one-time</div>
+                <div class="bundle-period">one-time &bull; all 17 courses</div>
                 <ul class="bundle-features">
-                    <li>All 11 Courses Included</li>
+                    <li>All 17 Courses Included</li>
                     <li>Ranger School Prep (7 Modules)</li>
                     <li>12-Week Prep + PT &amp; Running + Ruck</li>
                     <li>Land Nav + Knots + RTTs + OPORD</li>
-                    <li>TMK Build Guide</li>
+                    <li>Battle Drills + Patrol Base Ops</li>
+                    <li>Water Confidence + TMK Build</li>
+                    <li>Nutrition + Mental Toughness</li>
                     <li>Ranger Creed + Medical</li>
                     <li>1-on-1 Coaching Sessions</li>
                 </ul>
@@ -402,9 +567,9 @@
             <div class="footer-top">
                 <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
                 <div class="footer-nav">
-                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
-                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
-                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="shop.html?season=winter">Winter</a></li><li><a href="shop.html?season=spring">Spring</a></li><li><a href="shop.html?season=summer">Summer</a></li><li><a href="shop.html?season=fall">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="courses.html">Courses</a></li><li><a href="inventory.html">Packing List</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="timeline.html">Pre-Ranger Timeline</a></li><li><a href="faq.html">FAQ</a></li><li><a href="family.html">Family Guide</a></li><li><a href="standards.html">Standards</a></li></ul></div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -415,7 +580,7 @@
     </footer>
 
     <script>
-        
+
 window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
 
         // ── Mobile Nav Toggle + Accordion ──
@@ -462,6 +627,38 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
 
         const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ── Course Filter Logic ──
+        (function() {
+            const btns = document.querySelectorAll('.course-filter-bar .filter-btn');
+            const cards = document.querySelectorAll('#course-grid .course-card');
+            const countEl = document.getElementById('course-count');
+            const noResults = document.getElementById('course-no-results');
+            const total = cards.length;
+
+            btns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    btns.forEach(function(b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+
+                    var filter = btn.getAttribute('data-filter');
+                    var shown = 0;
+
+                    cards.forEach(function(card) {
+                        var tiers = card.getAttribute('data-tier') || '';
+                        if (filter === 'all' || tiers.indexOf(filter) !== -1) {
+                            card.style.display = '';
+                            shown++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    countEl.textContent = 'Showing ' + shown + ' of ' + total + ' courses';
+                    noResults.style.display = shown === 0 ? 'block' : 'none';
+                });
+            });
+        })();
     </script>
 
     <!-- Firebase Auth -->

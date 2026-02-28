@@ -35,10 +35,10 @@
                         <li><a href="shop.html">Full Shop</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><span class="nav-dropdown-label">Seasons</span></li>
-                        <li><a href="winter.html">Winter</a></li>
-                        <li><a href="spring.html">Spring</a></li>
-                        <li><a href="summer.html">Summer</a></li>
-                        <li><a href="fall.html">Fall</a></li>
+                        <li><a href="shop.html?season=winter">Winter</a></li>
+                        <li><a href="shop.html?season=spring">Spring</a></li>
+                        <li><a href="shop.html?season=summer">Summer</a></li>
+                        <li><a href="shop.html?season=fall">Fall</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
                     </ul>
@@ -55,24 +55,40 @@
                         <li><a href="course-knots.html">Knots &amp; Rope</a></li>
                         <li><a href="course-rtts.html">RTTs</a></li>
                         <li><a href="course-opord.html">OPORD</a></li>
+                        <li><a href="course-battle-drills.html">Battle Drills</a></li>
+                        <li><a href="course-patrol-base.html">Patrol Base Ops</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><span class="nav-dropdown-label">Knowledge</span></li>
                         <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
                         <li><a href="course-medical.html">Medical</a></li>
+                        <li><a href="course-nutrition.html">Nutrition &amp; Fueling</a></li>
+                        <li><a href="course-mental-toughness.html">Mental Toughness</a></li>
+                        <li><a href="course-recycle.html">Recycle &amp; Recovery</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><span class="nav-dropdown-label">Fitness</span></li>
                         <li><a href="course-workout-12week.html">12-Week Prep</a></li>
                         <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
                         <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
                         <li class="nav-dropdown-divider"></li>
-                        <li><span class="nav-dropdown-label">Build</span></li>
+                        <li><span class="nav-dropdown-label">Hands-On</span></li>
                         <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li><a href="course-water-survival.html">Water Confidence</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><a href="courses.html#bundles">Course Bundles</a></li>
                     </ul>
                 </li>
                 <li class="nav-sep"></li>
-                <li><a href="inventory.html">My Gear</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="inventory.html">Packing List</a></li>
+                        <li><a href="timeline.html">Pre-Ranger Timeline</a></li>
+                        <li><a href="faq.html">FAQ from Graduates</a></li>
+                        <li><a href="family.html">Family &amp; Spouse Guide</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="resources.html">Study &amp; Downloads</a></li>
+                    </ul>
+                </li>
                 <li class="nav-sep"></li>
                 <li class="nav-dropdown">
                     <a href="standards.html">Standards</a>
@@ -163,9 +179,8 @@
 
     <section class="hero">
         <div class="hero-video-wrap">
-            <video autoplay muted loop playsinline>
-                <!-- Replace: fall footage — transitional weather, patrols -->
-                <!-- <source src="videos/fall.mp4" type="video/mp4"> -->
+            <video autoplay muted loop playsinline poster="images/fall-poster.jpg">
+                <source src="videos/fall.mp4" type="video/mp4">
             </video>
         </div>
         <div class="hero-overlay"></div>
@@ -265,49 +280,49 @@
         <h2 class="section-title fade-in">Fall Gear Picks</h2>
         <div class="product-grid stagger">
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(55,65,81,0.8), rgba(31,41,55,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO<br>ECWCS</span></div>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(55,65,81,0.8), rgba(31,41,55,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO<br>ECWCS</span><img src="images/products/light-fleece-layer-ecwcs-gen-iii.jpg" alt="Light Fleece Layer — ECWCS Gen III" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
                 <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Rothco</div><div class="product-name">Light Fleece Layer — ECWCS Gen III</div><div class="product-price">$39.99</div><div class="product-tag">Fall Seasonal</div>
                     <button class="snipcart-add-item" data-item-id="light-fleece-layer-ecwcs-gen-iii" data-item-name="Light Fleece Layer — ECWCS Gen III" data-item-price="39.99" data-item-url="/fall.html" data-item-description="Light Fleece Layer — ECWCS Gen III">Add to Cart — $39.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(55,65,81,0.8), rgba(31,41,55,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">MECHANIX</span></div>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(55,65,81,0.8), rgba(31,41,55,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">MECHANIX</span><img src="images/products/gloves-m-pact-tactical.jpg" alt="Gloves — M-Pact Tactical" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
                 <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Mechanix Wear</div><div class="product-name">Gloves — M-Pact Tactical</div><div class="product-price">$34.99</div><div class="product-tag">Fall Seasonal</div>
                     <button class="snipcart-add-item" data-item-id="gloves-m-pact-tactical" data-item-name="Gloves — M-Pact Tactical" data-item-price="34.99" data-item-url="/fall.html" data-item-description="Gloves — M-Pact Tactical">Add to Cart — $34.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(55,65,81,0.8), rgba(31,41,55,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO</span></div>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(55,65,81,0.8), rgba(31,41,55,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO</span><img src="images/products/beanie-black-watch-cap.jpg" alt="Beanie (Black Watch Cap)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
                 <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Rothco</div><div class="product-name">Beanie (Black Watch Cap)</div><div class="product-price">$9.99</div><div class="product-tag">Clothing — Fall / Winter</div>
                     <button class="snipcart-add-item" data-item-id="beanie-black-watch-cap" data-item-name="Beanie (Black Watch Cap)" data-item-price="9.99" data-item-url="/fall.html" data-item-description="Beanie (Black Watch Cap)">Add to Cart — $9.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO</span></div>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO</span><img src="images/products/poncho-liner-woobie.jpg" alt="Poncho Liner (Woobie)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
                 <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Rothco</div><div class="product-name">Poncho Liner (Woobie)</div><div class="product-price">$54.99</div><div class="product-tag">Gear — All Seasons</div>
                     <button class="snipcart-add-item" data-item-id="poncho-liner-woobie" data-item-name="Poncho Liner (Woobie)" data-item-price="54.99" data-item-url="/fall.html" data-item-description="Poncho Liner (Woobie)">Add to Cart — $54.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">USGI</span></div>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">USGI</span><img src="images/products/wet-weather-bags-2-pack.jpg" alt="Wet Weather Bags (2-Pack)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
                 <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">USGI Surplus</div><div class="product-name">Wet Weather Bags (2-Pack)</div><div class="product-price">$8.99</div><div class="product-tag">Gear — Spring / Fall</div>
                     <button class="snipcart-add-item" data-item-id="wet-weather-bags-2-pack" data-item-name="Wet Weather Bags (2-Pack)" data-item-price="8.99" data-item-url="/fall.html" data-item-description="Wet Weather Bags (2-Pack)">Add to Cart — $8.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(60,45,70,0.8), rgba(40,30,50,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">REPEL 100</span></div>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(60,45,70,0.8), rgba(40,30,50,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">REPEL 100</span><img src="images/products/bug-repellent-98-deet-4-oz.jpg" alt="Bug Repellent — 98% DEET (4 oz)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
                 <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Repel</div><div class="product-name">Bug Repellent — 98% DEET (4 oz)</div><div class="product-price">$7.99</div><div class="product-tag">Hygiene — Seasonal</div>
                     <button class="snipcart-add-item" data-item-id="bug-repellent-98-deet-4-oz" data-item-name="Bug Repellent — 98% DEET (4 oz)" data-item-price="7.99" data-item-url="/fall.html" data-item-description="Bug Repellent — 98% DEET (4 oz)">Add to Cart — $7.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO</span></div>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO</span><img src="images/products/550-cord-100ft-all-colors.jpg" alt="550 Cord — 100ft (All Colors)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
                 <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Rothco</div><div class="product-name">550 Cord — 100ft (All Colors)</div><div class="product-price">$9.99</div><div class="product-tag">Gear — Essential</div>
                     <button class="snipcart-add-item" data-item-id="550-cord-100ft-all-colors" data-item-name="550 Cord — 100ft (All Colors)" data-item-price="9.99" data-item-url="/fall.html" data-item-description="550 Cord — 100ft (All Colors)">Add to Cart — $9.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">THERM-A-REST</span></div>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">THERM-A-REST</span><img src="images/products/sleeping-mat-pad-z-lite-sol.jpg" alt="Sleeping Mat / Pad — Z Lite SOL" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
                 <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Therm-a-Rest</div><div class="product-name">Sleeping Mat / Pad — Z Lite SOL</div><div class="product-price">$54.99</div><div class="product-tag">Gear — All Seasons</div>
                     <button class="snipcart-add-item" data-item-id="sleeping-mat-pad-z-lite-sol" data-item-name="Sleeping Mat / Pad — Z Lite SOL" data-item-price="54.99" data-item-url="/fall.html" data-item-description="Sleeping Mat / Pad — Z Lite SOL">Add to Cart — $54.99</button>
                 </div>
@@ -316,7 +331,7 @@
     </section>
 
     <section class="full-section" style="min-height: 50vh;">
-        <div class="section-video-wrap"><video autoplay muted loop playsinline><!-- <source src="videos/winter.mp4" type="video/mp4"> --></video></div>
+        <div class="section-video-wrap"><video autoplay muted loop playsinline><source src="videos/winter.mp4" type="video/mp4"></video></div>
         <div class="full-section-overlay overlay-center"></div>
         <div class="full-section-content" style="text-align: center;">
             <div class="section-label">Full Circle</div>
@@ -331,9 +346,9 @@
             <div class="footer-top">
                 <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
                 <div class="footer-nav">
-                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="winter.html">Winter</a></li><li><a href="spring.html">Spring</a></li><li><a href="summer.html">Summer</a></li><li><a href="fall.html">Fall</a></li></ul></div>
-                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="resources.html#workouts">Workouts</a></li><li><a href="resources.html#study">Study</a></li><li><a href="courses.html">Courses</a></li></ul></div>
-                    <div class="footer-col"><div class="footer-col-title">Company</div><ul><li><a href="#">About</a></li><li><a href="#">Contact</a></li><li><a href="standards.html">Standards</a></li><li><a href="resources.html#creed">Creed Assessment</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="shop.html?season=winter">Winter</a></li><li><a href="shop.html?season=spring">Spring</a></li><li><a href="shop.html?season=summer">Summer</a></li><li><a href="shop.html?season=fall">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="courses.html">Courses</a></li><li><a href="inventory.html">Packing List</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="timeline.html">Pre-Ranger Timeline</a></li><li><a href="faq.html">FAQ</a></li><li><a href="family.html">Family Guide</a></li><li><a href="standards.html">Standards</a></li></ul></div>
                 </div>
             </div>
             <div class="footer-bottom"><div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div><div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
