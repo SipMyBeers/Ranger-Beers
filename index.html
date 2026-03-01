@@ -121,8 +121,8 @@
     <!-- FULL-VIEWPORT VIDEO HERO -->
     <section class="hero" id="hero">
         <div class="hero-video-wrap">
-            <video autoplay muted loop playsinline poster="images/hero-poster.jpg">
-                <source src="videos/hero.mp4" type="video/mp4">
+            <video autoplay muted loop playsinline poster="images/phases/ranger-confidence-course.jpg">
+                <source src="media/ranger-school-overview.mp4" type="video/mp4">
             </video>
         </div>
         <div class="hero-overlay"></div>
@@ -1107,36 +1107,30 @@
             color: var(--color-gold-dim);
         }
 
-        /* Video placeholder */
-        .phase-video-placeholder {
-            height: 200px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: var(--radius-subtle);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-sm);
+        /* Phase video player */
+        .phase-video-wrap {
             margin-top: var(--space-md);
+            border-radius: var(--radius-subtle);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
         }
-        .phase-video-placeholder .play-icon {
-            width: 48px;
-            height: 48px;
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.25);
-            font-size: 18px;
+        .phase-video-wrap video {
+            width: 100%;
+            display: block;
+            background: #000;
         }
-        .phase-video-placeholder span {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.2);
+        .phase-img-wrap {
+            margin-top: var(--space-md);
+            border-radius: var(--radius-subtle);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .phase-img-wrap img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
         }
 
         /* Course stats row */
@@ -1311,10 +1305,8 @@
                     </ul>
                 </div>
 
-                <div class="phase-video-placeholder">
-                    <div class="play-icon">&#9654;</div>
-                    <span>Video Coming Soon</span>
-                </div>
+                <div class="phase-img-wrap"><img src="images/phases/ranger-confidence-course.jpg" alt="Ranger Assessment Phase" loading="lazy"></div>
+                <div class="phase-video-wrap"><video controls preload="none" poster="images/phases/ranger-confidence-course.jpg"><source src="media/rap-week.mp4" type="video/mp4"></video></div>
             </div>
 
             <!-- DARBY PHASE -->
@@ -1329,10 +1321,8 @@
                 <div class="ix-standard-item"><span class="ix-standard-name">Peer Evaluations</span><span class="ix-standard-value">Not lowest 3rd</span></div>
                 <div class="ix-phase-note">RAP Week assessment &rarr; techniques &rarr; cadre assisted patrols &rarr; graded squad operations. Fort Moore, GA.</div>
 
-                <div class="phase-video-placeholder">
-                    <div class="play-icon">&#9654;</div>
-                    <span>Video Coming Soon</span>
-                </div>
+                <div class="phase-img-wrap"><img src="images/phases/darby-queen-obstacle.jpg" alt="Darby Phase Obstacle Course" loading="lazy"></div>
+                <div class="phase-video-wrap"><video controls preload="none" poster="images/phases/darby-queen-obstacle.jpg"><source src="media/darby-phase.mp4" type="video/mp4"></video></div>
             </div>
 
             <!-- MOUNTAIN PHASE -->
@@ -1347,10 +1337,8 @@
                 <div class="ix-standard-item"><span class="ix-standard-name">Peer Evaluations</span><span class="ix-standard-value">Not lowest 3rd</span></div>
                 <div class="ix-phase-note">Lower mountaineering &rarr; Mt. Yonah &rarr; techniques &rarr; graded platoon operations. Dahlonega, GA.</div>
 
-                <div class="phase-video-placeholder">
-                    <div class="play-icon">&#9654;</div>
-                    <span>Video Coming Soon</span>
-                </div>
+                <div class="phase-img-wrap"><img src="images/phases/mountain-rappelling.jpg" alt="Mountain Phase Water Obstacle" loading="lazy"></div>
+                <div class="phase-video-wrap"><video controls preload="none" poster="images/phases/mountain-rappelling.jpg"><source src="media/mountain-phase.mp4" type="video/mp4"></video></div>
             </div>
 
             <!-- SWAMP PHASE -->
@@ -1365,10 +1353,8 @@
                 <div class="ix-standard-item"><span class="ix-standard-name">Peer Evaluations</span><span class="ix-standard-value">Not lowest 3rd</span></div>
                 <div class="ix-phase-note">Techniques &rarr; graded platoon operations &rarr; recovery / graduation prep. Eglin AFB, FL.</div>
 
-                <div class="phase-video-placeholder">
-                    <div class="play-icon">&#9654;</div>
-                    <span>Video Coming Soon</span>
-                </div>
+                <div class="phase-img-wrap"><img src="images/phases/swamp-phase.jpg" alt="Swamp Phase Slide for Life" loading="lazy"></div>
+                <div class="phase-video-wrap"><video controls preload="none" poster="images/phases/swamp-phase.jpg"><source src="media/swamp-phase.mp4" type="video/mp4"></video></div>
             </div>
         </div>
 
