@@ -246,10 +246,6 @@
             document.querySelectorAll('.course-filter-bar .filter-btn').forEach(function(b) {
                 b.classList.toggle('active', b.getAttribute('data-filter') === 'all');
             });
-            if (category) {
-                var grid = document.getElementById('course-grid');
-                if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
         }
 
         function toggleCategory(category) {

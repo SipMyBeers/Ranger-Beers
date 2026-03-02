@@ -1,9 +1,9 @@
 // ============================================
 // RANGER BEERS — Service Worker
-// Cache-first for static assets, network-first for HTML, skip API calls
+// Network-first for all resources, cache as offline fallback
 // ============================================
 
-const CACHE_NAME = 'ranger-beers-v5';
+const CACHE_NAME = 'ranger-beers-v6';
 
 const PRECACHE_URLS = [
   '/courses.html',
@@ -14,7 +14,7 @@ const PRECACHE_URLS = [
   '/images/ranger-tab.png',
 ];
 
-// Install — precache critical assets
+// Install — precache critical assets for offline use
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
@@ -32,43 +32,28 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch strategy
+// Fetch — network-first for everything, fall back to cache when offline
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // Skip API calls — always go to network
+  // Skip API calls — always go to network, no caching
   if (url.hostname.includes('ranger-beers-api') || url.hostname.includes('workers.dev')) {
     return;
   }
 
-  // Skip external resources (fonts, snipcart, botpress, analytics)
+  // Skip external resources (fonts, snipcart, analytics)
   if (url.hostname !== self.location.hostname) {
     return;
   }
 
-  // HTML pages — network-first, fall back to cache
-  if (event.request.mode === 'navigate' || url.pathname.endsWith('.html')) {
-    event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          return response;
-        })
-        .catch(() => caches.match(event.request))
-    );
-    return;
-  }
-
-  // Static assets (CSS, JS, images) — cache-first
+  // Everything — network-first, cache as fallback
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request).then((response) => {
+    fetch(event.request)
+      .then((response) => {
         const clone = response.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
         return response;
-      });
-    })
+      })
+      .catch(() => caches.match(event.request))
   );
 });
