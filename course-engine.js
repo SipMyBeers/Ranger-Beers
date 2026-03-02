@@ -113,6 +113,9 @@
 
     // Init quizzes
     initQuizzes(courseId);
+
+    // Init sidebar scrollspy
+    initScrollspy();
   }
 
   // ── Progress Bar ──
@@ -180,6 +183,29 @@
       if (!all[courseId].includes(modId)) all[courseId].push(modId);
       localStorage.setItem('rb_progress', JSON.stringify(all));
     } catch { /* ignore */ }
+  }
+
+  // ── Sidebar Scrollspy ──
+  function initScrollspy() {
+    const modules = document.querySelectorAll('.course-module[data-module]');
+    const links = document.querySelectorAll('.course-sidebar-link');
+    if (!modules.length || !links.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          links.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, {
+      rootMargin: '-80px 0px -60% 0px',
+      threshold: 0
+    });
+
+    modules.forEach(mod => observer.observe(mod));
   }
 
   // ── Quiz Engine ──
@@ -340,10 +366,16 @@
   }
 
   // ── Auto-init ──
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCourseEngine);
-  } else {
+  function init() {
     initCourseEngine();
+    // Scrollspy runs regardless of auth/access for any course page with modules
+    initScrollspy();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
 
   window.RangerCourse = { initCourseEngine, flushQueue };
