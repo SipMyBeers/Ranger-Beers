@@ -481,6 +481,16 @@
             color: var(--color-gold-dim);
         }
 
+        /* Season button active states */
+        .phase-card-btn[data-season="winter"]::before { background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08), transparent 70%); }
+        .phase-card-btn[data-season="spring"]::before { background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.08), transparent 70%); }
+        .phase-card-btn[data-season="summer"]::before { background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08), transparent 70%); }
+        .phase-card-btn[data-season="fall"]::before { background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.08), transparent 70%); }
+        .phase-card-btn.active[data-season="winter"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
+        .phase-card-btn.active[data-season="spring"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.15); }
+        .phase-card-btn.active[data-season="summer"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
+        .phase-card-btn.active[data-season="fall"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239, 68, 68, 0.15); }
+
         @media (max-width: 480px) {
             .phase-selector-grid { grid-template-columns: repeat(2, 1fr); }
         }
@@ -492,63 +502,69 @@
         </div>
 
         <div class="phase-selector-grid" id="phase-selector">
-            <button class="phase-card-btn" data-phase="surt">
+            <button class="phase-card-btn" data-phase="surt" onclick="togglePhase('surt')">
                 <div class="pc-icon">&#127947;</div>
                 <div class="pc-name">SURT</div>
                 <div class="pc-sub">Pre-Ranger</div>
                 <div class="pc-link">Learn More &rarr;</div>
             </button>
-            <button class="phase-card-btn" data-phase="rap">
+            <button class="phase-card-btn" data-phase="rap" onclick="togglePhase('rap')">
                 <div class="pc-icon">&#9889;</div>
                 <div class="pc-name">RAP</div>
                 <div class="pc-sub">Assessment Phase</div>
                 <div class="pc-link">Learn More &rarr;</div>
             </button>
-            <button class="phase-card-btn" data-phase="darby">
+            <button class="phase-card-btn" data-phase="darby" onclick="togglePhase('darby')">
                 <div class="pc-icon">&#127919;</div>
                 <div class="pc-name">Darby</div>
                 <div class="pc-sub">Fort Moore, GA</div>
                 <div class="pc-link">Learn More &rarr;</div>
             </button>
-            <button class="phase-card-btn" data-phase="mountains">
+            <button class="phase-card-btn" data-phase="mountains" onclick="togglePhase('mountains')">
                 <div class="pc-icon">&#9968;</div>
                 <div class="pc-name">Mountains</div>
                 <div class="pc-sub">Camp Merrill, Dahlonega</div>
                 <div class="pc-link">Learn More &rarr;</div>
             </button>
-            <button class="phase-card-btn" data-phase="swamp">
+            <button class="phase-card-btn" data-phase="swamp" onclick="togglePhase('swamp')">
                 <div class="pc-icon">&#128010;</div>
                 <div class="pc-name">Swamp</div>
                 <div class="pc-sub">Camp Rudder, FL</div>
                 <div class="pc-link">Learn More &rarr;</div>
             </button>
         </div>
+
+        <div class="selector-divider" style="margin: var(--space-xl) 0;">
+            <span class="selector-divider-label">Seasons</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr);" id="season-selector">
+            <button class="phase-card-btn" data-season="winter" onclick="toggleSeason('winter')">
+                <div class="pc-icon">&#10052;</div>
+                <div class="pc-name">Winter</div>
+                <div class="pc-sub">Dec &mdash; Feb</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="spring" onclick="toggleSeason('spring')">
+                <div class="pc-icon">&#127783;</div>
+                <div class="pc-name">Spring</div>
+                <div class="pc-sub">Mar &mdash; May</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="summer" onclick="toggleSeason('summer')">
+                <div class="pc-icon">&#9728;</div>
+                <div class="pc-name">Summer</div>
+                <div class="pc-sub">Jun &mdash; Aug</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="fall" onclick="toggleSeason('fall')">
+                <div class="pc-icon">&#127810;</div>
+                <div class="pc-name">Fall</div>
+                <div class="pc-sub">Sep &mdash; Nov</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+        </div>
     </div>
-
-    <!-- RANGER CREED -->
-    <section class="section" style="padding: var(--space-3xl) 40px;">
-        <div style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;" class="fade-in">
-            <p class="creed-stanza"><strong>Recognizing</strong> that I volunteered as a Ranger, fully knowing the hazards of my chosen profession, I will always endeavor to uphold the prestige, honor, and high esprit de corps of my Ranger Regiment.</p>
-
-            <p class="creed-stanza"><strong>Acknowledging</strong> the fact that a Ranger is a more elite soldier, who arrives at the cutting edge of battle by land, sea, or air, I accept the fact that as a Ranger, my country expects me to move further, faster, and fight harder than any other soldier.</p>
-
-            <p class="creed-stanza"><strong>Never</strong> shall I fail my comrades. I will always keep myself mentally alert, physically strong, and morally straight, and I will shoulder more than my share of the task, whatever it may be, one hundred percent and then some.</p>
-
-            <p class="creed-stanza"><strong>Gallantly</strong> will I show the world that I am a specially selected and well-trained soldier. My courtesy to superior officers, neatness of dress, and care of equipment shall set the example for others to follow.</p>
-
-            <p class="creed-stanza"><strong>Energetically</strong> will I meet the enemies of my country. I shall defeat them on the field of battle for I am better trained and will fight with all my might. Surrender is not a Ranger word. I will never leave a fallen comrade to fall into the hands of the enemy and under no circumstances will I ever embarrass my country.</p>
-
-            <p class="creed-stanza"><strong>Readily</strong> will I display the intestinal fortitude required to fight on to the Ranger objective and complete the mission, though I be the lone survivor.</p>
-
-            <div class="creed-closer">Rangers Lead the Way!</div>
-        </div>
-
-        <div style="text-align: center; margin-top: var(--space-2xl);">
-            <a href="resources.html#creed" class="btn btn-outline-gold">Take the Creed Assessment &rarr;</a>
-        </div>
-        </div>
-    </section>
-
 
     <!-- CLASS CALENDAR — Styled Schedule Tables -->
     <style>
@@ -1018,6 +1034,29 @@
     </section>
 
 
+    <!-- RANGER CREED -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;" class="fade-in">
+            <p class="creed-stanza"><strong>Recognizing</strong> that I volunteered as a Ranger, fully knowing the hazards of my chosen profession, I will always endeavor to uphold the prestige, honor, and high esprit de corps of my Ranger Regiment.</p>
+
+            <p class="creed-stanza"><strong>Acknowledging</strong> the fact that a Ranger is a more elite soldier, who arrives at the cutting edge of battle by land, sea, or air, I accept the fact that as a Ranger, my country expects me to move further, faster, and fight harder than any other soldier.</p>
+
+            <p class="creed-stanza"><strong>Never</strong> shall I fail my comrades. I will always keep myself mentally alert, physically strong, and morally straight, and I will shoulder more than my share of the task, whatever it may be, one hundred percent and then some.</p>
+
+            <p class="creed-stanza"><strong>Gallantly</strong> will I show the world that I am a specially selected and well-trained soldier. My courtesy to superior officers, neatness of dress, and care of equipment shall set the example for others to follow.</p>
+
+            <p class="creed-stanza"><strong>Energetically</strong> will I meet the enemies of my country. I shall defeat them on the field of battle for I am better trained and will fight with all my might. Surrender is not a Ranger word. I will never leave a fallen comrade to fall into the hands of the enemy and under no circumstances will I ever embarrass my country.</p>
+
+            <p class="creed-stanza"><strong>Readily</strong> will I display the intestinal fortitude required to fight on to the Ranger objective and complete the mission, though I be the lone survivor.</p>
+
+            <div class="creed-closer">Rangers Lead the Way!</div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-2xl);">
+            <a href="resources.html#creed" class="btn btn-outline-gold">Take the Creed Assessment &rarr;</a>
+        </div>
+    </section>
+
     <!-- STAY INFORMED — Newsletter Signup -->
     <section class="section" id="newsletter" style="text-align:center; padding-bottom:var(--space-3xl);">
         <span class="section-label">Stay Informed</span>
@@ -1135,30 +1174,8 @@
             });
         })();
 
-        // ── Phase Selector — click to expand ──────
-        (function() {
-            var btns = document.querySelectorAll('.phase-card-btn');
-            var panels = document.querySelectorAll('.phase-detail-panel');
-            var activePhase = null;
-
-            btns.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    var phase = this.getAttribute('data-phase');
-                    var panel = document.getElementById('detail-' + phase);
-                    var wasActive = this.classList.contains('active');
-
-                    // Close all
-                    btns.forEach(function(b) { b.classList.remove('active'); });
-                    panels.forEach(function(p) { p.classList.remove('open'); });
-
-                    // Toggle — if clicking same card, just close
-                    if (!wasActive && panel) {
-                        this.classList.add('active');
-                        panel.classList.add('open');
-                    }
-                });
-            });
-        })();
+        // ── Phase detail panel expand/collapse (called from togglePhase) ──
+        // Handled via onclick + togglePhase in bottom script block
 
         // Fade-in on scroll
         const observer = new IntersectionObserver((entries) => {
@@ -1184,60 +1201,82 @@
 
     <script>
         var phaseVideos = {
-            'surt': 'https://www.dvidshub.net/video/855747/82nd-abn-div-ranger-surt-react-contact-drill',
-            'rap': 'https://www.dvidshub.net/video/855274/82nd-abn-div-ranger-surt-pt-test',
+            'surt': 'media/75th-ranger-day1.mp4',
+            'rap': 'media/75th-ranger-day1.mp4',
             'darby': 'media/75th-ranger-day1.mp4',
             'mountains': 'media/mountain-phase.mp4',
             'swamp': 'media/the-creed-intro.mp4'
         };
-        var currentPhase = null;
+        var seasonVideos = {
+            'winter': 'media/mountain-phase.mp4',
+            'spring': 'media/the-creed-intro.mp4',
+            'summer': 'media/75th-ranger-day1.mp4',
+            'fall': 'media/mountain-phase.mp4'
+        };
+        var currentBgType = null; // 'phase' or 'season'
+        var currentBgKey = null;
 
-        function showPhaseVideo(phase) {
+        function showBgVideo(key, videoMap) {
             var videoSection = document.getElementById('phase-video-section');
             var video = document.getElementById('phase-bg-video');
-            
-            // Set and play the video
-            video.src = phaseVideos[phase];
+            if (!videoSection || !video) return;
+            video.src = videoMap[key] || '';
             videoSection.style.display = 'block';
-            video.play();
-            
-            // Highlight the active button
-            document.querySelectorAll('.phase-card-btn').forEach(function(btn) {
-                btn.classList.remove('active');
-            });
-            document.querySelector('.phase-card-btn[data-phase="' + phase + '"]').classList.add('active');
-            
-            currentPhase = phase;
+            video.play().catch(function() {});
         }
 
-        function hidePhaseVideo() {
+        function hideBgVideo() {
             var videoSection = document.getElementById('phase-video-section');
             var video = document.getElementById('phase-bg-video');
-            
-            video.pause();
-            video.src = '';
-            videoSection.style.display = 'none';
-            
-            // Remove highlight from buttons
-            document.querySelectorAll('.phase-card-btn').forEach(function(btn) {
-                btn.classList.remove('active');
-            });
-            
-            currentPhase = null;
+            if (video) { video.pause(); video.src = ''; }
+            if (videoSection) videoSection.style.display = 'none';
+            // Clear all active states
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            currentBgType = null;
+            currentBgKey = null;
         }
 
-        document.querySelectorAll('.phase-card-btn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var phase = this.getAttribute('data-phase');
-                
-                // Toggle: if same phase clicked, hide; otherwise show new phase
-                if (currentPhase === phase) {
-                    hidePhaseVideo();
-                } else {
-                    showPhaseVideo(phase);
-                }
-            });
-        });
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            // If clicking same one, close it
+            if (currentBgType === 'phase' && currentBgKey === phase) {
+                hideBgVideo();
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                return;
+            }
+            // Clear all active states + close panels
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            // Show video
+            showBgVideo(phase, phaseVideos);
+            // Open detail panel if it exists
+            if (panel) panel.classList.add('open');
+            // Highlight the phase button
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentBgType = 'phase';
+            currentBgKey = phase;
+        }
+
+        function toggleSeason(season) {
+            if (currentBgType === 'season' && currentBgKey === season) {
+                hideBgVideo();
+                return;
+            }
+            // Clear all active states first
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            // Close any open phase detail panels
+            document.querySelectorAll('.phase-detail-panel').forEach(function(p) { p.classList.remove('open'); });
+            // Show video
+            showBgVideo(season, seasonVideos);
+            // Highlight the season button
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentBgType = 'season';
+            currentBgKey = season;
+        }
     </script>
 </body>
 </html>
