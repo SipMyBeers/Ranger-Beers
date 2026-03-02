@@ -798,7 +798,8 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
     <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
 
-    <!-- Botpress AI Chatbot -->
+    <!-- Botpress AI Chatbot — disabled until bot IDs are configured -->
+    <!--
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script>
         window.botpress.init({
@@ -812,6 +813,7 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
             greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
         });
     </script>
+    -->
 
     <style>
         .course-card.expanded { }
@@ -841,7 +843,7 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
 
             video.src = courseVideos[category];
             videoSection.style.display = 'block';
-            video.play();
+            video.play().catch(function() { /* video may not exist yet */ });
 
             document.querySelectorAll('.course-type-btn').forEach(function(btn) {
                 btn.classList.remove('active');

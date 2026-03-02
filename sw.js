@@ -3,7 +3,7 @@
 // Cache-first for static assets, network-first for HTML, skip API calls
 // ============================================
 
-const CACHE_NAME = 'ranger-beers-v3';
+const CACHE_NAME = 'ranger-beers-v4';
 
 const PRECACHE_URLS = [
   '/courses.html',
