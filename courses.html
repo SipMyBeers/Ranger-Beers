@@ -193,27 +193,115 @@
         }
     </style>
 
+    <script>
+        var courseVideos = {
+            'training': 'media/mountain-phase.mp4',
+            'knowledge': 'media/the-creed-intro.mp4',
+            'fitness': 'media/75th-ranger-day1.mp4',
+            'handson': 'media/75th-ranger-day1.mp4'
+        };
+        var currentCategory = null;
+
+        function showCourseVideo(category) {
+            var videoSection = document.getElementById('course-video-section');
+            var video = document.getElementById('course-bg-video');
+            if (!videoSection || !video) return;
+            video.src = courseVideos[category] || '';
+            videoSection.style.display = 'block';
+            video.play().catch(function() {});
+            document.querySelectorAll('.course-type-btn').forEach(function(b) { b.classList.remove('active'); });
+            var activeBtn = document.querySelector('.course-type-btn[data-category="' + category + '"]');
+            if (activeBtn) activeBtn.classList.add('active');
+            currentCategory = category;
+        }
+
+        function hideCourseVideo() {
+            var videoSection = document.getElementById('course-video-section');
+            var video = document.getElementById('course-bg-video');
+            if (video) { video.pause(); video.src = ''; }
+            if (videoSection) videoSection.style.display = 'none';
+            document.querySelectorAll('.course-type-btn').forEach(function(b) { b.classList.remove('active'); });
+            currentCategory = null;
+        }
+
+        function filterByCategory(category) {
+            var cards = document.querySelectorAll('#course-grid .course-card');
+            var countEl = document.getElementById('course-count');
+            var noResults = document.getElementById('course-no-results');
+            var shown = 0;
+            cards.forEach(function(card) {
+                var cardCat = card.getAttribute('data-category') || '';
+                if (category === null || cardCat === category) {
+                    card.style.display = '';
+                    shown++;
+                    if (category) { card.classList.add('expanded'); card.classList.add('visible'); }
+                    else { card.classList.remove('expanded'); }
+                } else {
+                    card.style.display = 'none';
+                    card.classList.remove('expanded');
+                }
+            });
+            if (countEl) countEl.textContent = 'Showing ' + shown + ' of ' + cards.length + ' courses';
+            if (noResults) noResults.style.display = shown === 0 ? 'block' : 'none';
+            document.querySelectorAll('.course-filter-bar .filter-btn').forEach(function(b) {
+                b.classList.toggle('active', b.getAttribute('data-filter') === 'all');
+            });
+            if (category) {
+                var grid = document.getElementById('course-grid');
+                if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function toggleCategory(category) {
+            if (currentCategory === category) {
+                hideCourseVideo();
+                filterByCategory(null);
+            } else {
+                showCourseVideo(category);
+                filterByCategory(category);
+            }
+        }
+
+        function filterByTier(filter, btn) {
+            if (currentCategory) { hideCourseVideo(); currentCategory = null; }
+            document.querySelectorAll('.course-filter-bar .filter-btn').forEach(function(b) { b.classList.remove('active'); });
+            if (btn) btn.classList.add('active');
+            var cards = document.querySelectorAll('#course-grid .course-card');
+            var visibleCount = 0;
+            cards.forEach(function(card) {
+                card.classList.remove('expanded');
+                var tier = card.getAttribute('data-tier');
+                if (filter === 'all' || tier.includes(filter)) { card.style.display = ''; visibleCount++; }
+                else { card.style.display = 'none'; }
+            });
+            var countEl = document.getElementById('course-count');
+            var noResults = document.getElementById('course-no-results');
+            if (countEl) countEl.textContent = 'Showing ' + visibleCount + ' of ' + cards.length + ' courses';
+            if (noResults) noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+    </script>
+
     <section class="section course-selector-section">
         <div class="section-label fade-in">Course Categories</div>
         <h2 class="section-title fade-in">What Do You Need to Train?</h2>
 
         <div class="course-type-btn-grid stagger" id="course-selector">
-            <button class="course-type-btn fade-in" data-category="training">
+            <button class="course-type-btn fade-in" data-category="training" onclick="toggleCategory('training')">
                 <div class="ct-icon">🎯</div>
                 <div class="ct-name">Training</div>
                 <div class="ct-sub">Tactical Skills</div>
             </button>
-            <button class="course-type-btn fade-in" data-category="knowledge">
+            <button class="course-type-btn fade-in" data-category="knowledge" onclick="toggleCategory('knowledge')">
                 <div class="ct-icon">📚</div>
                 <div class="ct-name">Knowledge</div>
                 <div class="ct-sub">Study Material</div>
             </button>
-            <button class="course-type-btn fade-in" data-category="fitness">
+            <button class="course-type-btn fade-in" data-category="fitness" onclick="toggleCategory('fitness')">
                 <div class="ct-icon">💪</div>
                 <div class="ct-name">Fitness</div>
                 <div class="ct-sub">PT & Rucking</div>
             </button>
-            <button class="course-type-btn fade-in" data-category="handson">
+            <button class="course-type-btn fade-in" data-category="handson" onclick="toggleCategory('handson')">
                 <div class="ct-icon">🔧</div>
                 <div class="ct-name">Hands-On</div>
                 <div class="ct-sub">Practical Skills</div>
@@ -269,11 +357,11 @@
     </style>
 
     <div class="course-filter-bar">
-        <button class="filter-btn active" data-filter="all">All Courses</button>
-        <button class="filter-btn" data-filter="free">Free</button>
-        <button class="filter-btn" data-filter="basic">Basic</button>
-        <button class="filter-btn" data-filter="advanced">Advanced</button>
-        <button class="filter-btn" data-filter="full">Full Access</button>
+        <button class="filter-btn active" data-filter="all" onclick="filterByTier('all', this)">All Courses</button>
+        <button class="filter-btn" data-filter="free" onclick="filterByTier('free', this)">Free</button>
+        <button class="filter-btn" data-filter="basic" onclick="filterByTier('basic', this)">Basic</button>
+        <button class="filter-btn" data-filter="advanced" onclick="filterByTier('advanced', this)">Advanced</button>
+        <button class="filter-btn" data-filter="full" onclick="filterByTier('full', this)">Full Access</button>
     </div>
     <div class="course-count" id="course-count">Showing 17 of 17 courses</div>
 
@@ -829,133 +917,6 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         }
     </style>
     <script>
-        var courseVideos = {
-            'training': 'media/mountain-phase.mp4',
-            'knowledge': 'media/the-creed-intro.mp4',
-            'fitness': 'media/75th-ranger-day1.mp4',
-            'handson': 'media/75th-ranger-day1.mp4'
-        };
-        var currentCategory = null;
-
-        function showCourseVideo(category) {
-            var videoSection = document.getElementById('course-video-section');
-            var video = document.getElementById('course-bg-video');
-
-            video.src = courseVideos[category];
-            videoSection.style.display = 'block';
-            video.play().catch(function() { /* video may not exist yet */ });
-
-            document.querySelectorAll('.course-type-btn').forEach(function(btn) {
-                btn.classList.remove('active');
-            });
-            document.querySelector('.course-type-btn[data-category="' + category + '"]').classList.add('active');
-
-            currentCategory = category;
-        }
-
-        function hideCourseVideo() {
-            var videoSection = document.getElementById('course-video-section');
-            var video = document.getElementById('course-bg-video');
-
-            video.pause();
-            video.src = '';
-            videoSection.style.display = 'none';
-
-            document.querySelectorAll('.course-type-btn').forEach(function(btn) {
-                btn.classList.remove('active');
-            });
-
-            currentCategory = null;
-        }
-
-        function filterByCategory(category) {
-            var cards = document.querySelectorAll('#course-grid .course-card');
-            var countEl = document.getElementById('course-count');
-            var noResults = document.getElementById('course-no-results');
-            var shown = 0;
-
-            cards.forEach(function(card) {
-                var cardCat = card.getAttribute('data-category') || '';
-                if (category === null || cardCat === category) {
-                    card.style.display = '';
-                    shown++;
-                    // Expand cards when a category is active
-                    if (category) {
-                        card.classList.add('expanded');
-                        card.classList.add('visible');
-                    } else {
-                        card.classList.remove('expanded');
-                    }
-                } else {
-                    card.style.display = 'none';
-                    card.classList.remove('expanded');
-                }
-            });
-
-            countEl.textContent = 'Showing ' + shown + ' of ' + cards.length + ' courses';
-            noResults.style.display = shown === 0 ? 'block' : 'none';
-
-            // Reset tier filter buttons to "All"
-            document.querySelectorAll('.course-filter-bar .filter-btn').forEach(function(b) {
-                b.classList.toggle('active', b.getAttribute('data-filter') === 'all');
-            });
-
-            // Scroll to the course grid
-            if (category) {
-                document.getElementById('course-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-
-        // Category button click — video + filter + expand
-        document.querySelectorAll('.course-type-btn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var category = this.getAttribute('data-category');
-
-                if (currentCategory === category) {
-                    hideCourseVideo();
-                    filterByCategory(null);
-                } else {
-                    showCourseVideo(category);
-                    filterByCategory(category);
-                }
-            });
-        });
-
-        // Tier filter buttons — reset category filter when used
-        document.querySelectorAll('.course-filter-bar .filter-btn').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var filter = this.getAttribute('data-filter');
-
-                // Clear category state
-                if (currentCategory) {
-                    hideCourseVideo();
-                    currentCategory = null;
-                }
-
-                document.querySelectorAll('.course-filter-bar .filter-btn').forEach(function(b) {
-                    b.classList.remove('active');
-                });
-                this.classList.add('active');
-
-                var cards = document.querySelectorAll('#course-grid .course-card');
-                var visibleCount = 0;
-
-                cards.forEach(function(card) {
-                    card.classList.remove('expanded');
-                    var tier = card.getAttribute('data-tier');
-                    if (filter === 'all' || tier.includes(filter)) {
-                        card.style.display = '';
-                        visibleCount++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-
-                document.getElementById('course-count').textContent = 'Showing ' + visibleCount + ' of ' + cards.length + ' courses';
-                document.getElementById('course-no-results').style.display = visibleCount === 0 ? 'block' : 'none';
-            });
-        });
-
         // Fade-in observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
