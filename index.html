@@ -1021,21 +1021,14 @@
         <h2 class="section-title">Get Ranger School Intel</h2>
         <p class="section-desc" style="max-width:540px; margin:0 auto var(--space-xl);">Class dates, gear drops, new courses, and tips from tab holders — straight to your inbox. No spam. Unsubscribe anytime.</p>
 
-        <!-- Success message (shown via JS when ?subscribed=1) -->
         <div id="subscribe-success" style="display:none; background:rgba(197,179,88,0.12); border:1px solid var(--color-gold); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-gold); font-weight:600;">
-            You're in. Watch your inbox for Ranger School intel.
+            You're in. Check your inbox for a welcome email.
         </div>
+        <div id="subscribe-error" style="display:none; background:rgba(239,68,68,0.12); border:1px solid var(--color-error); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-error); font-weight:600;"></div>
 
-        <form action="https://formsubmit.co/dzbeers747@gmail.com" method="POST" style="display:flex; gap:var(--space-sm); max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;">
-            <!-- FormSubmit hidden fields -->
-            <input type="hidden" name="_subject" value="New Ranger Beers Subscriber">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://ranger-beers.com/index.html?subscribed=1">
-            <input type="text" name="_honey" style="display:none;">
-
-            <input type="email" name="email" class="form-input" placeholder="Your email address" required style="flex:1 1 260px;">
-            <button type="submit" class="btn btn-primary" style="flex:0 0 auto; padding:0 var(--space-lg);">Subscribe</button>
+        <form id="subscribe-form" style="display:flex; gap:var(--space-sm); max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;">
+            <input type="email" name="email" id="subscribe-email" class="form-input" placeholder="Your email address" required style="flex:1 1 260px;">
+            <button type="submit" id="subscribe-btn" class="btn btn-primary" style="flex:0 0 auto; padding:0 var(--space-lg);">Subscribe</button>
         </form>
     </section>
 
@@ -1061,15 +1054,45 @@
     </footer>
 
     <script>
-        // ── Newsletter subscribe success check ──
+        // ── Newsletter Subscribe (Resend via Cloudflare Worker) ──
         (function() {
-            if (new URLSearchParams(window.location.search).get('subscribed') === '1') {
-                var msg = document.getElementById('subscribe-success');
-                if (msg) {
-                    msg.style.display = 'block';
-                    msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }
+            var form = document.getElementById('subscribe-form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('subscribe-email').value;
+                var btn = document.getElementById('subscribe-btn');
+                var success = document.getElementById('subscribe-success');
+                var error = document.getElementById('subscribe-error');
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+                success.style.display = 'none';
+                error.style.display = 'none';
+                fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                })
+                .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+                .then(function(result) {
+                    if (result.ok) {
+                        success.style.display = 'block';
+                        form.style.display = 'none';
+                        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        error.textContent = result.data.error || 'Something went wrong. Try again.';
+                        error.style.display = 'block';
+                        btn.textContent = 'Subscribe';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(function() {
+                    error.textContent = 'Network error. Try again.';
+                    error.style.display = 'block';
+                    btn.textContent = 'Subscribe';
+                    btn.disabled = false;
+                });
+            });
         })();
 
         // Nav scroll effect
