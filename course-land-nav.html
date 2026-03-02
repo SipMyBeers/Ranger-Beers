@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -112,7 +115,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-land-nav">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">Land Navigation</h1>
         <p class="section-desc fade-in">Master terrain association, map reading, lensatic compass work, and point plotting. 8 modules covering everything you need to crush the day and night land nav courses during RAP Week.</p>
@@ -167,7 +170,7 @@
             <!-- Content -->
             <div class="course-content-area">
                 <!-- MODULE 1 -->
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">Map Reading Basics</div>
                     <p>Before you step into the woods, you need to understand the tool that keeps you from getting lost. The 1:50,000 scale military topographic map is your primary navigation tool at Ranger School. Every centimeter on the map represents 500 meters on the ground.</p>
@@ -208,7 +211,7 @@
                 </div>
 
                 <!-- MODULE 2 -->
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">Grid Coordinates &amp; Plotting</div>
                     <p>Grid coordinates are how you communicate location on a military map. The precision of your coordinate depends on the number of digits you use. At Ranger School, you will plot 6-digit and 8-digit coordinates.</p>
@@ -247,7 +250,7 @@
                 </div>
 
                 <!-- MODULE 3 -->
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">Compass Work (Lensatic)</div>
                     <p>The lensatic compass is your primary direction-finding tool. You will use it every day at Ranger School — during land nav, patrols, and movement. Master it before you arrive.</p>
@@ -292,7 +295,7 @@
                 </div>
 
                 <!-- MODULE 4 -->
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">Terrain Association</div>
                     <p>Terrain association is the most important land navigation skill you can develop. It is the ability to look at the map, look at the ground, and know where you are based on the shape of the land. At Ranger School, terrain association is king — it is faster and more reliable than pace count alone.</p>
@@ -327,7 +330,7 @@
                 </div>
 
                 <!-- MODULE 5 -->
-                <div class="course-module" id="mod5">
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
                     <div class="course-module-title">Intersection &amp; Resection</div>
                     <p>Intersection and resection are techniques for determining location using a map and compass. Both rely on shooting azimuths to known points and plotting lines on the map.</p>
@@ -367,7 +370,7 @@
                 </div>
 
                 <!-- MODULE 6 -->
-                <div class="course-module" id="mod6">
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
                     <div class="course-module-label">Module 6</div>
                     <div class="course-module-title">Day Land Nav Strategy</div>
                     <p>Day land nav at Ranger School is a critical RAP Week gate. The standard is 4 of 6 points in 5 hours. Fail and you are recycled or dropped. This is not just a test of map skills — it is a test of strategy, time management, and physical fitness.</p>
@@ -424,7 +427,7 @@
                 </div>
 
                 <!-- MODULE 7 -->
-                <div class="course-module" id="mod7">
+                <div class="course-module locked-module" id="mod7" data-module="mod7">
                     <div class="course-module-label">Module 7</div>
                     <div class="course-module-title">Night Land Nav Strategy</div>
                     <p>Night land nav is the other critical RAP Week gate. The standard varies by class — typically 1 of 3 points or 3 of 4 points. You will be tired, it will be dark, and the terrain will look completely different than it did during the day. Pace count and linear features become your best friends.</p>
@@ -474,7 +477,7 @@
                 </div>
 
                 <!-- MODULE 8 -->
-                <div class="course-module" id="mod8">
+                <div class="course-module locked-module" id="mod8" data-module="mod8">
                     <div class="course-module-label">Module 8</div>
                     <div class="course-module-title">Practice Scenarios</div>
                     <p>Knowing the theory is not enough — you have to practice. These exercises will build the speed and accuracy you need before RAP Week.</p>
@@ -584,12 +587,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <!-- Firebase Auth + Course Gate -->
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <!-- Snipcart -->

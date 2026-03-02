@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -112,7 +115,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-medical">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">Medical Readiness</h1>
         <p class="section-desc fade-in">Don't get sent home on Day 0 for missing paperwork or a treatable condition. This course covers in-processing medical requirements, injury prevention, and what to watch for during the course.</p>
@@ -166,7 +169,7 @@
             <div class="course-content-area">
 
                 <!-- MODULE 1 -->
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">Overview</div>
                     <p>Medical readiness is one of the top reasons candidates are dropped before training begins. It is entirely preventable, and yet it catches soldiers off guard every single class. If your paperwork isn't right or you have an unresolved medical condition, you will not start Ranger School — full stop.</p>
@@ -183,7 +186,7 @@
                 </div>
 
                 <!-- MODULE 2 -->
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">Required Documents</div>
                     <p>Missing a single document at in-processing can put you on administrative hold or get you sent home. Do not trust your unit to have everything in order — verify it yourself, and bring multiple copies of everything.</p>
@@ -209,7 +212,7 @@
                 </div>
 
                 <!-- MODULE 3 -->
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">Non-Waiverable Conditions</div>
                     <p>Certain medical conditions will get you sent home immediately with no exceptions. There is no arguing, no waiver, and no second chance at in-processing. Know these before you waste a slot.</p>
@@ -235,7 +238,7 @@
                 </div>
 
                 <!-- MODULE 4 -->
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">Top Medical Issues</div>
                     <p>Understanding what drops students medically allows you to prevent it. These are the most common medical reasons soldiers are removed from Ranger School during the course.</p>
@@ -262,7 +265,7 @@
                 </div>
 
                 <!-- MODULE 5 -->
-                <div class="course-module" id="mod5">
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
                     <div class="course-module-title">Cellulitis Prevention</div>
                     <p>Cellulitis is one of the biggest medical threats in Florida Phase and a leading cause of medical drops during swamp operations. It is entirely preventable if you take it seriously.</p>
@@ -293,7 +296,7 @@
                 </div>
 
                 <!-- MODULE 6 -->
-                <div class="course-module" id="mod6">
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
                     <div class="course-module-label">Module 6</div>
                     <div class="course-module-title">Flora &amp; Fauna</div>
                     <p>Ranger School takes you through some of the most hostile terrain in the southeastern United States. Knowing what can hurt you — and how to avoid it — is essential survival knowledge.</p>
@@ -331,7 +334,7 @@
                 </div>
 
                 <!-- MODULE 7 -->
-                <div class="course-module" id="mod7">
+                <div class="course-module locked-module" id="mod7" data-module="mod7">
                     <div class="course-module-label">Module 7</div>
                     <div class="course-module-title">Heat Acclimatization</div>
                     <p>Environmental injuries — both heat and cold — account for approximately 15% of all medical drops. Proper acclimatization and awareness can prevent most of them.</p>
@@ -372,7 +375,7 @@
                 </div>
 
                 <!-- MODULE 8 -->
-                <div class="course-module" id="mod8">
+                <div class="course-module locked-module" id="mod8" data-module="mod8">
                     <div class="course-module-label">Module 8</div>
                     <div class="course-module-title">Injury Prevention</div>
                     <p>The best medical strategy at Ranger School is to not get injured in the first place. Pre-habilitation (pre-hab), proper foot care, nutrition awareness, and knowing when to report are the keys to staying in the fight for 61+ days.</p>
@@ -489,12 +492,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <!-- Firebase Auth + Course Gate -->
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <!-- Snipcart -->

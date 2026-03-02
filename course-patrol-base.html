@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -112,7 +115,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-patrol-base">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">Patrol Base Operations</h1>
         <p class="section-desc fade-in">Priorities of work, security plan, stand-to, and daily patrol base requirements. You'll occupy a patrol base every single night — get it right from Day 1.</p>
@@ -157,37 +160,37 @@
             </nav>
 
             <div class="course-content-area">
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">Patrol Base Selection &amp; Occupation</div>
                     <p>Content coming soon. This module will cover terrain selection criteria, the leader's recon, establishing the tentative patrol base, the occupation plan, and how to move the patrol into position using the cigar-shaped perimeter.</p>
                 </div>
 
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">Priorities of Work</div>
                     <p>Content coming soon. This module will cover the correct sequence of priorities of work — security, automatic weapons placement, claymores and early warning devices, fighting positions, fields of fire, range cards, and the patrol leader's timeline for completing each task.</p>
                 </div>
 
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">Security Plan &amp; Sector Sketches</div>
                     <p>Content coming soon. This module will cover building a 360-degree security plan, assigning sectors of fire to each position, drawing sector sketches, establishing listening posts and observation posts, and integrating the alert and withdrawal plans.</p>
                 </div>
 
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">Stand-To Procedures</div>
                     <p>Content coming soon. This module will cover morning and evening stand-to, 100% security windows, the stand-to timeline, actions during stand-to, and how the patrol leader inspects readiness across the perimeter.</p>
                 </div>
 
-                <div class="course-module" id="mod5">
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
                     <div class="course-module-title">Patrol Base Activities (Hygiene, Chow, Maintenance)</div>
                     <p>Content coming soon. This module will cover the daily schedule inside the patrol base including personal hygiene rotations, chow procedures, weapons and equipment maintenance, water resupply, sleep plans, and how to manage these activities without compromising security.</p>
                 </div>
 
-                <div class="course-module" id="mod6">
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
                     <div class="course-module-label">Module 6</div>
                     <div class="course-module-title">Departure &amp; Sterilization</div>
                     <p>Content coming soon. This module will cover the patrol base departure plan, order of movement, sterilization procedures to eliminate signs of occupation, sensitive items checks, and the transition from patrol base back to tactical movement.</p>
@@ -228,11 +231,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>

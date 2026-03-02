@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
     <style>
         .workout-table {
@@ -142,6 +143,8 @@
             background: rgba(197,179,88,0.1);
         }
     </style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -245,7 +248,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-workout-12week">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">12-Week Ranger Prep Program</h1>
         <p class="section-desc fade-in">A structured 12-week training program to get you physically ready for Ranger School. Running is the foundation &mdash; everything else builds on top of it.</p>
@@ -295,7 +298,7 @@
             <div class="course-content-area">
 
                 <!-- MODULE 1: Program Overview -->
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">Program Overview</div>
                     <p>This is a 12-week progressive training program designed with one goal: arrive at Ranger School with a strong aerobic base, not just peak strength. Ranger School is 61+ days of sleep deprivation, calorie deficit, and continuous operations. You need to sustain performance across the entire course &mdash; not just RAP week.</p>
@@ -337,7 +340,7 @@
                 </div>
 
                 <!-- MODULE 2: Weeks 1-4 -->
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">Weeks 1&ndash;4: Base Building</div>
                     <p>The first four weeks are about building your aerobic foundation. You are not going hard yet &mdash; you are building the engine. Easy runs should feel conversational. Intervals should be controlled, not all-out. The goal is consistency without injury.</p>
@@ -417,7 +420,7 @@
                 </div>
 
                 <!-- MODULE 3: Weeks 5-8 -->
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">Weeks 5&ndash;8: Endurance Phase</div>
                     <p>Phase 2 increases both volume and intensity. Your aerobic base from the first 4 weeks supports longer runs, heavier rucks, and faster intervals. This is where you start simulating the demands of Ranger School.</p>
@@ -509,7 +512,7 @@
                 </div>
 
                 <!-- MODULE 4: Weeks 9-12 -->
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">Weeks 9&ndash;12: Peak Phase</div>
                     <p>This is where everything comes together. You are training at your highest volume and intensity through Week 10, then tapering in Week 12 so you arrive at Ranger School fresh, not broken. Week 11 includes a full RPFT practice test.</p>
@@ -601,7 +604,7 @@
                 </div>
 
                 <!-- MODULE 5: Plate Carrier & Barefoot -->
-                <div class="course-module" id="mod5">
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
                     <div class="course-module-title">Running Focus: Plate Carrier &amp; Barefoot</div>
                     <p>Two specialized running programs run alongside your standard training throughout the 12 weeks. Both serve distinct purposes and require careful progression to avoid injury.</p>
@@ -676,7 +679,7 @@
                 </div>
 
                 <!-- MODULE 6: Nutrition & Recovery -->
-                <div class="course-module" id="mod6">
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
                     <div class="course-module-label">Module 6</div>
                     <div class="course-module-title">Nutrition &amp; Recovery</div>
                     <p>Training this hard without fueling and recovering properly is a recipe for injury, overtraining, and showing up to Ranger School already broken. This module covers how to eat, sleep, and recover during the 12-week program.</p>
@@ -808,12 +811,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <!-- Firebase Auth + Course Gate -->
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <!-- Snipcart -->

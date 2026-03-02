@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -112,7 +115,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-battle-drills">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">Battle Drills</h1>
         <p class="section-desc fade-in">React to contact, ambush, IED, and more. Battle drills are graded on every patrol — know them cold so you can execute under sleep deprivation and stress.</p>
@@ -157,37 +160,37 @@
             </nav>
 
             <div class="course-content-area">
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">React to Contact</div>
                     <p>Content coming soon. This module will cover the immediate actions upon receiving direct or indirect fire, including returning fire, seeking cover, and initiating battle drill procedures.</p>
                 </div>
 
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">React to Ambush (Near)</div>
                     <p>Content coming soon. This module will cover the immediate assault through the kill zone, actions for soldiers in and out of the kill zone, and the violence of action required to survive a near ambush.</p>
                 </div>
 
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">React to Ambush (Far)</div>
                     <p>Content coming soon. This module will cover establishing a support-by-fire position, maneuvering the assault element, and the key differences between near and far ambush responses.</p>
                 </div>
 
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">React to IED/UXO</div>
                     <p>Content coming soon. This module will cover the 5 Cs (Confirm, Clear, Cordon, Check, Control), reporting procedures, and actions for the patrol leader.</p>
                 </div>
 
-                <div class="course-module" id="mod5">
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
                     <div class="course-module-title">Break Contact</div>
                     <p>Content coming soon. This module will cover bounding overwatch techniques, smoke employment, and the decision matrix for when to break contact versus assault through.</p>
                 </div>
 
-                <div class="course-module" id="mod6">
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
                     <div class="course-module-label">Module 6</div>
                     <div class="course-module-title">Consolidation &amp; Reorganization</div>
                     <p>Content coming soon. This module will cover SLLS (Stop, Look, Listen, Smell), ACE reports, LACE reports, EPW handling, and sensitive items accountability after contact.</p>
@@ -228,11 +231,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>

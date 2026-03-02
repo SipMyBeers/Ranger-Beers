@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -112,7 +115,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-opord">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">OPORD &amp; Orders Process</h1>
         <p class="section-desc fade-in">Master the 5-paragraph operations order, troop leading procedures, and tactical planning. Your OPORD brief is a major component of your patrol grade.</p>
@@ -166,7 +169,7 @@
             <div class="course-content-area">
 
                 <!-- MODULE 1 -->
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">TLP Overview</div>
                     <p>Troop Leading Procedures are the 8-step framework that guides a leader from receiving a mission to executing it. TLPs are not strictly sequential — many steps happen in parallel, and you will revisit earlier steps as the situation develops. Mastering TLPs is what separates leaders who control the operation from those who react to it.</p>
@@ -193,7 +196,7 @@
                 </div>
 
                 <!-- MODULE 2 -->
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">Warning Order</div>
                     <p>The warning order (WARNORD) is the first communication you push to subordinates after receiving the mission. Its purpose is simple: give your people enough information to start preparing while you continue planning. Speed matters — issue the WARNORD as soon as possible, even if it is incomplete.</p>
@@ -219,7 +222,7 @@
                 </div>
 
                 <!-- MODULE 3 -->
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">Mission Analysis</div>
                     <p>Mission analysis is the intellectual foundation of the entire orders process. This is where you break down what you have been told, determine what you need to do, and build the framework for your plan. The primary tool is METT-TC.</p>
@@ -255,7 +258,7 @@
                 </div>
 
                 <!-- MODULE 4 -->
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">COA Development</div>
                     <p>After completing mission analysis, you develop courses of action. A COA is a possible plan that accomplishes the mission. Developing multiple COAs and wargaming them against the enemy is how you arrive at the best plan — not just the first idea that comes to mind.</p>
@@ -291,7 +294,7 @@
                 </div>
 
                 <!-- MODULE 5 -->
-                <div class="course-module" id="mod5">
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
                     <div class="course-module-title">The 5-Paragraph OPORD</div>
                     <p>The 5-paragraph operations order is the standard format for communicating a tactical plan. Every leader in the Army uses this format. In Ranger School, your ability to write and brief a clear, complete OPORD directly impacts your patrol grade. Know this format cold.</p>
@@ -354,7 +357,7 @@
                 </div>
 
                 <!-- MODULE 6 -->
-                <div class="course-module" id="mod6">
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
                     <div class="course-module-label">Module 6</div>
                     <div class="course-module-title">FRAGO</div>
                     <p>A Fragmentary Order (FRAGO) is an abbreviated form of the OPORD used to communicate changes to an existing order. When the situation changes — new intelligence, change in mission, time-sensitive information — you do not re-brief the entire OPORD. You issue a FRAGO that addresses only the elements that have changed.</p>
@@ -400,7 +403,7 @@
                 </div>
 
                 <!-- MODULE 7 -->
-                <div class="course-module" id="mod7">
+                <div class="course-module locked-module" id="mod7" data-module="mod7">
                     <div class="course-module-label">Module 7</div>
                     <div class="course-module-title">Brief Delivery</div>
                     <p>Writing a good OPORD is only half the battle. You must deliver it clearly and confidently under pressure — typically sleep-deprived, time-constrained, and in front of an RI who is evaluating every word. How you brief is as important as what you brief.</p>
@@ -450,7 +453,7 @@
                 </div>
 
                 <!-- MODULE 8 -->
-                <div class="course-module" id="mod8">
+                <div class="course-module locked-module" id="mod8" data-module="mod8">
                     <div class="course-module-label">Module 8</div>
                     <div class="course-module-title">Product Creation</div>
                     <p>Planning products are the physical documents and visual aids that support the OPORD. They translate your plan from words into graphics that subordinates can reference during execution. In Ranger School, the quality of your planning products directly reflects the quality of your planning.</p>
@@ -585,12 +588,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <!-- Firebase Auth + Course Gate -->
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <!-- Snipcart -->

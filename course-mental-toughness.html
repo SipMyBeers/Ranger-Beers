@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -112,7 +115,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-mental-toughness">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">Mental Toughness &amp; Resilience</h1>
         <p class="section-desc fade-in">Sleep deprivation management, stress inoculation, quitting prevention, and the mental game that separates graduates from recycles.</p>
@@ -156,31 +159,31 @@
             </nav>
 
             <div class="course-content-area">
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">The Mental Game of Ranger School</div>
                     <p>Content coming soon. This module will cover the psychological landscape of Ranger School, why mental toughness matters more than physical fitness, and the mindset shifts that successful graduates adopt from day one.</p>
                 </div>
 
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">Sleep Deprivation Management</div>
                     <p>Content coming soon. This module will cover how sleep deprivation affects decision-making and performance, tactical napping strategies, techniques to stay functional on minimal sleep, and recognizing dangerous cognitive decline in yourself and your Ranger buddies.</p>
                 </div>
 
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">Stress Inoculation Techniques</div>
                     <p>Content coming soon. This module will cover controlled breathing methods, cognitive reframing under pressure, visualization and mental rehearsal, and how to train your stress response before you ever set foot at Fort Benning.</p>
                 </div>
 
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">The Quitting Moment</div>
                     <p>Content coming soon. This module will cover identifying the moments when students are most likely to quit, the psychology behind voluntary withdrawal, proven strategies to push through the lowest points, and how to build accountability systems with your Ranger buddy.</p>
                 </div>
 
-                <div class="course-module" id="mod5">
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
                     <div class="course-module-title">Building Mental Reserves Before You Go</div>
                     <p>Content coming soon. This module will cover pre-Ranger mental conditioning exercises, building a personal motivation framework, setting micro-goals and phase-based milestones, and creating the mental toolkit you will rely on when your body wants to quit.</p>
@@ -221,11 +224,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>

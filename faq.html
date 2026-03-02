@@ -320,10 +320,11 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         });
     </script>
 
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI } from './auth.js';
-        initAuthUI();
+    <!-- Auth -->
+    <script src="course-auth.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>

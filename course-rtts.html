@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -36,7 +39,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-rtts">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">Ranger Tactical Tasks (RTTs)</h1>
         <p class="section-desc fade-in">7 hands-on tasks tested on RAP Week Day 4. You must pass 5 of 7. No retests. This course walks through every step for each task.</p>
@@ -89,7 +92,7 @@
             <div class="course-content-area">
 
                 <!-- MODULE 1 -->
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">Overview &amp; Scoring</div>
                     <p>Ranger Tactical Tasks (RTTs) are tested on RAP Week Day 4. You must pass 5 out of 7 tasks. Every task is graded GO/NO-GO. There is no partial credit. There are no retests.</p>
@@ -125,7 +128,7 @@
                 </div>
 
                 <!-- MODULE 2 -->
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">RTT #1: M249 Maintenance</div>
                     <p><strong>Task:</strong> Disassemble, inspect, and reassemble the M249 Squad Automatic Weapon (SAW).</p>
@@ -167,7 +170,7 @@
                 </div>
 
                 <!-- MODULE 3 -->
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">RTT #2: M249 Operations</div>
                     <p><strong>Task:</strong> Clear, load, reduce a stoppage, unload, and clear the M249 SAW.</p>
@@ -213,7 +216,7 @@
                 </div>
 
                 <!-- MODULE 4 -->
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">RTT #3: M240B Maintenance</div>
                     <p><strong>Task:</strong> Disassemble, inspect, and reassemble the M240B Medium Machine Gun.</p>
@@ -258,7 +261,7 @@
                 </div>
 
                 <!-- MODULE 5 -->
-                <div class="course-module" id="mod5">
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
                     <div class="course-module-title">RTT #4: M240B Operations</div>
                     <p><strong>Task:</strong> Clear, load, reduce a stoppage, unload, and clear the M240B.</p>
@@ -311,7 +314,7 @@
                 </div>
 
                 <!-- MODULE 6 -->
-                <div class="course-module" id="mod6">
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
                     <div class="course-module-label">Module 6</div>
                     <div class="course-module-title">RTT #5: Claymore Mine (M18A1)</div>
                     <p><strong>Task:</strong> Set up, aim, arm, fire, and recover an M18A1 Claymore antipersonnel mine.</p>
@@ -363,7 +366,7 @@
                 </div>
 
                 <!-- MODULE 7 -->
-                <div class="course-module" id="mod7">
+                <div class="course-module locked-module" id="mod7" data-module="mod7">
                     <div class="course-module-label">Module 7</div>
                     <div class="course-module-title">RTT #6: SINCGARS Radio (AN/PRC-119 ASIP)</div>
                     <p><strong>Task:</strong> Program and operate the AN/PRC-119 ASIP (Advanced System Improvement Program) SINCGARS radio.</p>
@@ -403,7 +406,7 @@
                 </div>
 
                 <!-- MODULE 8 -->
-                <div class="course-module" id="mod8">
+                <div class="course-module locked-module" id="mod8" data-module="mod8">
                     <div class="course-module-label">Module 8</div>
                     <div class="course-module-title">RTT #7: MBITR Radio (AN/PRC-148)</div>
                     <p><strong>Task:</strong> Program and operate the AN/PRC-148 Multiband Inter/Intra Team Radio (MBITR).</p>
@@ -518,12 +521,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <!-- Firebase Auth + Course Gate -->
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <!-- Snipcart -->

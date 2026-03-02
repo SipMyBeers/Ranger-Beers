@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -112,7 +115,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-workout-pt">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">PT Test & Running</h1>
         <p class="section-desc fade-in">Standards-focused training for the Ranger Physical Fitness Test. Running is your most important physical attribute — this course makes it the priority.</p>
@@ -164,7 +167,7 @@
             <div class="course-content-area">
 
                 <!-- MODULE 1 -->
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">RPFT Standards</div>
                     <p>The Ranger Physical Fitness Test is a GO/NO-GO event. One failure can result in a potential recycle. These are the full standards — know them cold.</p>
@@ -199,7 +202,7 @@
                 </div>
 
                 <!-- MODULE 2 -->
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">Push-up Program</div>
                     <p>An 8-week progressive push-up program designed to take you well past the 49 minimum. Goal: 70+ for a comfortable buffer.</p>
@@ -243,7 +246,7 @@
                 </div>
 
                 <!-- MODULE 3 -->
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">Sit-up Program</div>
                     <p>An 8-week progressive program with the same structure as the push-up program. Goal: 75+ for buffer.</p>
@@ -289,7 +292,7 @@
                 </div>
 
                 <!-- MODULE 4 -->
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">Chin-up Program</div>
                     <p>Chin-ups are the hardest standard for many candidates. Dead hang chin-ups only — palms facing you. Goal: 12+ for a solid buffer.</p>
@@ -332,7 +335,7 @@
                 </div>
 
                 <!-- MODULE 5 -->
-                <div class="course-module" id="mod5">
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
                     <div class="course-module-title">5-Mile Run Plan</div>
                     <p>THE most important physical event. If you can run, you can survive Ranger School. If you can't, nothing else matters. 12-week progressive run plan. Goal: sub-37:00 for buffer.</p>
@@ -376,7 +379,7 @@
                 </div>
 
                 <!-- MODULE 6 -->
-                <div class="course-module" id="mod6">
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
                     <div class="course-module-label">Module 6</div>
                     <div class="course-module-title">Plate Carrier Running</div>
                     <p>Ranger School involves constant movement under load. A dedicated plate carrier running program prepares your body for the reality of the course.</p>
@@ -429,7 +432,7 @@
                 </div>
 
                 <!-- MODULE 7 -->
-                <div class="course-module" id="mod7">
+                <div class="course-module locked-module" id="mod7" data-module="mod7">
                     <div class="course-module-label">Module 7</div>
                     <div class="course-module-title">Barefoot Running</div>
                     <p>A complete barefoot running guide. Your feet contain 26 bones, 33 joints, and over 100 muscles, tendons, and ligaments each. Barefoot running strengthens these intrinsic structures, reduces heel strike tendency, and improves proprioception and ground feel — valuable for land navigation.</p>
@@ -471,7 +474,7 @@
                 </div>
 
                 <!-- MODULE 8 -->
-                <div class="course-module" id="mod8">
+                <div class="course-module locked-module" id="mod8" data-module="mod8">
                     <div class="course-module-label">Module 8</div>
                     <div class="course-module-title">Test Day Strategy</div>
                     <p>How you approach RPFT day matters almost as much as your fitness level. Smart pacing and preparation can add reps and shave time.</p>
@@ -603,12 +606,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <!-- Firebase Auth + Course Gate -->
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <!-- Snipcart -->

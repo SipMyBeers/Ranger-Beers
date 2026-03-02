@@ -559,11 +559,11 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <!-- Firebase Auth -->
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI } from './auth.js';
-        initAuthUI();
+    <!-- Auth -->
+    <script src="course-auth.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <!-- Snipcart -->

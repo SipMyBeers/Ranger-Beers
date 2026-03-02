@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -112,7 +115,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-recycle">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">Recycle &amp; Recovery Guide</h1>
         <p class="section-desc fade-in">What happens if you fail a phase, how recycling works, staying motivated through setbacks, and the path back to graduation. No shame in the recycle game.</p>
@@ -149,25 +152,25 @@
             </nav>
 
             <div class="course-content-area">
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">How Recycling Works</div>
                     <p>Content coming soon. This module will cover the recycle process from start to finish — what triggers a recycle, the different types (peer, performance, medical, academic), how the cadre make the call, and what phase you get inserted back into.</p>
                 </div>
 
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">The Day After You Fail</div>
                     <p>Content coming soon. This module will cover what actually happens the day you get the news — the administrative steps, calling home, the mental gut-punch, moving to the recycle barracks, and how to handle the first 48 hours with your head straight.</p>
                 </div>
 
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">Training During the Wait</div>
                     <p>Content coming soon. This module will cover how to spend your time in the Gulag productively — physical training plans, studying weak areas, helping new classes, details and work assignments, and staying sharp instead of letting the wait break you down.</p>
                 </div>
 
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">Coming Back Stronger</div>
                     <p>Content coming soon. This module will cover the mindset shift for your second attempt — leveraging experience, avoiding the same mistakes, dealing with being older than your new squad, and the stories of Rangers who recycled and still earned the tab.</p>
@@ -208,11 +211,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>

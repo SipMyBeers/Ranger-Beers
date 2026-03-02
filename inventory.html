@@ -652,12 +652,12 @@
         });
     </script>
 
-    <!-- Firebase Auth -->
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initInventoryPage } from './auth.js';
-        initAuthUI();
-        initInventoryPage();
+    <!-- Auth -->
+    <script src="course-auth.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initInventoryPage();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <!-- Gear Detail Modals -->

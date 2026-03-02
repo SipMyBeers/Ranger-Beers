@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -112,7 +115,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-knots">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">Knots &amp; Rope Work</h1>
         <p class="section-desc fade-in">Master the knots you'll need for Mountain Phase. The standard is 5 of 6 knots tied correctly in 5 minutes &mdash; practice until you can do them blindfolded.</p>
@@ -169,7 +172,7 @@
             <div class="course-content-area">
 
                 <!-- MODULE 1 -->
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">Overview &amp; Standards</div>
                     <p>The Mountain Phase knot test is a critical gate at Camp Merrill, Dahlonega, Georgia. You must tie 5 of 6 knots correctly within 5 minutes. Failure to pass the knot test will result in a recycle back to the beginning of Mountain Phase.</p>
@@ -201,7 +204,7 @@
                 </div>
 
                 <!-- MODULE 2 -->
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">Figure-Eight Knot</div>
                     <p>The figure-eight is the primary tie-in knot for rappelling. It is strong, easy to inspect visually, and does not bind under load the way an overhand does. This is the knot you will use most at Ranger School.</p>
@@ -236,7 +239,7 @@
                 </div>
 
                 <!-- MODULE 3 -->
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">Bowline</div>
                     <p>The bowline is known as "the rescue knot." It creates a fixed loop that will not slip or tighten under load, making it ideal for rescue scenarios where a loop must be placed around a casualty.</p>
@@ -269,7 +272,7 @@
                 </div>
 
                 <!-- MODULE 4 -->
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">Clove Hitch</div>
                     <p>The clove hitch is a quick-attachment knot used to secure a rope to a carabiner, pole, or tree. It can be tied with one hand, making it invaluable in mountaineering situations where your other hand is occupied.</p>
@@ -309,7 +312,7 @@
                 </div>
 
                 <!-- MODULE 5 -->
-                <div class="course-module" id="mod5">
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
                     <div class="course-module-title">Water Knot</div>
                     <p>The water knot is the standard method for joining two pieces of flat tubular nylon webbing. It is the only approved knot for webbing at Ranger School because it lays flat and distributes load evenly across the material.</p>
@@ -335,7 +338,7 @@
                 </div>
 
                 <!-- MODULE 6 -->
-                <div class="course-module" id="mod6">
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
                     <div class="course-module-label">Module 6</div>
                     <div class="course-module-title">Rappel Seat (Swiss Seat)</div>
                     <p>The rappel seat is an emergency harness constructed from a single piece of rope or tubular nylon webbing. When a manufactured harness is not available, the Swiss seat allows you to safely rappel. You must be able to build one quickly and correctly.</p>
@@ -372,7 +375,7 @@
                 </div>
 
                 <!-- MODULE 7 -->
-                <div class="course-module" id="mod7">
+                <div class="course-module locked-module" id="mod7" data-module="mod7">
                     <div class="course-module-label">Module 7</div>
                     <div class="course-module-title">Square Knot</div>
                     <p>The square knot joins two ropes of equal diameter. Its primary use at Ranger School is securing the rappel seat. The key phrase to remember: "Right over left, left over right."</p>
@@ -404,7 +407,7 @@
                 </div>
 
                 <!-- MODULE 8 -->
-                <div class="course-module" id="mod8">
+                <div class="course-module locked-module" id="mod8" data-module="mod8">
                     <div class="course-module-label">Module 8</div>
                     <div class="course-module-title">Prusik Knot</div>
                     <p>The prusik is a friction hitch used for ascending a fixed rope or as a safety backup on rappel. When loaded, it grips the host rope. When unloaded, it slides freely. This makes it essential for self-rescue scenarios.</p>
@@ -437,7 +440,7 @@
                 </div>
 
                 <!-- MODULE 9 -->
-                <div class="course-module" id="mod9">
+                <div class="course-module locked-module" id="mod9" data-module="mod9">
                     <div class="course-module-label">Module 9</div>
                     <div class="course-module-title">Timed Practice</div>
                     <p>The knot test at Camp Merrill gives you 5 minutes to tie 6 knots, of which you must get 5 correct. That is less than 1 minute per knot. The only way to pass under stress is to practice until the knots are automatic &mdash; muscle memory, not thinking.</p>
@@ -543,12 +546,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <!-- Firebase Auth + Course Gate -->
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <!-- Snipcart -->

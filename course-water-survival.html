@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -112,7 +115,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-water-survival">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">Water Confidence &amp; Swamp Survival</h1>
         <p class="section-desc fade-in">Water confidence test preparation, stream crossings, equipment waterproofing, and Florida Phase swamp operations. The water confidence test is a Swamp Phase gate.</p>
@@ -158,25 +161,25 @@
             </nav>
 
             <div class="course-content-area">
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">Water Confidence Test</div>
                     <p>Content coming soon. This module will cover the full water confidence test sequence, including the 15-meter drop from the elevated platform, blindfolded equipment removal underwater, and the combat water survival assessment that serves as a mandatory gate for Swamp Phase progression.</p>
                 </div>
 
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">Stream &amp; River Crossings</div>
                     <p>Content coming soon. This module will cover deliberate and hasty stream crossing techniques, rope bridge construction, one-rope and two-rope bridge methods, and how to safely move personnel and equipment across water obstacles during tactical operations.</p>
                 </div>
 
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">Equipment Waterproofing</div>
                     <p>Content coming soon. This module will cover methods for waterproofing rucksacks, radios, weapons, and sensitive items using dry bags, trash bag liners, and field-expedient techniques to maintain operational readiness during extended swamp and river operations.</p>
                 </div>
 
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">Swamp Movement &amp; Navigation</div>
                     <p>Content coming soon. This module will cover movement techniques through Florida Phase swamp terrain, land navigation in dense vegetation and standing water, pace count adjustments, terrain association in flat featureless environments, and patrol movement formations adapted for swamp operations.</p>
@@ -217,11 +220,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>

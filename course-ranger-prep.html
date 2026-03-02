@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -112,7 +115,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-ranger-prep">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">Ranger School Prep — Complete Guide</h1>
         <p class="section-desc fade-in">7 modules covering everything you need to know before Day 1. Physical standards, land nav, packing lists, tactical tasks, and phase-specific intel.</p>
@@ -162,7 +165,7 @@
             <!-- Content -->
             <div class="course-content-area">
                 <!-- MODULE 1 -->
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">Physical Standards & Training Plan</div>
                     <p>Physical fitness is the foundation. You cannot fake it, and you cannot cram it. If you show up to Ranger School out of shape, you will be recycled or dropped during RAP week.</p>
@@ -189,7 +192,7 @@
                 </div>
 
                 <!-- MODULE 2 -->
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">Land Navigation Mastery</div>
                     <p>Land nav is tested during RAP week and is a primary reason students are dropped. You must pass both the day and night courses to continue.</p>
@@ -223,7 +226,7 @@
                 </div>
 
                 <!-- MODULE 3 -->
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">Packing List Deep Dive</div>
                     <p>Your packing list is your life for 61+ days. Pack wrong and you suffer. Pack right and you have one less thing to worry about.</p>
@@ -249,7 +252,7 @@
                 </div>
 
                 <!-- MODULE 4 -->
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">Tactical Tasks (RTT)</div>
                     <p>Ranger Tactical Tasks are tested on RAP week Day 4. You must pass 5 of 7. No re-tests. Scoring below 5/7 is a MAJOR MINUS.</p>
@@ -271,7 +274,7 @@
                 </div>
 
                 <!-- MODULE 5 -->
-                <div class="course-module" id="mod5">
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
                     <div class="course-module-title">Patrol Base Operations</div>
                     <p>You will spend most of your time in Ranger School in a patrol base (PB). Knowing how to set one up and run it is critical for your patrol grade.</p>
@@ -299,7 +302,7 @@
                 </div>
 
                 <!-- MODULE 6 -->
-                <div class="course-module" id="mod6">
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
                     <div class="course-module-label">Module 6</div>
                     <div class="course-module-title">Orders Process (OPORD / FRAGO)</div>
                     <p>The 5-paragraph OPORD is the backbone of tactical planning. You will receive, write, and brief OPORDs constantly. If you are graded as PL, your OPORD brief is a major component of your patrol grade.</p>
@@ -329,7 +332,7 @@
                 </div>
 
                 <!-- MODULE 7 -->
-                <div class="course-module" id="mod7">
+                <div class="course-module locked-module" id="mod7" data-module="mod7">
                     <div class="course-module-label">Module 7</div>
                     <div class="course-module-title">Phase-Specific Tips</div>
 
@@ -432,12 +435,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <!-- Firebase Auth + Course Gate -->
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <!-- Snipcart -->

@@ -8,7 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
 </head>
 <body>
 
@@ -112,7 +115,7 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero">
+    <div class="section course-hero" data-course-id="course-nutrition">
         <div class="section-label fade-in">Course</div>
         <h1 class="section-title fade-in">Nutrition &amp; Fueling Guide</h1>
         <p class="section-desc fade-in">MRE strategy, calorie management, hydration under stress, and how to maximize nutrition when you're running on 1-2 meals a day for 62 days.</p>
@@ -156,31 +159,31 @@
             </nav>
 
             <div class="course-content-area">
-                <div class="course-module" id="mod1">
+                <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
                     <div class="course-module-title">Calorie Deficit Reality</div>
                     <p>Content coming soon. This module will cover the average daily calorie expenditure versus intake at Ranger School, expected weight loss across phases, and how to mentally and physically prepare for sustained calorie deficit operations.</p>
                 </div>
 
-                <div class="course-module" id="mod2">
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
                     <div class="course-module-title">MRE Strategy &amp; Selection</div>
                     <p>Content coming soon. This module will cover which MRE components to prioritize, how to maximize caloric density per ounce, trading strategies with squadmates, and what to eat first when time is limited.</p>
                 </div>
 
-                <div class="course-module" id="mod3">
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
                     <div class="course-module-title">Hydration Under Stress</div>
                     <p>Content coming soon. This module will cover water consumption planning for patrols, recognizing and preventing dehydration under load, electrolyte management, and hydration discipline during limited water resupply scenarios.</p>
                 </div>
 
-                <div class="course-module" id="mod4">
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
                     <div class="course-module-title">Pre-Course Nutrition Loading</div>
                     <p>Content coming soon. This module will cover macronutrient strategies in the weeks leading up to Day 1, building caloric reserves, supplement considerations, and meal planning to arrive at Ranger School at peak nutritional readiness.</p>
                 </div>
 
-                <div class="course-module" id="mod5">
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
                     <div class="course-module-title">Phase-Specific Fueling Tips</div>
                     <p>Content coming soon. This module will cover nutrition adjustments for each phase of Ranger School — RAP Week intensity, Darby and Mountain phase endurance demands, and Swamp Phase calorie management in humid, high-output conditions.</p>
@@ -221,11 +224,13 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 
-    <script type="module" src="auth.js"></script>
-    <script type="module">
-        import { initAuthUI, initCourseGate } from './auth.js';
-        initAuthUI();
-        initCourseGate();
+    <!-- Auth + Course Engine -->
+    <script src="course-auth.js"></script>
+    <script src="course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
