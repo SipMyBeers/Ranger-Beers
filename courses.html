@@ -783,37 +783,7 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // ── Course Filter Logic ──
-        (function() {
-            const btns = document.querySelectorAll('.course-filter-bar .filter-btn');
-            const cards = document.querySelectorAll('#course-grid .course-card');
-            const countEl = document.getElementById('course-count');
-            const noResults = document.getElementById('course-no-results');
-            const total = cards.length;
-
-            btns.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                    btns.forEach(function(b) { b.classList.remove('active'); });
-                    btn.classList.add('active');
-
-                    var filter = btn.getAttribute('data-filter');
-                    var shown = 0;
-
-                    cards.forEach(function(card) {
-                        var tiers = card.getAttribute('data-tier') || '';
-                        if (filter === 'all' || tiers.indexOf(filter) !== -1) {
-                            card.style.display = '';
-                            shown++;
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-
-                    countEl.textContent = 'Showing ' + shown + ' of ' + total + ' courses';
-                    noResults.style.display = shown === 0 ? 'block' : 'none';
-                });
-            });
-        })();
+        // Filter logic is handled in the bottom script block
     </script>
 
     <!-- Auth -->

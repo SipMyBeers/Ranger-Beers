@@ -187,25 +187,44 @@
 
   // ── Sidebar Scrollspy ──
   function initScrollspy() {
-    const modules = document.querySelectorAll('.course-module[data-module]');
-    const links = document.querySelectorAll('.course-sidebar-link');
-    if (!modules.length || !links.length) return;
+    const courseContent = document.getElementById('course-content');
+    if (!courseContent) return;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          links.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-          });
+    function startObserving() {
+      const modules = document.querySelectorAll('.course-module[data-module]');
+      const links = document.querySelectorAll('.course-sidebar-link');
+      if (!modules.length || !links.length) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            links.forEach(link => {
+              link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+            });
+          }
+        });
+      }, {
+        rootMargin: '-80px 0px -60% 0px',
+        threshold: 0
+      });
+
+      modules.forEach(mod => observer.observe(mod));
+    }
+
+    // If content is already visible, start immediately
+    if (courseContent.style.display !== 'none') {
+      startObserving();
+    } else {
+      // Wait for content to become visible (auth gate opens it)
+      const mo = new MutationObserver(() => {
+        if (courseContent.style.display !== 'none') {
+          mo.disconnect();
+          startObserving();
         }
       });
-    }, {
-      rootMargin: '-80px 0px -60% 0px',
-      threshold: 0
-    });
-
-    modules.forEach(mod => observer.observe(mod));
+      mo.observe(courseContent, { attributes: true, attributeFilter: ['style'] });
+    }
   }
 
   // ── Quiz Engine ──
