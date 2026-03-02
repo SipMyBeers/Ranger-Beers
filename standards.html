@@ -542,6 +542,14 @@
 </head>
 <body>
 
+    <!-- STANDARDS VIDEO BACKGROUND (fixed behind everything) -->
+    <div id="standards-video-section" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+        <video id="standards-bg-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="" type="video/mp4">
+        </video>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6);"></div>
+    </div>
+
     <!-- NAV -->
     <nav class="nav scrolled" id="nav">
         <div class="nav-inner">
@@ -610,15 +618,13 @@
                 </li>
                 <li class="nav-sep"></li>
                 <li class="nav-dropdown">
-                    <a href="#">Resources</a>
+                    <a href="resources.html">Resources</a>
                     <ul class="nav-dropdown-menu">
                         <li><a href="inventory.html">Packing List</a></li>
                         <li><a href="timeline.html">Pre-Ranger Timeline</a></li>
                         <li><a href="faq.html">FAQ from Graduates</a></li>
                         <li><a href="family.html">Family &amp; Spouse Guide</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li class="nav-dropdown-divider"></li>
-                        <li><a href="resources.html">Study &amp; Downloads</a></li>
                     </ul>
                 </li>
                 <li class="nav-sep"></li>
@@ -645,6 +651,102 @@
 
     <!-- Spacer for fixed nav -->
     <div style="height: 80px;"></div>
+
+    <!-- STANDARDS SELECTOR — Click to play videos and navigate -->
+    <style>
+        .standards-selector-section {
+            padding: var(--space-2xl) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .standards-btn-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .standards-btn {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl) var(--space-md);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            color: inherit;
+            font-family: inherit;
+            overflow: hidden;
+        }
+        .standards-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .standards-btn:hover { border-color: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+        .standards-btn:hover::before { opacity: 1; }
+
+        .standards-btn[data-standard="grading"]::before { background: radial-gradient(ellipse at center, rgba(197, 179, 88, 0.12), transparent 70%); }
+        .standards-btn[data-standard="pt"]::before { background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.12), transparent 70%); }
+        .standards-btn[data-standard="rtt"]::before { background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.12), transparent 70%); }
+
+        .standards-btn.active { border-color: var(--color-gold); }
+        .standards-btn.active::before { opacity: 1; }
+        .standards-btn.active[data-standard="grading"] { border-color: #c5b758; box-shadow: 0 0 25px rgba(197, 179, 88, 0.2); }
+        .standards-btn.active[data-standard="pt"] { border-color: #3b82f6; box-shadow: 0 0 25px rgba(59, 130, 246, 0.2); }
+        .standards-btn.active[data-standard="rtt"] { border-color: #ef4444; box-shadow: 0 0 25px rgba(239, 68, 68, 0.2); }
+
+        .standards-btn .st-icon { font-size: 2.5rem; margin-bottom: var(--space-sm); position: relative; }
+        .standards-btn .st-name {
+            font-size: 16px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--color-white);
+            margin-bottom: 6px; position: relative;
+        }
+        .standards-btn .st-sub {
+            font-size: 12px; color: var(--color-text-secondary);
+            letter-spacing: 1px; position: relative;
+        }
+        .standards-btn .st-arrow {
+            margin-top: var(--space-md);
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: all 0.3s;
+        }
+        .standards-btn:hover .st-arrow { opacity: 1; transform: translateY(0); }
+        .standards-btn.active .st-arrow { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .standards-btn-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <section class="section standards-selector-section">
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">What Do You Need to Know?</div>
+        <div class="standards-btn-grid stagger" id="standards-selector">
+            <button class="standards-btn fade-in" data-standard="grading">
+                <div class="st-icon">📋</div>
+                <div class="st-name">Grading</div>
+                <div class="st-sub">How You Pass/Fail</div>
+                <div class="st-arrow">▶</div>
+            </button>
+            <button class="standards-btn fade-in" data-standard="pt">
+                <div class="st-icon">🏃</div>
+                <div class="st-name">PT Standards</div>
+                <div class="st-sub">Physical Requirements</div>
+                <div class="st-arrow">▶</div>
+            </button>
+            <button class="standards-btn fade-in" data-standard="rtt">
+                <div class="st-icon">🎒</div>
+                <div class="st-name">RTT</div>
+                <div class="st-sub">Ruck March Standards</div>
+                <div class="st-arrow">▶</div>
+            </button>
+        </div>
+    </section>
 
     <!-- ═══════════════════════════════════════════════ -->
     <!-- GRADING SYSTEM                                  -->
@@ -1026,6 +1128,91 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
             backgroundColor: '#000000',
             greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
         });
+    </script>
+
+    <script>
+        var standardsVideos = {
+            'grading': 'media/75th-ranger-day1.mp4',
+            'pt': 'media/75th-ranger-day1.mp4',
+            'rtt': 'media/mountain-phase.mp4'
+        };
+        var currentStandard = null;
+
+        function showStandardVideo(standard) {
+            var videoSection = document.getElementById('standards-video-section');
+            var video = document.getElementById('standards-bg-video');
+            
+            video.src = standardsVideos[standard];
+            videoSection.style.display = 'block';
+            video.play();
+            
+            document.querySelectorAll('.standards-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            document.querySelector('.standards-btn[data-standard="' + standard + '"]').classList.add('active');
+            
+            currentStandard = standard;
+            
+            // Scroll to the relevant section
+            var targetId = standard === 'grading' ? 'grading' : (standard === 'pt' ? 'pt-standards' : 'rtt');
+            setTimeout(function() {
+                var target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 300);
+        }
+
+        function hideStandardVideo() {
+            var videoSection = document.getElementById('standards-video-section');
+            var video = document.getElementById('standards-bg-video');
+            
+            video.pause();
+            video.src = '';
+            videoSection.style.display = 'none';
+            
+            document.querySelectorAll('.standards-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            
+            currentStandard = null;
+        }
+
+        document.querySelectorAll('.standards-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var standard = this.getAttribute('data-standard');
+                
+                if (currentStandard === standard) {
+                    hideStandardVideo();
+                } else {
+                    showStandardVideo(standard);
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Fade-in observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>

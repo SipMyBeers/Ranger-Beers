@@ -24,8 +24,8 @@
     --color-success:        #22c55e;
     --color-info:           #3b82f6;
 
-    --glass-bg:             rgba(197, 179, 88, 0.05);
-    --glass-bg-hover:       rgba(197, 179, 88, 0.10);
+    --glass-bg:             rgba(0, 0, 0, 0.4);
+    --glass-bg-hover:       rgba(0, 0, 0, 0.5);
     --glass-border:         1px solid rgba(197, 179, 88, 0.15);
     --glass-blur:           blur(20px);
 

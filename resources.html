@@ -362,6 +362,14 @@
 </head>
 <body>
 
+    <!-- RESOURCE VIDEO BACKGROUND (fixed behind everything) -->
+    <div id="resource-video-section" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+        <video id="resource-bg-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="" type="video/mp4">
+        </video>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6);"></div>
+    </div>
+
     <!-- NAV -->
     <nav class="nav scrolled" id="nav">
         <div class="nav-inner">
@@ -430,15 +438,13 @@
                 </li>
                 <li class="nav-sep"></li>
                 <li class="nav-dropdown">
-                    <a href="#">Resources</a>
+                    <a href="resources.html">Resources</a>
                     <ul class="nav-dropdown-menu">
                         <li><a href="inventory.html">Packing List</a></li>
                         <li><a href="timeline.html">Pre-Ranger Timeline</a></li>
                         <li><a href="faq.html">FAQ from Graduates</a></li>
                         <li><a href="family.html">Family &amp; Spouse Guide</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li class="nav-dropdown-divider"></li>
-                        <li><a href="resources.html">Study &amp; Downloads</a></li>
                     </ul>
                 </li>
                 <li class="nav-sep"></li>
@@ -469,6 +475,101 @@
         <h1 class="section-title fade-in">Train Your Body & Your Mind</h1>
         <p class="section-desc fade-in">Workout programs to get you physically ready and study material to get you tactically sharp. All built from Ranger School experience.</p>
     </div>
+
+    <!-- RESOURCE SELECTOR — Click to play videos -->
+    <style>
+        .resource-selector-section {
+            padding: var(--space-2xl) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .resource-btn-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .resource-btn {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl) var(--space-md);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            color: inherit;
+            font-family: inherit;
+            overflow: hidden;
+        }
+        .resource-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .resource-btn:hover { border-color: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+        .resource-btn:hover::before { opacity: 1; }
+
+        .resource-btn[data-resource="workouts"]::before { background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.12), transparent 70%); }
+        .resource-btn[data-resource="study"]::before { background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.12), transparent 70%); }
+        .resource-btn[data-resource="creed"]::before { background: radial-gradient(ellipse at center, rgba(197, 179, 88, 0.12), transparent 70%); }
+
+        .resource-btn.active { border-color: var(--color-gold); }
+        .resource-btn.active::before { opacity: 1; }
+        .resource-btn.active[data-resource="workouts"] { border-color: #f59e0b; box-shadow: 0 0 25px rgba(245, 158, 11, 0.2); }
+        .resource-btn.active[data-resource="study"] { border-color: #22c55e; box-shadow: 0 0 25px rgba(34, 197, 94, 0.2); }
+        .resource-btn.active[data-resource="creed"] { border-color: var(--color-gold); box-shadow: 0 0 25px rgba(197, 179, 88, 0.2); }
+
+        .resource-btn .rs-icon { font-size: 2.5rem; margin-bottom: var(--space-sm); position: relative; }
+        .resource-btn .rs-name {
+            font-size: 16px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--color-white);
+            margin-bottom: 6px; position: relative;
+        }
+        .resource-btn .rs-sub {
+            font-size: 12px; color: var(--color-text-secondary);
+            letter-spacing: 1px; position: relative;
+        }
+        .resource-btn .rs-arrow {
+            margin-top: var(--space-md);
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: all 0.3s;
+        }
+        .resource-btn:hover .rs-arrow { opacity: 1; transform: translateY(0); }
+        .resource-btn.active .rs-arrow { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .resource-btn-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <section class="section resource-selector-section">
+        <div class="resource-btn-grid stagger" id="resource-selector">
+            <button class="resource-btn fade-in" data-resource="workouts">
+                <div class="rs-icon">💪</div>
+                <div class="rs-name">Workouts</div>
+                <div class="rs-sub">PT Programs & Rucking</div>
+                <div class="rs-arrow">▶</div>
+            </button>
+            <button class="resource-btn fade-in" data-resource="study">
+                <div class="rs-icon">📚</div>
+                <div class="rs-name">Study</div>
+                <div class="rs-sub">Lesson Plans & Guides</div>
+                <div class="rs-arrow">▶</div>
+            </button>
+            <button class="resource-btn fade-in" data-resource="creed">
+                <div class="rs-icon">🎖️</div>
+                <div class="rs-name">Creed</div>
+                <div class="rs-sub">Ranger Creed Mastery</div>
+                <div class="rs-arrow">▶</div>
+            </button>
+        </div>
+    </section>
 
     <!-- ═══════════════════════════════════════════════ -->
     <!-- INTAKE ASSESSMENT                                -->
@@ -579,7 +680,153 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════ -->
-    <!-- PHYSICAL TRAINING                               -->
+    <!-- INTERACTIVE PREP CHECKLIST -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <style>
+        .prep-checklist {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl);
+            margin: 0 auto var(--space-2xl);
+            max-width: 900px;
+        }
+        .prep-checklist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        .prep-checklist-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-white);
+        }
+        .prep-progress-bar {
+            width: 200px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .prep-progress-fill {
+            height: 100%;
+            background: var(--color-gold);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        .prep-progress-text {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-top: 4px;
+            text-align: right;
+        }
+        .prep-checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+        }
+        @media (max-width: 768px) {
+            .prep-checklist-grid { grid-template-columns: 1fr; }
+        }
+        .prep-category-title {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-xs);
+            border-bottom: 1px solid rgba(197, 179, 88, 0.3);
+        }
+        .prep-check-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-xs) 0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .prep-check-item:hover { opacity: 0.8; }
+        .prep-check-item input[type="checkbox"] {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .prep-check-item input[type="checkbox"]:checked {
+            background: var(--color-gold);
+            border-color: var(--color-gold);
+        }
+        .prep-check-item input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--color-bg);
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .prep-check-item span {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            transition: all 0.2s;
+        }
+        .prep-check-item input[type="checkbox"]:checked + span {
+            color: var(--color-white);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+    </style>
+
+    <div class="prep-checklist">
+        <div class="prep-checklist-header">
+            <div class="prep-checklist-title">🎯 Your Prep Checklist</div>
+            <div>
+                <div class="prep-progress-bar"><div class="prep-progress-fill" id="prep-progress-fill"></div></div>
+                <div class="prep-progress-text" id="prep-progress-text">0 / 14 complete</div>
+            </div>
+        </div>
+        <div class="prep-checklist-grid">
+            <div>
+                <div class="prep-category-title">Fitness</div>
+                <label class="prep-check-item"><input type="checkbox" data-check="fit-1"><span>Pass APFT (49 push, 59 sit, 6 chin)</span></label>
+                <label class="prep-check-item"><input type="checkbox" data-check="fit-2"><span>Run 5 miles under 40 minutes</span></label>
+                <label class="prep-check-item"><input type="checkbox" data-check="fit-3"><span>Ruck 12 miles under 3 hours</span></label>
+                <label class="prep-check-item"><input type="checkbox" data-check="fit-4"><span>Pass combat water survival</span></label>
+            </div>
+            <div>
+                <div class="prep-category-title">Knowledge</div>
+                <label class="prep-check-item"><input type="checkbox" data-check="know-1"><span>Memorize Ranger Creed</span></label>
+                <label class="prep-check-item"><input type="checkbox" data-check="know-2"><span>Know the 18 troops-to-tasks</span></label>
+                <label class="prep-check-item"><input type="checkbox" data-check="know-3"><span>Learn land navigation basics</span></label>
+                <label class="prep-check-item"><input type="checkbox" data-check="know-4"><span>Study OPORD format</span></label>
+            </div>
+            <div>
+                <div class="prep-category-title">Gear</div>
+                <label class="prep-check-item"><input type="checkbox" data-check="gear-1"><span>Complete packing list</span></label>
+                <label class="prep-check-item"><input type="checkbox" data-check="gear-2"><span>Break in boots</span></label>
+                <label class="prep-check-item"><input type="checkbox" data-check="gear-3"><span>Organize ruck with SOP</span></label>
+            </div>
+            <div>
+                <div class="prep-category-title">Mental</div>
+                <label class="prep-check-item"><input type="checkbox" data-check="ment-1"><span>Read graduate stories</span></label>
+                <label class="prep-check-item"><input type="checkbox" data-check="ment-2"><span>Talk to family about commitment</span></label>
+                <label class="prep-check-item"><input type="checkbox" data-check="ment-3"><span>Set realistic expectations</span></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- PHYSICAL TRAINING -->
     <!-- ═══════════════════════════════════════════════ -->
     <section class="section" id="workouts">
         <div class="section-label fade-in">Physical Training</div>
@@ -1673,6 +1920,110 @@
             backgroundColor: '#000000',
             greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
         });
+    </script>
+
+    <script>
+        var resourceVideos = {
+            'workouts': 'media/75th-ranger-day1.mp4',
+            'study': 'media/the-creed-intro.mp4',
+            'creed': 'media/the-creed-intro.mp4'
+        };
+        var currentResource = null;
+
+        function showResourceVideo(resource) {
+            var videoSection = document.getElementById('resource-video-section');
+            var video = document.getElementById('resource-bg-video');
+            
+            video.src = resourceVideos[resource];
+            videoSection.style.display = 'block';
+            video.play();
+            
+            document.querySelectorAll('.resource-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            document.querySelector('.resource-btn[data-resource="' + resource + '"]').classList.add('active');
+            
+            currentResource = resource;
+            
+            // Scroll to the relevant section
+            var targetId = resource === 'workouts' ? 'workouts' : (resource === 'study' ? 'study' : 'creed');
+            setTimeout(function() {
+                var target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 300);
+        }
+
+        function hideResourceVideo() {
+            var videoSection = document.getElementById('resource-video-section');
+            var video = document.getElementById('resource-bg-video');
+            
+            video.pause();
+            video.src = '';
+            videoSection.style.display = 'none';
+            
+            document.querySelectorAll('.resource-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            
+            currentResource = null;
+        }
+
+        document.querySelectorAll('.resource-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var resource = this.getAttribute('data-resource');
+                
+                if (currentResource === resource) {
+                    hideResourceVideo();
+                } else {
+                    showResourceVideo(resource);
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Fade-in observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Prep Checklist functionality
+        (function() {
+            var checkboxes = document.querySelectorAll('.prep-check-item input[type="checkbox"]');
+            var progressFill = document.getElementById('prep-progress-fill');
+            var progressText = document.getElementById('prep-progress-text');
+            var total = checkboxes.length;
+            
+            function updateProgress() {
+                var checked = document.querySelectorAll('.prep-check-item input[type="checkbox"]:checked').length;
+                var percent = (checked / total) * 100;
+                progressFill.style.width = percent + '%';
+                progressText.textContent = checked + ' / ' + total + ' complete';
+            }
+            
+            checkboxes.forEach(function(cb) {
+                cb.addEventListener('change', updateProgress);
+            });
+        })();
     </script>
 </body>
 </html>

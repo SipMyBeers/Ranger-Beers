@@ -144,6 +144,14 @@
 </head>
 <body>
 
+    <!-- SEASON BACKGROUND VIDEO (fixed behind everything) -->
+    <div id="season-video-section" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+        <video id="season-bg-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="" type="video/mp4">
+        </video>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);"></div>
+    </div>
+
     <!-- NAV -->
     <nav class="nav scrolled" id="nav">
         <div class="nav-inner">
@@ -212,15 +220,13 @@
                 </li>
                 <li class="nav-sep"></li>
                 <li class="nav-dropdown">
-                    <a href="#">Resources</a>
+                    <a href="resources.html">Resources</a>
                     <ul class="nav-dropdown-menu">
                         <li><a href="inventory.html">Packing List</a></li>
                         <li><a href="timeline.html">Pre-Ranger Timeline</a></li>
                         <li><a href="faq.html">FAQ from Graduates</a></li>
                         <li><a href="family.html">Family &amp; Spouse Guide</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li class="nav-dropdown-divider"></li>
-                        <li><a href="resources.html">Study &amp; Downloads</a></li>
                     </ul>
                 </li>
                 <li class="nav-sep"></li>
@@ -3747,6 +3753,14 @@
         (function() {
             var btns = document.querySelectorAll('.season-btn');
             var panels = document.querySelectorAll('.season-detail-panel');
+            
+            var seasonVideos = {
+                'winter': 'media/75th-ranger-day1.mp4',
+                'spring': 'media/75th-ranger-day1.mp4',
+                'summer': 'media/75th-ranger-day1.mp4',
+                'fall': 'media/75th-ranger-day1.mp4'
+            };
+            var currentSeason = null;
 
             btns.forEach(function(btn) {
                 btn.addEventListener('click', function() {
@@ -3760,6 +3774,22 @@
                     if (!wasActive && panel) {
                         this.classList.add('active');
                         panel.classList.add('open');
+                        
+                        // Play background video
+                        var videoSection = document.getElementById('season-video-section');
+                        var video = document.getElementById('season-bg-video');
+                        video.src = seasonVideos[season];
+                        videoSection.style.display = 'block';
+                        video.play();
+                        currentSeason = season;
+                    } else {
+                        // Hide video when closing
+                        var videoSection = document.getElementById('season-video-section');
+                        var video = document.getElementById('season-bg-video');
+                        video.pause();
+                        video.src = '';
+                        videoSection.style.display = 'none';
+                        currentSeason = null;
                     }
                 });
             });

@@ -81,15 +81,13 @@
                 </li>
                 <li class="nav-sep"></li>
                 <li class="nav-dropdown">
-                    <a href="#">Resources</a>
+                    <a href="resources.html">Resources</a>
                     <ul class="nav-dropdown-menu">
                         <li><a href="inventory.html">Packing List</a></li>
                         <li><a href="timeline.html">Pre-Ranger Timeline</a></li>
                         <li><a href="faq.html">FAQ from Graduates</a></li>
                         <li><a href="family.html">Family &amp; Spouse Guide</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li class="nav-dropdown-divider"></li>
-                        <li><a href="resources.html">Study &amp; Downloads</a></li>
                     </ul>
                 </li>
                 <li class="nav-sep"></li>
@@ -118,11 +116,11 @@
         </div>
     </nav>
 
-    <!-- FULL-VIEWPORT VIDEO HERO -->
+    <!-- FULL-VIEWPORT HERO -->
     <section class="hero" id="hero">
         <div class="hero-video-wrap">
-            <video autoplay muted loop playsinline poster="images/phases/ranger-confidence-course.jpg">
-                <source src="media/rap-week.mp4" type="video/mp4">
+            <video autoplay muted loop playsinline>
+                <source src="media/75th-ranger-day1.mp4" type="video/mp4">
             </video>
         </div>
         <div class="hero-overlay"></div>
@@ -138,7 +136,22 @@
         <div class="scroll-indicator"><div class="scroll-line"></div>Scroll</div>
     </section>
 
-    <!-- PHASE SELECTOR — Click to expand details -->
+    <!-- PHASE BACKGROUND VIDEO (fixed behind everything) -->
+    <div id="phase-video-section" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+        <video id="phase-bg-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="" type="video/mp4">
+        </video>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);"></div>
+    </div>
+
+    <!-- MAIN HEADLINE -->
+    <section class="section" style="text-align: center; padding: var(--space-3xl) 40px;">
+        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-family: var(--font-display); color: var(--color-text); margin: 0;">
+            62 Days &mdash; 4 Phases &mdash; 1 Tab
+        </h2>
+    </section>
+
+    <!-- PHASE SELECTOR — Click to open modal -->
     <style>
         .phase-selector {
             padding: var(--space-3xl) 40px var(--space-2xl);
@@ -507,329 +520,11 @@
                 <div class="pc-link">Learn More &rarr;</div>
             </button>
         </div>
-
-        <!-- EXPANDABLE DETAIL PANELS -->
-        <div class="phase-detail-panel" id="detail-surt">
-            <div class="phase-detail-inner">
-                <div class="phase-detail-header">
-                    <div class="phase-detail-title">SURT — Small Unit Ranger Tactics (Pre-Ranger)</div>
-                    <div class="phase-detail-badge surt">Pre-Ranger</div>
-                </div>
-                <div class="phase-detail-grid">
-                    <div class="phase-detail-standards">
-                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">~3 weeks</span></div>
-                        <div class="pd-item"><span class="pd-item-name">RPFT (Push-ups, 2 min)</span><span class="pd-item-value">49 minimum</span></div>
-                        <div class="pd-item"><span class="pd-item-name">RPFT (Sit-ups, 2 min)</span><span class="pd-item-value">59 minimum</span></div>
-                        <div class="pd-item"><span class="pd-item-name">RPFT (Chin-ups)</span><span class="pd-item-value">6 minimum</span></div>
-                        <div class="pd-item"><span class="pd-item-name">5-Mile Run</span><span class="pd-item-value">40:00 max</span></div>
-                        <div class="pd-item"><span class="pd-item-name">12-Mile Ruck</span><span class="pd-item-value">3:00:00 max</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Land Navigation</span><span class="pd-item-value">Day &amp; Night tested</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Water Confidence</span><span class="pd-item-value">Pass / No-Go</span></div>
-                    </div>
-                    <div class="phase-detail-desc">
-                        <p><strong>SURT is not Ranger School</strong> — it's the unit-level course that prepares soldiers to survive RAP Week. Run by each division or brigade, SURT mirrors the RAP Week standards so you fail here, not there.</p>
-                        <p>You'll take the Ranger Physical Fitness Test, practice land nav at Ranger School's actual course, rehearse water confidence tasks, and run through small unit tactics. SURT is your last chance to identify weaknesses before the real thing.</p>
-                        <div class="phase-detail-bullets">
-                            <div class="pdb-title">What to Expect</div>
-                            <ul>
-                                <li>Full RPFT to Ranger School standards</li>
-                                <li>Day &amp; night land navigation (Camp Rogers course)</li>
-                                <li>15m swim in full ACUs with equipment</li>
-                                <li>Knot tying &amp; basic mountaineering intro</li>
-                                <li>Patrol base operations &amp; battle drill rehearsal</li>
-                                <li>5-paragraph OPORD writing under time pressure</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid rgba(255,255,255,0.06);">
-                    <div class="pdb-title" style="margin-bottom: var(--space-md);">SURT Programs Across the Army</div>
-                    <div class="surt-programs">
-                        <div class="surt-program">
-                            <div class="surt-program-name">82nd Airborne Division SURT</div>
-                            <div class="surt-program-unit">82nd ABN DIV, Fort Liberty, NC</div>
-                            <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:var(--space-sm);">One of the largest SURT programs in the Army. Run by the division's Ranger cadre, it sends dozens of soldiers per class cycle.</div>
-                            <div class="phase-social-links">
-                                <a href="https://www.instagram.com/82ndairbornediv/" target="_blank" rel="noopener">&#9679; Instagram</a>
-                                <a href="https://www.dvidshub.net/unit/82NDABN" target="_blank" rel="noopener">&#9679; DVIDS</a>
-                            </div>
-                        </div>
-                        <div class="surt-program">
-                            <div class="surt-program-name">25th Infantry Division — Lightning Academy</div>
-                            <div class="surt-program-unit">25th ID, Schofield Barracks, Hawaii</div>
-                            <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:var(--space-sm);">Hawaii's premier Pre-Ranger course. The Lightning Academy runs one of the most competitive SURT programs in USARPAC.</div>
-                            <div class="phase-social-links">
-                                <a href="https://www.instagram.com/lightningacademy_25thid/" target="_blank" rel="noopener">&#9679; Instagram</a>
-                                <a href="https://home.army.mil/hawaii/index.php" target="_blank" rel="noopener">&#9679; Official Site</a>
-                            </div>
-                        </div>
-                        <div class="surt-program">
-                            <div class="surt-program-name">75th Ranger Regiment — RSTB</div>
-                            <div class="surt-program-unit">Ranger Special Troops Battalion, Fort Moore, GA</div>
-                            <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:var(--space-sm);">Regiment's own pre-Ranger pipeline. The 75th's SURT has the highest send rate and lowest recycle rate of any SURT in the Army.</div>
-                            <div class="phase-social-links">
-                                <a href="https://www.instagram.com/the_75th_ranger_regiment/" target="_blank" rel="noopener">&#9679; Instagram</a>
-                                <a href="https://www.army.mil/ranger" target="_blank" rel="noopener">&#9679; Official Site</a>
-                            </div>
-                        </div>
-                        <div class="surt-program">
-                            <div class="surt-program-name">RTLI — Ranger Training Leadership Institute</div>
-                            <div class="surt-program-unit">Army National Guard</div>
-                            <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:var(--space-sm);">The National Guard's dedicated pre-Ranger program. RTLI gives Guard soldiers the same level of preparation active duty units receive through SURT.</div>
-                            <div class="phase-social-links">
-                                <a href="https://www.instagram.com/leaders_recon/" target="_blank" rel="noopener">&#9679; Instagram</a>
-                                <a href="https://www.nationalguard.mil/" target="_blank" rel="noopener">&#9679; Official Site</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="phase-social-links" style="margin-top: var(--space-lg); padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);">
-                    <a href="https://www.instagram.com/airbornerangertrainingbrigade/" target="_blank" rel="noopener">&#9679; ARTB Instagram</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="phase-detail-panel" id="detail-rap">
-            <div class="phase-detail-inner">
-                <div class="phase-detail-header">
-                    <div class="phase-detail-title">RAP Week — Ranger Assessment Phase</div>
-                    <div class="phase-detail-badge rap">Phase 0</div>
-                </div>
-
-                <div class="phase-rtb-info">
-                    <div>
-                        <div class="phase-rtb-name">4th Ranger Training Battalion — Camp Rogers</div>
-                        <div class="phase-address">Fort Moore, GA 31905</div>
-                    </div>
-                    <div class="phase-social-links">
-                        <a href="https://www.instagram.com/4thrtb/" target="_blank" rel="noopener">&#9679; @4thrtb</a>
-                        <a href="https://www.instagram.com/airbornerangertrainingbrigade/" target="_blank" rel="noopener">&#9679; ARTB</a>
-                    </div>
-                </div>
-
-                <div class="phase-detail-grid">
-                    <div class="phase-detail-standards">
-                        <div class="pd-item"><span class="pd-item-name">Push-ups (2 min)</span><span class="pd-item-value">49 minimum</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Sit-ups (2 min)</span><span class="pd-item-value">59 minimum</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Chin-ups</span><span class="pd-item-value">6 minimum</span></div>
-                        <div class="pd-item"><span class="pd-item-name">5-Mile Run</span><span class="pd-item-value">40:00 max</span></div>
-                        <div class="pd-item"><span class="pd-item-name">12-Mile Ruck March</span><span class="pd-item-value">3:00:00 max</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Combat Water Survival</span><span class="pd-item-value">Pass / No-Go</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Day Land Nav</span><span class="pd-item-value">4 of 5 points</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Night Land Nav</span><span class="pd-item-value">1 of 3 points</span></div>
-                    </div>
-                    <div class="phase-detail-desc">
-                        <p><strong>RAP Week drops ~60% of students.</strong> The physical events are the gate — meet the standard or go home. This is the highest-attrition point in the entire course.</p>
-                        <p>The Ranger Physical Assessment, Combat Water Survival Test, 12-mile ruck, and land navigation are all scored events. Fail one and you're done. No re-tests, no exceptions.</p>
-                        <div class="phase-detail-bullets">
-                            <div class="pdb-title">Reporting Info</div>
-                            <ul>
-                                <li>Report to Building 5002 (Whetten Hall), Camp Rogers</li>
-                                <li>Day 0 (Sunday), 0700 – 1300</li>
-                                <li>OCP uniform with CamelBak only</li>
-                                <li>5 copies of orders</li>
-                                <li>Ranger haircut on arrival — clippers, no guard</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: 1px solid rgba(255,255,255,0.06);">
-                    <div class="pdb-title" style="margin-bottom: var(--space-md);">RAP Week Events Breakdown</div>
-                    <div class="rap-events">
-                        <div class="rap-event">
-                            <div class="rap-event-name">Ranger Physical Assessment (RPA 2.0)</div>
-                            <div class="rap-event-standard">49 PU / 59 SU / 6 Chin-ups / 40:00 5-Mi</div>
-                            <div class="rap-event-desc">The updated Ranger Physical Assessment replaces the old RPFT. Push-ups, sit-ups, chin-ups, and a 5-mile run — all in sequence. Fall below minimums on any event and you're dropped.</div>
-                            <div class="rap-event-video">
-                                <a href="https://www.dvidshub.net/search/?q=ranger+assessment+phase+physical&type=video" target="_blank" rel="noopener">&#9654; Watch RPA Videos (DVIDS)</a>
-                            </div>
-                        </div>
-                        <div class="rap-event">
-                            <div class="rap-event-name">Combat Water Survival Assessment (CWSA)</div>
-                            <div class="rap-event-standard">Pass / No-Go — 3 Events</div>
-                            <div class="rap-event-desc">15m swim in full ACUs, equipment ditch and recovery at 3m depth, and a blindfolded walk off the high dive. Panic = failure. This is where non-swimmers get cut.</div>
-                            <div class="rap-event-video">
-                                <a href="https://www.dvidshub.net/search/?q=ranger+school+combat+water+survival&type=video" target="_blank" rel="noopener">&#9654; Watch CWSA Videos (DVIDS)</a>
-                            </div>
-                        </div>
-                        <div class="rap-event">
-                            <div class="rap-event-name">12-Mile Ruck March</div>
-                            <div class="rap-event-standard">3:00:00 Max — ~65 lb Dry Weight</div>
-                            <div class="rap-event-desc">12 miles with a loaded ruck, weapon, and body armor equivalent. The route is flat but relentless. Hit the 3-hour mark or go home. No walking breaks — you ruck or you run.</div>
-                            <div class="rap-event-video">
-                                <a href="https://www.dvidshub.net/search/?q=ranger+school+ruck+march&type=video" target="_blank" rel="noopener">&#9654; Watch 12-Mile Videos (DVIDS)</a>
-                            </div>
-                        </div>
-                        <div class="rap-event">
-                            <div class="rap-event-name">Land Navigation (Day &amp; Night)</div>
-                            <div class="rap-event-standard">Day: 4 of 5 pts / Night: 1 of 3 pts</div>
-                            <div class="rap-event-desc">Protractor, compass, map, and your feet. The course at Camp Rogers is dense Georgia pine. Day nav gives you 5 hours; night nav is pitch black with a red-lens headlamp. Biggest single drop event in RAP.</div>
-                            <div class="rap-event-video">
-                                <a href="https://www.dvidshub.net/search/?q=ranger+school+land+navigation&type=video" target="_blank" rel="noopener">&#9654; Watch Land Nav Videos (DVIDS)</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="phase-detail-panel" id="detail-darby">
-            <div class="phase-detail-inner">
-                <div class="phase-detail-header">
-                    <div class="phase-detail-title">Darby Phase — Benning Phase (4th RTB)</div>
-                    <div class="phase-detail-badge darby">Phase 1</div>
-                </div>
-
-                <div class="phase-rtb-info">
-                    <div>
-                        <div class="phase-rtb-name">4th Ranger Training Battalion</div>
-                        <div class="phase-address">Camp Rogers &amp; Camp Darby, Fort Moore, GA 31905</div>
-                    </div>
-                    <div class="phase-social-links">
-                        <a href="https://www.instagram.com/4thrtb/" target="_blank" rel="noopener">&#9679; @4thrtb</a>
-                        <a href="https://www.instagram.com/airbornerangertrainingbrigade/" target="_blank" rel="noopener">&#9679; ARTB</a>
-                    </div>
-                </div>
-
-                <div class="phase-detail-grid">
-                    <div class="phase-detail-standards">
-                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">~20 days</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Patrol Leadership</span><span class="pd-item-value">GO / NO-GO graded</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Ambush Operations</span><span class="pd-item-value">Must execute</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Raid Operations</span><span class="pd-item-value">Must execute</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Recon Patrols</span><span class="pd-item-value">Must execute</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Peer Evaluations</span><span class="pd-item-value">Not lowest 3rd</span></div>
-                    </div>
-                    <div class="phase-detail-desc">
-                        <p><strong>Darby is where you learn to lead patrols.</strong> After surviving RAP Week, you move into techniques training followed by cadre-assisted and then graded squad-level operations at Camp Rogers and Camp Darby.</p>
-                        <p>You'll plan and execute ambushes, raids, and reconnaissance patrols. Peer evaluations happen here — if your squad thinks you're dead weight, you're going home.</p>
-                        <div class="phase-detail-bullets">
-                            <div class="pdb-title">Key Events</div>
-                            <ul>
-                                <li>Techniques: battle drills, OPORD writing, patrol base ops</li>
-                                <li>Cadre-assisted patrols (learning phase)</li>
-                                <li>Graded squad ambush &amp; raid patrols</li>
-                                <li>Peer evaluation #1</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="phase-detail-panel" id="detail-mountains">
-            <div class="phase-detail-inner">
-                <div class="phase-detail-header">
-                    <div class="phase-detail-title">Mountain Phase — 5th RTB, Camp Merrill</div>
-                    <div class="phase-detail-badge mountains">Phase 2</div>
-                </div>
-
-                <div class="phase-rtb-info">
-                    <div>
-                        <div class="phase-rtb-name">5th Ranger Training Battalion</div>
-                        <div class="phase-address">Camp Frank D. Merrill, Dahlonega, GA 30533</div>
-                    </div>
-                    <div class="phase-social-links">
-                        <a href="https://www.instagram.com/5thrtb/" target="_blank" rel="noopener">&#9679; @5thrtb</a>
-                        <a href="https://www.instagram.com/airbornerangertrainingbrigade/" target="_blank" rel="noopener">&#9679; ARTB</a>
-                    </div>
-                </div>
-
-                <div class="phase-detail-grid">
-                    <div class="phase-detail-standards">
-                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">~20 days</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Knot Test</span><span class="pd-item-value">5 of 6 in 5 min</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Rappelling</span><span class="pd-item-value">Pass / No-Go</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Mountaineering</span><span class="pd-item-value">Pass / No-Go</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Platoon Patrols</span><span class="pd-item-value">GO / NO-GO graded</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Peer Evaluations</span><span class="pd-item-value">Not lowest 3rd</span></div>
-                    </div>
-                    <div class="phase-detail-desc">
-                        <p><strong>The mountains break Rangers physically.</strong> Steep terrain, heavy rucks, and no sleep. Camp Merrill in Dahlonega, GA sits in the Blue Ridge Mountains — and you'll feel every foot of elevation.</p>
-                        <p>Lower mountaineering leads into Mt. Yonah where you'll rappel and belay. Then it's techniques and graded platoon-level patrols through some of the most brutal terrain in the course.</p>
-                        <div class="phase-detail-bullets">
-                            <div class="pdb-title">Key Events</div>
-                            <ul>
-                                <li>Knot test: 6 knots, must pass 5 in 5 minutes</li>
-                                <li>Mt. Yonah rappelling (200ft face)</li>
-                                <li>Graded platoon ambush &amp; movement-to-contact</li>
-                                <li>Peer evaluation #2</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="phase-detail-panel" id="detail-swamp">
-            <div class="phase-detail-inner">
-                <div class="phase-detail-header">
-                    <div class="phase-detail-title">Swamp Phase — 6th RTB, Camp Rudder</div>
-                    <div class="phase-detail-badge swamp">Phase 3</div>
-                </div>
-
-                <div class="phase-rtb-info">
-                    <div>
-                        <div class="phase-rtb-name">6th Ranger Training Battalion</div>
-                        <div class="phase-address">Camp James E. Rudder, Eglin AFB, FL 32542</div>
-                    </div>
-                    <div class="phase-social-links">
-                        <a href="https://www.instagram.com/6thrtb_official/" target="_blank" rel="noopener">&#9679; @6thrtb_official</a>
-                        <a href="https://www.instagram.com/airbornerangertrainingbrigade/" target="_blank" rel="noopener">&#9679; ARTB</a>
-                    </div>
-                </div>
-
-                <div class="phase-detail-grid">
-                    <div class="phase-detail-standards">
-                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">~21 days</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Small Boat Operations</span><span class="pd-item-value">Pass / No-Go</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Swamp Patrol</span><span class="pd-item-value">GO / NO-GO graded</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Airfield Seizure</span><span class="pd-item-value">Must execute</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Water Crossings</span><span class="pd-item-value">Must complete</span></div>
-                        <div class="pd-item"><span class="pd-item-name">Peer Evaluations</span><span class="pd-item-value">Not lowest 3rd</span></div>
-                    </div>
-                    <div class="phase-detail-desc">
-                        <p><strong>Florida is the final gut-check.</strong> Waist-deep in swamp water, zero sleep, alligators for neighbors. Camp Rudder at Eglin AFB, FL is where Rangers are forged — or broken.</p>
-                        <p>Small boat operations, water crossings, and graded platoon patrols through coastal swamp. The culminating airfield seizure is the last graded event before graduation.</p>
-                        <div class="phase-detail-bullets">
-                            <div class="pdb-title">Key Events</div>
-                            <ul>
-                                <li>Zodiac boat operations &amp; stream crossings</li>
-                                <li>Graded platoon patrols through swamp terrain</li>
-                                <li>Airfield seizure (final graded patrol)</li>
-                                <li>Peer evaluation #3 (final)</li>
-                                <li>Recovery &amp; graduation prep at Camp Rudder</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
-    <!-- CINEMATIC BREAK — The Standard -->
-    <section class="hero" style="height: 50vh; min-height: 300px;">
-        <div class="section-video-wrap">
-            <video autoplay muted loop playsinline>
-                <source src="videos/ruck-march.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="section-label">The Standard</div>
-            <h2 class="hero-headline" style="font-size: clamp(2rem,4vw,3.5rem);">61 Days in the Suck</h2>
-            <p class="hero-sub">3 phases. 4 peer evaluations. No second chances on patrol.</p>
-        </div>
-    </section>
-
     <!-- RANGER CREED -->
-    <section class="section creed-section" style="padding-top: var(--space-xl);">
-
-
-        <div class="creed-card fade-in">
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;" class="fade-in">
             <p class="creed-stanza"><strong>Recognizing</strong> that I volunteered as a Ranger, fully knowing the hazards of my chosen profession, I will always endeavor to uphold the prestige, honor, and high esprit de corps of my Ranger Regiment.</p>
 
             <p class="creed-stanza"><strong>Acknowledging</strong> the fact that a Ranger is a more elite soldier, who arrives at the cutting edge of battle by land, sea, or air, I accept the fact that as a Ranger, my country expects me to move further, faster, and fight harder than any other soldier.</p>
@@ -847,6 +542,7 @@
 
         <div style="text-align: center; margin-top: var(--space-2xl);">
             <a href="resources.html#creed" class="btn btn-outline-gold">Take the Creed Assessment &rarr;</a>
+        </div>
         </div>
     </section>
 
@@ -961,22 +657,21 @@
     </section>
 
     <!-- CINEMATIC BREAK — Prepare Now -->
-    <section class="hero" style="height: 50vh; min-height: 300px;">
-        <div class="section-video-wrap">
-            <video autoplay muted loop playsinline>
-                <source src="videos/land-nav.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
+    <section class="hero" style="height: 50vh; min-height: 300px; background: transparent;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);"></div>
+        <div class="hero-content" style="position: relative; z-index: 1;">
             <div class="section-label">Prepare Now</div>
             <h2 class="hero-headline" style="font-size: clamp(2rem,4vw,3.5rem);">Don't Be a Statistic</h2>
             <p class="hero-sub">50%+ wash rate. The ones who graduate trained before they arrived.</p>
+            <div class="hero-cta" style="margin-top: 20px;">
+                <a href="courses.html" class="btn btn-primary">View Courses</a>
+            </div>
         </div>
     </section>
 
     <!-- RESOURCE PITCH — What kind of problem do you have? -->
-    <section class="section">
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 900px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;">
         <div class="section-label fade-in">Resources</div>
         <h2 class="section-title fade-in">Don't Be That Ranger.</h2>
         <p class="section-desc fade-in">Every Ranger School failure has a type. We built a fix for each one.</p>
@@ -1014,6 +709,7 @@
                 <div class="card-title">Braindead Ranger?</div>
                 <p class="card-desc">OPORDs, battle drills, TLPs — if it's blank in your head, it'll be blank on your patrol. Study now or recycle later.</p>
             </a>
+        </div>
         </div>
     </section>
 
@@ -1273,89 +969,6 @@
     </style>
 
     <section class="section" id="phases" style="border-top: 1px solid rgba(255,255,255,0.06);">
-        <div class="section-label fade-in">The Gauntlet</div>
-        <h2 class="section-title fade-in">4 Phases. 61 Days. One Tab.</h2>
-        <p class="section-desc fade-in">Ranger School is three phases plus a RAP Week gate. Each phase has unique terrain, challenges, and standards. You must pass each one to advance.</p>
-
-        <!-- Phase Cards -->
-        <div class="ix-phase-grid stagger">
-
-            <!-- RAP WEEK -->
-            <div class="ix-phase-card fade-in" id="rap">
-                <div class="ix-phase-label rap">Phase 0 — RAP Week</div>
-                <div class="ix-phase-title">Ranger Assessment Phase</div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Push-ups (2 min)</span><span class="ix-standard-value">49 minimum</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Sit-ups (2 min)</span><span class="ix-standard-value">59 minimum</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Chin-ups</span><span class="ix-standard-value">6 minimum</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">5-Mile Run</span><span class="ix-standard-value">40:00 max</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">12-Mile Ruck March</span><span class="ix-standard-value">3:00:00 max</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Combat Water Survival</span><span class="ix-standard-value">Pass / No-Go</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Day Land Nav</span><span class="ix-standard-value">4 of 5 points</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Night Land Nav</span><span class="ix-standard-value">1 of 3 points</span></div>
-                <div class="ix-phase-note">RAP week drops ~60% of students. The physical events are the gate — meet the standard or go home.</div>
-
-                <div class="ix-reporting-bullets">
-                    <div class="ix-report-title">Reporting Info</div>
-                    <ul>
-                        <li>Report to Building 5002 (Whetten Hall), Camp Rogers</li>
-                        <li>Day 0 (Sunday), 0700 – 1300</li>
-                        <li>OCP uniform with CamelBak only</li>
-                        <li>5 copies of orders</li>
-                        <li>Ranger haircut on arrival — clippers, no guard</li>
-                    </ul>
-                </div>
-
-                <div class="phase-img-wrap"><img src="images/phases/ranger-confidence-course.jpg" alt="Ranger Assessment Phase" loading="lazy"></div>
-                <div class="phase-video-wrap"><video controls preload="none" poster="images/phases/ranger-confidence-course.jpg"><source src="media/rap-week.mp4" type="video/mp4"></video></div>
-            </div>
-
-            <!-- DARBY PHASE -->
-            <div class="ix-phase-card fade-in" id="darby">
-                <div class="ix-phase-label darby">Phase 1 — Darby</div>
-                <div class="ix-phase-title">Benning Phase (4th RTB — Camp Rogers & Darby)</div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Duration</span><span class="ix-standard-value">~20 days</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Patrol Leadership</span><span class="ix-standard-value">GO / NO-GO graded</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Ambush Operations</span><span class="ix-standard-value">Must execute</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Raid Operations</span><span class="ix-standard-value">Must execute</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Recon Patrols</span><span class="ix-standard-value">Must execute</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Peer Evaluations</span><span class="ix-standard-value">Not lowest 3rd</span></div>
-                <div class="ix-phase-note">RAP Week assessment &rarr; techniques &rarr; cadre assisted patrols &rarr; graded squad operations. Fort Moore, GA.</div>
-
-                <div class="phase-video-wrap"><video controls preload="none"><source src="media/darby-phase.mp4" type="video/mp4"></video></div>
-            </div>
-
-            <!-- MOUNTAIN PHASE -->
-            <div class="ix-phase-card fade-in" id="mountains">
-                <div class="ix-phase-label mountains">Phase 2 — Mountains</div>
-                <div class="ix-phase-title">Mountain Phase (5th RTB — Camp Merrill)</div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Duration</span><span class="ix-standard-value">~20 days</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Knot Test</span><span class="ix-standard-value">5 of 6 in 5 min</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Rappelling</span><span class="ix-standard-value">Pass / No-Go</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Mountaineering</span><span class="ix-standard-value">Pass / No-Go</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Platoon Patrols</span><span class="ix-standard-value">GO / NO-GO graded</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Peer Evaluations</span><span class="ix-standard-value">Not lowest 3rd</span></div>
-                <div class="ix-phase-note">Lower mountaineering &rarr; Mt. Yonah &rarr; techniques &rarr; graded platoon operations. Dahlonega, GA.</div>
-
-                <div class="phase-video-wrap"><video controls preload="none"><source src="media/brutal-mountain.mp4" type="video/mp4"></video></div>
-            </div>
-
-            <!-- SWAMP PHASE -->
-            <div class="ix-phase-card fade-in" id="florida">
-                <div class="ix-phase-label florida">Phase 3 — Swamp</div>
-                <div class="ix-phase-title">Swamp Phase (6th RTB — Camp Rudder)</div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Duration</span><span class="ix-standard-value">~21 days</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Small Boat Operations</span><span class="ix-standard-value">Pass / No-Go</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Swamp Patrol</span><span class="ix-standard-value">GO / NO-GO graded</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Airfield Seizure</span><span class="ix-standard-value">Must execute</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Water Crossings</span><span class="ix-standard-value">Must complete</span></div>
-                <div class="ix-standard-item"><span class="ix-standard-name">Peer Evaluations</span><span class="ix-standard-value">Not lowest 3rd</span></div>
-                <div class="ix-phase-note">Techniques &rarr; graded platoon operations &rarr; recovery / graduation prep. Eglin AFB, FL.</div>
-
-                <div class="phase-img-wrap"><img src="images/phases/swamp-phase.jpg" alt="Swamp Phase Slide for Life" loading="lazy"></div>
-                <div class="phase-video-wrap"><video controls preload="none" poster="images/phases/swamp-phase.jpg"><source src="media/swamp-phase.mp4" type="video/mp4"></video></div>
-            </div>
-        </div>
-
         <!-- Course Stats -->
         <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Course Overview</div>
         <div class="ix-stats-grid stagger">
@@ -1554,6 +1167,64 @@
             textColor: '#FFFFFF',
             backgroundColor: '#000000',
             greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
+        });
+    </script>
+
+    <script>
+        var phaseVideos = {
+            'surt': 'https://www.dvidshub.net/video/855747/82nd-abn-div-ranger-surt-react-contact-drill',
+            'rap': 'https://www.dvidshub.net/video/855274/82nd-abn-div-ranger-surt-pt-test',
+            'darby': 'media/75th-ranger-day1.mp4',
+            'mountains': 'media/mountain-phase.mp4',
+            'swamp': 'media/the-creed-intro.mp4'
+        };
+        var currentPhase = null;
+
+        function showPhaseVideo(phase) {
+            var videoSection = document.getElementById('phase-video-section');
+            var video = document.getElementById('phase-bg-video');
+            
+            // Set and play the video
+            video.src = phaseVideos[phase];
+            videoSection.style.display = 'block';
+            video.play();
+            
+            // Highlight the active button
+            document.querySelectorAll('.phase-card-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            document.querySelector('.phase-card-btn[data-phase="' + phase + '"]').classList.add('active');
+            
+            currentPhase = phase;
+        }
+
+        function hidePhaseVideo() {
+            var videoSection = document.getElementById('phase-video-section');
+            var video = document.getElementById('phase-bg-video');
+            
+            video.pause();
+            video.src = '';
+            videoSection.style.display = 'none';
+            
+            // Remove highlight from buttons
+            document.querySelectorAll('.phase-card-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            
+            currentPhase = null;
+        }
+
+        document.querySelectorAll('.phase-card-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var phase = this.getAttribute('data-phase');
+                
+                // Toggle: if same phase clicked, hide; otherwise show new phase
+                if (currentPhase === phase) {
+                    hidePhaseVideo();
+                } else {
+                    showPhaseVideo(phase);
+                }
+            });
         });
     </script>
 </body>

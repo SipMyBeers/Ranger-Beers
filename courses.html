@@ -12,6 +12,14 @@
 </head>
 <body>
 
+    <!-- COURSE VIDEO BACKGROUND (fixed behind everything) -->
+    <div id="course-video-section" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+        <video id="course-bg-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="" type="video/mp4">
+        </video>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);"></div>
+    </div>
+
     <!-- NAV -->
     <nav class="nav scrolled" id="nav">
         <div class="nav-inner">
@@ -80,15 +88,13 @@
                 </li>
                 <li class="nav-sep"></li>
                 <li class="nav-dropdown">
-                    <a href="#">Resources</a>
+                    <a href="resources.html">Resources</a>
                     <ul class="nav-dropdown-menu">
                         <li><a href="inventory.html">Packing List</a></li>
                         <li><a href="timeline.html">Pre-Ranger Timeline</a></li>
                         <li><a href="faq.html">FAQ from Graduates</a></li>
                         <li><a href="family.html">Family &amp; Spouse Guide</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li class="nav-dropdown-divider"></li>
-                        <li><a href="resources.html">Study &amp; Downloads</a></li>
                     </ul>
                 </li>
                 <li class="nav-sep"></li>
@@ -119,6 +125,98 @@
         <h1 class="section-title fade-in">Courses</h1>
         <p class="section-desc fade-in">In-depth training guides built from Ranger School experience. Sign in with a free account to access all course content.</p>
     </div>
+
+    <!-- COURSE SELECTOR — Click to expand details -->
+    <style>
+        .course-selector-section {
+            padding-top: 40px;
+            padding-bottom: var(--space-2xl);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .course-type-btn-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+        }
+        .course-type-btn {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-lg) var(--space-md);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            color: inherit;
+            font-family: inherit;
+            overflow: hidden;
+        }
+        .course-type-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .course-type-btn:hover { border-color: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+        .course-type-btn:hover::before { opacity: 1; }
+
+        .course-type-btn[data-category="training"]::before { background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08), transparent 70%); }
+        .course-type-btn[data-category="knowledge"]::before { background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.08), transparent 70%); }
+        .course-type-btn[data-category="fitness"]::before { background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08), transparent 70%); }
+        .course-type-btn[data-category="handson"]::before { background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.08), transparent 70%); }
+
+        .course-type-btn.active { border-color: var(--color-gold); }
+        .course-type-btn.active::before { opacity: 1; }
+        .course-type-btn.active[data-category="training"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
+        .course-type-btn.active[data-category="knowledge"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.15); }
+        .course-type-btn.active[data-category="fitness"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
+        .course-type-btn.active[data-category="handson"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239, 68, 68, 0.15); }
+
+        .course-type-btn .ct-icon { font-size: 2rem; margin-bottom: var(--space-sm); position: relative; }
+        .course-type-btn .ct-name {
+            font-size: 14px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--color-white);
+            margin-bottom: 4px; position: relative;
+        }
+        .course-type-btn .ct-sub {
+            font-size: 11px; color: var(--color-text-secondary);
+            letter-spacing: 1px; position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .course-type-btn-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+
+    <section class="section course-selector-section">
+        <div class="section-label fade-in">Course Categories</div>
+        <h2 class="section-title fade-in">What Do You Need to Train?</h2>
+
+        <div class="course-type-btn-grid stagger" id="course-selector">
+            <button class="course-type-btn fade-in" data-category="training">
+                <div class="ct-icon">🎯</div>
+                <div class="ct-name">Training</div>
+                <div class="ct-sub">Tactical Skills</div>
+            </button>
+            <button class="course-type-btn fade-in" data-category="knowledge">
+                <div class="ct-icon">📚</div>
+                <div class="ct-name">Knowledge</div>
+                <div class="ct-sub">Study Material</div>
+            </button>
+            <button class="course-type-btn fade-in" data-category="fitness">
+                <div class="ct-icon">💪</div>
+                <div class="ct-name">Fitness</div>
+                <div class="ct-sub">PT & Rucking</div>
+            </button>
+            <button class="course-type-btn fade-in" data-category="handson">
+                <div class="ct-icon">🔧</div>
+                <div class="ct-name">Hands-On</div>
+                <div class="ct-sub">Practical Skills</div>
+            </button>
+        </div>
+    </section>
 
     <!-- FILTER BAR -->
     <style>
@@ -722,6 +820,99 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
             backgroundColor: '#000000',
             greeting: 'Ranger Buddy here. What can I help you with — gear questions, packing list advice, or Ranger School prep?'
         });
+    </script>
+
+    <script>
+        var courseVideos = {
+            'training': 'media/mountain-phase.mp4',
+            'knowledge': 'media/the-creed-intro.mp4',
+            'fitness': 'media/75th-ranger-day1.mp4',
+            'handson': 'media/75th-ranger-day1.mp4'
+        };
+        var currentCategory = null;
+
+        function showCourseVideo(category) {
+            var videoSection = document.getElementById('course-video-section');
+            var video = document.getElementById('course-bg-video');
+            
+            video.src = courseVideos[category];
+            videoSection.style.display = 'block';
+            video.play();
+            
+            document.querySelectorAll('.course-type-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            document.querySelector('.course-type-btn[data-category="' + category + '"]').classList.add('active');
+            
+            currentCategory = category;
+        }
+
+        function hideCourseVideo() {
+            var videoSection = document.getElementById('course-video-section');
+            var video = document.getElementById('course-bg-video');
+            
+            video.pause();
+            video.src = '';
+            videoSection.style.display = 'none';
+            
+            document.querySelectorAll('.course-type-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            
+            currentCategory = null;
+        }
+
+        document.querySelectorAll('.course-type-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var category = this.getAttribute('data-category');
+                
+                if (currentCategory === category) {
+                    hideCourseVideo();
+                } else {
+                    showCourseVideo(category);
+                }
+            });
+        });
+
+        // Existing filter functionality
+        document.querySelectorAll('.course-filter-bar .filter-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var filter = this.getAttribute('data-filter');
+                
+                document.querySelectorAll('.course-filter-bar .filter-btn').forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                var cards = document.querySelectorAll('.course-card');
+                var visibleCount = 0;
+                
+                cards.forEach(function(card) {
+                    var tier = card.getAttribute('data-tier');
+                    if (filter === 'all' || tier.includes(filter)) {
+                        card.style.display = '';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                document.getElementById('course-count').textContent = 'Showing ' + visibleCount + ' of ' + cards.length + ' courses';
+            });
+        });
+
+        // Fade-in observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
