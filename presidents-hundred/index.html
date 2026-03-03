@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>President's Hundred — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <meta name="theme-color" content="#000000">
+    <style>
+        .school-hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-4xl) 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .school-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center bottom, rgba(234, 179, 8, 0.08), transparent 60%);
+        }
+        .school-hero-tab {
+            max-height: 80px;
+            margin-bottom: var(--space-xl);
+            position: relative;
+        }
+        .school-hero-headline {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: var(--space-md);
+            position: relative;
+        }
+        .school-hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--color-text-secondary);
+            max-width: 640px;
+            line-height: 1.6;
+            position: relative;
+        }
+        .school-back {
+            position: fixed;
+            top: var(--space-lg);
+            left: var(--space-lg);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            z-index: 100;
+            transition: color 0.3s;
+        }
+        .school-back:hover { color: var(--color-gold); }
+
+        .info-section { max-width: 900px; margin: 0 auto; padding: var(--space-3xl) 40px; }
+        .info-section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-lg); }
+        .info-section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; margin-bottom: var(--space-lg); }
+        .info-section p { color: var(--color-text-secondary); line-height: 1.8; margin-bottom: var(--space-lg); }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin: var(--space-2xl) 0; }
+        .stat-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-glass); padding: var(--space-xl) var(--space-md); text-align: center; }
+        .stat-number { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 900; color: var(--color-gold); display: block; }
+        .stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-text-secondary); margin-top: var(--space-xs); }
+
+        .phase-list { list-style: none; margin: var(--space-xl) 0; }
+        .phase-list li { padding: var(--space-md) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); display: flex; gap: var(--space-md); }
+        .phase-list .phase-day { font-weight: 700; color: var(--color-gold); min-width: 80px; font-family: var(--font-tactical); font-size: 13px; }
+        .phase-list .phase-desc { color: var(--color-text-secondary); line-height: 1.6; }
+        .phase-list .phase-desc strong { color: var(--color-text-primary); }
+
+        .school-footer { text-align: center; padding: var(--space-3xl) 40px; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+        .school-footer-copy { font-size: 12px; color: var(--color-text-muted); letter-spacing: 1px; }
+
+        @media (max-width: 700px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .school-hero { padding: var(--space-3xl) 20px; }
+            .info-section { padding: var(--space-2xl) 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="/" class="school-back">&larr; All Schools</a>
+
+    <section class="school-hero">
+        <img src="../images/badges/presidents-hundred-tab.png" alt="President's Hundred Tab" class="school-hero-tab">
+        <h1 class="school-hero-headline">President's Hundred</h1>
+        <p class="school-hero-sub">The top 100 military marksmen in the nation. Earn the President's Hundred Tab by placing in the top 100 at the annual National Trophy Individual Match at Camp Perry, Ohio.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">At a Glance</div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">3</span>
+                <div class="stat-label">Days</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">1</span>
+                <div class="stat-label">Phase</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">Top 100</span>
+                <div class="stat-label">Selection</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">All</span>
+                <div class="stat-label">Eligibility</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Course Overview</div>
+        <h2>What is the President's Hundred?</h2>
+        <p>The President's Hundred Tab is awarded to the top 100 scoring military and civilian shooters in the President's Match, a premier rifle or pistol competition held annually as part of the National Matches at Camp Perry, Ohio. The competition is administered by the Civilian Marksmanship Program (CMP) and has been held since 1878.</p>
+        <p>Unlike other Army tabs earned through school attendance, the President's Hundred Tab is won through pure marksmanship competition. It is one of only a handful of permanently authorized tabs and is worn with immense pride. The competition draws the finest shots from every branch of the U.S. military and is one of the oldest and most prestigious shooting events in the world.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Competition Format</div>
+        <h2>The National Trophy Individual Match</h2>
+
+        <ul class="phase-list">
+            <li>
+                <span class="phase-day">Stage 1</span>
+                <span class="phase-desc"><strong>Standing Slow Fire (200 yds)</strong> &mdash; 10 rounds standing at 200 yards. Competitors fire from the offhand position, testing raw marksmanship fundamentals and the ability to hold steady without support.</span>
+            </li>
+            <li>
+                <span class="phase-day">Stage 2</span>
+                <span class="phase-desc"><strong>Rapid Seated (200 yds)</strong> &mdash; 10 rounds rapid fire from the seated position at 200 yards. Competitors start standing, drop to seated, and fire within the time limit. Speed and consistency under pressure.</span>
+            </li>
+            <li>
+                <span class="phase-day">Stage 3</span>
+                <span class="phase-desc"><strong>Rapid Prone (300 yds)</strong> &mdash; 10 rounds rapid fire from the prone position at 300 yards. Competitors start standing, drop to prone, and engage. The extended range demands precise wind reading and elevation adjustments.</span>
+            </li>
+            <li>
+                <span class="phase-day">Stage 4</span>
+                <span class="phase-desc"><strong>Slow Prone (600 yds)</strong> &mdash; 20 rounds slow fire from the prone position at 600 yards. The longest and most demanding stage, testing the competitor's ability to read wind, manage mirage, and deliver consistent hits at distance.</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Key Standards</div>
+        <h2>What It Takes</h2>
+        <p>The competition is open to all active, reserve, and National Guard service members. Shooters fire a service rifle (typically M16/M4 platform) through four stages of fire at distances from 200 to 600 yards. The top 100 aggregate scores earn the President's Hundred Tab.</p>
+        <p>The level of competition is extraordinary. Shooters spend years developing the precision, wind-reading ability, and mental discipline needed to compete at this level. Many competitors are members of their service's marksmanship unit (AMU, Marine Corps Shooting Team, etc.), dedicating their careers to competitive shooting excellence.</p>
+    </section>
+
+    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
+        <div class="info-section-label">Coming Soon</div>
+        <h2>Gear, Courses &amp; Training Guides</h2>
+        <p style="max-width: 500px; margin: 0 auto;">We're building marksmanship-specific training guides, competition prep resources, and gear recommendations. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    </section>
+
+    <footer class="school-footer">
+        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    </footer>
+
+</body>
+</html>

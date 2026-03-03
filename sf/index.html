@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Forces Qualification Course — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <meta name="theme-color" content="#000000">
+    <style>
+        .school-hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-4xl) 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .school-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center bottom, rgba(34, 197, 94, 0.08), transparent 60%);
+        }
+        .school-hero-tab {
+            max-height: 80px;
+            margin-bottom: var(--space-xl);
+            position: relative;
+        }
+        .school-hero-headline {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: var(--space-md);
+            position: relative;
+        }
+        .school-hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--color-text-secondary);
+            max-width: 640px;
+            line-height: 1.6;
+            position: relative;
+        }
+        .school-back {
+            position: fixed;
+            top: var(--space-lg);
+            left: var(--space-lg);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            z-index: 100;
+            transition: color 0.3s;
+        }
+        .school-back:hover { color: var(--color-gold); }
+
+        .info-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-3xl) 40px;
+        }
+        .info-section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: var(--space-lg);
+        }
+        .info-section h2 {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-weight: 800;
+            margin-bottom: var(--space-lg);
+        }
+        .info-section p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-lg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            margin: var(--space-2xl) 0;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl) var(--space-md);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 900;
+            color: var(--color-gold);
+            display: block;
+        }
+        .stat-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-top: var(--space-xs);
+        }
+
+        .phase-list {
+            list-style: none;
+            margin: var(--space-xl) 0;
+        }
+        .phase-list li {
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            gap: var(--space-md);
+        }
+        .phase-list .phase-day {
+            font-weight: 700;
+            color: var(--color-gold);
+            min-width: 80px;
+            font-family: var(--font-tactical);
+            font-size: 13px;
+        }
+        .phase-list .phase-desc {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+        .phase-list .phase-desc strong {
+            color: var(--color-text-primary);
+        }
+
+        .school-footer {
+            text-align: center;
+            padding: var(--space-3xl) 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .school-footer-copy {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 700px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .school-hero { padding: var(--space-3xl) 20px; }
+            .info-section { padding: var(--space-2xl) 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="/" class="school-back">&larr; All Schools</a>
+
+    <section class="school-hero">
+        <img src="../images/badges/sf-tab.svg" alt="Special Forces Tab" class="school-hero-tab">
+        <h1 class="school-hero-headline">Special Forces Qualification Course</h1>
+        <p class="school-hero-sub">The pipeline to earn the Green Beret. Over a year of training at Fort Liberty to become one of the Army's elite unconventional warfare specialists.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">At a Glance</div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">53-95</span>
+                <div class="stat-label">Weeks</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">6</span>
+                <div class="stat-label">Phases</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">~30%</span>
+                <div class="stat-label">Grad Rate</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">E-4+</span>
+                <div class="stat-label">Eligibility</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Course Overview</div>
+        <h2>What is the SFQC?</h2>
+        <p>The Special Forces Qualification Course (SFQC), also known as the "Q Course," is conducted by the John F. Kennedy Special Warfare Center and School at Fort Liberty (formerly Fort Bragg), North Carolina. It is the multi-phase training pipeline that produces Army Special Forces soldiers &mdash; the Green Berets.</p>
+        <p>The Q Course is one of the longest and most demanding military training programs in the world. Candidates learn unconventional warfare, foreign internal defense, special reconnaissance, direct action, and counter-terrorism. Each soldier specializes in one of five functional areas: weapons, engineering, medical, communications, or operations and intelligence.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Course Phases</div>
+        <h2>The Long Road to the Green Beret</h2>
+
+        <ul class="phase-list">
+            <li>
+                <span class="phase-day">Phase 1</span>
+                <span class="phase-desc"><strong>SFAS (Assessment &amp; Selection)</strong> &mdash; 24 days of physical and mental screening at Fort Liberty. Land navigation, rucking, obstacle courses, team events, and psychological evaluation. Approximately 50% of candidates are selected to continue.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 2</span>
+                <span class="phase-desc"><strong>Small Unit Tactics (SUT)</strong> &mdash; 13 weeks of advanced individual and squad-level training. Covers patrolling, ambushes, raids, reconnaissance, and planning at the tactical level.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 3</span>
+                <span class="phase-desc"><strong>MOS Qualification</strong> &mdash; 24-58 weeks depending on specialty. Weapons Sergeants (18B), Engineers (18C), Medical Sergeants (18D), and Communications Sergeants (18E) each receive intensive training in their functional area.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 4</span>
+                <span class="phase-desc"><strong>Unconventional Warfare (UW)</strong> &mdash; The culminating field exercise, known as "Robin Sage." Students operate in a simulated country, working with guerrilla forces to plan and execute UW operations over several weeks.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 5</span>
+                <span class="phase-desc"><strong>Language &amp; Culture</strong> &mdash; Intensive language training in the soldier's assigned language (Arabic, French, Spanish, Mandarin, etc.). Cultural immersion and regional studies prepare Green Berets to operate with foreign militaries.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 6</span>
+                <span class="phase-desc"><strong>SERE</strong> &mdash; Survival, Evasion, Resistance, and Escape training. Students learn to survive in austere environments, evade capture, resist interrogation, and escape captivity.</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Key Standards</div>
+        <h2>What It Takes</h2>
+        <p>Candidates must be E-4 or above, airborne-qualified, pass the SFAS fitness test (push-ups, sit-ups, run, swim), and hold a minimum GT score of 110. The selection process evaluates not just physical fitness but leadership potential, problem-solving ability, and the capacity to work with indigenous forces.</p>
+        <p>The Q Course is designed to identify soldiers who can think independently, operate in small teams far from support, and thrive in ambiguous, high-stress environments. Attrition is roughly 70% from initial entry to graduation. The motto says it all: <em>De Oppresso Liber</em> &mdash; To Free the Oppressed.</p>
+    </section>
+
+    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
+        <div class="info-section-label">Coming Soon</div>
+        <h2>Gear, Courses &amp; Training Guides</h2>
+        <p style="max-width: 500px; margin: 0 auto;">We're building SF-specific packing lists, training courses, and prep guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    </section>
+
+    <footer class="school-footer">
+        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    </footer>
+
+</body>
+</html>
