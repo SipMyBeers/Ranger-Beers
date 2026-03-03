@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal (25-Series) — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <meta name="theme-color" content="#000000">
+    <style>
+        .school-hero { min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:var(--space-4xl) 40px;position:relative;overflow:hidden; }
+        .school-hero::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center bottom,rgba(34,197,94,0.08),transparent 60%); }
+        .school-hero-headline { font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:var(--space-md);position:relative; }
+        .school-hero-sub { font-size:clamp(1rem,2vw,1.25rem);color:var(--color-text-secondary);max-width:640px;line-height:1.6;position:relative; }
+        .school-back { position:fixed;top:var(--space-lg);left:var(--space-lg);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--color-text-secondary);text-decoration:none;z-index:100;transition:color 0.3s; }
+        .school-back:hover { color:var(--color-gold); }
+        .info-section { max-width:900px;margin:0 auto;padding:var(--space-3xl) 40px; }
+        .info-section-label { font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--color-gold);margin-bottom:var(--space-lg); }
+        .info-section h2 { font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;margin-bottom:var(--space-lg); }
+        .info-section p { color:var(--color-text-secondary);line-height:1.8;margin-bottom:var(--space-lg); }
+        .stats-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-md);margin:var(--space-2xl) 0; }
+        .stat-card { background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-glass);padding:var(--space-xl) var(--space-md);text-align:center; }
+        .stat-number { font-size:clamp(1.5rem,3vw,2.5rem);font-weight:900;color:var(--color-gold);display:block; }
+        .stat-label { font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-text-secondary);margin-top:var(--space-xs); }
+        .phase-list { list-style:none;margin:var(--space-xl) 0; }
+        .phase-list li { padding:var(--space-md) 0;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:var(--space-md); }
+        .phase-list .phase-day { font-weight:700;color:var(--color-gold);min-width:80px;font-family:var(--font-tactical);font-size:13px; }
+        .phase-list .phase-desc { color:var(--color-text-secondary);line-height:1.6; }
+        .phase-list .phase-desc strong { color:var(--color-text-primary); }
+        .school-footer { text-align:center;padding:var(--space-3xl) 40px;border-top:1px solid rgba(255,255,255,0.06); }
+        .school-footer-copy { font-size:12px;color:var(--color-text-muted);letter-spacing:1px; }
+        @media (max-width:700px) { .stats-grid{grid-template-columns:repeat(2,1fr);} .school-hero{padding:var(--space-3xl) 20px;} .info-section{padding:var(--space-2xl) 20px;} }
+    </style>
+</head>
+<body>
+
+    <a href="/" class="school-back">&larr; All Schools</a>
+
+    <section class="school-hero">
+        <div style="height:80px;width:80px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:50%;font-family:var(--font-tactical);font-size:32px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">25</div>
+        <h1 class="school-hero-headline">Signal</h1>
+        <p class="school-hero-sub">Communications and network infrastructure. Signal Soldiers install, operate, and maintain the Army's tactical and strategic communication systems.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">At a Glance</div>
+        <div class="stats-grid">
+            <div class="stat-card"><span class="stat-number">14-20wk</span><div class="stat-label">AIT Length</div></div>
+            <div class="stat-card"><span class="stat-number">10+</span><div class="stat-label"># of MOS</div></div>
+            <div class="stat-card"><span class="stat-number">~90%</span><div class="stat-label">Grad Rate</div></div>
+            <div class="stat-card"><span class="stat-number">Ft Eisenhower</span><div class="stat-label">Key Installation</div></div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Career Field Overview</div>
+        <h2>What is Signal?</h2>
+        <p>The Signal branch provides the communications backbone for the entire Army. Signal Soldiers install, operate, and maintain the tactical and strategic communication systems that enable commanders to exercise command and control across the battlefield. From satellite terminals to fiber optic networks to tactical radios, Signal ensures that information flows from the foxhole to the Pentagon.</p>
+        <p>Training is centered at Ft Eisenhower, Georgia, the Army's Cyber Center of Excellence. The 25-series is one of the most diverse career fields, with over 10 MOS codes covering everything from IT help desk operations to satellite communications to network defense. Signal skills translate directly to civilian IT and telecommunications careers, and many Signal Soldiers earn industry certifications like CompTIA Network+, Security+, and CCNA during their service.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">MOS List</div>
+        <h2>25-Series Specialties</h2>
+        <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0;">
+        <thead><tr style="border-bottom:2px solid var(--color-gold);text-align:left;">
+        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">MOS</th>
+        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">Title</th>
+        </tr></thead>
+        <tbody>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25B</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Information Technology Specialist</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25C</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Radio Operator/Maintainer</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25D</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Cyber Network Defender</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25E</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Electromagnetic Spectrum Manager</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25H</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Network Communication Systems Specialist</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25L</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Cable Systems Installer/Maintainer</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25N</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Nodal Network Systems Operator/Maintainer</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25S</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Satellite Communication Systems Operator/Maintainer</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25U</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Signal Support Systems Specialist</td></tr>
+        </tbody></table></div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Training Pipeline</div>
+        <h2>From Recruit to Signal Specialist</h2>
+        <ul class="phase-list">
+            <li><span class="phase-day">Step 1</span><span class="phase-desc"><strong>BCT</strong> &mdash; Complete Basic Combat Training before entering Signal AIT at Ft Eisenhower.</span></li>
+            <li><span class="phase-day">Step 2</span><span class="phase-desc"><strong>14-20 Week AIT at Ft Eisenhower, GA</strong> &mdash; MOS-specific training in networking, radio systems, satellite communications, or IT operations. Includes hands-on lab work and field exercises.</span></li>
+            <li><span class="phase-day">Step 3</span><span class="phase-desc"><strong>Unit Assignment</strong> &mdash; Report to a Signal battalion, Brigade Signal company, or staff section. Begin operating and maintaining unit communication systems.</span></li>
+            <li><span class="phase-day">Step 4</span><span class="phase-desc"><strong>Industry Certifications</strong> &mdash; Earn CompTIA Network+, Security+, CCNA, or other certifications. The Army funds certification exams for Signal Soldiers.</span></li>
+            <li><span class="phase-day">Step 5</span><span class="phase-desc"><strong>NCOES &amp; Advanced Courses</strong> &mdash; Progress through NCO Education System. Pursue Joint Network Operations, advanced Cisco training, or transition to Cyber (17-series) MOS.</span></li>
+        </ul>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Advanced Training</div>
+        <h2>Schools &amp; Courses</h2>
+        <p>Signal Soldiers can pursue: CompTIA Network+, Security+, A+, Cisco CCNA/CCNP, Joint Network Operations Course, Satellite Controller Certification, and various vendor-specific training. Senior Signal NCOs may attend the Signal Senior Leader Course or transition to the Cyber branch.</p>
+    </section>
+
+    <section class="info-section" style="text-align:center;padding-bottom:var(--space-4xl);">
+        <div class="info-section-label">Coming Soon</div>
+        <h2>Gear, Courses &amp; Training Guides</h2>
+        <p style="max-width:500px;margin:0 auto;">We're building Signal-specific resources and training guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    </section>
+
+    <footer class="school-footer">
+        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    </footer>
+
+</body>
+</html>

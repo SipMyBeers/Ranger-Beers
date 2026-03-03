@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Artillery (13-Series) — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <meta name="theme-color" content="#000000">
+    <style>
+        .school-hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-4xl) 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .school-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center bottom, rgba(34, 197, 94, 0.08), transparent 60%);
+        }
+        .school-hero-tab {
+            max-height: 80px;
+            margin-bottom: var(--space-xl);
+            position: relative;
+        }
+        .school-hero-headline {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: var(--space-md);
+            position: relative;
+        }
+        .school-hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--color-text-secondary);
+            max-width: 640px;
+            line-height: 1.6;
+            position: relative;
+        }
+        .school-hero-cta {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+            position: relative;
+        }
+        .school-back {
+            position: fixed;
+            top: var(--space-lg);
+            left: var(--space-lg);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            z-index: 100;
+            transition: color 0.3s;
+        }
+        .school-back:hover { color: var(--color-gold); }
+
+        .info-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-3xl) 40px;
+        }
+        .info-section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: var(--space-lg);
+        }
+        .info-section h2 {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-weight: 800;
+            margin-bottom: var(--space-lg);
+        }
+        .info-section p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-lg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            margin: var(--space-2xl) 0;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl) var(--space-md);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 900;
+            color: var(--color-gold);
+            display: block;
+        }
+        .stat-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-top: var(--space-xs);
+        }
+
+        .phase-list {
+            list-style: none;
+            margin: var(--space-xl) 0;
+        }
+        .phase-list li {
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            gap: var(--space-md);
+        }
+        .phase-list .phase-day {
+            font-weight: 700;
+            color: var(--color-gold);
+            min-width: 80px;
+            font-family: var(--font-tactical);
+            font-size: 13px;
+        }
+        .phase-list .phase-desc {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+        .phase-list .phase-desc strong {
+            color: var(--color-text-primary);
+        }
+
+        .school-footer {
+            text-align: center;
+            padding: var(--space-3xl) 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .school-footer-copy {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 700px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .school-hero { padding: var(--space-3xl) 20px; }
+            .info-section { padding: var(--space-2xl) 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="/" class="school-back">&larr; All Schools</a>
+
+    <section class="school-hero">
+        <div style="height:80px;width:80px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:50%;font-family:var(--font-tactical);font-size:32px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">13</div>
+        <h1 class="school-hero-headline">Field Artillery</h1>
+        <p class="school-hero-sub">King of Battle. Field Artillery delivers fires to destroy, neutralize, or suppress the enemy.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">At a Glance</div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">9-wk</span>
+                <div class="stat-label">AIT</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">5</span>
+                <div class="stat-label"># of MOS</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">~95%</span>
+                <div class="stat-label">Grad Rate</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">Ft Sill</span>
+                <div class="stat-label">Key Installation</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Career Field Overview</div>
+        <h2>What is Field Artillery?</h2>
+        <p>Field Artillery has been a decisive arm of the United States Army since the Revolutionary War. Known as the "King of Battle," the FA branch provides fire support to maneuver forces by delivering lethal and non-lethal fires at extended ranges. From towed howitzers and self-propelled cannons to the M270 MLRS and M142 HIMARS rocket systems, Field Artillery delivers precision strikes that shape the battlefield before ground forces ever make contact with the enemy.</p>
+        <p>Modern Field Artillery has evolved far beyond traditional cannon fire. The branch now encompasses fire support specialists who coordinate joint fires from the front lines, radar operators who detect incoming threats and locate enemy firing positions, and fire control specialists who compute firing data with digital systems. The FA community played a pivotal role in recent conflicts, with HIMARS becoming one of the most strategically significant weapons systems in modern warfare.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">MOS List</div>
+        <h2>13-Series Specialties</h2>
+
+        <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0;">
+        <thead><tr style="border-bottom:2px solid var(--color-gold);text-align:left;">
+        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">MOS</th>
+        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">Title</th>
+        </tr></thead>
+        <tbody>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">13B</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Cannon Crewmember</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">13F</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Fire Support Specialist (FIST)</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">13J</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Fire Control Specialist</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">13M</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">MLRS/HIMARS Crewmember</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">13R</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Field Artillery Firefinder Radar Operator</td></tr>
+        </tbody></table></div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Training Pipeline</div>
+        <h2>From Recruit to Redleg</h2>
+
+        <ul class="phase-list">
+            <li>
+                <span class="phase-day">Step 1</span>
+                <span class="phase-desc"><strong>Basic Combat Training</strong> &mdash; Complete 10 weeks of BCT to learn fundamental Soldier skills including marksmanship, physical fitness, drill and ceremony, and basic field craft.</span>
+            </li>
+            <li>
+                <span class="phase-day">Step 2</span>
+                <span class="phase-desc"><strong>9-Week AIT at Ft Sill, OK</strong> &mdash; Advanced Individual Training at the Fires Center of Excellence. Learn your specific MOS &mdash; whether cannon operations, fire support procedures, radar systems, or rocket/missile systems.</span>
+            </li>
+            <li>
+                <span class="phase-day">Step 3</span>
+                <span class="phase-desc"><strong>First Unit Assignment</strong> &mdash; Report to your first duty station and integrate into a Field Artillery battery or fire support element. Build proficiency through live-fire exercises and field training.</span>
+            </li>
+            <li>
+                <span class="phase-day">Step 4</span>
+                <span class="phase-desc"><strong>FDC Certification</strong> &mdash; Achieve Fire Direction Center certification and demonstrate mastery of your platform &mdash; whether howitzer, HIMARS, or fire support systems.</span>
+            </li>
+            <li>
+                <span class="phase-day">Step 5</span>
+                <span class="phase-desc"><strong>NCOES &amp; FA Master Gunner</strong> &mdash; Progress through BLC, ALC, and SLC. Senior NCOs pursue the prestigious FA Master Gunner course to become the technical expert in their organization.</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Advanced Training</div>
+        <h2>Schools &amp; Courses</h2>
+        <p>Field Artillery Soldiers can pursue a range of advanced training opportunities. Available courses include: FA Master Gunner Course, Fire Support Certification, Radar Leader Course, Joint Fires Observer Course, and Ranger School.</p>
+    </section>
+
+    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
+        <div class="info-section-label">Coming Soon</div>
+        <h2>Gear, Courses &amp; Training Guides</h2>
+        <p style="max-width: 500px; margin: 0 auto;">We're building Field Artillery-specific packing lists, training courses, and preparation guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    </section>
+
+    <footer class="school-footer">
+        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    </footer>
+
+</body>
+</html>

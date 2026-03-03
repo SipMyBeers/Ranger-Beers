@@ -36,10 +36,14 @@
             line-height: 1.6;
         }
 
-        .hub-section {
+        /* ── Category sections ── */
+        .hub-category {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: var(--space-2xl) 40px var(--space-4xl);
+            padding: var(--space-2xl) 40px var(--space-3xl);
+        }
+        .hub-category + .hub-category {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
         .hub-section-label {
             font-size: 11px;
@@ -47,16 +51,44 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--color-gold);
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-xs);
             text-align: center;
         }
+        .hub-category-desc {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            text-align: center;
+            margin-bottom: var(--space-lg);
+            letter-spacing: 0.5px;
+        }
 
+        /* ── MOS sub-section labels ── */
+        .hub-subsection-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-top: var(--space-xl);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-xs);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* ── School grid (default 5-col) ── */
         .school-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: var(--space-md);
         }
+        .school-grid--4col {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .school-grid--3col {
+            grid-template-columns: repeat(3, 1fr);
+        }
 
+        /* ── School card ── */
         .school-card {
             position: relative;
             background: rgba(255, 255, 255, 0.02);
@@ -91,8 +123,6 @@
         }
         .school-card--active:hover::before { opacity: 1; }
 
-
-
         .school-card .sc-icon {
             height: 48px;
             margin-bottom: var(--space-sm);
@@ -112,6 +142,30 @@
             filter: brightness(1);
         }
 
+        /* ── Text icon (for cards without images) ── */
+        .school-card .sc-icon-text {
+            height: 48px;
+            width: 48px;
+            margin-bottom: var(--space-sm);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--color-gold);
+            border-radius: 50%;
+            font-family: var(--font-tactical);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-gold);
+            letter-spacing: 0;
+        }
+        .sc-icon-text--wide {
+            width: auto;
+            min-width: 48px;
+            padding: 0 10px;
+            border-radius: 24px;
+            font-size: 13px;
+        }
 
         .school-card .sc-name {
             font-size: 14px;
@@ -140,8 +194,7 @@
             color: var(--color-gold);
         }
 
-
-
+        /* ── Footer ── */
         .hub-footer {
             text-align: center;
             padding: var(--space-3xl) 40px;
@@ -153,13 +206,18 @@
             letter-spacing: 1px;
         }
 
+        /* ── Responsive ── */
         @media (max-width: 900px) {
             .school-grid { grid-template-columns: repeat(3, 1fr); }
+            .school-grid--4col { grid-template-columns: repeat(3, 1fr); }
+            .school-grid--3col { grid-template-columns: repeat(3, 1fr); }
         }
         @media (max-width: 560px) {
-            .school-grid { grid-template-columns: repeat(2, 1fr); }
+            .school-grid,
+            .school-grid--4col,
+            .school-grid--3col { grid-template-columns: repeat(2, 1fr); }
             .hub-hero { padding: var(--space-3xl) 20px var(--space-2xl); }
-            .hub-section { padding: var(--space-xl) 20px var(--space-3xl); }
+            .hub-category { padding: var(--space-xl) 20px var(--space-2xl); }
         }
     </style>
 </head>
@@ -170,8 +228,12 @@
         <p class="hub-hero-sub">Gear, courses, and training for the Army's toughest schools. Select a school below to get started.</p>
     </section>
 
-    <section class="hub-section">
-        <div class="hub-section-label">Army Schools &amp; Badges</div>
+    <!-- ════════════════════════════════════════════════════
+         TABS — Shoulder Tabs
+         ════════════════════════════════════════════════════ -->
+    <section class="hub-category">
+        <div class="hub-section-label">Tabs</div>
+        <div class="hub-category-desc">Shoulder Tabs</div>
         <div class="school-grid">
 
             <a href="/ranger/" class="school-card school-card--active">
@@ -181,31 +243,10 @@
                 <div class="sc-status">Enter &rarr;</div>
             </a>
 
-            <a href="/airborne/" class="school-card school-card--active">
-                <div class="sc-icon"><img src="images/badges/airborne-wings.svg" alt="Airborne Wings"></div>
-                <div class="sc-name">Airborne</div>
-                <div class="sc-badge">Airborne Wings</div>
-                <div class="sc-status">Enter &rarr;</div>
-            </a>
-
-            <a href="/air-assault/" class="school-card school-card--active">
-                <div class="sc-icon"><img src="images/badges/air-assault-badge.svg" alt="Air Assault Badge"></div>
-                <div class="sc-name">Air Assault</div>
-                <div class="sc-badge">Air Assault Badge</div>
-                <div class="sc-status">Enter &rarr;</div>
-            </a>
-
             <a href="/sapper/" class="school-card school-card--active">
                 <div class="sc-icon"><img src="images/badges/sapper-tab.jpg" alt="Sapper Tab"></div>
                 <div class="sc-name">Sapper</div>
                 <div class="sc-badge">Sapper Tab</div>
-                <div class="sc-status">Enter &rarr;</div>
-            </a>
-
-            <a href="/pathfinder/" class="school-card school-card--active">
-                <div class="sc-icon"><img src="images/badges/pathfinder-badge.svg" alt="Pathfinder Badge"></div>
-                <div class="sc-name">Pathfinder</div>
-                <div class="sc-badge">Pathfinder Badge</div>
                 <div class="sc-status">Enter &rarr;</div>
             </a>
 
@@ -237,10 +278,42 @@
                 <div class="sc-status">Enter &rarr;</div>
             </a>
 
-            <a href="/jumpmaster/" class="school-card school-card--active">
-                <div class="sc-icon"><img src="images/badges/jumpmaster-badge.png" alt="Jumpmaster Badge"></div>
-                <div class="sc-name">Jumpmaster</div>
-                <div class="sc-badge">Jumpmaster Badge</div>
+            <a href="/presidents-hundred/" class="school-card school-card--active">
+                <div class="sc-icon"><img src="images/badges/presidents-hundred-tab.png" alt="President's Hundred Tab"></div>
+                <div class="sc-name">Pres. Hundred</div>
+                <div class="sc-badge">President's Hundred Tab</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         BADGES — Skill Badges
+         ════════════════════════════════════════════════════ -->
+    <section class="hub-category">
+        <div class="hub-section-label">Badges</div>
+        <div class="hub-category-desc">Skill Badges</div>
+        <div class="school-grid">
+
+            <a href="/airborne/" class="school-card school-card--active">
+                <div class="sc-icon"><img src="images/badges/airborne-wings.svg" alt="Airborne Wings"></div>
+                <div class="sc-name">Airborne</div>
+                <div class="sc-badge">Airborne Wings</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/air-assault/" class="school-card school-card--active">
+                <div class="sc-icon"><img src="images/badges/air-assault-badge.svg" alt="Air Assault Badge"></div>
+                <div class="sc-name">Air Assault</div>
+                <div class="sc-badge">Air Assault Badge</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/pathfinder/" class="school-card school-card--active">
+                <div class="sc-icon"><img src="images/badges/pathfinder-badge.svg" alt="Pathfinder Badge"></div>
+                <div class="sc-name">Pathfinder</div>
+                <div class="sc-badge">Pathfinder Badge</div>
                 <div class="sc-status">Enter &rarr;</div>
             </a>
 
@@ -272,14 +345,253 @@
                 <div class="sc-status">Enter &rarr;</div>
             </a>
 
-            <a href="/presidents-hundred/" class="school-card school-card--active">
-                <div class="sc-icon"><img src="images/badges/presidents-hundred-tab.png" alt="President's Hundred Tab"></div>
-                <div class="sc-name">Pres. Hundred</div>
-                <div class="sc-badge">President's Hundred Tab</div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         SPECIALTY COURSES — Advanced Qualifications
+         ════════════════════════════════════════════════════ -->
+    <section class="hub-category">
+        <div class="hub-section-label">Specialty Courses</div>
+        <div class="hub-category-desc">Advanced Qualifications</div>
+        <div class="school-grid">
+
+            <a href="/jumpmaster/" class="school-card school-card--active">
+                <div class="sc-icon"><img src="images/badges/jumpmaster-badge.png" alt="Jumpmaster Badge"></div>
+                <div class="sc-name">Jumpmaster</div>
+                <div class="sc-badge">Jumpmaster Badge</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/sniper/" class="school-card school-card--active">
+                <div class="sc-icon-text sc-icon-text--wide">SNP</div>
+                <div class="sc-name">Sniper</div>
+                <div class="sc-badge">USASS Graduate</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/rappel-master/" class="school-card school-card--active">
+                <div class="sc-icon-text">RM</div>
+                <div class="sc-name">Rappel Master</div>
+                <div class="sc-badge">Rappel Master Badge</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/master-driver/" class="school-card school-card--active">
+                <div class="sc-icon-text">MD</div>
+                <div class="sc-name">Master Driver</div>
+                <div class="sc-badge">Master Driver Trainer</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/mft/" class="school-card school-card--active">
+                <div class="sc-icon-text sc-icon-text--wide">MFT</div>
+                <div class="sc-name">Master Fitness</div>
+                <div class="sc-badge">Master Fitness Trainer</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/combat-diver/" class="school-card school-card--active">
+                <div class="sc-icon-text">CD</div>
+                <div class="sc-name">Combat Diver</div>
+                <div class="sc-badge">Combat Diver Badge</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/combatives/" class="school-card school-card--active">
+                <div class="sc-icon-text sc-icon-text--wide">MACP</div>
+                <div class="sc-name">Combatives</div>
+                <div class="sc-badge">Modern Army Combatives</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/rslc/" class="school-card school-card--active">
+                <div class="sc-icon-text sc-icon-text--wide">RSLC</div>
+                <div class="sc-name">RSLC</div>
+                <div class="sc-badge">Recon &amp; Surveillance</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/master-gunner/" class="school-card school-card--active">
+                <div class="sc-icon-text">MG</div>
+                <div class="sc-name">Master Gunner</div>
+                <div class="sc-badge">Master Gunner Course</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/amoc/" class="school-card school-card--active">
+                <div class="sc-icon-text sc-icon-text--wide">AMOC</div>
+                <div class="sc-name">AMOC</div>
+                <div class="sc-badge">Air Movement Ops</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/drill-sergeant/" class="school-card school-card--active">
+                <div class="sc-icon-text">DS</div>
+                <div class="sc-name">Drill Sergeant</div>
+                <div class="sc-badge">DS Identification Badge</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/recruiter/" class="school-card school-card--active">
+                <div class="sc-icon-text sc-icon-text--wide">REC</div>
+                <div class="sc-name">Recruiter</div>
+                <div class="sc-badge">Army Recruiter Course</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/eo-leader/" class="school-card school-card--active">
+                <div class="sc-icon-text">EO</div>
+                <div class="sc-name">EO Leader</div>
+                <div class="sc-badge">Equal Opportunity</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+
+            <a href="/sharp/" class="school-card school-card--active">
+                <div class="sc-icon-text sc-icon-text--wide">SHARP</div>
+                <div class="sc-name">SHARP</div>
+                <div class="sc-badge">SHARP Career Course</div>
                 <div class="sc-status">Enter &rarr;</div>
             </a>
 
         </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         MOS TRAINING — Career Fields
+         ════════════════════════════════════════════════════ -->
+    <section class="hub-category">
+        <div class="hub-section-label">MOS Training</div>
+        <div class="hub-category-desc">Career Fields</div>
+
+        <!-- Combat Arms -->
+        <div class="hub-subsection-label">Combat Arms</div>
+        <div class="school-grid school-grid--4col">
+            <a href="/mos/11-infantry/" class="school-card school-card--active">
+                <div class="sc-icon-text">11</div>
+                <div class="sc-name">Infantry</div>
+                <div class="sc-badge">11-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/12-engineers/" class="school-card school-card--active">
+                <div class="sc-icon-text">12</div>
+                <div class="sc-name">Engineers</div>
+                <div class="sc-badge">12-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/13-artillery/" class="school-card school-card--active">
+                <div class="sc-icon-text">13</div>
+                <div class="sc-name">Field Artillery</div>
+                <div class="sc-badge">13-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/19-armor/" class="school-card school-card--active">
+                <div class="sc-icon-text">19</div>
+                <div class="sc-name">Armor</div>
+                <div class="sc-badge">19-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+        </div>
+
+        <!-- Special Operations -->
+        <div class="hub-subsection-label">Special Operations</div>
+        <div class="school-grid school-grid--3col">
+            <a href="/sf/" class="school-card school-card--active">
+                <div class="sc-icon-text">18</div>
+                <div class="sc-name">Special Forces</div>
+                <div class="sc-badge">18-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/37-psyop/" class="school-card school-card--active">
+                <div class="sc-icon-text">37</div>
+                <div class="sc-name">PSYOP</div>
+                <div class="sc-badge">37-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/38-civil-affairs/" class="school-card school-card--active">
+                <div class="sc-icon-text">38</div>
+                <div class="sc-name">Civil Affairs</div>
+                <div class="sc-badge">38-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+        </div>
+
+        <!-- Combat Support -->
+        <div class="hub-subsection-label">Combat Support</div>
+        <div class="school-grid">
+            <a href="/mos/15-aviation/" class="school-card school-card--active">
+                <div class="sc-icon-text">15</div>
+                <div class="sc-name">Aviation</div>
+                <div class="sc-badge">15-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/17-cyber/" class="school-card school-card--active">
+                <div class="sc-icon-text">17</div>
+                <div class="sc-name">Cyber</div>
+                <div class="sc-badge">17-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/25-signal/" class="school-card school-card--active">
+                <div class="sc-icon-text">25</div>
+                <div class="sc-name">Signal</div>
+                <div class="sc-badge">25-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/31-mp/" class="school-card school-card--active">
+                <div class="sc-icon-text">31</div>
+                <div class="sc-name">Military Police</div>
+                <div class="sc-badge">31-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/35-mi/" class="school-card school-card--active">
+                <div class="sc-icon-text">35</div>
+                <div class="sc-name">Military Intel</div>
+                <div class="sc-badge">35-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/74-cbrn/" class="school-card school-card--active">
+                <div class="sc-icon-text">74</div>
+                <div class="sc-name">CBRN</div>
+                <div class="sc-badge">74-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+        </div>
+
+        <!-- Sustainment -->
+        <div class="hub-subsection-label">Sustainment</div>
+        <div class="school-grid">
+            <a href="/mos/42-ag/" class="school-card school-card--active">
+                <div class="sc-icon-text">42</div>
+                <div class="sc-name">Adjutant General</div>
+                <div class="sc-badge">42-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/68-medical/" class="school-card school-card--active">
+                <div class="sc-icon-text">68</div>
+                <div class="sc-name">Medical</div>
+                <div class="sc-badge">68-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/88-transportation/" class="school-card school-card--active">
+                <div class="sc-icon-text">88</div>
+                <div class="sc-name">Transportation</div>
+                <div class="sc-badge">88-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/91-ordnance/" class="school-card school-card--active">
+                <div class="sc-icon-text">91</div>
+                <div class="sc-name">Ordnance</div>
+                <div class="sc-badge">91-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+            <a href="/mos/92-quartermaster/" class="school-card school-card--active">
+                <div class="sc-icon-text">92</div>
+                <div class="sc-name">Quartermaster</div>
+                <div class="sc-badge">92-Series</div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
+        </div>
+
     </section>
 
     <footer class="hub-footer">

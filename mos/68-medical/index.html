@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical (68-Series) — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <meta name="theme-color" content="#000000">
+    <style>
+        .school-hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-4xl) 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .school-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center bottom, rgba(34, 197, 94, 0.08), transparent 60%);
+        }
+        .school-hero-tab {
+            max-height: 80px;
+            margin-bottom: var(--space-xl);
+            position: relative;
+        }
+        .school-hero-headline {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: var(--space-md);
+            position: relative;
+        }
+        .school-hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--color-text-secondary);
+            max-width: 640px;
+            line-height: 1.6;
+            position: relative;
+        }
+        .school-hero-cta {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+            position: relative;
+        }
+        .school-back {
+            position: fixed;
+            top: var(--space-lg);
+            left: var(--space-lg);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            z-index: 100;
+            transition: color 0.3s;
+        }
+        .school-back:hover { color: var(--color-gold); }
+
+        .info-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-3xl) 40px;
+        }
+        .info-section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: var(--space-lg);
+        }
+        .info-section h2 {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-weight: 800;
+            margin-bottom: var(--space-lg);
+        }
+        .info-section p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-lg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            margin: var(--space-2xl) 0;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl) var(--space-md);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 900;
+            color: var(--color-gold);
+            display: block;
+        }
+        .stat-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-top: var(--space-xs);
+        }
+
+        .phase-list {
+            list-style: none;
+            margin: var(--space-xl) 0;
+        }
+        .phase-list li {
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            gap: var(--space-md);
+        }
+        .phase-list .phase-day {
+            font-weight: 700;
+            color: var(--color-gold);
+            min-width: 80px;
+            font-family: var(--font-tactical);
+            font-size: 13px;
+        }
+        .phase-list .phase-desc {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+        .phase-list .phase-desc strong {
+            color: var(--color-text-primary);
+        }
+
+        .school-footer {
+            text-align: center;
+            padding: var(--space-3xl) 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .school-footer-copy {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 700px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .school-hero { padding: var(--space-3xl) 20px; }
+            .info-section { padding: var(--space-2xl) 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="/" class="school-back">&larr; All Schools</a>
+
+    <section class="school-hero">
+        <div style="height:80px;width:80px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:50%;font-family:var(--font-tactical);font-size:32px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">68</div>
+        <h1 class="school-hero-headline">Medical</h1>
+        <p class="school-hero-sub">The 68-Series is the Army's healthcare force &mdash; from combat medics treating casualties under fire to surgical techs, nurses, and laboratory specialists keeping soldiers healthy worldwide.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">At a Glance</div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">16-52 wk</span>
+                <div class="stat-label">AIT</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">20+</span>
+                <div class="stat-label">MOS</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">~85%</span>
+                <div class="stat-label">Grad Rate</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">Ft Sam Houston</span>
+                <div class="stat-label">TX</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Career Field Overview</div>
+        <h2>Saving Lives on Every Front</h2>
+        <p>The Army Medical Department (AMEDD) enlisted force is one of the largest and most diverse career fields in the military. The 68-Series encompasses over 20 specialties spanning the full spectrum of healthcare &mdash; from the iconic 68W Combat Medic who provides lifesaving care on the battlefield to operating room specialists, dental technicians, radiology techs, pharmacy specialists, and behavioral health professionals. Army medics serve in every type of unit, from infantry platoons to world-class military hospitals.</p>
+        <p>Medical MOS training is centered at the Medical Education and Training Campus (METC) at Ft Sam Houston, TX, where soldiers receive clinical instruction that often leads to nationally recognized certifications. Many 68-Series soldiers earn credentials as EMTs, paramedics, licensed practical nurses, or certified surgical technologists during their military training. The medical career field offers some of the strongest civilian career translation in the Army, with graduates entering healthcare careers at every level.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">MOS List</div>
+        <h2>68-Series Specialties</h2>
+
+        <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0;">
+        <thead><tr style="border-bottom:2px solid var(--color-gold);text-align:left;">
+        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">MOS</th>
+        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">Title</th>
+        </tr></thead>
+        <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68W</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Combat Medic Specialist</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68C</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Practical Nursing Specialist</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68D</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Operating Room Specialist</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68E</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Dental Specialist</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68G</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Patient Administration Specialist</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68K</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Medical Laboratory Specialist</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68P</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Radiology Specialist</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68Q</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Pharmacy Specialist</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68S</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Preventive Medicine Specialist</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68T</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Animal Care Specialist</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68X</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Behavioral Health Specialist</td>
+            </tr>
+        </tbody></table></div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Training Pipeline</div>
+        <h2>From Trainee to Healthcare Professional</h2>
+
+        <ul class="phase-list">
+            <li>
+                <span class="phase-day">Phase 1</span>
+                <span class="phase-desc"><strong>Basic Combat Training</strong> &mdash; 10 weeks of BCT covering warrior tasks, physical fitness, and fundamental soldiering skills.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 2</span>
+                <span class="phase-desc"><strong>16-52 Week AIT</strong> &mdash; Advanced Individual Training at Ft Sam Houston, TX (METC). Training length varies significantly by specialty, with clinical rotations and nationally recognized certification exams.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 3</span>
+                <span class="phase-desc"><strong>Unit Assignment</strong> &mdash; Report to your first unit &mdash; whether a line infantry company, a combat support hospital, or a military treatment facility &mdash; and begin applying clinical skills.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 4</span>
+                <span class="phase-desc"><strong>Clinical Certifications</strong> &mdash; Obtain and maintain nationally recognized clinical certifications such as EMT, NREMT, LPN, or specialty-specific credentials.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 5</span>
+                <span class="phase-desc"><strong>NCOES</strong> &mdash; Noncommissioned Officer Education System courses for leadership development and career progression within Army Medicine.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 6</span>
+                <span class="phase-desc"><strong>Advanced Training</strong> &mdash; Opportunities for flight medic, special operations medical training, critical care, and advanced clinical specialization.</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Advanced Training</div>
+        <h2>Specialized Courses</h2>
+        <p>Medical soldiers have access to some of the Army's most prestigious advanced courses: Flight Medic qualification for aeromedical evacuation, SOCM (Special Operations Combat Medic) for SOF support, EFMB (Expert Field Medical Badge) testing, Paramedic certification, Critical Care training for ICU-level patient management, and the Interservice Physician Assistant Program (IPAP) for enlisted soldiers pursuing a PA degree and officer commission.</p>
+    </section>
+
+    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
+        <div class="info-section-label">Coming Soon</div>
+        <h2>Gear, Courses &amp; Training Guides</h2>
+        <p style="max-width: 500px; margin: 0 auto;">We're building MOS-specific packing lists, training courses, and career guides for the 68-Series. Check back soon or explore other career fields in the meantime.</p>
+    </section>
+
+    <footer class="school-footer">
+        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Military Intelligence (35-Series) — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <meta name="theme-color" content="#000000">
+    <style>
+        .school-hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-4xl) 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .school-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center bottom, rgba(34, 197, 94, 0.08), transparent 60%);
+        }
+        .school-hero-tab {
+            max-height: 80px;
+            margin-bottom: var(--space-xl);
+            position: relative;
+        }
+        .school-hero-headline {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: var(--space-md);
+            position: relative;
+        }
+        .school-hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--color-text-secondary);
+            max-width: 640px;
+            line-height: 1.6;
+            position: relative;
+        }
+        .school-hero-cta {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+            position: relative;
+        }
+        .school-back {
+            position: fixed;
+            top: var(--space-lg);
+            left: var(--space-lg);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            z-index: 100;
+            transition: color 0.3s;
+        }
+        .school-back:hover { color: var(--color-gold); }
+
+        .info-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-3xl) 40px;
+        }
+        .info-section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: var(--space-lg);
+        }
+        .info-section h2 {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-weight: 800;
+            margin-bottom: var(--space-lg);
+        }
+        .info-section p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-lg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            margin: var(--space-2xl) 0;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl) var(--space-md);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 900;
+            color: var(--color-gold);
+            display: block;
+        }
+        .stat-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-top: var(--space-xs);
+        }
+
+        .phase-list {
+            list-style: none;
+            margin: var(--space-xl) 0;
+        }
+        .phase-list li {
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            gap: var(--space-md);
+        }
+        .phase-list .phase-day {
+            font-weight: 700;
+            color: var(--color-gold);
+            min-width: 80px;
+            font-family: var(--font-tactical);
+            font-size: 13px;
+        }
+        .phase-list .phase-desc {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+        .phase-list .phase-desc strong {
+            color: var(--color-text-primary);
+        }
+
+        .school-footer {
+            text-align: center;
+            padding: var(--space-3xl) 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .school-footer-copy {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 700px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .school-hero { padding: var(--space-3xl) 20px; }
+            .info-section { padding: var(--space-2xl) 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="/" class="school-back">&larr; All Schools</a>
+
+    <section class="school-hero">
+        <div style="height:80px;width:80px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:50%;font-family:var(--font-tactical);font-size:32px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">35</div>
+        <h1 class="school-hero-headline">Military Intelligence</h1>
+        <p class="school-hero-sub">The 35-Series is the Army's intelligence enterprise &mdash; collecting, analyzing, and disseminating critical information to give commanders the decisive edge on the battlefield and beyond.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">At a Glance</div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">13-52 wk</span>
+                <div class="stat-label">AIT</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">10+</span>
+                <div class="stat-label">MOS</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">~90%</span>
+                <div class="stat-label">Grad Rate</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">Ft Huachuca</span>
+                <div class="stat-label">AZ</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Career Field Overview</div>
+        <h2>Knowledge Is the Edge</h2>
+        <p>Military Intelligence soldiers are the eyes and ears of the Army. The 35-Series covers an enormous range of disciplines &mdash; from all-source intelligence analysis and geospatial imagery to human intelligence collection, signals intelligence, counterintelligence, and cyber operations. MI professionals operate at every echelon, from tactical battalions to strategic-level agencies, providing commanders with the intelligence they need to make informed decisions.</p>
+        <p>The MI career field is one of the most diverse in the Army, with AIT lengths ranging from 13 weeks to over a year depending on the specialty. Many MOS require Top Secret/SCI security clearances, and several include language training at the Defense Language Institute. MI soldiers regularly work alongside special operations forces, joint agencies, and the broader intelligence community, making it one of the most impactful and transferable career fields in the military.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">MOS List</div>
+        <h2>35-Series Specialties</h2>
+
+        <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0;">
+        <thead><tr style="border-bottom:2px solid var(--color-gold);text-align:left;">
+        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">MOS</th>
+        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">Title</th>
+        </tr></thead>
+        <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">35F</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Intelligence Analyst</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">35G</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Geospatial Intelligence Imagery Analyst</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">35L</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Counterintelligence Agent</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">35M</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Human Intelligence Collector</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">35N</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Signals Intelligence Analyst</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">35P</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Cryptologic Linguist</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">35Q</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Cryptologic Network Warfare Specialist</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">35S</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Signals Collector/Analyst</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">35T</td>
+                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Military Intelligence Systems Maintainer/Integrator</td>
+            </tr>
+        </tbody></table></div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Training Pipeline</div>
+        <h2>Building Intelligence Professionals</h2>
+
+        <ul class="phase-list">
+            <li>
+                <span class="phase-day">Phase 1</span>
+                <span class="phase-desc"><strong>Basic Combat Training</strong> &mdash; 10 weeks of BCT at one of the Army's training installations covering warrior tasks, physical fitness, and soldiering fundamentals.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 2</span>
+                <span class="phase-desc"><strong>13-52 Week AIT</strong> &mdash; Advanced Individual Training at Ft Huachuca, AZ (or DLI Monterey for linguists). Length varies dramatically by MOS, with linguists attending the longest programs.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 3</span>
+                <span class="phase-desc"><strong>Security Clearance</strong> &mdash; Obtain and maintain a Top Secret/SCI security clearance, which is required for nearly all 35-Series positions.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 4</span>
+                <span class="phase-desc"><strong>Unit Assignment</strong> &mdash; Report to your first operational unit and begin applying intelligence skills in a real-world environment at tactical, operational, or strategic echelons.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 5</span>
+                <span class="phase-desc"><strong>Certifications &amp; NCOES</strong> &mdash; Earn professional certifications, attend NCOES for career progression, and develop expertise in your intelligence discipline.</span>
+            </li>
+            <li>
+                <span class="phase-day">Phase 6</span>
+                <span class="phase-desc"><strong>Advanced Assignments</strong> &mdash; Opportunities for joint assignments, special operations support, agency billets, and advanced intelligence training.</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Advanced Training</div>
+        <h2>Specialized Courses</h2>
+        <p>MI soldiers have access to an extensive array of advanced training: HUMINT Collector Course, SIGINT Analysis certification, Counterintelligence Agent Course, Imagery Analysis qualification, Language School at the Defense Language Institute (DLI) in Monterey, CA, and Joint Intelligence courses at national-level agencies. Many MI professionals also attend airborne, air assault, or Ranger School to support special operations intelligence requirements.</p>
+    </section>
+
+    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
+        <div class="info-section-label">Coming Soon</div>
+        <h2>Gear, Courses &amp; Training Guides</h2>
+        <p style="max-width: 500px; margin: 0 auto;">We're building MOS-specific packing lists, training courses, and career guides for the 35-Series. Check back soon or explore other career fields in the meantime.</p>
+    </section>
+
+    <footer class="school-footer">
+        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    </footer>
+
+</body>
+</html>

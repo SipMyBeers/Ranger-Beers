@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMOC — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <meta name="theme-color" content="#000000">
+    <style>
+        .school-hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-4xl) 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .school-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center bottom, rgba(34, 197, 94, 0.08), transparent 60%);
+        }
+        .school-hero-tab {
+            max-height: 80px;
+            margin-bottom: var(--space-xl);
+            position: relative;
+        }
+        .school-hero-headline {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: var(--space-md);
+            position: relative;
+        }
+        .school-hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--color-text-secondary);
+            max-width: 640px;
+            line-height: 1.6;
+            position: relative;
+        }
+        .school-back {
+            position: fixed;
+            top: var(--space-lg);
+            left: var(--space-lg);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            z-index: 100;
+            transition: color 0.3s;
+        }
+        .school-back:hover { color: var(--color-gold); }
+
+        .info-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--space-3xl) 40px;
+        }
+        .info-section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: var(--space-lg);
+        }
+        .info-section h2 {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-weight: 800;
+            margin-bottom: var(--space-lg);
+        }
+        .info-section p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-lg);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            margin: var(--space-2xl) 0;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl) var(--space-md);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 900;
+            color: var(--color-gold);
+            display: block;
+        }
+        .stat-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-top: var(--space-xs);
+        }
+
+        .phase-list {
+            list-style: none;
+            margin: var(--space-xl) 0;
+        }
+        .phase-list li {
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            gap: var(--space-md);
+        }
+        .phase-list .phase-day {
+            font-weight: 700;
+            color: var(--color-gold);
+            min-width: 80px;
+            font-family: var(--font-tactical);
+            font-size: 13px;
+        }
+        .phase-list .phase-desc {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+        .phase-list .phase-desc strong {
+            color: var(--color-text-primary);
+        }
+
+        .school-footer {
+            text-align: center;
+            padding: var(--space-3xl) 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .school-footer-copy {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 700px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .school-hero { padding: var(--space-3xl) 20px; }
+            .info-section { padding: var(--space-2xl) 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="/" class="school-back">&larr; All Schools</a>
+
+    <section class="school-hero">
+        <div style="height:80px;width:auto;min-width:80px;padding:0 20px;border-radius:40px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);font-family:var(--font-tactical);font-size:28px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">AMOC</div>
+        <h1 class="school-hero-headline">Air Movement Operations Course</h1>
+        <p class="school-hero-sub">Trains soldiers to plan and execute air movement operations using rotary and fixed-wing aircraft, producing qualified unit air movement planners.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">At a Glance</div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">2</span>
+                <div class="stat-label">Weeks</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">2</span>
+                <div class="stat-label">Phases</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">~85%</span>
+                <div class="stat-label">Grad Rate</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">E-4+</span>
+                <div class="stat-label">Eligibility</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Course Overview</div>
+        <h2>What is AMOC?</h2>
+        <p>The Air Movement Operations Course (AMOC) trains soldiers to plan and execute air movement operations using rotary and fixed-wing aircraft. Taught at Fort Lee, Virginia, the course produces qualified unit air movement planners who can coordinate the safe and efficient transport of personnel, equipment, and supplies by air.</p>
+        <p>AMOC graduates return to their units as subject matter experts capable of planning air movements from scratch, coordinating with aviation assets, and executing complex loading and sling-load operations in support of tactical missions.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Course Phases</div>
+        <h2>Two Weeks of Air Movement Mastery</h2>
+
+        <ul class="phase-list">
+            <li>
+                <span class="phase-day">Week 1</span>
+                <span class="phase-desc"><strong>Planning Phase</strong> &mdash; Load planning, aircraft characteristics and capabilities, documentation procedures, chalking procedures, and bump plan development. Students learn to calculate loads, prepare manifests, and plan for contingencies.</span>
+            </li>
+            <li>
+                <span class="phase-day">Week 2</span>
+                <span class="phase-desc"><strong>Execution Phase</strong> &mdash; Sling-load operations, personnel loading procedures, mock-up training, and a full-scale air movement exercise. Students execute everything they planned in Week 1 under realistic field conditions.</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Key Standards</div>
+        <h2>What It Takes</h2>
+        <p>Students must produce a complete air movement plan, conduct a sling-load inspection to standard, and execute personnel manifesting procedures. A written exam tests knowledge of aircraft characteristics, load planning, and air movement doctrine.</p>
+        <p>The course emphasizes practical application &mdash; students must demonstrate they can plan, brief, and execute an air movement operation from start to finish, including contingency procedures when plans change on the fly.</p>
+    </section>
+
+    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
+        <div class="info-section-label">Coming Soon</div>
+        <h2>Gear, Courses &amp; Training Guides</h2>
+        <p style="max-width: 500px; margin: 0 auto;">We're building AMOC-specific packing lists, study guides, and training resources. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    </section>
+
+    <footer class="school-footer">
+        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    </footer>
+
+</body>
+</html>
