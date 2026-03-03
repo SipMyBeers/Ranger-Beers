@@ -352,17 +352,39 @@
         }
     </style>
 
-    <div class="course-filter-bar">
+    <!-- Filter bar hidden — courses coming soon -->
+    <div class="course-filter-bar" style="display: none;">
         <button class="filter-btn active" data-filter="all" onclick="filterByTier('all', this)">All Courses</button>
         <button class="filter-btn" data-filter="free" onclick="filterByTier('free', this)">Free</button>
         <button class="filter-btn" data-filter="basic" onclick="filterByTier('basic', this)">Basic</button>
         <button class="filter-btn" data-filter="advanced" onclick="filterByTier('advanced', this)">Advanced</button>
         <button class="filter-btn" data-filter="full" onclick="filterByTier('full', this)">Full Access</button>
     </div>
-    <div class="course-count" id="course-count">Showing 17 of 17 courses</div>
+    <div class="course-count" id="course-count" style="display: none;">Showing 17 of 17 courses</div>
 
-    <!-- COURSE CATALOG -->
+    <!-- COMING SOON + FREE COURSES -->
     <section class="section" style="padding-top: var(--space-lg);">
+        <div style="text-align: center; padding: var(--space-2xl) var(--space-xl) var(--space-xl);">
+            <div style="font-size: 3rem; margin-bottom: var(--space-md);">&#128218;</div>
+            <h2 style="font-size: clamp(20px, 3vw, 28px); font-weight: 800; color: var(--color-white); margin-bottom: var(--space-md);">Full Course Library Coming Soon</h2>
+            <p style="font-size: 15px; color: var(--color-text-secondary); max-width: 520px; margin: 0 auto var(--space-md); line-height: 1.7;">We're finalizing 16 courses covering land nav, battle drills, OPORD writing, knots, fitness programs, and more. Free courses are available now.</p>
+        </div>
+        <div class="section-label fade-in" style="margin-bottom: var(--space-md);">Free Courses</div>
+        <div class="course-card-grid stagger">
+            <!-- Recycle — free (visible) -->
+            <a href="course-recycle.html" class="course-card fade-in" data-tier="free" data-category="knowledge">
+                <div class="course-card-badge">4 Modules</div>
+                <div class="course-card-title">Recycle &amp; Recovery Guide</div>
+                <div class="course-card-desc">What happens if you fail a phase, how recycling works, staying motivated through setbacks, and the path back to graduation. No shame in the recycle game.</div>
+                <div class="course-card-meta">Knowledge &bull; All Phases &bull; Free</div>
+                <div class="course-card-price">Free</div>
+                <div class="course-card-tags"><span class="course-tag tag-phase">All Phases</span><span class="course-tag tag-type">Knowledge</span><span class="course-tag tag-bundle">Free</span></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- FULL COURSE CATALOG (hidden — coming soon) -->
+    <section class="section" style="padding-top: var(--space-lg); display: none;">
         <div class="course-card-grid stagger" id="course-grid">
             <!-- Ranger Creed — basic advanced full -->
             <a href="course-ranger-creed.html" class="course-card fade-in" data-tier="basic advanced full" data-category="knowledge">
@@ -666,7 +688,7 @@
         }
     </style>
 
-    <section class="section" id="bundles" style="border-top: 1px solid rgba(255,255,255,0.06);">
+    <section class="section" id="bundles" style="border-top: 1px solid rgba(255,255,255,0.06); display: none;">
         <div class="section-label fade-in">Course Bundles</div>
         <h2 class="section-title fade-in">Ranger Course Bundles</h2>
         <p class="section-desc fade-in">Get access to the courses you need. One payment, lifetime access.</p>
