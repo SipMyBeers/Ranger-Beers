@@ -100,9 +100,25 @@
         }
 
         .school-card .sc-icon {
-            font-size: 2.5rem;
+            height: 48px;
             margin-bottom: var(--space-sm);
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .school-card .sc-icon img {
+            max-height: 48px;
+            max-width: 100px;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(0.9);
+        }
+        .school-card--active .sc-icon img {
+            filter: brightness(1);
+        }
+        .school-card--soon .sc-icon img {
+            filter: brightness(0.5) grayscale(0.3);
         }
         .school-card .sc-name {
             font-size: 14px;
@@ -167,70 +183,70 @@
         <div class="school-grid">
 
             <a href="/ranger/" class="school-card school-card--active">
-                <div class="sc-icon">&#127942;</div>
+                <div class="sc-icon"><img src="images/ranger-tab.png" alt="Ranger Tab"></div>
                 <div class="sc-name">Ranger</div>
                 <div class="sc-badge">Ranger Tab</div>
                 <div class="sc-status">Enter &rarr;</div>
             </a>
 
             <div class="school-card school-card--soon">
-                <div class="sc-icon">&#9992;</div>
+                <div class="sc-icon"><img src="images/badges/airborne-wings.svg" alt="Airborne Wings"></div>
                 <div class="sc-name">Airborne</div>
                 <div class="sc-badge">Airborne Wings</div>
                 <div class="sc-status">Coming Soon</div>
             </div>
 
             <div class="school-card school-card--soon">
-                <div class="sc-icon">&#128681;</div>
+                <div class="sc-icon"><img src="images/badges/air-assault-badge.svg" alt="Air Assault Badge"></div>
                 <div class="sc-name">Air Assault</div>
                 <div class="sc-badge">Air Assault Badge</div>
                 <div class="sc-status">Coming Soon</div>
             </div>
 
-            <div class="school-card school-card--soon">
-                <div class="sc-icon">&#128163;</div>
+            <a href="/sapper/" class="school-card school-card--active">
+                <div class="sc-icon"><img src="images/badges/sapper-tab.jpg" alt="Sapper Tab"></div>
                 <div class="sc-name">Sapper</div>
                 <div class="sc-badge">Sapper Tab</div>
-                <div class="sc-status">Coming Soon</div>
-            </div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
 
             <div class="school-card school-card--soon">
-                <div class="sc-icon">&#127793;</div>
+                <div class="sc-icon"><img src="images/badges/pathfinder-badge.svg" alt="Pathfinder Badge"></div>
                 <div class="sc-name">Pathfinder</div>
                 <div class="sc-badge">Pathfinder Badge</div>
                 <div class="sc-status">Coming Soon</div>
             </div>
 
-            <div class="school-card school-card--soon">
-                <div class="sc-icon">&#127795;</div>
+            <a href="/jungle/" class="school-card school-card--active">
+                <div class="sc-icon"><img src="images/badges/jungle-tab.svg" alt="Jungle Tab"></div>
                 <div class="sc-name">Jungle</div>
                 <div class="sc-badge">JOTC Badge</div>
-                <div class="sc-status">Coming Soon</div>
-            </div>
+                <div class="sc-status">Enter &rarr;</div>
+            </a>
 
             <div class="school-card school-card--soon">
-                <div class="sc-icon">&#9968;</div>
+                <div class="sc-icon"><img src="images/badges/mountain-tab.png" alt="Mountain Tab"></div>
                 <div class="sc-name">Mountain</div>
                 <div class="sc-badge">Mountain Tab</div>
                 <div class="sc-status">Coming Soon</div>
             </div>
 
             <div class="school-card school-card--soon">
-                <div class="sc-icon">&#9876;</div>
+                <div class="sc-icon"><img src="images/badges/sf-tab.svg" alt="Special Forces Tab"></div>
                 <div class="sc-name">Special Forces</div>
                 <div class="sc-badge">SF Tab / Long Tab</div>
                 <div class="sc-status">Coming Soon</div>
             </div>
 
             <div class="school-card school-card--soon">
-                <div class="sc-icon">&#127941;</div>
+                <div class="sc-icon"><img src="images/badges/eib.svg" alt="Expert Infantry Badge"></div>
                 <div class="sc-name">EIB / ESB</div>
                 <div class="sc-badge">Expert Badge</div>
                 <div class="sc-status">Coming Soon</div>
             </div>
 
             <div class="school-card school-card--soon">
-                <div class="sc-icon">&#127919;</div>
+                <div class="sc-icon"><img src="images/badges/presidents-hundred-tab.png" alt="President's Hundred Tab"></div>
                 <div class="sc-name">Pres. Hundred</div>
                 <div class="sc-badge">President's Hundred Tab</div>
                 <div class="sc-status">Coming Soon</div>
