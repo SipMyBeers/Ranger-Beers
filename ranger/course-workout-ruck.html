@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranger School Prep — Ranger Beers Supply Co.</title>
+    <title>Ruck Endurance Builder — Ranger Beers Supply Co.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#000000">
 </head>
 <body>
@@ -18,7 +18,7 @@
     <!-- NAV -->
     <nav class="nav scrolled" id="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-brand">Ranger Beers</a>
+            <a href="/" class="nav-brand">Ranger Beers</a>
                         <ul class="nav-center">
                 <li class="nav-dropdown">
                     <a href="index.html">Home</a>
@@ -115,24 +115,27 @@
     </nav>
 
     <!-- HERO -->
-    <div class="section course-hero" data-course-id="course-ranger-prep">
+    <div class="section course-hero" data-course-id="course-workout-ruck">
         <div class="section-label fade-in">Course</div>
-        <h1 class="section-title fade-in">Ranger School Prep — Complete Guide</h1>
-        <p class="section-desc fade-in">7 modules covering everything you need to know before Day 1. Physical standards, land nav, packing lists, tactical tasks, and phase-specific intel.</p>
+        <h1 class="section-title fade-in">Ruck Endurance Builder</h1>
+        <p class="section-desc fade-in">The 12-mile ruck march is a RAP Week gate. 35 lbs dry, under 3 hours. This progressive program builds you up to crush the standard.</p>
         <div class="course-hero-meta fade-in">
-            <span class="course-price-tag">$10</span>
-            <span class="course-tag tag-phase">All Phases</span>
-            <span class="course-tag tag-type">Comprehensive</span>
+            <span class="course-price-tag">$5</span>
+            <span class="course-tag tag-phase">Pre-Ranger</span>
+            <span class="course-tag tag-type">Fitness</span>
             <span class="course-tag tag-bundle">Full Access</span>
         </div>
         <div style="margin-top: var(--space-lg);" class="fade-in">
             <button class="snipcart-add-item btn btn-primary"
-                data-item-id="course-ranger-prep"
-                data-item-name="Ranger School Prep"
-                data-item-price="10.00"
-                data-item-url="/course-ranger-prep.html"
-                data-item-description="Complete 7-module prep course — from admin to graduation day"
-                data-item-categories="course">Buy Course — $10.00</button>
+                data-item-id="course-workout-ruck"
+                data-item-name="Ruck Endurance"
+                data-item-price="5.00"
+                data-item-url="/ranger/course-workout-ruck.html"
+                data-item-description="Progressive ruck training — build to 12-mile standard and beyond"
+                data-item-categories="course">Buy Course — $5.00</button>
+        </div>
+        <div style="margin-top: var(--space-lg); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06);" class="fade-in">
+            <img src="../images/phases/ruck-march.jpg" alt="Ruck Endurance" style="width: 100%; max-height: 300px; object-fit: cover; display: block;" loading="lazy">
         </div>
 
     </div>
@@ -153,13 +156,13 @@
             <!-- Sidebar -->
             <nav class="course-sidebar">
                 <div class="course-sidebar-title">Modules</div>
-                <a href="#mod1" class="course-sidebar-link active">1. Physical Standards</a>
-                <a href="#mod2" class="course-sidebar-link">2. Land Navigation</a>
-                <a href="#mod3" class="course-sidebar-link">3. Packing List Deep Dive</a>
-                <a href="#mod4" class="course-sidebar-link">4. Tactical Tasks (RTT)</a>
-                <a href="#mod5" class="course-sidebar-link">5. Patrol Base Operations</a>
-                <a href="#mod6" class="course-sidebar-link">6. Orders Process</a>
-                <a href="#mod7" class="course-sidebar-link">7. Phase-Specific Tips</a>
+                <a href="#mod1" class="course-sidebar-link active">1. Overview</a>
+                <a href="#mod2" class="course-sidebar-link">2. Equipment Setup</a>
+                <a href="#mod3" class="course-sidebar-link">3. Weeks 1-2: Foundation</a>
+                <a href="#mod4" class="course-sidebar-link">4. Weeks 3-4: Load Building</a>
+                <a href="#mod5" class="course-sidebar-link">5. Weeks 5-6: Distance & Speed</a>
+                <a href="#mod6" class="course-sidebar-link">6. Foot Care</a>
+                <a href="#mod7" class="course-sidebar-link">7. Pacing & Nutrition</a>
             </nav>
 
             <!-- Content -->
@@ -167,200 +170,230 @@
                 <!-- MODULE 1 -->
                 <div class="course-module" id="mod1" data-module="mod1">
                     <div class="course-module-label">Module 1</div>
-                    <div class="course-module-title">Physical Standards & Training Plan</div>
-                    <p>Physical fitness is the foundation. You cannot fake it, and you cannot cram it. If you show up to Ranger School out of shape, you will be recycled or dropped during RAP week.</p>
+                    <div class="course-module-title">Overview</div>
+                    <p>The 12-mile ruck march standard: 35 lbs dry weight + weapon, complete in under 3:00:00 (15:00/mile pace). This is a RAP Week gate &mdash; fail it and you're done.</p>
 
-                    <p><strong>RAP Week Physical Standards:</strong></p>
-                    <ul>
-                        <li>RPFT: 49 push-ups, 59 sit-ups, 6-mile run in 40:00 (5-mile at some classes)</li>
-                        <li>Combat Water Survival Test (CWST): 15m swim in full gear, 3m drop blindfolded</li>
-                        <li>12-Mile Ruck March: 35 lbs dry + weapon, under 3:00:00</li>
-                        <li>5-Mile Run: Complete in formation, no fallouts</li>
-                        <li>Terrain Association / Land Nav: Day and Night courses</li>
-                    </ul>
+                    <p>But rucking at Ranger School goes far beyond the 12-miler: you'll ruck daily for 61+ days with 50&ndash;80 lbs in patrol. This program builds the foundation.</p>
 
-                    <p><strong>Training Plan Guidance:</strong></p>
-                    <p>Start training at least 12 weeks before your report date. Focus on three areas: running, rucking, and upper body endurance. A solid weekly plan includes:</p>
-                    <ul>
-                        <li>3x/week: Running (intervals + long slow distance)</li>
-                        <li>2x/week: Rucking (build from 25 lbs to 50 lbs, 4-12 miles)</li>
-                        <li>4x/week: Push-ups and sit-ups (high volume, timed sets)</li>
-                        <li>2x/week: Swimming (if weak — CWST is pass/fail)</li>
-                    </ul>
-
-                    <p>The goal is not to peak on Day 1. You need to sustain performance across 61+ days of sleep deprivation, calorie deficit, and continuous operations. Build an aerobic base, not just strength.</p>
+                    <p>The goal is not just to pass the 12-miler but to make rucking sustainable for the entire course. If you can only barely pass the ruck march on Day 1, you will be destroyed by the cumulative load over the following weeks. You need a reserve &mdash; both physical and mental &mdash; that only comes from progressive, disciplined training.</p>
                 </div>
 
                 <!-- MODULE 2 -->
                 <div class="course-module locked-module" id="mod2" data-module="mod2">
                     <div class="course-module-label">Module 2</div>
-                    <div class="course-module-title">Land Navigation Mastery</div>
-                    <p>Land nav is tested during RAP week and is a primary reason students are dropped. You must pass both the day and night courses to continue.</p>
+                    <div class="course-module-title">Equipment Setup</div>
 
-                    <p><strong>Day Land Nav:</strong></p>
+                    <p><strong>Ruck Selection:</strong></p>
                     <ul>
-                        <li>Find 4 of 6 points in 5 hours</li>
-                        <li>Terrain association is king — don't rely solely on pace count</li>
-                        <li>Use terrain features: hilltops, saddles, draws, ridges, spurs</li>
-                        <li>Attack points: Navigate to a nearby feature, then walk in</li>
+                        <li>ALICE pack (medium or large) or MOLLE II</li>
+                        <li>Use a frame &mdash; it distributes weight to your hips and keeps the load stable</li>
                     </ul>
 
-                    <p><strong>Night Land Nav:</strong></p>
+                    <p><strong>Weight Distribution:</strong></p>
                     <ul>
-                        <li>Find 3 of 4 points in 3 hours</li>
-                        <li>No visible horizon — pace count becomes critical</li>
-                        <li>Use handrails: roads, streams, ridgelines, power lines</li>
-                        <li>Backstops: linear features you cannot cross</li>
+                        <li>Heaviest items high and close to your back</li>
+                        <li>Use weight plates or sandbags for training &mdash; not loose items that shift</li>
                     </ul>
 
-                    <p><strong>Key Skills:</strong></p>
+                    <p><strong>Training Pack List:</strong></p>
                     <ul>
-                        <li>Plotting 8-digit grid coordinates</li>
-                        <li>Declination and G-M angle adjustment</li>
-                        <li>Pace count (know yours on flat and uphill)</li>
-                        <li>Lensatic compass: centerhold and compass-to-cheek</li>
-                        <li>Map reading: contour intervals, colors, symbols</li>
+                        <li>Weight plates or sandbags (secured so they don't move)</li>
+                        <li>Water source (hydration bladder or canteens)</li>
+                        <li>First aid kit</li>
                     </ul>
 
-                    <p>Practice at Fort Benning-style terrain if possible. If not, any wooded area with a 1:50,000 map works. Do night iterations — you will be exhausted and the terrain will look different.</p>
+                    <p><strong>Boot Selection:</strong></p>
+                    <ul>
+                        <li>Broken-in boots &mdash; match what you'll wear at Ranger School</li>
+                        <li>Do NOT train in new boots. Break them in over 4+ weeks before starting this program</li>
+                    </ul>
+
+                    <p><strong>Sock System:</strong></p>
+                    <ul>
+                        <li>Liner sock + wool/synthetic outer sock</li>
+                        <li>The liner wicks moisture away from your skin, the outer sock provides cushion</li>
+                    </ul>
+
+                    <p><strong>Lace Technique:</strong></p>
+                    <ul>
+                        <li>Tight in the heel to lock your foot in place</li>
+                        <li>Looser over the top of the foot to allow circulation</li>
+                    </ul>
+
+                    <p><strong>Ruck Posture:</strong></p>
+                    <ul>
+                        <li>Lean slightly forward &mdash; let the weight sit over your hips</li>
+                        <li>Hips under the load, quick short steps</li>
+                        <li>Avoid leaning back or overstriding &mdash; both waste energy and cause injury</li>
+                    </ul>
                 </div>
 
                 <!-- MODULE 3 -->
                 <div class="course-module locked-module" id="mod3" data-module="mod3">
                     <div class="course-module-label">Module 3</div>
-                    <div class="course-module-title">Packing List Deep Dive</div>
-                    <p>Your packing list is your life for 61+ days. Pack wrong and you suffer. Pack right and you have one less thing to worry about.</p>
+                    <div class="course-module-title">Weeks 1&ndash;2: Foundation</div>
+                    <p><strong>Goal:</strong> Build ruck tolerance. Walk, don't run. Focus on form and foot care.</p>
 
-                    <p><strong>Golden Rules:</strong></p>
+                    <p><strong>Ruck 2x/week:</strong></p>
                     <ul>
-                        <li>Every item must earn its weight — if you can't justify it, leave it</li>
-                        <li>Waterproof everything: use dry bags and wet weather bags</li>
-                        <li>Label your gear with your name and roster number</li>
-                        <li>Pack your ruck the same way every time — muscle memory matters in the dark</li>
+                        <li><strong>Workout 1:</strong> 3 miles, 25 lbs, easy pace (18:00/mile)</li>
+                        <li><strong>Workout 2:</strong> 4 miles, 25 lbs, moderate pace (16:00/mile)</li>
                     </ul>
 
-                    <p><strong>Essential Categories:</strong></p>
+                    <p><strong>Daily:</strong></p>
                     <ul>
-                        <li><strong>Clothing:</strong> Broken-in boots (2 pair recommended), socks (12+ pair), base layers, beanie, gloves</li>
-                        <li><strong>Gear:</strong> Ruck, sleep system, poncho + liner (woobie), 550 cord, bungees</li>
-                        <li><strong>Tactical:</strong> Compass, protractor, pens/pencils, Rite in Rain, map cases, chem lights</li>
-                        <li><strong>Hygiene:</strong> Foot powder, soap, razor, microfiber towels, dental picks</li>
-                        <li><strong>Admin:</strong> Notebook, pens, letter writing material, sheet protectors</li>
+                        <li>10-minute loaded carry (25 lbs) &mdash; walk around the block</li>
                     </ul>
 
-                    <p>Check your season-specific page for items tailored to your class date: <a href="winter.html" style="color: var(--color-gold);">Winter</a> | <a href="spring.html" style="color: var(--color-gold);">Spring</a> | <a href="summer.html" style="color: var(--color-gold);">Summer</a> | <a href="fall.html" style="color: var(--color-gold);">Fall</a></p>
+                    <p><strong>Mobility &amp; Recovery:</strong></p>
+                    <ul>
+                        <li>Do hip, ankle, and shoulder mobility before and after each ruck</li>
+                        <li>Ice feet after if needed</li>
+                        <li>Check feet for hotspots after every session</li>
+                    </ul>
+
+                    <p>These first two weeks are about building a base. Resist the urge to go heavy or fast. Your connective tissue, joints, and feet need time to adapt to loaded movement. Injuries here will derail the entire program.</p>
                 </div>
 
                 <!-- MODULE 4 -->
                 <div class="course-module locked-module" id="mod4" data-module="mod4">
                     <div class="course-module-label">Module 4</div>
-                    <div class="course-module-title">Tactical Tasks (RTT)</div>
-                    <p>Ranger Tactical Tasks are tested on RAP week Day 4. You must pass 5 of 7. No re-tests. Scoring below 5/7 is a MAJOR MINUS.</p>
+                    <div class="course-module-title">Weeks 3&ndash;4: Load Building</div>
+                    <p><strong>Goal:</strong> Increase weight and introduce supplemental training.</p>
 
-                    <p><strong>The 7 Tasks:</strong></p>
-                    <ol>
-                        <li><strong>RTT 1:</strong> Maintain an M249 Machine Gun — disassemble, inspect, reassemble, functions check</li>
-                        <li><strong>RTT 2:</strong> Clear, Load, Reduce Stoppage, Unload & Clear M249</li>
-                        <li><strong>RTT 3:</strong> Maintain an M240B Machine Gun — same standard as M249</li>
-                        <li><strong>RTT 4:</strong> Clear, Load, Reduce Stoppage, Unload & Clear M240B</li>
-                        <li><strong>RTT 5:</strong> Employ a Claymore Mine — set up, aim, arm, fire, recover</li>
-                        <li><strong>RTT 6:</strong> Communicate by ASIP Radio — program, establish comms, send message</li>
-                        <li><strong>RTT 7:</strong> Communicate by MBITR Radio — same standard on different platform</li>
-                    </ol>
+                    <p><strong>Ruck 2x/week:</strong></p>
+                    <ul>
+                        <li><strong>Workout 1:</strong> 5 miles, 30 lbs, moderate pace</li>
+                        <li><strong>Workout 2:</strong> 6 miles, 30 lbs, goal pace (15:30/mile)</li>
+                    </ul>
 
-                    <p>The graders follow the TM exactly. There is no partial credit — it's GO or NO-GO. Practice hands-on with the actual equipment if possible. If you can't access the weapons, study the TM steps and visualize.</p>
+                    <p><strong>Supplemental Training:</strong></p>
+                    <ul>
+                        <li><strong>Stair/Hill Repeats 1x/week:</strong> 30 lbs, 10 flights or 200 ft elevation gain, 4&ndash;6 sets</li>
+                        <li><strong>Ruck-to-Run Transitions:</strong> After ruck, drop pack and run 1 mile at your 5-mile run pace</li>
+                    </ul>
 
-                    <p><a href="resources.html#rtt" style="color: var(--color-gold);">View the full RTT breakdown on the Resources page &rarr;</a></p>
+                    <p><strong>Foot Care:</strong></p>
+                    <ul>
+                        <li>Check for hotspots after every ruck</li>
+                        <li>Apply moleskin at the first sign of irritation &mdash; do not wait for a blister to form</li>
+                    </ul>
+
+                    <p>The ruck-to-run transition is critical for Ranger School. You will frequently need to drop your ruck and sprint to an objective or react to contact. Train your legs to switch gears under fatigue.</p>
                 </div>
 
                 <!-- MODULE 5 -->
                 <div class="course-module locked-module" id="mod5" data-module="mod5">
                     <div class="course-module-label">Module 5</div>
-                    <div class="course-module-title">Patrol Base Operations</div>
-                    <p>You will spend most of your time in Ranger School in a patrol base (PB). Knowing how to set one up and run it is critical for your patrol grade.</p>
+                    <div class="course-module-title">Weeks 5&ndash;6: Distance &amp; Speed</div>
+                    <p><strong>Goal:</strong> Peak distance and speed. Validate with a 12-mile time trial.</p>
 
-                    <p><strong>Patrol Base Priorities of Work:</strong></p>
-                    <ol>
-                        <li>Security — establish 360-degree security immediately</li>
-                        <li>Withdraw Plan — know the rally point and signal</li>
-                        <li>Communication — establish comms with higher, send LACE report</li>
-                        <li>Weapons Maintenance — clean, inspect, functions check</li>
-                        <li>Hygiene — foot care, change socks, eat</li>
-                        <li>Sleep Plan — rotating rest, guard shifts</li>
-                        <li>Rehearsals — leader's recon, sand table, full rehearsal</li>
-                    </ol>
-
-                    <p><strong>Key Positions:</strong></p>
+                    <p><strong>Ruck 2&ndash;3x/week:</strong></p>
                     <ul>
-                        <li><strong>PL (Patrol Leader):</strong> Owns the PB. Directs priorities of work, issues FRAGO, runs rehearsals</li>
-                        <li><strong>PSG (Platoon Sergeant):</strong> Manages internal PB operations, sleep plan, LACE, resupply</li>
-                        <li><strong>SL (Squad Leader):</strong> Runs squad sector, assigns guard shifts, accountability</li>
-                        <li><strong>TL (Team Leader):</strong> Two-man sector, controls fire team, reports up</li>
+                        <li><strong>Workout 1:</strong> 8 miles, 35 lbs, goal pace (15:00/mile)</li>
+                        <li><strong>Workout 2:</strong> 6 miles, 35 lbs, fast pace (14:30/mile)</li>
+                        <li><strong>Workout 3:</strong> 4 miles, 35 lbs, speed ruck (shuffle/walk combo)</li>
                     </ul>
 
-                    <p>The most common failure point is time management. You have limited time to plan, brief, rehearse, and execute. Start planning the moment you get the OPORD — don't wait until you're in the PB.</p>
+                    <p><strong>Week 6 &mdash; 12-Mile Time Trial:</strong></p>
+                    <ul>
+                        <li>35 lbs dry weight</li>
+                        <li>Target: sub-3:00:00</li>
+                        <li>Use a measured route and carry your full training kit</li>
+                        <li>If you fail, repeat Week 5 and re-test</li>
+                    </ul>
+
+                    <p><strong>Post-Trial Recovery:</strong></p>
+                    <ul>
+                        <li>Recovery week: reduce volume by 50%</li>
+                        <li>Focus on mobility, foot care, and light cardio</li>
+                    </ul>
+
+                    <p>The time trial is your validation event. Treat it like the real thing &mdash; same boots, same socks, same pack, same weight. No surprises on test day.</p>
                 </div>
 
                 <!-- MODULE 6 -->
                 <div class="course-module locked-module" id="mod6" data-module="mod6">
                     <div class="course-module-label">Module 6</div>
-                    <div class="course-module-title">Orders Process (OPORD / FRAGO)</div>
-                    <p>The 5-paragraph OPORD is the backbone of tactical planning. You will receive, write, and brief OPORDs constantly. If you are graded as PL, your OPORD brief is a major component of your patrol grade.</p>
+                    <div class="course-module-title">Foot Care</div>
+                    <p>This is the most critical section. Blisters end more ruck marches than fatigue does. Prevention is everything.</p>
 
-                    <p><strong>5-Paragraph OPORD:</strong></p>
-                    <ol>
-                        <li><strong>Situation:</strong> Enemy forces, friendly forces, terrain & weather, civil considerations</li>
-                        <li><strong>Mission:</strong> Who, what, when, where, why (the 5 W's)</li>
-                        <li><strong>Execution:</strong> Concept of the operation, scheme of maneuver, tasks to subordinate units, coordinating instructions</li>
-                        <li><strong>Sustainment:</strong> Class I-V supply, medical plan, EPW handling, LACE report</li>
-                        <li><strong>Command & Signal:</strong> Succession of command, signal plan, frequencies, call signs, challenge & password</li>
-                    </ol>
+                    <p><strong>Blister Prevention:</strong></p>
+                    <ul>
+                        <li>Properly fitted boots &mdash; half size up from running shoes</li>
+                        <li>Break in boots over 4+ weeks with progressively longer walks</li>
+                        <li>Moisture management: change socks at halftime on the 12-miler</li>
+                        <li>Liner sock + outer sock system (never single-layer cotton)</li>
+                    </ul>
 
-                    <p><strong>Troop Leading Procedures (TLPs):</strong></p>
-                    <ol>
-                        <li>Receive the mission</li>
-                        <li>Issue a warning order</li>
-                        <li>Make a tentative plan</li>
-                        <li>Initiate movement</li>
-                        <li>Conduct reconnaissance</li>
-                        <li>Complete the plan</li>
-                        <li>Issue the order</li>
-                        <li>Supervise and refine</li>
-                    </ol>
+                    <p><strong>Hotspot Treatment:</strong></p>
+                    <ul>
+                        <li>Stop immediately when you feel a hotspot</li>
+                        <li>Apply moleskin or Leukotape BEFORE a blister forms</li>
+                        <li>Ignoring a hotspot guarantees a blister &mdash; fix it now or pay later</li>
+                    </ul>
 
-                    <p>Practice writing and briefing OPORDs before you go. Time yourself — you will have to brief under pressure with sleep deprivation. A terrain model kit (TMK) helps significantly. <a href="course-tmk.html" style="color: var(--color-gold);">See the TMK Build Guide &rarr;</a></p>
+                    <p><strong>Blister Treatment:</strong></p>
+                    <ul>
+                        <li>Do NOT pop unless medically necessary</li>
+                        <li>If popped: clean with alcohol, apply antibiotic ointment + moleskin donut</li>
+                        <li>Cover with a breathable bandage and monitor for infection</li>
+                    </ul>
+
+                    <p><strong>Toenails:</strong></p>
+                    <ul>
+                        <li>Trim straight across &mdash; short but not too short</li>
+                        <li>Trim 1 week before the 12-miler (not the day before)</li>
+                    </ul>
+
+                    <p><strong>Products:</strong></p>
+                    <ul>
+                        <li><strong>Foot Powder:</strong> Gold Bond &mdash; apply before and at halftime</li>
+                        <li><strong>Anti-Chafe:</strong> Desitin for chafing, Body Glide for friction zones</li>
+                        <li><strong>Socks:</strong> Injinji toe socks (excellent blister prevention between toes)</li>
+                        <li><strong>Tape:</strong> Leukotape &mdash; sticks better than moleskin in wet conditions</li>
+                    </ul>
                 </div>
 
                 <!-- MODULE 7 -->
                 <div class="course-module locked-module" id="mod7" data-module="mod7">
                     <div class="course-module-label">Module 7</div>
-                    <div class="course-module-title">Phase-Specific Tips</div>
+                    <div class="course-module-title">Pacing &amp; Nutrition</div>
 
-                    <p><strong>Benning Phase (RAP Week + Darby):</strong></p>
+                    <p><strong>Pacing Strategy:</strong></p>
                     <ul>
-                        <li>RAP week is the filter — physical standards, land nav, RTT, and peer evals</li>
-                        <li>Darby is your first graded patrol. Expect ambushes, raids, and movement to contact</li>
-                        <li>Focus on teamwork — RIs watch how you treat your Ranger buddies</li>
-                        <li>Terrain: Flat, pine forests, sandy soil</li>
+                        <li>The 12-miler is 15:00/mile pace &mdash; a fast walk / slow shuffle</li>
+                        <li>Practice your pace on measured routes</li>
+                        <li>Use a watch or pace beads to stay consistent</li>
+                        <li>Consistent pace beats sprinting and walking &mdash; never go out hot and fade</li>
                     </ul>
 
-                    <p><strong>Mountain Phase (Dahlonega):</strong></p>
+                    <p><strong>Pre-Ruck Nutrition:</strong></p>
                     <ul>
-                        <li>Steep terrain, heavy rucks, knot test, rappelling</li>
-                        <li>Cold weather in winter classes — hypothermia is a real risk</li>
-                        <li>Learn your knots: square, bowline, rappel seat, figure-eight, clove hitch, prusik</li>
-                        <li>Patrols are longer and harder. Elevation gain makes everything worse</li>
+                        <li>Eat complex carbs 2 hours before the ruck march</li>
+                        <li>Avoid heavy fats or fiber that could cause GI distress</li>
                     </ul>
 
-                    <p><strong>Florida Phase (Eglin AFB / Santa Rosa Island):</strong></p>
+                    <p><strong>During the Ruck:</strong></p>
                     <ul>
-                        <li>Swamp operations, small boat movements, coastal raids</li>
-                        <li>Bugs, snakes, alligators — permethrin everything in spring/summer</li>
-                        <li>Water crossings with gear. Know your waterproofing procedures</li>
-                        <li>This is the final phase — mental toughness matters most here</li>
+                        <li>Bring 2 gel packs or candy for miles 6 and 9</li>
+                        <li>Hydrate: 500ml per 2 miles minimum</li>
+                        <li>Electrolytes: add to one water source (not both)</li>
                     </ul>
 
-                    <p>Each phase builds on the last. The lessons from Darby carry into Mountains and Florida. Stay consistent, don't quit, and take care of your Ranger buddies.</p>
+                    <p><strong>Post-Ruck Recovery:</strong></p>
+                    <ul>
+                        <li>Recovery meal within 30 minutes &mdash; protein + carbs</li>
+                        <li>Stretch hips, calves, and shoulders</li>
+                        <li>Elevate feet and ice if swollen</li>
+                    </ul>
+
+                    <p><strong>Weight Management:</strong></p>
+                    <ul>
+                        <li>Weigh your ruck on a scale before every training session &mdash; no guessing</li>
+                        <li>On test day, weigh with all gear (water, food, first aid) to ensure you are at 35 lbs dry</li>
+                        <li>At Ranger School, RIs will weigh your ruck. Under 35 lbs is a failure</li>
+                    </ul>
                 </div>
 
             </div>
@@ -436,8 +469,8 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
     </script>
 
     <!-- Auth + Course Engine -->
-    <script src="course-auth.js"></script>
-    <script src="course-engine.js"></script>
+    <script src="../course-auth.js"></script>
+    <script src="../course-engine.js"></script>
     <script>
         RangerAuth.initAuthUI();
         RangerAuth.initCourseGate();

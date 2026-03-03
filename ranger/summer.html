@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fall — Ranger Beers Supply Co.</title>
+    <title>Summer — Ranger Beers Supply Co.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 </head>
 <body>
 
     <nav class="nav" id="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-brand">Ranger Beers</a>
+            <a href="/" class="nav-brand">Ranger Beers</a>
                                     <ul class="nav-center">
                 <li class="nav-dropdown">
                     <a href="index.html">Home</a>
@@ -110,31 +110,39 @@
         </div>
     </nav>
 
-    <!-- FALLING LEAVES EFFECT -->
+    <!-- HEAT HAZE EFFECT -->
     <style>
-        .leaves {
+        .heat-haze {
             position: fixed;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 30vh;
             pointer-events: none;
             z-index: 999;
-            overflow: hidden;
+            background: linear-gradient(to top,
+                rgba(255, 160, 50, 0.04) 0%,
+                transparent 100%);
+            animation: haze-shimmer 3s ease-in-out infinite;
         }
-        .leaf {
-            position: absolute;
-            top: -30px;
-            font-size: 16px;
-            opacity: 0;
-            animation: leaffall linear infinite;
+        @keyframes haze-shimmer {
+            0%, 100% { opacity: 0.6; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.02); }
         }
-        @keyframes leaffall {
-            0% { opacity: 0; transform: translateY(-30px) rotate(0deg) translateX(0); }
-            10% { opacity: 0.7; }
-            50% { transform: translateY(50vh) rotate(180deg) translateX(var(--sway)); }
-            90% { opacity: 0.5; }
-            100% { opacity: 0; transform: translateY(100vh) rotate(360deg) translateX(calc(var(--sway) * -1)); }
+        .heat-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 998;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 200, 50, 0.3);
+            border-radius: 50%;
+            animation: heat-rise linear infinite;
+        }
+        @keyframes heat-rise {
+            0% { opacity: 0; transform: translateY(0) scale(1); }
+            20% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(-40vh) scale(0); }
         }
         .hero::after {
             content: '';
@@ -142,36 +150,33 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 100px;
+            height: 120px;
             background: linear-gradient(to top,
-                rgba(180, 100, 30, 0.06) 0%,
+                rgba(255, 160, 50, 0.06) 0%,
                 transparent 100%);
             z-index: 3;
             pointer-events: none;
         }
         .stat-number {
-            text-shadow: 0 0 20px rgba(200, 120, 40, 0.3);
+            text-shadow: 0 0 20px rgba(255, 160, 50, 0.3);
         }
     </style>
-    <div class="leaves" id="leaves"></div>
+    <div class="heat-haze"></div>
     <script>
         (function() {
-            const container = document.getElementById('leaves');
-            const chars = ['\u{1F342}', '\u{1F341}', '\u{1F343}'];
-            for (let i = 0; i < 30; i++) {
-                const leaf = document.createElement('div');
-                leaf.className = 'leaf';
-                leaf.textContent = chars[Math.floor(Math.random() * chars.length)];
+            for (let i = 0; i < 25; i++) {
+                const p = document.createElement('div');
+                p.className = 'heat-particle';
                 const left = Math.random() * 100;
-                const dur = Math.random() * 8 + 8;
-                const delay = Math.random() * 12;
-                const size = Math.random() * 10 + 12;
-                const sway = (Math.random() - 0.5) * 150;
-                leaf.style.cssText =
-                    'left:' + left + '%;font-size:' + size + 'px;' +
-                    'animation-duration:' + dur + 's;animation-delay:' + delay + 's;' +
-                    '--sway:' + sway + 'px;';
-                container.appendChild(leaf);
+                const bottom = Math.random() * 30;
+                const dur = Math.random() * 4 + 4;
+                const delay = Math.random() * 6;
+                const size = Math.random() * 3 + 1;
+                p.style.cssText =
+                    'left:' + left + '%;bottom:' + bottom + '%;' +
+                    'width:' + size + 'px;height:' + size + 'px;' +
+                    'animation-duration:' + dur + 's;animation-delay:' + delay + 's;';
+                document.body.appendChild(p);
             }
         })();
     </script>
@@ -179,11 +184,11 @@
     <section class="hero" style="background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <div class="section-label" style="margin-bottom: var(--space-md);">September / October / November</div>
-            <h1 class="hero-headline">Fall Ranger</h1>
-            <p class="hero-sub">Unpredictable weather — hot days, cold nights. Light fleece layers and a stowed beanie give you options without adding weight to your ruck.</p>
+            <div class="section-label" style="margin-bottom: var(--space-md);">June / July / August</div>
+            <h1 class="hero-headline">Summer Ranger</h1>
+            <p class="hero-sub">Georgia heat will break you if you're not prepared. Body Glide, electrolytes, and cooling towels are force multipliers when the heat index pushes past 100.</p>
             <div class="hero-cta">
-                <a href="shop.html?season=fall" class="btn btn-primary">Shop Fall Gear</a>
+                <a href="shop.html?season=summer" class="btn btn-primary">Shop Summer Gear</a>
                 <a href="#packing" class="btn btn-outline">View Packing List</a>
             </div>
         </div>
@@ -192,27 +197,27 @@
 
     <div class="stat-bar">
         <div class="stat-bar-inner">
-            <div class="stat-item fade-in"><div class="stat-number">40°-85°</div><div class="stat-label">Temp Range</div></div>
-            <div class="stat-item fade-in"><div class="stat-number">2</div><div class="stat-label">Layer Systems</div></div>
-            <div class="stat-item fade-in"><div class="stat-number">Both</div><div class="stat-label">Hot & Cold Prep</div></div>
+            <div class="stat-item fade-in"><div class="stat-number">110°+</div><div class="stat-label">Heat Index Peak</div></div>
+            <div class="stat-item fade-in"><div class="stat-number">6L+</div><div class="stat-label">Daily Water Intake</div></div>
+            <div class="stat-item fade-in"><div class="stat-number">#1</div><div class="stat-label">Heat Cat Threat</div></div>
             <div class="stat-item fade-in"><div class="stat-number">61</div><div class="stat-label">Days in the Suck</div></div>
         </div>
     </div>
 
     <section class="section" id="packing">
-        <div class="section-label fade-in">Fall Packing List</div>
-        <h2 class="section-title fade-in">Transitional Weather Loadout</h2>
-        <p class="section-desc fade-in">Fall is the wildcard. Pack for both warm and cool. You'll need light layers you can add or drop.</p>
+        <div class="section-label fade-in">Summer Packing List</div>
+        <h2 class="section-title fade-in">Heat Management Loadout</h2>
+        <p class="section-desc fade-in">Summer is about surviving the heat. Every seasonal item here is designed to keep you performing when temps spike.</p>
 
         <div class="bento-grid bento-3 stagger">
             <div class="packing-category fade-in">
-                <div class="packing-cat-title">Transitional Layers</div>
-                <div class="packing-item"><span class="packing-item-name">Light Fleece Layer</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
-                <div class="packing-item"><span class="packing-item-name">Gloves (Tactical)</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
-                <div class="packing-item"><span class="packing-item-name">Poncho & Liner</span><span class="packing-item-tag tag-essential">Essential</span></div>
-                <div class="packing-item"><span class="packing-item-name">Beanie (Stow in Ruck)</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
-                <div class="packing-item"><span class="packing-item-name">Wet Weather Bags</span><span class="packing-item-tag tag-essential">Essential</span></div>
-                <div class="packing-item"><span class="packing-item-name">Sleeping Mat / Pad</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-cat-title">Heat Management</div>
+                <div class="packing-item"><span class="packing-item-name">Body Glide</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
+                <div class="packing-item"><span class="packing-item-name">Electrolyte Packets</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
+                <div class="packing-item"><span class="packing-item-name">Cooling Towel</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
+                <div class="packing-item"><span class="packing-item-name">Bug Spray (100% DEET)</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
+                <div class="packing-item"><span class="packing-item-name">Sunscreen SPF 50+</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
+                <div class="packing-item"><span class="packing-item-name">Quick-Dry Socks (Extra)</span><span class="packing-item-tag tag-essential">Essential</span></div>
             </div>
             <div class="packing-category fade-in">
                 <div class="packing-cat-title">Standard Gear</div>
@@ -221,18 +226,17 @@
                 <div class="packing-item"><span class="packing-item-name">Boots (Broken In)</span><span class="packing-item-tag tag-essential">Essential</span></div>
                 <div class="packing-item"><span class="packing-item-name">Boot Laces (Spare)</span><span class="packing-item-tag tag-essential">Essential</span></div>
                 <div class="packing-item"><span class="packing-item-name">550 Cord</span><span class="packing-item-tag tag-essential">Essential</span></div>
-                <div class="packing-item"><span class="packing-item-name">Eye Pro (Clear)</span><span class="packing-item-tag tag-essential">Essential</span></div>
+                <div class="packing-item"><span class="packing-item-name">Eye Pro (Tinted)</span><span class="packing-item-tag tag-essential">Essential</span></div>
                 <div class="packing-item"><span class="packing-item-name">Ear Pro (Foam Plugs)</span><span class="packing-item-tag tag-essential">Essential</span></div>
                 <div class="packing-item"><span class="packing-item-name">Knives (Folding/Fixed)</span><span class="packing-item-tag tag-essential">Essential</span></div>
             </div>
             <div class="packing-category fade-in">
                 <div class="packing-cat-title">Consumables</div>
-                <div class="packing-item"><span class="packing-item-name">Foot Powder</span><span class="packing-item-tag tag-essential">Essential</span></div>
-                <div class="packing-item"><span class="packing-item-name">Bug Spray</span><span class="packing-item-tag tag-seasonal">Seasonal</span></div>
+                <div class="packing-item"><span class="packing-item-name">Foot Powder (Extra)</span><span class="packing-item-tag tag-essential">Essential</span></div>
                 <div class="packing-item"><span class="packing-item-name">Moleskin</span><span class="packing-item-tag tag-essential">Essential</span></div>
-                <div class="packing-item"><span class="packing-item-name">Anti-Chafe Balm</span><span class="packing-item-tag tag-optional">Optional</span></div>
-                <div class="packing-item"><span class="packing-item-name">Lip Balm</span><span class="packing-item-tag tag-optional">Optional</span></div>
+                <div class="packing-item"><span class="packing-item-name">Duct Tape</span><span class="packing-item-tag tag-optional">Optional</span></div>
                 <div class="packing-item"><span class="packing-item-name">Sewing Kit</span><span class="packing-item-tag tag-optional">Optional</span></div>
+                <div class="packing-item"><span class="packing-item-name">Steel Wool</span><span class="packing-item-tag tag-optional">Optional</span></div>
             </div>
         </div>
 
@@ -265,60 +269,60 @@
         </div>
 
         <div style="text-align: center; margin-top: var(--space-2xl);">
-            <a href="shop.html?season=fall" class="btn btn-primary">Shop All Fall Items</a>
+            <a href="shop.html?season=summer" class="btn btn-primary">Shop All Summer Items</a>
         </div>
     </section>
 
     <section class="section" style="border-top: 1px solid rgba(255,255,255,0.06);">
         <div class="section-label fade-in">Recommended</div>
-        <h2 class="section-title fade-in">Fall Gear Picks</h2>
+        <h2 class="section-title fade-in">Summer Gear Picks</h2>
         <div class="product-grid stagger">
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(55,65,81,0.8), rgba(31,41,55,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO<br>ECWCS</span><img src="images/products/light-fleece-layer-ecwcs-gen-iii.jpg" alt="Light Fleece Layer — ECWCS Gen III" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
-                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Rothco</div><div class="product-name">Light Fleece Layer — ECWCS Gen III</div><div class="product-price">$39.99</div><div class="product-tag">Fall Seasonal</div>
-                    <button class="snipcart-add-item" data-item-id="light-fleece-layer-ecwcs-gen-iii" data-item-name="Light Fleece Layer — ECWCS Gen III" data-item-price="39.99" data-item-url="/fall.html" data-item-description="Light Fleece Layer — ECWCS Gen III">Add to Cart — $39.99</button>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(60,45,70,0.8), rgba(40,30,50,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">BODY<br>GLIDE</span><img src="../images/products/anti-chafe-balm-original-1-5-oz.jpg" alt="Anti-Chafe Balm — Original 1.5 oz" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Body Glide</div><div class="product-name">Anti-Chafe Balm — Original 1.5 oz</div><div class="product-price">$10.99</div><div class="product-tag">Summer Essential</div>
+                    <button class="snipcart-add-item" data-item-id="anti-chafe-balm-original-1-5-oz" data-item-name="Anti-Chafe Balm — Original 1.5 oz" data-item-price="10.99" data-item-url="/ranger/summer.html" data-item-description="Anti-Chafe Balm — Original 1.5 oz">Add to Cart — $10.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(55,65,81,0.8), rgba(31,41,55,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">MECHANIX</span><img src="images/products/gloves-m-pact-tactical.jpg" alt="Gloves — M-Pact Tactical" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
-                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Mechanix Wear</div><div class="product-name">Gloves — M-Pact Tactical</div><div class="product-price">$34.99</div><div class="product-tag">Fall Seasonal</div>
-                    <button class="snipcart-add-item" data-item-id="gloves-m-pact-tactical" data-item-name="Gloves — M-Pact Tactical" data-item-price="34.99" data-item-url="/fall.html" data-item-description="Gloves — M-Pact Tactical">Add to Cart — $34.99</button>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(60,45,70,0.8), rgba(40,30,50,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">COPPERTONE</span><img src="../images/products/sunscreen-sport-spf-50-7-oz.jpg" alt="Sunscreen — SPORT SPF 50 (7 oz)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Coppertone</div><div class="product-name">Sunscreen — SPORT SPF 50 (7 oz)</div><div class="product-price">$11.99</div><div class="product-tag">Hygiene — Summer</div>
+                    <button class="snipcart-add-item" data-item-id="sunscreen-sport-spf-50-7-oz" data-item-name="Sunscreen — SPORT SPF 50 (7 oz)" data-item-price="11.99" data-item-url="/ranger/summer.html" data-item-description="Sunscreen — SPORT SPF 50 (7 oz)">Add to Cart — $11.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(55,65,81,0.8), rgba(31,41,55,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO</span><img src="images/products/beanie-black-watch-cap.jpg" alt="Beanie (Black Watch Cap)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
-                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Rothco</div><div class="product-name">Beanie (Black Watch Cap)</div><div class="product-price">$9.99</div><div class="product-tag">Clothing — Fall / Winter</div>
-                    <button class="snipcart-add-item" data-item-id="beanie-black-watch-cap" data-item-name="Beanie (Black Watch Cap)" data-item-price="9.99" data-item-url="/fall.html" data-item-description="Beanie (Black Watch Cap)">Add to Cart — $9.99</button>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(60,45,70,0.8), rgba(40,30,50,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">LIQUID IV</span><img src="../images/products/electrolyte-packets-30ct.jpg" alt="Electrolyte Packets (30ct)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Liquid IV</div><div class="product-name">Electrolyte Packets (30ct)</div><div class="product-price">$22.99</div><div class="product-tag">Summer Essential</div>
+                    <button class="snipcart-add-item" data-item-id="electrolyte-packets-30ct" data-item-name="Electrolyte Packets (30ct)" data-item-price="22.99" data-item-url="/ranger/summer.html" data-item-description="Electrolyte Packets (30ct)">Add to Cart — $22.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO</span><img src="images/products/poncho-liner-woobie.jpg" alt="Poncho Liner (Woobie)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
-                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Rothco</div><div class="product-name">Poncho Liner (Woobie)</div><div class="product-price">$54.99</div><div class="product-tag">Gear — All Seasons</div>
-                    <button class="snipcart-add-item" data-item-id="poncho-liner-woobie" data-item-name="Poncho Liner (Woobie)" data-item-price="54.99" data-item-url="/fall.html" data-item-description="Poncho Liner (Woobie)">Add to Cart — $54.99</button>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(60,45,70,0.8), rgba(40,30,50,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">REPEL 100</span><img src="../images/products/bug-repellent-98-deet-4-oz.jpg" alt="Bug Repellent — 98% DEET (4 oz)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Repel</div><div class="product-name">Bug Repellent — 98% DEET (4 oz)</div><div class="product-price">$7.99</div><div class="product-tag">Hygiene — Spring / Summer</div>
+                    <button class="snipcart-add-item" data-item-id="bug-repellent-98-deet-4-oz" data-item-name="Bug Repellent — 98% DEET (4 oz)" data-item-price="7.99" data-item-url="/ranger/summer.html" data-item-description="Bug Repellent — 98% DEET (4 oz)">Add to Cart — $7.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">USGI</span><img src="images/products/wet-weather-bags-2-pack.jpg" alt="Wet Weather Bags (2-Pack)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
-                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">USGI Surplus</div><div class="product-name">Wet Weather Bags (2-Pack)</div><div class="product-price">$8.99</div><div class="product-tag">Gear — Spring / Fall</div>
-                    <button class="snipcart-add-item" data-item-id="wet-weather-bags-2-pack" data-item-name="Wet Weather Bags (2-Pack)" data-item-price="8.99" data-item-url="/fall.html" data-item-description="Wet Weather Bags (2-Pack)">Add to Cart — $8.99</button>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(60,45,70,0.8), rgba(40,30,50,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">GEAR AID</span><img src="../images/products/microfiber-towel-tactical-pt-pod-od.jpg" alt="Microfiber Towel — Tactical PT Pod (OD)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">GEAR AID</div><div class="product-name">Microfiber Towel — Tactical PT Pod (OD)</div><div class="product-price">$12.99</div><div class="product-tag">Hygiene — Essential</div>
+                    <button class="snipcart-add-item" data-item-id="microfiber-towel-tactical-pt-pod-od" data-item-name="Microfiber Towel — Tactical PT Pod (OD)" data-item-price="12.99" data-item-url="/ranger/summer.html" data-item-description="Microfiber Towel — Tactical PT Pod (OD)">Add to Cart — $12.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(60,45,70,0.8), rgba(40,30,50,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">REPEL 100</span><img src="images/products/bug-repellent-98-deet-4-oz.jpg" alt="Bug Repellent — 98% DEET (4 oz)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
-                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Repel</div><div class="product-name">Bug Repellent — 98% DEET (4 oz)</div><div class="product-price">$7.99</div><div class="product-tag">Hygiene — Seasonal</div>
-                    <button class="snipcart-add-item" data-item-id="bug-repellent-98-deet-4-oz" data-item-name="Bug Repellent — 98% DEET (4 oz)" data-item-price="7.99" data-item-url="/fall.html" data-item-description="Bug Repellent — 98% DEET (4 oz)">Add to Cart — $7.99</button>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(60,45,70,0.8), rgba(40,30,50,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">MISSION</span><img src="../images/products/cooling-towel-hydroactive.jpg" alt="Cooling Towel — HydroActive" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Mission</div><div class="product-name">Cooling Towel — HydroActive</div><div class="product-price">$12.99</div><div class="product-tag">Summer Seasonal</div>
+                    <button class="snipcart-add-item" data-item-id="cooling-towel-hydroactive" data-item-name="Cooling Towel — HydroActive" data-item-price="12.99" data-item-url="/ranger/summer.html" data-item-description="Cooling Towel — HydroActive">Add to Cart — $12.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">ROTHCO</span><img src="images/products/550-cord-100ft-all-colors.jpg" alt="550 Cord — 100ft (All Colors)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
-                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Rothco</div><div class="product-name">550 Cord — 100ft (All Colors)</div><div class="product-price">$9.99</div><div class="product-tag">Gear — Essential</div>
-                    <button class="snipcart-add-item" data-item-id="550-cord-100ft-all-colors" data-item-name="550 Cord — 100ft (All Colors)" data-item-price="9.99" data-item-url="/fall.html" data-item-description="550 Cord — 100ft (All Colors)">Add to Cart — $9.99</button>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(55,65,81,0.8), rgba(31,41,55,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">HANES</span><img src="../images/products/socks-xtemp-cushioned-crew-12-pack.jpg" alt="Socks — XTemp Cushioned Crew (12-Pack)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Hanes</div><div class="product-name">Socks — XTemp Cushioned Crew (12-Pack)</div><div class="product-price">$18.99</div><div class="product-tag">Clothing — Quick-Dry</div>
+                    <button class="snipcart-add-item" data-item-id="socks-xtemp-cushioned-crew-12-pack" data-item-name="Socks — XTemp Cushioned Crew (12-Pack)" data-item-price="18.99" data-item-url="/ranger/summer.html" data-item-description="Socks — XTemp Cushioned Crew (12-Pack)">Add to Cart — $18.99</button>
                 </div>
             </div>
             <div class="product-card fade-in">
-                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(30,58,38,0.8), rgba(20,40,28,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">THERM-A-REST</span><img src="images/products/sleeping-mat-pad-z-lite-sol.jpg" alt="Sleeping Mat / Pad — Z Lite SOL" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
-                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Therm-a-Rest</div><div class="product-name">Sleeping Mat / Pad — Z Lite SOL</div><div class="product-price">$54.99</div><div class="product-tag">Gear — All Seasons</div>
-                    <button class="snipcart-add-item" data-item-id="sleeping-mat-pad-z-lite-sol" data-item-name="Sleeping Mat / Pad — Z Lite SOL" data-item-price="54.99" data-item-url="/fall.html" data-item-description="Sleeping Mat / Pad — Z Lite SOL">Add to Cart — $54.99</button>
+                <div class="product-img-placeholder" style="background: linear-gradient(135deg, rgba(60,45,70,0.8), rgba(40,30,50,0.95));"><span style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);">GOLD BOND</span><img src="../images/products/foot-powder-max-strength-4-oz.jpg" alt="Foot Powder — Max Strength (4 oz)" loading="lazy" onerror="this.style.display='none'" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></div>
+                <div class="product-info"><div style="font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,179,88,0.6);">Gold Bond</div><div class="product-name">Foot Powder — Max Strength (4 oz)</div><div class="product-price">$9.99</div><div class="product-tag">All Seasons — Essential</div>
+                    <button class="snipcart-add-item" data-item-id="foot-powder-max-strength-4-oz" data-item-name="Foot Powder — Max Strength (4 oz)" data-item-price="9.99" data-item-url="/ranger/summer.html" data-item-description="Foot Powder — Max Strength (4 oz)">Add to Cart — $9.99</button>
                 </div>
             </div>
         </div>
@@ -327,10 +331,10 @@
     <section class="full-section" style="min-height: 50vh; background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);">
         <div class="full-section-overlay overlay-center"></div>
         <div class="full-section-content" style="text-align: center;">
-            <div class="section-label">Full Circle</div>
-            <h2 class="section-title" style="max-width: 500px; margin: 0 auto var(--space-lg);">Winter Ranger</h2>
-            <p style="color: rgba(255,255,255,0.5); margin-bottom: var(--space-xl);">Cold weather demands cold weather gear.</p>
-            <a href="winter.html" class="btn btn-outline">Explore Winter &rarr;</a>
+            <div class="section-label">Next Season</div>
+            <h2 class="section-title" style="max-width: 500px; margin: 0 auto var(--space-lg);">Fall Ranger</h2>
+            <p style="color: rgba(255,255,255,0.5); margin-bottom: var(--space-xl);">The transitional window.</p>
+            <a href="fall.html" class="btn btn-outline">Explore Fall &rarr;</a>
         </div>
     </section>
 
@@ -399,7 +403,7 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
     </script>
 
     <!-- Auth -->
-    <script src="course-auth.js"></script>
+    <script src="../course-auth.js"></script>
     <script>
         RangerAuth.initAuthUI();
         if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');

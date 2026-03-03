@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranger Beers — Ranger School Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV: Shop | Winter Spring Summer Fall | Resources -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="shop.html?season=winter">Winter</a></li>
+                        <li><a href="shop.html?season=spring">Spring</a></li>
+                        <li><a href="shop.html?season=summer">Summer</a></li>
+                        <li><a href="shop.html?season=fall">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li><a href="course-battle-drills.html">Battle Drills</a></li>
+                        <li><a href="course-patrol-base.html">Patrol Base Ops</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li><a href="course-nutrition.html">Nutrition &amp; Fueling</a></li>
+                        <li><a href="course-mental-toughness.html">Mental Toughness</a></li>
+                        <li><a href="course-recycle.html">Recycle &amp; Recovery</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Hands-On</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li><a href="course-water-survival.html">Water Confidence</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="inventory.html">Packing List</a></li>
+                        <li><a href="timeline.html">Pre-Ranger Timeline</a></li>
+                        <li><a href="faq.html">FAQ from Graduates</a></li>
+                        <li><a href="family.html">Family &amp; Spouse Guide</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- FULL-VIEWPORT HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-video-wrap">
+            <video autoplay muted loop playsinline>
+                <source src="../media/75th-ranger-day1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <img src="../images/ranger-tab.png" alt="Ranger Tab" class="hero-tab-img" />
+            <h1 class="hero-headline">Rangers Lead the Way</h1>
+            <p class="hero-sub">Everything you need to earn the tab. Gear, courses, and training — built by Rangers, for Rangers.</p>
+            <div class="hero-cta">
+                <a href="shop.html" class="btn btn-primary">Shop Gear</a>
+                <a href="courses.html" class="btn btn-outline">Start Training</a>
+            </div>
+        </div>
+        <div class="scroll-indicator"><div class="scroll-line"></div>Scroll</div>
+    </section>
+
+    <!-- PHASE BACKGROUND VIDEO (fixed behind everything) -->
+    <div id="phase-video-section" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+        <video id="phase-bg-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="" type="video/mp4">
+        </video>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);"></div>
+    </div>
+
+    <!-- MAIN HEADLINE -->
+    <section class="section" style="text-align: center; padding: var(--space-3xl) 40px;">
+        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-family: var(--font-display); color: var(--color-text); margin: 0;">
+            62 Days &mdash; 4 Phases &mdash; 1 Tab
+        </h2>
+    </section>
+
+    <!-- PHASE SELECTOR — Click to open modal -->
+    <style>
+        .phase-selector {
+            padding: var(--space-3xl) 40px var(--space-2xl);
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+        .phase-selector-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--space-md);
+        }
+        .phase-card-btn {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-lg) var(--space-md);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            color: inherit;
+            font-family: inherit;
+        }
+        .phase-card-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .phase-card-btn[data-phase="surt"]::before { background: radial-gradient(ellipse at center, rgba(197, 179, 88, 0.08), transparent 70%); }
+        .phase-card-btn[data-phase="rap"]::before { background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.08), transparent 70%); }
+        .phase-card-btn[data-phase="darby"]::before { background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08), transparent 70%); }
+        .phase-card-btn[data-phase="mountains"]::before { background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08), transparent 70%); }
+        .phase-card-btn[data-phase="swamp"]::before { background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.08), transparent 70%); }
+
+        .phase-card-btn:hover { border-color: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+        .phase-card-btn:hover::before { opacity: 1; }
+
+        .phase-card-btn.active { border-color: var(--color-gold); }
+        .phase-card-btn.active::before { opacity: 1; }
+        .phase-card-btn.active[data-phase="surt"] { border-color: var(--color-gold); box-shadow: 0 0 20px rgba(197, 179, 88, 0.15); }
+        .phase-card-btn.active[data-phase="rap"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239, 68, 68, 0.15); }
+        .phase-card-btn.active[data-phase="darby"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
+        .phase-card-btn.active[data-phase="mountains"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
+        .phase-card-btn.active[data-phase="swamp"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.15); }
+
+        .phase-card-btn .pc-icon { font-size: 2.5rem; margin-bottom: var(--space-sm); position: relative; }
+        .phase-card-btn .pc-name {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-white);
+            margin-bottom: 4px;
+            position: relative;
+        }
+        .phase-card-btn .pc-sub {
+            font-size: 11px;
+            color: var(--color-text-secondary);
+            letter-spacing: 1px;
+            position: relative;
+        }
+        .phase-card-btn .pc-link {
+            display: inline-block;
+            margin-top: var(--space-sm);
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-gold-dim);
+            position: relative;
+            transition: color 0.3s;
+        }
+        .phase-card-btn.active .pc-link { color: var(--color-gold); }
+
+        /* Expand panel */
+        .phase-detail-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, margin 0.4s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+        .phase-detail-panel.open {
+            max-height: 8000px;
+            opacity: 1;
+            margin-top: var(--space-xl);
+        }
+        .phase-detail-inner {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl);
+        }
+        .phase-detail-inner .phase-detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        .phase-detail-title {
+            font-size: clamp(18px, 2.5vw, 24px);
+            font-weight: 700;
+            color: var(--color-white);
+        }
+        .phase-detail-badge {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid;
+        }
+        .phase-detail-badge.surt { color: var(--color-gold); border-color: var(--color-gold); }
+        .phase-detail-badge.rap { color: #ef4444; border-color: #ef4444; }
+        .phase-detail-badge.darby { color: #f59e0b; border-color: #f59e0b; }
+        .phase-detail-badge.mountains { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.swamp { color: #22c55e; border-color: #22c55e; }
+
+        .phase-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+        }
+        .phase-detail-standards .pd-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 13px;
+        }
+        .pd-item-name { color: var(--color-text-secondary); }
+        .pd-item-value { color: var(--color-white); font-weight: 600; font-family: var(--font-tactical); }
+        .phase-detail-desc {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+        .phase-detail-desc p { margin: 0 0 var(--space-md); }
+        .phase-detail-desc strong { color: var(--color-white); }
+        .phase-detail-bullets {
+            margin-top: var(--space-md);
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .phase-detail-bullets .pdb-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: var(--space-sm);
+        }
+        .phase-detail-bullets ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .phase-detail-bullets li {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            padding: 4px 0 4px 16px;
+            position: relative;
+        }
+        .phase-detail-bullets li::before {
+            content: '\25B8';
+            position: absolute;
+            left: 0;
+            color: var(--color-gold-dim);
+        }
+
+        .phase-social-links {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+            margin-top: var(--space-md);
+        }
+        .phase-social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-gold-dim);
+            text-decoration: none;
+            padding: 6px 14px;
+            border: 1px solid rgba(197, 179, 88, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        .phase-social-links a:hover {
+            color: var(--color-gold);
+            border-color: var(--color-gold);
+            background: rgba(197, 179, 88, 0.05);
+        }
+        .phase-address {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-top: var(--space-sm);
+            letter-spacing: 0.5px;
+        }
+        .surt-programs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        .surt-program {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-subtle);
+            padding: var(--space-md);
+        }
+        .surt-program-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 4px;
+        }
+        .surt-program-unit {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-sm);
+        }
+        .surt-program .phase-social-links { margin-top: var(--space-sm); }
+        .surt-program .phase-social-links a { font-size: 10px; padding: 4px 10px; }
+        .rap-events {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        .rap-event {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-subtle);
+            padding: var(--space-md);
+        }
+        .rap-event-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 4px;
+        }
+        .rap-event-standard {
+            font-size: 12px;
+            color: var(--color-gold);
+            font-family: var(--font-tactical);
+            margin-bottom: var(--space-sm);
+        }
+        .rap-event-desc {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+        .rap-event-video {
+            margin-top: var(--space-sm);
+        }
+        .rap-event-video a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ef4444;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .rap-event-video a:hover { color: #f87171; }
+        .phase-rtb-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: var(--space-md);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-subtle);
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        .phase-rtb-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-white);
+        }
+        @media (max-width: 768px) {
+            .surt-programs { grid-template-columns: 1fr; }
+            .rap-events { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .phase-selector-grid { grid-template-columns: repeat(3, 1fr); }
+            .phase-detail-grid { grid-template-columns: 1fr; }
+            .phase-selector { padding-left: 20px; padding-right: 20px; }
+        }
+        .selector-divider {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        .selector-divider::before,
+        .selector-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .selector-divider-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-gold-dim);
+        }
+
+        /* Season button active states */
+        .phase-card-btn[data-season="winter"]::before { background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08), transparent 70%); }
+        .phase-card-btn[data-season="spring"]::before { background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.08), transparent 70%); }
+        .phase-card-btn[data-season="summer"]::before { background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08), transparent 70%); }
+        .phase-card-btn[data-season="fall"]::before { background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.08), transparent 70%); }
+        .phase-card-btn.active[data-season="winter"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
+        .phase-card-btn.active[data-season="spring"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.15); }
+        .phase-card-btn.active[data-season="summer"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
+        .phase-card-btn.active[data-season="fall"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239, 68, 68, 0.15); }
+
+        @media (max-width: 480px) {
+            .phase-selector-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+
+    <div class="phase-selector">
+        <div class="selector-divider" style="margin-bottom: var(--space-xl);">
+            <span class="selector-divider-label">Phases</span>
+        </div>
+
+        <div class="phase-selector-grid" id="phase-selector">
+            <button class="phase-card-btn" data-phase="surt" onclick="togglePhase('surt')">
+                <div class="pc-icon">&#127947;</div>
+                <div class="pc-name">SURT</div>
+                <div class="pc-sub">Pre-Ranger</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="rap" onclick="togglePhase('rap')">
+                <div class="pc-icon">&#9889;</div>
+                <div class="pc-name">RAP</div>
+                <div class="pc-sub">Assessment Phase</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="darby" onclick="togglePhase('darby')">
+                <div class="pc-icon">&#127919;</div>
+                <div class="pc-name">Darby</div>
+                <div class="pc-sub">Fort Moore, GA</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="mountains" onclick="togglePhase('mountains')">
+                <div class="pc-icon">&#9968;</div>
+                <div class="pc-name">Mountains</div>
+                <div class="pc-sub">Camp Merrill, Dahlonega</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="swamp" onclick="togglePhase('swamp')">
+                <div class="pc-icon">&#128010;</div>
+                <div class="pc-name">Swamp</div>
+                <div class="pc-sub">Camp Rudder, FL</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+        </div>
+
+        <!-- SURT Detail Panel -->
+        <div class="phase-detail-panel open" id="detail-surt">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">SURT &mdash; Small Unit Ranger Tactics</div>
+                    <span class="phase-detail-badge surt">Pre-Ranger</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">~3 Weeks</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Fort Moore, GA (unit dependent)</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Timeline</span><span class="pd-item-value">Runs prior to each Ranger class</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Purpose</span><span class="pd-item-value">Pre-Ranger preparation &amp; screening</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: var(--color-gold); font-weight: 600;">Pass / Go Criteria</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">5-Mile Run</span><span class="pd-item-value">&le; 40:00</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Push-ups</span><span class="pd-item-value">&ge; 49 in 2:00</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Chin-ups</span><span class="pd-item-value">&ge; 6</span></div>
+                        <div class="pd-item"><span class="pd-item-name">12-Mi Ruck March</span><span class="pd-item-value">&le; 3:00:00</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Land Navigation (Day)</span><span class="pd-item-value">4 of 5 points</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Land Navigation (Night)</span><span class="pd-item-value">3 of 4 points</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Water Survival</span><span class="pd-item-value">15m swim w/ equipment</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Ranger Stakes</span><span class="pd-item-value">Must pass all tasks</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>SURT (Small Unit Ranger Tactics) is a <strong>pre-Ranger course</strong> designed to prepare soldiers for the demands of Ranger School. Various units run their own SURT programs &mdash; the goal is to screen and train soldiers so they arrive at RAP Week ready to perform on Day 1.</p>
+                        <p>Students rehearse <strong>every RAP Week event to standard</strong>: land navigation, the RPAT, 5-mile run, 12-mile ruck, water survival, and Ranger stakes. Beyond physical events, SURT covers <strong>patrol base operations, battle drills, OPORD writing, and troop leading procedures</strong> so students have a foundation for graded patrols in Darby.</p>
+                        <p>Units that invest in strong SURT programs consistently see <strong>higher first-time GO rates</strong>. The course filters out soldiers who aren't yet ready, saving both the unit and the individual time and resources.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Key Focus Areas</div>
+                            <ul>
+                                <li>RPAT preparation &mdash; #1 cause of RAP failure</li>
+                                <li>Land navigation (day &amp; night) &mdash; #2 cause of RAP failure</li>
+                                <li>5-mile run &amp; 12-mile ruck march to standard</li>
+                                <li>Combat water survival &amp; confidence swim</li>
+                                <li>Patrol base operations &amp; battle drills</li>
+                                <li>5-paragraph OPORD writing &amp; briefing</li>
+                                <li>Knot tying, rappelling, and obstacle courses</li>
+                                <li>Ruck marching under load in varied terrain</li>
+                                <li>Ranger stakes: demolitions, call for fire, medical tasks</li>
+                            </ul>
+                        </div>
+                        <div class="phase-detail-bullets" style="margin-top: var(--space-md);">
+                            <div class="pdb-title">Notable SURT Programs</div>
+                            <ul>
+                                <li>Lightning Academy SURT &mdash; 25th Infantry Division, Schofield Barracks, HI</li>
+                                <li>RTAC (Ranger Training Assessment Course) &mdash; Warrior Training Center, Fort Moore</li>
+                                <li>Division-level Pre-Ranger programs across the Army</li>
+                            </ul>
+                        </div>
+                        <div class="phase-social-links" style="margin-top: var(--space-lg);">
+                            <a href="https://www.instagram.com/airbornerangertrainingbrigade/" target="_blank" rel="noopener">&#127760; ARTB Instagram</a>
+                            <a href="https://www.instagram.com/lightningacademy_25thid/" target="_blank" rel="noopener">&#127760; Lightning Academy</a>
+                            <a href="https://www.instagram.com/arng_wtc/" target="_blank" rel="noopener">&#127760; RTAC / Warrior Training Center</a>
+                            <a href="https://www.moore.army.mil/infantry/artb/" target="_blank" rel="noopener">&#127760; ARTB Official Site</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RAP Detail Panel -->
+        <div class="phase-detail-panel" id="detail-rap">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">RAP &mdash; Ranger Assessment Phase</div>
+                    <span class="phase-detail-badge rap">Days 1&ndash;4</span>
+                </div>
+                <div class="phase-rtb-info">
+                    <div>
+                        <div class="phase-rtb-name">4th Ranger Training Battalion</div>
+                        <div class="phase-address">Building 4, Camp Rogers, Fort Moore, GA 31905</div>
+                    </div>
+                    <div class="phase-social-links">
+                        <a href="https://www.instagram.com/4thrtb/" target="_blank" rel="noopener">&#127760; @4thrtb</a>
+                        <a href="https://www.moore.army.mil/infantry/artb/4th-RTBn/" target="_blank" rel="noopener">&#127760; Official Site</a>
+                    </div>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">4 Days</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Camp Rogers, Fort Moore, GA</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Timeline</span><span class="pd-item-value">Course Days 1&ndash;4</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Attrition</span><span class="pd-item-value">~60% of all drops</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #ef4444; font-weight: 600;">Pass / Go Criteria</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">RPAT</span><span class="pd-item-value">Pass (no retest)</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Push-ups</span><span class="pd-item-value">&ge; 49 in 2:00</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Chin-ups</span><span class="pd-item-value">&ge; 6</span></div>
+                        <div class="pd-item"><span class="pd-item-name">5-Mile Run</span><span class="pd-item-value">&le; 40:00</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Land Nav (Day)</span><span class="pd-item-value">4 of 5 points</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Land Nav (Night)</span><span class="pd-item-value">3 of 4 points</span></div>
+                        <div class="pd-item"><span class="pd-item-name">12-Mi Ruck March</span><span class="pd-item-value">&le; 3:00:00</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Water Survival</span><span class="pd-item-value">Pass combat water assessment</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Ranger Stakes</span><span class="pd-item-value">Pass all graded tasks</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Peer Eval</span><span class="pd-item-value">Not in bottom (spot report based)</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>RAP Week is the <strong>single biggest filter</strong> in Ranger School. More students are dropped during these 4 days than in all other phases combined. If you pass RAP, you have roughly a <strong>75&ndash;80% chance</strong> of graduating.</p>
+                        <p>All events are <strong>pass/fail with no retests</strong>. The Ranger Physical Assessment (RPAT), 5-mile run, and land navigation are the top three eliminators. You must also complete the combat water survival assessment, 12-mile ruck march, and demonstrate proficiency on Ranger stakes &mdash; task-specific evaluations covering demolitions, call for fire, and medical procedures.</p>
+                        <p><strong>Key stat:</strong> The physical assessment is the #1 cause of RAP failure. Land navigation is #2. Train both aggressively before you arrive.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">RAP Week Events (in order)</div>
+                            <ul>
+                                <li>Day 0: In-processing, equipment draw, orientation</li>
+                                <li>Day 1: RPAT &mdash; push-ups, chin-ups, mobility drills (no retest)</li>
+                                <li>Day 1: 5-mile run &mdash; 40:00 or less</li>
+                                <li>Day 2: Day land navigation &mdash; find 4 of 5 points</li>
+                                <li>Day 2: Night land navigation &mdash; find 3 of 4 points</li>
+                                <li>Day 3: Combat water survival assessment</li>
+                                <li>Day 3: 12-mile ruck march &mdash; under 3 hours</li>
+                                <li>Day 4: Ranger stakes &mdash; demolitions, call for fire, medical tasks</li>
+                            </ul>
+                        </div>
+                        <div class="phase-detail-bullets" style="margin-top: var(--space-md);">
+                            <div class="pdb-title">Failure Breakdown</div>
+                            <ul>
+                                <li>Physical Assessment (RPAT + run): ~35% of RAP failures</li>
+                                <li>Land Navigation: ~25% of RAP failures</li>
+                                <li>Ruck March: ~15% of RAP failures</li>
+                                <li>Water Survival / Ranger Stakes / Other: ~25%</li>
+                            </ul>
+                        </div>
+                        <div class="phase-social-links" style="margin-top: var(--space-lg);">
+                            <a href="https://www.instagram.com/4thrtb/" target="_blank" rel="noopener">&#127760; 4th RTB Instagram</a>
+                            <a href="https://www.instagram.com/airbornerangertrainingbrigade/" target="_blank" rel="noopener">&#127760; ARTB Instagram</a>
+                            <a href="https://www.moore.army.mil/infantry/artb/4th-RTBn/" target="_blank" rel="noopener">&#127760; 4th RTB Official</a>
+                            <a href="https://www.dvidshub.net/unit/ARTB" target="_blank" rel="noopener">&#127760; DVIDS Media</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Darby Detail Panel -->
+        <div class="phase-detail-panel" id="detail-darby">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Darby Phase</div>
+                    <span class="phase-detail-badge darby">Days 5&ndash;20</span>
+                </div>
+                <div class="phase-rtb-info">
+                    <div>
+                        <div class="phase-rtb-name">4th Ranger Training Battalion</div>
+                        <div class="phase-address">Camp Darby, Fort Moore, GA 31905</div>
+                    </div>
+                    <div class="phase-social-links">
+                        <a href="https://www.instagram.com/4thrtb/" target="_blank" rel="noopener">&#127760; @4thrtb</a>
+                        <a href="https://www.moore.army.mil/infantry/artb/4th-RTBn/" target="_blank" rel="noopener">&#127760; Official Site</a>
+                    </div>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">~16 Days</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Camp Darby, Fort Moore, GA</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Timeline</span><span class="pd-item-value">Course Days 5&ndash;20</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Squad-level tactics</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Sleep</span><span class="pd-item-value">~2&ndash;3 hrs / night</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Food</span><span class="pd-item-value">1&ndash;2 MREs / day</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #f59e0b; font-weight: 600;">Pass / Go Criteria</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Graded Patrols</span><span class="pd-item-value">&ge; 1 GO as a leader</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Graded Positions</span><span class="pd-item-value">SL, TL, RTO, WSL</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Peer Evaluation</span><span class="pd-item-value">Not in bottom 3rd / LOM</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Patrol Performance</span><span class="pd-item-value">Plan, brief, execute OPORD</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Recycle</span><span class="pd-item-value">No GO = Day 1 restart or drop</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>Darby Phase is the <strong>first graded patrol phase</strong>, focused on small unit tactics in the wooded terrain around Fort Moore. Students plan and execute <strong>squad-level ambushes, reconnaissance, and raid operations</strong> while rotating through graded leadership positions.</p>
+                        <p>This is where Ranger School gets real &mdash; <strong>severe sleep and food deprivation</strong> begin. Students operate on ~2&ndash;3 hours of sleep per night and 1&ndash;2 MREs per day while burning 5,000+ calories. You must demonstrate the ability to <strong>lead a patrol to standard</strong> under these conditions.</p>
+                        <p>Students who don't earn at least <strong>one GO in a graded leadership position</strong> will be recycled (start Darby over) or dropped from the course. Peer evaluations also factor in &mdash; bottom performers get a "lack of motivation" (LOM) drop.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Key Events</div>
+                            <ul>
+                                <li>Classroom instruction on squad battle drills &amp; OPORD format</li>
+                                <li>Darby Queen obstacle course</li>
+                                <li>Graded squad ambush patrols (day &amp; night)</li>
+                                <li>Graded squad reconnaissance patrols</li>
+                                <li>Graded squad raid operations</li>
+                                <li>Patrol base operations &mdash; security, planning, preparation</li>
+                                <li>Peer evaluations at end of phase</li>
+                                <li>Field Training Exercise (FTX) &mdash; multi-day continuous operations</li>
+                            </ul>
+                        </div>
+                        <div class="phase-social-links" style="margin-top: var(--space-lg);">
+                            <a href="https://www.instagram.com/4thrtb/" target="_blank" rel="noopener">&#127760; 4th RTB Instagram</a>
+                            <a href="https://www.instagram.com/airbornerangertrainingbrigade/" target="_blank" rel="noopener">&#127760; ARTB Instagram</a>
+                            <a href="https://www.moore.army.mil/infantry/artb/4th-RTBn/" target="_blank" rel="noopener">&#127760; 4th RTB Official</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mountains Detail Panel -->
+        <div class="phase-detail-panel" id="detail-mountains">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Mountain Phase</div>
+                    <span class="phase-detail-badge mountains">Days 21&ndash;41</span>
+                </div>
+                <div class="phase-rtb-info">
+                    <div>
+                        <div class="phase-rtb-name">5th Ranger Training Battalion</div>
+                        <div class="phase-address">Camp Frank D. Merrill, Dahlonega, GA 30533</div>
+                    </div>
+                    <div class="phase-social-links">
+                        <a href="https://www.instagram.com/5thrtb/" target="_blank" rel="noopener">&#127760; @5thrtb</a>
+                        <a href="https://www.moore.army.mil/infantry/artb/5th-RTBn/" target="_blank" rel="noopener">&#127760; Official Site</a>
+                    </div>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">~20 Days</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Camp Merrill, Dahlonega, GA</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Timeline</span><span class="pd-item-value">Course Days 21&ndash;41</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Elevation</span><span class="pd-item-value">Up to 4,430 ft</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Platoon-level operations</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Terrain</span><span class="pd-item-value">Steep mountains, rivers, dense forest</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #3b82f6; font-weight: 600;">Pass / Go Criteria</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Graded Patrols</span><span class="pd-item-value">&ge; 1 GO as a leader</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Graded Positions</span><span class="pd-item-value">PL, PSG, SL, WSL, FO</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Mountaineering</span><span class="pd-item-value">Pass knots &amp; rappel test</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Peer Evaluation</span><span class="pd-item-value">Not in bottom 3rd / LOM</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Recycle</span><span class="pd-item-value">No GO = Day 1 restart or drop</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>Mountain Phase takes place at <strong>Camp Frank D. Merrill</strong> in the north Georgia mountains near Dahlonega. Students learn military mountaineering skills and execute <strong>platoon-level combat patrols</strong> in steep, heavily wooded terrain with significant elevation changes.</p>
+                        <p>The physical demands escalate dramatically &mdash; students carry <strong>80+ lb rucks up and down mountains</strong> while continuing to operate on minimal sleep and food. The terrain is unforgiving: movements take 2&ndash;3x longer than flat ground, and injuries spike.</p>
+                        <p>Students must earn at least <strong>one GO in a graded platoon leadership position</strong> (PL, PSG, SL) and pass the knots/rappelling evaluation. The <strong>Tennessee Valley Divide</strong> FTX is the culminating multi-day field exercise.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Key Events</div>
+                            <ul>
+                                <li>Military mountaineering &mdash; rappelling, knots, belaying, rope bridges</li>
+                                <li>Knot test: square, bowline, round turn w/ two half hitches, transport tightening, water knot</li>
+                                <li>60-foot rappel off Yonah Mountain</li>
+                                <li>Graded platoon ambush &amp; raid patrols in mountain terrain</li>
+                                <li>Long tactical movements with 80+ lb loads over steep ridges</li>
+                                <li>River crossing &amp; rope bridge operations</li>
+                                <li>Tennessee Valley Divide &mdash; multi-day FTX, culminating event</li>
+                                <li>Peer evaluations at end of phase</li>
+                            </ul>
+                        </div>
+                        <div class="phase-social-links" style="margin-top: var(--space-lg);">
+                            <a href="https://www.instagram.com/5thrtb/" target="_blank" rel="noopener">&#127760; 5th RTB Instagram</a>
+                            <a href="https://www.instagram.com/airbornerangertrainingbrigade/" target="_blank" rel="noopener">&#127760; ARTB Instagram</a>
+                            <a href="https://www.moore.army.mil/infantry/artb/5th-RTBn/" target="_blank" rel="noopener">&#127760; 5th RTB Official</a>
+                            <a href="https://www.dvidshub.net/unit/ARTB" target="_blank" rel="noopener">&#127760; DVIDS Media</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Swamp Detail Panel -->
+        <div class="phase-detail-panel" id="detail-swamp">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Swamp Phase (Florida Phase)</div>
+                    <span class="phase-detail-badge swamp">Days 42&ndash;62</span>
+                </div>
+                <div class="phase-rtb-info">
+                    <div>
+                        <div class="phase-rtb-name">6th Ranger Training Battalion</div>
+                        <div class="phase-address">Camp James E. Rudder, Eglin AFB, FL 32542</div>
+                    </div>
+                    <div class="phase-social-links">
+                        <a href="https://www.instagram.com/6thrtb_official/" target="_blank" rel="noopener">&#127760; @6thrtb_official</a>
+                        <a href="https://www.moore.army.mil/infantry/artb/6th-RTBn/" target="_blank" rel="noopener">&#127760; Official Site</a>
+                    </div>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">~20 Days</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Camp Rudder, Eglin AFB, FL</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Timeline</span><span class="pd-item-value">Course Days 42&ndash;62</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Environment</span><span class="pd-item-value">Coastal swamp, jungle, waterways</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Airborne &amp; waterborne operations</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #22c55e; font-weight: 600;">Pass / Go Criteria</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Graded Patrols</span><span class="pd-item-value">&ge; 1 GO as a leader</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Graded Positions</span><span class="pd-item-value">PL, PSG, SL, Boat crew leader</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Waterborne Ops</span><span class="pd-item-value">Pass Zodiac &amp; stream crossing</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Peer Evaluation</span><span class="pd-item-value">Not in bottom 3rd / LOM</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Overall GOs</span><span class="pd-item-value">&ge; 50% across all phases</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Recycle</span><span class="pd-item-value">No GO = restart phase or drop</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>Swamp Phase is the <strong>final phase of Ranger School</strong>, conducted at Camp James E. Rudder on Eglin Air Force Base in the Florida panhandle. Students execute platoon-level operations in <strong>coastal swamp, jungle, and waterway terrain</strong>.</p>
+                        <p>This phase introduces <strong>waterborne operations</strong> using Zodiac rubber boats, stream and swamp crossings, and patrols through waist-deep water. Students are physically broken down after 40+ days of sleep and food deprivation but must continue to plan and lead combat patrols to standard.</p>
+                        <p>Swamp Phase is also the <strong>last chance to earn GOs</strong>. Students need an overall GO rate of at least 50% across all phases to graduate. Those who don't meet the standard may be recycled to the beginning of Florida Phase or dropped entirely.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Key Events</div>
+                            <ul>
+                                <li>Watercraft training &mdash; Zodiac boat operations, paddling techniques</li>
+                                <li>Waterborne platoon raids via Zodiac insertion</li>
+                                <li>Stream &amp; swamp crossings through chest-deep water</li>
+                                <li>Graded platoon ambush &amp; raid patrols in jungle/swamp</li>
+                                <li>10-day field training exercise (FTX) &mdash; continuous operations</li>
+                                <li>Airborne operation for jump-qualified students</li>
+                                <li>Peer evaluations &mdash; final round</li>
+                                <li>Graduation &mdash; earn the Ranger Tab</li>
+                            </ul>
+                        </div>
+                        <div class="phase-detail-bullets" style="margin-top: var(--space-md);">
+                            <div class="pdb-title">Wildlife &amp; Conditions</div>
+                            <ul>
+                                <li>Alligators, water moccasins, wild boar</li>
+                                <li>Dense mosquitoes, sand fleas, fire ants</li>
+                                <li>Summer: extreme heat &amp; humidity (heat injuries common)</li>
+                                <li>Winter: hypothermia risk from cold water immersion</li>
+                            </ul>
+                        </div>
+                        <div class="phase-social-links" style="margin-top: var(--space-lg);">
+                            <a href="https://www.instagram.com/6thrtb_official/" target="_blank" rel="noopener">&#127760; 6th RTB Instagram</a>
+                            <a href="https://www.instagram.com/airbornerangertrainingbrigade/" target="_blank" rel="noopener">&#127760; ARTB Instagram</a>
+                            <a href="https://www.moore.army.mil/infantry/artb/6th-RTBn/" target="_blank" rel="noopener">&#127760; 6th RTB Official</a>
+                            <a href="https://www.dvidshub.net/unit/ARTB" target="_blank" rel="noopener">&#127760; DVIDS Media</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="selector-divider" style="margin: var(--space-xl) 0;">
+            <span class="selector-divider-label">Seasons</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr);" id="season-selector">
+            <button class="phase-card-btn" data-season="winter" onclick="toggleSeason('winter')">
+                <div class="pc-icon">&#10052;</div>
+                <div class="pc-name">Winter</div>
+                <div class="pc-sub">Dec &mdash; Feb</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="spring" onclick="toggleSeason('spring')">
+                <div class="pc-icon">&#127783;</div>
+                <div class="pc-name">Spring</div>
+                <div class="pc-sub">Mar &mdash; May</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="summer" onclick="toggleSeason('summer')">
+                <div class="pc-icon">&#9728;</div>
+                <div class="pc-name">Summer</div>
+                <div class="pc-sub">Jun &mdash; Aug</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="fall" onclick="toggleSeason('fall')">
+                <div class="pc-icon">&#127810;</div>
+                <div class="pc-name">Fall</div>
+                <div class="pc-sub">Sep &mdash; Nov</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+        </div>
+
+        <!-- WINTER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-winter">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Winter Ranger &mdash; Mountain Phase in the Cold</div>
+                    <span class="phase-detail-badge" style="color: #3b82f6; border-color: #3b82f6;">Dec &ndash; Feb</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); margin-bottom: var(--space-xl);">
+                    <img src="../images/winter-frozen-ruck.webp" alt="Frozen ruck in winter Ranger School" style="width: 100%; border-radius: var(--radius-subtle); border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 16/10; object-fit: cover;" loading="lazy">
+                    <img src="../images/winter-plt.webp" alt="Soldiers in snow during Ranger School" style="width: 100%; border-radius: var(--radius-subtle); border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 16/10; object-fit: cover;" loading="lazy">
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Months</span><span class="pd-item-value">December &ndash; February</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Wind Chill</span><span class="pd-item-value">Down to -20&deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Mountain Conditions</span><span class="pd-item-value">Snow, ice, frozen ground</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Swamp Conditions</span><span class="pd-item-value">Cold water immersion risk</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Hypothermia &amp; frostbite</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Extra Layers</span><span class="pd-item-value">5+ cold weather layers</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Wool Socks</span><span class="pd-item-value">3+ pair minimum</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Total Duration</span><span class="pd-item-value">61 days</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Cold weather demands cold weather gear.</strong> Mountain phase in the winter will test your limits &mdash; waffle layers, beanies, and glove inserts aren't optional. Frostbite, hypothermia, and frozen equipment are real threats.</p>
+                        <p>Your ruck will freeze overnight. Water sources freeze. Your hands stop working. Sleep deprivation hits harder when your body is burning calories just to stay warm. Winter Rangers earn their tab in some of the harshest conditions the course offers.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Winter-Specific Gear</div>
+                            <ul>
+                                <li>Waffle top &amp; bottom (insulation layers)</li>
+                                <li>Black beanie &amp; neck gaiter</li>
+                                <li>Tactical gloves + glove inserts</li>
+                                <li>Hand warmers (10+ pack)</li>
+                                <li>Wool socks (3+ pair, rotate daily)</li>
+                                <li>Sleeping mat / pad &mdash; critical for ground insulation</li>
+                                <li>Poncho liner (woobie) &mdash; your lifeline</li>
+                                <li>Lip balm &amp; skin protection</li>
+                            </ul>
+                        </div>
+                        <div class="phase-detail-bullets" style="margin-top: var(--space-md);">
+                            <div class="pdb-title">Winter Survival Tips</div>
+                            <ul>
+                                <li>Never let your socks stay wet &mdash; change at every opportunity</li>
+                                <li>Keep batteries warm in your pocket (cold kills battery life)</li>
+                                <li>Eat everything you're given &mdash; calories = warmth</li>
+                                <li>Layer management: sweat is the enemy, vent before you overheat</li>
+                                <li>Keep your water source insulated or it will freeze solid</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPRING Detail Panel -->
+        <div class="phase-detail-panel" id="detail-spring">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Spring Ranger &mdash; Bugs, Rain, and Swamp Water</div>
+                    <span class="phase-detail-badge" style="color: #22c55e; border-color: #22c55e;">Mar &ndash; May</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Months</span><span class="pd-item-value">March &ndash; May</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Temperature</span><span class="pd-item-value">60&ndash;90&deg;F (variable)</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Humidity</span><span class="pd-item-value">Feels like 90&deg;+</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rain</span><span class="pd-item-value">Frequent &amp; unpredictable</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Bugs</span><span class="pd-item-value">24/7 exposure</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Infection from bug bites</span></div>
+                        <div class="pd-item"><span class="pd-item-name">DEET Required</span><span class="pd-item-value">100%</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Total Duration</span><span class="pd-item-value">61 days</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Florida phase in the spring means relentless bugs and wet conditions.</strong> 100% DEET, permethrin-treated gear, and waterproof everything keeps you in the fight. Bug bites get infected fast when you're sleep-deprived and living in standing water.</p>
+                        <p>Spring classes deal with wildly variable weather &mdash; cold mornings in the mountains, hot humid afternoons in Florida. You need gear that handles both extremes. Rain is constant and everything stays wet.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Spring-Specific Gear</div>
+                            <ul>
+                                <li>Bug spray (100% DEET) &mdash; bring extra</li>
+                                <li>Permethrin-treated uniforms</li>
+                                <li>Head bug net</li>
+                                <li>Wet weather bags for everything</li>
+                                <li>Waterproof spray for gear</li>
+                                <li>Extra foot powder &mdash; wet feet = blisters = infections</li>
+                                <li>Quick-dry undergarments</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-summer">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Summer Ranger &mdash; Heat, Humidity, and Heat Casualties</div>
+                    <span class="phase-detail-badge" style="color: #f59e0b; border-color: #f59e0b;">Jun &ndash; Aug</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Months</span><span class="pd-item-value">June &ndash; August</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Temperature</span><span class="pd-item-value">90&ndash;105&deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Humidity</span><span class="pd-item-value">80&ndash;100%</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Heat Index</span><span class="pd-item-value">110&deg;F+</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Heat stroke &amp; heat exhaustion</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Water Intake</span><span class="pd-item-value">1+ canteen per hour</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Bugs</span><span class="pd-item-value">Peak season</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Total Duration</span><span class="pd-item-value">61 days</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Summer is the most physically punishing season.</strong> Heat casualties are the biggest threat &mdash; the combination of 100&deg;F+ temperatures, full combat load, sleep deprivation, and caloric deficit creates dangerous conditions every single day.</p>
+                        <p>Hydration is everything. You'll drink more water than you thought possible and still feel dehydrated. The Florida swamp phase in summer heat is brutal &mdash; standing in chest-deep warm water with no breeze while wearing full kit.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Summer-Specific Gear</div>
+                            <ul>
+                                <li>Electrolyte packets &mdash; add to every canteen</li>
+                                <li>Bug spray (100% DEET) + permethrin</li>
+                                <li>Sunscreen (SPF 50+)</li>
+                                <li>Extra canteens / hydration bladder</li>
+                                <li>Quick-dry everything</li>
+                                <li>Anti-chafe cream / body glide</li>
+                                <li>Foot powder &mdash; double what you think you need</li>
+                            </ul>
+                        </div>
+                        <div class="phase-detail-bullets" style="margin-top: var(--space-md);">
+                            <div class="pdb-title">Heat Management Tips</div>
+                            <ul>
+                                <li>Drink water before you're thirsty &mdash; by the time you feel it, you're already behind</li>
+                                <li>Wet your patrol cap and neck to cool down</li>
+                                <li>Eat salt with your MREs</li>
+                                <li>Report heat symptoms early &mdash; heat stroke can kill</li>
+                                <li>Roll sleeves when RIs allow it</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FALL Detail Panel -->
+        <div class="phase-detail-panel" id="detail-fall">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Fall Ranger &mdash; The Best Season (If There Is One)</div>
+                    <span class="phase-detail-badge" style="color: #ef4444; border-color: #ef4444;">Sep &ndash; Nov</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Months</span><span class="pd-item-value">September &ndash; November</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Temperature</span><span class="pd-item-value">50&ndash;85&deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Mountain Temps</span><span class="pd-item-value">30&ndash;60&deg;F (cold at elevation)</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Swamp Temps</span><span class="pd-item-value">65&ndash;80&deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Temperature swings</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Bugs</span><span class="pd-item-value">Moderate (tapering off)</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Conditions</span><span class="pd-item-value">Most temperate overall</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Total Duration</span><span class="pd-item-value">61 days</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Fall is widely considered the "best" season for Ranger School</strong> &mdash; if such a thing exists. Temperatures are moderate, bugs are tapering off, and you avoid the extremes of summer heat and winter cold. But don't get complacent.</p>
+                        <p>The mountains in October and November can get cold fast, especially at elevation. Temperature swings are the main challenge &mdash; warm during the day, near-freezing at night. You still need cold weather layers for mountains and light layers for Florida.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Fall-Specific Gear</div>
+                            <ul>
+                                <li>Light cold weather layers (waffle top for mountains)</li>
+                                <li>Beanie &amp; gloves (mountain phase gets cold at night)</li>
+                                <li>Bug spray &mdash; still needed in Florida</li>
+                                <li>Poncho liner (woobie) &mdash; your best friend</li>
+                                <li>Standard warm/cool weather versatile kit</li>
+                            </ul>
+                        </div>
+                        <div class="phase-detail-bullets" style="margin-top: var(--space-md);">
+                            <div class="pdb-title">Why Fall Is Preferred</div>
+                            <ul>
+                                <li>No extreme heat or extreme cold</li>
+                                <li>Bug pressure drops significantly by October</li>
+                                <li>Swamp phase water temperatures are bearable</li>
+                                <li>Mountain phase is cool but manageable</li>
+                                <li>Historically higher graduation rates (more moderate conditions)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLASS CALENDAR — Styled Schedule Tables -->
+    <style>
+        .schedule-table-wrap {
+            overflow-x: auto;
+            border: 1px solid rgba(197, 179, 88, 0.15);
+            border-radius: var(--radius-glass);
+            background: rgba(255, 255, 255, 0.02);
+            margin-bottom: var(--space-xl);
+        }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            font-family: var(--font-display);
+        }
+        .schedule-table thead {
+            background: rgba(197, 179, 88, 0.10);
+            position: sticky;
+            top: 0;
+        }
+        .schedule-table th {
+            color: var(--color-gold);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(197, 179, 88, 0.15);
+        }
+        .schedule-table td {
+            padding: 12px 16px;
+            color: var(--color-text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .schedule-table tbody tr:hover {
+            background: rgba(197, 179, 88, 0.05);
+        }
+        .schedule-class {
+            color: var(--color-white);
+            font-weight: 600;
+            font-family: var(--font-tactical);
+            letter-spacing: 0.5px;
+        }
+        .season-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+        .season-tag.winter { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+        .season-tag.spring { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+        .season-tag.summer { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+        .season-tag.fall   { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    </style>
+
+    <section class="section">
+        <div class="section-label fade-in">Class Calendar</div>
+        <h2 class="section-title fade-in">Official Ranger Course Schedule</h2>
+        <p class="section-desc fade-in">Find your class date and gear up for the right season. Source: ARTB Student Information.</p>
+
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--color-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: var(--space-md);">FY26</h3>
+        <div class="schedule-table-wrap fade-in">
+            <table class="schedule-table">
+                <thead>
+                    <tr><th>Class</th><th>Report Date</th><th>Graduation</th><th>Season</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="schedule-class">RC 01-26</td><td>15 Oct 2025</td><td>18 Dec 2025</td><td><span class="season-tag fall">Fall</span></td></tr>
+                    <tr><td class="schedule-class">RC 02-26</td><td>19 Nov 2025</td><td>22 Jan 2026</td><td><span class="season-tag fall">Fall</span></td></tr>
+                    <tr><td class="schedule-class">RC 03-26</td><td>07 Jan 2026</td><td>12 Mar 2026</td><td><span class="season-tag winter">Winter</span></td></tr>
+                    <tr><td class="schedule-class">RC 04-26</td><td>04 Feb 2026</td><td>09 Apr 2026</td><td><span class="season-tag winter">Winter</span></td></tr>
+                    <tr><td class="schedule-class">RC 05-26</td><td>04 Mar 2026</td><td>07 May 2026</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">RC 06-26</td><td>01 Apr 2026</td><td>04 Jun 2026</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">RC 07-26</td><td>06 May 2026</td><td>09 Jul 2026</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">RC 08-26</td><td>03 Jun 2026</td><td>06 Aug 2026</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">RC 09-26</td><td>01 Jul 2026</td><td>03 Sep 2026</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">RC 10-26</td><td>05 Aug 2026</td><td>08 Oct 2026</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">RC 11-26</td><td>09 Sep 2026</td><td>12 Nov 2026</td><td><span class="season-tag fall">Fall</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--color-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: var(--space-md);">FY27</h3>
+        <div class="schedule-table-wrap fade-in">
+            <table class="schedule-table">
+                <thead>
+                    <tr><th>Class</th><th>Report Date</th><th>Graduation</th><th>Season</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="schedule-class">RC 01-27</td><td>14 Oct 2026</td><td>17 Dec 2026</td><td><span class="season-tag fall">Fall</span></td></tr>
+                    <tr><td class="schedule-class">RC 02-27</td><td>18 Nov 2026</td><td>21 Jan 2027</td><td><span class="season-tag fall">Fall</span></td></tr>
+                    <tr><td class="schedule-class">RC 03-27</td><td>06 Jan 2027</td><td>11 Mar 2027</td><td><span class="season-tag winter">Winter</span></td></tr>
+                    <tr><td class="schedule-class">RC 04-27</td><td>03 Feb 2027</td><td>08 Apr 2027</td><td><span class="season-tag winter">Winter</span></td></tr>
+                    <tr><td class="schedule-class">RC 05-27</td><td>03 Mar 2027</td><td>06 May 2027</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">RC 06-27</td><td>07 Apr 2027</td><td>10 Jun 2027</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">RC 07-27</td><td>05 May 2027</td><td>08 Jul 2027</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">RC 08-27</td><td>02 Jun 2027</td><td>05 Aug 2027</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">RC 09-27</td><td>07 Jul 2027</td><td>09 Sep 2027</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">RC 10-27</td><td>04 Aug 2027</td><td>07 Oct 2027</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">RC 11-27</td><td>08 Sep 2027</td><td>11 Nov 2027</td><td><span class="season-tag fall">Fall</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CINEMATIC BREAK — Prepare Now -->
+    <section class="hero" style="height: 50vh; min-height: 300px; background: transparent;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);"></div>
+        <div class="hero-content" style="position: relative; z-index: 1;">
+            <div class="section-label">Prepare Now</div>
+            <h2 class="hero-headline" style="font-size: clamp(2rem,4vw,3.5rem);">Don't Be a Statistic</h2>
+            <p class="hero-sub">50%+ wash rate. The ones who graduate trained before they arrived.</p>
+            <div class="hero-cta" style="margin-top: 20px;">
+                <a href="courses.html" class="btn btn-primary">View Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESOURCE PITCH — What kind of problem do you have? -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 900px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;">
+        <div class="section-label fade-in">Resources</div>
+        <h2 class="section-title fade-in">Don't Be That Ranger.</h2>
+        <p class="section-desc fade-in">Every Ranger School failure has a type. We built a fix for each one.</p>
+
+        <div class="bento-grid bento-3 stagger" style="margin-bottom: var(--space-xl);">
+            <a href="shop.html?filter=packing" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">🎒</div>
+                <div class="card-title">Naked Ranger?</div>
+                <p class="card-desc">Missing gear = instant dismissal. Our packing list tracker and shop has every single item you need.</p>
+            </a>
+            <a href="resources.html#workouts" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">😴</div>
+                <div class="card-title">Sleepy Ranger?</div>
+                <p class="card-desc">Can't ruck 12 miles without dying? Our progressive training programs build you from couch to combat load.</p>
+            </a>
+            <a href="resources.html#workouts" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">🤢</div>
+                <div class="card-title">Hungry Ranger?</div>
+                <p class="card-desc">Nutrition plans and MRE strategy. You'll be running on 1-2 meals a day — learn to fuel smart now.</p>
+            </a>
+        </div>
+        <div class="bento-grid bento-3 stagger">
+            <a href="resources.html#workouts" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">💀</div>
+                <div class="card-title">Weak Ranger?</div>
+                <p class="card-desc">Failing the RPFT is the fastest way home. Crush the 5-mile run, push-ups, chin-ups, and swims before you arrive.</p>
+            </a>
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">🧭</div>
+                <div class="card-title">Lost Ranger?</div>
+                <p class="card-desc">Can't plot a 6-digit grid or shoot an azimuth? Our land nav course gets you from lost to lethal.</p>
+            </a>
+            <a href="resources.html#study" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">🧠</div>
+                <div class="card-title">Braindead Ranger?</div>
+                <p class="card-desc">OPORDs, battle drills, TLPs — if it's blank in your head, it'll be blank on your patrol. Study now or recycle later.</p>
+            </a>
+        </div>
+        </div>
+    </section>
+
+
+    <!-- PHASE BREAKDOWN -->
+    <style>
+        /* Phase cards for index.html */
+        .ix-phase-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+        .ix-phase-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl);
+            transition: all 0.3s ease;
+        }
+        .ix-phase-card:hover {
+            border-color: rgba(197, 179, 88, 0.3);
+        }
+        .ix-phase-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-sm);
+        }
+        .ix-phase-label.rap { color: #ef4444; }
+        .ix-phase-label.darby { color: #f59e0b; }
+        .ix-phase-label.mountains { color: #3b82f6; }
+        .ix-phase-label.florida { color: #22c55e; }
+        .ix-phase-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: var(--space-md);
+        }
+        .ix-standard-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 13px;
+        }
+        .ix-standard-item:last-child { border-bottom: none; }
+        .ix-standard-name { color: var(--color-text-secondary); }
+        .ix-standard-value {
+            color: var(--color-white);
+            font-weight: 600;
+            font-family: var(--font-tactical);
+        }
+        .ix-phase-note {
+            margin-top: var(--space-md);
+            font-size: 12px;
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+        .ix-reporting-bullets {
+            margin-top: var(--space-md);
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .ix-reporting-bullets .ix-report-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: var(--space-sm);
+        }
+        .ix-reporting-bullets ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .ix-reporting-bullets li {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+        .ix-reporting-bullets li::before {
+            content: '\25B8';
+            position: absolute;
+            left: 0;
+            color: var(--color-gold-dim);
+        }
+
+        /* Phase video player */
+        .phase-video-wrap {
+            margin-top: var(--space-md);
+            border-radius: var(--radius-subtle);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+        }
+        .phase-video-wrap video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+        .phase-img-wrap {
+            margin-top: var(--space-md);
+            border-radius: var(--radius-subtle);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .phase-img-wrap img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Course stats row */
+        .ix-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+        .ix-stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .ix-stat-card:hover {
+            border-color: rgba(197, 179, 88, 0.3);
+        }
+        .ix-stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--color-gold);
+            font-family: var(--font-tactical);
+        }
+        .ix-stat-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-top: 4px;
+        }
+
+        /* Attrition grid */
+        .ix-attrition-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+        .ix-attrition-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .ix-attrition-card:hover {
+            border-color: rgba(197, 179, 88, 0.3);
+        }
+        .ix-attrition-year {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-gold);
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .ix-attrition-rate {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--color-white);
+            font-family: var(--font-tactical);
+        }
+        .ix-attrition-label {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .ix-attrition-sub {
+            font-size: 11px;
+            color: var(--color-text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Failure breakdown */
+        .ix-failure-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+        .ix-failure-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl);
+        }
+        .ix-failure-card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: var(--space-md);
+        }
+        .ix-failure-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 13px;
+        }
+        .ix-failure-event { color: var(--color-text-secondary); }
+        .ix-failure-pct {
+            color: var(--color-error);
+            font-weight: 700;
+            font-family: var(--font-tactical);
+        }
+
+        /* Takeaway callout */
+        .ix-takeaway {
+            background: rgba(197, 179, 88, 0.06);
+            border: 1px solid rgba(197, 179, 88, 0.15);
+            border-radius: var(--radius-glass);
+            padding: var(--space-lg) var(--space-xl);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--space-2xl);
+        }
+        .ix-takeaway p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .ix-stats-grid { grid-template-columns: repeat(3, 1fr); }
+            .ix-attrition-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .ix-phase-grid { grid-template-columns: 1fr; }
+            .ix-stats-grid { grid-template-columns: 1fr; }
+            .ix-attrition-grid { grid-template-columns: repeat(2, 1fr); }
+            .ix-failure-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <section class="section" id="phases" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <!-- Course Stats -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Course Overview</div>
+        <div class="ix-stats-grid stagger">
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">61</div><div class="ix-stat-label">Total Days</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">51</div><div class="ix-stat-label">Field Days</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">15</div><div class="ix-stat-label">High Risk Days</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">26</div><div class="ix-stat-label">Days Patrolling</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">11</div><div class="ix-stat-label">Courses / FY</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">3,410</div><div class="ix-stat-label">Annual Req</div></div>
+        </div>
+
+        <!-- Attrition Rates -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Attrition Rates</div>
+        <div class="ix-attrition-grid stagger">
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2017</div><div class="ix-attrition-rate">33.1%</div><div class="ix-attrition-label">With RAP</div><div class="ix-attrition-sub">57.6% without RAP</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2018</div><div class="ix-attrition-rate">41.9%</div><div class="ix-attrition-label">With RAP</div><div class="ix-attrition-sub">74.8% without RAP</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2019</div><div class="ix-attrition-rate">45.3%</div><div class="ix-attrition-label">With RAP</div><div class="ix-attrition-sub">79.1% without RAP</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2020</div><div class="ix-attrition-rate">47.1%</div><div class="ix-attrition-label">With RAP</div><div class="ix-attrition-sub">79.5% without RAP</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2021*</div><div class="ix-attrition-rate">56.2%</div><div class="ix-attrition-label">With RAP</div><div class="ix-attrition-sub">80.2% without RAP</div></div>
+        </div>
+
+        <!-- RAP Failure Breakdown -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">RAP Week Failure Breakdown</div>
+        <div class="ix-failure-grid stagger">
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">2017–2020 Average</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Ranger Physical Assessment</span><span class="ix-failure-pct">16.9%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Ranger Tactical Tasks</span><span class="ix-failure-pct">6.9%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Land Navigation</span><span class="ix-failure-pct">9.2%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Foot March</span><span class="ix-failure-pct">5.5%</span></div>
+            </div>
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">2021 (RC 01-21 through 04-21)</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Ranger Physical Assessment</span><span class="ix-failure-pct">12.3%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Ranger Tactical Tasks</span><span class="ix-failure-pct">4.3%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Land Navigation</span><span class="ix-failure-pct">8.5%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Foot March</span><span class="ix-failure-pct">4.0%</span></div>
+            </div>
+        </div>
+
+        <div class="ix-takeaway fade-in">
+            <p><strong style="color: var(--color-gold);">Key Takeaway:</strong> The Physical Assessment is the #1 cause of RAP failure. Land Navigation is #2. Train both aggressively before you arrive. If you pass RAP Week, you have a 75–80% chance of graduating.</p>
+        </div>
+    </section>
+
+
+    <!-- RANGER CREED -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;" class="fade-in">
+            <p class="creed-stanza"><strong>Recognizing</strong> that I volunteered as a Ranger, fully knowing the hazards of my chosen profession, I will always endeavor to uphold the prestige, honor, and high esprit de corps of my Ranger Regiment.</p>
+
+            <p class="creed-stanza"><strong>Acknowledging</strong> the fact that a Ranger is a more elite soldier, who arrives at the cutting edge of battle by land, sea, or air, I accept the fact that as a Ranger, my country expects me to move further, faster, and fight harder than any other soldier.</p>
+
+            <p class="creed-stanza"><strong>Never</strong> shall I fail my comrades. I will always keep myself mentally alert, physically strong, and morally straight, and I will shoulder more than my share of the task, whatever it may be, one hundred percent and then some.</p>
+
+            <p class="creed-stanza"><strong>Gallantly</strong> will I show the world that I am a specially selected and well-trained soldier. My courtesy to superior officers, neatness of dress, and care of equipment shall set the example for others to follow.</p>
+
+            <p class="creed-stanza"><strong>Energetically</strong> will I meet the enemies of my country. I shall defeat them on the field of battle for I am better trained and will fight with all my might. Surrender is not a Ranger word. I will never leave a fallen comrade to fall into the hands of the enemy and under no circumstances will I ever embarrass my country.</p>
+
+            <p class="creed-stanza"><strong>Readily</strong> will I display the intestinal fortitude required to fight on to the Ranger objective and complete the mission, though I be the lone survivor.</p>
+
+            <div class="creed-closer">Rangers Lead the Way!</div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-2xl);">
+            <a href="resources.html#creed" class="btn btn-outline-gold">Take the Creed Assessment &rarr;</a>
+        </div>
+    </section>
+
+    <!-- STAY INFORMED — Newsletter Signup -->
+    <section class="section" id="newsletter" style="text-align:center; padding-bottom:var(--space-3xl);">
+        <span class="section-label">Stay Informed</span>
+        <h2 class="section-title">Get Ranger School Intel</h2>
+        <p class="section-desc" style="max-width:540px; margin:0 auto var(--space-xl);">Class dates, gear drops, new courses, and tips from tab holders — straight to your inbox. No spam. Unsubscribe anytime.</p>
+
+        <div id="subscribe-success" style="display:none; background:rgba(197,179,88,0.12); border:1px solid var(--color-gold); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-gold); font-weight:600;">
+            You're in. Check your inbox for a welcome email.
+        </div>
+        <div id="subscribe-error" style="display:none; background:rgba(239,68,68,0.12); border:1px solid var(--color-error); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-error); font-weight:600;"></div>
+
+        <form id="subscribe-form" style="display:flex; gap:var(--space-sm); max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;">
+            <input type="email" name="email" id="subscribe-email" class="form-input" placeholder="Your email address" required style="flex:1 1 260px;">
+            <button type="submit" id="subscribe-btn" class="btn btn-primary" style="flex:0 0 auto; padding:0 var(--space-lg);">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Ranger School Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="shop.html?season=winter">Winter</a></li><li><a href="shop.html?season=spring">Spring</a></li><li><a href="shop.html?season=summer">Summer</a></li><li><a href="shop.html?season=fall">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="courses.html">Courses</a></li><li><a href="inventory.html">Packing List</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="timeline.html">Pre-Ranger Timeline</a></li><li><a href="faq.html">FAQ</a></li><li><a href="family.html">Family Guide</a></li><li><a href="standards.html">Standards</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ── Newsletter Subscribe (Resend via Cloudflare Worker) ──
+        (function() {
+            var form = document.getElementById('subscribe-form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('subscribe-email').value;
+                var btn = document.getElementById('subscribe-btn');
+                var success = document.getElementById('subscribe-success');
+                var error = document.getElementById('subscribe-error');
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+                success.style.display = 'none';
+                error.style.display = 'none';
+                fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                })
+                .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+                .then(function(result) {
+                    if (result.ok) {
+                        success.style.display = 'block';
+                        form.style.display = 'none';
+                        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        error.textContent = result.data.error || 'Something went wrong. Try again.';
+                        error.style.display = 'block';
+                        btn.textContent = 'Subscribe';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(function() {
+                    error.textContent = 'Network error. Try again.';
+                    error.style.display = 'block';
+                    btn.textContent = 'Subscribe';
+                    btn.disabled = false;
+                });
+            });
+        })();
+
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // ── Mobile Nav Toggle + Accordion ──
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                });
+            });
+        })();
+
+        // ── Phase detail panel expand/collapse (called from togglePhase) ──
+        // Handled via onclick + togglePhase in bottom script block
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    </script>
+
+    <!-- Auth -->
+    <script src="../course-auth.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    </script>
+
+    <!-- Snipcart E-Commerce -->
+    <!-- TODO: Replace Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4 with your key from https://app.snipcart.com -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot — disabled until bot IDs are configured -->
+
+    <script>
+        var phaseVideos = {
+            'surt': '../media/75th-ranger-day1.mp4',
+            'rap': '../media/75th-ranger-day1.mp4',
+            'darby': '../media/75th-ranger-day1.mp4',
+            'mountains': '../media/mountain-phase.mp4',
+            'swamp': '../media/the-creed-intro.mp4'
+        };
+        var seasonVideos = {
+            'winter': '../media/mountain-phase.mp4',
+            'spring': '../media/the-creed-intro.mp4',
+            'summer': '../media/75th-ranger-day1.mp4',
+            'fall': '../media/mountain-phase.mp4'
+        };
+        var currentBgType = 'phase'; // 'phase' or 'season'
+        var currentBgKey = 'surt';
+
+        function showBgVideo(key, videoMap) {
+            var videoSection = document.getElementById('phase-video-section');
+            var video = document.getElementById('phase-bg-video');
+            if (!videoSection || !video) return;
+            video.src = videoMap[key] || '';
+            videoSection.style.display = 'block';
+            video.play().catch(function() {});
+        }
+
+        function hideBgVideo() {
+            var videoSection = document.getElementById('phase-video-section');
+            var video = document.getElementById('phase-bg-video');
+            if (video) { video.pause(); video.src = ''; }
+            if (videoSection) videoSection.style.display = 'none';
+            // Clear all active states
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            currentBgType = null;
+            currentBgKey = null;
+        }
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            // If clicking same one, close it
+            if (currentBgType === 'phase' && currentBgKey === phase) {
+                hideBgVideo();
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                return;
+            }
+            // Clear all active states + close panels
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            // Show video
+            showBgVideo(phase, phaseVideos);
+            // Open detail panel if it exists
+            if (panel) panel.classList.add('open');
+            // Highlight the phase button
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentBgType = 'phase';
+            currentBgKey = phase;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentBgType === 'season' && currentBgKey === season) {
+                hideBgVideo();
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                return;
+            }
+            // Clear all active states + close all panels
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            // Show video
+            showBgVideo(season, seasonVideos);
+            // Open detail panel if it exists
+            if (panel) panel.classList.add('open');
+            // Highlight the season button
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentBgType = 'season';
+            currentBgKey = season;
+        }
+
+        // Preselect SURT on page load with video
+        (function() {
+            var surtBtn = document.querySelector('.phase-card-btn[data-phase="surt"]');
+            if (surtBtn) surtBtn.classList.add('active');
+            showBgVideo('surt', phaseVideos);
+        })();
+    </script>
+</body>
+</html>

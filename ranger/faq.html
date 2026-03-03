@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ from Graduates — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <style>
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl) var(--space-3xl);
+        }
+        .faq-category-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin: var(--space-2xl) 0 var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid rgba(197,179,88,0.2);
+        }
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: var(--space-md) 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        .faq-question-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-white);
+            line-height: 1.4;
+        }
+        .faq-question:hover .faq-question-text {
+            color: var(--color-gold);
+        }
+        .faq-toggle {
+            font-size: 18px;
+            color: var(--color-gold);
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+        .faq-item.open .faq-toggle {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .faq-answer-inner {
+            padding: 0 0 var(--space-md);
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.65);
+        }
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="shop.html?season=winter">Winter</a></li>
+                        <li><a href="shop.html?season=spring">Spring</a></li>
+                        <li><a href="shop.html?season=summer">Summer</a></li>
+                        <li><a href="shop.html?season=fall">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li><a href="course-battle-drills.html">Battle Drills</a></li>
+                        <li><a href="course-patrol-base.html">Patrol Base Ops</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li><a href="course-nutrition.html">Nutrition &amp; Fueling</a></li>
+                        <li><a href="course-mental-toughness.html">Mental Toughness</a></li>
+                        <li><a href="course-recycle.html">Recycle &amp; Recovery</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Hands-On</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li><a href="course-water-survival.html">Water Confidence</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="inventory.html">Packing List</a></li>
+                        <li><a href="timeline.html">Pre-Ranger Timeline</a></li>
+                        <li><a href="faq.html">FAQ from Graduates</a></li>
+                        <li><a href="family.html">Family &amp; Spouse Guide</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero">
+        <div class="section-label fade-in">Resource</div>
+        <h1 class="section-title fade-in">FAQ from Graduates</h1>
+        <p class="section-desc fade-in">Real answers to the most common questions from Ranger School graduates and tab holders. No BS, no sugarcoating.</p>
+    </div>
+
+    <!-- FAQ CONTENT -->
+    <div class="faq-section">
+
+        <div class="faq-category-title">Before You Go</div>
+
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">How physically fit do I need to be?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">You need to exceed the RPFT minimums comfortably — 49 push-ups, 59 sit-ups, 6 chin-ups, and a 5-mile run under 40 minutes. But "passing" isn't enough. You should be able to max push-ups and sit-ups, do 12+ chin-ups, and run 5 miles in 35 minutes or less. You'll be operating on 0-4 hours of sleep and 1-2 meals a day — your fitness buffer is everything.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">What boots should I wear?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">Garmont T8 Bifida or Belleville C390 are the go-to choices. Break them in for at least 4-6 weeks before you report. Do NOT show up in new boots. Some guys swear by the Rocky S2V for Florida Phase. Whatever you pick, make sure they're comfortable for 20+ miles a day.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">How long is Ranger School?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">62 days if you go straight through with no recycles. RAP Week is ~4 days at Fort Benning, Darby Phase is ~20 days, Mountain Phase is ~20 days at Camp Merrill (Dahlonega, GA), and Swamp Phase is ~17 days at Camp Rudder (Eglin AFB, FL). Add travel days between phases.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">Should I go to Pre-Ranger first?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">If your unit offers it, absolutely. Pre-Ranger gives you a realistic preview of RAP Week standards and weeds out issues before they cost you a slot. It's not required, but guys who go to Pre-Ranger have a significantly higher first-time GO rate. Some units require it.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">What's the pass rate?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">Historically around 35-45% of students who start will earn the tab, though this varies by class. About 50% of students who make it past RAP Week will graduate. RAP Week is where most people drop — typically 40-60% of the class. The attrition rate is highest in winter classes.</div></div>
+        </div>
+
+        <div class="faq-category-title">RAP Week</div>
+
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">What's the hardest part of RAP Week?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">The combination of the RPFT, 12-mile ruck march, land navigation (day and night), RTTs, and water confidence test all packed into 4 days with minimal sleep. No single event is impossible — it's the accumulation. Most guys who fail RAP Week fail land nav or quit during the ruck.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">How does land nav work?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">You get a map, a protractor, a compass, and grid coordinates for 4 points. Day nav: find 3 of 4 in 5 hours. Night nav: find 2 of 3 in 3 hours. The course is at Fort Benning in thick Georgia woods. Terrain association is king — don't rely solely on compass bearings. Learn to read the terrain.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">What are RTTs and how many do I need to pass?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">Ranger Tactical Tasks — hands-on tests on weapons systems and equipment. You need to pass 5 of 7. They include M240B, M249, Claymore, SINCGARS, MBITR, and others. Each is timed and scored GO/NO-GO. Study the TMs and practice. These are memorization-heavy — know the steps cold.</div></div>
+        </div>
+
+        <div class="faq-category-title">Patrols &amp; Grading</div>
+
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">How does patrol grading work?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">You need a minimum number of GOs per phase: 1 GO in Darby, 1 GO in Mountains, 1 GO in Swamp (3 GOs total to graduate). You're graded in a leadership position — PL, PSG, SL, TL, RTO, etc. The RI grades you on planning, troop leading procedures, tactical execution, and leadership under stress.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">What leadership positions get graded?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">PL (Platoon Leader), PSG (Platoon Sergeant), SL (Squad Leader), TL (Team Leader), RTO, FO, and Medic are all gradable positions. PL and PSG are the hardest to get a GO in — more responsibility, more things to manage. TL is often considered the easiest path to a GO.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">What happens if I get a NO-GO on a patrol?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">You get more opportunities. You need a minimum number of GOs per phase, not a perfect record. If you're not getting graded opportunities, peer evals and "Ranger buddy" performance matter. If you exhaust all graded opportunities without enough GOs, you'll be recycled to repeat that phase or dropped from the course.</div></div>
+        </div>
+
+        <div class="faq-category-title">Daily Life</div>
+
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">How much sleep do you get?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">Plan on 0-4 hours per night, broken up by guard shifts. Some nights you get zero. The sleep deprivation is deliberate — it simulates combat conditions and tests your ability to make decisions and lead when exhausted. You will hallucinate. It's normal. Keep moving.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">How much weight will I lose?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">Most guys lose 20-35 lbs over the course. Some lose more. You're burning 5,000-7,000 calories a day and eating 1,500-2,500. The weight loss is mostly muscle and water. You'll look terrible at graduation. It all comes back within a few weeks of eating normally.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">Can I communicate with my family?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">Very limited. You might get a phone call between phases (2-5 minutes). Some RIs allow mail. Don't count on regular communication. Brief your family before you go: no news is good news. If they need to reach you, they go through your unit's rear detachment. See our Family &amp; Spouse Guide for more details.</div></div>
+        </div>
+
+        <div class="faq-category-title">Phase-Specific</div>
+
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">What's Mountain Phase really like?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">Elevation changes, cold weather (depending on season), knot testing, rappelling, and long movements through the mountains of North Georgia. The terrain is brutal — steep climbs with full kit. Knot test is a gate: tie 5 of 6 knots correctly in 5 minutes. Camp Frank Merrill in Dahlonega is no joke.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">Is Swamp Phase as bad as everyone says?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">It depends on the season. Summer in Florida is miserable — heat, humidity, mosquitoes, and swamp water. Winter can be surprisingly cold at night. The water confidence test is a gate. You'll be wet most of the time. The upside: by Swamp Phase, you're a seasoned Ranger student. The hardest part is already behind you.</div></div>
+        </div>
+
+        <div class="faq-category-title">After Ranger School</div>
+
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">What happens at graduation?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">You get your Ranger Tab pinned on at a ceremony at Camp Rudder (Eglin AFB). Your family can attend. You'll be exhausted, skinny, and proud. The tab is a permanent award — it goes on your left shoulder. You're authorized to wear it for the rest of your career. RLTW.</div></div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question"><span class="faq-question-text">Is it worth it?</span><span class="faq-toggle">+</span></button>
+            <div class="faq-answer"><div class="faq-answer-inner">Every single tab holder will tell you yes. It's the hardest thing most people will ever do. It changes how you see yourself, how others see you, and what you believe you're capable of. The tab opens doors — assignments, promotions, respect. But more than that, you'll know you didn't quit when everything in your body told you to. Rangers Lead The Way.</div></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="shop.html?season=winter">Winter</a></li><li><a href="shop.html?season=spring">Spring</a></li><li><a href="shop.html?season=summer">Summer</a></li><li><a href="shop.html?season=fall">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="courses.html">Courses</a></li><li><a href="inventory.html">Packing List</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="timeline.html">Pre-Ranger Timeline</a></li><li><a href="faq.html">FAQ</a></li><li><a href="family.html">Family Guide</a></li><li><a href="standards.html">Standards</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+            toggle.addEventListener('click', function(e) { e.stopPropagation(); const isOpen = navCenter.classList.toggle('mobile-open'); toggle.classList.toggle('active', isOpen); document.body.style.overflow = isOpen ? 'hidden' : ''; });
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) { link.addEventListener('click', function(e) { if (window.innerWidth > 768) return; e.preventDefault(); e.stopPropagation(); const parent = this.closest('.nav-dropdown'); const wasOpen = parent.classList.contains('mobile-expanded'); navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); }); if (!wasOpen) parent.classList.add('mobile-expanded'); }); });
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) { a.addEventListener('click', function() { navCenter.classList.remove('mobile-open'); toggle.classList.remove('active'); document.body.style.overflow = ''; navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); }); }); });
+        })();
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = this.closest('.faq-item');
+                var wasOpen = item.classList.contains('open');
+                // Close all
+                document.querySelectorAll('.faq-item.open').forEach(function(i) { i.classList.remove('open'); });
+                // Toggle
+                if (!wasOpen) item.classList.add('open');
+            });
+        });
+    </script>
+
+    <!-- Auth -->
+    <script src="../course-auth.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    </script>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <!-- Botpress AI Chatbot — disabled until bot IDs are configured -->
+</body>
+</html>

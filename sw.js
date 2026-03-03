@@ -3,10 +3,10 @@
 // Network-first for all resources, cache as offline fallback
 // ============================================
 
-const CACHE_NAME = 'ranger-beers-v6';
+const CACHE_NAME = 'ranger-beers-v7';
 
 const PRECACHE_URLS = [
-  '/courses.html',
+  '/ranger/courses.html',
   '/styles.css',
   '/course-auth.js',
   '/course-engine.js',

@@ -7,10 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#000000">
 </head>
 <body>
@@ -18,7 +18,7 @@
     <!-- NAV -->
     <nav class="nav scrolled" id="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-brand">Ranger Beers</a>
+            <a href="/" class="nav-brand">Ranger Beers</a>
                         <ul class="nav-center">
                 <li class="nav-dropdown">
                     <a href="index.html">Home</a>
@@ -131,12 +131,12 @@
                 data-item-id="course-land-nav"
                 data-item-name="Land Navigation"
                 data-item-price="5.00"
-                data-item-url="/course-land-nav.html"
+                data-item-url="/ranger/course-land-nav.html"
                 data-item-description="Map reading, terrain association, protractor work, and night land nav"
                 data-item-categories="course">Buy Course — $5.00</button>
         </div>
         <div style="margin-top: var(--space-lg); border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06);" class="fade-in">
-            <img src="images/phases/land-nav.jpg" alt="Land Navigation" style="width: 100%; max-height: 300px; object-fit: cover; display: block;" loading="lazy">
+            <img src="../images/phases/land-nav.jpg" alt="Land Navigation" style="width: 100%; max-height: 300px; object-fit: cover; display: block;" loading="lazy">
         </div>
 
     </div>
@@ -588,8 +588,8 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
     </script>
 
     <!-- Auth + Course Engine -->
-    <script src="course-auth.js"></script>
-    <script src="course-engine.js"></script>
+    <script src="../course-auth.js"></script>
+    <script src="../course-engine.js"></script>
     <script>
         RangerAuth.initAuthUI();
         RangerAuth.initCourseGate();

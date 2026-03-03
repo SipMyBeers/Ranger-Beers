@@ -3,129 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pre-Ranger Timeline — Ranger Beers Supply Co.</title>
+    <title>Family &amp; Spouse Guide — Ranger Beers Supply Co.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
     <style>
-        .timeline-input-section {
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: center;
-            padding: var(--space-2xl) var(--space-xl);
-        }
-        .timeline-input-label {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--color-gold);
-            margin-bottom: var(--space-sm);
-            display: block;
-        }
-        .timeline-date-input {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(197,179,88,0.3);
-            border-radius: 8px;
-            color: var(--color-white);
-            font-family: var(--font-display);
-            font-size: 18px;
-            padding: 14px 20px;
-            text-align: center;
-            width: 100%;
-            max-width: 280px;
-            margin-bottom: var(--space-lg);
-            transition: border-color 0.2s;
-        }
-        .timeline-date-input:focus {
-            outline: none;
-            border-color: var(--color-gold);
-        }
-        .timeline-generate-btn {
-            display: inline-block;
-            padding: 12px 36px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            background: var(--color-gold);
-            color: #000;
-            border: 1px solid var(--color-gold);
-            transition: all 0.2s;
-        }
-        .timeline-generate-btn:hover {
-            background: var(--color-gold-bright);
-        }
-        .timeline-results {
+        .family-content {
             max-width: 800px;
             margin: 0 auto;
             padding: 0 var(--space-xl) var(--space-3xl);
-            display: none;
         }
-        .timeline-week {
-            display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: var(--space-lg);
-            padding: var(--space-lg) 0;
+        .family-section {
+            margin-bottom: var(--space-3xl);
+            padding-bottom: var(--space-3xl);
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
-        .timeline-week-num {
+        .family-section:last-child {
+            border-bottom: none;
+        }
+        .family-section-label {
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--color-gold);
-            padding-top: 4px;
+            color: var(--color-gold-dim);
+            margin-bottom: var(--space-sm);
         }
-        .timeline-week-date {
-            font-size: 11px;
-            color: var(--color-text-muted);
-            margin-top: 4px;
-        }
-        .timeline-week-title {
-            font-size: 16px;
-            font-weight: 700;
+        .family-section-title {
+            font-size: 24px;
+            font-weight: 800;
             color: var(--color-white);
-            margin-bottom: 6px;
+            margin-bottom: var(--space-lg);
         }
-        .timeline-week-tasks {
+        .family-section p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: var(--space-md);
+        }
+        .family-section ul {
+            margin: var(--space-md) 0;
+            padding-left: var(--space-xl);
+        }
+        .family-section li {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: var(--space-sm);
+        }
+        .care-package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+        .care-package-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-lg);
+        }
+        .care-package-card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--color-gold);
+            margin-bottom: var(--space-sm);
+        }
+        .care-package-card ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-        .timeline-week-tasks li {
-            font-size: 14px;
+        .care-package-card li {
+            font-size: 13px;
             color: rgba(255,255,255,0.6);
-            padding: 4px 0 4px 18px;
+            padding: 3px 0 3px 16px;
             position: relative;
         }
-        .timeline-week-tasks li::before {
+        .care-package-card li::before {
             content: '\2713';
             position: absolute;
             left: 0;
             color: var(--color-gold-dim);
-            font-size: 12px;
+            font-size: 11px;
         }
-        .timeline-phase-label {
-            font-size: 10px;
+        .family-callout {
+            background: rgba(197,179,88,0.06);
+            border: 1px solid rgba(197,179,88,0.2);
+            border-radius: var(--radius-glass);
+            padding: var(--space-lg) var(--space-xl);
+            margin: var(--space-lg) 0;
+        }
+        .family-callout-title {
+            font-size: 14px;
             font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 3px 10px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: var(--space-sm);
+            color: var(--color-gold);
+            margin-bottom: var(--space-xs);
         }
-        .phase-gear { color: #3b82f6; border: 1px solid rgba(59,130,246,0.4); }
-        .phase-study { color: var(--color-gold); border: 1px solid rgba(197,179,88,0.4); }
-        .phase-fitness { color: #22c55e; border: 1px solid rgba(34,197,94,0.4); }
-        .phase-final { color: #ef4444; border: 1px solid rgba(239,68,68,0.4); }
-        @media (max-width: 768px) {
-            .timeline-week { grid-template-columns: 1fr; gap: var(--space-sm); }
+        .family-callout p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.65);
+            margin: 0;
         }
     </style>
 </head>
@@ -134,7 +114,7 @@
     <!-- NAV -->
     <nav class="nav scrolled" id="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-brand">Ranger Beers</a>
+            <a href="/" class="nav-brand">Ranger Beers</a>
                         <ul class="nav-center">
                 <li class="nav-dropdown">
                     <a href="index.html">Home</a>
@@ -233,20 +213,116 @@
     <!-- HERO -->
     <div class="section course-hero">
         <div class="section-label fade-in">Resource</div>
-        <h1 class="section-title fade-in">Pre-Ranger Timeline</h1>
-        <p class="section-desc fade-in">Enter your Ranger School class date and get a personalized week-by-week preparation plan. Gear, study, fitness, and admin — all mapped out.</p>
+        <h1 class="section-title fade-in">Family &amp; Spouse Guide</h1>
+        <p class="section-desc fade-in">What your family needs to know before, during, and after Ranger School. Communication expectations, support resources, and what to send in care packages.</p>
     </div>
 
-    <!-- DATE INPUT -->
-    <div class="timeline-input-section fade-in">
-        <label class="timeline-input-label" for="class-date">Your Ranger School Class Date</label>
-        <input type="date" class="timeline-date-input" id="class-date">
-        <br>
-        <button class="timeline-generate-btn" id="generate-btn">Generate My Timeline</button>
-    </div>
+    <!-- CONTENT -->
+    <div class="family-content">
 
-    <!-- GENERATED TIMELINE -->
-    <div class="timeline-results" id="timeline-results"></div>
+        <div class="family-section fade-in">
+            <div class="family-section-label">Before He/She Leaves</div>
+            <div class="family-section-title">Setting Expectations</div>
+            <p>Ranger School is 62 days of minimal sleep, minimal food, and almost zero communication with the outside world. The most important thing you can do as a spouse or family member is understand what's coming and set realistic expectations.</p>
+            <ul>
+                <li><strong>Communication will be almost nonexistent.</strong> Expect a 2-5 minute phone call between phases — maybe. Some classes get none. No texting, no email, no social media.</li>
+                <li><strong>No news is good news.</strong> If you don't hear anything, that means they're still in the course and moving forward. If something goes wrong (injury, recycle, drop), you'll be contacted through the unit's rear detachment.</li>
+                <li><strong>They will lose 20-35 lbs.</strong> This is normal. They're burning twice the calories they're eating. They'll look rough at graduation. It all comes back.</li>
+                <li><strong>They might get recycled.</strong> This isn't failure — it's extremely common. About 50-60% of tab holders were recycled at least once. Support them through it.</li>
+                <li><strong>Set up a POC.</strong> Designate one person (usually a spouse or parent) as the point of contact for the unit. Make sure rear detachment has current phone numbers.</li>
+            </ul>
+        </div>
+
+        <div class="family-section fade-in">
+            <div class="family-section-label">During the Course</div>
+            <div class="family-section-title">Communication Windows</div>
+            <p>Here's when you might hear from them:</p>
+            <ul>
+                <li><strong>After RAP Week:</strong> Brief phone call if they passed. If you don't hear anything within 5 days of class start, they're likely still in.</li>
+                <li><strong>Between Darby and Mountain Phase:</strong> Possible 2-5 minute phone call during transit day.</li>
+                <li><strong>Between Mountain and Swamp Phase:</strong> Possible 2-5 minute phone call during transit day.</li>
+                <li><strong>Graduation:</strong> They'll call you with a date and time once they know they're graduating.</li>
+            </ul>
+
+            <div class="family-callout">
+                <div class="family-callout-title">What to do if you're worried</div>
+                <p>Contact the rear detachment at their unit — NOT the Ranger Training Brigade directly. Your unit FRG (Family Readiness Group) leader can help you get connected. Do not call Camp Rogers, Camp Merrill, or Camp Rudder asking for status updates.</p>
+            </div>
+        </div>
+
+        <div class="family-section fade-in">
+            <div class="family-section-label">Care Packages</div>
+            <div class="family-section-title">What to Send (and What Not To)</div>
+            <p>Mail is not guaranteed, but some classes allow care packages between phases. Here's what to send and what to avoid.</p>
+
+            <div class="care-package-grid">
+                <div class="care-package-card">
+                    <div class="care-package-card-title">Food (High Calorie)</div>
+                    <ul>
+                        <li>Beef jerky / meat sticks</li>
+                        <li>Trail mix / mixed nuts</li>
+                        <li>Pop-Tarts (classic favorite)</li>
+                        <li>Peanut butter packets</li>
+                        <li>Protein bars (dense ones)</li>
+                        <li>Honey packets</li>
+                    </ul>
+                </div>
+                <div class="care-package-card">
+                    <div class="care-package-card-title">Comfort Items</div>
+                    <ul>
+                        <li>Baby wipes (unscented)</li>
+                        <li>Foot powder (Gold Bond)</li>
+                        <li>Lip balm</li>
+                        <li>Moleskin / blister care</li>
+                        <li>Ibuprofen</li>
+                        <li>Hand warmers (winter class)</li>
+                    </ul>
+                </div>
+                <div class="care-package-card">
+                    <div class="care-package-card-title">DO NOT Send</div>
+                    <ul>
+                        <li>Anything perishable</li>
+                        <li>Electronics or phones</li>
+                        <li>Tobacco products</li>
+                        <li>Alcohol (obviously)</li>
+                        <li>Anything bulky or heavy</li>
+                        <li>Cologne / scented items</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="family-callout" style="margin-top: var(--space-xl);">
+                <div class="family-callout-title">Pro tip from spouses</div>
+                <p>Write a short letter with each care package. Keep it positive and supportive. Don't mention problems at home — they can't do anything about it and it'll distract them. Tell them you're proud of them and that everything at home is handled.</p>
+            </div>
+        </div>
+
+        <div class="family-section fade-in">
+            <div class="family-section-label">After Graduation</div>
+            <div class="family-section-title">The Homecoming</div>
+            <p>Graduation is at Camp Rudder (Eglin AFB, FL). Family is welcome and encouraged to attend. Here's what to expect:</p>
+            <ul>
+                <li><strong>They'll be thin, exhausted, and emotional.</strong> This is normal. Don't be alarmed by their appearance — 62 days of sleep and food deprivation takes a toll.</li>
+                <li><strong>They'll want to eat. A lot.</strong> Take them to their favorite restaurant. They've been dreaming about real food for two months.</li>
+                <li><strong>Give them space to decompress.</strong> They've been under extreme stress. They may be quiet, irritable, or emotional for a few days. This passes.</li>
+                <li><strong>Physical recovery takes 2-4 weeks.</strong> Weight comes back quickly. Joints and feet may take longer. Don't push them to work out right away.</li>
+                <li><strong>They earned the tab.</strong> Be proud. This is one of the most difficult military schools in the world. Fewer than 50% of those who start will finish.</li>
+            </ul>
+        </div>
+
+        <div class="family-section fade-in">
+            <div class="family-section-label">If They Get Recycled</div>
+            <div class="family-section-title">Supporting Through a Setback</div>
+            <p>Getting recycled is not failing — it's getting another chance. Most Ranger School graduates were recycled at least once. Here's how to support them:</p>
+            <ul>
+                <li><strong>Don't treat it as a failure.</strong> They're going through the hardest military school in the world. Recycling is part of the process for many.</li>
+                <li><strong>Be encouraging but realistic.</strong> "You'll get it next time" is exactly what they need to hear. Mean it.</li>
+                <li><strong>The wait can be weeks.</strong> Depending on phase and availability, they may wait 2-6 weeks in "the Gulag" (recycle barracks) before re-inserting. This is a mentally tough period.</li>
+                <li><strong>They may be able to call more often.</strong> Recycles sometimes get phone privileges. Use this time to reconnect.</li>
+                <li><strong>The decision to go back or quit is theirs.</strong> Support whatever they decide. Some people recycle 2-3 times and earn the tab. Others decide to move on. Both are valid.</li>
+            </ul>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -278,57 +354,10 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         })();
         const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // ── Timeline Generator ──
-        (function() {
-            var weeks = [
-                { title: 'Admin & Research', phase: 'phase-gear', phaseLabel: 'ADMIN', tasks: ['Request slot through unit S-3 / branch manager', 'Download ARTB packing list (latest version)', 'Review Ranger School standing orders', 'Read SH 21-76 Ranger Handbook cover to cover', 'Create a study schedule'] },
-                { title: 'Gear Acquisition — Phase 1', phase: 'phase-gear', phaseLabel: 'GEAR', tasks: ['Order boots — break them in NOW (Garmont T8 or Belleville C390)', 'Buy 2 pairs of boot socks (Fox River or Darn Tough)', 'Order headlamp (Petzl Tactikka +) with red/green lens', 'Get 550 cord (100 ft min), 100 mph tape, electrical tape', 'Start building your TMK — order supplies from shop'] },
-                { title: 'Fitness Baseline', phase: 'phase-fitness', phaseLabel: 'FITNESS', tasks: ['Take a baseline RPFT: push-ups, sit-ups, chin-ups, 5-mile run', 'Start 12-Week Prep Program (or build your own plan)', 'Begin rucking 2x/week — start at 35 lbs, 4 miles', 'Run 4-5x/week — mix long runs, intervals, and recovery', 'Start doing 100 push-ups and 100 sit-ups daily'] },
-                { title: 'Study — Creed & RTTs', phase: 'phase-study', phaseLabel: 'STUDY', tasks: ['Memorize Ranger Creed — all 6 stanzas, cold', 'Start learning RTTs — focus on M240B and M249 first', 'Study Claymore setup and arming procedures', 'Review SINCGARS radio operations', 'Take Ranger Creed course quiz — aim for 100%'] },
-                { title: 'Gear Acquisition — Phase 2', phase: 'phase-gear', phaseLabel: 'GEAR', tasks: ['Buy wet weather gear (Gore-Tex top & bottom)', 'Get gloves — mechanics gloves + cold weather inserts', 'Buy Nalgene bottles (2x 1-quart)', 'Order pace count beads or ranger beads', 'Test all gear on a weekend ruck'] },
-                { title: 'Study — Land Nav & OPORD', phase: 'phase-study', phaseLabel: 'STUDY', tasks: ['Complete Land Navigation course — terrain association focus', 'Practice plotting 8-digit grid coordinates', 'Study the 5-paragraph OPORD format', 'Learn troop leading procedures (TLPs)', 'Practice giving a warning order to a buddy'] },
-                { title: 'Fitness Ramp-Up', phase: 'phase-fitness', phaseLabel: 'FITNESS', tasks: ['Increase ruck distance to 8 miles at 35 lbs', 'Run your 5-mile time trial — target sub-40:00', 'Add plate carrier runs 1x/week', 'Do a 12-mile ruck for time (goal: under 3 hours)', 'Maintain daily push-up and sit-up volume'] },
-                { title: 'Study — Knots & Medical', phase: 'phase-study', phaseLabel: 'STUDY', tasks: ['Complete Knots & Rope course — practice all 7 knots', 'Time yourself: 5 of 6 knots in 5 minutes', 'Review medical course — CIF issue, injury prevention', 'Study 9-line MEDEVAC format', 'Review battle drills — react to contact, ambush'] },
-                { title: 'Gear Finalization', phase: 'phase-gear', phaseLabel: 'GEAR', tasks: ['Complete TMK build — test it with a practice OPORD', 'Pack your ruck to packing list standard — weigh it', 'Waterproof everything with zip-locks and dry bags', 'Label all gear with name and roster number', 'Do a final gear shakedown ruck (full weight, 6+ miles)'] },
-                { title: 'Full Integration', phase: 'phase-fitness', phaseLabel: 'FITNESS', tasks: ['Do a 24-hour field exercise with buddy (patrol, navigate, occupy PB)', 'Practice battle drills in the field', 'Brief a full OPORD from scratch under time pressure', 'Ruck 12 miles with full patrol load', 'Run RPFT — confirm you exceed minimums'] },
-                { title: 'Final Review', phase: 'phase-study', phaseLabel: 'STUDY', tasks: ['Review all RTTs — aim for 7/7 GO', 'Recite Ranger Creed 3x daily from memory', 'Review patrol base operations and priorities of work', 'Study phase-specific challenges (mountains, swamp)', 'Review Ranger School Prep course — all 7 modules'] },
-                { title: 'Departure Week', phase: 'phase-final', phaseLabel: 'REPORT', tasks: ['Final packing list check — nothing extra, nothing missing', 'Get a fresh haircut (high and tight)', 'Print all required documents (orders, medical, DA forms)', 'Say goodbye to family — set communication expectations', 'Get 8+ hours of sleep every night this week', 'Report date: arrive ready to dominate'] }
-            ];
-
-            document.getElementById('generate-btn').addEventListener('click', function() {
-                var input = document.getElementById('class-date').value;
-                if (!input) { alert('Please enter your class date.'); return; }
-
-                var classDate = new Date(input + 'T00:00:00');
-                var container = document.getElementById('timeline-results');
-                container.innerHTML = '';
-
-                for (var i = weeks.length - 1; i >= 0; i--) {
-                    var weekStart = new Date(classDate);
-                    weekStart.setDate(weekStart.getDate() - ((weeks.length - i) * 7));
-
-                    var weekNum = i + 1;
-                    var dateStr = weekStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-
-                    var tasksHtml = '';
-                    weeks[i].tasks.forEach(function(t) { tasksHtml += '<li>' + t + '</li>'; });
-
-                    container.innerHTML += '<div class="timeline-week">' +
-                        '<div><div class="timeline-week-num">Week ' + weekNum + '</div><div class="timeline-week-date">' + dateStr + '</div></div>' +
-                        '<div><span class="timeline-phase-label ' + weeks[i].phase + '">' + weeks[i].phaseLabel + '</span>' +
-                        '<div class="timeline-week-title">' + weeks[i].title + '</div>' +
-                        '<ul class="timeline-week-tasks">' + tasksHtml + '</ul></div></div>';
-                }
-
-                container.style.display = 'block';
-                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        })();
     </script>
 
     <!-- Auth -->
-    <script src="course-auth.js"></script>
+    <script src="../course-auth.js"></script>
     <script>
         RangerAuth.initAuthUI();
         if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');

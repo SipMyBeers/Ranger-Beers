@@ -2,7 +2,7 @@
   "name": "Ranger Beers Academy",
   "short_name": "Ranger Beers",
   "description": "Ranger School courses, gear, and training — built by Rangers, for Rangers.",
-  "start_url": "/courses.html",
+  "start_url": "/ranger/courses.html",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",

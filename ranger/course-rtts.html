@@ -7,17 +7,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#000000">
 </head>
 <body>
 
     <nav class="nav scrolled" id="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-brand">Ranger Beers</a>
+            <a href="/" class="nav-brand">Ranger Beers</a>
                         <ul class="nav-center">
                 <li class="nav-dropdown"><a href="index.html">Home</a><ul class="nav-dropdown-menu"><li><a href="index.html">Home</a></li><li class="nav-dropdown-divider"></li><li><span class="nav-dropdown-label">Phases</span></li><li><a href="index.html#rap">RAP Week</a></li><li><a href="index.html#darby">Darby Phase</a></li><li><a href="index.html#mountains">Mountain Phase</a></li><li><a href="index.html#florida">Swamp Phase</a></li></ul></li>
                 <li class="nav-sep"></li>
@@ -55,7 +55,7 @@
                 data-item-id="course-rtts"
                 data-item-name="RTTs Course"
                 data-item-price="5.00"
-                data-item-url="/course-rtts.html"
+                data-item-url="/ranger/course-rtts.html"
                 data-item-description="Ranger Training Tests — standards, grading criteria, and practice drills"
                 data-item-categories="course">Buy Course — $5.00</button>
         </div>
@@ -522,8 +522,8 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
     </script>
 
     <!-- Auth + Course Engine -->
-    <script src="course-auth.js"></script>
-    <script src="course-engine.js"></script>
+    <script src="../course-auth.js"></script>
+    <script src="../course-engine.js"></script>
     <script>
         RangerAuth.initAuthUI();
         RangerAuth.initCourseGate();

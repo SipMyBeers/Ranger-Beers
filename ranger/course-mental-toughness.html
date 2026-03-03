@@ -7,10 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="course-styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#000000">
 </head>
 <body>
@@ -18,7 +18,7 @@
     <!-- NAV -->
     <nav class="nav scrolled" id="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-brand">Ranger Beers</a>
+            <a href="/" class="nav-brand">Ranger Beers</a>
                         <ul class="nav-center">
                 <li class="nav-dropdown">
                     <a href="index.html">Home</a>
@@ -130,7 +130,7 @@
                 data-item-id="course-mental-toughness"
                 data-item-name="Mental Toughness & Resilience"
                 data-item-price="3.00"
-                data-item-url="/course-mental-toughness.html"
+                data-item-url="/ranger/course-mental-toughness.html"
                 data-item-description="Sleep deprivation management, stress inoculation, quitting prevention"
                 data-item-categories="course">Buy Course — $3.00</button>
         </div>
@@ -225,8 +225,8 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
     </script>
 
     <!-- Auth + Course Engine -->
-    <script src="course-auth.js"></script>
-    <script src="course-engine.js"></script>
+    <script src="../course-auth.js"></script>
+    <script src="../course-engine.js"></script>
     <script>
         RangerAuth.initAuthUI();
         RangerAuth.initCourseGate();

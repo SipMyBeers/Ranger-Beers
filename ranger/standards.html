@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standards — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <style>
+        .standards-hero {
+            padding-top: 140px;
+            padding-bottom: var(--space-3xl);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Phase cards */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .phase-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl);
+            transition: all 0.3s ease;
+        }
+
+        .phase-card:hover {
+            border-color: rgba(197, 179, 88, 0.3);
+        }
+
+        .phase-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-sm);
+        }
+
+        .phase-label.rap { color: #ef4444; }
+        .phase-label.darby { color: #f59e0b; }
+        .phase-label.mountains { color: #3b82f6; }
+        .phase-label.florida { color: #22c55e; }
+
+        .phase-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: var(--space-md);
+        }
+
+        .standard-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 14px;
+        }
+
+        .standard-item:last-child { border-bottom: none; }
+
+        .standard-name {
+            color: var(--color-text-secondary);
+        }
+
+        .standard-value {
+            font-family: var(--font-tactical);
+            font-weight: 600;
+            color: var(--color-gold);
+            font-size: 14px;
+        }
+
+        .standard-note {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-top: var(--space-sm);
+            font-style: italic;
+        }
+
+        /* Packing list table */
+        .packing-table-wrap {
+            overflow-x: auto;
+            margin-bottom: var(--space-2xl);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+        }
+
+        .packing-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .packing-table thead {
+            background: rgba(197, 179, 88, 0.1);
+            position: sticky;
+            top: 0;
+        }
+
+        .packing-table th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            border-bottom: 1px solid rgba(197, 179, 88, 0.2);
+        }
+
+        .packing-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--color-text-secondary);
+            vertical-align: top;
+        }
+
+        .packing-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .packing-table .item-name {
+            color: var(--color-text-primary);
+            font-weight: 500;
+        }
+
+        .packing-table .item-qty {
+            color: var(--color-gold);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .packing-table .item-note {
+            font-size: 12px;
+            color: var(--color-text-muted);
+        }
+
+        .packing-category {
+            background: rgba(239, 68, 68, 0.08);
+            border-left: 3px solid #ef4444;
+        }
+
+        .packing-category td {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ef4444;
+            padding: 8px 16px;
+        }
+
+        .packing-category.essential {
+            background: rgba(245, 158, 11, 0.08);
+            border-left-color: #f59e0b;
+        }
+
+        .packing-category.essential td {
+            color: #f59e0b;
+        }
+
+        .packing-category.critical {
+            background: rgba(239, 68, 68, 0.08);
+            border-left-color: #ef4444;
+        }
+
+        .packing-category.critical td {
+            color: #ef4444;
+        }
+
+        /* RTT task cards */
+        .rtt-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .rtt-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-lg);
+            transition: all 0.3s ease;
+        }
+
+        .rtt-card:hover {
+            border-color: rgba(197, 179, 88, 0.3);
+        }
+
+        .rtt-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: var(--space-xs);
+        }
+
+        .rtt-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: var(--space-sm);
+        }
+
+        .rtt-tasks {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rtt-tasks li {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .rtt-tasks li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(197, 179, 88, 0.4);
+        }
+
+        .rtt-task-id {
+            font-family: var(--font-tactical);
+            font-size: 11px;
+            color: var(--color-text-muted);
+        }
+
+        /* Attrition chart */
+        .attrition-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .attrition-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-lg);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .attrition-card:hover {
+            border-color: rgba(197, 179, 88, 0.3);
+        }
+
+        .attrition-year {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-sm);
+        }
+
+        .attrition-rate {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--color-gold);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .attrition-label {
+            font-size: 11px;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .attrition-sub {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-top: var(--space-xs);
+        }
+
+        /* Failure breakdown */
+        .failure-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .failure-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-lg);
+        }
+
+        .failure-card-title {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .failure-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .failure-item:last-child { border-bottom: none; }
+
+        .failure-event {
+            color: var(--color-text-secondary);
+            font-size: 14px;
+        }
+
+        .failure-pct {
+            font-weight: 700;
+            color: #ef4444;
+            font-size: 14px;
+        }
+
+        /* Reporting info */
+        .reporting-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .reporting-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl);
+        }
+
+        .reporting-card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid rgba(197, 179, 88, 0.15);
+        }
+
+        .reporting-item {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            padding: 6px 0;
+            line-height: 1.5;
+        }
+
+        .reporting-item strong {
+            color: var(--color-text-primary);
+        }
+
+        .reporting-highlight {
+            background: rgba(197, 179, 88, 0.08);
+            border: 1px solid rgba(197, 179, 88, 0.2);
+            border-radius: 6px;
+            padding: var(--space-md);
+            margin-top: var(--space-sm);
+        }
+
+        .reporting-highlight p {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            margin: 0;
+        }
+
+        /* Course overview */
+        .course-overview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .course-overview-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl);
+            text-align: center;
+        }
+
+        .course-overview-card:hover {
+            border-color: rgba(197, 179, 88, 0.3);
+        }
+
+        .course-stat {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--color-gold);
+            line-height: 1;
+            margin-bottom: var(--space-xs);
+        }
+
+        .course-stat-label {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Land nav tasks */
+        .landnav-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-sm);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .landnav-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        .landnav-item .task-id {
+            font-family: var(--font-tactical);
+            font-size: 11px;
+            color: var(--color-text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Section anchors offset for fixed nav */
+        .standards-section {
+            scroll-margin-top: 100px;
+        }
+
+        /* Stress items */
+        .stress-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .stress-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            padding: var(--space-lg);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+        }
+
+        .stress-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+            width: 40px;
+            text-align: center;
+        }
+
+        .stress-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-white);
+            margin-bottom: 4px;
+        }
+
+        .stress-desc {
+            font-size: 13px;
+            color: var(--color-text-muted);
+        }
+
+        /* Evaluation / Grading */
+        .eval-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .eval-example {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-sm) 0 0 0;
+        }
+
+        .eval-example li {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            padding: 3px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .eval-example li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: rgba(239, 68, 68, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .attrition-grid { grid-template-columns: repeat(3, 1fr); }
+            .course-overview-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .phase-grid { grid-template-columns: 1fr; }
+            .rtt-grid { grid-template-columns: 1fr; }
+            .attrition-grid { grid-template-columns: repeat(2, 1fr); }
+            .failure-grid { grid-template-columns: 1fr; }
+            .reporting-grid { grid-template-columns: 1fr; }
+            .eval-grid { grid-template-columns: 1fr; }
+            .course-overview-grid { grid-template-columns: 1fr; }
+            .landnav-grid { grid-template-columns: 1fr; }
+            .stress-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STANDARDS VIDEO BACKGROUND (fixed behind everything) -->
+    <div id="standards-video-section" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+        <video id="standards-bg-video" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="" type="video/mp4">
+        </video>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6);"></div>
+    </div>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+                        <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#rap">RAP Week</a></li>
+                        <li><a href="index.html#darby">Darby Phase</a></li>
+                        <li><a href="index.html#mountains">Mountain Phase</a></li>
+                        <li><a href="index.html#florida">Swamp Phase</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Full Shop</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Seasons</span></li>
+                        <li><a href="shop.html?season=winter">Winter</a></li>
+                        <li><a href="shop.html?season=spring">Spring</a></li>
+                        <li><a href="shop.html?season=summer">Summer</a></li>
+                        <li><a href="shop.html?season=fall">Fall</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="shop.html?filter=bundles">Ranger Gear Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-ranger-prep.html">Ranger School Prep</a></li>
+                        <li><a href="course-land-nav.html">Land Navigation</a></li>
+                        <li><a href="course-knots.html">Knots &amp; Rope</a></li>
+                        <li><a href="course-rtts.html">RTTs</a></li>
+                        <li><a href="course-opord.html">OPORD</a></li>
+                        <li><a href="course-battle-drills.html">Battle Drills</a></li>
+                        <li><a href="course-patrol-base.html">Patrol Base Ops</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Knowledge</span></li>
+                        <li><a href="course-ranger-creed.html">Ranger Creed</a></li>
+                        <li><a href="course-medical.html">Medical</a></li>
+                        <li><a href="course-nutrition.html">Nutrition &amp; Fueling</a></li>
+                        <li><a href="course-mental-toughness.html">Mental Toughness</a></li>
+                        <li><a href="course-recycle.html">Recycle &amp; Recovery</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Fitness</span></li>
+                        <li><a href="course-workout-12week.html">12-Week Prep</a></li>
+                        <li><a href="course-workout-pt.html">PT &amp; Running</a></li>
+                        <li><a href="course-workout-ruck.html">Ruck Endurance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Hands-On</span></li>
+                        <li><a href="course-tmk.html">TMK Build Guide</a></li>
+                        <li><a href="course-water-survival.html">Water Confidence</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="inventory.html">Packing List</a></li>
+                        <li><a href="timeline.html">Pre-Ranger Timeline</a></li>
+                        <li><a href="faq.html">FAQ from Graduates</a></li>
+                        <li><a href="family.html">Family &amp; Spouse Guide</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="standards.html">Standards</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="standards.html#grading">Grading System</a></li>
+                        <li><a href="standards.html#pt-standards">PT Standards</a></li>
+                        <li><a href="standards.html#rtt">RTT Standards</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Spacer for fixed nav -->
+    <div style="height: 80px;"></div>
+
+    <!-- STANDARDS SELECTOR — Click to play videos and navigate -->
+    <style>
+        .standards-selector-section {
+            padding: var(--space-2xl) 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .standards-btn-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .standards-btn {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-xl) var(--space-md);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            color: inherit;
+            font-family: inherit;
+            overflow: hidden;
+        }
+        .standards-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .standards-btn:hover { border-color: rgba(255, 255, 255, 0.15); transform: translateY(-2px); }
+        .standards-btn:hover::before { opacity: 1; }
+
+        .standards-btn[data-standard="grading"]::before { background: radial-gradient(ellipse at center, rgba(197, 179, 88, 0.12), transparent 70%); }
+        .standards-btn[data-standard="pt"]::before { background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.12), transparent 70%); }
+        .standards-btn[data-standard="rtt"]::before { background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.12), transparent 70%); }
+
+        .standards-btn.active { border-color: var(--color-gold); }
+        .standards-btn.active::before { opacity: 1; }
+        .standards-btn.active[data-standard="grading"] { border-color: #c5b758; box-shadow: 0 0 25px rgba(197, 179, 88, 0.2); }
+        .standards-btn.active[data-standard="pt"] { border-color: #3b82f6; box-shadow: 0 0 25px rgba(59, 130, 246, 0.2); }
+        .standards-btn.active[data-standard="rtt"] { border-color: #ef4444; box-shadow: 0 0 25px rgba(239, 68, 68, 0.2); }
+
+        .standards-btn .st-icon { font-size: 2.5rem; margin-bottom: var(--space-sm); position: relative; }
+        .standards-btn .st-name {
+            font-size: 16px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--color-white);
+            margin-bottom: 6px; position: relative;
+        }
+        .standards-btn .st-sub {
+            font-size: 12px; color: var(--color-text-secondary);
+            letter-spacing: 1px; position: relative;
+        }
+        .standards-btn .st-arrow {
+            margin-top: var(--space-md);
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: all 0.3s;
+        }
+        .standards-btn:hover .st-arrow { opacity: 1; transform: translateY(0); }
+        .standards-btn.active .st-arrow { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .standards-btn-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+    <section class="section standards-selector-section">
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">What Do You Need to Know?</div>
+        <div class="standards-btn-grid stagger" id="standards-selector">
+            <button class="standards-btn fade-in" data-standard="grading">
+                <div class="st-icon">📋</div>
+                <div class="st-name">Grading</div>
+                <div class="st-sub">How You Pass/Fail</div>
+                <div class="st-arrow">▶</div>
+            </button>
+            <button class="standards-btn fade-in" data-standard="pt">
+                <div class="st-icon">🏃</div>
+                <div class="st-name">PT Standards</div>
+                <div class="st-sub">Physical Requirements</div>
+                <div class="st-arrow">▶</div>
+            </button>
+            <button class="standards-btn fade-in" data-standard="rtt">
+                <div class="st-icon">🎒</div>
+                <div class="st-name">RTT</div>
+                <div class="st-sub">Ruck March Standards</div>
+                <div class="st-arrow">▶</div>
+            </button>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- GRADING SYSTEM                                  -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="section standards-section" id="grading" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="section-label fade-in">Evaluation</div>
+        <h2 class="section-title fade-in">Grading System</h2>
+        <p class="section-desc fade-in">Understanding how you're evaluated is as important as preparing physically. The Major Minus / Spot Report system is the core mechanism that determines whether you pass or fail each phase.</p>
+
+        <!-- How You're Graded -->
+        <div class="reporting-grid stagger" style="margin-bottom: var(--space-xl);">
+            <div class="reporting-card fade-in">
+                <div class="reporting-card-title">How You're Graded</div>
+                <div class="reporting-item"><strong>Patrol Grades:</strong> GO or NO-GO — evaluated by Ranger Instructors (RIs) during graded patrols</div>
+                <div class="reporting-item"><strong>Graded Positions:</strong> PL, PSG, SL, TL, WSL, FO, RTO, Medic</div>
+                <div class="reporting-item"><strong>Minimum Requirement:</strong> 1 GO patrol per phase in a graded leadership position</div>
+                <div class="reporting-item"><strong>Evaluated On:</strong> Planning (TLPs/OPORD), execution (troop movement, actions on OBJ), leadership (initiative, composure, corrections)</div>
+            </div>
+            <div class="reporting-card fade-in">
+                <div class="reporting-card-title">Recycle & Day Zero</div>
+                <div class="reporting-item"><strong>Recycle:</strong> If you don't get a GO by end of phase, you recycle that phase (if slots are available)</div>
+                <div class="reporting-item"><strong>Day Zero Recycle:</strong> Recycled students restart from Day 1 of that phase — no credit carried over</div>
+                <div class="reporting-item"><strong>RI Discretion:</strong> RIs document everything — the system is subjective but consistent across the cadre</div>
+                <div class="reporting-highlight">
+                    <p><strong>Key:</strong> You typically get 2-3 opportunities per phase to earn a GO. Make every patrol count — don't assume you'll get another chance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Major Plus / Major Minus & Spot Reports -->
+        <div class="eval-grid stagger">
+            <div class="reporting-card fade-in">
+                <div class="reporting-card-title">Major Plus / Major Minus</div>
+                <div class="reporting-item"><strong>Major Plus:</strong> Exceptional performance noted by RI — helps offset negatives but does not guarantee a pass</div>
+                <div class="reporting-item"><strong>Major Minus:</strong> Serious deficiency that counts against your record</div>
+                <ul class="eval-example">
+                    <li>Safety violation</li>
+                    <li>Failure to control element</li>
+                    <li>Sleeping on watch or duty position</li>
+                    <li>Loss of sensitive item</li>
+                    <li>Negligent discharge</li>
+                    <li>Quitting on a movement</li>
+                    <li>Failure to execute a critical task</li>
+                </ul>
+                <div class="reporting-item" style="margin-top: var(--space-sm);"><strong>Accumulation:</strong> 2+ major minuses in a phase can result in a board review or drop regardless of patrol grades</div>
+            </div>
+
+            <div class="reporting-card fade-in">
+                <div class="reporting-card-title">Spot Reports</div>
+                <div class="reporting-item"><strong>Spot Report (Unsat):</strong> Formal written documentation of a significant failure or infraction</div>
+                <div class="reporting-item"><strong>Major Unsat Spot Report:</strong> The most serious — can result in immediate dismissal or board action</div>
+                <div class="reporting-item"><strong>Triggers:</strong> Missing 3+ critical packing list items, safety violations, integrity issues, refusal to train</div>
+                <div class="reporting-item"><strong>Follows You:</strong> Spot reports go into your Ranger School file and carry forward through each phase</div>
+                <div class="reporting-highlight">
+                    <p><strong>Spot Report vs. Major Minus:</strong> Spot Reports are formal written documentation placed in your file. Major Minuses are RI-tracked evaluation notes used in grading decisions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Peer Evaluations -->
+        <div class="reporting-grid stagger" style="margin-top: var(--space-xl);">
+            <div class="reporting-card fade-in">
+                <div class="reporting-card-title">Peer Evaluations</div>
+                <div class="reporting-item"><strong>When:</strong> Conducted at the end of each phase</div>
+                <div class="reporting-item"><strong>Method:</strong> Rank all squad/platoon members from best to worst</div>
+                <div class="reporting-item"><strong>Bottom 1/3:</strong> Landing in the lowest third is a failure flag — can result in recycle or drop</div>
+                <div class="reporting-item"><strong>Criteria:</strong> Competence, teamwork, effort, attitude, pulling your weight</div>
+            </div>
+            <div class="reporting-card fade-in">
+                <div class="reporting-card-title">Peer Eval Tips</div>
+                <div class="reporting-item">Help others whenever you can — carry extra weight on movements</div>
+                <div class="reporting-item">Stay positive — attitude is contagious and noticed by everyone</div>
+                <div class="reporting-item">Don't be the person who disappears during work details</div>
+                <div class="reporting-item">Share food, share knowledge, share the load</div>
+                <div class="reporting-highlight">
+                    <p><strong>Reality:</strong> Peers see everything the RIs don't. Your reputation is built 24/7 — not just on graded patrols.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase Pass Requirements -->
+        <h3 class="fade-in" style="font-size: 18px; font-weight: 700; color: var(--color-white); margin-top: var(--space-2xl); margin-bottom: var(--space-md);">Phase Pass Requirements</h3>
+        <div class="phase-grid stagger">
+            <div class="phase-card fade-in" style="grid-column: 1 / -1;">
+                <div class="standard-item">
+                    <span class="standard-name">GO patrol in a graded leadership position</span>
+                    <span class="standard-value">&#10003; Required</span>
+                </div>
+                <div class="standard-item">
+                    <span class="standard-name">Peer evaluation not in bottom 1/3</span>
+                    <span class="standard-value">&#10003; Required</span>
+                </div>
+                <div class="standard-item">
+                    <span class="standard-name">No disqualifying spot reports</span>
+                    <span class="standard-value">&#10003; Required</span>
+                </div>
+                <div class="standard-item">
+                    <span class="standard-name">No excessive major minuses</span>
+                    <span class="standard-value">&#10003; Required</span>
+                </div>
+                <div class="standard-item">
+                    <span class="standard-name">RI recommendation to advance</span>
+                    <span class="standard-value">&#10003; Required</span>
+                </div>
+                <p class="standard-note">All five criteria must be met to advance to the next phase. Failure in any single area can result in recycle or dismissal.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- PT STANDARDS                                    -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="section standards-section" id="pt-standards" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="section-label fade-in">Physical Requirements</div>
+        <h2 class="section-title fade-in">PT Standards</h2>
+        <p class="section-desc fade-in">All Ranger students must pass the Ranger Physical Assessment (RPA) during RAP Week. These are the minimum standards — aim higher.</p>
+
+        <div class="phase-grid stagger">
+            <!-- RANGER APFT -->
+            <div class="phase-card fade-in">
+                <div class="phase-label rap">Ranger Physical Assessment</div>
+                <div class="phase-title">RANGER APFT</div>
+                <div class="standard-item"><span class="standard-name">Push-ups (2 min)</span><span class="standard-value">49 minimum</span></div>
+                <div class="standard-item"><span class="standard-name">Sit-ups (2 min)</span><span class="standard-value">59 minimum</span></div>
+                <div class="standard-item"><span class="standard-name">5-Mile Run</span><span class="standard-value">40:00 max</span></div>
+                <div class="standard-item"><span class="standard-name">Chin-ups (palms inward)</span><span class="standard-value">6 minimum</span></div>
+                <div class="standard-note">The Ranger APFT uses a PASS/FAIL standard for push-ups, sit-ups, and pull-ups. The 5-mile run time is the actual recorded time.</div>
+            </div>
+
+            <!-- CWST -->
+            <div class="phase-card fade-in">
+                <div class="phase-label mountains">Combat Water Survival Test</div>
+                <div class="phase-title">CWST Events</div>
+                <div class="standard-item"><span class="standard-name">40' Log Walk Rope Drop</span><span class="standard-value">Capable</span></div>
+                <div class="standard-item"><span class="standard-name">75' Suspension Traverse</span><span class="standard-value">Capable</span></div>
+                <div class="standard-item"><span class="standard-name">Equipment Removal / 15m Swim</span><span class="standard-value">Verified</span></div>
+                <div class="standard-note">Equipment removal: Remove FLC/Weapon, swim 15m with uniform (ACU/OCP) and boots. All events are pass/fail.</div>
+            </div>
+
+            <!-- FOOT MARCH -->
+            <div class="phase-card fade-in">
+                <div class="phase-label darby">12-Mile Foot March</div>
+                <div class="phase-title">Ruck March Standard</div>
+                <div class="standard-item"><span class="standard-name">Distance</span><span class="standard-value">12 miles</span></div>
+                <div class="standard-item"><span class="standard-name">Minimum Ruck Weight (dry)</span><span class="standard-value">35 lbs</span></div>
+                <div class="standard-item"><span class="standard-name">Time Limit</span><span class="standard-value">3 hours</span></div>
+                <div class="standard-note">Rucksack weighing a minimum of 35 lbs (dry weight) plus Ranger's individual combat load. Must be completed in 3 hours or less.</div>
+            </div>
+
+            <!-- SISTER SERVICES RPA -->
+            <div class="phase-card fade-in">
+                <div class="phase-label florida">Sister Services / RPA</div>
+                <div class="phase-title">Ranger Combat Fitness Assessment</div>
+                <div class="standard-item"><span class="standard-name">.5 Mile Run</span><span class="standard-value">Pass</span></div>
+                <div class="standard-item"><span class="standard-name">Scale 6-ft Wall</span><span class="standard-value">Pass</span></div>
+                <div class="standard-item"><span class="standard-name">25m IMT</span><span class="standard-value">Pass</span></div>
+                <div class="standard-item"><span class="standard-name">25M Water Can Carry</span><span class="standard-value">Pass</span></div>
+                <div class="standard-item"><span class="standard-name">50m Skedco Drag (90 lbs)</span><span class="standard-value">Pass</span></div>
+                <div class="standard-item"><span class="standard-name">Lift 16x 40lb Sandbags to 62" Platform</span><span class="standard-value">Pass</span></div>
+                <div class="standard-item"><span class="standard-name">.5 mi Run (ACU)</span><span class="standard-value">12:30 max</span></div>
+                <div class="standard-item"><span class="standard-name">4-Mile Run (seasonal APFU, 25 min recovery)</span><span class="standard-value">32:00 max</span></div>
+                <div class="standard-note">The RPA is conducted in ACU and must be completed in 12:30 or less. Immediately followed by a 4-mile run in 32:00 or less. Sister services rank waiver must include PASS/FAIL results.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- RTT STANDARDS                                   -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="section standards-section" id="rtt" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="section-label fade-in">Tactical Tasks</div>
+        <h2 class="section-title fade-in">RTT Standards</h2>
+        <p class="section-desc fade-in">Ranger Tactical Tasks (RTT) are hands-on evaluations during RAP Week. You must demonstrate proficiency on each task. Study these before you arrive.</p>
+
+        <div class="rtt-grid stagger">
+            <div class="rtt-card fade-in">
+                <div class="rtt-number">RTT #1</div>
+                <div class="rtt-title">Maintain an M249 Machine Gun</div>
+                <ul class="rtt-tasks">
+                    <li>071-COM-4025 — Maintain an M249 Machine Gun <span class="rtt-task-id"></span></li>
+                    <li>Clear, disassemble, assemble, and perform functions check</li>
+                    <li>Match groups with correct nomenclature within 3 minutes</li>
+                    <li>Assemble and perform functions check within 3 minutes</li>
+                </ul>
+            </div>
+
+            <div class="rtt-card fade-in">
+                <div class="rtt-number">RTT #2</div>
+                <div class="rtt-title">Clear, Load, Reduce Stoppage, Unload, and Clear an M249</div>
+                <ul class="rtt-tasks">
+                    <li>071-COM-4027 — Load an M249 Machine Gun</li>
+                    <li>071-COM-4028 — Unload an M249 Machine Gun</li>
+                    <li>071-COM-4029 — Correct Malfunctions of an M249</li>
+                    <li>All steps performed correctly in sequence within 30 seconds</li>
+                </ul>
+            </div>
+
+            <div class="rtt-card fade-in">
+                <div class="rtt-number">RTT #3</div>
+                <div class="rtt-title">Maintain an M240B Machine Gun</div>
+                <ul class="rtt-tasks">
+                    <li>171-122-1012 — Perform Operator Maintenance on an M240 Series</li>
+                    <li>Clear, disassemble, assemble, and perform functions check</li>
+                </ul>
+            </div>
+
+            <div class="rtt-card fade-in">
+                <div class="rtt-number">RTT #4</div>
+                <div class="rtt-title">Clear, Load, Reduce Stoppage, Unload, and Clear an M240B</div>
+                <ul class="rtt-tasks">
+                    <li>071-025-0003 — Load an M240B/M240L Machine Gun</li>
+                    <li>071-025-0004 — Unload an M240B/M240L Machine Gun</li>
+                    <li>071-025-0005 — Correct Malfunctions of an M240B/M240L</li>
+                </ul>
+            </div>
+
+            <div class="rtt-card fade-in">
+                <div class="rtt-number">RTT #5</div>
+                <div class="rtt-title">Employ/Recover an M18A1 Claymore Mine</div>
+                <ul class="rtt-tasks">
+                    <li>071-325-4427 — Employ an M18A1 Claymore Mine</li>
+                    <li>071-325-4426 — Recover an M18A1 Claymore Mine</li>
+                    <li>Non-electric initiation only</li>
+                </ul>
+            </div>
+
+            <div class="rtt-card fade-in">
+                <div class="rtt-number">RTT #6</div>
+                <div class="rtt-title">Communicate by Tactical Radio</div>
+                <ul class="rtt-tasks">
+                    <li>171-300-0063 — Operate SINCGARS ASIP Radio</li>
+                    <li>Single Channel Ground and Airborne Radio System</li>
+                    <li>Advanced System Improvement Program (ASIP)</li>
+                </ul>
+            </div>
+
+            <div class="rtt-card fade-in">
+                <div class="rtt-number">RTT #7</div>
+                <div class="rtt-title">Communicate by MBITR</div>
+                <ul class="rtt-tasks">
+                    <li>113-100-1138 — Operate Multi-band Inter/Intra Team Radio</li>
+                    <li>MBITR radio operations</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- LAND NAVIGATION -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Land Navigation Tasks</div>
+        <p class="section-desc fade-in" style="margin-bottom: var(--space-lg);">In addition to RTT tasks, you must demonstrate land navigation proficiency on these individual tasks.</p>
+
+        <div class="landnav-grid stagger">
+            <div class="landnav-item fade-in">
+                <span class="task-id">071-COM-1006</span>
+                <span>Navigate from One Point on the Ground to Another Point while Dismounted</span>
+            </div>
+            <div class="landnav-item fade-in">
+                <span class="task-id">071-329-1009</span>
+                <span>Convert Azimuths</span>
+            </div>
+            <div class="landnav-item fade-in">
+                <span class="task-id">071-329-1004</span>
+                <span>Determine the Elevation of a Point on the Ground Using a Map</span>
+            </div>
+            <div class="landnav-item fade-in">
+                <span class="task-id">071-329-1014</span>
+                <span>Locate an Unknown Point on a Map and on the Ground by Intersection</span>
+            </div>
+            <div class="landnav-item fade-in">
+                <span class="task-id">071-329-1015</span>
+                <span>Locate an Unknown Point on a Map and on the Ground by Resection</span>
+            </div>
+            <div class="landnav-item fade-in">
+                <span class="task-id">071-329-1018</span>
+                <span>Determine Direction without a Compass</span>
+            </div>
+            <div class="landnav-item fade-in">
+                <span class="task-id">071-COM-1008</span>
+                <span>Measure Distance on a Map</span>
+            </div>
+            <div class="landnav-item fade-in">
+                <span class="task-id">071-COM-1011</span>
+                <span>Orient a Map Using a Lensatic Compass</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packing list moved to My Gear page -->
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Ranger School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="shop.html?season=winter">Winter</a></li><li><a href="shop.html?season=spring">Spring</a></li><li><a href="shop.html?season=summer">Summer</a></li><li><a href="shop.html?season=fall">Fall</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Full Shop</a></li><li><a href="courses.html">Courses</a></li><li><a href="inventory.html">Packing List</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="timeline.html">Pre-Ranger Timeline</a></li><li><a href="faq.html">FAQ</a></li><li><a href="family.html">Family Guide</a></li><li><a href="standards.html">Standards</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+
+        // ── Mobile Nav Toggle + Accordion ──
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            // Accordion: tap a dropdown parent to expand/collapse
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return; // desktop uses hover
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    // close all sibling dropdowns
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+
+            // Clicking a real link inside a dropdown closes the menu
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                });
+            });
+        })();
+
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth -->
+    <script src="../course-auth.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Botpress AI Chatbot — disabled until bot IDs are configured -->
+
+    <script>
+        var standardsVideos = {
+            'grading': '../media/75th-ranger-day1.mp4',
+            'pt': '../media/75th-ranger-day1.mp4',
+            'rtt': '../media/mountain-phase.mp4'
+        };
+        var currentStandard = null;
+
+        function showStandardVideo(standard) {
+            var videoSection = document.getElementById('standards-video-section');
+            var video = document.getElementById('standards-bg-video');
+            
+            video.src = standardsVideos[standard];
+            videoSection.style.display = 'block';
+            video.play();
+            
+            document.querySelectorAll('.standards-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            document.querySelector('.standards-btn[data-standard="' + standard + '"]').classList.add('active');
+            
+            currentStandard = standard;
+            
+            // Scroll to the relevant section
+            var targetId = standard === 'grading' ? 'grading' : (standard === 'pt' ? 'pt-standards' : 'rtt');
+            setTimeout(function() {
+                var target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 300);
+        }
+
+        function hideStandardVideo() {
+            var videoSection = document.getElementById('standards-video-section');
+            var video = document.getElementById('standards-bg-video');
+            
+            video.pause();
+            video.src = '';
+            videoSection.style.display = 'none';
+            
+            document.querySelectorAll('.standards-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            
+            currentStandard = null;
+        }
+
+        document.querySelectorAll('.standards-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var standard = this.getAttribute('data-standard');
+                
+                if (currentStandard === standard) {
+                    hideStandardVideo();
+                } else {
+                    showStandardVideo(standard);
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Fade-in observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
