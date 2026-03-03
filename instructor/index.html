@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Army Instructor Badge — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <meta name="theme-color" content="#000000">
+    <style>
+        .school-hero { min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:var(--space-4xl) 40px;position:relative;overflow:hidden; }
+        .school-hero::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center bottom,rgba(34,197,94,0.08),transparent 60%); }
+        .school-hero-headline { font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:var(--space-md);position:relative; }
+        .school-hero-sub { font-size:clamp(1rem,2vw,1.25rem);color:var(--color-text-secondary);max-width:640px;line-height:1.6;position:relative; }
+        .school-back { position:fixed;top:var(--space-lg);left:var(--space-lg);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--color-text-secondary);text-decoration:none;z-index:100;transition:color 0.3s; }
+        .school-back:hover { color:var(--color-gold); }
+        .info-section { max-width:900px;margin:0 auto;padding:var(--space-3xl) 40px; }
+        .info-section-label { font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--color-gold);margin-bottom:var(--space-lg); }
+        .info-section h2 { font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;margin-bottom:var(--space-lg); }
+        .info-section p { color:var(--color-text-secondary);line-height:1.8;margin-bottom:var(--space-lg); }
+        .stats-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-md);margin:var(--space-2xl) 0; }
+        .stat-card { background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-glass);padding:var(--space-xl) var(--space-md);text-align:center; }
+        .stat-number { font-size:clamp(1.5rem,3vw,2.5rem);font-weight:900;color:var(--color-gold);display:block; }
+        .stat-label { font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-text-secondary);margin-top:var(--space-xs); }
+        .phase-list { list-style:none;margin:var(--space-xl) 0; }
+        .phase-list li { padding:var(--space-md) 0;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:var(--space-md); }
+        .phase-list .phase-day { font-weight:700;color:var(--color-gold);min-width:80px;font-family:var(--font-tactical);font-size:13px; }
+        .phase-list .phase-desc { color:var(--color-text-secondary);line-height:1.6; }
+        .phase-list .phase-desc strong { color:var(--color-text-primary); }
+        .school-footer { text-align:center;padding:var(--space-3xl) 40px;border-top:1px solid rgba(255,255,255,0.06); }
+        .school-footer-copy { font-size:12px;color:var(--color-text-muted);letter-spacing:1px; }
+        @media (max-width:700px) { .stats-grid{grid-template-columns:repeat(2,1fr);} .school-hero{padding:var(--space-3xl) 20px;} .info-section{padding:var(--space-2xl) 20px;} }
+    </style>
+</head>
+<body>
+
+    <a href="/" class="school-back">&larr; All Schools</a>
+
+    <section class="school-hero">
+        <div style="height:80px;width:auto;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:40px;padding:0 20px;font-family:var(--font-tactical);font-size:28px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">INS</div>
+        <h1 class="school-hero-headline">Army Instructor Badge</h1>
+        <p class="school-hero-sub">Recognizing Soldiers who serve as instructors at Army schools and training centers &mdash; the Instructor Badge comes in three degrees: Basic, Senior, and Master.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">At a Glance</div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">Varies</span>
+                <div class="stat-label">Duration</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">3</span>
+                <div class="stat-label">Degrees</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">4+ Yrs</span>
+                <div class="stat-label">Master Req</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">TRADOC</span>
+                <div class="stat-label">Authority</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Course Overview</div>
+        <h2>What is the Army Instructor Badge?</h2>
+        <p>The Army Instructor Badge is an identification badge awarded to Soldiers who serve as instructors at institutional Army training venues under the U.S. Army Training and Doctrine Command (TRADOC). The badge recognizes the critical contribution that quality instruction makes to Army readiness.</p>
+        <p>It comes in three degrees: Basic Instructor (awarded upon completion of instructor certification and one year of service), Senior Instructor (requires completion of the Faculty Development Program Phase II and three years of instructor service), and Master Instructor (requires completion of TRADOC's Master Instructor Program, demonstrating exceptional teaching ability, instructional design skills, and mentorship). The Master Instructor Badge is relatively rare and signifies the highest level of teaching proficiency in the Army.</p>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Course Phases</div>
+        <h2>Three Degrees of Excellence</h2>
+
+        <ul class="phase-list">
+            <li>
+                <span class="phase-day">2-4 Wks</span>
+                <span class="phase-desc"><strong>Instructor Certification</strong> &mdash; Army Basic Instructor Course (ABIC), small group instructor training, or equivalent certification. Covers instructional methods, lesson plan development, and classroom management.</span>
+            </li>
+            <li>
+                <span class="phase-day">Progressive</span>
+                <span class="phase-desc"><strong>Faculty Development Program</strong> &mdash; Phase I (new instructor orientation), Phase II (advanced facilitation and evaluation techniques, required for Senior badge), Phase III (curriculum development and program management).</span>
+            </li>
+            <li>
+                <span class="phase-day">Selection</span>
+                <span class="phase-desc"><strong>Master Instructor Program</strong> &mdash; TRADOC Master Instructor evaluation board, portfolio review, teaching demonstration, peer evaluation, and demonstrated excellence over 4+ years of instructor service.</span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="info-section">
+        <div class="info-section-label">Key Standards</div>
+        <h2>What It Takes</h2>
+        <p>Basic: Complete instructor certification + 1 year instructor duty. Senior: Complete Faculty Development Phase II + 3 years instructor duty with documented excellence. Master: Complete Master Instructor Program evaluation + 4+ years with exceptional teaching record, published instructional materials, and mentorship of other instructors.</p>
+        <p>All three degrees require an active instructor assignment at a TRADOC school or accredited training institution.</p>
+    </section>
+
+    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
+        <div class="info-section-label">Coming Soon</div>
+        <h2>Gear, Courses &amp; Training Guides</h2>
+        <p style="max-width: 500px; margin: 0 auto;">We're building Instructor Badge-specific resources, faculty development guides, and training information. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    </section>
+
+    <footer class="school-footer">
+        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    </footer>
+
+</body>
+</html>
