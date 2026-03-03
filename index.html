@@ -8,8 +8,102 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
     <meta name="theme-color" content="#000000">
     <style>
+        /* ── Hub Top Bar ── */
+        .hub-topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+        .hub-topbar-brand {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--color-gold);
+            text-decoration: none;
+        }
+        .hub-topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .hub-topbar .nav-cart-btn {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--color-text-secondary);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .hub-topbar .nav-cart-btn:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold);
+        }
+        .hub-topbar .nav-auth-btn {
+            background: var(--color-gold);
+            color: #000;
+            border: none;
+            padding: 6px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s;
+        }
+        .hub-topbar .nav-auth-btn:hover { opacity: 0.85; }
+        .hub-topbar .nav-user-info {
+            display: none;
+            align-items: center;
+            gap: 12px;
+        }
+        .hub-topbar .nav-user-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+        }
+        .hub-topbar .nav-sign-out {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--color-text-secondary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .hub-topbar .nav-sign-out:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold);
+        }
+        .hub-topbar .hub-pricing-link {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+        .hub-topbar .hub-pricing-link:hover { color: var(--color-gold); }
         .hub-hero {
             min-height: 60vh;
             display: flex;
@@ -17,7 +111,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: var(--space-4xl) 40px var(--space-3xl);
+            padding: calc(var(--space-4xl) + 56px) 40px var(--space-3xl);
         }
         .hub-hero-title {
             font-size: clamp(2.5rem, 6vw, 4.5rem);
@@ -222,6 +316,20 @@
     </style>
 </head>
 <body>
+
+    <!-- TOP BAR -->
+    <div class="hub-topbar">
+        <a href="/" class="hub-topbar-brand">Ranger Beers</a>
+        <div class="hub-topbar-right">
+            <a href="/pricing.html" class="hub-pricing-link">Pricing</a>
+            <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+            <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+            <div class="nav-user-info" id="nav-user-info">
+                <span class="nav-user-name" id="nav-user-name"></span>
+                <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+            </div>
+        </div>
+    </div>
 
     <section class="hub-hero">
         <h1 class="hub-hero-title"><span>Ranger Beers</span> Supply Co.</h1>
@@ -668,5 +776,12 @@
         <div class="hub-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
     </footer>
 
+    <div hidden id="snipcart"
+         data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4"
+         data-config-modal-style="side">
+    </div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="course-auth.js"></script>
+    <script>RangerAuth.initAuthUI();</script>
 </body>
 </html>

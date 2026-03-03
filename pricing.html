@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <meta name="theme-color" content="#000000">
+    <style>
+        .pricing-topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+        .pricing-topbar-brand {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--color-gold);
+            text-decoration: none;
+        }
+        .pricing-topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .pricing-topbar .nav-cart-btn,
+        .pricing-topbar .nav-auth-btn,
+        .pricing-topbar .nav-user-info,
+        .pricing-topbar .nav-user-name,
+        .pricing-topbar .nav-sign-out {
+            /* inherit hub-topbar styles via shared class names */
+        }
+        .pricing-topbar .nav-cart-btn {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--color-text-secondary);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .pricing-topbar .nav-auth-btn {
+            background: var(--color-gold);
+            color: #000;
+            border: none;
+            padding: 6px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .pricing-topbar .nav-user-info {
+            display: none;
+            align-items: center;
+            gap: 12px;
+        }
+        .pricing-topbar .nav-user-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+        }
+        .pricing-topbar .nav-sign-out {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--color-text-secondary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .pricing-hero {
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: calc(var(--space-4xl) + 56px) 40px var(--space-2xl);
+        }
+        .pricing-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: var(--space-md);
+        }
+        .pricing-hero h1 span { color: var(--color-gold); }
+        .pricing-hero p {
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .pricing-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px var(--space-4xl);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-lg);
+        }
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-2xl) var(--space-xl);
+            display: flex;
+            flex-direction: column;
+        }
+        .pricing-card--featured {
+            border-color: var(--color-gold-border);
+            background: rgba(197, 179, 88, 0.03);
+            position: relative;
+        }
+        .pricing-card--featured::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-gold);
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            padding: 4px 16px;
+            border-radius: 20px;
+        }
+        .pricing-tier-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: var(--space-sm);
+        }
+        .pricing-tier-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: var(--space-xs);
+        }
+        .pricing-price {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            color: var(--color-gold);
+            margin-bottom: var(--space-xs);
+        }
+        .pricing-price-note {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-xl);
+        }
+        .pricing-features {
+            list-style: none;
+            margin-bottom: var(--space-xl);
+            flex: 1;
+        }
+        .pricing-features li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .pricing-features li::before {
+            content: '\2713';
+            color: var(--color-gold);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .pricing-cta {
+            text-align: center;
+        }
+        .pricing-cta .btn {
+            width: 100%;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* ── Individual Courses Section ── */
+        .pricing-individual {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 40px var(--space-4xl);
+            text-align: center;
+        }
+        .pricing-individual h2 {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 800;
+            margin-bottom: var(--space-md);
+        }
+        .pricing-individual p {
+            color: var(--color-text-secondary);
+            max-width: 560px;
+            margin: 0 auto var(--space-xl);
+            line-height: 1.6;
+        }
+        .individual-price-range {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-glass);
+            padding: var(--space-lg) var(--space-2xl);
+        }
+        .individual-price-range .price-tag {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--color-gold);
+        }
+        .individual-price-range .price-desc {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            text-align: left;
+        }
+
+        /* ── FAQ ── */
+        .pricing-faq {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 40px var(--space-4xl);
+        }
+        .pricing-faq h2 {
+            text-align: center;
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 800;
+            margin-bottom: var(--space-xl);
+        }
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: var(--space-lg) 0;
+        }
+        .faq-item h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+        }
+        .faq-item p {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .pricing-footer {
+            text-align: center;
+            padding: var(--space-3xl) 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .pricing-footer-copy {
+            font-size: 12px;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 420px;
+            }
+            .pricing-hero { padding-left: 20px; padding-right: 20px; }
+            .pricing-individual { padding-left: 20px; padding-right: 20px; }
+            .pricing-faq { padding-left: 20px; padding-right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pricing-topbar">
+        <a href="/" class="pricing-topbar-brand">Ranger Beers</a>
+        <div class="pricing-topbar-right">
+            <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+            <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+            <div class="nav-user-info" id="nav-user-info">
+                <span class="nav-user-name" id="nav-user-name"></span>
+                <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="pricing-hero">
+        <h1><span>Training Plans</span> &amp; Pricing</h1>
+        <p>From individual courses to full site access. One-time purchase, no subscriptions, no recurring fees.</p>
+    </section>
+
+    <!-- ════════════ TIER CARDS ════════════ -->
+    <div class="pricing-grid">
+
+        <!-- SCOUT -->
+        <div class="pricing-card">
+            <div class="pricing-tier-label">Tier 1</div>
+            <div class="pricing-tier-name">Scout</div>
+            <div class="pricing-price">$49</div>
+            <div class="pricing-price-note">One-time purchase</div>
+            <ul class="pricing-features">
+                <li>Any 3 school passes of your choice</li>
+                <li>Full course access for 3 schools</li>
+                <li>All gear shop access</li>
+                <li>Progress tracking &amp; quizzes</li>
+                <li>Future content updates for chosen schools</li>
+            </ul>
+            <div class="pricing-cta">
+                <button class="btn btn-outline snipcart-add-item"
+                    data-item-id="tier-scout"
+                    data-item-name="Scout Plan — 3 School Passes"
+                    data-item-price="49.00"
+                    data-item-url="/pricing.html"
+                    data-item-description="Any 3 school passes of your choice">
+                    Get Scout — $49
+                </button>
+            </div>
+        </div>
+
+        <!-- WARRIOR (featured) -->
+        <div class="pricing-card pricing-card--featured">
+            <div class="pricing-tier-label">Tier 2</div>
+            <div class="pricing-tier-name">Warrior</div>
+            <div class="pricing-price">$99</div>
+            <div class="pricing-price-note">One-time purchase</div>
+            <ul class="pricing-features">
+                <li>Any 10 school passes of your choice</li>
+                <li>All individual courses included</li>
+                <li>Full gear shop access</li>
+                <li>Progress tracking &amp; quizzes</li>
+                <li>Priority access to new courses</li>
+                <li>Future content updates for chosen schools</li>
+            </ul>
+            <div class="pricing-cta">
+                <button class="btn btn-primary snipcart-add-item"
+                    data-item-id="tier-warrior"
+                    data-item-name="Warrior Plan — 10 School Passes + All Courses"
+                    data-item-price="99.00"
+                    data-item-url="/pricing.html"
+                    data-item-description="Any 10 school passes + all individual courses">
+                    Get Warrior — $99
+                </button>
+            </div>
+        </div>
+
+        <!-- ALL ACCESS -->
+        <div class="pricing-card">
+            <div class="pricing-tier-label">Tier 3</div>
+            <div class="pricing-tier-name">All Access</div>
+            <div class="pricing-price">$199</div>
+            <div class="pricing-price-note">One-time purchase</div>
+            <ul class="pricing-features">
+                <li>Every school pass — all 50+ schools</li>
+                <li>Every course, current and future</li>
+                <li>Full gear shop access</li>
+                <li>Progress tracking &amp; quizzes</li>
+                <li>All future schools &amp; content</li>
+                <li>Coaching resources &amp; study guides</li>
+                <li>Lifetime access — no renewals</li>
+            </ul>
+            <div class="pricing-cta">
+                <button class="btn btn-primary snipcart-add-item"
+                    data-item-id="tier-all-access"
+                    data-item-name="All Access Plan — Everything"
+                    data-item-price="199.00"
+                    data-item-url="/pricing.html"
+                    data-item-description="All schools, all courses, all future content, lifetime access">
+                    Get All Access — $199
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ════════════ INDIVIDUAL COURSES ════════════ -->
+    <section class="pricing-individual" style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--space-3xl);">
+        <div class="pricing-tier-label" style="margin-bottom: var(--space-lg);">A La Carte</div>
+        <h2>Individual Courses &amp; School Passes</h2>
+        <p>Not ready for a plan? Buy exactly what you need. Every course has Module 1 free so you can try before you buy.</p>
+        <div class="individual-price-range">
+            <div>
+                <div class="price-tag">$3 – $10</div>
+                <div class="price-desc">Per individual course</div>
+            </div>
+        </div>
+        <div style="margin-top: var(--space-lg);">
+            <div class="individual-price-range">
+                <div>
+                    <div class="price-tag">$15 – $35</div>
+                    <div class="price-desc">Per school pass (all courses in one school)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════ FAQ ════════════ -->
+    <section class="pricing-faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h3>Is this a subscription?</h3>
+            <p>No. All plans are one-time purchases. You pay once and keep access forever.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What's included in a school pass?</h3>
+            <p>A school pass unlocks every course within a single school. For example, the Ranger School pass gives you access to all 19 Ranger courses — land nav, knots, battle drills, PT programs, and more.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Can I try before I buy?</h3>
+            <p>Yes. Module 1 of every course is free to preview. Just sign in and start learning.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Do plans include gear?</h3>
+            <p>Plans include access to courses and training content. Gear is purchased separately through each school's shop.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What if new courses are added?</h3>
+            <p>All Access members get every new course automatically. School pass holders get new courses added to their school. Individual course purchases cover that course only.</p>
+        </div>
+    </section>
+
+    <footer class="pricing-footer">
+        <div class="pricing-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    </footer>
+
+    <div hidden id="snipcart"
+         data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4"
+         data-config-modal-style="side">
+    </div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="course-auth.js"></script>
+    <script>RangerAuth.initAuthUI();</script>
+</body>
+</html>

@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
     <meta name="theme-color" content="#000000">
     <style>
         .school-hero {
@@ -27,38 +29,10 @@
             inset: 0;
             background: radial-gradient(ellipse at center bottom, rgba(255, 255, 255, 0.04), transparent 60%);
         }
-        .school-hero-tab {
-            max-height: 80px;
-            margin-bottom: var(--space-xl);
-            position: relative;
-        }
-        .school-hero-headline {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: var(--space-md);
-            position: relative;
-        }
-        .school-hero-sub {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-secondary);
-            max-width: 640px;
-            line-height: 1.6;
-            position: relative;
-        }
-        .school-back {
-            position: fixed;
-            top: var(--space-lg);
-            left: var(--space-lg);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            z-index: 100;
-            transition: color 0.3s;
-        }
-        .school-back:hover { color: var(--color-gold); }
+        .school-hero-tab { max-height: 80px; margin-bottom: var(--space-xl); position: relative; }
+        .school-hero-headline { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; letter-spacing: -1px; margin-bottom: var(--space-md); position: relative; }
+        .school-hero-sub { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--color-text-secondary); max-width: 640px; line-height: 1.6; position: relative; }
+        .school-hero-cta { display: flex; gap: var(--space-md); margin-top: var(--space-xl); position: relative; }
 
         .info-section { max-width: 900px; margin: 0 auto; padding: var(--space-3xl) 40px; }
         .info-section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-lg); }
@@ -83,22 +57,77 @@
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .school-hero { padding: var(--space-3xl) 20px; }
             .info-section { padding: var(--space-2xl) 20px; }
+            .school-hero-cta { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Sections</span></li>
+                        <li><a href="index.html#overview">Course Overview</a></li>
+                        <li><a href="index.html#phases">Course Phases</a></li>
+                        <li><a href="index.html#standards-section">Key Standards</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">EIB Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Coming Soon</span></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
     <section class="school-hero">
         <img src="../images/badges/eib.svg" alt="Expert Infantry Badge" class="school-hero-tab">
         <h1 class="school-hero-headline">Expert Infantry Badge</h1>
         <p class="school-hero-sub">The mark of infantry excellence. Five days of written testing, hands-on warrior tasks, and a 12-mile ruck march that separates experts from the rest.</p>
+        <div class="school-hero-cta">
+            <a href="shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="courses.html" class="btn btn-outline">Start Training</a>
+        </div>
     </section>
 
-    <section class="info-section">
+    <section class="info-section" id="overview">
         <div class="info-section-label">At a Glance</div>
-
         <div class="stats-grid">
             <div class="stat-card">
                 <span class="stat-number">5</span>
@@ -126,10 +155,9 @@
         <p>EIB testing is conducted at the unit level, typically once per year. The low graduation rate (~20%) reflects the zero-deficiency standard on most tasks: a single mistake on a graded lane means immediate failure. Soldiers often spend months preparing for a testing window that lasts less than a week.</p>
     </section>
 
-    <section class="info-section">
+    <section class="info-section" id="phases">
         <div class="info-section-label">Course Phases</div>
         <h2>5 Days of Testing</h2>
-
         <ul class="phase-list">
             <li>
                 <span class="phase-day">Day 1</span>
@@ -150,7 +178,7 @@
         </ul>
     </section>
 
-    <section class="info-section">
+    <section class="info-section" id="standards-section">
         <div class="info-section-label">Key Standards</div>
         <h2>What It Takes</h2>
         <p>Candidates must be MOS 11-series (Infantry) or 18-series (Special Forces). The APFT requires an extended-scale score of 80% per event. All hands-on tasks are graded GO/NO-GO, and candidates are typically allowed only one retry across all lanes. The 12-mile ruck march must be completed within 3 hours.</p>
@@ -158,14 +186,36 @@
     </section>
 
     <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width: 500px; margin: 0 auto;">We're building EIB-specific study guides, task breakdowns, and prep courses. Check back soon or head to Ranger School for a preview of what's coming.</p>
+        <div class="info-section-label">Get Started</div>
+        <h2>Gear, Courses &amp; Training</h2>
+        <p style="max-width: 500px; margin: 0 auto var(--space-xl);">EIB-specific task guides, training courses, and prep gear. Everything you need to earn your badge.</p>
+        <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+            <a href="courses.html" class="btn btn-primary">Browse Courses</a>
+            <a href="shop.html" class="btn btn-outline">Shop Gear</a>
+        </div>
     </section>
 
     <footer class="school-footer">
         <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
     </footer>
 
+    <div hidden id="snipcart"
+         data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4"
+         data-config-modal-style="side">
+    </div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../course-auth.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        // Mobile nav toggle
+        (function(){
+            const toggle = document.querySelector('.nav-toggle');
+            const nav = document.getElementById('nav');
+            if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('nav-open'));
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 40);
+            });
+        })();
+    </script>
 </body>
 </html>

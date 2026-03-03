@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sniper School (USASS) — Ranger Beers Supply Co.</title>
+    <title>US Army Sniper School (USASS) — Ranger Beers Supply Co.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
     <meta name="theme-color" content="#000000">
     <style>
         .school-hero {
@@ -27,156 +29,109 @@
             inset: 0;
             background: radial-gradient(ellipse at center bottom, rgba(34, 197, 94, 0.08), transparent 60%);
         }
-        .school-hero-tab {
-            max-height: 80px;
-            margin-bottom: var(--space-xl);
-            position: relative;
-        }
-        .school-hero-headline {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: var(--space-md);
-            position: relative;
-        }
-        .school-hero-sub {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-secondary);
-            max-width: 640px;
-            line-height: 1.6;
-            position: relative;
-        }
-        .school-hero-cta {
-            display: flex;
-            gap: var(--space-md);
-            margin-top: var(--space-xl);
-            position: relative;
-        }
-        .school-back {
-            position: fixed;
-            top: var(--space-lg);
-            left: var(--space-lg);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            z-index: 100;
-            transition: color 0.3s;
-        }
-        .school-back:hover { color: var(--color-gold); }
+        .school-hero-tab { max-height: 80px; margin-bottom: var(--space-xl); position: relative; }
+        .school-hero-headline { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; letter-spacing: -1px; margin-bottom: var(--space-md); position: relative; }
+        .school-hero-sub { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--color-text-secondary); max-width: 640px; line-height: 1.6; position: relative; }
+        .school-hero-cta { display: flex; gap: var(--space-md); margin-top: var(--space-xl); position: relative; }
 
-        .info-section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: var(--space-3xl) 40px;
-        }
-        .info-section-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--color-gold);
-            margin-bottom: var(--space-lg);
-        }
-        .info-section h2 {
-            font-size: clamp(1.5rem, 3vw, 2.25rem);
-            font-weight: 800;
-            margin-bottom: var(--space-lg);
-        }
-        .info-section p {
-            color: var(--color-text-secondary);
-            line-height: 1.8;
-            margin-bottom: var(--space-lg);
-        }
+        .info-section { max-width: 900px; margin: 0 auto; padding: var(--space-3xl) 40px; }
+        .info-section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-lg); }
+        .info-section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; margin-bottom: var(--space-lg); }
+        .info-section p { color: var(--color-text-secondary); line-height: 1.8; margin-bottom: var(--space-lg); }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-md);
-            margin: var(--space-2xl) 0;
-        }
-        .stat-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-glass);
-            padding: var(--space-xl) var(--space-md);
-            text-align: center;
-        }
-        .stat-number {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 900;
-            color: var(--color-gold);
-            display: block;
-        }
-        .stat-label {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--color-text-secondary);
-            margin-top: var(--space-xs);
-        }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin: var(--space-2xl) 0; }
+        .stat-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-glass); padding: var(--space-xl) var(--space-md); text-align: center; }
+        .stat-number { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 900; color: var(--color-gold); display: block; }
+        .stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-text-secondary); margin-top: var(--space-xs); }
 
-        .phase-list {
-            list-style: none;
-            margin: var(--space-xl) 0;
-        }
-        .phase-list li {
-            padding: var(--space-md) 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            gap: var(--space-md);
-        }
-        .phase-list .phase-day {
-            font-weight: 700;
-            color: var(--color-gold);
-            min-width: 80px;
-            font-family: var(--font-tactical);
-            font-size: 13px;
-        }
-        .phase-list .phase-desc {
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-        .phase-list .phase-desc strong {
-            color: var(--color-text-primary);
-        }
+        .phase-list { list-style: none; margin: var(--space-xl) 0; }
+        .phase-list li { padding: var(--space-md) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); display: flex; gap: var(--space-md); }
+        .phase-list .phase-day { font-weight: 700; color: var(--color-gold); min-width: 80px; font-family: var(--font-tactical); font-size: 13px; }
+        .phase-list .phase-desc { color: var(--color-text-secondary); line-height: 1.6; }
+        .phase-list .phase-desc strong { color: var(--color-text-primary); }
 
-        .school-footer {
-            text-align: center;
-            padding: var(--space-3xl) 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .school-footer-copy {
-            font-size: 12px;
-            color: var(--color-text-muted);
-            letter-spacing: 1px;
-        }
+        .school-footer { text-align: center; padding: var(--space-3xl) 40px; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+        .school-footer-copy { font-size: 12px; color: var(--color-text-muted); letter-spacing: 1px; }
 
         @media (max-width: 700px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .school-hero { padding: var(--space-3xl) 20px; }
             .info-section { padding: var(--space-2xl) 20px; }
+            .school-hero-cta { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Sections</span></li>
+                        <li><a href="index.html#overview">Course Overview</a></li>
+                        <li><a href="index.html#phases">Course Phases</a></li>
+                        <li><a href="index.html#standards-section">Key Standards</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Sniper Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Coming Soon</span></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
     <section class="school-hero">
         <img src="../images/badges/sniper-badge.svg" alt="Sniper Badge" class="school-hero-tab">
         <h1 class="school-hero-headline">US Army Sniper School</h1>
         <p class="school-hero-sub">The United States Army Sniper School (USASS) at Fort Moore, Georgia produces the Army's most precise marksmen &mdash; elite soldiers trained in long-range engagement, field craft, and covert observation.</p>
+        <div class="school-hero-cta">
+            <a href="shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="courses.html" class="btn btn-outline">Start Training</a>
+        </div>
     </section>
 
-    <section class="info-section">
+    <section class="info-section" id="overview">
         <div class="info-section-label">At a Glance</div>
-
         <div class="stats-grid">
             <div class="stat-card">
-                <span class="stat-number">7</span>
-                <div class="stat-label">Weeks</div>
+                <span class="stat-number">7 wks</span>
+                <div class="stat-label">Duration</div>
             </div>
             <div class="stat-card">
                 <span class="stat-number">3</span>
@@ -188,7 +143,7 @@
             </div>
             <div class="stat-card">
                 <span class="stat-number">E-4+</span>
-                <div class="stat-label">11B/19D</div>
+                <div class="stat-label">11B/19D Eligibility</div>
             </div>
         </div>
     </section>
@@ -200,10 +155,9 @@
         <p>Graduates return to their units as qualified snipers, capable of operating in two-man teams deep within hostile territory. The course is one of the most sought-after specialty schools in the Army, demanding exceptional patience, discipline, and shooting ability from every candidate.</p>
     </section>
 
-    <section class="info-section">
+    <section class="info-section" id="phases">
         <div class="info-section-label">Course Phases</div>
         <h2>7 Weeks of Precision</h2>
-
         <ul class="phase-list">
             <li>
                 <span class="phase-day">Wks 1-2</span>
@@ -220,7 +174,7 @@
         </ul>
     </section>
 
-    <section class="info-section">
+    <section class="info-section" id="standards-section">
         <div class="info-section-label">Key Standards</div>
         <h2>What It Takes</h2>
         <p>Students must qualify on both the M24 Sniper Weapon System and the M110 Semi-Automatic Sniper System, meeting strict accuracy standards at ranges out to 800 meters. Stalking exercises require soldiers to move undetected within close range of trained observer instructors and deliver a firing solution &mdash; the stalk pass rate is one of the course's highest attrition points.</p>
@@ -228,14 +182,36 @@
     </section>
 
     <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width: 500px; margin: 0 auto;">We're building Sniper School-specific packing lists, training courses, and marksmanship prep guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+        <div class="info-section-label">Get Started</div>
+        <h2>Gear, Courses &amp; Training</h2>
+        <p style="max-width: 500px; margin: 0 auto var(--space-xl);">Sniper School-specific packing lists, training courses, and marksmanship prep guides. Everything you need to earn your tab.</p>
+        <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+            <a href="courses.html" class="btn btn-primary">Browse Courses</a>
+            <a href="shop.html" class="btn btn-outline">Shop Gear</a>
+        </div>
     </section>
 
     <footer class="school-footer">
         <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
     </footer>
 
+    <div hidden id="snipcart"
+         data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4"
+         data-config-modal-style="side">
+    </div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../course-auth.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        // Mobile nav toggle
+        (function(){
+            const toggle = document.querySelector('.nav-toggle');
+            const nav = document.getElementById('nav');
+            if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('nav-open'));
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 40);
+            });
+        })();
+    </script>
 </body>
 </html>

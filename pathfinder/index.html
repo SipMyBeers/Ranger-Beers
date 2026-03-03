@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
     <meta name="theme-color" content="#000000">
     <style>
         .school-hero {
@@ -27,146 +29,105 @@
             inset: 0;
             background: radial-gradient(ellipse at center bottom, rgba(245, 158, 11, 0.08), transparent 60%);
         }
-        .school-hero-tab {
-            max-height: 80px;
-            margin-bottom: var(--space-xl);
-            position: relative;
-        }
-        .school-hero-headline {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: var(--space-md);
-            position: relative;
-        }
-        .school-hero-sub {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-secondary);
-            max-width: 640px;
-            line-height: 1.6;
-            position: relative;
-        }
-        .school-back {
-            position: fixed;
-            top: var(--space-lg);
-            left: var(--space-lg);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            z-index: 100;
-            transition: color 0.3s;
-        }
-        .school-back:hover { color: var(--color-gold); }
+        .school-hero-tab { max-height: 80px; margin-bottom: var(--space-xl); position: relative; }
+        .school-hero-headline { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; letter-spacing: -1px; margin-bottom: var(--space-md); position: relative; }
+        .school-hero-sub { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--color-text-secondary); max-width: 640px; line-height: 1.6; position: relative; }
+        .school-hero-cta { display: flex; gap: var(--space-md); margin-top: var(--space-xl); position: relative; }
 
-        .info-section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: var(--space-3xl) 40px;
-        }
-        .info-section-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--color-gold);
-            margin-bottom: var(--space-lg);
-        }
-        .info-section h2 {
-            font-size: clamp(1.5rem, 3vw, 2.25rem);
-            font-weight: 800;
-            margin-bottom: var(--space-lg);
-        }
-        .info-section p {
-            color: var(--color-text-secondary);
-            line-height: 1.8;
-            margin-bottom: var(--space-lg);
-        }
+        .info-section { max-width: 900px; margin: 0 auto; padding: var(--space-3xl) 40px; }
+        .info-section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-lg); }
+        .info-section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; margin-bottom: var(--space-lg); }
+        .info-section p { color: var(--color-text-secondary); line-height: 1.8; margin-bottom: var(--space-lg); }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-md);
-            margin: var(--space-2xl) 0;
-        }
-        .stat-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-glass);
-            padding: var(--space-xl) var(--space-md);
-            text-align: center;
-        }
-        .stat-number {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 900;
-            color: var(--color-gold);
-            display: block;
-        }
-        .stat-label {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--color-text-secondary);
-            margin-top: var(--space-xs);
-        }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin: var(--space-2xl) 0; }
+        .stat-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-glass); padding: var(--space-xl) var(--space-md); text-align: center; }
+        .stat-number { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 900; color: var(--color-gold); display: block; }
+        .stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-text-secondary); margin-top: var(--space-xs); }
 
-        .phase-list {
-            list-style: none;
-            margin: var(--space-xl) 0;
-        }
-        .phase-list li {
-            padding: var(--space-md) 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            gap: var(--space-md);
-        }
-        .phase-list .phase-day {
-            font-weight: 700;
-            color: var(--color-gold);
-            min-width: 80px;
-            font-family: var(--font-tactical);
-            font-size: 13px;
-        }
-        .phase-list .phase-desc {
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-        .phase-list .phase-desc strong {
-            color: var(--color-text-primary);
-        }
+        .phase-list { list-style: none; margin: var(--space-xl) 0; }
+        .phase-list li { padding: var(--space-md) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); display: flex; gap: var(--space-md); }
+        .phase-list .phase-day { font-weight: 700; color: var(--color-gold); min-width: 80px; font-family: var(--font-tactical); font-size: 13px; }
+        .phase-list .phase-desc { color: var(--color-text-secondary); line-height: 1.6; }
+        .phase-list .phase-desc strong { color: var(--color-text-primary); }
 
-        .school-footer {
-            text-align: center;
-            padding: var(--space-3xl) 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .school-footer-copy {
-            font-size: 12px;
-            color: var(--color-text-muted);
-            letter-spacing: 1px;
-        }
+        .school-footer { text-align: center; padding: var(--space-3xl) 40px; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+        .school-footer-copy { font-size: 12px; color: var(--color-text-muted); letter-spacing: 1px; }
 
         @media (max-width: 700px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .school-hero { padding: var(--space-3xl) 20px; }
             .info-section { padding: var(--space-2xl) 20px; }
+            .school-hero-cta { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Sections</span></li>
+                        <li><a href="index.html#overview">Course Overview</a></li>
+                        <li><a href="index.html#phases">Course Phases</a></li>
+                        <li><a href="index.html#standards-section">Key Standards</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Pathfinder Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Coming Soon</span></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
     <section class="school-hero">
         <img src="../images/badges/pathfinder-badge.svg" alt="Pathfinder Badge" class="school-hero-tab">
         <h1 class="school-hero-headline">Pathfinder School</h1>
         <p class="school-hero-sub">The Army's premier course in navigating aircraft to landing and drop zones. Three weeks of precision navigation, sling-load operations, and air traffic control at Fort Moore, Georgia.</p>
+        <div class="school-hero-cta">
+            <a href="shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="courses.html" class="btn btn-outline">Start Training</a>
+        </div>
     </section>
 
-    <section class="info-section">
+    <section class="info-section" id="overview">
         <div class="info-section-label">At a Glance</div>
-
         <div class="stats-grid">
             <div class="stat-card">
                 <span class="stat-number">3 wks</span>
@@ -190,14 +151,13 @@
     <section class="info-section">
         <div class="info-section-label">Course Overview</div>
         <h2>What is Pathfinder School?</h2>
-        <p>Pathfinder School trains soldiers to establish and operate helicopter landing zones, parachute drop zones, and sling-load operations. Located at Fort Moore, Georgia, the course produces experts in navigating Army aviation assets to precise ground locations under any conditions &mdash; day or night, in any terrain.</p>
-        <p>Graduates earn the Pathfinder Badge (the "torch") and serve as the ground link between aviation and ground forces. The course is one of the most academically challenging in the Army, with a heavy emphasis on precision measurements, air traffic control procedures, and rapid computation under pressure.</p>
+        <p>The U.S. Army Pathfinder Course is conducted at Fort Moore (formerly Fort Benning), Georgia, by the 1st Battalion (Airborne), 507th Infantry Regiment. The three-week course trains soldiers in precision navigation of aircraft to drop zones and landing zones, sling-load operations, and ground-based air traffic control. Graduates are awarded the Pathfinder Badge &mdash; the torch and wings insignia symbolizing mastery of these critical skills.</p>
+        <p>Pathfinder School is one of the most academically demanding courses in the U.S. military. It transforms soldiers into specialists capable of establishing and operating drop zones, landing zones, and helicopter landing sites under any conditions. The course emphasizes mathematical precision, technical proficiency, and the ability to perform flawlessly under pressure.</p>
     </section>
 
-    <section class="info-section">
+    <section class="info-section" id="phases">
         <div class="info-section-label">Course Phases</div>
-        <h2>3 Weeks to the Torch</h2>
-
+        <h2>3 Weeks to the Pathfinder Badge</h2>
         <ul class="phase-list">
             <li>
                 <span class="phase-day">Week 1</span>
@@ -205,31 +165,53 @@
             </li>
             <li>
                 <span class="phase-day">Week 2</span>
-                <span class="phase-desc"><strong>Sling-Load Operations</strong> &mdash; Rigging and inspection of all standard Army sling-load configurations. Students learn cargo preparation, helicopter hookup procedures, and load-calculation methods. Culminates in live sling-load exercises with rotary-wing aircraft.</span>
+                <span class="phase-desc"><strong>Sling-Load Operations</strong> &mdash; Rigging and inspection of all standard Army sling-load configurations. Students learn cargo preparation, helicopter hookup procedures, and load-calculation methods. Culminates in live sling-load exercises.</span>
             </li>
             <li>
                 <span class="phase-day">Week 3</span>
-                <span class="phase-desc"><strong>Air Traffic Control &amp; FTX</strong> &mdash; Ground-based air traffic control of rotary and fixed-wing aircraft. Students establish and operate austere landing strips and conduct the final field training exercise integrating all skills under tactical conditions.</span>
+                <span class="phase-desc"><strong>Air Traffic Control &amp; FTX</strong> &mdash; Ground-based air traffic control of rotary and fixed-wing aircraft. Students establish and operate austere landing strips and conduct the final field training exercise integrating all skills.</span>
             </li>
         </ul>
     </section>
 
-    <section class="info-section">
+    <section class="info-section" id="standards-section">
         <div class="info-section-label">Key Standards</div>
         <h2>What It Takes</h2>
-        <p>Candidates must hold the rank of E-4 or above and meet APFT standards. Each phase culminates in written and practical examinations with a minimum 70% passing score. Precision is paramount &mdash; a single dropped decimal in a wind calculation or an incorrectly set navigational aid can result in failure.</p>
-        <p>The academic rigor is the primary challenge. Students must memorize extensive technical data including aircraft specifications, sling-load weight limits, and air traffic control procedures. The course moves fast, and there is little room for error.</p>
+        <p>Candidates must hold rank E-4 or above and meet APFT standards. Each phase culminates in written and practical examinations with minimum 70% passing score. Precision is paramount &mdash; a single dropped decimal in a wind calculation or incorrectly set navigational aid can result in failure.</p>
+        <p>The academic rigor of Pathfinder School is legendary among Army courses. With an approximate 50% graduation rate, the course demands exceptional attention to detail and the ability to perform complex calculations under stress. There is no room for error when guiding aircraft to a landing zone.</p>
     </section>
 
     <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width: 500px; margin: 0 auto;">We're building Pathfinder-specific packing lists, training courses, and prep guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+        <div class="info-section-label">Get Started</div>
+        <h2>Gear, Courses &amp; Training</h2>
+        <p style="max-width: 500px; margin: 0 auto var(--space-xl);">Pathfinder-specific study guides, training courses, and prep materials. Everything you need to earn your torch.</p>
+        <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+            <a href="courses.html" class="btn btn-primary">Browse Courses</a>
+            <a href="shop.html" class="btn btn-outline">Shop Gear</a>
+        </div>
     </section>
 
     <footer class="school-footer">
         <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
     </footer>
 
+    <div hidden id="snipcart"
+         data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4"
+         data-config-modal-style="side">
+    </div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../course-auth.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        // Mobile nav toggle
+        (function(){
+            const toggle = document.querySelector('.nav-toggle');
+            const nav = document.getElementById('nav');
+            if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('nav-open'));
+            window.addEventListener('scroll', () => {
+                nav.classList.toggle('scrolled', window.scrollY > 40);
+            });
+        })();
+    </script>
 </body>
 </html>
