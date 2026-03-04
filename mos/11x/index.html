@@ -15,14 +15,22 @@
     <meta name="theme-color" content="#000000">
     <style>
         .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(34,197,94,0.08), transparent 60%); }
+        
+        /* Matching Ranger Phase Card Styles */
         .phase-card-btn[data-phase="bct"]::before { background: radial-gradient(ellipse at center, rgba(197, 179, 88, 0.08), transparent 70%); }
-        .phase-card-btn[data-phase="ait-p1"]::before { background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08), transparent 70%); }
-        .phase-card-btn[data-phase="ait-p2"]::before { background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.08), transparent 70%); }
-        .phase-card-btn[data-phase="grad"]::before { background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08), transparent 70%); }
+        .phase-card-btn[data-phase="ait1"]::before { background: radial-gradient(ellipse at center, rgba(239, 68, 68, 0.08), transparent 70%); }
+        .phase-card-btn[data-phase="ait2"]::before { background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08), transparent 70%); }
+        .phase-card-btn[data-phase="unit"]::before { background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.08), transparent 70%); }
+        
         .phase-card-btn.active[data-phase="bct"] { border-color: var(--color-gold); box-shadow: 0 0 20px rgba(197, 179, 88, 0.15); }
-        .phase-card-btn.active[data-phase="ait-p1"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
-        .phase-card-btn.active[data-phase="ait-p2"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.15); }
-        .phase-card-btn.active[data-phase="grad"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
+        .phase-card-btn.active[data-phase="ait1"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239, 68, 68, 0.15); }
+        .phase-card-btn.active[data-phase="ait2"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
+        .phase-card-btn.active[data-phase="unit"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.15); }
+
+        .phase-detail-badge.bct { color: var(--color-gold); border-color: var(--color-gold); }
+        .phase-detail-badge.ait1 { color: #ef4444; border-color: #ef4444; }
+        .phase-detail-badge.ait2 { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.unit { color: #22c55e; border-color: #22c55e; }
     </style>
 </head>
 <body>
@@ -61,60 +69,61 @@
         <div class="ix-container">
             <span class="section-label">Overview</span>
             <h2 class="section-title" style="margin-bottom: var(--space-lg);">What You'll Do</h2>
-            <p class="section-desc" style="max-width: 700px; margin: 0 auto;">Infantry Enlistment Option (11X) is the designated MOS for recruits who have not yet been assigned to a specific infantry role. During training, you will be assigned as either an 11B (Infantryman) or 11C (Indirect Fire Infantryman).</p>
+            <p class="section-desc" style="max-width: 700px; margin: 0 auto;">The entry point for all Infantry Soldiers. Enlist as 11X and earn your specific MOS (11B or 11C) during training.</p>
             
-            <h2 class="section-title" style="margin-top: var(--space-3xl); margin-bottom: var(--space-lg);">MOS Training Pipeline</h2>
+            <h2 class="section-title" style="margin-top: var(--space-3xl); margin-bottom: var(--space-lg);">Training Pipeline</h2>
             
-            <div class="phase-selector" style="margin-bottom: 0;">
-                <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr); gap: 15px;">
+            <div class="phase-selector">
+                <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr);">
                     <button class="phase-card-btn active" data-phase="bct" onclick="togglePhase('bct')">
                         <div class="pc-icon">&#128170;</div>
-                        <div class="pc-name">Basic Training</div>
-                        <div class="pc-sub">Red/White/Blue Phase</div>
+                        <div class="pc-name">BCT</div>
+                        <div class="pc-sub">Basic Training</div>
                         <div class="pc-link">Details &rarr;</div>
                     </button>
-                    <button class="phase-card-btn" data-phase="ait-p1" onclick="togglePhase('ait-p1')">
+                    <button class="phase-card-btn" data-phase="ait1" onclick="togglePhase('ait1')">
                         <div class="pc-icon">&#128295;</div>
-                        <div class="pc-name">AIT Phase 1</div>
-                        <div class="pc-sub">MOS Fundamentals</div>
+                        <div class="pc-name">Phase I</div>
+                        <div class="pc-sub">Technical School</div>
                         <div class="pc-link">Details &rarr;</div>
                     </button>
-                    <button class="phase-card-btn" data-phase="ait-p2" onclick="togglePhase('ait-p2')">
+                    <button class="phase-card-btn" data-phase="ait2" onclick="togglePhase('ait2')">
                         <div class="pc-icon">&#127919;</div>
-                        <div class="pc-name">AIT Phase 2</div>
-                        <div class="pc-sub">Tactical Validation</div>
+                        <div class="pc-name">Phase II</div>
+                        <div class="pc-sub">Field Validation</div>
                         <div class="pc-link">Details &rarr;</div>
                     </button>
-                    <button class="phase-card-btn" data-phase="grad" onclick="togglePhase('grad')">
+                    <button class="phase-card-btn" data-phase="unit" onclick="togglePhase('unit')">
                         <div class="pc-icon">&#127891;</div>
-                        <div class="pc-name">MOS Qual</div>
-                        <div class="pc-sub">First Unit Arrival</div>
+                        <div class="pc-name">Qual</div>
+                        <div class="pc-sub">Unit Arrival</div>
                         <div class="pc-link">Details &rarr;</div>
                     </button>
                 </div>
 
-                <!-- BCT Detail -->
+                <!-- BCT Detail Panel -->
                 <div class="phase-detail-panel open" id="detail-bct">
                     <div class="phase-detail-inner">
                         <div class="phase-detail-header">
                             <div class="phase-detail-title">Basic Combat Training (BCT)</div>
-                            <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">Phase 1-3</span>
+                            <span class="phase-detail-badge bct">Foundations</span>
                         </div>
                         <div class="phase-detail-grid">
                             <div class="phase-detail-standards">
                                 <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">10 Weeks</span></div>
+                                <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Fort Moore, GA (OSUT)</span></div>
                                 <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Warrior Tasks</span></div>
-                                <div class="pd-item"><span class="pd-item-name">Requirement</span><span class="pd-item-value">ACFT Pass</span></div>
+                                <div class="pd-item"><span class="pd-item-name">Certs</span><span class="pd-item-value">Soldier Qualification</span></div>
                             </div>
                             <div class="phase-detail-desc">
-                                <p>The transformation from civilian to Soldier. You will master marksmanship, land navigation, and basic combat drills. This phase builds the discipline and physical foundation required for all Infantry Soldiers.</p>
+                                <p>Initial entry training focusing on core military skills. You will undergo the Red, White, and Blue phases, culminating in the Forge FTX.</p>
                                 <div class="phase-detail-bullets">
                                     <div class="pdb-title">Key Milestones</div>
                                     <ul>
-                                        <li>Hammer Forge / Forge FTX</li>
-                                        <li>Rifle Marksmanship Qualification</li>
-                                        <li>CBRN Confidence Chamber</li>
-                                        <li>US Army Obstacle Course</li>
+                                        <li>Rifle Marksmanship Qual</li>
+                                        <li>Land Navigation basics</li>
+                                        <li>CBRN Defense</li>
+                                        <li>Hand-to-Hand Combat</li>
                                     </ul>
                                 </div>
                             </div>
@@ -122,24 +131,25 @@
                     </div>
                 </div>
 
-                <!-- AIT P1 Detail -->
-                <div class="phase-detail-panel" id="detail-ait-p1">
+                <!-- AIT 1 Detail Panel -->
+                <div class="phase-detail-panel" id="detail-ait1">
                     <div class="phase-detail-inner">
                         <div class="phase-detail-header">
-                            <div class="phase-detail-title">Advanced Individual Training (AIT)</div>
-                            <span class="phase-detail-badge" style="color:#3b82f6; border-color:#3b82f6;">Technical Phase</span>
+                            <div class="phase-detail-title">Advanced Individual Training: Technical</div>
+                            <span class="phase-detail-badge ait1">Specialization</span>
                         </div>
                         <div class="phase-detail-grid">
                             <div class="phase-detail-standards">
+                                <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">22 Weeks</span></div>
                                 <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Fort Moore, GA</span></div>
-                                <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">11X Systems</span></div>
+                                <div class="pd-item"><span class="pd-item-name">Certs</span><span class="pd-item-value">Expert Rifleman</span></div>
                             </div>
                             <div class="phase-detail-desc">
-                                <p>Master the fundamental technical and tactical skills required for 11X operations. Training focuses on system operations, maintenance, and branch-specific doctrine.</p>
+                                <p>Intensive marksmanship and squad tactics. You will master the M4, M249, and M240B.</p>
                                 <div class="phase-detail-bullets">
-                                    <div class="pdb-title">Instruction Areas</div>
+                                    <div class="pdb-title">Technical Training</div>
                                     <ul>
-                                        <li>Infantry Fundamentals</li><li>System Operations & Mx</li><li>Technical Documentation</li>
+                                        <li>Advanced Rifle Marksmanship</li><li>Battle Drills 1-8</li><li>Land Navigation</li>
                                     </ul>
                                 </div>
                             </div>
@@ -147,44 +157,57 @@
                     </div>
                 </div>
 
-                <!-- AIT P2 Detail -->
-                <div class="phase-detail-panel" id="detail-ait-p2">
+                <!-- AIT 2 Detail Panel -->
+                <div class="phase-detail-panel" id="detail-ait2">
                     <div class="phase-detail-inner">
                         <div class="phase-detail-header">
-                            <div class="phase-detail-title">Tactical Validation</div>
-                            <span class="phase-detail-badge" style="color:#22c55e; border-color:#22c55e;">Field Phase</span>
+                            <div class="phase-detail-title">Tactical Validation (FTX)</div>
+                            <span class="phase-detail-badge ait2">Validation</span>
                         </div>
                         <div class="phase-detail-grid">
                             <div class="phase-detail-standards">
-                                <div class="pd-item"><span class="pd-item-name">Culmination</span><span class="pd-item-value">FTX</span></div>
-                                <div class="pd-item"><span class="pd-item-name">Standards</span><span class="pd-item-value">Go/No-Go</span></div>
+                                <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Applied Skills</span></div>
+                                <div class="pd-item"><span class="pd-item-name">Certs</span><span class="pd-item-value">Infantry Blue Cord</span></div>
                             </div>
                             <div class="phase-detail-desc">
-                                <p>Validate your skills in a field environment. This phase culminates in a multi-day FTX where you will execute 11X tasks under tactical conditions.</p>
+                                <p>The Forge and final culmination exercise. You will be tested on your ability to lead under pressure in extended field environments.</p>
+                                <div class="phase-detail-bullets">
+                                    <div class="pdb-title">Performance Requirements</div>
+                                    <ul>
+                                        <li>Mission Command drills</li>
+                                        <li>Collective unit operations</li>
+                                        <li>11X System Validation</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Grad Detail -->
-                <div class="phase-detail-panel" id="detail-grad">
+                <!-- Unit Detail Panel -->
+                <div class="phase-detail-panel" id="detail-unit">
                     <div class="phase-detail-inner">
                         <div class="phase-detail-header">
-                            <div class="phase-detail-title">MOS Qualification & Arrival</div>
-                            <span class="phase-detail-badge" style="color:#f59e0b; border-color:#f59e0b;">Operational</span>
+                            <div class="phase-detail-title">MOS Qualification & Unit Integration</div>
+                            <span class="phase-detail-badge unit">Operational</span>
                         </div>
                         <div class="phase-detail-grid">
                             <div class="phase-detail-standards">
-                                <div class="pd-item"><span class="pd-item-name">Status</span><span class="pd-item-value">MOS Qualified</span></div>
+                                <div class="pd-item"><span class="pd-item-name">Quota</span><span class="pd-item-value">High</span></div>
+                                <div class="pd-item"><span class="pd-item-name">Status</span><span class="pd-item-value">Fully Qualified</span></div>
                             </div>
                             <div class="phase-detail-desc">
-                                <p>Upon successful completion of training, you are awarded the 11X MOS and report to your first operational unit. You are now a fully qualified Infantry Enlistment Option.</p>
+                                <p>Upon graduation, you are awarded the 11X MOS. You will report to your first operational unit (FORSCOM) and begin your career as a Infantry Enlistment Option.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <h2 class="section-title" style="margin-top: var(--space-2xl); margin-bottom: var(--space-lg);">Key Responsibilities</h2>
+            <ul style="max-width: 700px; margin: 0 auto; color: var(--color-text-secondary); line-height: 2;">
+                <li>Maintain unit readiness</li><li>Execute tactical missions</li><li>Support branch operations</li>
+            </ul>
         </div>
     </section>
 
