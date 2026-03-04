@@ -106,22 +106,51 @@
     <!-- MOS SPECIALTIES SELECTOR -->
     <section class="school-section fade-in" id="specialties">
         <div class="school-section-label">MOS Specialties</div>
-        <div class="phase-selector" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="phase-selector" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
+            <button class="phase-card-btn" data-phase="17a" onclick="togglePhase('17a')">
+                <span class="phase-card-icon">&#9878;</span>
+                <span class="phase-card-title">17A</span>
+                <span class="phase-card-sub">Officer</span>
+            </button>
             <button class="phase-card-btn active" data-phase="17c" onclick="togglePhase('17c')">
                 <span class="phase-card-icon">&#128274;</span>
                 <span class="phase-card-title">17C</span>
-                <span class="phase-card-sub">Cyber Operations Specialist</span>
+                <span class="phase-card-sub">Cyber Ops</span>
+            </button>
+            <button class="phase-card-btn" data-phase="17d" onclick="togglePhase('17d')">
+                <span class="phase-card-icon">&#128737;</span>
+                <span class="phase-card-title">17D</span>
+                <span class="phase-card-sub">Defender</span>
             </button>
             <button class="phase-card-btn" data-phase="17e" onclick="togglePhase('17e')">
                 <span class="phase-card-icon">&#9889;</span>
                 <span class="phase-card-title">17E</span>
-                <span class="phase-card-sub">Electronic Warfare Specialist</span>
+                <span class="phase-card-sub">EW Specialist</span>
+            </button>
+            <button class="phase-card-btn" data-phase="17x" onclick="togglePhase('17x')">
+                <span class="phase-card-icon">&#127919;</span>
+                <span class="phase-card-title">17X</span>
+                <span class="phase-card-sub">Enlistment</span>
             </button>
             <button class="phase-card-btn" data-phase="17z" onclick="togglePhase('17z')">
                 <span class="phase-card-icon">&#11088;</span>
                 <span class="phase-card-title">17Z</span>
-                <span class="phase-card-sub">Senior Cyber Ops Sergeant</span>
+                <span class="phase-card-sub">Senior Sgt</span>
             </button>
+        </div>
+
+        <!-- 17A Detail -->
+        <div class="phase-detail-panel" id="detail-17a">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">17A</span>
+                    <div class="phase-detail-rtb">Cyber Warfare Officer</div>
+                    <a href="../17a/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Leading the Army's digital offensive. Cyber Warfare Officers plan and lead operations to dominate the digital battlefield.</p>
+                </div>
+            </div>
         </div>
 
         <!-- 17C Detail -->
@@ -133,23 +162,25 @@
                     <div class="phase-detail-standards">
                         <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>52 Weeks</span></div>
                         <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Eisenhower, GA</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>ST: 112</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Clearance</span><span>TS/SCI</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Network Exploitation, Pen Testing, Malware Analysis, Vulnerability Assessment</span></div>
                     </div>
+                    <a href="../17c/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The 17C Cyber Operations Specialist conducts offensive and defensive cyber operations across the full spectrum of cyberspace. With a 52-week AIT at Fort Eisenhower &mdash; one of the longest in the Army &mdash; 17Cs emerge as highly trained cyber warriors capable of network exploitation, vulnerability analysis, malware analysis, and penetration testing.</p>
-                    <p>Training covers networking fundamentals, operating systems (Windows/Linux), programming and scripting, exploitation techniques, defensive operations, and incident response. Graduates earn industry-recognized certifications and serve on Cyber Protection Teams, Cyber Mission Forces, and at U.S. Cyber Command.</p>
-                    <ul class="phase-detail-list">
-                        <li>Offensive cyberspace operations and network exploitation</li>
-                        <li>Vulnerability analysis and penetration testing</li>
-                        <li>Malware analysis, reverse engineering, and forensics</li>
-                        <li>Defensive cyber operations and incident response</li>
-                        <li>Programming and scripting (Python, PowerShell, Bash)</li>
-                        <li>Network architecture, protocols, and traffic analysis</li>
-                        <li>Hands-on cyber range exercises with live-fire scenarios</li>
-                    </ul>
+                    <p>Conducting offensive and defensive cyber operations. 17Cs are highly trained warriors capable of network exploitation and vulnerability analysis.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 17D Detail -->
+        <div class="phase-detail-panel" id="detail-17d">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#22c55e; border-color:#22c55e;">17D</span>
+                    <div class="phase-detail-rtb">Cyber Network Defender</div>
+                    <a href="../17d/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The shield of the digital domain. Network Defenders maintain and protect the Army's critical digital infrastructure from cyber threats.</p>
                 </div>
             </div>
         </div>
@@ -160,26 +191,24 @@
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b17e">17E</span>
                     <div class="phase-detail-rtb">Electronic Warfare Specialist</div>
-                    <div class="phase-detail-standards">
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>24 Weeks</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Eisenhower, GA</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>ST: 112</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Clearance</span><span>TS/SCI</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Electronic Attack, Electronic Protection, SIGINT Integration, Spectrum Management</span></div>
-                    </div>
+                    <a href="../17e/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The 17E Electronic Warfare Specialist conducts electromagnetic spectrum operations to deny, degrade, disrupt, or exploit adversary communications and radar systems. 17Es are the Army's experts in electronic attack (EA), electronic protection (EP), and electronic warfare support (ES) &mdash; controlling the invisible battlespace that modern warfare depends on.</p>
-                    <p>AIT at Fort Eisenhower covers electromagnetic spectrum theory, EW equipment operation, SIGINT integration, and spectrum management. 17Es serve at every echelon from battalion to theater, integrating electronic warfare into combined arms operations.</p>
-                    <ul class="phase-detail-list">
-                        <li>Electronic attack: jamming, spoofing, and denial operations</li>
-                        <li>Electronic protection: hardening friendly systems and ECCM</li>
-                        <li>Electronic warfare support: spectrum monitoring and threat detection</li>
-                        <li>SIGINT integration and signals analysis</li>
-                        <li>Electromagnetic spectrum management and deconfliction</li>
-                        <li>EW equipment operation, maintenance, and troubleshooting</li>
-                        <li>Integration with maneuver, fires, and intelligence operations</li>
-                    </ul>
+                    <p>The power of the spectrum. Specialists dominate the electromagnetic battlefield, protecting friendly communications and disrupting enemy signals.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 17X Detail -->
+        <div class="phase-detail-panel" id="detail-17x">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#a855f7; border-color:#a855f7;">17X</span>
+                    <div class="phase-detail-rtb">Enlistment Option</div>
+                    <a href="../17x/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The entry point for all Cyber Soldiers. Enlist as 17X and earn your specific MOS during training.</p>
                 </div>
             </div>
         </div>
@@ -189,27 +218,11 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b17z">17Z</span>
-                    <div class="phase-detail-rtb">Senior Cyber Operations Sergeant</div>
-                    <div class="phase-detail-standards">
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Selection</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>BN/BDE / CYBERCOM</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Senior Enlisted Leader</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Cyber Ops Planning, Team Leadership, Mission Management</span></div>
-                    </div>
+                    <div class="phase-detail-rtb">Senior Sergeant</div>
+                    <a href="../17z/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The 17Z Senior Cyber Operations Sergeant is the pinnacle of enlisted Cyber leadership. 17Zs serve as operations sergeants major, first sergeants, and command sergeants major for Cyber units at battalion, brigade, and CYBERCOM level. They are responsible for cyber operations planning, team leadership, mission management, and the technical and tactical readiness of Cyber forces.</p>
-                    <p>Reaching 17Z requires years of proven cyber operations experience, completion of the Senior Leader Course and Sergeants Major Academy, and a demonstrated ability to lead in one of the Army's most technically complex fields.</p>
-                    <ul class="phase-detail-list">
-                        <li>Cyber operations planning and mission management</li>
-                        <li>Cyber Protection Team and Cyber Mission Force leadership</li>
-                        <li>Personnel management, evaluations, and career development</li>
-                        <li>Technical readiness oversight and training management</li>
-                        <li>Cross-domain integration with intelligence and signal operations</li>
-                        <li>Mentorship of junior NCOs and cyber workforce development</li>
-                        <li>Strategic-level cyber operations at CYBERCOM and above</li>
-                    </ul>
+                    <p>The pinnacle of enlisted Cyber leadership. 17Zs serve as operations sergeants major and first sergeants at battalion and brigade level.</p>
                 </div>
             </div>
         </div>

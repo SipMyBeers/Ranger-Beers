@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cold Weather Survival — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Classroom &amp; Skills</a></li>
+                        <li><a href="index.html#phases">Field Training</a></li>
+                        <li><a href="index.html#phases">FTX &amp; Assessment</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Arctic Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-arctic-prep.html">Arctic Prep</a></li>
+                        <li><a href="course-cold-weather.html">Cold Weather Survival</a></li>
+                        <li><a href="course-ski-ops.html">Ski Operations</a></li>
+                        <li><a href="course-snowshoe.html">Snowshoe Operations</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="resources.html">Arctic Resources</a></li>
+                        <li><a href="standards.html">PT Standards</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-cold-weather">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Cold Weather Survival</h1>
+        <p class="section-desc fade-in">Master shelter construction, hypothermia prevention, and the layered clothing system essential for survival in extreme cold. Learn the life-saving techniques taught at the Northern Warfare Training Center.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$12</span>
+            <span class="course-tag tag-phase">Field Phase</span>
+            <span class="course-tag tag-type">Survival</span>
+            <span class="course-tag tag-bundle">Full Access</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-cold-weather"
+                data-item-name="Cold Weather Survival"
+                data-item-price="12.00"
+                data-item-url="/arctic/course-cold-weather.html"
+                data-item-description="Cold weather survival covering shelter construction, hypothermia prevention, layered clothing systems, and emergency procedures"
+                data-item-categories="course">Buy Course — $12.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Cold Weather Threats</a>
+                <a href="#mod2" class="course-sidebar-link">2. Hypothermia Prevention</a>
+                <a href="#mod3" class="course-sidebar-link">3. Layered Clothing System</a>
+                <a href="#mod4" class="course-sidebar-link">4. Shelter Construction</a>
+                <a href="#mod5" class="course-sidebar-link">5. Cold Injury Treatment</a>
+                <a href="#mod6" class="course-sidebar-link">6. Emergency Procedures</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Cold Weather Threats & Environment</div>
+                    
+                    <p>Cold weather is a ruthless adversary. Understanding the threats it presents is the first step toward survival. The Arctic and sub-Arctic environments present unique challenges that can incapacitate or kill the unprepared within hours.</p>
+
+                    <p><strong>Environmental Hazards:</strong></p>
+                    <ul>
+                        <li><strong>Extreme Cold:</strong> Temperatures at CWLC routinely reach -40°F and colder</li>
+                        <li><strong>Wind Chill:</strong> 20+ mph winds can make -20°F feel like -50°F</li>
+                        <li><strong>Whiteout Conditions:</strong> Snowstorms reduce visibility to near zero</li>
+                        <li><strong>Avalanche Risk:</strong> Snowpack instability in mountainous terrain</li>
+                        <li><strong>Ice Hazards:</strong> River crossings, thin ice, icefalls</li>
+                        <li><strong>Altitude:</strong> Reduced oxygen at elevation increases cold susceptibility</li>
+                        <li><strong>Isolation:</strong> Limited rescue capability in remote areas</li>
+                    </ul>
+
+                    <p><strong>Cold Weather Injuries:</strong></p>
+                    <ul>
+                        <li><strong>Hypothermia:</strong> Core body temperature drops below 95°F — potentially fatal</li>
+                        <li><strong>Frostbite:</strong> Freezing of body tissues, most commonly extremities</li>
+                        <li><strong>Immersion Foot (Trench Foot):</strong> Non-freezing cold injury from wet feet</li>
+                        <li><strong>Chilblains:</strong> Inflammatory skin reaction to repeated cold exposure</li>
+                        <li><strong>Snow Blindness:</strong> UV damage to corneas from snow reflection</li>
+                        <li><strong>Dehydration:</strong> Cold air is dry; fluid requirements increase in cold</li>
+                    </ul>
+
+                    <p><strong>The Cold Chain of Survival:</strong></p>
+                    <p>Cold weather injuries often result from a cascade of factors: poor clothing → moisture accumulation → heat loss → shivering → exhaustion → poor decision-making → further cold exposure → injury. Breaking this chain at any point prevents cold injuries.</p>
+
+                    <p><strong>Alaskan Winter Conditions:</strong></p>
+                    <p>The Northern Warfare Training Center sits in the Alaska Range interior. January temperatures average -10°F to -30°F, with extremes reaching -60°F. Daylight is limited to 4-7 hours. Snow depth averages 3-6 feet. These conditions are unforgiving — preparation and vigilance are mandatory.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Hypothermia Prevention & Management</div>
+                    
+                    <p>Hypothermia is the most dangerous cold weather injury. It can progress from mild to life-threatening before the victim recognizes the danger. Prevention is critical — treatment in the field is difficult and evacuation may be impossible.</p>
+
+                    <p><strong>Mechanisms of Heat Loss:</strong></p>
+                    <ul>
+                        <li><strong>Conduction:</strong> Direct contact with cold surfaces (ground, metal, snow)</li>
+                        <li><strong>Convection:</strong> Wind strips heat from the body — wind chill factor</li>
+                        <li><strong>Evaporation:</strong> Sweat and moisture evaporation cools the body</li>
+                        <li><strong>Radiation:</strong> Heat radiates from exposed skin and inadequately insulated areas</li>
+                        <li><strong>Respiration:</strong> Breathing cold air causes respiratory heat loss</li>
+                    </ul>
+
+                    <p><strong>Stages of Hypothermia:</strong></p>
+
+                    <p><strong>Mild Hypothermia (95-90°F / 35-32°C):</strong></p>
+                    <ul>
+                        <li>Shivering begins — body attempts to generate heat</li>
+                        <li>Increased heart rate and breathing</li>
+                        <li>Mild confusion and impaired judgment</li>
+                        <li>Apathy and social withdrawal</li>
+                        <li>Loss of fine motor coordination</li>
+                    </ul>
+
+                    <p><strong>Moderate Hypothermia (90-82°F / 32-28°C):</strong></p>
+                    <ul>
+                        <li>Shivering becomes violent and uncontrolled</li>
+                        <li>Stumbling gait, muscle rigidity</li>
+                        <li>Confusion, drowsiness, paradoxical sensations</li>
+                        <li>Slurred speech, poor decision-making</li>
+                        <li>Progressive loss of consciousness</li>
+                    </ul>
+
+                    <p><strong>Severe Hypothermia (Below 82°F / 28°C):</strong></p>
+                    <ul>
+                        <li>Shivering stops — body cannot generate heat</li>
+                        <li>Extreme confusion or unconsciousness</li>
+                        <li>Cardiac arrhythmias and respiratory depression</li>
+                        <li>Dilated pupils, rigid muscles</li>
+                        <li>Death if core temperature continues dropping</li>
+                    </ul>
+
+                    <p><strong>Prevention Strategies:</strong></p>
+                    <ul>
+                        <li><strong>Proper Clothing:</strong> Wear appropriate layers for activity level and conditions</li>
+                        <li><strong>Stay Dry:</strong> Wet clothing loses insulation; change out of wet clothes immediately</li>
+                        <li><strong>Caloric Intake:</strong> Eat high-calorie foods; body needs fuel to generate heat</li>
+                        <li><strong>Hydration:</strong> Drink water regularly; dehydration impairs thermoregulation</li>
+                        <li><strong>Activity Management:</strong> Balance exertion to avoid sweating; rest in shelter</li>
+                        <li><strong>Buddy System:</strong> Watch teammates for hypothermia signs; they won't recognize their own</li>
+                    </ul>
+
+                    <p><strong>Field Treatment:</strong></p>
+                    <ul>
+                        <li>Remove victim from cold environment</li>
+                        <li>Remove wet clothing; replace with dry insulation</li>
+                        <li>Insulate from ground</li>
+                        <li>Add external heat sources (warm fluids, body heat from rescuer)</li>
+                        <li>Handle gently — rough movement can trigger cardiac arrest</li>
+                        <li>Evacuate immediately if moderate to severe</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Layered Clothing System (ECWCS)</div>
+                    
+                    <p>The Extended Cold Weather Clothing System (ECWCS) is the Army's answer to cold weather protection. Proper use of this layered system is the foundation of cold weather survival. Misuse leads to cold injuries; mastery keeps you alive.</p>
+
+                    <p><strong>Layering Principles:</strong></p>
+                    <ul>
+                        <li><strong>Layering allows adjustment:</strong> Add or remove layers based on activity and temperature</li>
+                        <li><strong>Trapped air insulates:</strong> Multiple thin layers trap more air than one thick layer</li>
+                        <li><strong>Moisture management:</strong> Inner layers wick sweat; outer layers block wind/water</li>
+                        <li><strong>Never cotton:</strong> Cotton retains moisture and loses insulation when wet</li>
+                    </ul>
+
+                    <p><strong>ECWCS Gen III Layers:</strong></p>
+
+                    <p><strong>Level 1 — Lightweight Undershirt/Drawers:</strong></p>
+                    <ul>
+                        <li>Moisture-wicking base layer</li>
+                        <li>Polypropylene or silk material</li>
+                        <li>Worn directly against skin</li>
+                        <li>Quick-drying, odor-resistant</li>
+                    </ul>
+
+                    <p><strong>Level 2 — Midweight Shirt/Drawers:</strong></p>
+                    <ul>
+                        <li>Grid fleece for additional warmth</li>
+                        <li>Continues moisture management</li>
+                        <li>Thumb holes for layering</li>
+                        <li>Worn over Level 1 or alone in cool conditions</li>
+                    </ul>
+
+                    <p><strong>Level 3 — Fleece Jacket:</strong></p>
+                    <ul>
+                        <li>Primary insulation layer</li>
+                        <li>Breathable for active use</li>
+                        <li>Not windproof or waterproof</li>
+                        <li>Excellent warmth-to-weight ratio</li>
+                    </ul>
+
+                    <p><strong>Level 4 — Wind Jacket:</strong></p>
+                    <ul>
+                        <li>Lightweight wind protection</li>
+                        <li>No insulation — blocks convection</li>
+                        <li>Highly packable</li>
+                        <li>Worn over insulation or base layers</li>
+                    </ul>
+
+                    <p><strong>Level 5 — Soft Shell Jacket/Trousers:</strong></p>
+                    <ul>
+                        <li>Soft shell for active use in cold/wet</li>
+                        <li>Some insulation, highly breathable</li>
+                        <li>Water-resistant (not waterproof)</li>
+                        <li>Excellent for movement in cold</li>
+                    </ul>
+
+                    <p><strong>Level 6 — Extreme Cold/Wet Weather Jacket/Trousers:</strong></p>
+                    <ul>
+                        <li>Waterproof hard shell</li>
+                        <li>Gore-Tex or equivalent membrane</li>
+                        <li>Taped seams for complete waterproofing</li>
+                        <li>Worn over insulation in rain/snow</li>
+                    </ul>
+
+                    <p><strong>Level 7 — Extreme Cold Weather Parka/Trousers:</strong></p>
+                    <ul>
+                        <li>Heavy insulation for static use</li>
+                        <li>Primaloft or synthetic fill</li>
+                        <li>Water-resistant outer</li>
+                        <li>Worn when stopped or in extreme cold</li>
+                    </ul>
+
+                    <p><strong>Layering Strategy:</strong></p>
+                    <ul>
+                        <li><strong>High Activity:</strong> Level 1 or 2 base + Level 5 soft shell</li>
+                        <li><strong>Moderate Activity:</strong> Level 1/2 base + Level 3 fleece + Level 4 wind</li>
+                        <li><strong>Low Activity/Static:</strong> Full system including Level 7 parka</li>
+                        <li><strong>Wet Conditions:</strong> Add Level 6 hard shell over insulation</li>
+                    </ul>
+
+                    <p><strong>Clothing Management:</strong></p>
+                    <ul>
+                        <li>Remove layers BEFORE you start sweating</li>
+                        <li>Add layers BEFORE you get cold</li>
+                        <li>Carry spare dry base layers in waterproof bag</li>
+                        <li>Change base layers daily if possible</li>
+                        <li>Dry wet clothing inside sleeping bag or near stove</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Shelter Construction in Snow</div>
+                    
+                    <p>Shelter is the first priority in cold weather survival. A properly constructed snow shelter can maintain temperatures of 20-32°F inside when outside temperatures plummet to -40°F. Mastering these techniques is essential for CWLC and Arctic operations.</p>
+
+                    <p><strong>Shelter Site Selection:</strong></p>
+                    <ul>
+                        <li><strong>Avalanche Safety:</strong> Avoid slopes steeper than 30 degrees</li>
+                        <li><strong>Wind Protection:</strong> Natural windbreaks reduce heat loss</li>
+                        <li><strong>Drainage:</strong> Avoid low spots where cold air collects</li>
+                        <li><strong>Snow Quality:</strong> Look for consolidated, packable snow</li>
+                        <li><strong>Proximity:</strong> Near resources (water, firewood if available)</li>
+                        <li><strong>Escape Routes:</strong> Multiple exits for safety</li>
+                    </ul>
+
+                    <p><strong>Shelter Types:</strong></p>
+
+                    <p><strong>1. Quinzhee (Snow Cave):</strong></p>
+                    <ul>
+                        <li>Pile snow 6-8 feet high, allow to sinter (harden) 90+ minutes</li>
+                        <li>Excavate from downhill side, creating dome interior</li>
+                        <li>Create raised sleeping platform (warm air rises)</li>
+                        <li>Place ventilation hole in roof (prevents CO2 buildup)</li>
+                        <li>Internal temperature: 20-32°F when outside is -40°F</li>
+                        <li>Best for: Extended stays, worst weather conditions</li>
+                    </ul>
+
+                    <p><strong>2. Snow Trench:</strong></p>
+                    <ul>
+                        <li>Excavate trench in snow 3 feet deep, 7 feet long, 3 feet wide</li>
+                        <li>Place poles across trench, cover with tarp/poncho</li>
+                        <li>Bury edges with snow for insulation</li>
+                        <li>Line floor with boughs or sleeping pad</li>
+                        <li>Quick to construct, less insulation than quinzhee</li>
+                        <li>Best for: Short stops, emergency shelter</li>
+                    </ul>
+
+                    <p><strong>3. Snow Block Wall (Windbreak):</strong></p>
+                    <ul>
+                        <li>Cut blocks from consolidated snow using shovel or snow saw</li>
+                        <li>Stack blocks to create windbreak wall</li>
+                        <li>Place tarp/poncho overhead for roof</li>
+                        <li>Blocks provide insulation and wind protection</li>
+                        <li>Best for: Campsites with existing wind exposure</li>
+                    </ul>
+
+                    <p><strong>4. Thermal A-Frame:</strong></p>
+                    <ul>
+                        <li>Two crossed poles create A-frame structure</li>
+                        <li>Drape tarp over frame, secure edges</li>
+                        <li>Pile snow around base for insulation</li>
+                        <li>Create snow wall on windward side</li>
+                        <li>Best for: Tree areas, quick setup</li>
+                    </ul>
+
+                    <p><strong>Sleep System Setup:</strong></p>
+                    <ul>
+                        <li><strong>Raised Platform:</strong> Sleep above the floor (cold air settles)</li>
+                        <li><strong>Insulation:</strong> Sleeping pad R-value 4+ minimum</li>
+                        <li><strong>Bivy:</strong> Waterproof/breathable cover over sleeping bag</li>
+                        <li><strong>Vapor Barrier:</strong> VB liner reduces moisture in bag</li>
+                        <li><strong>Dry Clothes:</strong> Change into dry base layers before sleep</li>
+                        <li><strong>Calories:</strong> Eat high-calorie snack before sleep</li>
+                        <li><strong>Hydration:</strong> Drink warm fluids; pee before sleep</li>
+                    </ul>
+
+                    <p><strong>Stove Safety in Shelters:</strong></p>
+                    <ul>
+                        <li>Never operate stove inside enclosed shelter without ventilation</li>
+                        <li>Carbon monoxide is odorless and deadly</li>
+                        <li>Maintain 2-inch ventilation hole minimum</li>
+                        <li>Keep stove away from shelter walls</li>
+                        <li>Have fire extinguisher or snow ready</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Cold Injury Recognition & Treatment</div>
+                    
+                    <p>Recognizing cold injuries early and providing appropriate treatment prevents permanent damage and saves lives. In the Arctic, you are your buddy's doctor — immediate response is required.</p>
+
+                    <p><strong>Frostbite:</strong></p>
+
+                    <p><strong>Mechanism:</strong> Freezing of body tissues, most commonly fingers, toes, ears, nose, and cheeks. Ice crystals form in tissues, causing cellular damage and potential necrosis.</p>
+
+                    <p><strong>Signs and Symptoms:</strong></p>
+                    <ul>
+                        <li><strong>Early:</strong> Numbness, tingling, waxy white or grayish-yellow skin</li>
+                        <li><strong>Progressive:</strong> Skin feels wooden, hard to touch</li>
+                        <li><strong>Severe:</strong> Blisters, blackened tissue, complete numbness</li>
+                    </ul>
+
+                    <p><strong>Prevention:</strong></p>
+                    <ul>
+                        <li>Keep extremities covered and dry</li>
+                        <li>Maintain core temperature (body reduces blood flow to extremities when cold)</li>
+                        <li>Avoid tight clothing and boots that restrict circulation</li>
+                        <li>Keep moving to maintain blood flow</li>
+                        <li>Use hand and foot warmers as backup</li>
+                    </ul>
+
+                    <p><strong>Field Treatment:</strong></p>
+                    <ul>
+                        <li>Get victim to warm shelter</li>
+                        <li>Remove constricting clothing and jewelry</li>
+                        <li>DO NOT rub or massage frostbitten tissue</li>
+                        <li>DO NOT thaw if refreezing is possible</li>
+                        <li>Rapid rewarming in warm water (99-102°F) if definitive care available</li>
+                        <li>Protect thawed tissue from refreezing</li>
+                        <li>Evacuate for medical treatment</li>
+                    </ul>
+
+                    <p><strong>Immersion Foot (Trench Foot):</strong></p>
+                    <ul>
+                        <li>Non-freezing cold injury from prolonged exposure to cold and wet</li>
+                        <li>Symptoms: Numbness, tingling, swelling, red or mottled skin</li>
+                        <li>Prevention: Keep feet dry; change socks daily</li>
+                        <li>Treatment: Dry feet, elevate, gentle rewarming</li>
+                        <li>Can cause permanent nerve damage if untreated</li>
+                    </ul>
+
+                    <p><strong>Snow Blindness:</strong></p>
+                    <ul>
+                        <li>UV damage to corneas from snow reflection</li>
+                        <li>Symptoms: Pain, gritty sensation, light sensitivity, temporary blindness</li>
+                        <li>Prevention: Wear quality ski goggles or sunglasses</li>
+                        <li>Treatment: Patch eyes, rest in dark, pain management</li>
+                        <li>Usually resolves in 24-48 hours</li>
+                    </ul>
+
+                    <p><strong>Cold Injury Monitoring:</strong></p>
+                    <ul>
+                        <li>Conduct buddy checks every 30 minutes in extreme cold</li>
+                        <li>Check face color (flushed vs. pale), speech patterns</li>
+                        <li>Inspect hands and feet when possible</li>
+                        <li>Watch for behavior changes (confusion, aggression, withdrawal)</li>
+                        <li>Document all cold injuries for medical follow-up</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Emergency Procedures & Rescue</div>
+                    
+                    <p>Despite best preparation, emergencies happen in the Arctic. Equipment failure, injury, or sudden weather changes can create life-threatening situations. Knowing how to respond saves lives.</p>
+
+                    <p><strong>Immediate Actions in Emergency:</strong></p>
+
+                    <p><strong>1. STOP Protocol:</strong></p>
+                    <ul>
+                        <li><strong>S</strong>it down — Control panic, assess situation</li>
+                        <li><strong>T</strong>hink — What is the problem? What resources do I have?</li>
+                        <li><strong>O</strong>bserve — Weather, terrain, available shelter, team status</li>
+                        <li><strong>P</strong>lan — Develop course of action, execute</li>
+                    </ul>
+
+                    <p><strong>2. Shelter First:</strong></p>
+                    <ul>
+                        <li>Get out of wind and precipitation immediately</li>
+                        <li>Even poor shelter is better than exposure</li>
+                        <li>Use natural windbreaks (trees, rocks, snowdrifts)</li>
+                        <li>Build emergency shelter if no natural protection</li>
+                    </ul>
+
+                    <p><strong>3. Prevent Cold Injuries:</strong></p>
+                    <ul>
+                        <li>Check all team members for hypothermia/frostbite</li>
+                        <li>Change wet clothing immediately</li>
+                        <li>Add insulation layers</li>
+                        <li>Create warm environment (shelter, shared body heat)</li>
+                    </ul>
+
+                    <p><strong>Medical Emergency Response:</strong></p>
+
+                    <p><strong>Severe Hypothermia:</strong></p>
+                    <ul>
+                        <li>Handle extremely gently — cardiac irritability</li>
+                        <li>Monitor breathing and pulse (may be barely detectable)</li>
+                        <li>Begin gentle rewarming only if evacuation delayed</li>
+                        <li>Continue CPR if no pulse — "not dead until warm and dead"</li>
+                        <li>Evacuate immediately if possible</li>
+                    </ul>
+
+                    <p><strong>Casualty Evacuation:</strong></p>
+                    <ul>
+                        <li>Ahkio sled serves as rescue sled</li>
+                        <li>Secure casualty in sleeping bag on insulated pad</li>
+                        <li>Assign security and navigation if moving</li>
+                        <li>Move slowly — rough movement dangerous for cold casualties</li>
+                        <li>Coordinate with rescue assets if available</li>
+                    </ul>
+
+                    <p><strong>Signal for Rescue:</strong></p>
+                    <ul>
+                        <li><strong>Visual:</strong> Signal mirror, bright panel, strobe light</li>
+                        <li><strong>Audible:</strong> Whistle (3 blasts = distress), firearm (if appropriate)</li>
+                        <li><strong>Ground Signals:</strong> Large X or SOS in snow with contrasting material</li>
+                        <li><strong>Fire:</strong> Three fires in triangle (standard distress signal)</li>
+                        <li><strong>Radio:</strong> Emergency frequencies, PLB activation</li>
+                    </ul>
+
+                    <p><strong>Equipment Failure Response:</strong></p>
+
+                    <p><strong>Stove Failure:</strong></p>
+                    <ul>
+                        <li>Switch to backup stove</li>
+                        <li>Melt snow using body heat (slow, but possible)</li>
+                        <li>Eat snow only as last resort (lowers core temperature)</li>
+                        <li>Seek shelter and wait for rescue if no heat source</li>
+                    </ul>
+
+                    <p><strong>Sleeping Bag Wet/Damaged:</strong></p>
+                    <ul>
+                        <li>Share sleeping bag with buddy</li>
+                        <li>Use extra clothing for insulation</li>
+                        <li>Build better shelter (quinzhee) for insulation</li>
+                        <li>Create snow insulation bed</li>
+                    </ul>
+
+                    <p><strong>Lost/Disoriented:</strong></p>
+                    <ul>
+                        <li>STOP — don't wander, makes rescue harder</li>
+                        <li>Stay put unless certain of location</li>
+                        <li>Build shelter and signal fire</li>
+                        <li>Mark location for rescuers</li>
+                        <li>Ration food and water</li>
+                    </ul>
+
+                    <p><strong>Survival Priorities:</strong></p>
+                    <ol>
+                        <li>Shelter (protection from elements)</li>
+                        <li>Warmth (prevent hypothermia)</li>
+                        <li>Water (melt snow, prevent dehydration)</li>
+                        <li>Food (maintain energy, moral support)</li>
+                        <li>Signal (attract rescue)</li>
+                    </ol>
+
+                    <p><strong>Final Note:</strong></p>
+                    <p>Preparation prevents emergencies. Train on these procedures before you need them. The Arctic is unforgiving, but with proper knowledge and equipment, you can survive even the worst situations. Stay alert, stay warm, and stay alive.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Arctic School Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Classroom &amp; Skills</a></li><li><a href="index.html#phases">Field Training</a></li><li><a href="index.html#phases">FTX &amp; Assessment</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Arctic Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script>
+        if (typeof RangerAuth !== 'undefined') {
+            RangerAuth.initAuthUI();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginGate = document.getElementById('login-gate');
+            const courseContent = document.getElementById('course-content');
+            
+            function checkAccess() {
+                const user = localStorage.getItem('ranger_auth_user');
+                if (user) {
+                    loginGate.style.display = 'none';
+                    courseContent.style.display = 'block';
+                } else {
+                    loginGate.style.display = 'block';
+                    courseContent.style.display = 'none';
+                }
+            }
+            
+            checkAccess();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precision Rifle — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Qualification</a></li>
+                        <li><a href="index.html#phases">NTI Match</a></li>
+                        <li><a href="index.html#phases">President's Hundred Match</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Marksmanship Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-marksmanship-prep.html">President's Hundred Prep</a></li>
+                        <li><a href="course-precision-rifle.html">Precision Rifle</a></li>
+                        <li><a href="course-precision-pistol.html">Precision Pistol</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-precision-rifle">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Precision Rifle — High-Power Mastery</h1>
+        <p class="section-desc fade-in">6 modules covering high-power rifle fundamentals, wind reading, position shooting, and long-range precision for competitive marksmanship success.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$12</span>
+            <span class="course-tag tag-phase">Technical</span>
+            <span class="course-tag tag-type">Precision</span>
+            <span class="course-tag tag-bundle">Full Access</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-precision-rifle"
+                data-item-name="Precision Rifle"
+                data-item-price="12.00"
+                data-item-url="/presidents-hundred/course-precision-rifle.html"
+                data-item-description="Complete 6-module precision rifle course for competitive high-power shooting"
+                data-item-categories="course">Buy Course — $12.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Rifle Fundamentals</a>
+                <a href="#mod2" class="course-sidebar-link">2. Position Shooting</a>
+                <a href="#mod3" class="course-sidebar-link">3. Wind Reading</a>
+                <a href="#mod4" class="course-sidebar-link">4. 600-Yard Mastery</a>
+                <a href="#mod5" class="course-sidebar-link">5. Rapid Fire Technique</a>
+                <a href="#mod6" class="course-sidebar-link">6. Data Book Management</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Rifle Fundamentals</div>
+                    <p>High-power rifle shooting demands mastery of the fundamental marksmanship principles. These foundations are non-negotiable for competitive success at the President's Hundred.</p>
+
+                    <p><strong>Sight Alignment:</strong></p>
+                    <ul>
+                        <li>Center the front sight post in the rear aperture</li>
+                        <li>Equal height, equal light on both sides of the post</li>
+                        <li>Focus on the front sight — target should be slightly blurry</li>
+                        <li>Consistent sight picture for every shot</li>
+                        <li>Check for cant: rifle must be level for consistent elevation</li>
+                    </ul>
+
+                    <p><strong>Trigger Control:</strong></p>
+                    <ul>
+                        <li>Surprise break — never anticipate the shot</li>
+                        <li>Smooth, straight-back press</li>
+                        <li>No disturbing the sight alignment during trigger press</li>
+                        <li>Follow-through: keep sights on target after recoil</li>
+                        <li>Call your shots based on sight picture at break</li>
+                    </ul>
+
+                    <p><strong>Breathing Control:</strong></p>
+                    <ul>
+                        <li>Natural respiratory pause at end of exhale</li>
+                        <li>Never hold breath for more than 8 seconds</li>
+                        <li>If not ready, breathe and start over</li>
+                        <li>Consistent breathing pattern for every shot</li>
+                        <li>Heart rate control critical for standing position</li>
+                    </ul>
+
+                    <p><strong>Natural Point of Aim:</strong></p>
+                    <ul>
+                        <li>Rifle settles on target without muscle tension</li>
+                        <li>Adjust body position, not rifle position</li>
+                        <li>Check by closing eyes, settling, then opening</li>
+                        <li>Foundation of all competitive positions</li>
+                        <li>Re-establish after each shot in slow fire</li>
+                    </ul>
+
+                    <p>These fundamentals are practiced through dry-fire until they become automatic. Live fire confirms what dry-fire has built.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Position Shooting</div>
+                    <p>The National Match Course tests four positions: standing, seated rapid, prone rapid, and prone slow fire. Each requires specific technique and dedicated practice.</p>
+
+                    <p><strong>Standing (Offhand) Position:</strong></p>
+                    <ul>
+                        <li>Body bladed 90 degrees to target (approximately)</li>
+                        <li>Support elbow under rifle, not to the side</li>
+                        <li>Rifle butt high in shoulder pocket</li>
+                        <li>Head erect, chin forward for natural sight alignment</li>
+                        <li>Weight balanced on feet, knees slightly flexed</li>
+                        <li>Sling adjusted for upward pressure on rifle</li>
+                    </ul>
+
+                    <p><strong>Seated Position:</strong></p>
+                    <ul>
+                        <li>Cross-legged or open-legged depending on flexibility</li>
+                        <li>Both elbows grounded for stability</li>
+                        <li>Anklebone provides support for support-side elbow</li>
+                        <li>Rifle supported by sling and bone structure</li>
+                        <li>Minimal muscle tension required</li>
+                    </ul>
+
+                    <p><strong>Prone Position:</strong></p>
+                    <ul>
+                        <li>Body angled 20–30 degrees to target</li>
+                        <li>Left elbow (for right-handed shooter) directly under rifle</li>
+                        <li>Right leg flexed, left leg straight (or both flexed)</li>
+                        <li>Head down, minimal neck strain</li>
+                        <li>Sling provides primary support</li>
+                        <li>Bone-on-bone support, minimal muscle</li>
+                    </ul>
+
+                    <p><strong>Rapid Fire Transitions:</strong></p>
+                    <ul>
+                        <li>Standing start for all rapid fire stages</li>
+                        <li>Drop to position on target appearance command</li>
+                        <li>Acquire natural point of aim immediately</li>
+                        <li>Smooth magazine changes within time limits</li>
+                        <li>Practice dry-fire position changes repeatedly</li>
+                    </ul>
+
+                    <p>Each position must be practiced until it is automatic. In competition, there is no time to think about position — it must be muscle memory.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Wind Reading</div>
+                    <p>Wind reading is the single most important skill for high-power rifle competition. Matches are won and lost on the 600-yard line where wind deflection is measured in feet, not inches.</p>
+
+                    <p><strong>Wind Effects by Distance:</strong></p>
+                    <ul>
+                        <li>200 yards: Minimal effect, 1–2 MOA correction maximum</li>
+                        <li>300 yards: Moderate effect, 2–4 MOA correction</li>
+                        <li>600 yards: Extreme effect, 4–10+ MOA correction</li>
+                        <li>Full value wind (90 degrees) has maximum effect</li>
+                        <li>No value wind (0/180 degrees) has minimal effect</li>
+                        <li>Oblique winds require cosine component</li>
+                    </ul>
+
+                    <p><strong>Wind Indicators:</strong></p>
+                    <ul>
+                        <li>Range flags: most reliable direct indicator</li>
+                        <li>Mirage: heat waves indicate wind direction and speed</li>
+                        <li>Grass and vegetation: movement speed correlates to wind</li>
+                        <li>Dust and debris: visual wind indicators</li>
+                        <li>Other shooters' targets: observe splash and trace</li>
+                    </ul>
+
+                    <p><strong>Mirage Reading:</strong></p>
+                    <ul>
+                        <li>No mirage: either no wind or wind >12 mph</li>
+                        <li>Slow boil (rises vertically): zero wind or very light</li>
+                        <li>Angled mirage: wind direction indicated by angle</li>
+                        <li>Fast boil: moderate to strong wind</li>
+                        <li>Use high magnification on spotting scope</li>
+                        <li>Read mirage at target distance, not just firing line</li>
+                    </ul>
+
+                    <p><strong>Wind Strategies:</strong></p>
+                    <ul>
+                        <li>Pick a condition and wait for it</li>
+                        <li>Don't chase every wind change</li>
+                        <li>Center your group in the average wind</li>
+                        <li>Record conditions and corrections in data book</li>
+                        <li>Learn your rifle's specific wind sensitivity</li>
+                    </ul>
+
+                    <p>At Camp Perry, Lake Erie creates switchy, unpredictable winds. Top shooters develop instinct through years of reading these conditions.</p>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">600-Yard Mastery</div>
+                    <p>The 600-yard slow fire stage is where President's Hundred competitors are made. Twenty rounds at maximum distance with iron sights — this stage determines the top 100.</p>
+
+                    <p><strong>Technical Setup:</strong></p>
+                    <ul>
+                        <li>Elevation zero must be precise — verify before match</li>
+                        <li>Windage zero should center group with no wind</li>
+                        <li>Sling tension consistent for every shot</li>
+                        <li>Position provides clear sight picture with minimal strain</li>
+                        <li>Natural point of aim perfect — no muscling</li>
+                    </ul>
+
+                    <p><strong>Reading Conditions at 600:</strong></p>
+                    <ul>
+                        <li>Wind at firing line may differ from target</li>
+                        <li>Use multiple indicators: flags, mirage, vegetation</li>
+                        <li>Observe other shooters' impacts and corrections</li>
+                        <li>Note switchy conditions and time your shots</li>
+                        <li>Record everything in your data book</li>
+                    </ul>
+
+                    <p><strong>Shot Process:</strong></p>
+                    <ul>
+                        <li>Set initial sights based on observed conditions</li>
+                        <li>Confirm natural point of aim</li>
+                        <li>Exhale, pause, acquire sight alignment</li>
+                        <li>Smooth trigger press with follow-through</li>
+                        <li>Call the shot before looking at target</li>
+                        <li>Spotter confirms — adjust sights if needed</li>
+                    </ul>
+
+                    <p><strong>Mental Approach:</strong></p>
+                    <ul>
+                        <li>One shot at a time — 20 separate events</li>
+                        <li>Don't get rushed by time, but don't dawdle</li>
+                        <li>Accept that some wind calls will be wrong</li>
+                        <li>Adjust and continue — never dwell on bad shots</li>
+                        <li>Focus on process, not score</li>
+                    </ul>
+
+                    <p>A strong 600-yard performance requires technical perfection, wind reading skill, and mental discipline. This is where championships are earned.</p>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Rapid Fire Technique</div>
+                    <p>Rapid fire stages at 200 and 300 yards test speed and consistency under pressure. The transition from standing to shooting position must be efficient and automatic.</p>
+
+                    <p><strong>Rapid Fire Seated (200 yards):</strong></p>
+                    <ul>
+                        <li>Start standing with rifle at port arms</li>
+                        <li>Load two 5-round magazines before command</li>
+                        <li>On "Targets" command, drop to seated position</li>
+                        <li>Acquire natural point of aim immediately</li>
+                        <li>Fire 5 rounds, reload, fire remaining 5</li>
+                        <li>60 seconds total — practice with timer</li>
+                    </ul>
+
+                    <p><strong>Rapid Fire Prone (300 yards):</strong></p>
+                    <ul>
+                        <li>Start standing, loaded with two 5-round magazines</li>
+                        <li>On "Targets" command, drop to prone</li>
+                        <li>First shot taken at 200 yards</li>
+                        <li>Target moves to 300 yards after first string</li>
+                        <li>Reload and fire second 5-round string</li>
+                        <li>70 seconds total — time for deliberate shots</li>
+                    </ul>
+
+                    <p><strong>Transition Technique:</strong></p>
+                    <ul>
+                        <li>Practice dry-fire drops until automatic</li>
+                        <li>Drop straight down, rifle stays on shoulder</li>
+                        <li>Immediate natural point of aim acquisition</li>
+                        <li>Sling stays adjusted — no fumbling</li>
+                        <li>First shot within 10 seconds of drop</li>
+                    </ul>
+
+                    <p><strong>Reloading Under Pressure:</strong></p>
+                    <ul>
+                        <li>Magazine placement consistent and accessible</li>
+                        <li>Smooth, positive insertion</li>
+                        <li>Bolt release or charging handle manipulation</li>
+                        <li>No looking at rifle — maintain target focus</li>
+                        <li>Practice until reload is unconscious</li>
+                    </ul>
+
+                    <p>Rapid fire rewards efficiency. Every second spent fumbling position or reload is a second lost for aiming and wind reading.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Data Book Management</div>
+                    <p>A comprehensive data book is essential for competitive success. It tracks your zeros, wind corrections, ammunition performance, and match history.</p>
+
+                    <p><strong>Zero Data:</strong></p>
+                    <ul>
+                        <li>200-yard zero elevation and windage settings</li>
+                        <li>300-yard come-ups for rapid fire stage</li>
+                        <li>600-yard elevation zero and adjustments</li>
+                        <li>Date, temperature, and conditions for each zero</li>
+                        <li>Record which ammunition lot for each zero</li>
+                    </ul>
+
+                    <p><strong>Wind Data:</strong></p>
+                    <ul>
+                        <li>Windage clicks for various wind speeds at each distance</li>
+                        <li>Full value, half value, no value corrections</li>
+                        <li>Specific to your rifle and ammunition</li>
+                        <li>Camp Perry specific data if available</li>
+                        <li>Update as you learn your rifle's behavior</li>
+                    </ul>
+
+                    <p><strong>Match Records:</strong></p>
+                    <ul>
+                        <li>Date, location, and match name</li>
+                        <li>Weather conditions (temperature, wind, light)</li>
+                        <li>Ammunition lot number used</li>
+                        <li>Score for each stage and aggregate</li>
+                        <li>Notes on what worked and what didn't</li>
+                    </ul>
+
+                    <p><strong>Shot Plotting:</strong></p>
+                    <ul>
+                        <li>Plot each shot in slow fire stages</li>
+                        <li>Identify group patterns and called shots</li>
+                        <li>Track sight adjustments and results</li>
+                        <li>Look for trends indicating equipment issues</li>
+                        <li>Compare called shots to actual impacts</li>
+                    </ul>
+
+                    <p><strong>Pre-Match Review:</strong></p>
+                    <ul>
+                        <li>Review previous Camp Perry data before National Matches</li>
+                        <li>Check rifle zeros from last session</li>
+                        <li>Confirm ammunition lot performance</li>
+                        <li>Set initial sight settings based on conditions</li>
+                        <li>Mental preparation from previous successes</li>
+                    </ul>
+
+                    <p>Your data book is your competitive memory. Detailed records separate prepared shooters from those who repeat the same mistakes.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">President's Hundred Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Qualification</a></li><li><a href="index.html#phases">NTI Match</a></li><li><a href="index.html#phases">President's Hundred</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Marksmanship Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+
+        // Mobile Nav Toggle + Accordion
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                });
+            });
+        })();
+
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth + Course Engine -->
+    <script src="../js/config.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script src="../js/course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+</body>
+</html>

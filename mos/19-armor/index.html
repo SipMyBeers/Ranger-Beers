@@ -106,11 +106,21 @@
     <!-- MOS SPECIALTIES SELECTOR -->
     <section class="school-section fade-in" id="specialties">
         <div class="school-section-label">MOS Specialties</div>
-        <div class="phase-selector" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="phase-selector" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
+            <button class="phase-card-btn" data-phase="19a" onclick="togglePhase('19a')">
+                <span class="phase-card-icon">&#9878;</span>
+                <span class="phase-card-title">19A</span>
+                <span class="phase-card-sub">Armor Officer</span>
+            </button>
+            <button class="phase-card-btn" data-phase="19c" onclick="togglePhase('19c')">
+                <span class="phase-card-icon">&#9876;</span>
+                <span class="phase-card-title">19C</span>
+                <span class="phase-card-sub">Cavalry Officer</span>
+            </button>
             <button class="phase-card-btn active" data-phase="19k" onclick="togglePhase('19k')">
                 <span class="phase-card-icon">&#9881;</span>
                 <span class="phase-card-title">19K</span>
-                <span class="phase-card-sub">M1 Armor Crewman</span>
+                <span class="phase-card-sub">Abrams Tanker</span>
             </button>
             <button class="phase-card-btn" data-phase="19d" onclick="togglePhase('19d')">
                 <span class="phase-card-icon">&#128065;</span>
@@ -120,8 +130,36 @@
             <button class="phase-card-btn" data-phase="19z" onclick="togglePhase('19z')">
                 <span class="phase-card-icon">&#11088;</span>
                 <span class="phase-card-title">19Z</span>
-                <span class="phase-card-sub">Senior Armor Sergeant</span>
+                <span class="phase-card-sub">Senior Sgt</span>
             </button>
+        </div>
+
+        <!-- 19A Detail -->
+        <div class="phase-detail-panel" id="detail-19a">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">19A</span>
+                    <div class="phase-detail-rtb">Armor Officer</div>
+                    <a href="../19a/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Leading the Army's heavy metal. Armor Officers plan and lead missions to destroy enemy forces using tanks and scout platforms.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 19C Detail -->
+        <div class="phase-detail-panel" id="detail-19c">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">19C</span>
+                    <div class="phase-detail-rtb">Cavalry Officer</div>
+                    <a href="../19c/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Leading the Army's reconnaissance and security missions. Cavalry Officers plan and lead scouting operations forward of friendly lines.</p>
+                </div>
+            </div>
         </div>
 
         <!-- 19K Detail -->
@@ -133,23 +171,11 @@
                     <div class="phase-detail-standards">
                         <div class="phase-detail-standard"><span class="phase-detail-standard-label">OSUT</span><span>22 Weeks</span></div>
                         <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Moore, GA</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>CO: 87</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Arms</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Gunnery, Tank Ops, Maintenance, Crew Drills</span></div>
                     </div>
+                    <a href="../19k/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The 19K M1 Armor Crewman operates the M1 Abrams &mdash; one of the most lethal main battle tanks in the world. Tankers crew a 70-ton, 1,500-horsepower platform armed with a 120mm smoothbore cannon, delivering devastating firepower and shock action on the modern battlefield. OSUT at Fort Moore combines Basic Combat Training and Advanced Individual Training into a continuous 22-week course.</p>
-                    <p>Training progresses from individual soldier skills through crew-level gunnery tables, culminating in live-fire maneuver exercises. Graduates are qualified in M1 Abrams operations, gunnery, maintenance, and combined arms maneuver.</p>
-                    <ul class="phase-detail-list">
-                        <li>M1 Abrams tank operations: driving, loading, gunning, and tank commanding</li>
-                        <li>Gunnery tables I through XII &mdash; individual through platoon live fire</li>
-                        <li>Preventive maintenance checks and services (PMCS) on the M1 platform</li>
-                        <li>Crew drills: react to contact, action on FASCAM, breach obstacle</li>
-                        <li>Combined arms maneuver with infantry and artillery</li>
-                        <li>Mounted and dismounted land navigation</li>
-                        <li>Field training exercise (FTX) with live-fire gunnery lanes</li>
-                    </ul>
+                    <p>The 19K M1 Armor Crewman operates the M1 Abrams. Tankers deliver devastating firepower and shock action on the modern battlefield.</p>
                 </div>
             </div>
         </div>
@@ -160,26 +186,10 @@
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b19d">19D</span>
                     <div class="phase-detail-rtb">Cavalry Scout</div>
-                    <div class="phase-detail-standards">
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">OSUT</span><span>22 Weeks</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Moore, GA</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>CO: 87</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Arms</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Recon, Surveillance, Bradley Ops, Target Acquisition</span></div>
-                    </div>
+                    <a href="../19d/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The 19D Cavalry Scout is the eyes and ears of the battlefield. Cav Scouts conduct reconnaissance, surveillance, and security operations far forward of friendly lines, providing commanders with critical intelligence on enemy disposition, terrain, and obstacles. They operate Bradley Fighting Vehicles, HMMWVs, and Strykers depending on the unit type.</p>
-                    <p>19Ds complete 22-week OSUT at Fort Moore with specialized training in reconnaissance techniques, reporting procedures, and mounted/dismounted operations. Scouts must master route, zone, and area reconnaissance as well as screening operations.</p>
-                    <ul class="phase-detail-list">
-                        <li>Route, zone, and area reconnaissance operations</li>
-                        <li>Surveillance and target acquisition techniques</li>
-                        <li>Bradley Fighting Vehicle operations and gunnery</li>
-                        <li>Screening operations and counter-reconnaissance</li>
-                        <li>Call for fire and close air support procedures</li>
-                        <li>Mounted and dismounted patrol operations</li>
-                        <li>SALUTE and intelligence reporting, map overlay production</li>
-                    </ul>
+                    <p>The eyes and ears of the battlefield. Cavalry Scouts conduct reconnaissance and surveillance forward of friendly lines.</p>
                 </div>
             </div>
         </div>
@@ -189,27 +199,11 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b19z">19Z</span>
-                    <div class="phase-detail-rtb">Senior Armor Sergeant</div>
-                    <div class="phase-detail-standards">
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Selection</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>BN/BDE Level</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Senior Enlisted Leader</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Master Gunner, Training Mgmt, Armor Operations</span></div>
-                    </div>
+                    <div class="phase-detail-rtb">Senior Sergeant</div>
+                    <a href="../19z/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The 19Z Senior Armor Sergeant is the pinnacle of enlisted Armor leadership. 19Zs serve as operations sergeants major, first sergeants, and command sergeants major at battalion and brigade level. They are responsible for BN/BDE armor operations, training management, and the tactical employment of the unit's armored combat power.</p>
-                    <p>Reaching 19Z requires decades of Armor experience, completion of the Senior Leader Course and Sergeants Major Academy, the Master Gunner track, and a record of proven performance across multiple duty positions in both tank and cavalry organizations.</p>
-                    <ul class="phase-detail-list">
-                        <li>BN/BDE armor operations planning and execution</li>
-                        <li>Master Gunner track &mdash; unit gunnery training expert</li>
-                        <li>Training management and readiness reporting at BN/BDE level</li>
-                        <li>Personnel management, evaluations, and career counseling</li>
-                        <li>Doctrine development and combined arms integration</li>
-                        <li>Mentorship of junior NCOs and officer integration</li>
-                        <li>Combat leadership at the highest enlisted levels</li>
-                    </ul>
+                    <p>The pinnacle of enlisted Armor leadership. 19Zs serve as operations sergeants major and first sergeants at battalion and brigade level.</p>
                 </div>
             </div>
         </div>

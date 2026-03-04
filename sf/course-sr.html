@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Reconnaissance — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">SFAS</a></li>
+                        <li><a href="index.html#phases">Language &amp; Culture</a></li>
+                        <li><a href="index.html#phases">MOS Training</a></li>
+                        <li><a href="index.html#phases">Robin Sage</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">SF Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">SF Training</span></li>
+                        <li><a href="course-sfas-prep.html">SFAS Prep</a></li>
+                        <li><a href="course-small-unit.html">Small Unit Tactics</a></li>
+                        <li><a href="course-mff.html">Military Freefall</a></li>
+                        <li><a href="course-combat-dive.html">Combat Diving</a></li>
+                        <li><a href="course-unconventional.html">Unconventional Warfare</a></li>
+                        <li><a href="course-sr.html">Special Reconnaissance</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-sr">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Special Reconnaissance</h1>
+        <p class="section-desc fade-in">6 modules covering clandestine surveillance, target acquisition, reporting procedures, technical sensors, and denied area operations for Special Forces reconnaissance missions.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$15</span>
+            <span class="course-tag tag-phase">SR</span>
+            <span class="course-tag tag-type">Reconnaissance</span>
+            <span class="course-tag tag-bundle">Clandestine</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-sr"
+                data-item-name="Special Reconnaissance"
+                data-item-price="15.00"
+                data-item-url="/sf/course-sr.html"
+                data-item-description="Clandestine surveillance, target acquisition, and denied area operations"
+                data-item-categories="course">Buy Course — $15.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. SR Fundamentals</a>
+                <a href="#mod2" class="course-sidebar-link">2. Surveillance Techniques</a>
+                <a href="#mod3" class="course-sidebar-link">3. Target Acquisition</a>
+                <a href="#mod4" class="course-sidebar-link">4. Intelligence Reporting</a>
+                <a href="#mod5" class="course-sidebar-link">5. Technical Sensors</a>
+                <a href="#mod6" class="course-sidebar-link">6. Denied Area Operations</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Special Reconnaissance Fundamentals</div>
+                    <p>Special Reconnaissance (SR) is one of the core missions of Special Forces. SR involves clandestine reconnaissance and surveillance in hostile, denied, or politically sensitive environments to collect or verify intelligence. SR operations require stealth, patience, technical competence, and the ability to operate independently for extended periods.</p>
+
+                    <p><strong>SR Mission Definition:</strong></p>
+                    <p>SR is reconnaissance and surveillance action conducted by Special Operations Forces in hostile, denied, or diplomatically and/or politically sensitive environments to collect or verify information of strategic or operational significance. SR complements national and theater intelligence collection assets.</p>
+
+                    <p><strong>SR vs Traditional Reconnaissance:</strong></p>
+                    <ul>
+                        <li><strong>Depth:</strong> SR operates deep in enemy territory or denied areas</li>
+                        <li><strong>Duration:</strong> Extended missions lasting days to weeks</li>
+                        <li><strong>Clandestinity:</strong> Emphasis on avoiding detection versus force protection</li>
+                        <li><strong>Reporting:</strong> Real-time or near-real-time intelligence reporting</li>
+                        <li><strong>Infiltration:</strong> Specialized entry methods (MFF, combat diving, overland)</li>
+                    </ul>
+
+                    <p><strong>SR Applications:</strong></p>
+                    <ul>
+                        <li>Strategic intelligence collection on enemy capabilities</li>
+                        <li>Target development for precision strike</li>
+                        <li>Battle damage assessment (BDA) verification</li>
+                        <li>Environmental reconnaissance for follow-on forces</li>
+                        <li>Geospatial intelligence collection</li>
+                        <li>Counter-proliferation monitoring</li>
+                        <li>Preparation of the battlefield</li>
+                    </ul>
+
+                    <p><strong>SR Planning Considerations:</strong></p>
+                    <ul>
+                        <li>Intelligence requirements and collection objectives</li>
+                        <li>Enemy capabilities and detection systems</li>
+                        <li>Infiltration and exfiltration routes</li>
+                        <li>Communication windows and reporting architecture</li>
+                        <li>Sustainment and equipment requirements</li>
+                        <li>Contingency planning for compromise</li>
+                    </ul>
+
+                    <p><strong>SF SR Capabilities:</strong></p>
+                    <p>SF ODAs provide unique SR capabilities: language skills for human intelligence collection, cultural knowledge for operating in foreign environments, and the ability to work with indigenous forces to extend reconnaissance reach. SR can be conducted unilaterally (ODA only) or combined with partner forces.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Surveillance Techniques</div>
+                    <p>Effective surveillance is the foundation of SR operations. SF teams must observe targets for extended periods while remaining undetected, often in challenging environmental conditions. Surveillance techniques balance visibility of the target with concealment of the observer.</p>
+
+                    <p><strong>Surveillance Positions:</strong></p>
+                    <ul>
+                        <li><strong>Observation Post (OP):</strong> Fixed position with good line of sight to target</li>
+                        <li><strong>Hide Site:</strong> Concealed location for rest and equipment cache</li>
+                        <li><strong>Cache Site:</strong> Supply and equipment storage separate from OP</li>
+                        <li><strong>Backup OP:</strong> Alternate position if primary is compromised</li>
+                    </ul>
+
+                    <p><strong>OP Site Selection Criteria:</strong></p>
+                    <ul>
+                        <li>Clear field of view to target area</li>
+                        <li>Concealment from enemy observation</li>
+                        <li>Covered routes to and from the position</li>
+                        <li>Good communications potential (radio propagation)</li>
+                        <li>Defensible if discovered</li>
+                        <li>Suitable for extended occupation</li>
+                    </ul>
+
+                    <p><strong>Position Construction:</strong></p>
+                    <ul>
+                        <li>Use natural terrain features for concealment</li>
+                        <li>Minimize silhouette and shadow</li>
+                        <li>Camouflage to match local vegetation and terrain</li>
+                        <li>Prepare multiple firing ports if defensive position needed</li>
+                        <li>Establish waste disposal and hygiene procedures</li>
+                        <li>Create sleeping areas that maintain security</li>
+                    </ul>
+
+                    <p><strong>Observation Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Scanning:</strong> Systematic search of assigned sector</li>
+                        <li><strong>Searching:</strong> Detailed examination of specific areas</li>
+                        <li><strong>Tracking:</strong> Following movement of specific targets</li>
+                        <li><strong>Off-Shift Monitoring:</strong> Audio and sensor monitoring while resting</li>
+                    </ul>
+
+                    <p><strong>Visibility Factors:</strong></p>
+                    <ul>
+                        <li>Light conditions (day, night, dawn, dusk)</li>
+                        <li>Weather (rain, fog, dust, snow)</li>
+                        <li>Vegetation (leaf-on, leaf-off, density)</li>
+                        <li>Distance to target and optical aids available</li>
+                        <li>Thermal crossover periods (minimal thermal contrast)</li>
+                    </ul>
+
+                    <p><strong>Movement Discipline:</strong></p>
+                    <p>Once in position, movement must be minimized and carefully controlled. Movement attracts attention. Use slow, deliberate movements when necessary. Coordinate position shifts with environmental sounds (wind, aircraft, distant noise). Maintain noise and light discipline at all times.</p>
+
+                    <p><strong>Rotation and Rest:</strong></n                    <p>Extended surveillance requires personnel rotation to maintain alertness. Standard procedures include:</p>
+                    <ul>
+                        <li>50/50 or 33/33/33 observation/rest cycles</li>
+                        <li>Maximum 2 hours on observation before rotation</li>
+                        <li>Sleep in short periods (30-60 minutes) to maintain readiness</li>
+                        <li>One member maintains security while others rest</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Target Acquisition</div>
+                    <p>Target acquisition is the detection, identification, and location of targets suitable for engagement. SR teams acquire targets for precision strike, develop target intelligence packages, and provide terminal guidance for weapons delivery. Accurate target acquisition requires technical skill and attention to detail.</p>
+
+                    <p><strong>Target Types:</strong></p>
+                    <ul>
+                        <li><strong>Point Targets:</strong> Single, discrete targets (buildings, vehicles, individuals)</li>
+                        <li><strong>Area Targets:</strong> Targets dispersed over area (troop concentrations, supply dumps)</li>
+                        <li><strong>Linear Targets:</strong> Extended along line (convoys, trench lines, runways)</li>
+                        <li><strong>Time-Sensitive Targets:</strong> High-value, fleeting targets requiring rapid engagement</li>
+                    </ul>
+
+                    <p><strong>Target Development Process:</strong></p>
+                    <ol>
+                        <li><strong>Detection:</strong> Initial location of potential target</li>
+                        <li><strong>Location:</strong> Precise coordinates (8- or 10-digit grid, or lat/long)</li>
+                        <li><strong>Identification:</strong> What is the target? Type, function, purpose</li>
+                        <li><strong>Classification:</strong> Priority level based on operational value</li>
+                        <li><strong>Confirmation:</strong> Verification of target validity and nature</li>
+                        <li><strong>Reporting:</strong> Transmit target information to strike authority</li>
+                    </ol>
+
+                    <p><strong>Target Location Methods:</strong></p>
+                    <ul>
+                        <li><strong>Map Plotting:</strong> Terrain association from known position</li>
+                        <li><strong>Vectoring:</strong> Azimuth and distance from OP to target</li>
+                        <li><strong>Resection:</strong> Azimuths from multiple known points</li>
+                        <li><strong>GPS:</strong> Direct coordinate acquisition</li>
+                        <li><strong>Laser Designation:</strong> Precise targeting for smart munitions</li>
+                        <li><strong>Offset Marking:</strong> Reference point near target when direct observation impossible</li>
+                    </ul>
+
+                    <p><strong>Target Description Elements:</strong></p>
+                    <ul>
+                        <li>Target type and function</li>
+                        <li>Exact location (grid coordinates)</li>
+                        <li>Dimensions and orientation</li>
+                        <li>Defensive measures observed</li>
+                        <li>Activity patterns and timing</li>
+                        <li>Collateral concerns (nearby structures, population)</li>
+                    </ul>
+
+                    <p><strong>Time-Sensitive Target (TST) Procedures:</strong></p>
+                    <p>High-value, fleeting targets require immediate action:</p>
+                    <ul>
+                        <li>Pre-established TST criteria and authorities</li>
+                        <li>Rapid reporting through dedicated communication channels</li>
+                        <li>Minimum essential information for engagement decision</li>
+                        <li>Continuous target tracking until strike or loss of contact</li>
+                        <li>Battle damage assessment reporting</li>
+                    </ul>
+
+                    <p><strong>Terminal Guidance Operations (TGO):</strong></p>
+                    <p>SR teams may guide precision munitions to target using:</p>
+                    <ul>
+                        <li>Laser designators for laser-guided bombs and missiles</li>
+                        <li>GPS coordinates for JDAM and similar weapons</li>
+                        <li>Radio guidance for AC-130 or rotary-wing gunships</li>
+                        <li>Visual marking with IR strobes or markers</li>
+                    </ul>
+
+                    <p><strong>Target Acquisition Equipment:</strong></p>
+                    <ul>
+                        <li>High-power optics (spotting scopes, binoculars)</li>
+                        <li>Laser rangefinder/designator</li>
+                        <li>GPS with mapping capability</li>
+                        <li>Digital camera with telephoto lens</li>
+                        <li>Thermal and night vision devices</li>
+                        <li>Video equipment for documentation</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Intelligence Reporting</div>
+                    <p>The product of SR is intelligence — accurate, timely, relevant information that enables decision-makers to act. Reporting procedures must balance completeness with transmission security, timeliness with accuracy, and detail with clarity.</p>
+
+                    <p><strong>Reporting Principles:</strong></p>
+                    <ul>
+                        <li><strong>Accuracy:</strong> Report what you know; distinguish from what you suspect</li>
+                        <li><strong>Timeliness:</strong> Report per schedule and immediately for critical information</li>
+                        <li><strong>Relevance:</strong> Focus on commander's critical information requirements (CCIR)</li>
+                        <li><strong>Security:</strong> Protect sources and methods through proper transmission</li>
+                        <li><strong>Brevity:</strong> Be concise; every transmission increases detection risk</li>
+                    </ul>
+
+                    <p><strong>SALUTE Report Format:</strong></p>
+                    <p>The standard format for reporting enemy information:</p>
+                    <ul>
+                        <li><strong>S</strong>ize — Number and type of personnel/equipment observed</li>
+                        <li><strong>A</strong>ctivity — What are they doing?</li>
+                        <li><strong>L</strong>ocation — Grid coordinates or geographic reference</li>
+                        <li><strong>U</strong>nit — Identification (uniforms, vehicles, markings)</li>
+                        <li><strong>T</strong>ime — Date-time group of observation</li>
+                        <li><strong>E</strong>quipment — Weapons, vehicles, communications gear</li>
+                    </ul>
+
+                    <p><strong>Communication Windows:</strong></p>
+                    <ul>
+                        <li>Pre-established times for scheduled reports</li>
+                        <li>Reduces electronic signature through limited transmission</li>
+                        <li>Emergency break procedures for critical information</li>
+                        <li>Backup windows if primary communication fails</li>
+                    </ul>
+
+                    <p><strong>Spot Report (SPOTREP):</strong></p>
+                    <p>Immediate report of significant activity or critical information:</p>
+                    <ul>
+                        <li>Used for time-sensitive information</li>
+                        <li>Transmitted as soon as observed (not waiting for scheduled window)</li>
+                        <li>Initial report followed by update when more information available</li>
+                        <li>Code words may be used for pre-planned critical information</li>
+                    </ul>
+
+                    <p><strong>SITREP (Situation Report):</strong></p>
+                    <p>Periodic status report on SR team status and mission progress:</p>
+                    <ul>
+                        <li>Team location (usually encoded)</li>
+                        <li>Personnel and equipment status</li>
+                        <li>Mission progress toward objectives</li>
+                        <li>Observations and significant activities</li>
+                        <li>Logistics and sustainment status</li>
+                        <li>Intentions for next reporting period</li>
+                    </ul>
+
+                    <p><strong>Image Reporting:</strong></p>
+                    <ul>
+                        <li>Digital photography provides irrefutable documentation</li>
+                        <li>Metadata (time, location) embedded in images</li>
+                        <li>Compression for transmission over limited bandwidth</li>
+                        <li>Image analysis can reveal details not visible to naked eye</li>
+                        <li>Chain of custody for evidentiary purposes</li>
+                    </ul>
+
+                    <p><strong>Transmission Security:</strong></p>
+                    <ul>
+                        <li>Use encryption for all sensitive communications</li>
+                        <li>Keep transmissions short to minimize direction-finding opportunity</li>
+                        <li>Use burst transmission when possible</li>
+                        <li>Move transmission sites if extended mission</li>
+                        <li>Observe emission control (EMCON) procedures when not transmitting</li>
+                    </ul>
+
+                    <p><strong>Debriefing:</strong></p>
+                    <p>After mission completion, comprehensive debriefing captures:</p>
+                    <ul>
+                        <li>Detailed observations and analysis</li>
+                        <li>Corrections or amplifications to transmitted reports</li>
+                        <li>Enemy TTPs observed</li>
+                        <li>Lessons learned and recommendations</li>
+                        <li>Equipment performance feedback</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Technical Sensors</div>
+                    <p>Modern SR operations leverage advanced sensor technology to extend human observation capabilities. Technical sensors provide persistent surveillance, remote monitoring, and detection of signatures beyond human senses. SF operators must understand sensor capabilities and limitations.</p>
+
+                    <p><strong>Electro-Optical/Infrared (EO/IR) Sensors:</strong></p>
+                    <ul>
+                        <li><strong>Day/Night Cameras:</strong> Low-light and thermal imaging</li>
+                        <li><strong>Thermal Imagers:</strong> Detect heat signatures through camouflage and light cover</li>
+                        <li><strong>Laser Designators:</strong> Mark targets for precision-guided munitions</li>
+                        <li><strong>Laser Rangefinders:</strong> Precise distance measurement</li>
+                        <li><strong>Image Intensifiers:</strong> Night vision devices amplify ambient light</li>
+                    </ul>
+
+                    <p><strong>Acoustic Sensors:</strong></p>
+                    <ul>
+                        <li><strong>Seismic:</strong> Detect ground vibrations from vehicles and personnel</li>
+                        <li><strong>Acoustic:</strong> Detect and classify sounds (vehicles, aircraft, voices)</li>
+                        <li><strong>Magnetic:</strong> Detect metal objects (vehicles, weapons)</li>
+                        <li><strong>Passive:</strong> Do not emit detectable signals</li>
+                    </ul>
+
+                    <p><strong>Unattended Ground Sensors (UGS):</strong></p>
+                    <p>Remote sensors deployed and left to monitor an area:</p>
+                    <ul>
+                        <li>Deployed along likely avenues of approach</li>
+                        <li>Report via radio to monitoring station</li>
+                        <li>Battery life determines mission duration</li>
+                        <li>Various trigger types: seismic, magnetic, infrared</li>
+                        <li>Retrieval or destruction plan required</li>
+                    </ul>
+
+                    <p><strong>Unmanned Aircraft Systems (UAS):</strong></p>
+                    <ul>
+                        <li>Extend observation range beyond line of sight</li>
+                        <li>Various sizes from hand-launched to long-endurance</li>
+                        <li>Real-time video feed to ground controller</li>
+                        <li>Risk of detection and compromise</li>
+                        <li>Weather and terrain limitations</li>
+                    </ul>
+
+                    <p><strong>SIGINT (Signals Intelligence) Collection:</strong></p>
+                    <ul>
+                        <li>Intercept enemy communications</li>
+                        <li>Direction-finding to locate transmitters</li>
+                        <li>Electronic order of battle development</li>
+                        <li>Requires specialized equipment and training</li>
+                        <li>Strict handling and reporting procedures</li>
+                    </ul>
+
+                    <p><strong>GPS and Navigation Systems:</strong></p>
+                    <ul>
+                        <li>Precision location and navigation</li>
+                        <li>Mapping and geographic information systems</li>
+                        <li>Vulnerability to jamming and spoofing in contested environments</li>
+                        <li>Backup navigation skills essential</li>
+                    </ul>
+
+                    <p><strong>Sensor Employment Considerations:</strong></p>
+                    <ul>
+                        <li>Power requirements and battery management</li>
+                        <li>Weight and bulk for man-portable systems</li>
+                        <li>Environmental operating conditions</li>
+                        <li>Maintenance and reliability in field conditions</li>
+                        <li>Signature reduction (visual, thermal, acoustic)</li>
+                        <li>Data storage and transmission security</li>
+                    </ul>
+
+                    <p><strong>Sensor Integration:</strong></p>
+                    <p>Effective SR combines human observation with technical sensors. Sensors provide persistent monitoring and remote detection; humans provide analysis, judgment, and adaptability. Neither replaces the other — they complement each other.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Denied Area Operations</div>
+                    <p>Denied areas are regions where US forces cannot operate openly due to political sensitivities, enemy control, or lack of access agreements. SR in denied areas represents the most challenging reconnaissance environment, requiring advanced tradecraft and contingency planning.</p>
+
+                    <p><strong>Types of Denied Areas:</strong></p>
+                    <ul>
+                        <li><strong>Hostile Territory:</strong> Enemy-controlled areas with active opposition</li>
+                        <li><strong>Politically Sensitive:</strong> Nations where overt US presence is unacceptable</li>
+                        <li><strong>Difficult Terrain:</strong> Geographic barriers limiting access and extraction</li>
+                        <li><strong>Contested Airspace:</strong> Areas with sophisticated air defense systems</li>
+                    </ul>
+
+                    <p><strong>Infiltration Methods:</strong></p>
+                    <ul>
+                        <li><strong>Military Freefall (HALO/HAHO):</strong> High-altitude airdrop beyond radar coverage</li>
+                        <li><strong>Combat Diving:</strong> Maritime infiltration from submarine or surface craft</li>
+                        <li><strong>Overland:</strong> Foot infiltration from border or remote landing zone</li>
+                        <li><strong>Vehicle:</strong> Concealed movement using indigenous transportation</li>
+                        <li><strong>Stay-Behind:</strong> Pre-positioned before area becomes denied</li>
+                    </ul>
+
+                    <p><strong>Operational Security (OPSEC):</strong></p>
+                    <ul>
+                        <li>Strict need-to-know for all mission details</li>
+                        <li>Compartmentalization of planning and preparation</li>
+                        <li>Cover stories and legend development if cover required</li>
+                        <li>Document sanitization (no US markings, sterile equipment)</li>
+                        <li>Communication security and encryption</li>
+                        <li>Capture avoidance and resistance training</li>
+                    </ul>
+
+                    <p><strong>Indigenous Support:</strong></p>
+                    <p>In denied areas, SR teams may rely on local support networks:</p>
+                    <ul>
+                        <li>Safe houses and concealment</li>
+                        <li>Local guides and transportation</li>
+                        <li>Intelligence from sympathetic population</li>
+                        <li>Logistics and resupply</li>
+                        <li>Relationship management and trust building</li>
+                        <li>Compromise risk assessment</li>
+                    </ul>
+
+                    <p><strong>Evasion and Escape Planning:</strong></p>
+                    <ul>
+                        <li>Pre-planned evasion corridors to friendly territory</li>
+                        <li>Evasion aids (blood chits, pointee-talkee cards)</li>
+                        <li>Extraction options and triggers</li>
+                        <li>Hide sites along evasion routes</li>
+                        <li>Recovery procedures and authentication</li>
+                    </ul>
+
+                    <p><strong>Contingency Planning:</strong></p>
+                    <p>Denied area operations require extensive "what-if" planning:</p>
+                    <ul>
+                        <li>Actions if team member injured</li>
+                        <li>Actions if communications equipment fails</li>
+                        <li>Actions if compromise is suspected</li>
+                        <li>Actions if exfiltration platform cannot arrive</li>
+                        <li>Actions if detained by hostile forces</li>
+                        <li>Actions if separated from team</li>
+                    </ul>
+
+                    <p><strong>Survival Considerations:</strong></p>
+                    <ul>
+                        <li>Extended operations without resupply</li>
+                        <li>Water procurement and purification</li>
+                        <li>Foraging and procurement from environment</li>
+                        <li>Medical self-care without evacuation</li>
+                        <li>Psychological endurance in isolation</li>
+                    </ul>
+
+                    <p><strong>Legal and Policy Framework:</strong></p>
+                    <p>SR in denied areas operates within specific legal authorities and policy guidance. Operators must understand rules of engagement, use of force guidelines, and reporting requirements for sensitive activities. Legal review and policy approval are required for operations in certain categories of denied areas.</p>
+
+                    <p><strong>Recovery Operations:</strong></p>
+                    <p>If an SR team is compromised or unable to self-exfiltrate, recovery operations may be necessary. These are high-risk operations requiring dedicated rescue forces, supporting assets, and rapid response capability. Prevention through tradecraft and planning is always preferred to recovery.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">SF School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">SFAS</a></li><li><a href="index.html#phases">Language</a></li><li><a href="index.html#phases">MOS Training</a></li><li><a href="index.html#phases">Robin Sage</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">SF Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="resources.html">Resources</a></li><li><a href="/ranger/shop.html">Full Store</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                });
+            });
+        })();
+
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth + Course Engine -->
+    <script src="../js/config.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script src="../js/course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    </script>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+</body>
+</html>

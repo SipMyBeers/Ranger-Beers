@@ -110,85 +110,57 @@
     <!-- MOS SPECIALTIES SELECTOR -->
     <section class="school-section fade-in" id="specialties">
         <div class="school-section-label">MOS Specialties</div>
-        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
-            <button class="phase-card-btn active" data-phase="92g" onclick="togglePhase('92g')">
-                <span class="phase-card-icon">&#127858;</span>
-                <span class="phase-card-title">92G</span>
-                <span class="phase-card-sub">Culinary Specialist</span>
-            </button>
-            <button class="phase-card-btn" data-phase="92y" onclick="togglePhase('92y')">
-                <span class="phase-card-icon">&#128230;</span>
-                <span class="phase-card-title">92Y</span>
-                <span class="phase-card-sub">Unit Supply Specialist</span>
+        <div class="phase-selector" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
+            <button class="phase-card-btn active" data-phase="92a" onclick="togglePhase('92a')">
+                <span class="phase-card-icon">&#128203;</span>
+                <span class="phase-card-title">92A</span>
+                <span class="phase-card-sub">Logistics</span>
             </button>
             <button class="phase-card-btn" data-phase="92f" onclick="togglePhase('92f')">
                 <span class="phase-card-icon">&#9981;</span>
                 <span class="phase-card-title">92F</span>
-                <span class="phase-card-sub">Petroleum Supply Specialist</span>
+                <span class="phase-card-sub">Petroleum</span>
+            </button>
+            <button class="phase-card-btn" data-phase="92g" onclick="togglePhase('92g')">
+                <span class="phase-card-icon">&#127858;</span>
+                <span class="phase-card-title">92G</span>
+                <span class="phase-card-sub">Culinary</span>
+            </button>
+            <button class="phase-card-btn" data-phase="92m" onclick="togglePhase('92m')">
+                <span class="phase-card-icon">&#9878;</span>
+                <span class="phase-card-title">92M</span>
+                <span class="phase-card-sub">Mortuary</span>
+            </button>
+            <button class="phase-card-btn" data-phase="92r" onclick="togglePhase('92r')">
+                <span class="phase-card-icon">&#128065;</span>
+                <span class="phase-card-title">92R</span>
+                <span class="phase-card-sub">Rigger</span>
+            </button>
+            <button class="phase-card-btn" data-phase="92y" onclick="togglePhase('92y')">
+                <span class="phase-card-icon">&#128230;</span>
+                <span class="phase-card-title">92Y</span>
+                <span class="phase-card-sub">Supply</span>
             </button>
             <button class="phase-card-btn" data-phase="92z" onclick="togglePhase('92z')">
                 <span class="phase-card-icon">&#11088;</span>
                 <span class="phase-card-title">92Z</span>
-                <span class="phase-card-sub">Senior QM Sergeant</span>
+                <span class="phase-card-sub">Senior Sgt</span>
             </button>
         </div>
 
-        <!-- 92G Detail -->
-        <div class="phase-detail-panel open" id="detail-92g">
+        <!-- 92A Detail -->
+        <div class="phase-detail-panel open" id="detail-92a">
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
-                    <span class="phase-detail-badge b92g">92G</span>
-                    <div class="phase-detail-rtb">Culinary Specialist</div>
+                    <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">92A</span>
+                    <div class="phase-detail-rtb">Logistical Specialist</div>
                     <div class="phase-detail-standards">
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>9 Weeks</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Gregg-Adams, VA</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Branch</span><span>Quartermaster</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Service Support</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Field &amp; Garrison Food Service, Nutrition, Food Safety</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>10 Weeks</span></div>
                     </div>
+                    <a href="../92a/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The 92G Culinary Specialist is responsible for feeding the force in both garrison and field environments. 92Gs prepare and serve meals in dining facilities, field kitchens, and austere environments around the world. A well-fed Army fights better &mdash; and 92Gs are the reason Soldiers eat.</p>
-                    <p>AIT at Fort Gregg-Adams covers everything from nutrition and food safety to large-scale meal preparation and dining facility management. Graduates are immediately capable of operating field kitchens and garrison mess halls.</p>
-                    <ul class="phase-detail-list">
-                        <li>Field and garrison food service operations</li>
-                        <li>Nutrition planning and dietary requirements</li>
-                        <li>Food safety, sanitation, and ServSafe certification</li>
-                        <li>Dining facility management and scheduling</li>
-                        <li>Field kitchen operations using MKT and containerized kitchens</li>
-                        <li>Menu planning, recipe conversion, and large-scale cooking</li>
-                        <li>Army Culinary Arts competition eligibility</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- 92Y Detail -->
-        <div class="phase-detail-panel" id="detail-92y">
-            <div class="phase-detail-grid">
-                <div class="phase-detail-sidebar">
-                    <span class="phase-detail-badge b92y">92Y</span>
-                    <div class="phase-detail-rtb">Unit Supply Specialist</div>
-                    <div class="phase-detail-standards">
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>8 Weeks</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Gregg-Adams, VA</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Branch</span><span>Quartermaster</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Service Support</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Property Accountability, GCSS-Army, Hand Receipts</span></div>
-                    </div>
-                </div>
-                <div class="phase-detail-content">
-                    <p>The 92Y Unit Supply Specialist is the backbone of Army property accountability. Every company, battery, and troop in the Army depends on a 92Y to manage equipment, process supply requests, and maintain the unit's supply room. If a Soldier needs gear, the 92Y makes it happen.</p>
-                    <p>AIT covers the full spectrum of unit-level supply operations, from hand receipts and property books to the Global Combat Support System-Army (GCSS-Army), the Army's primary logistics information system.</p>
-                    <ul class="phase-detail-list">
-                        <li>Property accountability and hand receipt management</li>
-                        <li>Supply room operations and organization</li>
-                        <li>GCSS-Army system proficiency and transactions</li>
-                        <li>Hand receipt processing and sub-hand receipting</li>
-                        <li>Inventory management and cyclic inventories</li>
-                        <li>Request, receipt, issue, and turn-in of supplies and equipment</li>
-                        <li>Property Book Officer / NCOIC coordination</li>
-                    </ul>
+                    <p>The supply core of the Army. Specialists manage the logistical records, processing, and documentation that ensure the force is mission-ready.</p>
                 </div>
             </div>
         </div>
@@ -198,27 +170,67 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b92f">92F</span>
-                    <div class="phase-detail-rtb">Petroleum Supply Specialist</div>
-                    <div class="phase-detail-standards">
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>10 Weeks</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Gregg-Adams, VA</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Branch</span><span>Quartermaster</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Service Support</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Fuel Ops, Bulk Distribution, Quality Surveillance</span></div>
-                    </div>
+                    <div class="phase-detail-rtb">Petroleum Specialist</div>
+                    <a href="../92f/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The 92F Petroleum Supply Specialist keeps the Army moving by managing the receipt, storage, and distribution of bulk petroleum products. Without fuel, nothing rolls, flies, or generates power. 92Fs operate fuel points, petroleum pipelines, and bulk storage facilities in every theater of operations.</p>
-                    <p>Training covers fuel handling safety, quality surveillance, and the operation of the Forward Area Refueling Equipment (FARE) and Fuel System Supply Point (FSSP). 92Fs also learn petroleum laboratory testing to ensure fuel meets military specifications.</p>
-                    <ul class="phase-detail-list">
-                        <li>Fuel operations and bulk fuel distribution</li>
-                        <li>Quality surveillance and petroleum testing</li>
-                        <li>Fuel System Supply Point (FSSP) operation</li>
-                        <li>Petroleum laboratory operations and fuel analysis</li>
-                        <li>Forward Area Refueling Equipment (FARE) operations</li>
-                        <li>Environmental compliance and spill prevention</li>
-                        <li>Accountability and documentation of petroleum products</li>
-                    </ul>
+                    <p>The fuel of the force. Specialists manage the distribution of petroleum products in all environments.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 92G Detail -->
+        <div class="phase-detail-panel" id="detail-92g">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b92g">92G</span>
+                    <div class="phase-detail-rtb">Culinary Specialist</div>
+                    <a href="../92g/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The energy of the force. Culinary Specialists prepare and serve nutritious meals in all environments.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 92M Detail -->
+        <div class="phase-detail-panel" id="detail-92m">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#ef4444; border-color:#ef4444;">92M</span>
+                    <div class="phase-detail-rtb">Mortuary Affairs</div>
+                    <a href="../92m/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The honor of the force. Specialists manage the recovery and processing of remains with the highest standards of dignity.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 92R Detail -->
+        <div class="phase-detail-panel" id="detail-92r">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#3b82f6; border-color:#3b82f6;">92R</span>
+                    <div class="phase-detail-rtb">Parachute Rigger</div>
+                    <a href="../92r/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The safety of the airborne force. Riggers pack and maintain the parachutes that deliver Soldiers and equipment from the sky.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 92Y Detail -->
+        <div class="phase-detail-panel" id="detail-92y">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b92y">92Y</span>
+                    <div class="phase-detail-rtb">Unit Supply</div>
+                    <a href="../92y/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The supply core of the tactical unit. Specialists manage the equipment and logistics that ensure Soldiers are mission-ready.</p>
                 </div>
             </div>
         </div>
@@ -228,27 +240,11 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b92z">92Z</span>
-                    <div class="phase-detail-rtb">Senior Quartermaster Sergeant</div>
-                    <div class="phase-detail-standards">
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Selection</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>BN/BDE Level</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>S-4 NCOIC / Senior Enlisted</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Supply/Logistics Ops, BN/BDE S-4 NCOIC</span></div>
-                    </div>
+                    <div class="phase-detail-rtb">Senior Sergeant</div>
+                    <a href="../92z/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The 92Z Senior Quartermaster Sergeant is the pinnacle of enlisted Quartermaster leadership. 92Zs serve as the senior supply and logistics NCO at battalion and brigade level, overseeing all supply operations, property accountability, and sustainment planning for large formations.</p>
-                    <p>Reaching 92Z requires extensive Quartermaster experience across multiple MOS specialties, completion of the Senior Leader Course and Sergeants Major Academy, and a proven record of managing complex supply and logistics operations in both garrison and deployed environments.</p>
-                    <ul class="phase-detail-list">
-                        <li>Supply and logistics operations at BN/BDE level</li>
-                        <li>BN/BDE S-4 NCOIC responsibilities</li>
-                        <li>Property accountability oversight for large formations</li>
-                        <li>Sustainment planning and logistics synchronization</li>
-                        <li>Personnel management, evaluations, and career counseling</li>
-                        <li>Mentorship of junior QM NCOs and supply specialists</li>
-                        <li>Integration with maneuver and sustainment commanders</li>
-                    </ul>
+                    <p>The pinnacle of enlisted QM leadership. 92Zs oversee supply operations and property accountability for large formations.</p>
                 </div>
             </div>
         </div>

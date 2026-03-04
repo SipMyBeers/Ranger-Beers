@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ice & Snow Operations — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Technical Skills</a></li>
+                        <li><a href="index.html#phases">Mountain Survival</a></li>
+                        <li><a href="index.html#phases">Mountain Ops</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Mountain Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-mountain-prep.html">Mountain Prep</a></li>
+                        <li><a href="course-technical-climbing.html">Technical Climbing</a></li>
+                        <li><a href="course-mountain-survival.html">Mountain Survival</a></li>
+                        <li><a href="course-ice-snow.html">Ice & Snow Ops</a></li>
+                        <li><a href="course-avalanche.html">Avalanche Safety</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-ice-snow">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Ice & Snow Operations — Winter Warfare</h1>
+        <p class="section-desc fade-in">6 modules covering ice climbing, crampon techniques, ice axe use, steep snow climbing, and winter military operations in alpine environments.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$15</span>
+            <span class="course-tag tag-phase">Winter Phase</span>
+            <span class="course-tag tag-type">Advanced Skills</span>
+            <span class="course-tag tag-bundle">Specialized</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-ice-snow"
+                data-item-name="Ice & Snow Operations"
+                data-item-price="15.00"
+                data-item-url="/mountain/course-ice-snow.html"
+                data-item-description="6-module ice and snow course — ice climbing, crampons, ice axes, steep snow"
+                data-item-categories="course">Buy Course — $15.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Ice Climbing Fundamentals</a>
+                <a href="#mod2" class="course-sidebar-link">2. Crampon Techniques</a>
+                <a href="#mod3" class="course-sidebar-link">3. Ice Axe Mastery</a>
+                <a href="#mod4" class="course-sidebar-link">4. Steep Snow Climbing</a>
+                <a href="#mod5" class="course-sidebar-link">5. Mixed Terrain</a>
+                <a href="#mod6" class="course-sidebar-link">6. Winter Operations</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Ice Climbing Fundamentals</div>
+                    <p>Ice climbing adds a new dimension to mountaineering. Water ice formations present unique challenges requiring specialized equipment, techniques, and judgment. Winter AMWS classes include ice climbing on frozen waterfalls and alpine ice.</p>
+
+                    <p><strong>Types of Ice:</strong></p>
+                    <ul>
+                        <li><strong>Water Ice:</strong> Frozen waterfalls and seeps—vertical to overhanging</li>
+                        <li><strong>Alpine Ice:</strong> Glacial ice and névé—variable angles, often snow-covered</li>
+                        <li><strong>Blue Ice:</strong> Dense, hard glacial ice—excellent for crampons and ice screws</li>
+                        <li><strong>Black Ice:</strong> Thin ice over rock—unreliable protection</li>
+                        <li><strong>Chandelier Ice:</strong> Brittle, poorly bonded—dangerous climbing</li>
+                        <li><strong>Cauliflower Ice:</strong> Mushroom formations near ground—weak structure</li>
+                    </ul>
+
+                    <p><strong>Ice Climbing Equipment:</strong></p>
+                    <ul>
+                        <li><strong>Ice Tools:</strong> Specialized ice axes for vertical ice—curved shafts, aggressive picks</li>
+                        <li><strong>Crampons:</strong> Vertical front points (mono or dual) for ice climbing</li>
+                        <li><strong>Ice Screws:</strong> Tubular protection—10-22cm lengths</li>
+                        <li><strong>Leashes/Leashless:</strong> Traditional wrist leashes vs. modern leashless grips</li>
+                        <li><strong>Holster:</strong> Carrying system for ice screws</li>
+                        <li><strong>Gloves:</strong> Specialized ice climbing gloves—dexterity and insulation balance</li>
+                    </ul>
+
+                    <p><strong>Basic Ice Movement:</strong></p>
+                    <ul>
+                        <li><strong>Swing:</strong> Relaxed wrist, let tool weight do the work</li>
+                        <li><strong>Placement:</strong> Pick should be secure—wiggle test</li>
+                        <li><strong>Stance:</strong> Triangle formed by two tools and feet</li>
+                        <li><strong>Footwork:</strong> Front points engage, heels down for calf rest</li>
+                        <li><strong>Resting:</strong> Straight arms, weighted on skeleton not muscles</li>
+                        <li><strong>Shaking:</strong> Drop heel to rest calves, shake arms</li>
+                    </ul>
+
+                    <p><strong>Ice Grades:</strong></p>
+                    <ul>
+                        <li><strong>WI1:</strong> Low angle, easy walking with ice axe</li>
+                        <li><strong>WI2:</strong> Moderate slope, good holds</li>
+                        <li><strong>WI3:</strong> Steep ice, sustained 70-80 degrees</li>
+                        <li><strong>WI4:</strong> Vertical ice, strenuous</li>
+                        <li><strong>WI5:</strong> Vertical to overhanging, technical</li>
+                        <li><strong>WI6:</strong> Extreme, overhanging with marginal protection</li>
+                    </ul>
+
+                    <p><strong>AMWS Ice Training:</strong></p>
+                    <p>Winter AMWS classes introduce ice climbing fundamentals on moderate ice formations. Focus is on safe technique, equipment use, and understanding ice conditions. Students learn to evaluate ice quality and place basic ice screw protection.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Crampon Techniques</div>
+                    <p>Crampons are essential for ice and hard snow travel. Proper technique prevents fatigue, falls, and dangerous unplanned glissades. Mastery of crampon use is fundamental to winter mountain operations.</p>
+
+                    <p><strong>Crampon Types:</strong></p>
+                    <ul>
+                        <li><strong>10-Point:</strong> General mountaineering—walking on snow</li>
+                        <li><strong>12-Point:</strong> Technical mountaineering—better security on steep ice</li>
+                        <li><strong>Vertical Front Points:</strong> Technical ice climbing—mono or dual points</li>
+                        <li><strong>Horizontal Front Points:</strong> Alpine climbing—mixed terrain</li>
+                        <li><strong>Attachment Systems:</strong> Step-in (cramp-on), strap-on (universal), hybrid</li>
+                    </ul>
+
+                    <p><strong>Cramponing Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Flat Foot (French Technique):</strong> Entire crampon contacts slope—least tiring</li>
+                        <li><strong>Front Pointing:</strong> Front points engage, heel elevated—steep ice</li>
+                        <li><strong>Hybrid:</strong> One foot flat, other front pointing—moderate slopes</li>
+                        <li><strong>Duck Foot:</strong> Toes outward for traversing—prevents calf strain</li>
+                        <li><strong>Pigeon Toe:</strong> Toes inward—useful for specific terrain</li>
+                    </ul>
+
+                    <p><strong>Flat Footing (French Technique):</strong></p>
+                    <ul>
+                        <li>All 10-12 points in contact with surface</li>
+                        <li>Ankles rolled inward slightly—engages side points</li>
+                        <li>Weight distributed across all points</li>
+                        <li>Most efficient for slopes up to 40 degrees</li>
+                        <li>Practice on low-angle terrain first</li>
+                    </ul>
+
+                    <p><strong>Front Pointing:</strong></p>
+                    <ul>
+                        <li>Front points driven into ice/snow</li>
+                        <li>Heels elevated—calves work hard</li>
+                        <li>Short steps—don't over-reach</li>
+                        <li>Keep weight over front points</li>
+                        <li>Rest by dropping heel when possible</li>
+                        <li>Very strenuous—use only when necessary</li>
+                    </ul>
+
+                    <p><strong>Crampon Safety:</strong></p>
+                    <ul>
+                        <li>Always wear crampons with appropriate boots—rated B1-B3</li>
+                        <li>Check fit before climbing—no movement between boot and crampon</li>
+                        <li>Antibot plates prevent snow balling underfoot</li>
+                        <li>File points when dull—sharp points bite better</li>
+                        <li>Crampons are sharp—handle carefully, use point protectors</li>
+                        <li>Never glissade with crampons—catching points causes injury</li>
+                    </ul>
+
+                    <p><strong>Descending with Crampons:</strong></p>
+                    <ul>
+                        <li>Flat foot preferred for moderate slopes</li>
+                        <li>Face outward (penguin style) for steeper descents</li>
+                        <li>Short, controlled steps</li>
+                        <li>Ice axe in self-belay or self-arrest position</li>
+                        <li>Consider removing crampons if snow softens significantly</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Ice Axe Mastery</div>
+                    <p>The ice axe is the most versatile tool in mountaineering. It serves as a walking stick, anchor, self-arrest tool, and emergency brake. Proficiency with the ice axe is mandatory for safe glacier and steep snow travel.</p>
+
+                    <p><strong>Ice Axe Anatomy:</strong></p>
+                    <ul>
+                        <li><strong>Head:</strong> Adze (hollow) and pick (pointed) ends</li>
+                        <li><strong>Shaft:</strong> Straight (classic) or curved (technical)</li>
+                        <li><strong>Spike:</strong> Pointed end for plunging into snow</li>
+                        <li><strong>Carabiner Hole:</strong> For leash attachment</li>
+                        <li><strong>Grip:</strong> Textured surface for hand placement</li>
+                    </ul>
+
+                    <p><strong>Ice Axe Selection:</strong></p>
+                    <ul>
+                        <li><strong>Length:</strong> Held at spike, should reach ankle (standing)</li>
+                        <li><strong>Weight:</strong> Lighter for technical, heavier for general mountaineering</li>
+                        <li><strong>Shaft:</strong> Straight for self-arrest, curved for technical ice</li>
+                        <li><strong>Pick:</strong> Aggressive curve for ice, moderate for alpine</li>
+                        <li><strong>Certification:</strong> CE/UIAA rated for strength</li>
+                    </ul>
+
+                    <p><strong>Carrying Positions:</strong></p>
+                    <ul>
+                        <li><strong>Self-Arrest Position:</strong> Pick forward, adze back, thumb under head</li>
+                        <li><strong>Trail Position:</strong> Spike forward, pick back, cane-style</li>
+                        <li><strong>Storage:</strong> Head down, pick forward, through pack loop</li>
+                        <li><strong>Stow for Climbing:</strong> Attached to harness when not in use</li>
+                    </ul>
+
+                    <p><strong>Self-Belay (Self-Arrest Grip):</strong></p>
+                    <ul>
+                        <li>Pick oriented forward, point down</li>
+                        <li>Thumb under head, fingers over top</li>
+                        <li>Plunge spike into snow for stability</li>
+                        <li>Used for security on steep slopes</li>
+                        <li>Quick transition to self-arrest if needed</li>
+                    </ul>
+
+                    <p><strong>Self-Arrest:</strong></p>
+                    <p>The self-arrest is an emergency braking maneuver. Practice until instinctive.</p>
+                    <ul>
+                        <li><strong>Head Uphill:</strong> Roll onto stomach, face downhill</li>
+                        <li><strong>Axe Position:</strong> Diagonal across body, pick digging into snow</li>
+                        <li><strong>Arms:</strong> Straight, weight on axe head</li>
+                        <li><strong>Legs:</strong> Spread, toes digging in (front point style)</li>
+                        <li><strong>Head:</strong> Protected by uphill arm</li>
+                        <li>Practice on safe slopes before relying on technique</li>
+                    </ul>
+
+                    <p><strong>Ice Axe Anchors:</strong></p>
+                    <ul>
+                        <li><strong>Bollard:</strong> Ice axe as anchor point—emergency only</li>
+                        <li><strong>T-Slot:</strong> Buried axe as deadman anchor</li>
+                        <li><strong>Snow Bollard:</strong> Carved snow anchor for rappel</li>
+                        <li><strong>Picket Companion:</strong> Axe used in conjunction with snow picket</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Steep Snow Climbing</div>
+                    <p>Snow climbing on steep slopes requires specific techniques for security and efficiency. Snow conditions vary from powder to névé (hard, consolidated snow) to ice, requiring adaptable skills.</p>
+
+                    <p><strong>Snow Conditions:</strong></p>
+                    <ul>
+                        <li><strong>Powder:</strong> Soft, unconsolidated—difficult for crampons</li>
+                        <li><strong>Spring Snow:</strong> Softens during day, refreezes at night—best climbing window</li>
+                        <li><strong>Névé:</strong> Hard, consolidated snow—excellent cramponing</li>
+                        <li><strong>Corn:</strong> Frozen granules—stable in morning, hazardous when warming</li>
+                        <li><strong>Ice:</strong> Hard frozen surface—requires front pointing</li>
+                        <li><strong>Crust:</strong> Hard surface over soft snow—breaks through unexpectedly</li>
+                    </ul>
+
+                    <p><strong>Kicking Steps:</strong></p>
+                    <ul>
+                        <li>Front-kick for hard snow—crampons engage</li>
+                        <li>Flat-foot kick for soft snow—platform creation</li>
+                        <li>Short, rhythmic steps maintain rhythm and conserve energy</li>
+                        <li>Step into existing steps when following (easy path)</li>
+                        <li>Leader must kick solid, level platforms</li>
+                    </ul>
+
+                    <p><strong>Step Cutting:</strong></p>
+                    <ul>
+                        <li>Using ice axe adze to cut steps in hard snow/ice</li>
+                        <li>Classic technique before crampons were common</li>
+                        <li>Useful when crampons unavailable or on mixed terrain</li>
+                        <li>Cut flat, level platforms slightly larger than boot</li>
+                        <li>Downward and inward chopping motion</li>
+                        <li>Time-consuming but provides secure footing</li>
+                    </ul>
+
+                    <p><strong>Resting on Steep Snow:</strong></p>
+                    <ul>
+                        <li><strong>Drop Knee:</strong> Lower uphill knee, weight back</li>
+                        <li><strong>Stem:</strong> Wide stance for stability</li>
+                        <li><strong>Chimney:</strong> Using opposing pressure if features available</li>
+                        <li><strong>Ice Axe Plunge:</strong> Secure axe for brief rest</li>
+                        <li>Take frequent short rests—prevent exhaustion</li>
+                    </ul>
+
+                    <p><strong>Protection on Snow:</strong></p>
+                    <ul>
+                        <li><strong>Snow Pickets:</strong> Aluminum stakes driven into snow</li>
+                        <li><strong>Flukes:</strong> Snow anchors with cable—bury like deadman</li>
+                        <li><strong>Bollards:</strong> Carved snow horns for rappel anchor</li>
+                        <li><strong>Ice Screws:</strong> If snow is frozen hard enough</li>
+                        <li><strong>Running Belays:</strong> Moving protection on long snow slopes</li>
+                        <li><strong>Simul-Climbing:</strong> Both climbers move together with protection between</li>
+                    </ul>
+
+                    <p><strong>Rope Team Travel:</strong></p>
+                    <ul>
+                        <li>2-4 climbers roped together on glacier or steep snow</li>
+                        <li>Equal spacing between climbers</li>
+                        <li>Keep rope taut—slack creates fall potential</li>
+                        <li>If one falls, others self-arrest immediately</li>
+                        <li>Practice crevasse rescue techniques</li>
+                        <li>Pre-rig prusiks for self-rescue</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Mixed Terrain</div>
+                    <p>Mixed terrain combines rock, ice, and snow in the same route. This is common in alpine environments where conditions change rapidly. Adaptability and efficient transitions are key.</p>
+
+                    <p><strong>Mixed Terrain Challenges:</strong></p>
+                    <ul>
+                        <li>Changing techniques—crampon to rock shoe transitions</li>
+                        <li>Protection placement varies by medium</li>
+                        <li>Route finding through complex terrain</li>
+                        <li>Weather exposure on mixed routes</li>
+                        <li>Rockfall from warming snow/ice above</li>
+                        <li>Time management through technical sections</li>
+                    </ul>
+
+                    <p><strong>Transitions:</strong></p>
+                    <ul>
+                        <li><strong>Crampon to Rock:</strong> Flat foot on rock damages points and rock</li>
+                        <li><strong>Removing Crampons:</strong> Secure location, don't drop them</li>
+                        <li><strong>Storing Crampons:</strong> Attach to harness or pack securely</li>
+                        <li><strong>Rock to Snow:</strong> Put crampons on before committing to steep snow</li>
+                        <li><strong>Time Management:</strong> Transitions take time—plan accordingly</li>
+                    </ul>
+
+                    <p><strong>Cramponing on Rock:</strong></p>
+                    <ul>
+                        <li>Generally avoided—damages crampons and rock</li>
+                        <li>Short sections: careful flat-footing</li>
+                        <li>Use rubber crampon protectors if carrying rock shoes</li>
+                        <li>Front pointing on rock destroys front points</li>
+                        <li>Better to remove crampons for extended rock sections</li>
+                    </ul>
+
+                    <p><strong>Mixed Protection:</strong></p>
+                    <ul>
+                        <li>Ice screws for ice sections</li>
+                        <li>Rock protection (cams, nuts) for rock sections</li>
+                        <li>Snow anchors for snow sections</li>
+                        <li>Transition zones require planning</li>
+                        <li>Rack organization critical for efficiency</li>
+                    </ul>
+
+                    <p><strong>Route Selection in Mixed Terrain:</strong></p>
+                    <ul>
+                        <li>Look for continuous features—ridges, gullies</li>
+                        <li>Avoid loose rock overlaid by snow</li>
+                        <li>Consider sun exposure—shaded sections stay icy</li>
+                        <li>Time of day affects conditions significantly</li>
+                        <li>Retreat options should be identified</li>
+                        <li>Weather windows may be short</li>
+                    </ul>
+
+                    <p><strong>Efficiency:</strong></p>
+                    <p>Mixed terrain is physically and mentally demanding. Efficient movement, minimal transitions, and solid route-finding are essential. When in doubt, choose the more conservative option—mixed routes have a way of becoming more difficult than anticipated.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Winter Operations</div>
+                    <p>Winter warfare presents unique tactical challenges. Cold, snow, and limited daylight affect operations. Military units must adapt tactics, equipment, and procedures for winter mountain environments.</p>
+
+                    <p><strong>Tactical Considerations:</strong></p>
+                    <ul>
+                        <li><strong>Movement:</strong> Slower in snow, tracks visible, restricted to corridors</li>
+                        <li><strong>Concealment:</strong> White uniforms essential, tracks betray positions</li>
+                        <li><strong>Communication:</strong> Cold affects batteries, voice carries in cold air</li>
+                        <li><strong>Weapons:</strong> Cold weather lubricants, ice in mechanisms</li>
+                        <li><strong>Night Operations:</strong> Longer nights favor surprise, extreme cold risk</li>
+                        <li><strong>Air Support:</strong> Limited by weather, altitude, and visibility</li>
+                    </ul>
+
+                    <p><strong>Equipment in Winter:</strong></p>
+                    <ul>
+                        <li><strong>Weapons:</strong> Arctic lubricants, regular function checks</li>
+                        <li><strong>Optics:</strong> Anti-fog measures, cold affects batteries</li>
+                        <li><strong>Radios:</strong> Keep batteries warm, spare batteries essential</li>
+                        <li><strong>Sleep Systems:</strong> Rated for extreme cold, vapor barrier liners</li>
+                        <li><strong>Stoves:</strong> White gas performs better than butane in extreme cold</li>
+                        <li><strong>Snowshoes/Skis:</strong> Essential for mobility in deep snow</li>
+                    </ul>
+
+                    <p><strong>Winter Bivouac:</strong></p>
+                    <ul>
+                        <li>Site selection critical—wind protection paramount</li>
+                        <li>Snow shelters insulate better than tents</li>
+                        <li>Group sleeping conserves body heat</li>
+                        <li>Melt snow for water—dehydration risk in cold</li>
+                        <li>High calorie intake—metabolism increases in cold</li>
+                        <li>Boots in sleeping bag—prevent freezing</li>
+                    </ul>
+
+                    <p><strong>Winter Hazards:</strong></p>
+                    <ul>
+                        <li><strong>Avalanche:</strong> Constant threat on steep snow slopes</li>
+                        <li><strong>Cold Injuries:</strong> Frostbite, hypothermia, trench foot</li>
+                        <li><strong>Crevasse Falls:</strong> Hidden under snow bridges</li>
+                        <li><strong>Whiteout:</strong> Complete loss of visibility</li>
+                        <li><strong>Cornice Collapse:</strong> Overhanging snow ledges</li>
+                        <li><strong>Ice Fall:</strong> Serac collapse, falling ice from above</li>
+                    </ul>
+
+                    <p><strong>AMWS Winter Cycle:</strong></p>
+                    <ul>
+                        <li>December through February classes operate in full winter conditions</li>
+                        <li>Ice climbing added to curriculum</li>
+                        <li>Winter survival skills emphasized</li>
+                        <li>Cold weather injuries prevention training</li>
+                        <li>Avalanche awareness and safety</li>
+                        <li>Snow shelter construction</li>
+                    </ul>
+
+                    <p><strong>Winter Mindset:</strong></p>
+                    <p>Winter mountain warfare demands respect for the environment. The margin for error narrows in extreme cold. Preparation, proper equipment, and conservative decision-making are survival imperatives. The winter mountain is indifferent to human ambition—work with it, not against it.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Mountain School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Technical Skills</a></li><li><a href="index.html#phases">Mountain Survival</a></li><li><a href="index.html#phases">Mountain Ops</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Mountain Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                });
+            });
+        })();
+
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth + Course Engine -->
+    <script src="../js/config.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script src="../js/course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+</body>
+</html>

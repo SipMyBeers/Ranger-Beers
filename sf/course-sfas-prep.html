@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFAS Prep — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">SFAS</a></li>
+                        <li><a href="index.html#phases">Language &amp; Culture</a></li>
+                        <li><a href="index.html#phases">MOS Training</a></li>
+                        <li><a href="index.html#phases">Robin Sage</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">SF Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">SF Training</span></li>
+                        <li><a href="course-sfas-prep.html">SFAS Prep</a></li>
+                        <li><a href="course-small-unit.html">Small Unit Tactics</a></li>
+                        <li><a href="course-mff.html">Military Freefall</a></li>
+                        <li><a href="course-combat-dive.html">Combat Diving</a></li>
+                        <li><a href="course-unconventional.html">Unconventional Warfare</a></li>
+                        <li><a href="course-sr.html">Special Reconnaissance</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-sfas-prep">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">SFAS Prep — Complete Selection Guide</h1>
+        <p class="section-desc fade-in">6 modules covering everything you need to crush the 24-day Special Forces Assessment and Selection at Camp Mackall. Land navigation, rucking, team events, and psychological preparation.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$15</span>
+            <span class="course-tag tag-phase">SFAS</span>
+            <span class="course-tag tag-type">Assessment</span>
+            <span class="course-tag tag-bundle">High Attrition</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-sfas-prep"
+                data-item-name="SFAS Prep"
+                data-item-price="15.00"
+                data-item-url="/sf/course-sfas-prep.html"
+                data-item-description="Complete SFAS preparation course — land nav, rucking, team events, mental prep"
+                data-item-categories="course">Buy Course — $15.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. SFAS Overview & Standards</a>
+                <a href="#mod2" class="course-sidebar-link">2. Star Land Navigation</a>
+                <a href="#mod3" class="course-sidebar-link">3. Ruck March Excellence</a>
+                <a href="#mod4" class="course-sidebar-link">4. Team Week Preparation</a>
+                <a href="#mod5" class="course-sidebar-link">5. Physical Conditioning</a>
+                <a href="#mod6" class="course-sidebar-link">6. Mental Preparation</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">SFAS Overview & Selection Standards</div>
+                    <p>Special Forces Assessment and Selection is the 24-day gateway to the Green Beret pipeline. Located at Camp Mackall, North Carolina, SFAS evaluates candidates on physical endurance, land navigation, teamwork, and psychological suitability. Approximately 50% of candidates are eliminated during SFAS alone.</p>
+
+                    <p><strong>SFAS Course Structure:</strong></p>
+                    <ul>
+                        <li><strong>Duration:</strong> 24 days (approximately 3.5 weeks)</li>
+                        <li><strong>Location:</strong> Camp Mackall, NC (John F. Kennedy Special Warfare Center)</li>
+                        <li><strong>Class Size:</strong> 100-150 candidates per class</li>
+                        <li><strong>Attrition Rate:</strong> ~50% (voluntary withdrawal, non-selection, medical)</li>
+                        <li><strong>Selection Rate:</strong> ~50% of those who start receive an invitation to continue</li>
+                    </ul>
+
+                    <p><strong>Major Assessment Areas:</strong></p>
+                    <ul>
+                        <li><strong>Physical Fitness:</strong> Runs, ruck marches, obstacle courses, combat water survival</li>
+                        <li><strong>Land Navigation:</strong> Individual day and night star courses with heavy loads</li>
+                        <li><strong>Team Events:</strong> Problem-solving challenges under extreme fatigue and stress</li>
+                        <li><strong>Psychological Evaluation:</strong> Peer reviews, cadre observation, stress inoculation</li>
+                        <li><strong>Intellectual Capacity:</strong> Quick decision-making under ambiguous conditions</li>
+                    </ul>
+
+                    <p><strong>Entry Requirements:</strong></p>
+                    <ul>
+                        <li>GT score of 110 or higher (waiverable to 107)</li>
+                        <li>Pass Special Forces Physical (combat diver qualified if applicable)</li>
+                        <li>Secret security clearance eligibility</li>
+                        <li>Airborne qualification (or volunteer for training)</li>
+                        <li>Pass APFT with minimum 229 points (ideally 270+)</li>
+                        <li>Meet height/weight and body composition standards</li>
+                    </ul>
+
+                    <p><strong>The Cadre Are Always Watching:</strong></p>
+                    <p>SFAS cadre are Special Forces veterans who evaluate you continuously. They observe how you carry yourself, how you treat peers, how you respond to failure, and how you perform when exhausted. Selection is not just about passing events — it is about demonstrating the character traits of a Special Forces soldier.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Star Land Navigation</div>
+                    <p>Land navigation is the single biggest objective eliminator at SFAS. You will navigate alone, day and night, carrying a heavy ruck through the Camp Mackall training area. Star courses test your ability to think clearly while exhausted and navigate with precision under pressure.</p>
+
+                    <p><strong>SFAS Land Navigation Standards:</strong></p>
+                    <ul>
+                        <li><strong>Day Course:</strong> Find points in designated time limit (standards vary by class)</li>
+                        <li><strong>Night Course:</strong> Navigate using only lensatic compass and map (no GPS)</li>
+                        <li><strong>Load:</strong> Ruck with 45+ lbs, LBE, weapon, and full gear</li>
+                        <li><strong>Terrain:</strong> North Carolina sandhills — rolling terrain, thick vegetation, few landmarks</li>
+                        <li><strong>Distance:</strong> Points may be 2-5 km apart with no trails between</li>
+                    </ul>
+
+                    <p><strong>Star Course Technique:</strong></p>
+                    <p>Unlike a linear land nav course, star courses have you navigate from a central point to multiple points around the perimeter and return. This requires constant orientation and distance estimation without the benefit of a linear route.</p>
+
+                    <p><strong>Critical Skills:</strong></p>
+                    <ul>
+                        <li><strong>Pace Count:</strong> Know your personal pace count with full SFAS load on various terrain</li>
+                        <li><strong>Terrain Association:</strong> Use terrain features to confirm location — critical at night</li>
+                        <li><strong>Azimuth Shooting:</strong> Precise compass work under fatigue; use both centerhold and compass-to-cheek</li>
+                        <li><strong>8-Digit Grid Plotting:</strong> Accurate plotting is essential — mistakes compound quickly</li>
+                        <li><strong>Attack Points:</strong> Navigate to nearby terrain features, then precise walk to point</li>
+                    </ul>
+
+                    <p><strong>Night Navigation Considerations:</strong></p>
+                    <ul>
+                        <li>Pre-plot all points during daylight if possible</li>
+                        <li>Use handrails (roads, streams, ridgelines) to maintain direction</li>
+                        <li>Backstops prevent overshooting — know what is beyond each point</li>
+                        <li>Red lens flashlight only — preserve night vision</li>
+                        <li>Pace count accuracy increases in importance when visibility decreases</li>
+                    </ul>
+
+                    <p><strong>Common Failures:</strong></p>
+                    <ul>
+                        <li>Poor pace count with heavy load (practice with 50+ lbs)</li>
+                        <li>Not verifying azimuth before stepping off</li>
+                        <li>Panicking when lost instead of stopping to reorient</li>
+                        <li>Over-reliance on dead reckoning without terrain confirmation</li>
+                        <li>Physical fatigue causing mental errors in calculation</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Ruck March Excellence</div>
+                    <p>Rucking is the currency of SFAS. You will move under load for hours at a time, often on little sleep and minimal calories. Your ability to sustain a steady pace with a heavy ruck determines success more than any other physical skill.</p>
+
+                    <p><strong>SFAS Ruck March Standards:</strong></p>
+                    <ul>
+                        <li><strong>Load:</strong> 45-65 lbs dry weight plus weapon, LBE, and water</li>
+                        <li><strong>Distance:</strong> Progressive distances from 4 miles to 20+ miles</li>
+                        <li><strong>Pace:</strong> Minimum 15-minute miles (4 mph) for most movements</li>
+                        <li><strong>Terrain:</strong> Sandhills trails, roads, and cross-country through vegetation</li>
+                        <li><strong>Conditions:</strong> Heat, cold, rain, darkness — all conditions possible</li>
+                    </ul>
+
+                    <p><strong>Ruck March Technique:</strong></p>
+                    <ul>
+                        <li><strong>Stride:</strong> Short, quick steps are more efficient than long strides</li>
+                        <li><strong>Posture:</strong> Slight forward lean, load high on back, hips driving forward</li>
+                        <li><strong>Cadence:</strong> Find a sustainable rhythm — do not sprint and recover</li>
+                        <li><strong>Pole Plant:</strong> Use trekking poles if allowed; reduces leg fatigue significantly</li>
+                        <li><strong>Foot Placement:</strong> Roll through the foot; avoid heel striking on downhills</li>
+                    </ul>
+
+                    <p><strong>Training Progression:</strong></p>
+                    <ul>
+                        <li><strong>Weeks 1-4:</strong> Build base with 25-35 lbs, 3-6 mile rucks, 2x per week</li>
+                        <li><strong>Weeks 5-8:</strong> Increase to 45 lbs, 8-12 mile rucks, add hills</li>
+                        <li><strong>Weeks 9-12:</strong> 50-65 lbs, 12-18 mile rucks, vary terrain</li>
+                        <li><strong>Final Month:</strong> Back-to-back long rucks on consecutive days</li>
+                    </ul>
+
+                    <p><strong>Load Management:</strong></p>
+                    <ul>
+                        <li>Pack heavy items high and close to your back</li>
+                        <li>Secure all gear to prevent shifting during movement</li>
+                        <li>Practice packing the same way every time — muscle memory matters</li>
+                        <li>Waterproof critical items; wet gear adds weight and misery</li>
+                        <li>Break in boots thoroughly; blisters end more rucks than fitness</li>
+                    </ul>
+
+                    <p><strong>Foot Care:</strong></p>
+                    <p>Foot injuries are the leading cause of medical elimination. Carry extra socks, foot powder, and moleskin. Change socks at every opportunity. Treat hotspots immediately before they become blisters. A candidate who cannot walk cannot be selected.</p>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Team Week Preparation</div>
+                    <p>Team Week is where SFAS truly separates candidates. After days of individual physical testing, you are placed in teams and given complex problems to solve while exhausted, sleep-deprived, and under time pressure. The cadre are watching how you interact with peers.</p>
+
+                    <p><strong>Team Week Objectives:</strong></p>
+                    <ul>
+                        <li>Assess ability to function as part of a team under stress</li>
+                        <li>Evaluate leadership potential and followership skills</li>
+                        <li>Observe conflict resolution and communication under fatigue</li>
+                        <li>Identify candidates who prioritize team success over individual ego</li>
+                        <li>Stress inoculation — how you perform when completely depleted</li>
+                    </ul>
+
+                    <p><strong>Common Team Events:</strong></p>
+                    <ul>
+                        <li><strong>Equipment Transport:</strong> Move heavy, awkward loads across obstacles using limited resources</li>
+                        <li><strong>Construction Challenges:</strong> Build structures to specifications with time and material constraints</li>
+                        <li><strong>Navigation Problems:</strong> Team-based land nav requiring coordination and communication</li>
+                        <li><strong>Logical Puzzles:</strong> Mental challenges requiring creative problem-solving as a group</li>
+                        <li><strong>Physical Team Tasks:</strong> Collective endurance events testing group cohesion</li>
+                    </ul>
+
+                    <p><strong>Keys to Team Week Success:</strong></p>
+                    <ul>
+                        <li><strong>Communicate Clearly:</strong> State ideas concisely; listen to others; confirm understanding</li>
+                        <li><strong>Contribute Ideas:</strong> Silence is noticed; speak up with solutions, not just problems</li>
+                        <li><strong>Support the Plan:</strong> Once the team decides, commit fully — do not undermine</li>
+                        <li><strong>Share the Load:</strong> Take your turn at the hardest tasks; do not let teammates carry you</li>
+                        <li><strong>Stay Calm:</strong> Panic spreads; your demeanor affects the entire team</li>
+                    </ul>
+
+                    <p><strong>Leadership Opportunities:</strong></p>
+                    <p>Cadre may designate leaders for certain events. If selected, take charge immediately. Issue clear instructions, assign tasks, establish timelines, and check progress. If not the designated leader, be the best follower — support the leader, offer suggestions when appropriate, and execute your tasks without complaint.</p>
+
+                    <p><strong>Peer Evaluations:</strong></p>
+                    <p>You will evaluate your teammates, and they will evaluate you. Cadre use these to identify candidates who are difficult to work with, selfish, or unreliable. Be someone others want on their team. Help teammates who are struggling. Keep a positive attitude when everything goes wrong.</p>
+
+                    <p><strong>What Not to Do:</strong></p>
+                    <ul>
+                        <li>Do not dominate conversations or dismiss others' ideas</li>
+                        <li>Do not quit when the team needs you</li>
+                        <li>Do not blame teammates for failures — own your part</li>
+                        <li>Do not go silent or withdraw when stressed</li>
+                        <li>Do not try to be the hero — SF selects team players, not individuals</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Physical Conditioning</div>
+                    <p>Physical preparation for SFAS requires a balanced approach emphasizing endurance over pure strength. You need to run fast, ruck far, and maintain performance despite sleep deprivation and caloric deficit.</p>
+
+                    <p><strong>SFAS Physical Standards (Minimums):</strong></p>
+                    <ul>
+                        <li><strong>Push-ups:</strong> 49 in 2 minutes (aim for 70+)</li>
+                        <li><strong>Sit-ups:</strong> 59 in 2 minutes (aim for 75+)</li>
+                        <li><strong>2-Mile Run:</strong> Sub-15:12 (aim for sub-13:00)</li>
+                        <li><strong>5-Mile Run:</strong> Completion in formation without falling out</li>
+                        <li><strong>12-Mile Ruck:</strong> Under 3 hours with 45+ lbs (aim for sub-2:30)</li>
+                        <li><strong>Combat Water Survival:</strong> 15m swim in uniform with gear</li>
+                    </ul>
+
+                    <p><strong>Training Focus Areas:</strong></p>
+                    <ul>
+                        <li><strong>Aerobic Base:</strong> 30+ miles per week running, mostly Zone 2</li>
+                        <li><strong>Leg Endurance:</strong> Hill repeats, stair climbs, weighted step-ups</li>
+                        <li><strong>Upper Body Endurance:</strong> High-rep calisthenics circuits</li>
+                        <li><strong>Core Stability:</strong> Planks, leg raises, rotational work for rucking</li>
+                        <li><strong>Swimming:</strong> Combat side stroke, water confidence with uniform</li>
+                    </ul>
+
+                    <p><strong>Weekly Training Template (12 Weeks Out):</strong></p>
+                    <ul>
+                        <li><strong>Monday:</strong> Upper body calisthenics + short ruck (4-6 miles)</li>
+                        <li><strong>Tuesday:</strong> Interval run (400m-800m repeats) + swim</li>
+                        <li><strong>Wednesday:</strong> Long ruck (10-15 miles) at SFAS pace</li>
+                        <li><strong>Thursday:</strong> Tempo run (3-5 miles) + core work</li>
+                        <li><strong>Friday:</strong> Full body strength + short ruck</li>
+                        <li><strong>Saturday:</strong> Long run (8-12 miles) or back-to-back with Sunday ruck</li>
+                        <li><strong>Sunday:</strong> Recovery swim or complete rest</li>
+                    </ul>
+
+                    <p><strong>SFAS-Specific Considerations:</strong></p>
+                    <ul>
+                        <li>Train in the gear you will wear — LBE, boots, ruck</li>
+                        <li>Practice running after rucking — legs will be fatigued</li>
+                        <li>Train in heat and humidity if possible — Camp Mackall is brutal in summer</li>
+                        <li>Build mental toughness through uncomfortable training</li>
+                        <li>Gradually increase volume to avoid overuse injuries</li>
+                    </ul>
+
+                    <p><strong>Recovery Protocol:</strong></p>
+                    <p>SFAS will break you down. Your preparation should build durability. Prioritize sleep, nutrition, hydration, and mobility work. Address minor injuries before they become major. The candidates who arrive healthy and fresh have a massive advantage.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Mental Preparation</div>
+                    <p>SFAS is as much a psychological test as a physical one. The cadre are assessing your character, judgment, and mental resilience. Your mindset going into SFAS determines more than your physical preparation.</p>
+
+                    <p><strong>The SFAS Mindset:</strong></p>
+                    <ul>
+                        <li><strong>Embrace the Suck:</strong> Expect discomfort; do not complain when it arrives</li>
+                        <li><strong>Focus on the Present:</strong> Do not think about Day 24; focus on the next task</li>
+                        <li><strong>Maintain Perspective:</strong> Every event ends; every hardship is temporary</li>
+                        <li><strong>Control What You Can:</strong> Attitude, effort, and preparation are your responsibility</li>
+                        <li><strong>Embrace Uncertainty:</strong> SFAS is intentionally ambiguous — adapt and overcome</li>
+                    </ul>
+
+                    <p><strong>Stress Inoculation Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Cold Exposure:</strong> Cold showers, ice baths build mental tolerance</li>
+                        <li><strong>Sleep Deprivation Training:</strong> Occasionally train after short sleep</li>
+                        <li><strong>Hunger Familiarization:</strong> Practice performing while fasted</li>
+                        <li><strong>Uncomfortable Conditions:</strong> Train in rain, heat, and darkness</li>
+                        <li><strong>Uncertainty Drills:</strong> Have a partner create ambiguous scenarios</li>
+                    </ul>
+
+                    <p><strong>Dealing with Failure:</strong></p>
+                    <p>You will fail individual tasks at SFAS. You may get lost on land nav, struggle with a team event, or fall behind on a ruck. The key is how you respond. Do not quit. Do not blame others. Learn from the failure and immediately refocus on the next task. Cadre notice candidates who bounce back from setbacks.</p>
+
+                    <p><strong>Visualization Techniques:</strong></p>
+                    <ul>
+                        <li>Visualize successful completion of each SFAS event</li>
+                        <li>Practice mental rehearsal of land navigation sequences</li>
+                        <li>Imagine yourself staying calm during team week chaos</li>
+                        <li>Picture yourself receiving the invitation to continue</li>
+                    </ul>
+
+                    <p><strong>The Quiet Professional Ethos:</strong></p>
+                    <p>Special Forces values humility, competence, and teamwork over bravado. Do not be the loudest candidate. Do not boast about your preparation. Let your actions speak. Help others without seeking recognition. The cadre are looking for soldiers who embody the "quiet professional" ideal.</p>
+
+                    <p><strong>Final Preparation Checklist:</strong></p>
+                    <ul>
+                        <li>Physical fitness exceeds minimum standards</li>
+                        <li>Land navigation skills are automatic under fatigue</li>
+                        <li>Rucking is comfortable at SFAS pace with full load</li>
+                        <li>Team player mentality is internalized</li>
+                        <li>Gear is packed, waterproofed, and tested</li>
+                        <li>Mental preparation includes stress inoculation</li>
+                        <li>Why you want to be a Green Beret is clear and compelling</li>
+                    </ul>
+
+                    <p><strong>The Invitation:</strong></p>
+                    <p>If selected, you receive an invitation to continue to the SFQC — the Special Forces Qualification Course. If not selected, you return to your unit. Many candidates who are not selected at first return later and succeed. SFAS is a test, not a judgment of your worth as a soldier or person.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">SF School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">SFAS</a></li><li><a href="index.html#phases">Language</a></li><li><a href="index.html#phases">MOS Training</a></li><li><a href="index.html#phases">Robin Sage</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">SF Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="resources.html">Resources</a></li><li><a href="/ranger/shop.html">Full Store</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+
+        // Mobile Nav Toggle
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                });
+            });
+        })();
+
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth + Course Engine -->
+    <script src="../js/config.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script src="../js/course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+</body>
+</html>

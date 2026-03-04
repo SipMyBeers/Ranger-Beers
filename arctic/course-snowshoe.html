@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowshoe Operations — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Classroom &amp; Skills</a></li>
+                        <li><a href="index.html#phases">Field Training</a></li>
+                        <li><a href="index.html#phases">FTX &amp; Assessment</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Arctic Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-arctic-prep.html">Arctic Prep</a></li>
+                        <li><a href="course-cold-weather.html">Cold Weather Survival</a></li>
+                        <li><a href="course-ski-ops.html">Ski Operations</a></li>
+                        <li><a href="course-snowshoe.html">Snowshoe Operations</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="resources.html">Arctic Resources</a></li>
+                        <li><a href="standards.html">PT Standards</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-snowshoe">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Snowshoe Operations</h1>
+        <p class="section-desc fade-in">Master snowshoe techniques for over-snow movement, load hauling with ahkio sleds, and tactical snowshoe patrolling in Arctic environments. Essential skills for CWLC and cold weather operations.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$12</span>
+            <span class="course-tag tag-phase">Field Phase</span>
+            <span class="course-tag tag-type">Mobility</span>
+            <span class="course-tag tag-bundle">Full Access</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-snowshoe"
+                data-item-name="Snowshoe Operations"
+                data-item-price="12.00"
+                data-item-url="/arctic/course-snowshoe.html"
+                data-item-description="Military snowshoe operations covering techniques, load hauling with ahkio sleds, and tactical movement"
+                data-item-categories="course">Buy Course — $12.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Snowshoe Equipment</a>
+                <a href="#mod2" class="course-sidebar-link">2. Snowshoe Techniques</a>
+                <a href="#mod3" class="course-sidebar-link">3. Load Hauling</a>
+                <a href="#mod4" class="course-sidebar-link">4. Breaking Trail</a>
+                <a href="#mod5" class="course-sidebar-link">5. Tactical Movement</a>
+                <a href="#mod6" class="course-sidebar-link">6. Snowshoe vs. Ski Selection</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Military Snowshoe Equipment</div>
+                    
+                    <p>Military snowshoes are essential tools for over-snow mobility when skis are impractical or when operating in terrain requiring frequent transitions between movement and stationary positions. Understanding equipment selection and setup is critical for CWLC success.</p>
+
+                    <p><strong>Military Snowshoe Types:</strong></p>
+
+                    <p><strong>1. Magnesium Snowshoes (Standard Issue):</strong></p>
+                    <ul>
+                        <li><strong>Frame:</strong> Magnesium alloy tubing — lightweight, durable</li>
+                        <li><strong>Decking:</strong> Nylon webbing or magnesium decking</li>
+                        <li><strong>Length:</strong> 25 inches (standard) or 34 inches (large)</li>
+                        <li><strong>Bindings:</strong> Military quick-release bindings</li>
+                        <li><strong>Crampons:</strong> Metal teeth for ice grip</li>
+                        <li><strong>Heel Lift:</strong> Optional bar for uphill walking</li>
+                    </ul>
+
+                    <p><strong>2. Bearpaw Snowshoes:</strong></p>
+                    <ul>
+                        <li>Traditional round/oval shape</li>
+                        <li>No tail — better for dense vegetation</li>
+                        <li>Excellent for tight spaces and maneuvering</li>
+                        <li>Less flotation than trail shoes</li>
+                        <li>Traditional rawhide or modern synthetic</li>
+                    </ul>
+
+                    <p><strong>3. Trail Snowshoes:</strong></p>
+                    <ul>
+                        <li>Longer tail for tracking and flotation</li>
+                        <li>Better for open terrain and trail breaking</li>
+                        <li>More efficient for distance travel</li>
+                        <li>Less maneuverable in brush</li>
+                    </ul>
+
+                    <p><strong>Bindings:</strong></p>
+                    <ul>
+                        <li><strong>Toe Strap:</strong> Secures toe of boot to snowshoe</li>
+                        <li><strong>Heel Strap:</strong> Optional additional security</li>
+                        <li><strong>Quick Release:</strong> Emergency egress capability</li>
+                        <li><strong>Adjustment:</strong> Must fit over cold weather boots (VB boots)</li>
+                        <li><strong>Compatibility:</strong> Ensure proper fit with issued footwear</li>
+                    </ul>
+
+                    <p><strong>Ancillary Equipment:</strong></p>
+                    <ul>
+                        <li><strong>Ski Poles:</strong> Balance and propulsion assistance</li>
+                        <li><strong>Crampons:</strong> Attach to boots for ice travel without snowshoes</li>
+                        <li><strong>Gaiters:</strong> Keep snow out of boots</li>
+                        <li><strong>Repair Kit:</strong> Webbing, bindings, tools for field repair</li>
+                        <li><strong>Carrying System:</strong> Method to attach snowshoes to pack when not in use</li>
+                    </ul>
+
+                    <p><strong>Equipment Inspection:</strong></p>
+                    <ul>
+                        <li>Check frame integrity — no cracks or bends</li>
+                        <li>Inspect decking for tears or broken webbing</li>
+                        <li>Verify binding function and adjustment range</li>
+                        <li>Test crampon engagement</li>
+                        <li>Ensure all straps present and functional</li>
+                        <li>Carry spare binding parts</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Snowshoe Movement Techniques</div>
+                    
+                    <p>Walking on snowshoes requires modified techniques compared to normal walking. The added length, width, and flotation characteristics demand specific skills to move efficiently over varying snow conditions and terrain.</p>
+
+                    <p><strong>Basic Walking Technique:</strong></p>
+                    <ul>
+                        <li><strong>Stance:</strong> Slightly wider than normal to clear snowshoe width</li>
+                        <li><strong>Stride:</strong> Lift feet high enough to clear snowshoe deck</li>
+                        <li><strong>Pole Use:</strong> Plant poles with opposite foot (natural walking rhythm)</li>
+                        <li><strong>Weight Transfer:</strong> Commit weight to snowshoe before advancing</li>
+                        <li><strong>Balance:</strong> Let poles assist with stability</li>
+                    </ul>
+
+                    <p><strong>Terrain Techniques:</strong></p>
+
+                    <p><strong>Uphill Travel:</strong></p>
+                    <ul>
+                        <li><strong>Heel Lift:</strong> Engage heel bar to reduce calf strain</li>
+                        <li><strong>Kick Steps:</strong> Create steps in firm snow for traction</li>
+                        <li><strong>Edging:</strong> Use crampons on hardpack or ice</li>
+                        <li><strong>Zigzag:</strong> Traverse steep slopes instead of straight ascent</li>
+                        <li><strong>Pole Plant:</strong> Aggressive poling for propulsion</li>
+                    </ul>
+
+                    <p><strong>Downhill Travel:</strong></p>
+                    <ul>
+                        <li><strong>Soft Knees:</strong> Absorb impact through bent legs</li>
+                        <li><strong>Controlled Descent:</strong> Don't rush — gravity accelerates</li>
+                        <li><strong>Pole Drag:</strong> Drag pole baskets for speed control</li>
+                        <li><strong>Heel-First:</strong> Plant heel to engage crampons</li>
+                        <li><strong>Side-Stepping:</strong> On steep terrain, descend sideways</li>
+                    </ul>
+
+                    <p><strong>Traversing (Side-Hilling):</strong></p>
+                    <ul>
+                        <li>Most challenging snowshoe technique</li>
+                        <li>Pressure uphill edges into slope</li>
+                        <li>Cross tails of snowshoes (avoids tripping)</li>
+                        <li>Pole on uphill side provides stability</li>
+                        <li>Short, deliberate steps</li>
+                    </ul>
+
+                    <p><strong>Obstacles and Special Situations:</strong></p>
+
+                    <p><strong>Stepping Over Obstacles:</strong></p>
+                    <ul>
+                        <li>Lift lead foot high, place past obstacle</li>
+                        <li>Transfer weight, bring trailing foot over</li>
+                        <li>Use poles for balance</li>
+                        <li>Take care not to catch snowshoe decking</li>
+                    </ul>
+
+                    <p><strong>Turning Around:</strong></p>
+                    <ul>
+                        <li><strong>Kick Turn:</strong> Lift foot, pivot 180 degrees</li>
+                        <li><strong>Step Turn:</strong> Series of short steps to reverse direction</li>
+                        <li>Takes practice in confined spaces</li>
+                        <li>Easier with bearpaw-style shoes</li>
+                    </ul>
+
+                    <p><strong>Falling and Recovery:</strong></p>
+                    <ul>
+                        <li>Falling is normal — especially when learning</li>
+                        <li>Fall to the side when possible</li>
+                        <li>Use poles to assist recovery</li>
+                        <li>Roll to knees, then stand</li>
+                        <li>In deep powder, create platform to stand on</li>
+                    </ul>
+
+                    <p><strong>Common Errors:</strong></p>
+                    <ul>
+                        <li><strong>Shuffling:</strong> Not lifting feet high enough</li>
+                        <li><strong>Over-striding:</strong> Too much distance between steps</li>
+                        <li><strong>Looking Down:</strong> Watch terrain ahead, not feet</li>
+                        <li><strong>Stiff Legs:</strong> Absorb terrain through bent knees</li>
+                        <li><strong>Ignoring Poles:</strong> Use poles for balance and power</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Load Hauling with Ahkio Sled</div>
+                    
+                    <p>The ahkio sled is the standard military equipment sled for Arctic operations. Proper loading, harnessing, and hauling techniques enable transport of heavy equipment over snow, extending operational capability beyond what soldiers can carry on their backs.</p>
+
+                    <p><strong>Ahkio Sled Components:</strong></p>
+                    <ul>
+                        <li><strong>Sled Body:</strong> Fiberglass or plastic tub, approximately 7 feet long</li>
+                        <li><strong>Runners:</strong> Metal or plastic runners for glide on snow</li>
+                        <li><strong>Cover:</strong> Nylon cover secures load and protects from snow</li>
+                        <li><strong>Harness:</strong> Waist belt with rigid poles connecting to sled</li>
+                        <li><strong>Brake:</strong> Metal bar for speed control on descents</li>
+                    </ul>
+
+                    <p><strong>Loading the Sled:</strong></p>
+
+                    <p><strong>Weight Distribution:</strong></p>
+                    <ul>
+                        <li>Heavy items low and centered</li>
+                        <li>Secure all items to prevent shifting</li>
+                        <li>Load sled while upright, then tip onto runners</li>
+                        <li>Maximum capacity: 150-200 lbs</li>
+                        <li>Secure cover tightly over load</li>
+                    </ul>
+
+                    <p><strong>Load Organization:</strong></p>
+                    <ul>
+                        <li><strong>Bottom:</strong> Heavy, infrequently needed items</li>
+                        <li><strong>Middle:</strong> Main equipment, shelter materials</li>
+                        <li><strong>Top:</strong> Frequently accessed items, med kit</li>
+                        <li><strong>Waterproofing:</strong> Critical — use waterproof bags inside</li>
+                        <li><strong>Labeling:</strong> Mark contents for quick identification</li>
+                    </ul>
+
+                    <p><strong>Harnessing and Hauling:</strong></p>
+
+                    <p><strong>Harness Setup:</strong></p>
+                    <ul>
+                        <li>Waist belt positioned on hips (not waist)</li>
+                        <li>Rigid poles connect belt to sled</li>
+                        <li>Adjust pole length for body height</li>
+                        <li>Sled should track behind, not alongside</li>
+                        <li>Quick-release capability for emergencies</li>
+                    </ul>
+
+                    <p><strong>Hauling Technique:</strong></p>
+                    <ul>
+                        <li>Lean slightly forward to counter sled weight</li>
+                        <li>Use ski poles for balance and propulsion</li>
+                        <li>Maintain steady pace — avoid sprinting</li>
+                        <li>Sled follows in established track</li>
+                        <li>Rotate haulers frequently to share load</li>
+                    </ul>
+
+                    <p><strong>Downhill Sled Control:</strong></p>
+                    <ul>
+                        <li>Sled accelerates on descents</li>
+                        <li>Use brake bar for speed control</li>
+                        <li>Snowplow or traverse to reduce speed</li>
+                        <li>Sled can assist with braking (controlled drag)</li>
+                        <li>Maintain safe distance from sled ahead</li>
+                    </ul>
+
+                    <p><strong>Obstacles and Hazards:</strong></p>
+                    <ul>
+                        <li><strong>Trees:</strong> Navigate carefully — sled wider than skier</li>
+                        <li><strong>Rough Terrain:</strong> Sled may tip; reduce speed</li>
+                        <li><strong>Creek Crossings:</strong> Unload sled, hand-carry across</li>
+                        <li><strong>Steep Terrain:</strong> Consider relaying equipment vs. hauling</li>
+                        <li><strong>Breakable Crust:</strong> Sled may punch through — distribute weight</li>
+                    </ul>
+
+                    <p><strong>Multiple Sled Operations:</strong></p>
+                    <ul>
+                        <li>Tandem hauling for very heavy loads</li>
+                        <li>Sled train for unit movement</li>
+                        <li>Lead sled breaks trail for following sleds</li>
+                        <li>Maintain interval to prevent collisions</li>
+                        <li>Coordinate rest breaks for entire element</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Trail Breaking in Deep Snow</div>
+                    
+                    <p>Trail breaking with snowshoes is physically demanding but essential for group movement. The trail breaker's path enables following soldiers to move with significantly less effort. Proper technique and rotation protocols maintain group speed and prevent individual exhaustion.</p>
+
+                    <p><strong>Trail Breaking Fundamentals:</strong></p>
+                    <ul>
+                        <li>Lead snowshoer packs down snow for followers</li>
+                        <li>Energy expenditure 50-100% higher than following</li>
+                        <li>Deep powder requires most effort</li>
+                        <li>Rotation essential for sustained movement</li>
+                        <li>Trail quality affects entire group's progress</li>
+                    </ul>
+
+                    <p><strong>Trail Breaking Technique:</strong></p>
+                    <ul>
+                        <li>High-stepping to compact snow fully</li>
+                        <li>Commit full body weight to each step</li>
+                        <li>Use poles for additional propulsion</li>
+                        <li>Maintain steady, sustainable rhythm</li>
+                        <li>Shorter steps provide better flotation</li>
+                    </ul>
+
+                    <p><strong>Rotation Schedule:</strong></p>
+                    <ul>
+                        <li>Rotate every 15-30 minutes depending on conditions</li>
+                        <li>Deep powder = more frequent rotation</li>
+                        <li>Trail breaker steps aside, allows group to pass</li>
+                        <li>Joins rear of column</li>
+                        <li>Former second position becomes new trail breaker</li>
+                    </ul>
+
+                    <p><strong>Route Selection:</strong></p>
+                    <ul>
+                        <li>Choose path of least resistance</li>
+                        <li>Follow natural contours when possible</li>
+                        <li>Avoid unnecessary obstacles (trees, rocks)</li>
+                        <li>Look for firm snow or old tracks</li>
+                        <li>Consider following wildlife trails</li>
+                        <li>Maintain course toward objective</li>
+                    </ul>
+
+                    <p><strong>Snow Conditions:</strong></p>
+
+                    <p><strong>Powder Snow:</strong></p>
+                    <ul>
+                        <li>Most challenging for trail breaking</li>
+                        <li>Post-holing risk even with snowshoes</li>
+                        <li>Short, deliberate steps</li>
+                        <li>Maximum flotation snowshoes essential</li>
+                    </ul>
+
+                    <p><strong>Wet Snow:</strong></p>
+                    <ul>
+                        <li>Packs down well</li>
+                        <li>Balloons on snowshoes (snow buildup)</li>
+                        <li>Wax or silicone treatment helps</li>
+                        <li>Heavier but better trail quality</li>
+                    </ul>
+
+                    <p><strong>Firm Snow/Crust:</strong></p>
+                    <ul>
+                        <li>Easier trail breaking</li>
+                        <li>Watch for breakable crust</li>
+                        <li>May not require snowshoes in extreme cases</li>
+                        <li>Fastest travel conditions</li>
+                    </ul>
+
+                    <p><strong>Group Spacing:</strong></p>
+                    <ul>
+                        <li>Followers stay directly in broken trail</li>
+                        <li>Maintain 5-10 meter intervals</li>
+                        <li>Close enough to follow tracks</li>
+                        <li>Far enough for safety and visibility</li>
+                        <li>Trail improves with each passer</li>
+                    </ul>
+
+                    <p><strong>Trail Maintenance:</strong></p>
+                    <ul>
+                        <li>Keep trail straight when possible</li>
+                        <li>Avoid weaving unnecessarily</li>
+                        <li>Pack down soft spots</li>
+                        <li>Mark route if returning same way</li>
+                        <li>Consider return route when planning</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Tactical Snowshoe Movement</div>
+                    
+                    <p>Snowshoes offer tactical advantages and limitations compared to skis. Understanding when and how to employ snowshoes in tactical situations maximizes their utility while mitigating their constraints.</p>
+
+                    <p><strong>Advantages of Snowshoes:</strong></p>
+                    <ul>
+                        <li><strong>Versatility:</strong> Work in all snow conditions</li>
+                        <li><strong>Terrain:</strong> Better in dense vegetation and confined spaces</li>
+                        <li><strong>Learning Curve:</strong> Faster to learn than skiing</li>
+                        <li><strong>Combat Ready:</strong> Easier to transition to fighting position</li>
+                        <li><strong>Silent:</strong> Quieter than skis on certain snow types</li>
+                        <li><strong>Load Capacity:</strong> Excellent for hauling heavy equipment</li>
+                    </ul>
+
+                    <p><strong>Limitations of Snowshoes:</strong></p>
+                    <ul>
+                        <li><strong>Speed:</strong> Slower than skis on open terrain</li>
+                        <li><strong>Energy:</strong> More physically demanding than skiing</li>
+                        <li><strong>Downhill:</strong> Less control than skis on descents</li>
+                        <li><strong>Distance:</strong> Less efficient for long-distance travel</li>
+                        <li><strong>Prone Position:</strong> Snowshoes must be removed for prone</li>
+                    </ul>
+
+                    <p><strong>Tactical Employment:</strong></p>
+
+                    <p><strong>When to Use Snowshoes:</strong></p>
+                    <ul>
+                        <li>Dense forest or heavy brush</li>
+                        <li>Close terrain with frequent stops</li>
+                        <li>Defensive operations requiring prone positions</li>
+                        <li>Heavy equipment transport</li>
+                        <li>Mixed terrain (rocks, logs, vegetation)</li>
+                        <li>Short-distance tactical movement</li>
+                    </ul>
+
+                    <p><strong>Movement Security:</strong></p>
+                    <ul>
+                        <li>Same principles as ski movement</li>
+                        <li>Traveling, traveling overwatch, bounding overwatch</li>
+                        <li>Snowshoes slightly louder than skis on hard snow</li>
+                        <li>Tracks highly visible — consider route deception</li>
+                        <li>360-degree security essential</li>
+                    </ul>
+
+                    <p><strong>Actions on Contact:</strong></p>
+                    <ul>
+                        <li>Snowshoes can be quickly released</li>
+                        <li>Some positions allow fighting while wearing snowshoes</li>
+                        <li>Kneeling position easier than prone with snowshoes</li>
+                        <li>Remove snowshoes for sustained defensive positions</li>
+                        <li>Secure snowshoes to prevent loss during contact</li>
+                    </ul>
+
+                    <p><strong>Patrol Base Operations:</strong></p>
+                    <ul>
+                        <li>Snowshoes removed for extended halts</li>
+                        <li>Store upright or stacked to prevent snow accumulation</li>
+                        <li>Quick access for rapid departure</li>
+                        <li>Keep bindings free of ice</li>
+                        <li>Assign snowshoe guard (maintain trail access)</li>
+                    </ul>
+
+                    <p><strong>Camouflage and Concealment:</strong></p>
+                    <ul>
+                        <li>White overwhites essential</li>
+                        <li>Snowshoe tracks highly distinctive</li>
+                        <li>Consider track mitigation (brush out, multiple routes)</li>
+                        <li>Travel during snowfall to obscure tracks</li>
+                        <li>Use terrain to mask approach</li>
+                    </ul>
+
+                    <p><strong>Night Operations:</strong></p>
+                    <ul>
+                        <li>Greater noise signature at night</li>
+                        <li>Slower movement essential</li>
+                        <li>Increased interval for safety</li>
+                        <li>NVG considerations (depth perception affected)</li>
+                        <li>Voice commands for coordination</li>
+                    </ul>
+
+                    <p><strong>Integration with Other Elements:</strong></p>
+                    <ul>
+                        <li>Snowshoe element moves with ski element</li>
+                        <li>Snowshoes often used for heavy weapons teams</li>
+                        <li>Reconnaissance elements may use skis for speed</li>
+                        <li>Main body uses snowshoes for load capacity</li>
+                        <li>Coordinate movement speeds and rest breaks</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Snowshoe vs. Ski Selection</div>
+                    
+                    <p>Choosing between snowshoes and skis depends on mission, terrain, snow conditions, and tactical requirements. Understanding the trade-offs enables leaders to make informed decisions and equip their elements appropriately.</p>
+
+                    <p><strong>Decision Matrix:</strong></p>
+
+                    <p><strong>Choose Skis When:</strong></p>
+                    <ul>
+                        <li>Long-distance travel is required</li>
+                        <li>Open terrain predominates</li>
+                        <li>Speed is a priority</li>
+                        <li>Snow conditions are favorable (groomed or packed)</li>
+                        <li>Personnel have ski training</li>
+                        <li>Equipment loads are light to moderate</li>
+                    </ul>
+
+                    <p><strong>Choose Snowshoes When:</strong></p>
+                    <ul>
+                        <li>Terrain is dense or confined</li>
+                        <li>Variable snow conditions expected</li>
+                        <li>Heavy equipment must be transported</li>
+                        <li>Frequent stops and starts anticipated</li>
+                        <li>Personnel lack ski training</li>
+                        <li>Tactical situation requires quick transitions</li>
+                    </ul>
+
+                    <p><strong>Comparative Analysis:</strong></p>
+
+                    <p><strong>Speed:</strong></p>
+                    <ul>
+                        <li>Skis: 3-5 mph on flats, faster downhill</li>
+                        <li>Snowshoes: 2-3 mph on flats, slower downhill</li>
+                        <li>Skis 30-50% faster over distance</li>
+                    </ul>
+
+                    <p><strong>Energy Expenditure:</strong></p>
+                    <ul>
+                        <li>Skis: Lower energy cost with proper technique</li>
+                        <li>Snowshoes: Higher energy cost, especially in powder</li>
+                        <li>Snowshoes more exhausting for extended periods</li>
+                    </ul>
+
+                    <p><strong>Terrain Versatility:</strong></p>
+                    <ul>
+                        <li>Skis: Excellent on open terrain, poor in brush</li>
+                        <li>Snowshoes: Good in most terrain, excellent in brush</li>
+                        <li>Snowshoes handle mixed terrain better</li>
+                    </ul>
+
+                    <p><strong>Load Capacity:</strong></p>
+                    <ul>
+                        <li>Skis: Moderate load capacity; ahkio sleds work well</li>
+                        <li>Snowshoes: Excellent load capacity; ahkio sleds standard</li>
+                        <li>Snowshoes better for very heavy loads</li>
+                    </ul>
+
+                    <p><strong>Combat Transition:</strong></p>
+                    <ul>
+                        <li>Skis: Must remove for prone position</li>
+                        <li>Snowshoes: Can fight kneeling; remove for prone</li>
+                        <li>Snowshoes slightly faster to transition</li>
+                    </ul>
+
+                    <p><strong>Training Requirements:</strong></p>
+                    <ul>
+                        <li>Skis: Significant training time required</li>
+                        <li>Snowshoes: Minimal training required</li>
+                        <li>Snowshoes more accessible to untrained personnel</li>
+                    </ul>
+
+                    <p><strong>Hybrid Approaches:</strong></p>
+                    <ul>
+                        <li><strong>Element Mix:</strong> Skis for reconnaissance, snowshoes for main body</li>
+                        <li><strong>Sequential Use:</strong> Skis for approach, snowshoes for objective</li>
+                        <li><strong>Carry Both:</strong> Snowshoes on pack for deep powder sections</li>
+                        <li><strong>Situation Dependent:</strong> Flexibility based on conditions encountered</li>
+                    </ul>
+
+                    <p><strong>CWLC Training:</strong></p>
+                    <p>The Cold Weather Leaders Course trains students on both skis and snowshoes. Ski training is more extensive due to the technical nature of the skill. Snowshoe training focuses on efficient movement, load hauling, and tactical employment. Graduates must demonstrate proficiency in both modes of over-snow mobility. Mastery of both tools provides maximum flexibility in Arctic operations.</p>
+
+                    <p><strong>Final Recommendations:</strong></p>
+                    <ul>
+                        <li>Train on both systems before deployment</li>
+                        <li>Carry snowshoes as backup even when skiing</li>
+                        <li>Match equipment to mission requirements</li>
+                        <li>Consider personnel skill levels</li>
+                        <li>Have contingency plans for equipment failure</li>
+                        <li>Practice transitions between modes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Arctic School Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Classroom &amp; Skills</a></li><li><a href="index.html#phases">Field Training</a></li><li><a href="index.html#phases">FTX &amp; Assessment</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Arctic Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script>
+        if (typeof RangerAuth !== 'undefined') {
+            RangerAuth.initAuthUI();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginGate = document.getElementById('login-gate');
+            const courseContent = document.getElementById('course-content');
+            
+            function checkAccess() {
+                const user = localStorage.getItem('ranger_auth_user');
+                if (user) {
+                    loginGate.style.display = 'none';
+                    courseContent.style.display = 'block';
+                } else {
+                    loginGate.style.display = 'block';
+                    courseContent.style.display = 'none';
+                }
+            }
+            
+            checkAccess();
+        });
+    </script>
+</body>
+</html>

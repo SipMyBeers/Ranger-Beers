@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountain Warfare Prep — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Technical Skills</a></li>
+                        <li><a href="index.html#phases">Mountain Survival</a></li>
+                        <li><a href="index.html#phases">Mountain Ops</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Mountain Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-mountain-prep.html">Mountain Prep</a></li>
+                        <li><a href="course-technical-climbing.html">Technical Climbing</a></li>
+                        <li><a href="course-mountain-survival.html">Mountain Survival</a></li>
+                        <li><a href="course-ice-snow.html">Ice & Snow Ops</a></li>
+                        <li><a href="course-avalanche.html">Avalanche Safety</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-mountain-prep">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Mountain Warfare Prep — Complete Guide</h1>
+        <p class="section-desc fade-in">6 modules covering everything you need to know before reporting to the Army Mountain Warfare School at Fort Ethan Allen, Vermont. Physical standards, gear selection, acclimatization, and course structure.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$12</span>
+            <span class="course-tag tag-phase">All Phases</span>
+            <span class="course-tag tag-type">Comprehensive</span>
+            <span class="course-tag tag-bundle">Full Access</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-mountain-prep"
+                data-item-name="Mountain Warfare Prep"
+                data-item-price="12.00"
+                data-item-url="/mountain/course-mountain-prep.html"
+                data-item-description="Complete 6-module prep course for AMWS — from admin to graduation day"
+                data-item-categories="course">Buy Course — $12.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Course Overview</a>
+                <a href="#mod2" class="course-sidebar-link">2. Physical Standards</a>
+                <a href="#mod3" class="course-sidebar-link">3. Gear & Equipment</a>
+                <a href="#mod4" class="course-sidebar-link">4. Acclimatization</a>
+                <a href="#mod5" class="course-sidebar-link">5. Technical Prep</a>
+                <a href="#mod6" class="course-sidebar-link">6. Phase Breakdown</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Course Overview</div>
+                    <p>The Army Mountain Warfare School (AMWS) is a 14-day course conducted at the Ethan Allen Training Site in Jericho, Vermont. It is one of the most technically demanding schools in the Army, with an average attrition rate of 35%. The course teaches military mountaineering, technical climbing, and mountain survival skills essential for operations in alpine terrain.</p>
+
+                    <p><strong>Course Structure:</strong></p>
+                    <ul>
+                        <li><strong>Technical Skills Phase (Days 1-5):</strong> Rock climbing, rappelling, anchor systems, rope management, belaying</li>
+                        <li><strong>Mountain Survival Phase (Days 6-10):</strong> Shelter construction, cold weather survival, mountain navigation, altitude effects</li>
+                        <li><strong>Mountain Operations Phase (Days 11-14):</strong> Culminating FTX with cliff assaults, rappel insertions, tactical patrols</li>
+                    </ul>
+
+                    <p><strong>Location & Environment:</strong></p>
+                    <p>The Ethan Allen Firing Range and surrounding Green Mountains provide varied terrain from granite cliff faces to dense forests and alpine meadows. Vermont weather is unpredictable—students may experience four seasons in a single day. Winter classes add ice climbing and operate in sub-zero conditions.</p>
+
+                    <p><strong>The Mountain Tab:</strong></p>
+                    <p>Upon successful completion, graduates are awarded the Mountain Tab, worn on the left shoulder. It signifies proficiency in military mountaineering and the ability to lead soldiers in mountainous terrain. The tab is permanent and recognized across all Army components.</p>
+
+                    <p><strong>History:</strong></p>
+                    <p>AMWS was established in 1983 by the Vermont Army National Guard. It has trained thousands of soldiers, including Special Operations Forces, conventional units, and allied military personnel. The school's motto "To The Top" reflects the demanding nature of mountain warfare.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Physical Standards & Fitness</div>
+                    <p>Mountain warfare demands a unique fitness profile. Upper body strength, grip endurance, and cardiovascular capacity at altitude are essential. You cannot fake fitness on a cliff face.</p>
+
+                    <p><strong>Minimum Physical Standards:</strong></p>
+                    <ul>
+                        <li>APFT: 60 points minimum in each event (push-ups, sit-ups, 2-mile run)</li>
+                        <li>12-Mile Ruck March: 35 lb dry + weapon, under 3:00:00</li>
+                        <li>Vertical Rope Climb: 20-foot rope with full combat equipment</li>
+                        <li>Grip Strength: Ability to hang from rock holds for 30+ seconds</li>
+                        <li>Body Weight: Power-to-weight ratio is critical on technical terrain</li>
+                    </ul>
+
+                    <p><strong>Mountain-Specific Fitness Requirements:</strong></p>
+                    <ul>
+                        <li><strong>Upper Body Strength:</strong> Pull-ups (15+), rope climbs, lock-off strength for climbing</li>
+                        <li><strong>Core Stability:</strong> Essential for maintaining body position on rock faces</li>
+                        <li><strong>Grip Endurance:</strong> Forearm stamina for sustained climbing and rope work</li>
+                        <li><strong>Leg Strength:</strong> Step-ups, lunges with weight for steep terrain</li>
+                        <li><strong>Cardiovascular:</strong> Hill running, stair climbing with load</li>
+                    </ul>
+
+                    <p><strong>Pre-Course Training Plan (8-12 Weeks):</strong></p>
+                    <ul>
+                        <li>3x/week: Climbing gym sessions — focus on technique and endurance</li>
+                        <li>2x/week: Pull-up and grip training — dead hangs, fingerboard work</li>
+                        <li>2x/week: Weighted step-ups and hill running</li>
+                        <li>1x/week: Long ruck march (build from 6 to 12 miles)</li>
+                        <li>Daily: Push-ups, sit-ups, and core work</li>
+                    </ul>
+
+                    <p><strong>Fear of Heights:</strong></p>
+                    <p>Acrophobia is the #1 psychological reason for voluntary withdrawal. If you freeze on an exposed cliff face, you endanger yourself and your team. Exposure therapy at climbing gyms and via rappelling practice is essential before arrival.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Gear & Equipment</div>
+                    <p>Your equipment is your lifeline in the mountains. Vermont's weather can change instantly—proper gear selection and preparation mean the difference between success and hypothermia.</p>
+
+                    <p><strong>Clothing System (ECWCS):</strong></p>
+                    <ul>
+                        <li><strong>Base Layer:</strong> Moisture-wicking synthetic or wool—NO COTTON</li>
+                        <li><strong>Mid Layer:</strong> Fleece or lightweight puffy for insulation</li>
+                        <li><strong>Outer Layer:</strong> Waterproof/breathable shell for wind and rain</li>
+                        <li><strong>Insulation:</strong> Heavy puffy jacket for static positions and camp</li>
+                        <li><strong>Head & Hands:</strong> Balaclava, beanie, liner gloves, insulated climbing gloves</li>
+                    </ul>
+
+                    <p><strong>Footwear:</strong></p>
+                    <ul>
+                        <li>Broken-in mountain boots with ankle support</li>
+                        <li>Gaiters to keep debris and snow out</li>
+                        <li>Multiple sock layers—liner + wool/synthetic</li>
+                        <li>Camp shoes for rest periods (optional but recommended)</li>
+                    </ul>
+
+                    <p><strong>Climbing Equipment:</strong></p>
+                    <ul>
+                        <li>Climbing harness—military or commercial (UIAA certified)</li>
+                        <li>Helmet—climbing-specific, not ballistic</li>
+                        <li>Locking carabiners (minimum 4)</li>
+                        <li>Non-locking carabiners (minimum 4)</li>
+                        <li>Cordelette (18 feet of 7mm cord)</li>
+                        <li>Slings (120cm and 60cm)</li>
+                        <li>Belay device (ATC or similar)</li>
+                        <li>Prusik loops (2x 6-foot lengths of 6mm cord)</li>
+                    </ul>
+
+                    <p><strong>Field Gear:</strong></p>
+                    <ul>
+                        <li>Rucksack (65+ liter capacity) with rain cover</li>
+                        <li>Sleep system rated to 0°F minimum</li>
+                        <li>Bivy sack for waterproof protection</li>
+                        <li>Foam sleeping pad for insulation</li>
+                        <li>Headlamp with red lens + extra batteries</li>
+                        <li>Sunglasses (category 3 or 4) and sunscreen</li>
+                        <li>First aid kit including blister care</li>
+                        <li>Water purification tablets or filter</li>
+                    </ul>
+
+                    <p><strong>Season-Specific Additions:</strong></p>
+                    <ul>
+                        <li><strong>Winter:</strong> Crampons, ice axe, avalanche transceiver, extreme cold weather sleeping bag (-20°F)</li>
+                        <li><strong>Summer:</strong> Extra hydration capacity, insect repellent, lightweight sun hat</li>
+                        <li><strong>Spring/Fall:</strong> Versatile layering system, rain gear essential</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Acclimatization & Altitude</div>
+                    <p>Vermont's Green Mountains may not reach the heights of the Rockies or Himalayas, but altitudes up to 4,400 feet (Mount Mansfield) can still affect performance. Understanding altitude physiology and proper acclimatization is critical.</p>
+
+                    <p><strong>Altitude Effects:</strong></p>
+                    <ul>
+                        <li><strong>2,000-4,000 ft:</strong> Minor performance decrease, increased breathing rate</li>
+                        <li><strong>4,000-6,000 ft:</strong> Noticeable exertion increase, possible mild headache</li>
+                        <li><strong>Acute Mountain Sickness (AMS):</strong> Headache, nausea, fatigue, dizziness</li>
+                        <li><strong>Performance Impact:</strong> Reduced VO2 max, slower recovery, increased dehydration</li>
+                    </ul>
+
+                    <p><strong>Acclimatization Strategies:</strong></p>
+                    <ul>
+                        <li>Arrive at altitude 24-48 hours before strenuous activity if possible</li>
+                        <li>Increase fluid intake—dehydration occurs faster at altitude</li>
+                        <li>Avoid alcohol and sedatives before and during training</li>
+                        <li>Eat carbohydrate-rich foods for energy</li>
+                        <li>Ascend gradually—sleep no more than 1,500 ft higher per day</li>
+                    </ul>
+
+                    <p><strong>Cold Weather Acclimatization:</strong></p>
+                    <p>Winter classes at AMWS operate in sub-zero temperatures. Cold acclimatization involves physiological adaptation to cold exposure, including increased metabolic heat production and improved peripheral circulation. Pre-exposure to cold through outdoor winter activities helps prepare the body.</p>
+
+                    <p><strong>Warning Signs:</strong></p>
+                    <ul>
+                        <li><strong>Hypothermia:</strong> Shivering, confusion, drowsiness, slurred speech</li>
+                        <li><strong>Frostbite:</strong> Numbness, white/waxy skin, hard tissue</li>
+                        <li><strong>Dehydration:</strong> Dark urine, headache, dizziness, decreased performance</li>
+                        <li><strong>Altitude Illness:</strong> Severe headache, vomiting, ataxia (loss of coordination)</li>
+                    </ul>
+
+                    <p><strong>Buddy System:</strong></p>
+                    <p>Watch your teammates for signs of cold injury or altitude illness. Mental status changes are often the first indicator. If someone stops shivering in cold conditions, this is a medical emergency—act immediately.</p>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Technical Preparation</div>
+                    <p>Technical skills separate successful AMWS graduates from those who struggle or fail. The ability to tie knots, manage ropes, and climb efficiently must become muscle memory before you arrive.</p>
+
+                    <p><strong>Knots You Must Know:</strong></p>
+                    <ul>
+                        <li><strong>Figure-8 Follow-Through:</strong> Primary tie-in knot for climbing</li>
+                        <li><strong>Figure-8 on a Bight:</strong> Creating secure loops in rope</li>
+                        <li><strong>Prusik Hitch:</strong> Friction knot for ascending ropes and backups</li>
+                        <li><strong>Clove Hitch:</strong> Securing rope to carabiners quickly</li>
+                        <li><strong>Munter Hitch:</strong> Emergency belay/rappel method</li>
+                        <li><strong>Double Fisherman's:</strong> Joining two ropes or cord ends</li>
+                        <li><strong>Water Knot:</strong> Joining webbing (slings and harnesses)</li>
+                    </ul>
+
+                    <p><strong>Climbing Basics to Practice:</strong></p>
+                    <ul>
+                        <li><strong>Body Positioning:</strong> Keep weight over feet, straight arms, hips close to wall</li>
+                        <li><strong>Footwork:</strong> Precision placement, edging, smearing techniques</li>
+                        <li><strong>Route Reading:</strong> Identifying holds and sequences before climbing</li>
+                        <li><strong>Resting:</strong> Finding positions to shake out arms and recover</li>
+                        <li><strong>Breathing:</strong> Controlled, rhythmic breathing during exertion</li>
+                    </ul>
+
+                    <p><strong>Belaying Fundamentals:</strong></p>
+                    <ul>
+                        <li>PBUS method (Pull, Brake, Under, Slide)</li>
+                        <li>Never take brake hand off the rope</li>
+                        <li>Constant communication with climber</li>
+                        <li>Watch climber continuously—distraction kills</li>
+                        <li>Soft catches vs. hard catches depending on situation</li>
+                    </ul>
+
+                    <p><strong>Rappelling Skills:</strong></p>
+                    <ul>
+                        <li>Proper setup of rappel device and backup systems</li>
+                        <li>Body position—L-shaped stance for control</li>
+                        <li>Brake hand management throughout descent</li>
+                        <li>Adding friction for heavy loads or steep terrain</li>
+                        <li>Self-rescue from stuck rappel (prusik ascent)</li>
+                    </ul>
+
+                    <p><strong>Practice Recommendations:</strong></p>
+                    <p>Spend at least 4 weeks at a climbing gym before AMWS. Focus on endurance climbing (30+ minutes continuous) rather than just difficult routes. Practice tying all knots blindfolded—you may need to tie them in the dark or with cold hands.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Phase Breakdown & Graduation</div>
+                    <p>Understanding what each phase entails allows you to prepare mentally and physically for the challenges ahead. Each phase builds upon the previous, culminating in a comprehensive field exercise.</p>
+
+                    <p><strong>Technical Skills Phase (Days 1-5):</strong></p>
+                    <ul>
+                        <li>Day 1: Equipment issue, knots test, basic climbing movement</li>
+                        <li>Day 2: Belaying certification, anchor construction basics</li>
+                        <li>Day 3: Rock climbing on natural granite faces</li>
+                        <li>Day 4: Rappelling instruction and practice</li>
+                        <li>Day 5: Multi-pitch climbing and fixed rope systems</li>
+                    </ul>
+
+                    <p><strong>Mountain Survival Phase (Days 6-10):</strong></p>
+                    <ul>
+                        <li>Extended field exercise in mountain environment</li>
+                        <li>Shelter construction using natural and improvised materials</li>
+                        <li>Water procurement from streams and snow</li>
+                        <li>Mountain land navigation—terrain association mastery</li>
+                        <li>Cold weather survival techniques</li>
+                        <li>Route planning and hazard assessment</li>
+                    </ul>
+
+                    <p><strong>Mountain Operations Phase (Days 11-14):</strong></p>
+                    <ul>
+                        <li>Culminating Field Training Exercise (FTX)</li>
+                        <li>Cliff assaults with tactical equipment</li>
+                        <li>Rappel insertions under load</li>
+                        <li>Patrol base operations in mountainous terrain</li>
+                        <li>Leadership rotations and evaluation</li>
+                        <li>Graduation requirements demonstration</li>
+                    </ul>
+
+                    <p><strong>Graduation Requirements:</strong></p>
+                    <ul>
+                        <li>Pass all technical climbing evaluations (GO/NO-GO)</li>
+                        <li>Demonstrate proficiency in all required knots</li>
+                        <li>Successfully complete rappel and climbing assessments</li>
+                        <li>Pass land navigation practical exam</li>
+                        <li>Complete survival phase requirements</li>
+                        <li>Receive satisfactory leadership evaluation</li>
+                        <li>Peer evaluation acceptance</li>
+                    </ul>
+
+                    <p><strong>The Tab Ceremony:</strong></p>
+                    <p>Upon successful completion, graduates participate in the Mountain Tab ceremony. The tab is awarded by cadre and represents proficiency in military mountaineering. Graduates are authorized to wear the Mountain Tab on their uniform for the remainder of their military career.</p>
+
+                    <p><strong>Post-Course:</strong></p>
+                    <p>Mountain-qualified soldiers are valuable assets to their units. They can serve as unit mountaineering trainers, advise commanders on mountain operations, and lead soldiers in challenging alpine environments. The skills learned at AMWS apply worldwide—from Afghanistan to Korea to training areas across the United States.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Mountain School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Technical Skills</a></li><li><a href="index.html#phases">Mountain Survival</a></li><li><a href="index.html#phases">Mountain Ops</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Mountain Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                });
+            });
+        })();
+
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth + Course Engine -->
+    <script src="../js/config.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script src="../js/course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+</body>
+</html>

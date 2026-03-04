@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Warfare (29-Series) — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/course-styles.css">
+    <link rel="stylesheet" href="../../css/school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#000000">
+    <style>
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(139,92,246,0.08), transparent 60%); }
+    </style>
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li><a href="index.html">Home</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../shop.html">Shop</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../courses.html">Courses</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../resources.html">Resources</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+            </div>
+            <button class="nav-toggle"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="school-hero" id="hero">
+        <div class="hero-badge-text">29</div>
+        <h1 class="hero-headline">Electronic Warfare</h1>
+        <p class="hero-sub">Control the electromagnetic spectrum. Electronic Warfare specialists conduct electronic attack, electronic protection, and electronic support operations.</p>
+        <div class="hero-cta">
+            <a href="../../shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="../../courses.html" class="btn btn-outline">Start Training</a>
+        </div>
+    </section>
+
+    <section class="section" style="padding: var(--space-3xl) 40px;" id="specialties">
+        <div class="ix-container">
+            <span class="section-label">MOS Specialties</span>
+            <div class="phase-selector" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); margin-bottom: 40px;">
+                <button class="phase-card-btn active" data-phase="29c" onclick="togglePhase('29c')">
+                    <span class="phase-card-icon">&#128225;</span>
+                    <span class="phase-card-title">29C</span>
+                    <span class="phase-card-sub">EW Specialist</span>
+                </button>
+                <button class="phase-card-btn" data-phase="29e" onclick="togglePhase('29e')">
+                    <span class="phase-card-icon">&#9889;</span>
+                    <span class="phase-card-title">29E</span>
+                    <span class="phase-card-sub">EW Specialist</span>
+                </button>
+                <button class="phase-card-btn" data-phase="29v" onclick="togglePhase('29v')">
+                    <span class="phase-card-icon">&#11088;</span>
+                    <span class="phase-card-title">29V</span>
+                    <span class="phase-card-sub">Senior Sgt</span>
+                </button>
+            </div>
+
+            <!-- 29C Detail -->
+            <div class="phase-detail-panel open" id="detail-29c">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">29C</span>
+                        <div class="phase-detail-rtb">EW Specialist</div>
+                        <a href="../29c/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Specialists execute electronic attack, electronic protection, and electronic warfare support operations to dominate the spectrum.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 29E Detail -->
+            <div class="phase-detail-panel" id="detail-29e">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:#3b82f6; border-color:#3b82f6;">29E</span>
+                        <div class="phase-detail-rtb">EW Specialist</div>
+                        <a href="../29e/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>The power of the spectrum. Specialists dominate the electromagnetic battlefield, protecting friendly communications.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 29V Detail -->
+            <div class="phase-detail-panel" id="detail-29v">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">29V</span>
+                        <div class="phase-detail-rtb">Senior Sergeant</div>
+                        <a href="../29v/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Top-tier leadership in Electronic Warfare. Senior NCOs responsible for large EW formations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase Toggle Script -->
+    <script>
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+            var buttons = document.querySelectorAll('.phase-card-btn');
+            
+            buttons.forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+        }
+    </script>
+
+    <section class="section" style="text-align: center; padding: var(--space-3xl) 40px; background: rgba(255,255,255,0.02);">
+        <h2 class="section-title">Ready to Train?</h2>
+        <a href="../../shop.html" class="btn btn-primary">Shop EW Gear</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">Ranger Beers</div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">MOS</div><ul><li><a href="../11-infantry/index.html">Infantry</a></li><li><a href="../25-signal/index.html">Signal</a></li><li><a href="../29-electronic-warfare/index.html">EW</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co.</div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../../js/config.js"></script>
+    <script src="../../js/shared.js"></script>
+    <script src="../../js/course-auth.js"></script>
+    <script>RangerAuth.initAuthUI();</script>
+</body>
+</html>

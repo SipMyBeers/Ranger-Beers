@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Forces (18-Series) — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/course-styles.css">
+    <link rel="stylesheet" href="../../css/school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#000000">
+    <style>
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(34,197,94,0.08), transparent 60%); }
+    </style>
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li><a href="index.html">Home</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../shop.html">Shop</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../courses.html">Courses</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="school-hero" id="hero">
+        <div class="hero-badge-text">18</div>
+        <h1 class="hero-headline">Special Forces</h1>
+        <p class="hero-sub">America's premier unconventional warfare specialists. Green Berets conduct special operations including direct action, special reconnaissance, and foreign internal defense.</p>
+        <div class="hero-cta">
+            <a href="../../shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="../../courses.html" class="btn btn-outline">Start Training</a>
+        </div>
+    </section>
+
+    <section class="section" style="padding: var(--space-3xl) 40px;" id="specialties">
+        <div class="ix-container">
+            <span class="section-label">MOS Specialties</span>
+            <div class="phase-selector" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); margin-bottom: 40px;">
+                <button class="phase-card-btn active" data-phase="18a" onclick="togglePhase('18a')">
+                    <span class="phase-card-icon">&#9878;</span>
+                    <span class="phase-card-title">18A</span>
+                    <span class="phase-card-sub">Officer</span>
+                </button>
+                <button class="phase-card-btn" data-phase="18b" onclick="togglePhase('18b')">
+                    <span class="phase-card-icon">&#9876;</span>
+                    <span class="phase-card-title">18B</span>
+                    <span class="phase-card-sub">Weapons</span>
+                </button>
+                <button class="phase-card-btn" data-phase="18c" onclick="togglePhase('18c')">
+                    <span class="phase-card-icon">&#128163;</span>
+                    <span class="phase-card-title">18C</span>
+                    <span class="phase-card-sub">Engineer</span>
+                </button>
+                <button class="phase-card-btn" data-phase="18d" onclick="togglePhase('18d')">
+                    <span class="phase-card-icon">&#9769;</span>
+                    <span class="phase-card-title">18D</span>
+                    <span class="phase-card-sub">Medical</span>
+                </button>
+                <button class="phase-card-btn" data-phase="18e" onclick="togglePhase('18e')">
+                    <span class="phase-card-icon">&#128225;</span>
+                    <span class="phase-card-title">18E</span>
+                    <span class="phase-card-sub">Communications</span>
+                </button>
+                <button class="phase-card-btn" data-phase="18z" onclick="togglePhase('18z')">
+                    <span class="phase-card-icon">&#11088;</span>
+                    <span class="phase-card-title">18Z</span>
+                    <span class="phase-card-sub">Senior Sgt</span>
+                </button>
+            </div>
+
+            <!-- 18A Detail -->
+            <div class="phase-detail-panel open" id="detail-18a">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">18A</span>
+                        <div class="phase-detail-rtb">SF Officer</div>
+                        <a href="../18a/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Leading the Quiet Professionals. SF Officers plan and lead unconventional warfare, foreign internal defense, and special operations missions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 18B Detail -->
+            <div class="phase-detail-panel" id="detail-18b">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:#ef4444; border-color:#ef4444;">18B</span>
+                        <div class="phase-detail-rtb">Weapons Sergeant</div>
+                        <a href="../18b/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>The masters of lethality. Weapons Sergeants are experts in all tactical weapons and combat tactics, training and leading indigenous forces.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 18C Detail -->
+            <div class="phase-detail-panel" id="detail-18c">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:#22c55e; border-color:#22c55e;">18C</span>
+                        <div class="phase-detail-rtb">Engineer Sergeant</div>
+                        <a href="../18c/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>The builders and breachers of special operations. Engineer Sergeants are masters of construction, demolition, and unconventional engineering.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 18D Detail -->
+            <div class="phase-detail-panel" id="detail-18d">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:#ef4444; border-color:#ef4444;">18D</span>
+                        <div class="phase-detail-rtb">Medical Sergeant</div>
+                        <a href="../18d/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>The healers of the Quiet Professionals. Medical Sergeants provide advanced trauma care in austere environments.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 18E Detail -->
+            <div class="phase-detail-panel" id="detail-18e">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:#3b82f6; border-color:#3b82f6;">18E</span>
+                        <div class="phase-detail-rtb">Communications Sergeant</div>
+                        <a href="../18e/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>The lifeline of the ODA. Communications Sergeants are masters of all tactical and strategic communication systems.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 18Z Detail -->
+            <div class="phase-detail-panel" id="detail-18z">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge b18z">18Z</span>
+                        <div class="phase-detail-rtb">Senior Sergeant</div>
+                        <a href="../18z/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Top-tier leadership in Special Forces. Senior NCOs responsible for the training and readiness of large SF formations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase Toggle Script -->
+    <script>
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+            var buttons = document.querySelectorAll('.phase-card-btn');
+            
+            buttons.forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+        }
+    </script>
+
+    <section class="section" style="text-align: center; padding: var(--space-3xl) 40px; background: rgba(255,255,255,0.02);">
+        <h2 class="section-title">Ready to Train?</h2>
+        <p class="section-desc" style="max-width: 500px; margin: 0 auto var(--space-lg);">Get the gear and training you need for Special Forces.</p>
+        <a href="../../shop.html" class="btn btn-primary">Shop SF Gear</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Army School Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">MOS</div><ul><li><a href="../11-infantry/index.html">Infantry</a></li><li><a href="../18-special-forces/index.html">Special Forces</a></li><li><a href="../19-armor/index.html">Armor</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Schools</div><ul><li><a href="../../ranger/index.html">Ranger</a></li><li><a href="../../sf/index.html">SF Assessment</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Support</div><ul><li><a href="mailto:support@ranger-beers.com">Contact</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co.</div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../../js/config.js"></script>
+    <script src="../../js/shared.js"></script>
+    <script src="../../js/course-auth.js"></script>
+    <script>RangerAuth.initAuthUI();</script>
+</body>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Survival Course — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Jungle Skills</a></li>
+                        <li><a href="index.html#phases">Jungle Survival</a></li>
+                        <li><a href="index.html#phases">Jungle Patrols</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Jungle Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-jungle-prep.html">JOTC Prep</a></li>
+                        <li><a href="course-jungle-mobility.html">Jungle Mobility</a></li>
+                        <li><a href="course-waterborne.html">Waterborne Ops</a></li>
+                        <li><a href="course-combat-tracking.html">Combat Tracking</a></li>
+                        <li><a href="course-jungle-survival.html">Jungle Survival</a></li>
+                        <li><a href="course-squad-tactics.html">Squad Tactics</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="resources.html">Jungle Resources</a></li>
+                        <li><a href="standards.html">PT Standards</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-jungle-survival">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Jungle Survival</h1>
+        <p class="section-desc fade-in">Master the critical survival skills needed to endure extended operations in tropical environments. Learn shelter construction, water procurement, foraging, firecraft, jungle medicine, and evasion techniques from JOTC cadre.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$12</span>
+            <span class="course-tag tag-phase">Survival Phase</span>
+            <span class="course-tag tag-type">Tactical</span>
+            <span class="course-tag tag-bundle">SERE Focus</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-jungle-survival"
+                data-item-name="Jungle Survival"
+                data-item-price="12.00"
+                data-item-url="/jungle/course-jungle-survival.html"
+                data-item-description="Complete jungle survival course covering shelter, water, food, fire, medicine, and evasion"
+                data-item-categories="course">Buy Course — $12.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Course Overview</a>
+                <a href="#mod2" class="course-sidebar-link">2. Jungle Shelter</a>
+                <a href="#mod3" class="course-sidebar-link">3. Water Procurement</a>
+                <a href="#mod4" class="course-sidebar-link">4. Food and Foraging</a>
+                <a href="#mod5" class="course-sidebar-link">5. Firecraft</a>
+                <a href="#mod6" class="course-sidebar-link">6. Medicine & Evasion</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Jungle Survival Overview</div>
+                    
+                    <p>Jungle survival is the foundation of sustained jungle operations. Whether separated from your unit during an ambush, evading capture behind enemy lines, or operating in austere conditions, the ability to survive using only what nature provides is essential.</p>
+
+                    <p><strong>Survival Priorities in the Jungle:</strong></p>
+                    <p>The jungle presents unique survival challenges that require prioritization different from other environments:</p>
+                    <ul>
+                        <li><strong>Water:</strong> Available but requires purification; dehydration is the immediate threat</li>
+                        <li><strong>Shelter:</strong> Protection from rain, sun, and insects is critical for maintaining combat effectiveness</li>
+                        <li><strong>Fire:</strong> Essential for water purification, signaling, and psychological comfort</li>
+                        <li><strong>Food:</strong> Abundant but requires knowledge of safe sources</li>
+                        <li><strong>Evasion:</strong> Techniques to avoid detection and capture</li>
+                    </ul>
+
+                    <p><strong>Survival Mindset:</strong></p>
+                    <p>The SERE (Survival, Evasion, Resistance, Escape) mentality applies directly to jungle survival. Maintain the will to survive, adapt to the environment, and use your training to overcome adversity. Panic and poor decisions claim more lives in survival situations than the jungle itself.</p>
+
+                    <p><strong>JOTC Survival Training:</strong></p>
+                    <p>The Lightning Academy's survival instruction covers individual and small-team survival scenarios. You'll learn expedient techniques using military equipment, commercial survival gear, and natural materials found in the tropical environment.</p>
+
+                    <p><strong>Environmental Factors:</strong></p>
+                    <ul>
+                        <li><strong>Temperature:</strong> 70-95F year-round with high humidity causing rapid heat exhaustion</li>
+                        <li><strong>Rainfall:</strong> 100-400 inches annually; expect daily precipitation</li>
+                        <li><strong>Vegetation:</strong> Triple canopy limits visibility and provides materials</li>
+                        <li><strong>Wildlife:</strong> Diverse fauna ranging from helpful food sources to dangerous predators</li>
+                        <li><strong>Disease:</strong> Mosquito-borne illnesses, waterborne pathogens, fungal infections</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Jungle Shelter Construction</div>
+                    
+                    <p>Proper shelter is critical in the jungle. Without protection from rain and sun, your body loses heat regulation capability, leading to hypothermia or heat exhaustion. Insects become relentless attackers without a barrier.</p>
+
+                    <p><strong>Shelter Site Selection:</strong></p>
+                    <ul>
+                        <li><strong>Elevation:</strong> Avoid low ground where water accumulates; flash floods are lethal</li>
+                        <li><strong>Drainage:</strong> Look for natural runoff patterns; avoid dry stream beds</li>
+                        <li><strong>Wind Protection:</strong> Dense vegetation provides natural windbreaks</li>
+                        <li><strong>Resources:</strong> Proximity to building materials, water, and firewood</li>
+                        <li><strong>Security:</strong> Concealment from observation, multiple escape routes</li>
+                        <li><strong>Insect Avoidance:</strong> Stay away from ant nests, wasp colonies, and stagnant water</li>
+                    </ul>
+
+                    <p><strong>Shelter Types:</strong></p>
+
+                    <p><strong>1. Poncho Shelter (Lean-To):</strong></p>
+                    <ul>
+                        <li>Use 550 cord tied between trees at chest height</li>
+                        <li>Drape poncho over cord, secure corners with stakes or rocks</li>
+                        <li>Angle back into wind for rain protection</li>
+                        <li>Create raised sleeping platform from poles and vegetation</li>
+                        <li>Reflective space blanket behind sleeping area retains body heat</li>
+                    </ul>
+
+                    <p><strong>2. A-Frame Shelter:</strong></p>
+                    <ul>
+                        <li>Ridge pole lashed between two trees or supported by forked sticks</li>
+                        <li>Poles lean against ridge pole at 45-degree angle</li>
+                        <li>Thatch with palm fronds, banana leaves, or broad vegetation</li>
+                        <li>Layer from bottom up like shingles to shed water</li>
+                        <li>Creates enclosed space with better insect protection</li>
+                    </ul>
+
+                    <p><strong>3. Elevated Platform:</strong></p>
+                    <ul>
+                        <li>Four sturdy trees or posts form corners</li>
+                        <li>Poles lashed horizontally for platform frame</li>
+                        <li>Cross-poles create sleeping surface</li>
+                        <li>Leaves and debris provide mattress</li>
+                        <li>Elevates above ground moisture, insects, and small predators</li>
+                    </ul>
+
+                    <p><strong>4. Natural Caves and Overhangs:</strong></p>
+                    <ul>
+                        <li>Inspect for wildlife occupation (snakes, bats, wasps)</li>
+                        <li>Check rock stability before committing</li>
+                        <li>May require modification with natural materials</li>
+                        <li>Excellent concealment when combined with vegetation</li>
+                    </ul>
+
+                    <p><strong>Improvised Bedding:</strong></p>
+                    <p>Create a thick layer of dry vegetation at least 6 inches thick. Change bedding daily to prevent moisture accumulation and insect infestation. Use cedar, eucalyptus, or camphor leaves as natural insect repellents in bedding.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Water Procurement and Purification</div>
+                    
+                    <p>Water is abundant in the jungle but almost always contaminated. Dehydration in tropical heat can occur within hours, while waterborne diseases can incapacitate you for days. Proper procurement and purification are life-saving skills.</p>
+
+                    <p><strong>Water Sources in Priority Order:</strong></p>
+                    <ul>
+                        <li><strong>1. Rain:</strong> Safest source; collect in tarps, ponchos, or natural containers</li>
+                        <li><strong>2. Flowing Streams:</strong> Better than stagnant; still requires purification</li>
+                        <li><strong>3. Natural Springs:</strong> Often cleaner than surface water</li>
+                        <li><strong>4. Standing Water:</strong> Last resort; high contamination risk</li>
+                    </ul>
+
+                    <p><strong>Jungle Water Collection Methods:</strong></p>
+
+                    <p><strong>1. Solar Still:</strong></p>
+                    <ul>
+                        <li>Dig hole in sunny location, place collection container in center</li>
+                        <li>Cover hole with clear plastic sheeting</li>
+                        <li>Place rock in center to create condensation point</li>
+                        <li>Water evaporates from soil, condenses on plastic, drips into container</li>
+                        <li>Produces 1-2 quarts daily in tropical conditions</li>
+                    </ul>
+
+                    <p><strong>2. Transpiration Bag:</strong></p>
+                    <ul>
+                        <li>Tie clear plastic bag over leafy branch in direct sunlight</li>
+                        <li>Sealed bag captures water vapor from plant transpiration</li>
+                        <li>Multiple bags produce significant water over time</li>
+                        <li>Non-poisonous vegetation only; avoid toxic plants</li>
+                    </ul>
+
+                    <p><strong>3. Banana/Palm Tree Method:</strong></p>
+                    <ul>
+                        <li>Cut banana tree stump at angle, water drains naturally</li>
+                        <li>Palm trees contain drinkable sap; bore hole, collect sap</li>
+                        <li>Vines can be cut to release potable water</li>
+                    </ul>
+
+                    <p><strong>Water Purification Methods:</strong></p>
+
+                    <p><strong>1. Boiling:</strong></p>
+                    <ul>
+                        <li>Rolling boil for 1 minute minimum; 3 minutes at altitude</li>
+                        <li>Kills all pathogens including Giardia and Cryptosporidium</li>
+                        <li>Fire discipline required; may compromise position</li>
+                    </ul>
+
+                    <p><strong>2. Chemical Treatment:</strong></p>
+                    <ul>
+                        <li>Military iodine tablets: 1 tablet per quart, wait 30 minutes</li>
+                        <li>Chlorine bleach: 2 drops per quart, wait 30 minutes</li>
+                        <li>Effective against bacteria and viruses; less effective against cysts</li>
+                    </ul>
+
+                    <p><strong>3. Filtration:</strong></p>
+                    <ul>
+                        <li>Commercial filters: Katadyn, MSR, Sawyer systems</li>
+                        <li>Improvised filter: Charcoal, sand, gravel layers in container</li>
+                        <li>Removes particulates and many pathogens; combine with chemical treatment</li>
+                    </ul>
+
+                    <p><strong>4. UV Purification:</strong></p>
+                    <ul>
+                        <li>UV pens (SteriPen) destroy pathogen DNA</li>
+                        <li>Clear water required; turbidity reduces effectiveness</li>
+                        <li>Battery dependent; carry spare batteries</li>
+                    </ul>
+
+                    <p><strong>Hydration Requirements:</strong></p>
+                    <p>In jungle heat with high exertion, consume 6-8 quarts of water daily. Drink before feeling thirsty. Monitor urine color: clear to light yellow indicates adequate hydration. Dark urine signals dehydration requiring immediate fluid intake.</p>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Food Procurement and Foraging</div>
+                    
+                    <p>The jungle offers abundant food sources, but proper identification is critical. Many plants and animals are toxic. This module covers safe procurement methods taught at the Lightning Academy.</p>
+
+                    <p><strong>Universal Edibility Test:</strong></p>
+                    <p>When identification is uncertain, follow this protocol:</p>
+                    <ol>
+                        <li>Test only one plant part at a time</li>
+                        <li>Smell for strong or acidic odors (avoid)</li>
+                        <li>Rub on inner forearm, wait 15 minutes for reaction</li>
+                        <li>Rub on lips, wait 15 minutes</li>
+                        <li>Place small piece on tongue, wait 15 minutes</li>
+                        <li>Chew small amount, wait 15 minutes</li>
+                        <li>Swallow small amount, wait 8 hours</li>
+                        <li>If no adverse reaction, consume in moderation</li>
+                    </ol>
+
+                    <p><strong>Edible Jungle Plants:</strong></p>
+                    <ul>
+                        <li><strong>Bamboo:</strong> Young shoots edible raw or cooked; contains cyanide in mature plants</li>
+                        <li><strong>Banana:</strong> Fruit, flowers, and inner stalk edible; avoid plant sap</li>
+                        <li><strong>Papaya:</strong> Fruit and young leaves edible; aids digestion</li>
+                        <li><strong>Taro:</strong> Root must be cooked thoroughly; raw causes severe reaction</li>
+                        <li><strong>Ferns:</strong> Fiddleheads (young fronds) edible when cooked</li>
+                        <li><strong>Palm Hearts:</strong> Inner core of many palms; high calorie</li>
+                        <li><strong>Wild Ginger:</strong> Rhizomes used as seasoning; aids digestion</li>
+                    </ul>
+
+                    <p><strong>Food to Avoid:</strong></p>
+                    <ul>
+                        <li>Mushrooms unless positively identified by expert</li>
+                        <li>Plants with milky sap (often toxic)</li>
+                        <li>Plants with bitter or soapy taste</li>
+                        <li>Seeds inside pods with three leaves (legume family)</li>
+                        <li>Plants with shiny leaves or umbrella-shaped flower clusters</li>
+                    </ul>
+
+                    <p><strong>Animal Food Sources:</strong></p>
+
+                    <p><strong>1. Fishing:</strong></p>
+                    <ul>
+                        <li>Improvised hooks from thorns, paper clips, or wire</li>
+                        <li>Spearfishing at night with light source</li>
+                        <li>Poison fishing: crush certain plants (Derris root) upstream</li>
+                        <li>Fish traps in constricted water passages</li>
+                    </ul>
+
+                    <p><strong>2. Trapping:</strong></p>
+                    <ul>
+                        <li>Figure-4 deadfall for small game</li>
+                        <li>Snare wire (military commo wire works well)</li>
+                        <li>Funnel traps guide animals into enclosure</li>
+                        <li>Place along game trails and near water sources</li>
+                    </ul>
+
+                    <p><strong>3. Insects:</strong></p>
+                    <ul>
+                        <li>Grubs, termites, and beetle larvae are protein-rich</li>
+                        <li>Avoid brightly colored insects; earth tones are safer</li>
+                        <li>Remove legs and wings before consumption</li>
+                        <li>Cooking eliminates parasites and improves palatability</li>
+                    </ul>
+
+                    <p><strong>4. Reptiles and Amphibians:</strong></p>
+                    <ul>
+                        <li>Non-poisonous snakes are excellent protein</li>
+                        <li>Iguanas and other lizards are safe when cooked thoroughly</li>
+                        <li>Frogs: Only eat species you can positively identify as safe</li>
+                        <li>Avoid all brightly colored frogs (poison dart frogs)</li>
+                    </ul>
+
+                    <p><strong>Food Preservation:</strong></p>
+                    <p>Smoking over low fire preserves meat for several days. Drying in sun works in tropical conditions but attracts insects. Always cook wild game thoroughly to kill parasites.</p>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Firecraft in the Jungle</div>
+                    
+                    <p>Fire is essential for survival: water purification, warmth, food preparation, tool creation, signaling, and psychological comfort. The wet jungle environment makes firecraft challenging but not impossible with proper technique.</p>
+
+                    <p><strong>Fire Site Selection:</strong></p>
+                    <ul>
+                        <li>Clear area of leaf litter and debris to prevent forest fire</li>
+                        <li>Use rocks or green logs to contain fire</li>
+                        <li>Consider smoke signature for OPSEC</li>
+                        <li>Locate near shelter but not close enough to ignite materials</li>
+                        <li>Position to take advantage of prevailing wind</li>
+                    </ul>
+
+                    <p><strong>Tinder Materials (Jungle-Specific):</strong></p>
+                    <ul>
+                        <li><strong>Bamboo shavings:</strong> Inner bark shaves into excellent tinder</li>
+                        <li><strong>Coconut husk:</strong> Fibrous material catches sparks easily</li>
+                        <li><strong>Punk wood:</strong> Decaying softwood; shave into powder</li>
+                        <li><strong>Grass and leaves:</strong> Must be completely dry</li>
+                        <li><strong>Birch bark:</strong> Burns even when damp</li>
+                        <li><strong>Pine resin:</strong> Accelerant for wet conditions</li>
+                        <li><strong>Cotton:</strong> From uniform, gauze, or equipment</li>
+                    </ul>
+
+                    <p><strong>Kindling and Fuel:</strong></p>
+                    <ul>
+                        <li>Split dry wood from inside standing dead trees</li>
+                        <li>Bamboo sections burn hot and fast</li>
+                        <li>Collect extra fuel; jungle humidity requires constant feeding</li>
+                        <li>Store tinder and kindling under cover</li>
+                    </ul>
+
+                    <p><strong>Fire Starting Methods:</strong></p>
+
+                    <p><strong>1. Ferro Rod (Modern Preferred):</strong></p>
+                    <ul>
+                        <li>Military-issue ferrocerium rods are waterproof</li>
+                        <li>Scrape with knife spine at 45-degree angle</li>
+                        <li>Direct sparks into prepared tinder nest</li>
+                        <li>Works when wet; reliable in all conditions</li>
+                    </ul>
+
+                    <p><strong>2. Friction Fire (Bow Drill):</strong></p>
+                    <ul>
+                        <li>Spindle: Dry hardwood, 8-10 inches long</li>
+                        <li>Fireboard: Softwood with notch to collect ember</li>
+                        <li>Bow: Green wood with cordage (550 cord works)</li>
+                        <li>Handhold: Socket to apply downward pressure</li>
+                        <li>Practice required; high calorie expenditure</li>
+                    </ul>
+
+                    <p><strong>3. Fire Plow:</strong></p>
+                    <ul>
+                        <li>Hardwood spindle rubbed along groove in softwood base</li>
+                        <li>Produces wood dust that ignites from friction</li>
+                        <li>Less equipment required than bow drill</li>
+                        <li>High physical demand; practice technique</li>
+                    </ul>
+
+                    <p><strong>4. Lens Methods:</strong></p>
+                    <ul>
+                        <li>Magnifying glass, eyeglasses, or camera lens</li>
+                        <li>Focus sunlight on tinder until ignition</li>
+                        <li>Requires direct sunlight; limited in dense jungle canopy</li>
+                    </ul>
+
+                    <p><strong>Fire Lays:</strong></p>
+                    <ul>
+                        <li><strong>Tepee:</strong> Quick-starting; good for boiling water</li>
+                        <li><strong>Log Cabin:</strong> Stable; good for cooking</li>
+                        <li><strong>Dakota Hole:</strong> Concealed; reduces signature</li>
+                        <li><strong>Star:</strong> Long-lasting; minimal maintenance</li>
+                    </ul>
+
+                    <p><strong>Fire Management:</strong></p>
+                    <p>Keep fire small to conserve fuel and reduce detection. Bank coals overnight for easy morning restart. Never leave fire unattended. Fully extinguish with water before departing; jungle fires spread rapidly in dry season.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Jungle Medicine and Evasion</div>
+                    
+                    <p>The final module combines life-saving medical skills with evasion techniques critical for isolated personnel. Whether injured during combat or separated from your unit, these skills can mean the difference between recovery and capture.</p>
+
+                    <p><strong>Jungle-Specific Medical Threats:</strong></p>
+
+                    <p><strong>1. Heat Illnesses:</strong></p>
+                    <ul>
+                        <li><strong>Heat Exhaustion:</strong> Heavy sweating, weakness, nausea, headache. Treatment: Rest in shade, oral fluids, cooling measures.</li>
+                        <li><strong>Heat Stroke:</strong> Confusion, seizures, hot dry skin. MEDICAL EMERGENCY. Immediate cooling, evacuate immediately.</li>
+                        <li><strong>Prevention:</strong> Hydration, work-rest cycles, acclimatization.</li>
+                    </ul>
+
+                    <p><strong>2. Vector-Borne Diseases:</strong></p>
+                    <ul>
+                        <li><strong>Malaria:</strong> Mosquito-borne; fever, chills, headache. Prevention: Prophylaxis, DEET, permethrin-treated uniforms.</li>
+                        <li><strong>Dengue:</strong> Mosquito-borne; severe flu-like symptoms. No vaccine; supportive care only.</li>
+                        <li><strong>Leptospirosis:</strong> Contaminated water; flu-like, jaundice. Avoid stagnant water.</li>
+                    </ul>
+
+                    <p><strong>3. Envenomation:</strong></p>
+                    <ul>
+                        <li><strong>Snakebite:</strong> Keep victim calm, immobilize limb, evacuate. DO NOT cut, suck, or apply tourniquet.</li>
+                        <li><strong>Scorpion/Stings:</strong> Pain management, watch for allergic reaction.</li>
+                        <li><strong>Spider Bites:</strong> Clean wound, monitor for systemic symptoms.</li>
+                    </ul>
+
+                    <p><strong>4. Fungal Infections:</strong></p>
+                    <ul>
+                        <li>Trench foot from wet conditions</li>
+                        <li>Ringworm from contact with infected surfaces</li>
+                        <li>Keep feet dry; change socks frequently</li>
+                        <li>Antifungal powder in preventative role</li>
+                    </ul>
+
+                    <p><strong>Improvised Jungle Medicine:</strong></p>
+                    <ul>
+                        <li><strong>Aloe vera:</strong> Burns, skin irritations</li>
+                        <li><strong>Plantain leaves:</strong> Wound dressing, anti-inflammatory</li>
+                        <li><strong>Tea tree/eucalyptus:</strong> Antiseptic properties</li>
+                        <li><strong>Turmeric:</strong> Anti-inflammatory when consumed</li>
+                        <li><strong>Charcoal:</strong> Activated charcoal for certain poisonings</li>
+                    </ul>
+
+                    <p><strong>Evasion Principles:</strong></p>
+
+                    <p><strong>1. SERE Fundamentals:</strong></p>
+                    <ul>
+                        <li><strong>S:</strong> Survive using skills taught in this course</li>
+                        <li><strong>E:</strong> Evasion using terrain, concealment, and counter-tracking</li>
+                        <li><strong>R:</strong> Resistance if captured (Code of Conduct)</li>
+                        <li><strong>E:</strong> Escape when opportunity presents</li>
+                    </ul>
+
+                    <p><strong>2. Evasion Movement:</strong></p>
+                    <ul>
+                        <li>Move during darkness when possible</li>
+                        <li>Use terrain for concealment (ravines, dense vegetation)</li>
+                        <li>Avoid trails, roads, and linear features</li>
+                        <li>Minimize noise and light signature</li>
+                        <li>Vary routes; avoid predictable patterns</li>
+                    </ul>
+
+                    <p><strong>3. Counter-Tracking Techniques:</strong></p>
+                    <ul>
+                        <li>Walk on hard surfaces when possible</li>
+                        <li>Brush out footprints with vegetation</li>
+                        <li>Use streams to break scent trails</li>
+                        <li>Create false trails to confuse pursuers</li>
+                        <li>Walk backward briefly to create confusion</li>
+                    </ul>
+
+                    <p><strong>4. Recovery Preparation:</strong></p>
+                    <ul>
+                        <li>Know extraction signals and procedures</li>
+                        <li>Prepare signal mirror, strobe, or fire for rescue</li>
+                        <li>Mark location for search teams</li>
+                        <li>Stay near aircraft crash site when applicable</li>
+                        <li>Conserve resources for extended evasion</li>
+                    </ul>
+
+                    <p><strong>Final Exercise:</strong></p>
+                    <p>JOTC survival training culminates in a practical exercise where students demonstrate shelter construction, firecraft, water procurement, and evasion techniques. You must prove competence in all areas to earn the Jungle Tab. The jungle is unforgiving - preparation and training are your only advantages.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Jungle Warfare Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Jungle Skills</a></li><li><a href="index.html#phases">Jungle Survival</a></li><li><a href="index.html#phases">Jungle Patrols</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Jungle Gear</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co.</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script>
+        if (typeof RangerAuth !== 'undefined') {
+            RangerAuth.initAuthUI();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginGate = document.getElementById('login-gate');
+            const courseContent = document.getElementById('course-content');
+            
+            function checkAccess() {
+                const user = localStorage.getItem('ranger_auth_user');
+                if (user) {
+                    loginGate.style.display = 'none';
+                    courseContent.style.display = 'block';
+                } else {
+                    loginGate.style.display = 'block';
+                    courseContent.style.display = 'none';
+                }
+            }
+            
+            checkAccess();
+        });
+    </script>
+</body>
+</html>

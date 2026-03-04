@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilities (52-Series) — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/course-styles.css">
+    <link rel="stylesheet" href="../../css/school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#000000">
+    <style>
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(5,150,105,0.08), transparent 60%); }
+    </style>
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li><a href="index.html">Home</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../shop.html">Shop</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../courses.html">Courses</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../resources.html">Resources</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+            </div>
+            <button class="nav-toggle"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="school-hero" id="hero">
+        <div class="hero-badge-text">52</div>
+        <h1 class="hero-headline">Utilities</h1>
+        <p class="hero-sub">The environmental core of the Army. Utilities specialists maintain and repair critical climate control and power systems to keep the force operational in all environments.</p>
+        <div class="hero-cta">
+            <a href="../../shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="../../courses.html" class="btn btn-outline">Start Training</a>
+        </div>
+    </section>
+
+    <section class="section" style="padding: var(--space-3xl) 40px;" id="specialties">
+        <div class="ix-container">
+            <span class="section-label">MOS Specialties</span>
+            <div class="phase-selector" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); margin-bottom: 40px;">
+                <button class="phase-card-btn active" data-phase="52c" onclick="togglePhase('52c')">
+                    <span class="phase-card-icon">&#9881;</span>
+                    <span class="phase-card-title">52C</span>
+                    <span class="phase-card-sub">Utilities Repairer</span>
+                </button>
+            </div>
+
+            <!-- 52C Detail -->
+            <div class="phase-detail-panel open" id="detail-52c">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:#059669; border-color:#059669;">52C</span>
+                        <div class="phase-detail-rtb">Utilities Repairer</div>
+                        <a href="../52c/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Specialists maintain and repair heating, cooling, and refrigeration systems, ensuring critical facilities have the climate control they need.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase Toggle Script -->
+    <script>
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+            var buttons = document.querySelectorAll('.phase-card-btn');
+            
+            buttons.forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+        }
+    </script>
+
+    <section class="section" style="text-align: center; padding: var(--space-3xl) 40px; background: rgba(255,255,255,0.02);">
+        <h2 class="section-title">Ready to Train?</h2>
+        <a href="../../shop.html" class="btn btn-primary">Shop Gear</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">Ranger Beers</div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co.</div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../../js/config.js"></script>
+    <script src="../../js/shared.js"></script>
+    <script src="../../js/course-auth.js"></script>
+    <script>RangerAuth.initAuthUI();</script>
+</body>
+</html>

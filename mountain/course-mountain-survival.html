@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountain Survival — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Technical Skills</a></li>
+                        <li><a href="index.html#phases">Mountain Survival</a></li>
+                        <li><a href="index.html#phases">Mountain Ops</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Mountain Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-mountain-prep.html">Mountain Prep</a></li>
+                        <li><a href="course-technical-climbing.html">Technical Climbing</a></li>
+                        <li><a href="course-mountain-survival.html">Mountain Survival</a></li>
+                        <li><a href="course-ice-snow.html">Ice & Snow Ops</a></li>
+                        <li><a href="course-avalanche.html">Avalanche Safety</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-mountain-survival">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Mountain Survival — Living in Alpine Terrain</h1>
+        <p class="section-desc fade-in">6 modules covering cold weather survival, shelter construction, water procurement, mountain navigation, and sustained field operations in the Green Mountains of Vermont.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$12</span>
+            <span class="course-tag tag-phase">Survival Phase</span>
+            <span class="course-tag tag-type">Field Skills</span>
+            <span class="course-tag tag-bundle">Practical</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-mountain-survival"
+                data-item-name="Mountain Survival"
+                data-item-price="12.00"
+                data-item-url="/mountain/course-mountain-survival.html"
+                data-item-description="6-module course on mountain survival — shelter, cold weather, navigation, and field operations"
+                data-item-categories="course">Buy Course — $12.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT (hidden until authenticated) -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Mountain Environment</a>
+                <a href="#mod2" class="course-sidebar-link">2. Shelter Construction</a>
+                <a href="#mod3" class="course-sidebar-link">3. Cold Weather Survival</a>
+                <a href="#mod4" class="course-sidebar-link">4. Water Procurement</a>
+                <a href="#mod5" class="course-sidebar-link">5. Mountain Navigation</a>
+                <a href="#mod6" class="course-sidebar-link">6. Emergency Procedures</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Understanding the Mountain Environment</div>
+                    <p>Mountain environments present unique challenges distinct from any other terrain. Understanding mountain weather patterns, terrain features, and environmental hazards is essential for survival and mission success.</p>
+
+                    <p><strong>Mountain Weather Dynamics:</strong></p>
+                    <ul>
+                        <li><strong>Orographic Lift:</strong> Air rises over mountains, cooling and creating precipitation on windward slopes</li>
+                        <li><strong>Temperature Lapse Rate:</strong> Temperature drops 3-5°F per 1,000 feet of elevation gain</li>
+                        <li><strong>Diurnal Variation:</strong> Large temperature swings between day and night</li>
+                        <li><strong>Microclimates:</strong> Rapid weather changes across short distances due to terrain</li>
+                        <li><strong>Cloud Formation:</strong> Afternoon thunderstorms common in summer, sudden fog in all seasons</li>
+                    </ul>
+
+                    <p><strong>Mountain Terrain Features:</strong></p>
+                    <ul>
+                        <li><strong>Ridgelines:</strong> Natural travel routes but exposed to weather</li>
+                        <li><strong>Saddles:</strong> Low points between peaks—often wind tunnels</li>
+                        <li><strong>Draws/Couloirs:</strong> Drainage channels—avalanche paths in winter</li>
+                        <li><strong>Benches:</strong> Flat areas on slopes—potential campsites</li>
+                        <li><strong>Cirques:</strong> Bowl-shaped hollows at mountain heads—often contain snow/ice</li>
+                        <li><strong>Talus/Scree:</strong> Loose rock fields—hazardous to traverse</li>
+                    </ul>
+
+                    <p><strong>Environmental Hazards:</strong></p>
+                    <ul>
+                        <li><strong>Rockfall:</strong> Constant danger on steep slopes and below cliffs</li>
+                        <li><strong>Cornices:</strong> Overhanging snow ledges—collapse without warning</li>
+                        <li><strong>Lightning:</strong> Ridgelines and exposed areas dangerous in storms</li>
+                        <li><strong>Crevasses:</strong> Hidden cracks in glaciers—potentially fatal</li>
+                        <li><strong>Stream Crossings:</strong> Glacial melt can turn streams into dangerous torrents</li>
+                    </ul>
+
+                    <p><strong>Reading the Mountain:</strong></p>
+                    <p>Experienced mountaineers read the environment continuously. Watch cloud formations for weather changes. Listen for rockfall indicating unstable conditions. Observe snow conditions for avalanche potential. The mountain gives warning signs—learn to recognize them.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Shelter Construction</div>
+                    <p>In mountain survival situations, shelter is your first priority. Exposure can kill in hours while dehydration takes days. Proper shelter construction protects against wind, precipitation, and cold.</p>
+
+                    <p><strong>Shelter Site Selection:</strong></p>
+                    <ul>
+                        <li><strong>Location:</strong> Bench or terrace on leeward side of ridgeline</li>
+                        <li><strong>Drainage:</strong> Avoid depressions where cold air settles or water collects</li>
+                        <li><strong>Hazards:</strong> Check for deadfall, rockfall zones, avalanche paths</li>
+                        <li><strong>Resources:</strong> Proximity to building materials and water</li>
+                        <li><strong>Wind Protection:</strong> Natural barriers like boulders or dense vegetation</li>
+                    </ul>
+
+                    <p><strong>Shelter Types:</strong></p>
+                    <ul>
+                        <li><strong>A-Frame Debris Shelter:</strong> Ridgepole supported by trees, covered with boughs and debris</li>
+                        <li><strong>Lean-To:</strong> Simple single-slope shelter against wind direction</li>
+                        <li><strong>Snow Cave:</strong> Dug into deep snow—excellent insulation (30°F warmer inside)</li>
+                        <li><strong>Quinzhee:</strong> Pile snow, let it sinter (harden), then hollow out</li>
+                        <li><strong>Trench Shelter:</strong> Dig trench, cover with tarp/poncho and snow</li>
+                        <li><strong>Rock Shelter:</strong> Natural or enhanced overhangs—fastest option</li>
+                    </ul>
+
+                    <p><strong>Insulation Principles:</strong></p>
+                    <ul>
+                        <li>Ground insulation is critical—conduction to cold ground steals heat</li>
+                        <li>Bough bed—spruce or fir boughs create loft and dead air space</li>
+                        <li>Layer debris from large to small—sticks, then boughs, then leaves/grass</li>
+                        <li>Minimum 6 inches of compressed insulation beneath you</li>
+                        <li>Roof should shed precipitation while retaining heat</li>
+                    </ul>
+
+                    <p><strong>Tarp/Poncho Shelters:</strong></p>
+                    <p>When time is limited, a tarp or poncho creates quick shelter:</p>
+                    <ul>
+                        <li><strong>Plough Point:</strong> Triangular setup with three anchor points</li>
+                        <li><strong>Tube Tent:</strong> Tarp folded and secured along long edge</li>
+                        <li><strong>Diamond Fly:</strong> Diamond shape with one pole or ridgeline</li>
+                        <li>Use 550 cord for ridgelines and stakes when available</li>
+                        <li>Snow can be packed around edges for wind sealing</li>
+                    </ul>
+
+                    <p><strong>Group Shelters:</strong></p>
+                    <p>Multiple soldiers can construct larger shelters more efficiently. A-frame shelters can be extended, and body heat from multiple occupants raises internal temperature. Establish clear protocols for entry/exit to minimize heat loss.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Cold Weather Survival</div>
+                    <p>Cold weather is the primary killer in mountain environments. Understanding cold physiology, prevention, and treatment of cold injuries is essential for mountain warfare operations.</p>
+
+                    <p><strong>Cold Physiology:</strong></p>
+                    <ul>
+                        <li><strong>Core Temperature:</strong> Normal 98.6°F; hypothermia below 95°F</li>
+                        <li><strong>Vasoconstriction:</strong> Body restricts blood flow to extremities to preserve core</li>
+                        <li><strong>Shivering Thermogenesis:</strong> Involuntary muscle contractions generate heat</li>
+                        <li><strong>Non-Shivering Thermogenesis:</strong> Metabolic heat production in brown fat</li>
+                        <li><strong>Cold Diuresis:</strong> Increased urination in cold—fluid loss risk</li>
+                    </ul>
+
+                    <p><strong>Hypothermia:</strong></p>
+                    <p>Hypothermia occurs when core temperature drops below 95°F. It can happen at temperatures well above freezing, especially with wind and wet conditions.</p>
+                    <ul>
+                        <li><strong>Mild (95-90°F):</strong> Shivering, cold skin, poor coordination</li>
+                        <li><strong>Moderate (90-82°F):</strong> Violent shivering, confusion, drowsiness</li>
+                        <li><strong>Severe (Below 82°F):</strong> Shivering stops, unconsciousness, death</li>
+                    </ul>
+
+                    <p><strong>Hypothermia Treatment:</strong></p>
+                    <ul>
+                        <li>STOP—Stop, Think, Observe, Plan</li>
+                        <li>Move to shelter, remove wet clothing</li>
+                        <li>Insulate from ground</li>
+                        <li>Add dry layers and sleeping bag</li>
+                        <li>Share body heat—skin-to-skin contact in sleeping bag</li>
+                        <li>Warm fluids if conscious and able to swallow</li>
+                        <li>Handle gently—rough movement can trigger cardiac arrest</li>
+                        <li>NEVER give alcohol—vasodilation accelerates heat loss</li>
+                    </ul>
+
+                    <p><strong>Frostbite:</strong></p>
+                    <ul>
+                        <li><strong>Superficial:</strong> White/waxy skin, numbness, underlying tissue still soft</li>
+                        <li><strong>Deep:</strong> Hard/frozen tissue, possible blistering, tissue death risk</li>
+                        <li>Most common in fingers, toes, nose, ears, cheeks</li>
+                        <li>Prevention: Keep dry, maintain circulation, protect exposed skin</li>
+                        <li>Treatment: Rewarm gradually in warm water (99-102°F)—never rub</li>
+                        <li>Refreezing of thawed tissue is worse than delayed thawing</li>
+                    </ul>
+
+                    <p><strong>Cold Prevention Strategies:</strong></p>
+                    <ul>
+                        <li>Keep clothing dry—sweat management is critical</li>
+                        <li>Layer system for adjustability</li>
+                        <li>Stay hydrated—even in cold, dehydration occurs</li>
+                        <li>Eat calorie-dense foods—metabolism requires fuel</li>
+                        <li>Avoid overheating—sweat leads to evaporative cooling</li>
+                        <li>Keep moving—but not to exhaustion</li>
+                        <li>Buddy checks—watch each other for cold injury signs</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Water Procurement</div>
+                    <p>Dehydration occurs faster at altitude and in cold environments. Water procurement in mountains presents unique challenges due to freezing temperatures and seasonal availability.</p>
+
+                    <p><strong>Mountain Water Sources:</strong></p>
+                    <ul>
+                        <li><strong>Streams:</strong> Most reliable—follow downhill to find water</li>
+                        <li><strong>Snowmelt:</strong> Seasonal availability, may contain contaminants</li>
+                        <li><strong>Springs:</strong> Often safest source—naturally filtered</li>
+                        <li><strong>Lakes/Ponds:</strong> May contain pathogens—always treat</li>
+                        <li><strong>Glacial Melt:</strong> Contains rock flour—filter required</li>
+                        <li><strong>Rain/Snow Collection:</strong> Direct precipitation collection</li>
+                    </ul>
+
+                    <p><strong>Snow and Ice:</strong></p>
+                    <ul>
+                        <li>Eating snow directly lowers core temperature—melt first</li>
+                        <li>Melt snow in container with small amount of starter water</li>
+                        <li>Layer snow in container—packed snow yields less water</li>
+                        <li>Body heat melting: Place snow in container inside clothing (risk: hypothermia)</li>
+                        <li>Solar melting: Dark container in sun (slow but requires no fuel)</li>
+                        <li>Ice yields more water than snow—prefer ice when available</li>
+                    </ul>
+
+                    <p><strong>Water Treatment Methods:</strong></p>
+                    <ul>
+                        <li><strong>Boiling:</strong> Rolling boil for 1 minute (3 minutes above 6,000 ft)</li>
+                        <li><strong>Filters:</strong> Pump or gravity filters remove bacteria and protozoa</li>
+                        <li><strong>Chemical Treatment:</strong> Iodine or chlorine dioxide tablets</li>
+                        <li><strong>UV Sterilization:</strong> UV pens kill microorganisms (battery dependent)</li>
+                    </ul>
+
+                    <p><strong>Prevention of Water Contamination:</strong></p>
+                    <ul>
+                        <li>Select upstream sources away from human/animal activity</li>
+                        <li>Avoid water near mining operations—heavy metal contamination</li>
+                        <li>Glacial till gives water gray appearance—filter necessary</li>
+                        <li>Clear ice from lakes is generally safer than surface water</li>
+                        <li>When in doubt, treat—Giardia and Cryptosporidium are risks</li>
+                    </ul>
+
+                    <p><strong>Hydration Strategies:</strong></p>
+                    <ul>
+                        <li>Drink before thirsty—thirst indicates early dehydration</li>
+                        <li>Monitor urine color—pale yellow indicates good hydration</li>
+                        <li>Consume 3-5 quarts per day in mountain environment</li>
+                        <li>Increase intake at altitude and during exertion</li>
+                        <li>Warm fluids in cold—easier to consume and helps maintain core temp</li>
+                        <li>Electrolyte replacement during heavy exertion</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Mountain Navigation</div>
+                    <p>Mountain navigation requires mastery of terrain association and contour interpretation. GPS may fail; batteries die. The map and compass remain your primary navigation tools.</p>
+
+                    <p><strong>Terrain Association:</strong></p>
+                    <p>Reading the ground and matching it to the map is the foundation of mountain navigation.</p>
+                    <ul>
+                        <li><strong>Contour Lines:</strong> Close lines = steep; wide spacing = gradual slope</li>
+                        <li><strong>Index Contours:</strong> Every fifth line—bold with elevation marked</li>
+                        <li><strong>Ridgelines:</strong> Connect peaks—natural travel corridors</li>
+                        <li><strong>Spurs:</strong> Minor ridges extending from main ridgeline</li>
+                        <li><strong>Draws:</strong> Minor drainages between spurs</li>
+                        <li><strong>Saddles:</strong> Low point between two high points</li>
+                        <li><strong>Cliff Representation:</strong> Contour lines merge or touch</li>
+                    </ul>
+
+                    <p><strong>Navigation Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Handrails:</strong> Linear features you travel alongside (ridgelines, streams)</li>
+                        <li><strong>Attack Points:</strong> Distinctive feature near objective—navigate to it first</li>
+                        <li><strong>Catching Features:</strong> Linear feature beyond objective that stops travel</li>
+                        <li><strong>Aiming Off:</strong> Deliberately offset to one side, then turn toward target</li>
+                        <li><strong>Boxing:</strong> Walking around obstacles while maintaining bearing</li>
+                        <li><strong>Offset Navigation:</strong> Accounting for expected drift due to terrain</li>
+                    </ul>
+
+                    <p><strong>Compass Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Declination Adjustment:</strong> Set at start of mission—GM angle for Vermont</li>
+                        <li><strong>Centerhold Method:</strong> Compass at belt buckle, rotate body until aligned</li>
+                        <li><strong>Compass-to-Cheek:</strong> More precise—align compass with eye and target</li>
+                        <li><strong>Back Azimuth:</strong> Add or subtract 180° to reverse direction</li>
+                        <li><strong>Intersection:</strong> Determining position from two known points</li>
+                        <li><strong>Resection:</strong> Determining position using back azimuths to known points</li>
+                    </ul>
+
+                    <p><strong>Route Planning:</strong></p>
+                    <ul>
+                        <li>Study map before movement—identify key terrain features</li>
+                        <li>Select routes using terrain, not just straight lines</li>
+                        <li>Avoid steep terrain when possible—energy intensive and hazardous</li>
+                        <li>Identify checkpoints for pace count verification</li>
+                        <li>Plan alternate routes in case of obstacles</li>
+                        <li>Consider elevation gain/loss—vertical distance matters</li>
+                    </ul>
+
+                    <p><strong>Navigation at Night:</strong></p>
+                    <ul>
+                        <li>Reduced visibility—terrain association more difficult</li>
+                        <li>Pace count becomes more critical</li>
+                        <li>Use handrails and catching features</li>
+                        <li>Red light preserves night vision</li>
+                        <li>Slow down—accuracy over speed</li>
+                        <li>Trust your compass—terrain may look different in darkness</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Emergency Procedures</div>
+                    <p>Mountain emergencies require immediate, decisive action. Understanding search and rescue procedures, emergency signaling, and evacuation techniques can save lives.</p>
+
+                    <p><strong>Immediate Action Drills:</strong></p>
+                    <ul>
+                        <li><strong>Lost:</strong> STOP—Stop, Think, Observe, Plan. Don't panic and wander.</li>
+                        <li><strong>Injury:</strong> Secure scene, assess casualty, provide first aid, call for help</li>
+                        <li><strong>Severe Weather:</strong> Seek shelter immediately, avoid exposed terrain</li>
+                        <li><strong>Avalanche:</strong> Deploy airbag if equipped, swim to surface, create air pocket</li>
+                        <li><strong>Falling:</strong> Self-arrest with ice axe if equipped</li>
+                    </ul>
+
+                    <p><strong>Emergency Signaling:</strong></p>
+                    <ul>
+                        <li><strong>Whistle:</strong> Three blasts = distress; six = emergency</li>
+                        <li><strong>Mirror:</strong> Flash toward aircraft or known positions</li>
+                        <li><strong>Smoke/Fire:</strong> Three fires in triangle = distress signal</li>
+                        <li><strong>Ground Signals:</strong> Large symbols visible from air (X = unable to proceed, V = require assistance)</li>
+                        <li><strong>Electronic:</strong> PLB (Personal Locator Beacon) or satellite messenger</li>
+                        <li><strong>Cell Phone:</strong> Text may work when voice won't; conserve battery</li>
+                    </ul>
+
+                    <p><strong>Casualty Evacuation:</strong></p>
+                    <ul>
+                        <li><strong>Site Assessment:</strong> Ensure rescuer safety before assisting</li>
+                        <li><strong>Pack Strap Carry:</strong> For short distances over easy terrain</li>
+                        <li><strong>Pole Litter:</strong> Two poles through pack straps or jackets</li>
+                        <li><strong>Rope Stretcher:</strong> Improvised from ropes and clothing</li>
+                        <li><strong>Sledge:</strong> For snow evacuation using available materials</li>
+                        <li><strong>Rope Rescue:</strong> Technical evacuation requiring anchors and lowering systems</li>
+                    </ul>
+
+                    <p><strong>Search and Rescue (SAR) Procedures:</strong></p>
+                    <ul>
+                        <li>Stay put if lost—moving makes search harder</li>
+                        <li>Mark location and direction if you must move</li>
+                        <li>Conserve energy and resources while waiting</li>
+                        <li>Make yourself visible—bright colors, movement, noise</li>
+                        <li>Signal at regular intervals, especially when aircraft heard</li>
+                        <li>Follow instructions exactly when contacted by rescuers</li>
+                    </ul>
+
+                    <p><strong>Communication:</strong></p>
+                    <ul>
+                        <li>Establish communication windows with higher HQ</li>
+                        <li>Use burst transmissions to conserve battery</li>
+                        <li>Report location, situation, supplies, and casualties</li>
+                        <li>Confirm understanding of instructions</li>
+                        <li>Have backup communication plan</li>
+                    </ul>
+
+                    <p><strong>Mental Preparedness:</strong></p>
+                    <p>Survival is 10% equipment, 10% skill, and 80% mental attitude. Panic kills more people than the environment. Stay calm, think clearly, and take decisive action. Remember: people survive incredible ordeals through determination and smart decisions.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Mountain School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Technical Skills</a></li><li><a href="index.html#phases">Mountain Survival</a></li><li><a href="index.html#phases">Mountain Ops</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Mountain Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                });
+            });
+        })();
+
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth + Course Engine -->
+    <script src="../js/config.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script src="../js/course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    </script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+</body>
+</html>

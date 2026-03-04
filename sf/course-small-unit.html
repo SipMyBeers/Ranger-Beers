@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Small Unit Tactics — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">SFAS</a></li>
+                        <li><a href="index.html#phases">Language &amp; Culture</a></li>
+                        <li><a href="index.html#phases">MOS Training</a></li>
+                        <li><a href="index.html#phases">Robin Sage</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">SF Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">SF Training</span></li>
+                        <li><a href="course-sfas-prep.html">SFAS Prep</a></li>
+                        <li><a href="course-small-unit.html">Small Unit Tactics</a></li>
+                        <li><a href="course-mff.html">Military Freefall</a></li>
+                        <li><a href="course-combat-dive.html">Combat Diving</a></li>
+                        <li><a href="course-unconventional.html">Unconventional Warfare</a></li>
+                        <li><a href="course-sr.html">Special Reconnaissance</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-small-unit">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Small Unit Tactics</h1>
+        <p class="section-desc fade-in">6 modules covering patrolling, raids, ambushes, and reconnaissance operations at the team and squad level. Master the tactics essential for SF ODA operations and irregular warfare.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$15</span>
+            <span class="course-tag tag-phase">Tactical</span>
+            <span class="course-tag tag-type">ODA Operations</span>
+            <span class="course-tag tag-bundle">SUT</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-small-unit"
+                data-item-name="Small Unit Tactics"
+                data-item-price="15.00"
+                data-item-url="/sf/course-small-unit.html"
+                data-item-description="Patrolling, raids, ambushes, and reconnaissance operations"
+                data-item-categories="course">Buy Course — $15.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. SUT Fundamentals</a>
+                <a href="#mod2" class="course-sidebar-link">2. Patrolling Operations</a>
+                <a href="#mod3" class="course-sidebar-link">3. Raid Operations</a>
+                <a href="#mod4" class="course-sidebar-link">4. Ambush Operations</a>
+                <a href="#mod5" class="course-sidebar-link">5. Reconnaissance</a>
+                <a href="#mod6" class="course-sidebar-link">6. ODA-Specific Tactics</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">SUT Fundamentals</div>
+                    <p>Small Unit Tactics (SUT) forms the tactical foundation of Special Forces operations. While SF eventually operates at the ODA level with indigenous forces, every Green Beret must first master individual and team-level tactics. This module establishes the baseline for all SF tactical operations.</p>
+
+                    <p><strong>Principles of Small Unit Operations:</strong></p>
+                    <ul>
+                        <li><strong>Surprise:</strong> Attack when and where the enemy does not expect</li>
+                        <li><strong>Security:</strong> Protect the force through movement discipline and counter-reconnaissance</li>
+                        <li><strong>Simplicity:</strong> Clear plans executable under stress by all team members</li>
+                        <li><strong>Speed:</strong> Rapid execution reduces enemy reaction time</li>
+                        <li><strong>Violence of Action:</strong> Overwhelming force applied decisively at the critical point</li>
+                    </ul>
+
+                    <p><strong>Fire Team Organization:</strong></p>
+                    <ul>
+                        <li><strong>Team Leader:</strong> Controls movement and fires, makes tactical decisions</li>
+                        <li><strong>Rifleman:</strong> Provides base of fire, security, assists with maneuver</li>
+                        <li><strong>Grenadier:</strong> Engages point targets and area targets with 40mm</li>
+                        <li><strong>Automatic Rifleman:</strong> Provides sustained suppressive fires with light machine gun</li>
+                    </ul>
+
+                    <p><strong>Movement Formations:</strong></p>
+                    <ul>
+                        <li><strong>Wedge:</strong> Balanced security in all directions; primary movement formation</li>
+                        <li><strong>Column:</strong> Fast movement on trails; limited security to flanks</li>
+                        <li><strong>Line:</strong> Maximum firepower to the front; used for assaults</li>
+                        <li><strong>Vee:</strong> Security to the front; used when enemy contact is expected</li>
+                        <li><strong>Echelon:</strong> Security to one flank; used along linear danger areas</li>
+                    </ul>
+
+                    <p><strong>Movement Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Traveling:</strong> Continuous movement; used when contact not expected</li>
+                        <li><strong>Traveling Overwatch:</strong> Lead element moves while trail overwatches</li>
+                        <li><strong>Bounding Overwatch:</strong> Overwatch element covers while bounding element moves; used near enemy</li>
+                    </ul>
+
+                    <p><strong>Situational Awareness:</strong></p>
+                    <p>Every soldier maintains 360-degree awareness. Know your sector of fire, your teammates' positions, and the route to the next position. In SF operations, situational awareness includes understanding local dynamics, civilian patterns, and potential threats beyond just enemy forces.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Patrolling Operations</div>
+                    <p>Patrolling is the most common small unit activity in irregular warfare. SF ODAs conduct combat patrols, reconnaissance patrols, and specialized patrols (ambush, raid) as part of their core mission set. Mastering patrolling fundamentals is essential for SF success.</p>
+
+                    <p><strong>Types of Patrols:</strong></p>
+                    <ul>
+                        <li><strong>Reconnaissance Patrol:</strong> Gather information on enemy, terrain, or population</li>
+                        <li><strong>Combat Patrol:</strong> Engage or destroy enemy; includes raids and ambushes</li>
+                        <li><strong>Security Patrol:</strong> Provide early warning and protect friendly forces/locations</li>
+                        <li><strong>Contact Patrol:</strong> Establish/maintain contact with friendly or indigenous forces</li>
+                    </ul>
+
+                    <p><strong>Patrol Planning (TLP Adaptation):</strong></p>
+                    <ol>
+                        <li>Receive the mission — understand commander\'s intent and constraints</li>
+                        <li>Issue warning order — alert the patrol and initiate preparation</li>
+                        <li>Make a tentative plan — conduct map recon, identify routes and danger areas</li>
+                        <li>Initiate movement — move to the patrol departure point</li>
+                        <li>Conduct reconnaissance — confirm routes, identify obstacles, gather intelligence</li>
+                        <li>Complete the plan — finalize routes, formations, and coordination</li>
+                        <li>Issue the patrol order — brief all patrol members on the plan</li>
+                        <li>Supervise and refine — rehearsals, inspections, final preparations</li>
+                    </ol>
+
+                    <p><strong>Route Planning Considerations:</strong></p>
+                    <ul>
+                        <li><strong>Terrain:</strong> Use cover and concealment; avoid open areas and skylines</li>
+                        <li><strong>Danger Areas:</strong> Roads, streams, open fields, built-up areas</li>
+                        <li><strong>Key Terrain:</strong> High ground, road junctions, likely enemy positions</li>
+                        <li><strong>Evasion Routes:</strong> Alternate paths if primary route compromised</li>
+                        <li><strong>Rally Points:</strong> Predesignated locations for reassembly if separated</li>
+                    </ul>
+
+                    <p><strong>Crossing Danger Areas:</strong></p>
+                    <p>Danger areas require specific crossing techniques. The patrol halts short, establishes security, reconnoiters the far side, crosses rapidly at the most concealed point, and reestablishes security. Common danger areas include roads, trails, streams, open fields, and linear obstacles.</p>
+
+                    <p><strong>Actions on Contact:</strong></p>
+                    <ul>
+                        <li><strong>Far:</strong> Break contact using fire and movement</li>
+                        <li><strong>Near:</strong> Return fire immediately, seek cover, assess situation</li>
+                        <li><strong>Ambush:</strong> React immediately — assault through if near, break contact if far</li>
+                        <li><strong>Chance Contact:</strong> Leader decides to break contact or attack based on mission</li>
+                    </ul>
+
+                    <p><strong>Sustainment During Patrols:</strong></p>
+                    <p>Long-duration patrols require water discipline, ammunition management, and equipment maintenance. Plan resupply points, carry sufficient water purification, and establish casualty evacuation procedures before stepping off.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Raid Operations</div>
+                    <p>Raids are offensive operations to destroy enemy forces or installations, capture personnel or equipment, or seize terrain. SF ODAs conduct raids as part of direct action missions and often lead indigenous forces in larger raid operations during unconventional warfare.</p>
+
+                    <p><strong>Raid Characteristics:</strong></p>
+                    <ul>
+                        <li><strong>Objective:</strong> Specific target to destroy, capture, or secure</li>
+                        <li><strong>Time:</strong> Limited duration with planned withdrawal</li>
+                        <li><strong>Surprise:</strong> Critical for success; reduces enemy reaction capability</li>
+                        <li><strong>Speed:</strong> Rapid execution and withdrawal before enemy can reinforce</li>
+                        <li><strong>Firepower:</strong> Concentrated at the decisive point</li>
+                    </ul>
+
+                    <p><strong>Raid Phases:</strong></p>
+                    <ol>
+                        <li><strong>Insertion:</strong> Move to the objective area undetected (foot, vehicle, airborne, maritime)</li>
+                        <li><strong>Actions on Objective:</strong> Execute the assault, accomplish the mission</li>
+                        <li><strong>Extraction:</strong> Withdraw from the objective area with all personnel and equipment</li>
+                    </ol>
+
+                    <p><strong>Raid Organization:</strong></p>
+                    <ul>
+                        <li><strong>Assault Element:</strong> Destroys or captures the objective</li>
+                        <li><strong>Support Element:</strong> Provides suppressive fires and fixes enemy</li>
+                        <li><strong>Security Element:</strong> Isolates the objective and provides early warning</li>
+                        <li><strong>Breach Element:</strong> Creates entry points through obstacles</li>
+                        <li><strong>Command Element:</strong> Controls the operation and coordinates actions</li>
+                    </ul>
+
+                    <p><strong>Actions on Objective (Raid):</strong></p>
+                    <ul>
+                        <li><strong>Isolate:</strong> Security element establishes cordon to prevent enemy escape/reinforcement</li>
+                        <li><strong>Suppress:</strong> Support element engages known and suspected enemy positions</li>
+                        <li><strong>Assault:</strong> Assault element moves to and secures the objective</li>
+                        <li><strong>Secure:</strong> Consolidate on objective, account for all personnel and equipment</li>
+                        <li><strong>Withdraw:</strong> Exfiltrate using planned route to extraction point</li>
+                    </ul>
+
+                    <p><strong>Urban Raid Considerations:</strong></p>
+                    <p>Urban raids present unique challenges: limited maneuver room, three-dimensional threats, civilian presence, and complex entry requirements. Room clearing procedures, explosive breaching, and rooftop operations require specialized training and equipment.</p>
+
+                    <p><strong>Demolition Raids:</strong></p>
+                    <p>SF frequently conducts raids to destroy critical infrastructure or equipment. Proper target analysis, charge calculation, and placement are essential. The 18C Engineer Sergeant provides expertise, but all team members must understand basic demolition principles.</p>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Ambush Operations</div>
+                    <p>The ambush is a powerful offensive tactic that strikes the enemy from concealed positions when he is most vulnerable. SF ODAs use ambushes extensively in irregular warfare to interdict enemy movements, destroy supply lines, and protect friendly forces and populations.</p>
+
+                    <p><strong>Ambush Characteristics:</strong></p>
+                    <ul>
+                        <li><strong>Surprise:</strong> Enemy is unaware until fires are initiated</li>
+                        <li><strong>Concealment:</strong> Ambush force is hidden until the decisive moment</li>
+                        <li><strong>Initiative:</strong> Ambush force chooses the time and place of engagement</li>
+                        <li><strong>Limited Duration:</strong> Short, violent action followed by rapid withdrawal</li>
+                    </ul>
+
+                    <p><strong>Types of Ambushes:</strong></p>
+                    <ul>
+                        <li><strong>Point Ambush:</strong> Single kill zone; effective against small enemy elements</li>
+                        <li><strong>Area Ambush:</strong> Multiple kill zones; covers larger area and multiple avenues</li>
+                        <li><strong>Linear Ambush:</strong> Assault and support parallel to enemy route</li>
+                        <li><strong>L-Shaped Ambush:</strong> Support element enfilades kill zone; most effective</li>
+                    </ul>
+
+                    <p><strong>Ambush Organization:</strong></p>
+                    <ul>
+                        <li><strong>Assault Element:</strong> Occupies the kill zone, destroys enemy in place</li>
+                        <li><strong>Support Element:</strong> Provides flank or enfilade fires to kill zone</li>
+                        <li><strong>Security Element:</strong> Prevents enemy escape, warns of approach</li>
+                    </ul>
+
+                    <p><strong>Ambush Planning Considerations:</strong></p>
+                    <ul>
+                        <li><strong>Location:</strong> Natural choke points, bends in roads/trails, restrictive terrain</li>
+                        <li><strong>Fields of Fire:</strong> Clear lanes of observation and engagement</li>
+                        <li><strong>Concealment:</strong> Vegetation, terrain, darkness, or camouflage</li>
+                        <li><strong>Avenues of Approach:</strong> Likely enemy routes into the kill zone</li>
+                        <li><strong>Withdrawal Routes:</strong> Covered routes away from the ambush site</li>
+                    </ul>
+
+                    <p><strong>Initiation Methods:</strong></p>
+                    <ul>
+                        <li><strong>Command:</strong> Leader initiates when optimal enemy is in kill zone</li>
+                        <li><strong>Automatic:</strong> Triggered by enemy action (tripwire, sensor)</li>
+                    </ul>
+
+                    <p><strong>Actions on the Objective (Ambush):</strong></p>
+                    <ol>
+                        <li>Occupy positions silently and establish security</li>
+                        <li>Wait for enemy to enter the kill zone</li>
+                        <li>Initiate with massed fires on signal</li>
+                        <li>Assault element destroys enemy in kill zone</li>
+                        <li>Search bodies and gather intelligence if mission permits</li>
+                        <li>Withdraw rapidly along planned routes</li>
+                    </ol>
+
+                    <p><strong>Anti-Ambush Drills:</strong></p>
+                    <p>Understanding how to counter ambushes is equally important. Immediate action drills, reaction to contact procedures, and preplanned responses to likely ambush scenarios must be rehearsed until automatic.</p>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Reconnaissance Operations</div>
+                    <p>Reconnaissance is a core SF mission. ODAs conduct reconnaissance to gather intelligence, confirm or deny information, and support operational planning. Unlike direct action, reconnaissance prioritizes stealth and information collection over engagement.</p>
+
+                    <p><strong>Types of Reconnaissance:</strong></p>
+                    <ul>
+                        <li><strong>Zone Recon:</strong> Obtain information on all enemy, terrain, and routes in a designated zone</li>
+                        <li><strong>Area Recon:</strong> Focus on a specific location or objective</li>
+                        <li><strong>Route Recon:</strong> Assess specific routes for trafficability and threats</li>
+                        <li><strong>Special Reconnaissance:</strong> Advanced reconnaissance by SOF elements (see SR module)</li>
+                    </ul>
+
+                    <p><strong>Reconnaissance Principles:</strong></p>
+                    <ul>
+                        <li><strong>Stealth:</strong> Avoid detection through movement discipline and concealment</li>
+                        <li><strong>Speed:</strong> Complete mission and withdraw before compromise</li>
+                        <li><strong>Security:</strong> Protect the reconnaissance force at all times</li>
+                        <li><strong>Reporting:</strong> Accurate, timely intelligence is the mission product</li>
+                    </ul>
+
+                    <p><strong>Observation Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Hasty:</strong> Quick scan of area for obvious enemy activity</li>
+                        <li><strong>Detailed:</strong> Systematic search of sector using overlapping fields</li>
+                        <li><strong>Target:</strong> Focus on specific objective or enemy element</li>
+                    </ul>
+
+                    <p><strong>Observation Post (OP) Procedures:</strong></p>
+                    <ul>
+                        <li>Select position with good observation, fields of fire, and covered withdrawal</li>
+                        <li>Establish 360-degree security immediately upon occupation</li>
+                        <li>Maintain strict noise and light discipline</li>
+                        <li>Use sector sketches to assign observation responsibilities</li>
+                        <li>Rotate observers to maintain alertness</li>
+                        <li>Establish communications schedule with higher headquarters</li>
+                    </ul>
+
+                    <p><strong>SALUTE Reporting Format:</strong></p>
+                    <ul>
+                        <li><strong>S</strong>ize — How many enemy?</li>
+                        <li><strong>A</strong>ctivity — What are they doing?</li>
+                        <li><strong>L</strong>ocation — Where are they? (grid coordinates)</li>
+                        <li><strong>U</strong>nit — What unit? (uniforms, patches, vehicles)</li>
+                        <li><strong>T</strong>ime — When did you observe this?</li>
+                        <li><strong>E</strong>quipment — What weapons, vehicles, equipment?</li>
+                    </ul>
+
+                    <p><strong>Actions if Compromised:</strong></p>
+                    <p>Reconnaissance forces break contact if detected. The mission is information, not engagement. Preplanned withdrawal routes, rally points, and emergency extraction procedures are essential. Speed and stealth preserve the force and the mission.</p>
+
+                    <p><strong>Technical Surveillance:</strong></p>
+                    <p>Modern reconnaissance incorporates sensors, cameras, drones, and other technical means. SF ODAs must integrate these capabilities with traditional reconnaissance methods while maintaining operational security and avoiding detection.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">ODA-Specific Tactics</div>
+                    <p>The Operational Detachment Alpha (ODA) is the core element of Special Forces operations. While traditional small unit tactics provide the foundation, ODAs adapt these principles to the unique requirements of unconventional warfare, foreign internal defense, and special reconnaissance.</p>
+
+                    <p><strong>ODA Organization:</strong></p>
+                    <ul>
+                        <li><strong>18A (Detachment Commander):</strong> Captain, overall mission commander</li>
+                        <li><strong>180A (Assistant Detachment Commander):</strong> Warrant officer, operations officer</li>
+                        <li><strong>18Z (Operations Sergeant):</strong> Senior NCO, operations and training</li>
+                        <li><strong>18F (Intelligence Sergeant):</strong> Intelligence collection and analysis</li>
+                        <li><strong>18B (Weapons):</strong> Two members, weapons and tactics training</li>
+                        <li><strong>18C (Engineer):</strong> Two members, demolitions and construction</li>
+                        <li><strong>18D (Medical):</strong> Two members, trauma and veterinary care</li>
+                        <li><strong>18E (Communications):</strong> Two members, signal operations</li>
+                    </ul>
+
+                    <p><strong>ODA Tactical Considerations:</strong></p>
+                    <ul>
+                        <li><strong>Split Team Operations:</strong> ODAs often operate as two 6-man elements</li>
+                        <li><strong>Language Capability:</strong> Native language skills enable direct interaction</li>
+                        <li><strong>Extended Operations:</strong> Self-sustained for weeks without resupply</li>
+                        <li><strong>Multi-Mission Capability:</strong> Single ODA can shift between UW, FID, DA, SR</li>
+                        <li><strong>Indigenous Force Integration:</strong> Tactics adapted for partner force training and leadership</li>
+                    </ul>
+
+                    <p><strong>Unconventional Warfare Tactics:</strong></p>
+                    <p>During UW, ODAs operate with irregular forces using guerrilla tactics: hit-and-run attacks, sabotage, interdiction, and intelligence collection. The ODA provides leadership, training, and coordination while the guerrilla force provides manpower and local knowledge.</p>
+
+                    <p><strong>Foreign Internal Defense Tactics:</strong></p>
+                    <p>In FID, ODAs train and advise host nation forces in counterinsurgency, counterdrug, and internal defense operations. Tactics focus on combined operations, population security, and building partner capacity rather than direct combat.</p>
+
+                    <p><strong>Special Reconnaissance Tactics:</strong></p>
+                    <p>SR missions require ODAs to infiltrate denied areas, observe targets, and report intelligence without detection. Extended stealth, communications security, and clandestine exfiltration are critical.</p>
+
+                    <p><strong>Counterinsurgency Integration:</strong></p>
+                    <p>Modern SF operations require understanding the operational environment beyond just enemy forces. Civil affairs coordination, information operations, and population-centric tactics are integrated into all SF tactical operations.</p>
+
+                    <p><strong>Advanced Infiltration Methods:</strong></p>
+                    <ul>
+                        <li><strong>Airborne:</strong> Static-line, military freefall (HALO/HAHO)</li>
+                        <li><strong>Maritime:</strong> SCUBA, surface swimming, small boats</li>
+                        <li><strong>Land:</strong> Vehicle, foot, or combination</li>
+                        <li><strong>Stay-Behind:</strong> Pre-positioned in anticipation of conflict</li>
+                    </ul>
+
+                    <p><strong>Planning and Rehearsal:</strong></p>
+                    <p>SF operations require extensive planning and detailed rehearsals. The isolation facility provides time for mission analysis, course of action development, and full-dress rehearsals of critical phases. No plan survives contact, but thorough preparation enables adaptation.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">SF School Supply Co.</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">SFAS</a></li><li><a href="index.html#phases">Language</a></li><li><a href="index.html#phases">MOS Training</a></li><li><a href="index.html#phases">Robin Sage</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">SF Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="resources.html">Resources</a></li><li><a href="/ranger/shop.html">Full Store</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                });
+            });
+        })();
+
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth + Course Engine -->
+    <script src="../js/config.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script src="../js/course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    </script>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+</body>
+</html>

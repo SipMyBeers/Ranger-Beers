@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squad Jungle Tactics — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Jungle Skills</a></li>
+                        <li><a href="index.html#phases">Jungle Survival</a></li>
+                        <li><a href="index.html#phases">Jungle Patrols</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Jungle Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-jungle-prep.html">JOTC Prep</a></li>
+                        <li><a href="course-jungle-mobility.html">Jungle Mobility</a></li>
+                        <li><a href="course-waterborne.html">Waterborne Ops</a></li>
+                        <li><a href="course-combat-tracking.html">Combat Tracking</a></li>
+                        <li><a href="course-jungle-survival.html">Jungle Survival</a></li>
+                        <li><a href="course-squad-tactics.html">Squad Tactics</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="resources.html">Jungle Resources</a></li>
+                        <li><a href="standards.html">PT Standards</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-squad-tactics">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Squad Jungle Tactics</h1>
+        <p class="section-desc fade-in">Master squad-level operations in tropical environments. Learn patrolling techniques, ambush and raid execution, troop leading procedures, and lead your team through the culminating FTX. The skills that win jungle battles.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$12</span>
+            <span class="course-tag tag-phase">Patrol Phase</span>
+            <span class="course-tag tag-type">Leadership</span>
+            <span class="course-tag tag-bundle">Squad Focus</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-squad-tactics"
+                data-item-name="Squad Jungle Tactics"
+                data-item-price="12.00"
+                data-item-url="/jungle/course-squad-tactics.html"
+                data-item-description="Squad-level jungle tactics covering patrolling, ambush, raids, FTX, and leadership"
+                data-item-categories="course">Buy Course — $12.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Course Overview</a>
+                <a href="#mod2" class="course-sidebar-link">2. Jungle Patrolling</a>
+                <a href="#mod3" class="course-sidebar-link">3. Ambush Operations</a>
+                <a href="#mod4" class="course-sidebar-link">4. Raid Operations</a>
+                <a href="#mod5" class="course-sidebar-link">5. TLPs & Leadership</a>
+                <a href="#mod6" class="course-sidebar-link">6. FTX & Graduation</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Squad Tactics Overview</div>
+                    
+                    <p>Squad-level operations in the jungle demand adaptation of standard infantry tactics to the unique challenges of triple-canopy terrain. This course builds on individual jungle skills to develop cohesive squad capabilities that win engagements in tropical environments.</p>
+
+                    <p><strong>Jungle Squad Operations Fundamentals:</strong></p>
+                    <ul>
+                        <li><strong>Restricted Mobility:</strong> Movement rates drop to 500-1000 meters per hour in dense jungle</li>
+                        <li><strong>Limited Visibility:</strong> Engagement ranges typically under 50 meters</li>
+                        <li><strong>Communication Challenges:</strong> Radio propagation affected by vegetation; reliance on visual and auditory signals</li>
+                        <li><strong>Navigation Difficulties:</strong> Dead reckoning and terrain association are essential</li>
+                        <li><strong>Environmental Stress:</strong> Heat, humidity, and terrain degrade performance rapidly</li>
+                    </ul>
+
+                    <p><strong>Squad Organization for Jungle Operations:</strong></p>
+                    <p>The standard rifle squad adapts its structure for jungle missions:</p>
+                    <ul>
+                        <li><strong>Squad Leader (SL):</strong> Overall command, coordination with higher, navigation</li>
+                        <li><strong>Team Leaders (TL):</strong> Control of Alpha and Bravo teams</li>
+                        <li><strong>Automatic Rifleman:</strong> Base of fire; SAW or IAR for suppressive fires</li>
+                        <li><strong>Grenadier:</strong> High-angle fires for overhead vegetation</li>
+                        <li><strong>Riflemen:</strong> Security, assault, and support roles</li>
+                    </ul>
+
+                    <p><strong>Jungle-Specific Equipment Modifications:</strong></p>
+                    <ul>
+                        <li>Reduced ammunition load balanced against water requirements</li>
+                        <li>Machetes or kukris issued for trail cutting</li>
+                        <li>Additional commo wire for field-expedient antennas</li>
+                        <li>Waterproofing for all electronics and ammunition</li>
+                        <li>Signal mirrors, chemical lights, and whistles for signaling</li>
+                    </ul>
+
+                    <p><strong>Training Methodology:</strong></p>
+                    <p>JOTC Week Two follows the crawl-walk-run approach. Students receive classroom instruction, conduct sand table exercises, execute walk-through rehearsals, then execute live scenarios under instructor observation. The culminating FTX validates all trained tasks.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Jungle Patrolling Techniques</div>
+                    
+                    <p>Patrolling is the foundation of jungle operations. Whether conducting reconnaissance, establishing ambushes, or moving to contact, squads must master movement techniques adapted to dense vegetation and limited visibility.</p>
+
+                    <p><strong>Jungle Movement Formations:</strong></p>
+
+                    <p><strong>1. Modified Column:</strong></p>
+                    <ul>
+                        <li>Default formation for restricted terrain</li>
+                        <li>One fire team lead, one trail, squad leader centrally located</li>
+                        <li>3-5 meter intervals between soldiers</li>
+                        <li>Advantages: Speed, control, 360-degree security possible</li>
+                        <li>Disadvantages: Vulnerable to linear ambushes</li>
+                    </ul>
+
+                    <p><strong>2. File Formation:</strong></p>
+                    <ul>
+                        <li>Used on narrow trails or dense vegetation</li>
+                        <li>Single file with point, squad leader, and drag man</li>
+                        <li>Point man clears trail with machete</li>
+                        <li>Advantages: Maximum speed on trails</li>
+                        <li>Disadvantages: Extremely vulnerable; limited return fire</li>
+                    </ul>
+
+                    <p><strong>3. Wedge (Compressed):</strong></p>
+                    <ul>
+                        <li>Adapted for limited visibility</li>
+                        <li>Close intervals (5-10 meters between soldiers)</li>
+                        <li>Used when enemy contact is expected</li>
+                        <li>Advantages: Balanced firepower to flanks</li>
+                    </ul>
+
+                    <p><strong>4. Diamond/Rough Circle:</strong></p>
+                    <ul>
+                        <li>Used for security halts and danger areas</li>
+                        <li>All soldiers oriented outward</li>
+                        <li>Squad leader controls from center</li>
+                    </ul>
+
+                    <p><strong>Navigation in Jungle:</strong></p>
+                    <ul>
+                        <li><strong>Dead Reckoning:</strong> Primary method; pace count essential</li>
+                        <li><strong>Azimuth and Back-Azimuth:</strong> Maintain heading despite vegetation</li>
+                        <li><strong>Checkpoint Selection:</strong> Use identifiable terrain features (ridges, streams)</li>
+                        <li><strong>Handrail Features:</strong> Follow linear features (streams, trails) to navigation aids</li>
+                        <li><strong>GPS Limitations:</strong> Canopy reduces satellite visibility; carry backup compass</li>
+                    </ul>
+
+                    <p><strong>Danger Area Crossing:</strong></p>
+                    <ol>
+                        <li>Halt squad at covered position before danger area</li>
+                        <li>Squad leader confirms location and plans route</li>
+                        <li>Designate near-side and far-side security</li>
+                        <li>Lead element crosses rapidly at narrowest point</li>
+                        <li>Far-side security established</li>
+                        <li>Remaining element crosses</li>
+                        <li>Accountability confirmed, patrol continues</li>
+                    </ol>
+
+                    <p><strong>Actions on Contact:</strong></p>
+                    <ul>
+                        <li><strong>Visual Contact:</strong> Halt, observe, report</li>
+                        <li><strong>Enemy Fire:</strong> Return fire, seek cover, report</li>
+                        <li><strong>Ambush (Near Side):</strong> Assault through kill zone</li>
+                        <li><strong>Ambush (Far Side):</strong> Suppress, maneuver, break contact</li>
+                        <li><strong>IED:</strong> Halt, establish security, report, bypass or clear</li>
+                    </ul>
+
+                    <p><strong>Security Halts:</strong></p>
+                    <p>Conduct every 200-300 meters or as terrain dictates. 360-degree security, listen for enemy activity, hydrate, adjust equipment. Use hand and arm signals only. Keep halts brief to maintain momentum.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Ambush Operations</div>
+                    
+                    <p>The ambush is the most effective offensive operation in jungle terrain. Dense vegetation provides natural concealment for occupying positions, while restrictive terrain channels enemy movement into predictable routes.</p>
+
+                    <p><strong>Ambush Planning Considerations:</strong></p>
+
+                    <p><strong>1. Kill Zone Selection:</strong></p>
+                    <ul>
+                        <li>Natural choke points: stream crossings, ridge saddles, trail junctions</li>
+                        <li>Length proportional to target size and weapons capabilities</li>
+                        <li>Clear fields of fire despite vegetation constraints</li>
+                        <li>Natural obstacles prevent enemy escape</li>
+                    </ul>
+
+                    <p><strong>2. Position Selection:</strong></p>
+                    <ul>
+                        <li>Flanking positions provide enfilade fire</li>
+                        <li>Elevation advantage when available</li>
+                        <li>Concealment within 50 meters of kill zone</li>
+                        <li>Covered withdrawal routes</li>
+                    </ul>
+
+                    <p><strong>Ambush Types:</strong></p>
+
+                    <p><strong>1. Point Ambush:</strong></p>
+                    <ul>
+                        <li>Single attack position on one flank of kill zone</li>
+                        <li>Used with limited manpower or linear terrain features</li>
+                        <li>Requires security element on opposite flank</li>
+                    </ul>
+
+                    <p><strong>2. Area Ambush:</strong></p>
+                    <ul>
+                        <li>Multiple attack positions surrounding kill zone</li>
+                        <li>Creates crossfire and maximizes target exposure</li>
+                        <li>Primary ambush plus supplementary positions</li>
+                    </ul>
+
+                    <p><strong>3. Hasty Ambush:</strong></p>
+                    <ul>
+                        <li>Executed when patrol encounters enemy unexpectedly</li>
+                        <li>Rapid occupation of best available positions</li>
+                        <li>No time for detailed planning; basic fire discipline</li>
+                    </ul>
+
+                    <p><strong>Ambush Formation (Squad):</strong></p>
+                    <ul>
+                        <li><strong>Assault Element:</strong> Main attack force; initiates ambush</li>
+                        <li><strong>Support Element:</strong> Automatic weapons providing suppressive fires</li>
+                        <li><strong>Security Element:</strong> Protects flanks and rear</li>
+                        <li><strong>Releasing the Ambush:</strong> Initiated by leader or designated signal</li>
+                    </ul>
+
+                    <p><strong>Ambush Sequence:</strong></p>
+                    <ol>
+                        <li><strong>Occupation:</strong> Move into positions undetected, establish security</li>
+                        <li><strong>Preparation:</strong> Prepare fields of fire, emplace Claymores, rehearse signals</li>
+                        <li><strong>Waiting:</strong> Maintain security and discipline for extended periods</li>
+                        <li><strong>Target Approach:</strong> Allow target to enter kill zone completely</li>
+                        <li><strong>Initiation:</strong> Leader's command or Claymore detonation</li>
+                        <li><strong>Execution:</strong> Maximum violence of action, suppress, destroy</li>
+                        <li><strong>Assessment:</strong> Determine success, enemy status</li>
+                        <li><strong>Withdrawal:</strong> Rapid, disciplined movement to rally point</li>
+                    </ol>
+
+                    <p><strong>Ambush Commands:</strong></p>
+                    <ul>
+                        <li><strong>"Squad Ambush":</strong> Initiation command</li>
+                        <li><strong>"Shift Fire":</strong> Adjust fires to new sector</li>
+                        <li><strong>"Cease Fire":</strong> Stop firing, assess</li>
+                        <li><strong>"Rally Point":</strong> Withdrawal to designated location</li>
+                    </ul>
+
+                    <p><strong>Special Weapons in Ambush:</strong></p>
+                    <ul>
+                        <li><strong>Claymore Mines:</strong> Primary initiation; directional fragmentation</li>
+                        <li><strong>Grenade Launchers:</strong> High-angle fires into kill zone</li>
+                        <li><strong>Machine Guns:</strong> Base of fire; covered by automatic riflemen</li>
+                        <li><strong>Grenades:</strong> Close-range destruction</li>
+                    </ul>
+
+                    <p><strong>Counter-Ambush Drills:</strong></p>
+                    <p>Training includes reacting to being ambushed. Near-side ambushes require immediate assault through the kill zone. Far-side ambushes require immediate suppressive fire, fire and maneuver to break contact. Speed and violence of action overcome initial disadvantage.</p>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Raid Operations</div>
+                    
+                    <p>Raids are deliberate attacks to destroy enemy positions, capture prisoners or equipment, or seize critical terrain. In jungle operations, raids require meticulous planning and precise execution due to limited visibility and challenging movement.</p>
+
+                    <p><strong>Raid Characteristics:</strong></p>
+                    <ul>
+                        <li><strong>Specific Objective:</strong> Defined target with clear destruction/capture criteria</li>
+                        <li><strong>Planned Withdrawal:</strong> No intent to hold ground</li>
+                        <li><strong>Surprise:</strong> Critical to minimize friendly casualties</li>
+                        <li><strong>Speed:</strong> Rapid execution reduces enemy reaction time</li>
+                        <li><strong>Violence of Action:</strong> Overwhelming force application</li>
+                    </ul>
+
+                    <p><strong>Squad Raid Organization:</strong></p>
+
+                    <p><strong>1. Assault Element:</strong></p>
+                    <ul>
+                        <li>Main attack force (typically one fire team reinforced)</li>
+                        <li>Destroys or seizes objective</li>
+                        <li>Team leader controls assault</li>
+                    </ul>
+
+                    <p><strong>2. Support Element:</strong></p>
+                    <ul>
+                        <li>Automatic weapons and grenadiers</li>
+                        <li>Suppresses objective during approach</li>
+                        <li>Shifts or lifts fires on signal</li>
+                    </ul>
+
+                    <p><strong>3. Security Element:</strong></p>
+                    <ul>
+                        <li>Isates objective from reinforcement</li>
+                        <li>Protects squad flanks and rear</li>
+                        <li>Provides early warning</li>
+                    </ul>
+
+                    <p><strong>4. Breach Element (if required):</strong></p>
+                    <ul>
+                        <li>Creates entry point through obstacles</li>
+                        <li>May use manual, ballistic, or explosive methods</li>
+                    </ul>
+
+                    <p><strong>Raid Planning Sequence:</strong></p>
+                    <ol>
+                        <li><strong>Ground Reconnaissance:</strong> Physical survey of objective and routes</li>
+                        <li><strong>Intelligence Collection:</strong> Enemy strength, positions, routines</li>
+                        <li><strong>Route Selection:</strong> Approach and withdrawal lanes</li>
+                        <li><strong>Time Schedule:</strong> Detailed timeline from departure to return</li>
+                        <li><strong>Fire Support:</strong> Mortars, artillery, air support coordination</li>
+                        <li><strong>Rehearsals:</strong> Full-scale practice with terrain model</li>
+                    </ol>
+
+                    <p><strong>Raid Execution:</strong></p>
+
+                    <p><strong>1. Approach March:</strong></p>
+                    <ul>
+                        <li>Move to objective rally point (ORP)</li>
+                        <li>Final coordination and equipment check</li>
+                        <li>Release security element to blocking positions</li>
+                    </ul>
+
+                    <p><strong>2. Assault Position:</strong></p>
+                    <ul>
+                        <li>Final covered position before objective</li>
+                        <li>Line of departure (LD) for final assault</li>
+                        <li>Last-minute coordination between elements</li>
+                    </ul>
+
+                    <p><strong>3. Actions on Objective:</strong></p>
+                    <ul>
+                        <li>Support element initiates suppressive fires</li>
+                        <li>Assault element moves to breach point</li>
+                        <li>Breach and enter objective</li>
+                        <li>Systematic clearance or destruction</li>
+                        <li>Prisoner and sensitive item collection</li>
+                    </ul>
+
+                    <p><strong>4. Consolidation and Reorganization:</strong></p>
+                    <ul>
+                        <li>Secure objective, account for all personnel</li>
+                        <li>Treat casualties, redistribute ammunition</li>
+                        <li>Prepare for withdrawal</li>
+                    </ul>
+
+                    <p><strong>5. Withdrawal:</strong></p>
+                    <ul>
+                        <li>Retrograde by teams or bounds</li>
+                        <li>Maintain suppressive fires until clear</li>
+                        <li>Move to rally point for accountability</li>
+                        <li>Continue to friendly lines</li>
+                    </ul>
+
+                    <p><strong>Communication in Raids:</strong></p>
+                    <p>Radio comms are challenging in jungle terrain. Use pre-arranged signals, pyrotechnics, and sound signals as backups. Test communications at ORP before execution. Visual signals through vegetation require creativity - laser pointers, IR strobes, or chemical lights.</p>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Troop Leading Procedures and Leadership</div>
+                    
+                    <p>Effective jungle operations depend on thorough planning and confident leadership. Troop Leading Procedures (TLPs) provide the framework for mission preparation, while combat leadership principles guide execution when plans encounter friction.</p>
+
+                    <p><strong>The Eight Troop Leading Procedures:</strong></p>
+
+                    <p><strong>1. Receive the Mission:</strong></p>
+                    <ul>
+                        <li>Attend operations order or warning order from higher</li>
+                        <li>Extract specified tasks, implied tasks, constraints</li>
+                        <li>Identify essential elements of friendly information (EEFI)</li>
+                        <li>Begin time management; one-third/two-thirds rule for planning</li>
+                    </ul>
+
+                    <p><strong>2. Issue Warning Order:</strong></p>
+                    <ul>
+                        <li>Alert squad that mission is pending</li>
+                        <li>Provide initial timeline and equipment guidance</li>
+                        <li>Enable parallel planning and preparation</li>
+                        <li>Contents: Situation, Mission, General Instructions, Time Schedule</li>
+                    </ul>
+
+                    <p><strong>3. Make a Tentative Plan:</strong></p>
+                    <ul>
+                        <li>Conduct mission analysis (METT-TC)</li>
+                        <li>Develop courses of action (COAs)</li>
+                        <li>War-game options against likely enemy actions</li>
+                        <li>Select optimal COA</li>
+                    </ul>
+
+                    <p><strong>METT-TC for Jungle Operations:</strong></p>
+                    <ul>
+                        <li><strong>Mission:</strong> What tasks must be accomplished?</li>
+                        <li><strong>Enemy:</strong> Disposition, strength, likely courses of action</li>
+                        <li><strong>Terrain:</strong> Vegetation, elevation, water features, mobility corridors</li>
+                        <li><strong>Troops:</strong> Personnel status, equipment, training level</li>
+                        <li><strong>Time:</strong> Available for planning and execution</li>
+                        <li><strong>Civilian Considerations:</strong> Population presence, friendly forces</li>
+                    </ul>
+
+                    <p><strong>4. Initiate Movement:</strong></p>
+                    <ul>
+                        <li>Begin necessary movement concurrent with planning</li>
+                        <li>Reconnaissance element departs</li>
+                        <li>Logistics preparation continues</li>
+                    </ul>
+
+                    <p><strong>5. Conduct Reconnaissance:</strong></p>
+                    <ul>
+                        <li>Physical survey of terrain when possible</li>
+                        <li>Map reconnaissance with aerial imagery</li>
+                        <li>Intelligence collection from higher and adjacent units</li>
+                        <li>Refine plan based on actual conditions</li>
+                    </ul>
+
+                    <p><strong>6. Complete the Plan:</strong></p>
+                    <ul>
+                        <li>Finalize concept of operations</li>
+                        <li>Develop detailed fire support plan</li>
+                        <li>Coordinate with adjacent and higher units</li>
+                        <li>Prepare overlays and sketches</li>
+                    </ul>
+
+                    <p><strong>7. Issue the Order:</strong></p>
+                    <ul>
+                        <li>Use five-paragraph OPORD format</li>
+                        <li>Situation, Mission, Execution, Sustainment, Command and Signal</li>
+                        <li>Include visual aids: sand tables, sketches, terrain models</li>
+                        <li>Confirm understanding with back-briefs</li>
+                    </ul>
+
+                    <p><strong>8. Supervise and Refine:</strong></p>
+                    <ul>
+                        <li>Conduct rehearsals at appropriate level</li>
+                        <li>Inspect personnel and equipment</li>
+                        <li>Refine plan based on rehearsal discoveries</li>
+                        <li>Confirm subordinate understanding</li>
+                    </ul>
+
+                    <p><strong>Jungle Leadership Challenges:</strong></p>
+                    <ul>
+                        <li><strong>Visibility:</strong> Leaders cannot see entire formation; rely on team leaders</li>
+                        <li><strong>Communication:</strong> Maintain contact through periodic halts and runners</li>
+                        <li><strong>Navigation:</strong> Personal responsibility; constant azimuth checks</li>
+                        <li><strong>Climate:</strong> Monitor soldiers for heat casualties; enforce hydration</li>
+                        <li><strong>Morale:</strong> Sustained operations in harsh conditions test discipline</li>
+                    </ul>
+
+                    <p><strong>Combat Leadership Principles:</strong></p>
+                    <ul>
+                        <li>Lead by example; set the standard physically and mentally</li>
+                        <li>Maintain situational awareness despite limited visibility</li>
+                        <li>Delegate authority to team leaders; trust subordinates</li>
+                        <li>Communicate intent clearly; ensure understanding</li>
+                        <li>Make timely decisions with available information</li>
+                        <li>Maintain discipline and standards under stress</li>
+                        <li>Take care of your soldiers; they'll take care of the mission</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Field Training Exercise and Graduation</div>
+                    
+                    <p>The Field Training Exercise (FTX) is the culminating event of JOTC Week Two. It validates all trained skills under realistic conditions, testing both individual competence and squad cohesion in an unforgiving jungle environment.</p>
+
+                    <p><strong>FTX Overview:</strong></p>
+                    <ul>
+                        <li><strong>Duration:</strong> 48-72 hours of continuous operations</li>
+                        <li><strong>Conditions:</strong> Live in field with minimal sleep (2-4 hours per day)</li>
+                        <li><strong>Scenarios:</strong> Multiple missions testing different operational skills</li>
+                        <li><strong>Evaluation:</strong> Instructor observation of leadership, tactics, and techniques</li>
+                        <li><strong>Pass/Fail:</strong> Must complete all missions to standard</li>
+                    </ul>
+
+                    <p><strong>FTX Sequence:</strong></p>
+
+                    <p><strong>1. Insertion:</strong></p>
+                    <ul>
+                        <li>Squads infiltrate training area by foot, boat, or helicopter</li>
+                        <li>Establish initial ORP and conduct communications check</li>
+                        <li>Receive first mission from cadre</li>
+                    </ul>
+
+                    <p><strong>2. Mission 1 - Reconnaissance:</strong></p>
+                    <ul>
+                        <li>Locate and report enemy position</li>
+                        <li>Establish observation post undetected</li>
+                        <li>Submit SALUTE report (Size, Activity, Location, Unit, Time, Equipment)</li>
+                        <li>Withdraw without compromise</li>
+                    </ul>
+
+                    <p><strong>3. Mission 2 - Ambush:</strong></p>
+                    <ul>
+                        <li>Plan and execute deliberate ambush on enemy patrol</li>
+                        <li>Proper site selection and position occupation</li>
+                        <li>Execution with fire discipline</li>
+                        <li>Rapid withdrawal to rally point</li>
+                    </ul>
+
+                    <p><strong>4. Mission 3 - Raid:</strong></p>
+                    <ul>
+                        <li>Attack and destroy/capture enemy objective</li>
+                        <li>Coordinated assault with support-by-fire</li>
+                        <li>Objective clearance and sensitive item exploitation</li>
+                        <li>Timed withdrawal under pressure</li>
+                    </ul>
+
+                    <p><strong>5. Mission 4 - Patrol Base Operations:</strong></p>
+                    <ul>
+                        <li>Establish concealed patrol base</li>
+                        <li>360-degree security with early warning devices</li>
+                        <li>Priority of work: security, weapons, water, chow, rest</li>
+                        <li>Execute priority intelligence requirements (PIR)</li>
+                    </ul>
+
+                    <p><strong>6. Evasion and Recovery:</strong></p>
+                    <ul>
+                        <li>React to simulated contact by dispersing</li>
+                        <li>Evasion movement using counter-tracking techniques</li>
+                        <li>Navigate to recovery point</li>
+                        <li>Execute link-up procedures with recovery force</li>
+                    </ul>
+
+                    <p><strong>Evaluation Criteria:</strong></p>
+                    <ul>
+                        <li><strong>Tactical Proficiency:</strong> Proper formations, techniques, procedures</li>
+                        <li><strong>Leadership:</strong> Decision-making, command presence, troop welfare</li>
+                        <li><strong>Navigation:</strong> Accuracy in movement, timely arrival at objectives</li>
+                        <li><strong>Communication:</strong> Effective reports, clear orders, signal discipline</li>
+                        <li><strong>Fire Discipline:</strong> Controlled fires, proper weapon employment</li>
+                        <li><strong>Fieldcraft:</strong> Camouflage, noise discipline, light discipline</li>
+                        <li><strong>Safety:</strong> Weapon safety, risk management, buddy system</li>
+                    </ul>
+
+                    <p><strong>Common FTX Failures:</strong></p>
+                    <ul>
+                        <li>Navigation errors causing missed time hacks</li>
+                        <li>Compromised positions due to poor camouflage or noise</li>
+                        <li>Fratricide scenarios from poor fire discipline</li>
+                        <li>Heat casualties from inadequate hydration</li>
+                        <li>Lost accountability during movement</li>
+                        <li>Inability to adjust to changed conditions</li>
+                    </ul>
+
+                    <p><strong>Graduation Requirements:</strong></p>
+                    <ul>
+                        <li>Complete all FTX missions to standard</li>
+                        <li>Demonstrate leadership potential as squad leader or team leader</li>
+                        <li>No safety violations during live operations</li>
+                        <li>Pass all written examinations (70% minimum)</li>
+                        <li>Exhibit proper jungle discipline throughout course</li>
+                    </ul>
+
+                    <p><strong>The Jungle Tab:</strong></p>
+                    <p>Graduates who meet all standards receive the Jungle Expert Tab, authorized for wear on the Army uniform. This recognition signifies specialized training in jungle warfare and qualifies graduates to train others in these critical skills.</p>
+
+                    <p><strong>Post-Graduation:</strong></p>
+                    <p>Return to your unit as a subject matter expert. The Army's renewed focus on Indo-Pacific operations means your skills are in high demand. Volunteer as JOTC cadre, compete in the Jungle Operations Competition, and prepare your unit for tropical deployment. The jungle tab represents more than a qualification - it's a commitment to mastering one of warfare's most challenging environments.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Jungle Warfare Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Jungle Skills</a></li><li><a href="index.html#phases">Jungle Survival</a></li><li><a href="index.html#phases">Jungle Patrols</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Jungle Gear</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co.</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script>
+        if (typeof RangerAuth !== 'undefined') {
+            RangerAuth.initAuthUI();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginGate = document.getElementById('login-gate');
+            const courseContent = document.getElementById('course-content');
+            
+            function checkAccess() {
+                const user = localStorage.getItem('ranger_auth_user');
+                if (user) {
+                    loginGate.style.display = 'none';
+                    courseContent.style.display = 'block';
+                } else {
+                    loginGate.style.display = 'block';
+                    courseContent.style.display = 'none';
+                }
+            }
+            
+            checkAccess();
+        });
+    </script>
+</body>
+</html>

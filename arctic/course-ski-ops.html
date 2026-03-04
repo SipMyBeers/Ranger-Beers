@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ski Operations — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Classroom &amp; Skills</a></li>
+                        <li><a href="index.html#phases">Field Training</a></li>
+                        <li><a href="index.html#phases">FTX &amp; Assessment</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Arctic Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-arctic-prep.html">Arctic Prep</a></li>
+                        <li><a href="course-cold-weather.html">Cold Weather Survival</a></li>
+                        <li><a href="course-ski-ops.html">Ski Operations</a></li>
+                        <li><a href="course-snowshoe.html">Snowshoe Operations</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="resources.html">Arctic Resources</a></li>
+                        <li><a href="standards.html">PT Standards</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-ski-ops">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Ski Operations</h1>
+        <p class="section-desc fade-in">Master military cross-country skiing for tactical movement in Arctic environments. Learn equipment setup, skiing techniques, over-snow mobility, and trail breaking in deep snow conditions.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$12</span>
+            <span class="course-tag tag-phase">Field Phase</span>
+            <span class="course-tag tag-type">Mobility</span>
+            <span class="course-tag tag-bundle">Full Access</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-ski-ops"
+                data-item-name="Ski Operations"
+                data-item-price="12.00"
+                data-item-url="/arctic/course-ski-ops.html"
+                data-item-description="Military ski operations covering cross-country techniques, over-snow mobility, trail breaking, and tactical movement"
+                data-item-categories="course">Buy Course — $12.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Military Ski Equipment</a>
+                <a href="#mod2" class="course-sidebar-link">2. Ski Techniques</a>
+                <a href="#mod3" class="course-sidebar-link">3. Uphill Travel</a>
+                <a href="#mod4" class="course-sidebar-link">4. Downhill Techniques</a>
+                <a href="#mod5" class="course-sidebar-link">5. Trail Breaking</a>
+                <a href="#mod6" class="course-sidebar-link">6. Tactical Ski Movement</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Military Ski Equipment</div>
+                    
+                    <p>Military cross-country skiing differs significantly from recreational skiing. The equipment is designed for durability, load-carrying capacity, and compatibility with combat operations. Understanding your equipment is the foundation of effective ski movement.</p>
+
+                    <p><strong>Military Ski System Components:</strong></p>
+
+                    <p><strong>1. Skis:</strong></p>
+                    <ul>
+                        <li><strong>Length:</strong> Approximately 25cm taller than skier height</li>
+                        <li><strong>Material:</strong> Wood core with metal edges and P-Tex base</li>
+                        <li><strong>Camber:</strong> Double camber for grip and glide</li>
+                        <li><strong>Climbing Skins:</strong> Nylon/fabric strips for uphill traction</li>
+                        <li><strong>Sidecut:</strong> Minimal sidecut for stability with loads</li>
+                    </ul>
+
+                    <p><strong>2. Bindings (75mm 3-Pin):</strong></p>
+                    <ul>
+                        <li>Traditional Nordic binding system</li>
+                        <li>Three pins engage boot sole for lateral control</li>
+                        <li>Toe cable/bail provides additional security</li>
+                        <li>Compatible with military ski boots</li>
+                        <li>Reliable in extreme cold (minimal moving parts)</li>
+                    </ul>
+
+                    <p><strong>3. Ski Boots:</strong></p>
+                    <ul>
+                        <li>Leather or synthetic upper with rubber sole</li>
+                        <li>75mm "duckbill" toe for binding compatibility</li>
+                        <li>Insulated for cold weather operations</li>
+                        <li>High cuff for ankle support</li>
+                        <li>Gaiter attachment points</li>
+                    </ul>
+
+                    <p><strong>4. Ski Poles:</strong></p>
+                    <ul>
+                        <li>Adjustable or fixed length (typically 85% of height)</li>
+                        <li>Large baskets for powder snow</li>
+                        <li>Durable construction for load-bearing use</li>
+                        <li>Straps for efficient poling technique</li>
+                    </ul>
+
+                    <p><strong>Equipment Inspection:</strong></p>
+                    <ul>
+                        <li><strong>Skis:</strong> Check base for damage, edges for sharpness, bindings for security</li>
+                        <li><strong>Bindings:</strong> Test pin engagement, check bail operation, ensure no ice buildup</li>
+                        <li><strong>Boots:</strong> Verify fit with thick socks, check sole integrity, inspect laces</li>
+                        <li><strong>Poles:</strong> Confirm baskets secure, straps intact, tips sharp</li>
+                        <li><strong>Wax:</strong> Match wax to snow temperature and conditions</li>
+                    </ul>
+
+                    <p><strong>Carrying Additional Equipment:</strong></p>
+                    <ul>
+                        <li>Rucksack worn while skiing (35-50 lbs typical)</li>
+                        <li>Weapon slung across back or carried in hands</li>
+                        <li>Ahkio sled towed for heavy loads</li>
+                        <li>Equipment must be secure for downhill sections</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Cross-Country Ski Techniques</div>
+                    
+                    <p>Efficient cross-country skiing enables rapid movement over snow-covered terrain. Mastering the basic techniques provides the foundation for all military ski operations, from simple transport to tactical patrols.</p>
+
+                    <p><strong>Classic Technique — Diagonal Stride:</strong></p>
+                    <ul>
+                        <li><strong>Body Position:</strong> Athletic stance, knees slightly bent, forward lean from ankles</li>
+                        <li><strong>Arm/Leg Opposition:</strong> Left arm forward with right leg, vice versa</li>
+                        <li><strong>Weight Transfer:</strong> Commit weight completely to gliding ski</li>
+                        <li><strong>Pole Plant:</strong> Plant near binding, push back to hip level</li>
+                        <li><strong>Timing:</strong> Arm and leg movements coordinated for efficiency</li>
+                    </ul>
+
+                    <p><strong>Kick and Glide:</strong></p>
+                    <ul>
+                        <li>Compress ski camber to grip snow (kick)</li>
+                        <li>Transfer weight to other ski and glide</li>
+                        <li>Let ski float on forward ski before next kick</li>
+                        <li>Relaxed upper body, rhythmic movement</li>
+                        <li>Efficient for flat and rolling terrain</li>
+                    </ul>
+
+                    <p><strong>Double Pole:</strong></p>
+                    <ul>
+                        <li>Both poles planted simultaneously</li>
+                        <li>Powerful trunk flexion drives poles back</li>
+                        <li>Used on flats and slight downhills</li>
+                        <li>Maximum speed technique on level ground</li>
+                        <li>Alternate with diagonal stride for rest</li>
+                    </ul>
+
+                    <p><strong>One-Step Double Pole:</strong></p>
+                    <ul>
+                        <li>Combines kick with double pole</li>
+                        <li>Step onto one ski while poling with both arms</li>
+                        <li>Efficient for gradual uphills</li>
+                        <li>Maintains momentum on slight inclines</li>
+                    </ul>
+
+                    <p><strong>Offset (V-1) Technique:</strong></p>
+                    <ul>
+                        <li>Every third stride uses double pole</li>
+                        <li>Used for steeper uphills while maintaining speed</li>
+                        <li>Tempo: pole, pole, pole-stride</li>
+                        <li>Arm recovery during non-poling strides</li>
+                    </ul>
+
+                    <p><strong>Common Errors:</strong></p>
+                    <ul>
+                        <li><strong>Sitting Back:</strong> Leaning back reduces glide and strains lower back</li>
+                        <li><strong>Arm-only Poling:</strong> Should use core and legs, not just arms</li>
+                        <li><strong>Incomplete Weight Transfer:</strong> Prevents full glide, wastes energy</li>
+                        <li><strong>Rigid Upper Body:</strong> Absorbs shock poorly, reduces efficiency</li>
+                        <li><strong>Over-striding:</strong> Excessive reach reduces kick effectiveness</li>
+                    </ul>
+
+                    <p><strong>Practice Progression:</strong></p>
+                    <ol>
+                        <li>Gliding on one ski (balance development)</li>
+                        <li>Diagonal stride without poles</li>
+                        <li>Add pole plant to diagonal stride</li>
+                        <li>Double pole technique</li>
+                        <li>Combine techniques based on terrain</li>
+                    </ol>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Uphill Travel Techniques</div>
+                    
+                    <p>Uphill travel is the most physically demanding aspect of ski operations. Efficient uphill techniques conserve energy, maintain group cohesion, and enable load-carrying capacity critical to military operations.</p>
+
+                    <p><strong>Herringbone Technique:</strong></p>
+                    <ul>
+                        <li>Skis in "V" shape, tips wider than tails</li>
+                        <li>Edges engaged to prevent sliding backward</li>
+                        <li>Steps short and deliberate</li>
+                        <li>Poles planted outside ski pattern</li>
+                        <li>Used on moderate slopes without skins</li>
+                    </ul>
+
+                    <p><strong>Side-Stepping:</strong></p>
+                    <ul>
+                        <li>Skis perpendicular to fall line</li>
+                        <li>Edge both skis firmly into slope</li>
+                        <li>Step uphill ski up, bring other to match</li>
+                        <li>Slow but secure on steep terrain</li>
+                        <li>Used when herringbone is insufficient</li>
+                    </ul>
+
+                    <p><strong>Climbing Skins:</strong></p>
+                    <ul>
+                        <li>Nylon fabric attached to ski base</li>
+                        <li>Fibers grip snow when moving forward</li>
+                        <li>Slides backward (remove for downhill)</li>
+                        <li>Attach at tip, secure at tail</li>
+                        <li>Essential for steep, sustained uphills</li>
+                    </ul>
+
+                    <p><strong>Kick Turn:</strong></p>
+                    <ul>
+                        <li>180-degree turn on steep slopes</li>
+                        <li>Plant poles for stability</li>
+                        <li>Lift downhill ski, pivot 180 degrees</li>
+                        <li>Weight new downhill ski, bring other around</li>
+                        <li>Practice essential — used frequently in mountains</li>
+                    </ul>
+
+                    <p><strong>Traversing:</strong></p>
+                    <ul>
+                        <li>Travel across slope at angle</li>
+                        <li>Weight on uphill edges</li>
+                        <li>Poles on downhill side for balance</li>
+                        <li>Zigzag pattern to ascend steep slopes</li>
+                        <li>More efficient than straight ascent</li>
+                    </ul>
+
+                    <p><strong>Uphill Pacing:</strong></p>
+                    <ul>
+                        <li>Set sustainable pace — "conversational" effort</li>
+                        <li>Break trail in shifts when possible</li>
+                        <li>Remove layers to prevent sweating</li>
+                        <li>Hydrate and snack regularly</li>
+                        <li>Use rest steps on steep sections</li>
+                    </ul>
+
+                    <p><strong>Energy Conservation Tips:</strong></p>
+                    <ul>
+                        <li>Look ahead, plan route for easiest ascent</li>
+                        <li>Use existing tracks when available</li>
+                        <li>Shorten stride on steep sections</li>
+                        <li>Engage core to support upper body</li>
+                        <li>Accept that uphill is slow — embrace it</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Downhill Techniques</div>
+                    
+                    <p>Downhill skiing with military loads requires control, not speed. The goal is safe, controlled descent while maintaining equipment security and readiness for contact. These techniques prioritize stability over style.</p>
+
+                    <p><strong>Basic Downhill Position:</strong></p>
+                    <ul>
+                        <li><strong>Athletic Stance:</strong> Knees bent, weight centered over skis</li>
+                        <li><strong>Forward Pressure:</strong> Shins pressed into boot tongues</li>
+                        <li><strong>Hands Forward:</strong> Poles held ready, arms in front</li>
+                        <li><strong>Eyes Up:</strong> Look ahead, not at skis</li>
+                        <li><strong>Relaxed Ankles:</strong> Absorb terrain through legs</li>
+                    </ul>
+
+                    <p><strong>Snowplow (Wedge):</strong></p>
+                    <ul>
+                        <li>Tails wider than tips, forming wedge</li>
+                        <li>Edge both skis to control speed</li>
+                        <li>Wider wedge = more speed control</li>
+                        <li>Primary technique for loaded descents</li>
+                        <li>Most stable position with rucksack</li>
+                    </ul>
+
+                    <p><strong>Stem Turn:</strong></p>
+                    <ul>
+                        <li>Begin in snowplow position</li>
+                        <li>Shift weight to downhill ski</li>
+                        <li>Bring uphill ski parallel</li>
+                        <li>Complete turn with parallel skis</li>
+                        <li>Return to snowplow for next turn</li>
+                    </ul>
+
+                    <p><strong>Parallel Turn:</strong></p>
+                    <ul>
+                        <li>Both skis remain parallel throughout turn</li>
+                        <li>Weight transfer from outside ski to outside ski</li>
+                        <li>Used on gentler slopes with confidence</li>
+                        <li>Faster but less stable with heavy loads</li>
+                        <li>Advanced technique for experienced skiers</li>
+                    </ul>
+
+                    <p><strong>Speed Control:</strong></p>
+                    <ul>
+                        <li>Snowplow is primary speed control method</li>
+                        <li>Turn across fall line to reduce speed</li>
+                        <li>Pole drag creates additional friction</li>
+                        <li>Controlled falling leaf on steep slopes</li>
+                        <li>Never exceed speed where control is lost</li>
+                    </ul>
+
+                    <p><strong>Emergency Stops:</strong></p>
+                    <ul>
+                        <li><strong>Snowplow Stop:</strong> Maximum wedge, edge pressure</li>
+                        <li><strong>Sideslip:</strong> Skis perpendicular to fall line, edge control</li>
+                        <li><strong>Self-Arrest:</strong> Fall to side, dig in edges/poles</li>
+                        <li><strong>Controlled Fall:</strong> Deliberately fall before uncontrolled crash</li>
+                    </ul>
+
+                    <p><strong>Descending with Load:</strong></p>
+                    <ul>
+                        <li>Rucksack changes center of gravity — lean slightly forward</li>
+                        <li>Weapon secure across back or carried in hands</li>
+                        <li>Ahkio sled adds drag — factor into speed control</li>
+                        <li>Consider removing skins for better glide</li>
+                        <li>Take wider turns to accommodate load</li>
+                    </ul>
+
+                    <p><strong>Terrain Management:</strong></p>
+                    <ul>
+                        <li>Scout descent route before committing</li>
+                        <li>Avoid obstacles (trees, rocks, ice)</li>
+                        <li>Use terrain features to control speed</li>
+                        <li>Stop at safe zones to regroup</li>
+                        <li>Maintain visual contact with team</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Trail Breaking & Group Movement</div>
+                    
+                    <p>Trail breaking is the most physically demanding role in ski operations. The lead skier packs down snow, creating a track for following skiers who benefit from reduced resistance. Efficient trail breaking techniques conserve energy while maintaining progress.</p>
+
+                    <p><strong>Trail Breaking Fundamentals:</strong></p>
+                    <ul>
+                        <li><strong>Purpose:</strong> Create packed track for following skiers</li>
+                        <li><strong>Energy Cost:</strong> 40-60% more effort than following</li>
+                        <li><strong>Rotation:</strong> Break trail in shifts to share load</li>
+                        <li><strong>Duration:</strong> 15-30 minutes typical per breaker</li>
+                        <li><strong>Interval:</strong> Step aside every 10-15 minutes to rotate</li>
+                    </ul>
+
+                    <p><strong>Trail Breaking Technique:</strong></p>
+                    <ul>
+                        <li>Shorter, more powerful strides</li>
+                        <li>Commit full weight to each step</li>
+                        <li>Use poles aggressively for propulsion</li>
+                        <li>Compress snow fully before gliding</li>
+                        <li>Maintain steady rhythm — no sprinting</li>
+                    </ul>
+
+                    <p><strong>Route Selection for Trail Breaking:</strong></p>
+                    <ul>
+                        <li><strong>Terrain:</strong> Seek easiest gradient, avoid steep sections</li>
+                        <li><strong>Snow Conditions:</strong> Avoid deep powder when possible</li>
+                        <li><strong>Vegetation:</strong> Look for tree spacing that allows passage</li>
+                        <li><strong>Avalanche:</strong> Avoid loaded slopes and terrain traps</li>
+                        <li><strong>Navigation:</strong> Maintain bearing while managing terrain</li>
+                    </ul>
+
+                    <p><strong>Group Formations:</strong></p>
+
+                    <p><strong>Single File:</strong></p>
+                    <ul>
+                        <li>Most efficient in deep snow</li>
+                        <li>All skiers benefit from broken trail</li>
+                        <li>Difficult to maintain spacing</li>
+                        <li>Reduced security (limited fields of fire)</li>
+                    </ul>
+
+                    <p><strong>File (Staggered Column):</strong></p>
+                    <ul>
+                        <li>Skiers offset to left or right of track</li>
+                        <li>Maintains trail efficiency with better spacing</li>
+                        <li>Allows faster reaction to contact</li>
+                        <li>Used when enemy contact possible</li>
+                    </ul>
+
+                    <p><strong>Trail Maintenance:</strong></p>
+                    <ul>
+                        <li>Keep track straight when possible</li>
+                        <li>Minimize weaving through trees</li>
+                        <li>Pack down soft spots</li>
+                        <li>Mark route for return (if applicable)</li>
+                        <li>Maintain consistent width</li>
+                    </ul>
+
+                    <p><strong>Following Techniques:</strong></p>
+                    <ul>
+                        <li>Stay directly in track for easiest travel</li>
+                        <li>Maintain 3-5 meter spacing</li>
+                        <li>Use poles less aggressively (save energy)</li>
+                        <li>Focus on rhythm and efficiency</li>
+                        <li>Be ready to take lead when rotated</li>
+                    </ul>
+
+                    <p><strong>Ahkio Sled Considerations:</strong></p>
+                    <ul>
+                        <li>Sled follows in track behind last skier</li>
+                        <li>Track must be wide enough for sled</li>
+                        <li>Sled can assist with braking on downhills</li>
+                        <li>Additional drag increases energy cost</li>
+                        <li>Sled handler rotates less frequently (lower effort in track)</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Tactical Ski Movement</div>
+                    
+                    <p>Ski operations in a tactical environment require balancing mobility with security. Movement techniques must maintain unit cohesion while providing 360-degree security and readiness for contact.</p>
+
+                    <p><strong>Tactical Considerations:</strong></p>
+                    <ul>
+                        <li><strong>Speed vs. Security:</strong> Faster movement = less security</li>
+                        <li><strong>Tracks:</strong> Leave obvious sign in snow; consider camouflage</li>
+                        <li><strong>Visibility:</strong> White snow provides excellent camouflage with proper gear</li>
+                        <li><strong>Sound:</strong> Ski movement is relatively quiet</li>
+                        <li><strong>Position:</strong> Skis prevent prone position; consider snowshoes for defense</li>
+                    </ul>
+
+                    <p><strong>Movement Security:</strong></p>
+
+                    <p><strong>Traveling:</strong></p>
+                    <ul>
+                        <li>Continuous movement used when contact unlikely</li>
+                        <li>Point man scans ahead, trail man secures rear</li>
+                        <li>Maintain interval (10-20 meters)</li>
+                        <li>Weapons at ready but not aimed</li>
+                        <li>Head on swivel — 360-degree awareness</li>
+                    </ul>
+
+                    <p><strong>Traveling Overwatch:</strong></p>
+                    <ul>
+                        <li>Element moves while overwatch element covers</li>
+                        <li>Overwatch moves by bounds to new positions</li>
+                        <li>Used when enemy contact possible</li>
+                        <li>Slower but more secure</li>
+                    </ul>
+
+                    <p><strong>Bounding Overwatch:</strong></p>
+                    <ul>
+                        <li>Overwatch element stationary, bounding element moves</li>
+                        <li>Roles alternate after each bound</li>
+                        <li>Used when enemy contact likely</li>
+                        <li>Slowest but most secure technique</li>
+                    </ul>
+
+                    <p><strong>Actions on Contact:</strong></p>
+                    <ul>
+                        <li><strong>Near Ambush:</strong> Immediate action drill — assault through</li>
+                        <li><strong>Far Ambush:</strong> Return fire, establish base of fire, maneuver</li>
+                        <li><strong>Visual Contact:</strong> Freeze, assess, report</li>
+                        <li><strong>Indirect Fire:</strong> Move out of impact area, maintain dispersion</li>
+                    </ul>
+
+                    <p><strong>Skis in Combat:</strong></p>
+                    <ul>
+                        <li>Skis are removed for extended defensive positions</li>
+                        <li>Quick-release from bindings essential</li>
+                        <li>Secure skis to prevent loss during contact</li>
+                        <li>Snowshoes preferred for defensive operations</li>
+                        <li>Consider terrain — skis best for mobile operations</li>
+                    </ul>
+
+                    <p><strong>Patrol Base Operations:</strong></p>
+                    <ul>
+                        <li>Ski racks or orderly stacking prevents equipment loss</li>
+                        <li>Quick access for rapid departure</li>
+                        <li>Maintain wax for next movement</li>
+                        <li>Equipment inspection during halts</li>
+                        <li>Plan routes that maximize ski advantages</li>
+                    </ul>
+
+                    <p><strong>Camouflage and Concealment:</strong></p>
+                    <ul>
+                        <li>White overwhites essential over dark clothing</li>
+                        <li>Ski tracks visible from air — consider route masking</li>
+                        <li>Travel during low visibility (snowfall, whiteout)</li>
+                        <li>Use terrain features to mask movement</li>
+                        <li>Camouflage sleds and equipment</li>
+                    </ul>
+
+                    <p><strong>Night Ski Operations:</strong></p>
+                    <ul>
+                        <li>Night vision devices with ski movement</li>
+                        <li>Reduced speed essential</li>
+                        <li>Chem lights or IR markers for trail marking</li>
+                        <li>Increased interval to prevent collisions</li>
+                        <li>Voice commands for coordination</li>
+                    </ul>
+
+                    <p><strong>Integration with Other Operations:</strong></p>
+                    <p>Ski operations are one tool in the Arctic warfare toolkit. Integration with snowshoe movement, vehicle transport, and rotary-wing insertion/extraction creates flexible operational capability. Know when to use skis (mobile operations, distance travel) and when to transition to other modes (defensive positions, close terrain). Mastery of ski operations at CWLC provides the foundation for advanced Arctic tactics.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Arctic School Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Classroom &amp; Skills</a></li><li><a href="index.html#phases">Field Training</a></li><li><a href="index.html#phases">FTX &amp; Assessment</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Arctic Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script>
+        if (typeof RangerAuth !== 'undefined') {
+            RangerAuth.initAuthUI();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginGate = document.getElementById('login-gate');
+            const courseContent = document.getElementById('course-content');
+            
+            function checkAccess() {
+                const user = localStorage.getItem('ranger_auth_user');
+                if (user) {
+                    loginGate.style.display = 'none';
+                    courseContent.style.display = 'block';
+                } else {
+                    loginGate.style.display = 'block';
+                    courseContent.style.display = 'none';
+                }
+            }
+            
+            checkAccess();
+        });
+    </script>
+</body>
+</html>
