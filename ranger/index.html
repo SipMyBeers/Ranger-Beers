@@ -6,12 +6,15 @@
     <title>Ranger Beers — Ranger School Supply Co.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="../course-styles.css">
-    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" /></noscript>
     <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#000000">
+    <meta name="view-transition" content="same-origin">
 </head>
 <body>
 
@@ -241,7 +244,7 @@
             margin-top: 0;
         }
         .phase-detail-panel.open {
-            max-height: 8000px;
+            max-height: 100vh; /* Fluid height that won't cause scroll jank */
             opacity: 1;
             margin-top: var(--space-xl);
         }
@@ -1691,7 +1694,9 @@
     </script>
 
     <!-- Auth -->
-    <script src="../course-auth.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/course-auth.js"></script>
     <script>
         RangerAuth.initAuthUI();
         if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
@@ -1700,7 +1705,7 @@
     <!-- Snipcart E-Commerce -->
     <!-- TODO: Replace Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4 with your key from https://app.snipcart.com -->
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
-    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script defer src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
 
     <!-- Botpress AI Chatbot — disabled until bot IDs are configured -->
 

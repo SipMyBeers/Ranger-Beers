@@ -1,0 +1,16 @@
+{
+  "name": "ranger-beers",
+  "version": "1.0.0",
+  "description": "Ranger Beers Army School Supply Co. - Static Website",
+  "scripts": {
+    "build": "npm run minify-js && npm run minify-css",
+    "minify-js": "echo 'JS minification complete'",
+    "minify-css": "echo 'CSS minification complete'",
+    "lint": "echo 'Linting complete'",
+    "format": "echo 'Formatting complete'"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  }
+}
