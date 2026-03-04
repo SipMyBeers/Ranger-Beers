@@ -64,8 +64,88 @@
                 <li>Advise senior commanders on aviation capabilities and limitations</li>
             </ul>
 
-            <h2 class="section-title" style="margin-top: var(--space-2xl); margin-bottom: var(--space-lg);">Training</h2>
-            <p class="section-desc" style="max-width: 700px; margin: 0 auto;">Aviation Officer professional development through years of flight experience followed by Advanced Operations courses at Fort Rucker.</p>
+            
+            <h2 class="section-title" style="margin-top: var(--space-2xl); margin-bottom: var(--space-lg);">Career Phases</h2>
+            
+            <div class="phase-selector" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); margin-top: 30px;">
+                <button class="phase-card-btn active" data-phase="iet" onclick="togglePhase('iet')">
+                    <span class="phase-card-icon">&#127891;</span>
+                    <span class="phase-card-title">Initial Entry</span>
+                    <span class="phase-card-sub">AIT Training</span>
+                </button>
+                <button class="phase-card-btn" data-phase="junior" onclick="togglePhase('junior')">
+                    <span class="phase-card-icon">&#9876;</span>
+                    <span class="phase-card-title">Junior Enlisted</span>
+                    <span class="phase-card-sub">E-1 to E-4</span>
+                </button>
+                <button class="phase-card-btn" data-phase="nco" onclick="togglePhase('nco')">
+                    <span class="phase-card-icon">&#9733;</span>
+                    <span class="phase-card-title">NCO Leadership</span>
+                    <span class="phase-card-sub">E-5 to E-6</span>
+                </button>
+                <button class="phase-card-btn" data-phase="senior" onclick="togglePhase('senior')">
+                    <span class="phase-card-icon">&#11088;</span>
+                    <span class="phase-card-title">Senior NCO</span>
+                    <span class="phase-card-sub">E-7 to E-9</span>
+                </button>
+            </div>
+
+            <!-- IET Detail -->
+            <div class="phase-detail-panel open" id="detail-iet">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge">PHASE 1</span>
+                        <div class="phase-detail-rtb">AIT</div>
+                        <div class="phase-detail-standards">
+                            <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duration</span><span>18 Weeks</span></div>
+                            <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Novosel, AL</span></div>
+                        </div>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Complete Basic Combat Training and Advanced Individual Training. Master the fundamental technical and tactical skills required for 15B operations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Junior Detail -->
+            <div class="phase-detail-panel" id="detail-junior">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="border-color:#3b82f6; color:#3b82f6;">PHASE 2</span>
+                        <div class="phase-detail-rtb">First Units</div>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Arrival at first duty station. Focus on mastering individual and team tasks, attaining platform certifications, and integrating into operational missions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NCO Detail -->
+            <div class="phase-detail-panel" id="detail-nco">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="border-color:#22c55e; color:#22c55e;">PHASE 3</span>
+                        <div class="phase-detail-rtb">Team Leadership</div>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Promotion to Sergeant and Staff Sergeant. Leading teams and squads, managing equipment readiness, and attending specialized leadership schools.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Senior Detail -->
+            <div class="phase-detail-panel" id="detail-senior">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="border-color:var(--color-gold); color:var(--color-gold);">PHASE 4</span>
+                        <div class="phase-detail-rtb">Senior Enlisted</div>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Platoon Sergeant and First Sergeant roles. Managing large-scale operations, mentorship of junior NCOs, and advising senior commanders.</p>
+                    </div>
+                </div>
+            </div>
+    
         </div>
     </section>
 
@@ -99,5 +179,20 @@
     <script src="../../js/shared.js"></script>
     <script src="../../js/course-auth.js"></script>
     <script>RangerAuth.initAuthUI();</script>
+
+    <script>
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+            var buttons = document.querySelectorAll('.phase-card-btn');
+            
+            buttons.forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+        }
+    </script>
 </body>
 </html>

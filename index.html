@@ -388,53 +388,138 @@
             display: none;
         }
 
-        /* ── MOS Dropdown ── */
+        /* ── MOS Click Drawer ── */
         .sc-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 8px 0;
-            z-index: 100;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            max-width: 800px;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 24px;
+            z-index: 2000;
             display: none;
-            max-height: 250px;
+            max-height: 80vh;
             overflow-y: auto;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-            margin-top: 4px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            margin-top: 0;
         }
-        .school-card:hover .sc-dropdown {
+        .sc-dropdown.active {
             display: block;
+            animation: drawerFadeIn 0.3s ease-out;
+        }
+        @keyframes drawerFadeIn {
+            from { opacity: 0; transform: translate(-50%, -45%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        .sc-dropdown-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1999;
+            display: none;
+            backdrop-filter: blur(4px);
+        }
+        .sc-dropdown-overlay.active {
+            display: block;
+        }
+        .sc-dropdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
         }
         .sc-dropdown-item {
-            display: block;
-            padding: 10px 16px;
-            color: var(--color-text-secondary);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 16px;
+            color: var(--color-text-primary);
             text-decoration: none;
-            font-size: 12px;
-            text-align: left;
-            transition: background 0.2s, color 0.2s;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
+            font-size: 13px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 100px;
+            position: relative;
+            overflow: hidden;
         }
-        .sc-dropdown-item:last-child { border-bottom: none; }
+        .sc-dropdown-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(197, 179, 88, 0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
         .sc-dropdown-item:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--color-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+        .sc-dropdown-item:hover::before { opacity: 1; }
+        .sc-dropdown-item span {
+            font-family: var(--font-tactical);
+            font-weight: 800;
             color: var(--color-gold);
+            font-size: 18px;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        .sc-dropdown-item div {
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--color-text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+        .sc-dropdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 16px;
         }
         .sc-dropdown-title {
-            padding: 8px 16px;
-            font-size: 10px;
+            padding: 0;
+            font-size: 16px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--color-gold);
-            opacity: 0.8;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 4px;
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .sc-close-btn {
+            background: none;
+            border: none;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            font-size: 20px;
+            padding: 4px;
+        }
+        .sc-close-btn:hover { color: var(--color-white); }
+
+        /* Remove hover state for desktop dropdown */
+        .school-card:hover .sc-dropdown {
+            display: none;
+        }
+        .school-card:hover .sc-dropdown.active {
+            display: block;
         }
 
         /* ── Responsive ── */
@@ -495,6 +580,8 @@
 
     <!-- Skip to content link for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="sc-dropdown-overlay" id="sc-overlay"></div>
 
     <!-- TOP BAR -->
     <div class="hub-topbar">
@@ -843,97 +930,117 @@
         <!-- Combat Arms -->
         <div class="hub-subsection-label">Combat Arms</div>
         <div class="school-grid school-grid--4col">
-            <div class="school-card school-card--active">
-                <a href="/mos/11-infantry/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">11</div>
-                    <div class="sc-name">Infantry</div>
-                    <div class="sc-badge">11-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">11 Series MOS</div>
-                    <a href="/mos/11a/" class="sc-dropdown-item">11A — Infantry Officer</a>
-                    <a href="/mos/11b/" class="sc-dropdown-item">11B — Infantryman</a>
-                    <a href="/mos/11c/" class="sc-dropdown-item">11C — Indirect Fire</a>
-                    <a href="/mos/11h/" class="sc-dropdown-item">11H — Anti-tank</a>
-                    <a href="/mos/11m/" class="sc-dropdown-item">11M — Bradley Infantry</a>
-                    <a href="/mos/11x/" class="sc-dropdown-item">11X — Enlistment Option</a>
-                    <a href="/mos/11z/" class="sc-dropdown-item">11Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="11">
+                <div class="sc-icon-text">11</div>
+                <div class="sc-name">Infantry</div>
+                <div class="sc-badge">11-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-11">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">11 Series: Infantry</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/11a/" class="sc-dropdown-item"><span>11A</span>Infantry Officer</a>
+                        <a href="/mos/11b/" class="sc-dropdown-item"><span>11B</span>Infantryman</a>
+                        <a href="/mos/11c/" class="sc-dropdown-item"><span>11C</span>Indirect Fire</a>
+                        <a href="/mos/11h/" class="sc-dropdown-item"><span>11H</span>Anti-tank</a>
+                        <a href="/mos/11m/" class="sc-dropdown-item"><span>11M</span>Bradley Infantry</a>
+                        <a href="/mos/11x/" class="sc-dropdown-item"><span>11X</span>Enlistment Option</a>
+                        <a href="/mos/11z/" class="sc-dropdown-item"><span>11Z</span>Senior Sergeant</a>
+                        <a href="/mos/11-infantry/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span>View Overview</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/12-engineers/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">12</div>
-                    <div class="sc-name">Engineers</div>
-                    <div class="sc-badge">12-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">12 Series MOS</div>
-                    <a href="/mos/12a/" class="sc-dropdown-item">12A — Engineer Officer</a>
-                    <a href="/mos/12b/" class="sc-dropdown-item">12B — Combat Engineer</a>
-                    <a href="/mos/12c/" class="sc-dropdown-item">12C — Bridge Crew</a>
-                    <a href="/mos/12d/" class="sc-dropdown-item">12D — Army Diver</a>
-                    <a href="/mos/12g/" class="sc-dropdown-item">12G — Quarry Specialist</a>
-                    <a href="/mos/12h/" class="sc-dropdown-item">12H — Construction Supervisor</a>
-                    <a href="/mos/12k/" class="sc-dropdown-item">12K — Plumber</a>
-                    <a href="/mos/12m/" class="sc-dropdown-item">12M — Firefighter</a>
-                    <a href="/mos/12n/" class="sc-dropdown-item">12N — Horizontal Engineer</a>
-                    <a href="/mos/12p/" class="sc-dropdown-item">12P — Prime Power</a>
-                    <a href="/mos/12q/" class="sc-dropdown-item">12Q — Power Distribution</a>
-                    <a href="/mos/12r/" class="sc-dropdown-item">12R — Interior Electrician</a>
-                    <a href="/mos/12t/" class="sc-dropdown-item">12T — Technical Engineer</a>
-                    <a href="/mos/12v/" class="sc-dropdown-item">12V — Concrete/Asphalt Op</a>
-                    <a href="/mos/12w/" class="sc-dropdown-item">12W — Carpentry/Masonry</a>
-                    <a href="/mos/12x/" class="sc-dropdown-item">12X — General Supervisor</a>
-                    <a href="/mos/12y/" class="sc-dropdown-item">12Y — Geospatial Engineer</a>
-                    <a href="/mos/12z/" class="sc-dropdown-item">12Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="12">
+                <div class="sc-icon-text">12</div>
+                <div class="sc-name">Engineers</div>
+                <div class="sc-badge">12-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-12">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">12 Series: Engineers</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/12a/" class="sc-dropdown-item"><span>12A</span>Engineer Officer</a>
+                        <a href="/mos/12b/" class="sc-dropdown-item"><span>12B</span>Combat Engineer</a>
+                        <a href="/mos/12c/" class="sc-dropdown-item"><span>12C</span>Bridge Crew</a>
+                        <a href="/mos/12d/" class="sc-dropdown-item"><span>12D</span>Army Diver</a>
+                        <a href="/mos/12g/" class="sc-dropdown-item"><span>12G</span>Quarry Specialist</a>
+                        <a href="/mos/12h/" class="sc-dropdown-item"><span>12H</span>Construction Supervisor</a>
+                        <a href="/mos/12k/" class="sc-dropdown-item"><span>12K</span>Plumber</a>
+                        <a href="/mos/12m/" class="sc-dropdown-item"><span>12M</span>Firefighter</a>
+                        <a href="/mos/12n/" class="sc-dropdown-item"><span>12N</span>Horizontal Engineer</a>
+                        <a href="/mos/12p/" class="sc-dropdown-item"><span>12P</span>Prime Power</a>
+                        <a href="/mos/12q/" class="sc-dropdown-item"><span>12Q</span>Power Distribution</a>
+                        <a href="/mos/12r/" class="sc-dropdown-item"><span>12R</span>Interior Electrician</a>
+                        <a href="/mos/12t/" class="sc-dropdown-item"><span>12T</span>Technical Engineer</a>
+                        <a href="/mos/12v/" class="sc-dropdown-item"><span>12V</span>Concrete/Asphalt Op</a>
+                        <a href="/mos/12w/" class="sc-dropdown-item"><span>12W</span>Carpentry/Masonry</a>
+                        <a href="/mos/12x/" class="sc-dropdown-item"><span>12X</span>General Supervisor</a>
+                        <a href="/mos/12y/" class="sc-dropdown-item"><span>12Y</span>Geospatial Engineer</a>
+                        <a href="/mos/12z/" class="sc-dropdown-item"><span>12Z</span>Senior Sergeant</a>
+                        <a href="/mos/12-engineers/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span>View Overview</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/13-artillery/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">13</div>
-                    <div class="sc-name">Field Artillery</div>
-                    <div class="sc-badge">13-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">13 Series MOS</div>
-                    <a href="/mos/13a/" class="sc-dropdown-item">13A — Artillery Officer</a>
-                    <a href="/mos/13b/" class="sc-dropdown-item">13B — Cannon Crew</a>
-                    <a href="/mos/13d/" class="sc-dropdown-item">13D — Tactical Data</a>
-                    <a href="/mos/13e/" class="sc-dropdown-item">13E — Fire Direction</a>
-                    <a href="/mos/13f/" class="sc-dropdown-item">13F — Fire Support</a>
-                    <a href="/mos/13j/" class="sc-dropdown-item">13J — Fire Control</a>
-                    <a href="/mos/13m/" class="sc-dropdown-item">13M — MLRS Crew</a>
-                    <a href="/mos/13p/" class="sc-dropdown-item">13P — MLRS Fire Direction</a>
-                    <a href="/mos/13r/" class="sc-dropdown-item">13R — Radar Operator</a>
-                    <a href="/mos/13t/" class="sc-dropdown-item">13T — Surveyor</a>
-                    <a href="/mos/13u/" class="sc-dropdown-item">13U — Sensor Specialist</a>
-                    <a href="/mos/13x/" class="sc-dropdown-item">13X — Enlistment Option</a>
-                    <a href="/mos/13z/" class="sc-dropdown-item">13Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="13">
+                <div class="sc-icon-text">13</div>
+                <div class="sc-name">Field Artillery</div>
+                <div class="sc-badge">13-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-13">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">13 Series: Field Artillery</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/13a/" class="sc-dropdown-item"><span>13A</span><div>Artillery Officer</div></a>
+                        <a href="/mos/13b/" class="sc-dropdown-item"><span>13B</span><div>Cannon Crew</div></a>
+                        <a href="/mos/13d/" class="sc-dropdown-item"><span>13D</span><div>Tactical Data</div></a>
+                        <a href="/mos/13e/" class="sc-dropdown-item"><span>13E</span><div>Fire Direction</div></a>
+                        <a href="/mos/13f/" class="sc-dropdown-item"><span>13F</span><div>Fire Support</div></a>
+                        <a href="/mos/13j/" class="sc-dropdown-item"><span>13J</span><div>Fire Control</div></a>
+                        <a href="/mos/13m/" class="sc-dropdown-item"><span>13M</span><div>MLRS Crew</div></a>
+                        <a href="/mos/13p/" class="sc-dropdown-item"><span>13P</span><div>MLRS Fire Direction</div></a>
+                        <a href="/mos/13r/" class="sc-dropdown-item"><span>13R</span><div>Radar Operator</div></a>
+                        <a href="/mos/13t/" class="sc-dropdown-item"><span>13T</span><div>Surveyor</div></a>
+                        <a href="/mos/13u/" class="sc-dropdown-item"><span>13U</span><div>Sensor Specialist</div></a>
+                        <a href="/mos/13x/" class="sc-dropdown-item"><span>13X</span><div>Enlistment Option</div></a>
+                        <a href="/mos/13z/" class="sc-dropdown-item"><span>13Z</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/13-artillery/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/19-armor/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">19</div>
-                    <div class="sc-name">Armor</div>
-                    <div class="sc-badge">19-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">19 Series MOS</div>
-                    <a href="/mos/19a/" class="sc-dropdown-item">19A — Armor Officer</a>
-                    <a href="/mos/19c/" class="sc-dropdown-item">19C — Cavalry Officer</a>
-                    <a href="/mos/19d/" class="sc-dropdown-item">19D — Cavalry Scout</a>
-                    <a href="/mos/19g/" class="sc-dropdown-item">19G — Armor Supervisor</a>
-                    <a href="/mos/19h/" class="sc-dropdown-item">19H — Armor Supervisor</a>
-                    <a href="/mos/19k/" class="sc-dropdown-item">19K — Abrams Tanker</a>
-                    <a href="/mos/19u/" class="sc-dropdown-item">19U — Enlistment Option</a>
-                    <a href="/mos/19z/" class="sc-dropdown-item">19Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="19">
+                <div class="sc-icon-text">19</div>
+                <div class="sc-name">Armor</div>
+                <div class="sc-badge">19-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-19">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">19 Series: Armor</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/19a/" class="sc-dropdown-item"><span>19A</span><div>Armor Officer</div></a>
+                        <a href="/mos/19c/" class="sc-dropdown-item"><span>19C</span><div>Cavalry Officer</div></a>
+                        <a href="/mos/19d/" class="sc-dropdown-item"><span>19D</span><div>Cavalry Scout</div></a>
+                        <a href="/mos/19g/" class="sc-dropdown-item"><span>19G</span><div>Armor Supervisor</div></a>
+                        <a href="/mos/19h/" class="sc-dropdown-item"><span>19H</span><div>Armor Supervisor</div></a>
+                        <a href="/mos/19k/" class="sc-dropdown-item"><span>19K</span><div>Abrams Tanker</div></a>
+                        <a href="/mos/19u/" class="sc-dropdown-item"><span>19U</span><div>Enlistment Option</div></a>
+                        <a href="/mos/19z/" class="sc-dropdown-item"><span>19Z</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/19-armor/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -941,60 +1048,75 @@
         <!-- Special Operations -->
         <div class="hub-subsection-label">Special Operations</div>
         <div class="school-grid school-grid--3col">
-            <div class="school-card school-card--active">
-                <a href="/sf/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">18</div>
-                    <div class="sc-name">Special Forces</div>
-                    <div class="sc-badge">18-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">18 Series MOS</div>
-                    <a href="/mos/18a/" class="sc-dropdown-item">18A — SF Officer</a>
-                    <a href="/mos/18b/" class="sc-dropdown-item">18B — Weapons Sergeant</a>
-                    <a href="/mos/18c/" class="sc-dropdown-item">18C — Engineer Sergeant</a>
-                    <a href="/mos/18d/" class="sc-dropdown-item">18D — Medical Sergeant</a>
-                    <a href="/mos/18e/" class="sc-dropdown-item">18E — Comm Sergeant</a>
-                    <a href="/mos/18f/" class="sc-dropdown-item">18F — Intel Sergeant</a>
-                    <a href="/mos/18x/" class="sc-dropdown-item">18X — Enlistment Option</a>
-                    <a href="/mos/18z/" class="sc-dropdown-item">18Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="18">
+                <div class="sc-icon-text">18</div>
+                <div class="sc-name">Special Forces</div>
+                <div class="sc-badge">18-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-18">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">18 Series: Special Forces</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/18a/" class="sc-dropdown-item"><span>18A</span><div>SF Officer</div></a>
+                        <a href="/mos/18b/" class="sc-dropdown-item"><span>18B</span><div>Weapons Sergeant</div></a>
+                        <a href="/mos/18c/" class="sc-dropdown-item"><span>18C</span><div>Engineer Sergeant</div></a>
+                        <a href="/mos/18d/" class="sc-dropdown-item"><span>18D</span><div>Medical Sergeant</div></a>
+                        <a href="/mos/18e/" class="sc-dropdown-item"><span>18E</span><div>Comm Sergeant</div></a>
+                        <a href="/mos/18f/" class="sc-dropdown-item"><span>18F</span><div>Intel Sergeant</div></a>
+                        <a href="/mos/18x/" class="sc-dropdown-item"><span>18X</span><div>Enlistment Option</div></a>
+                        <a href="/mos/18z/" class="sc-dropdown-item"><span>18Z</span><div>Senior Sergeant</div></a>
+                        <a href="/sf/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/37-psyop/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">37</div>
-                    <div class="sc-name">PSYOP</div>
-                    <div class="sc-badge">37-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">37 Series MOS</div>
-                    <a href="/mos/37a/" class="sc-dropdown-item">37A — PSYOP Officer</a>
-                    <a href="/mos/37f/" class="sc-dropdown-item">37F — PSYOP Specialist</a>
-                    <a href="/mos/37x/" class="sc-dropdown-item">37X — Enlistment Option</a>
+            <div class="school-card school-card--active" data-dropdown-id="37">
+                <div class="sc-icon-text">37</div>
+                <div class="sc-name">PSYOP</div>
+                <div class="sc-badge">37-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-37">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">37 Series: PSYOP</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/37a/" class="sc-dropdown-item"><span>37A</span><div>PSYOP Officer</div></a>
+                        <a href="/mos/37f/" class="sc-dropdown-item"><span>37F</span><div>PSYOP Specialist</div></a>
+                        <a href="/mos/37x/" class="sc-dropdown-item"><span>37X</span><div>Enlistment Option</div></a>
+                        <a href="/mos/37-psyop/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/38-civil-affairs/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">38</div>
-                    <div class="sc-name">Civil Affairs</div>
-                    <div class="sc-badge">38-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">38 Series MOS</div>
-                    <a href="/mos/38a/" class="sc-dropdown-item">38A — CA Officer</a>
-                    <a href="/mos/38b/" class="sc-dropdown-item">38B — CA Specialist</a>
-                    <a href="/mos/38g/" class="sc-dropdown-item">38G — Military Gov</a>
-                    <a href="/mos/38h/" class="sc-dropdown-item">38H — Senior Sergeant</a>
-                    <a href="/mos/38r/" class="sc-dropdown-item">38R — Senior Sergeant</a>
-                    <a href="/mos/38s/" class="sc-dropdown-item">38S — Senior Sergeant</a>
-                    <a href="/mos/38v/" class="sc-dropdown-item">38V — Senior Sergeant</a>
-                    <a href="/mos/38w/" class="sc-dropdown-item">38W — Senior Sergeant</a>
-                    <a href="/mos/38x/" class="sc-dropdown-item">38X — Enlistment Option</a>
-                    <a href="/mos/38z/" class="sc-dropdown-item">38Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="38">
+                <div class="sc-icon-text">38</div>
+                <div class="sc-name">Civil Affairs</div>
+                <div class="sc-badge">38-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-38">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">38 Series: Civil Affairs</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/38a/" class="sc-dropdown-item"><span>38A</span><div>CA Officer</div></a>
+                        <a href="/mos/38b/" class="sc-dropdown-item"><span>38B</span><div>CA Specialist</div></a>
+                        <a href="/mos/38g/" class="sc-dropdown-item"><span>38G</span><div>Military Gov</div></a>
+                        <a href="/mos/38h/" class="sc-dropdown-item"><span>38H</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/38r/" class="sc-dropdown-item"><span>38R</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/38s/" class="sc-dropdown-item"><span>38S</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/38v/" class="sc-dropdown-item"><span>38V</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/38w/" class="sc-dropdown-item"><span>38W</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/38x/" class="sc-dropdown-item"><span>38X</span><div>Enlistment Option</div></a>
+                        <a href="/mos/38z/" class="sc-dropdown-item"><span>38Z</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/38-civil-affairs/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1002,203 +1124,248 @@
         <!-- Combat Support -->
         <div class="hub-subsection-label">Combat Support</div>
         <div class="school-grid">
-            <div class="school-card school-card--active">
-                <a href="/mos/14-air-defense/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">14</div>
-                    <div class="sc-name">Air Defense</div>
-                    <div class="sc-badge">14-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">14 Series MOS</div>
-                    <a href="/mos/14a/" class="sc-dropdown-item">14A — ADA Officer</a>
-                    <a href="/mos/14e/" class="sc-dropdown-item">14E — Patriot Operator</a>
-                    <a href="/mos/14g/" class="sc-dropdown-item">14G — Battle Management</a>
-                    <a href="/mos/14h/" class="sc-dropdown-item">14H — Early Warning</a>
-                    <a href="/mos/14j/" class="sc-dropdown-item">14J — TOC Operator</a>
-                    <a href="/mos/14p/" class="sc-dropdown-item">14P — AMD Crewmember</a>
-                    <a href="/mos/14s/" class="sc-dropdown-item">14S — Avenger Crew</a>
-                    <a href="/mos/14t/" class="sc-dropdown-item">14T — Patriot Launcher</a>
-                    <a href="/mos/14u/" class="sc-dropdown-item">14U — Master Gunner</a>
-                    <a href="/mos/14x/" class="sc-dropdown-item">14X — Enlistment Option</a>
-                    <a href="/mos/14z/" class="sc-dropdown-item">14Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="14">
+                <div class="sc-icon-text">14</div>
+                <div class="sc-name">Air Defense</div>
+                <div class="sc-badge">14-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-14">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">14 Series: Air Defense</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/14a/" class="sc-dropdown-item"><span>14A</span><div>ADA Officer</div></a>
+                        <a href="/mos/14e/" class="sc-dropdown-item"><span>14E</span><div>Patriot Operator</div></a>
+                        <a href="/mos/14g/" class="sc-dropdown-item"><span>14G</span><div>Battle Management</div></a>
+                        <a href="/mos/14h/" class="sc-dropdown-item"><span>14H</span><div>Early Warning</div></a>
+                        <a href="/mos/14j/" class="sc-dropdown-item"><span>14J</span><div>TOC Operator</div></a>
+                        <a href="/mos/14p/" class="sc-dropdown-item"><span>14P</span><div>AMD Crewmember</div></a>
+                        <a href="/mos/14s/" class="sc-dropdown-item"><span>14S</span><div>Avenger Crew</div></a>
+                        <a href="/mos/14t/" class="sc-dropdown-item"><span>14T</span><div>Patriot Launcher</div></a>
+                        <a href="/mos/14u/" class="sc-dropdown-item"><span>14U</span><div>Master Gunner</div></a>
+                        <a href="/mos/14x/" class="sc-dropdown-item"><span>14X</span><div>Enlistment Option</div></a>
+                        <a href="/mos/14z/" class="sc-dropdown-item"><span>14Z</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/14-air-defense/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/15-aviation/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">15</div>
-                    <div class="sc-name">Aviation</div>
-                    <div class="sc-badge">15-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">15 Series MOS</div>
-                    <a href="/mos/15a/" class="sc-dropdown-item">15A — Aviation Officer</a>
-                    <a href="/mos/15b/" class="sc-dropdown-item">15B — Ops Officer</a>
-                    <a href="/mos/15c/" class="sc-dropdown-item">15C — UAS Operator</a>
-                    <a href="/mos/15d/" class="sc-dropdown-item">15D — Powertrain Repairer</a>
-                    <a href="/mos/15e/" class="sc-dropdown-item">15E — UAS Repairer</a>
-                    <a href="/mos/15f/" class="sc-dropdown-item">15F — Electrician</a>
-                    <a href="/mos/15g/" class="sc-dropdown-item">15G — Structural Repairer</a>
-                    <a href="/mos/15h/" class="sc-dropdown-item">15H — Pneudraulics</a>
-                    <a href="/mos/15j/" class="sc-dropdown-item">15J — Kiowa Repairer</a>
-                    <a href="/mos/15k/" class="sc-dropdown-item">15K — Repair Supervisor</a>
-                    <a href="/mos/15l/" class="sc-dropdown-item">15L — ALSE Specialist</a>
-                    <a href="/mos/15m/" class="sc-dropdown-item">15M — Warrior Repairer</a>
-                    <a href="/mos/15n/" class="sc-dropdown-item">15N — Avionic Mechanic</a>
-                    <a href="/mos/15p/" class="sc-dropdown-item">15P — Aviation Ops</a>
-                    <a href="/mos/15q/" class="sc-dropdown-item">15Q — ATC Operator</a>
-                    <a href="/mos/15r/" class="sc-dropdown-item">15R — Apache Repairer</a>
-                    <a href="/mos/15s/" class="sc-dropdown-item">15S — Kiowa Repairer</a>
-                    <a href="/mos/15t/" class="sc-dropdown-item">15T — Black Hawk Repair</a>
-                    <a href="/mos/15u/" class="sc-dropdown-item">15U — Chinook Repairer</a>
-                    <a href="/mos/15v/" class="sc-dropdown-item">15V — Observation Repair</a>
-                    <a href="/mos/15w/" class="sc-dropdown-item">15W — Shadow Operator</a>
-                    <a href="/mos/15x/" class="sc-dropdown-item">15X — Apache Systems</a>
-                    <a href="/mos/15y/" class="sc-dropdown-item">15Y — Longbow Systems</a>
-                    <a href="/mos/15z/" class="sc-dropdown-item">15Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="15">
+                <div class="sc-icon-text">15</div>
+                <div class="sc-name">Aviation</div>
+                <div class="sc-badge">15-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-15">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">15 Series: Aviation</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/15a/" class="sc-dropdown-item"><span>15A</span><div>Aviation Officer</div></a>
+                        <a href="/mos/15b/" class="sc-dropdown-item"><span>15B</span><div>Ops Officer</div></a>
+                        <a href="/mos/15c/" class="sc-dropdown-item"><span>15C</span><div>UAS Operator</div></a>
+                        <a href="/mos/15d/" class="sc-dropdown-item"><span>15D</span><div>Powertrain Repairer</div></a>
+                        <a href="/mos/15e/" class="sc-dropdown-item"><span>15E</span><div>UAS Repairer</div></a>
+                        <a href="/mos/15f/" class="sc-dropdown-item"><span>15F</span><div>Electrician</div></a>
+                        <a href="/mos/15g/" class="sc-dropdown-item"><span>15G</span><div>Structural Repairer</div></a>
+                        <a href="/mos/15h/" class="sc-dropdown-item"><span>15H</span><div>Pneudraulics</div></a>
+                        <a href="/mos/15j/" class="sc-dropdown-item"><span>15J</span><div>Kiowa Repairer</div></a>
+                        <a href="/mos/15k/" class="sc-dropdown-item"><span>15K</span><div>Repair Supervisor</div></a>
+                        <a href="/mos/15l/" class="sc-dropdown-item"><span>15L</span><div>ALSE Specialist</div></a>
+                        <a href="/mos/15m/" class="sc-dropdown-item"><span>15M</span><div>Warrior Repairer</div></a>
+                        <a href="/mos/15n/" class="sc-dropdown-item"><span>15N</span><div>Avionic Mechanic</div></a>
+                        <a href="/mos/15p/" class="sc-dropdown-item"><span>15P</span><div>Aviation Ops</div></a>
+                        <a href="/mos/15q/" class="sc-dropdown-item"><span>15Q</span><div>ATC Operator</div></a>
+                        <a href="/mos/15r/" class="sc-dropdown-item"><span>15R</span><div>Apache Repairer</div></a>
+                        <a href="/mos/15s/" class="sc-dropdown-item"><span>15S</span><div>Kiowa Repairer</div></a>
+                        <a href="/mos/15t/" class="sc-dropdown-item"><span>15T</span><div>Black Hawk Repair</div></a>
+                        <a href="/mos/15u/" class="sc-dropdown-item"><span>15U</span><div>Chinook Repairer</div></a>
+                        <a href="/mos/15v/" class="sc-dropdown-item"><span>15V</span><div>Observation Repair</div></a>
+                        <a href="/mos/15w/" class="sc-dropdown-item"><span>15W</span><div>Shadow Operator</div></a>
+                        <a href="/mos/15x/" class="sc-dropdown-item"><span>15X</span><div>Apache Systems</div></a>
+                        <a href="/mos/15y/" class="sc-dropdown-item"><span>15Y</span><div>Longbow Systems</div></a>
+                        <a href="/mos/15z/" class="sc-dropdown-item"><span>15Z</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/15-aviation/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/17-cyber/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">17</div>
-                    <div class="sc-name">Cyber</div>
-                    <div class="sc-badge">17-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">17 Series MOS</div>
-                    <a href="/mos/17a/" class="sc-dropdown-item">17A — Cyber Officer</a>
-                    <a href="/mos/17b/" class="sc-dropdown-item">17B — Ops Officer</a>
-                    <a href="/mos/17c/" class="sc-dropdown-item">17C — Cyber Specialist</a>
-                    <a href="/mos/17d/" class="sc-dropdown-item">17D — Network Defender</a>
-                    <a href="/mos/17e/" class="sc-dropdown-item">17E — EW Specialist</a>
-                    <a href="/mos/17x/" class="sc-dropdown-item">17X — Enlistment Option</a>
-                    <a href="/mos/17z/" class="sc-dropdown-item">17Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="17">
+                <div class="sc-icon-text">17</div>
+                <div class="sc-name">Cyber</div>
+                <div class="sc-badge">17-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-17">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">17 Series: Cyber</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/17a/" class="sc-dropdown-item"><span>17A</span><div>Cyber Officer</div></a>
+                        <a href="/mos/17b/" class="sc-dropdown-item"><span>17B</span><div>Ops Officer</div></a>
+                        <a href="/mos/17c/" class="sc-dropdown-item"><span>17C</span><div>Cyber Specialist</div></a>
+                        <a href="/mos/17d/" class="sc-dropdown-item"><span>17D</span><div>Network Defender</div></a>
+                        <a href="/mos/17e/" class="sc-dropdown-item"><span>17E</span><div>EW Specialist</div></a>
+                        <a href="/mos/17x/" class="sc-dropdown-item"><span>17X</span><div>Enlistment Option</div></a>
+                        <a href="/mos/17z/" class="sc-dropdown-item"><span>17Z</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/17-cyber/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/25-signal/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">25</div>
-                    <div class="sc-name">Signal</div>
-                    <div class="sc-badge">25-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">25 Series MOS</div>
-                    <a href="/mos/25b/" class="sc-dropdown-item">25B — IT Specialist</a>
-                    <a href="/mos/25c/" class="sc-dropdown-item">25C — Radio Operator</a>
-                    <a href="/mos/25d/" class="sc-dropdown-item">25D — Network Defender</a>
-                    <a href="/mos/25e/" class="sc-dropdown-item">25E — Spectrum Manager</a>
-                    <a href="/mos/25f/" class="sc-dropdown-item">25F — Switching Spec</a>
-                    <a href="/mos/25g/" class="sc-dropdown-item">25G — MSE Operator</a>
-                    <a href="/mos/25h/" class="sc-dropdown-item">25H — Network Specialist</a>
-                    <a href="/mos/25l/" class="sc-dropdown-item">25L — Cable Specialist</a>
-                    <a href="/mos/25m/" class="sc-dropdown-item">25M — Illustrator</a>
-                    <a href="/mos/25n/" class="sc-dropdown-item">25N — Network Specialist</a>
-                    <a href="/mos/25p/" class="sc-dropdown-item">25P — Microwave Spec</a>
-                    <a href="/mos/25q/" class="sc-dropdown-item">25Q — Transmission Spec</a>
-                    <a href="/mos/25r/" class="sc-dropdown-item">25R — Visual Specialist</a>
-                    <a href="/mos/25s/" class="sc-dropdown-item">25S — Satellite Specialist</a>
-                    <a href="/mos/25t/" class="sc-dropdown-item">25T — Systems Chief</a>
-                    <a href="/mos/25u/" class="sc-dropdown-item">25U — Signal Support</a>
-                    <a href="/mos/25v/" class="sc-dropdown-item">25V — Visual Specialist</a>
-                    <a href="/mos/25w/" class="sc-dropdown-item">25W — Telecom Chief</a>
-                    <a href="/mos/25x/" class="sc-dropdown-item">25X — Senior Sergeant</a>
-                    <a href="/mos/25z/" class="sc-dropdown-item">25Z — Visual Chief</a>
+            <div class="school-card school-card--active" data-dropdown-id="25">
+                <div class="sc-icon-text">25</div>
+                <div class="sc-name">Signal</div>
+                <div class="sc-badge">25-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-25">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">25 Series: Signal</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/25b/" class="sc-dropdown-item"><span>25B</span><div>IT Specialist</div></a>
+                        <a href="/mos/25c/" class="sc-dropdown-item"><span>25C</span><div>Radio Operator</div></a>
+                        <a href="/mos/25d/" class="sc-dropdown-item"><span>25D</span><div>Network Defender</div></a>
+                        <a href="/mos/25e/" class="sc-dropdown-item"><span>25E</span><div>Spectrum Manager</div></a>
+                        <a href="/mos/25f/" class="sc-dropdown-item"><span>25F</span><div>Switching Spec</div></a>
+                        <a href="/mos/25g/" class="sc-dropdown-item"><span>25G</span><div>MSE Operator</div></a>
+                        <a href="/mos/25h/" class="sc-dropdown-item"><span>25H</span><div>Network Specialist</div></a>
+                        <a href="/mos/25l/" class="sc-dropdown-item"><span>25L</span><div>Cable Specialist</div></a>
+                        <a href="/mos/25m/" class="sc-dropdown-item"><span>25M</span><div>Illustrator</div></a>
+                        <a href="/mos/25n/" class="sc-dropdown-item"><span>25N</span><div>Network Specialist</div></a>
+                        <a href="/mos/25p/" class="sc-dropdown-item"><span>25P</span><div>Microwave Spec</div></a>
+                        <a href="/mos/25q/" class="sc-dropdown-item"><span>25Q</span><div>Transmission Spec</div></a>
+                        <a href="/mos/25r/" class="sc-dropdown-item"><span>25R</span><div>Visual Specialist</div></a>
+                        <a href="/mos/25s/" class="sc-dropdown-item"><span>25S</span><div>Satellite Specialist</div></a>
+                        <a href="/mos/25t/" class="sc-dropdown-item"><span>25T</span><div>Systems Chief</div></a>
+                        <a href="/mos/25u/" class="sc-dropdown-item"><span>25U</span><div>Signal Support</div></a>
+                        <a href="/mos/25v/" class="sc-dropdown-item"><span>25V</span><div>Visual Specialist</div></a>
+                        <a href="/mos/25w/" class="sc-dropdown-item"><span>25W</span><div>Telecom Chief</div></a>
+                        <a href="/mos/25x/" class="sc-dropdown-item"><span>25X</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/25z/" class="sc-dropdown-item"><span>25Z</span><div>Visual Chief</div></a>
+                        <a href="/mos/25-signal/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/29-electronic-warfare/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">29</div>
-                    <div class="sc-name">E-Warfare</div>
-                    <div class="sc-badge">29-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">29 Series MOS</div>
-                    <a href="/mos/29c/" class="sc-dropdown-item">29C — EW Specialist</a>
-                    <a href="/mos/29e/" class="sc-dropdown-item">29E — EW Specialist</a>
-                    <a href="/mos/29v/" class="sc-dropdown-item">29V — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="29">
+                <div class="sc-icon-text">29</div>
+                <div class="sc-name">E-Warfare</div>
+                <div class="sc-badge">29-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-29">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">29 Series: E-Warfare</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/29c/" class="sc-dropdown-item"><span>29C</span><div>EW Specialist</div></a>
+                        <a href="/mos/29e/" class="sc-dropdown-item"><span>29E</span><div>EW Specialist</div></a>
+                        <a href="/mos/29v/" class="sc-dropdown-item"><span>29V</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/29-electronic-warfare/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/31-mp/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">31</div>
-                    <div class="sc-name">Military Police</div>
-                    <div class="sc-badge">31-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">31 Series MOS</div>
-                    <a href="/mos/31a/" class="sc-dropdown-item">31A — MP Officer</a>
-                    <a href="/mos/31b/" class="sc-dropdown-item">31B — Military Police</a>
-                    <a href="/mos/31d/" class="sc-dropdown-item">31D — Special Agent</a>
-                    <a href="/mos/31e/" class="sc-dropdown-item">31E — I/R Specialist</a>
-                    <a href="/mos/31k/" class="sc-dropdown-item">31K — MWD Handler</a>
-                    <a href="/mos/31z/" class="sc-dropdown-item">31Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="31">
+                <div class="sc-icon-text">31</div>
+                <div class="sc-name">Military Police</div>
+                <div class="sc-badge">31-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-31">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">31 Series: Military Police</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/31a/" class="sc-dropdown-item"><span>31A</span><div>MP Officer</div></a>
+                        <a href="/mos/31b/" class="sc-dropdown-item"><span>31B</span><div>Military Police</div></a>
+                        <a href="/mos/31d/" class="sc-dropdown-item"><span>31D</span><div>Special Agent</div></a>
+                        <a href="/mos/31e/" class="sc-dropdown-item"><span>31E</span><div>I/R Specialist</div></a>
+                        <a href="/mos/31k/" class="sc-dropdown-item"><span>31K</span><div>MWD Handler</div></a>
+                        <a href="/mos/31z/" class="sc-dropdown-item"><span>31Z</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/31-mp/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/35-mi/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">35</div>
-                    <div class="sc-name">Military Intel</div>
-                    <div class="sc-badge">35-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">35 Series MOS</div>
-                    <a href="/mos/35a/" class="sc-dropdown-item">35A — MI Officer</a>
-                    <a href="/mos/35d/" class="sc-dropdown-item">35D — All-Source Officer</a>
-                    <a href="/mos/35e/" class="sc-dropdown-item">35E — CI Officer</a>
-                    <a href="/mos/35f/" class="sc-dropdown-item">35F — Intel Analyst</a>
-                    <a href="/mos/35g/" class="sc-dropdown-item">35G — Imagery Analyst</a>
-                    <a href="/mos/35l/" class="sc-dropdown-item">35L — CI Special Agent</a>
-                    <a href="/mos/35m/" class="sc-dropdown-item">35M — HUMINT Collector</a>
-                    <a href="/mos/35n/" class="sc-dropdown-item">35N — SIGINT Analyst</a>
-                    <a href="/mos/35p/" class="sc-dropdown-item">35P — Crypto Linguist</a>
-                    <a href="/mos/35q/" class="sc-dropdown-item">35Q — Network Specialist</a>
-                    <a href="/mos/35s/" class="sc-dropdown-item">35S — Signals Collector</a>
-                    <a href="/mos/35t/" class="sc-dropdown-item">35T — Systems Maintainer</a>
-                    <a href="/mos/35v/" class="sc-dropdown-item">35V — Senior Sergeant</a>
-                    <a href="/mos/35w/" class="sc-dropdown-item">35W — Enlistment Option</a>
-                    <a href="/mos/35x/" class="sc-dropdown-item">35X — Senior Sergeant</a>
-                    <a href="/mos/35y/" class="sc-dropdown-item">35Y — Senior Sergeant</a>
-                    <a href="/mos/35z/" class="sc-dropdown-item">35Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="35">
+                <div class="sc-icon-text">35</div>
+                <div class="sc-name">Military Intel</div>
+                <div class="sc-badge">35-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-35">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">35 Series: Military Intel</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/35a/" class="sc-dropdown-item"><span>35A</span><div>MI Officer</div></a>
+                        <a href="/mos/35d/" class="sc-dropdown-item"><span>35D</span><div>All-Source Officer</div></a>
+                        <a href="/mos/35e/" class="sc-dropdown-item"><span>35E</span><div>CI Officer</div></a>
+                        <a href="/mos/35f/" class="sc-dropdown-item"><span>35F</span><div>Intel Analyst</div></a>
+                        <a href="/mos/35g/" class="sc-dropdown-item"><span>35G</span><div>Imagery Analyst</div></a>
+                        <a href="/mos/35l/" class="sc-dropdown-item"><span>35L</span><div>CI Special Agent</div></a>
+                        <a href="/mos/35m/" class="sc-dropdown-item"><span>35M</span><div>HUMINT Collector</div></a>
+                        <a href="/mos/35n/" class="sc-dropdown-item"><span>35N</span><div>SIGINT Analyst</div></a>
+                        <a href="/mos/35p/" class="sc-dropdown-item"><span>35P</span><div>Crypto Linguist</div></a>
+                        <a href="/mos/35q/" class="sc-dropdown-item"><span>35Q</span><div>Network Specialist</div></a>
+                        <a href="/mos/35s/" class="sc-dropdown-item"><span>35S</span><div>Signals Collector</div></a>
+                        <a href="/mos/35t/" class="sc-dropdown-item"><span>35T</span><div>Systems Maintainer</div></a>
+                        <a href="/mos/35v/" class="sc-dropdown-item"><span>35V</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/35w/" class="sc-dropdown-item"><span>35W</span><div>Enlistment Option</div></a>
+                        <a href="/mos/35x/" class="sc-dropdown-item"><span>35X</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/35y/" class="sc-dropdown-item"><span>35Y</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/35z/" class="sc-dropdown-item"><span>35Z</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/35-mi/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/46-public-affairs/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">46</div>
-                    <div class="sc-name">Public Affairs</div>
-                    <div class="sc-badge">46-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">46 Series MOS</div>
-                    <a href="/mos/46q/" class="sc-dropdown-item">46Q — PA Specialist</a>
-                    <a href="/mos/46r/" class="sc-dropdown-item">46R — Broadcast Specialist</a>
+            <div class="school-card school-card--active" data-dropdown-id="46">
+                <div class="sc-icon-text">46</div>
+                <div class="sc-name">Public Affairs</div>
+                <div class="sc-badge">46-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-46">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">46 Series: Public Affairs</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/46q/" class="sc-dropdown-item"><span>46Q</span>PA Specialist</a>
+                        <a href="/mos/46r/" class="sc-dropdown-item"><span>46R</span>Broadcast Specialist</a>
+                        <a href="/mos/46-public-affairs/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span>View Overview</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/74-cbrn/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">74</div>
-                    <div class="sc-name">CBRN</div>
-                    <div class="sc-badge">74-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">74 Series MOS</div>
-                    <a href="/mos/74a/" class="sc-dropdown-item">74A — CBRN Officer</a>
-                    <a href="/mos/74d/" class="sc-dropdown-item">74D — CBRN Specialist</a>
+            <div class="school-card school-card--active" data-dropdown-id="74">
+                <div class="sc-icon-text">74</div>
+                <div class="sc-name">CBRN</div>
+                <div class="sc-badge">74-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-74">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">74 Series: CBRN</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/74a/" class="sc-dropdown-item"><span>74A</span>CBRN Officer</a>
+                        <a href="/mos/74d/" class="sc-dropdown-item"><span>74D</span>CBRN Specialist</a>
+                        <a href="/mos/74-cbrn/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span>View Overview</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1206,206 +1373,251 @@
         <!-- Sustainment -->
         <div class="hub-subsection-label">Sustainment</div>
         <div class="school-grid">
-            <div class="school-card school-card--active">
-                <a href="/mos/36-finance/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">36</div>
-                    <div class="sc-name">Finance</div>
-                    <div class="sc-badge">36-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">36 Series MOS</div>
-                    <a href="/mos/36a/" class="sc-dropdown-item">36A — FM Officer</a>
-                    <a href="/mos/36b/" class="sc-dropdown-item">36B — FM Technician</a>
+            <div class="school-card school-card--active" data-dropdown-id="36">
+                <div class="sc-icon-text">36</div>
+                <div class="sc-name">Finance</div>
+                <div class="sc-badge">36-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-36">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">36 Series: Finance</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/36a/" class="sc-dropdown-item"><span>36A</span><div>FM Officer</div></a>
+                        <a href="/mos/36b/" class="sc-dropdown-item"><span>36B</span><div>FM Technician</div></a>
+                        <a href="/mos/36-finance/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/42-ag/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">42</div>
-                    <div class="sc-name">Adjutant General</div>
-                    <div class="sc-badge">42-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">42 Series MOS</div>
-                    <a href="/mos/42a/" class="sc-dropdown-item">42A — HR Specialist</a>
-                    <a href="/mos/42b/" class="sc-dropdown-item">42B — AG Officer</a>
-                    <a href="/mos/42c/" class="sc-dropdown-item">42C — Band Officer</a>
-                    <a href="/mos/42h/" class="sc-dropdown-item">42H — Senior Sergeant</a>
-                    <a href="/mos/42r/" class="sc-dropdown-item">42R — Bandperson</a>
-                    <a href="/mos/42s/" class="sc-dropdown-item">42S — Special Band</a>
-                    <a href="/mos/42t/" class="sc-dropdown-item">42T — Special Band</a>
+            <div class="school-card school-card--active" data-dropdown-id="42">
+                <div class="sc-icon-text">42</div>
+                <div class="sc-name">Adjutant General</div>
+                <div class="sc-badge">42-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-42">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">42 Series: AG</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/42a/" class="sc-dropdown-item"><span>42A</span><div>HR Specialist</div></a>
+                        <a href="/mos/42b/" class="sc-dropdown-item"><span>42B</span><div>AG Officer</div></a>
+                        <a href="/mos/42c/" class="sc-dropdown-item"><span>42C</span><div>Band Officer</div></a>
+                        <a href="/mos/42h/" class="sc-dropdown-item"><span>42H</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/42r/" class="sc-dropdown-item"><span>42R</span><div>Bandperson</div></a>
+                        <a href="/mos/42s/" class="sc-dropdown-item"><span>42S</span><div>Special Band</div></a>
+                        <a href="/mos/42t/" class="sc-dropdown-item"><span>42T</span><div>Special Band</div></a>
+                        <a href="/mos/42-ag/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/52-utilities/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">52</div>
-                    <div class="sc-name">Utilities</div>
-                    <div class="sc-badge">52-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">52 Series MOS</div>
-                    <a href="/mos/52c/" class="sc-dropdown-item">52C — Utilities Repairer</a>
+            <div class="school-card school-card--active" data-dropdown-id="52">
+                <div class="sc-icon-text">52</div>
+                <div class="sc-name">Utilities</div>
+                <div class="sc-badge">52-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-52">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">52 Series: Utilities</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/52c/" class="sc-dropdown-item"><span>52C</span><div>Utilities Repairer</div></a>
+                        <a href="/mos/52-utilities/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/68-medical/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">68</div>
-                    <div class="sc-name">Medical</div>
-                    <div class="sc-badge">68-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">68 Series MOS</div>
-                    <a href="/mos/68a/" class="sc-dropdown-item">68A — Biomedical</a>
-                    <a href="/mos/68b/" class="sc-dropdown-item">68B — Orthopedic</a>
-                    <a href="/mos/68c/" class="sc-dropdown-item">68C — Nursing</a>
-                    <a href="/mos/68d/" class="sc-dropdown-item">68D — OR Specialist</a>
-                    <a href="/mos/68e/" class="sc-dropdown-item">68E — Dental Specialist</a>
-                    <a href="/mos/68f/" class="sc-dropdown-item">68F — PT Specialist</a>
-                    <a href="/mos/68g/" class="sc-dropdown-item">68G — Patient Admin</a>
-                    <a href="/mos/68h/" class="sc-dropdown-item">68H — Optical Specialist</a>
-                    <a href="/mos/68j/" class="sc-dropdown-item">68J — Logistics Spec</a>
-                    <a href="/mos/68k/" class="sc-dropdown-item">68K — Lab Specialist</a>
-                    <a href="/mos/68l/" class="sc-dropdown-item">68L — OT Specialist</a>
-                    <a href="/mos/68m/" class="sc-dropdown-item">68M — Nutrition Spec</a>
-                    <a href="/mos/68n/" class="sc-dropdown-item">68N — Cardio Specialist</a>
-                    <a href="/mos/68p/" class="sc-dropdown-item">68P — Radiology Spec</a>
-                    <a href="/mos/68q/" class="sc-dropdown-item">68Q — Pharmacy Spec</a>
-                    <a href="/mos/68r/" class="sc-dropdown-item">68R — Veterinary Inspector</a>
-                    <a href="/mos/68s/" class="sc-dropdown-item">68S — Preventive Medicine</a>
-                    <a href="/mos/68t/" class="sc-dropdown-item">68T — Animal Care</a>
-                    <a href="/mos/68u/" class="sc-dropdown-item">68U — ENT Specialist</a>
-                    <a href="/mos/68v/" class="sc-dropdown-item">68V — Respiratory Spec</a>
-                    <a href="/mos/68w/" class="sc-dropdown-item">68W — Combat Medic</a>
-                    <a href="/mos/68x/" class="sc-dropdown-item">68X — BH Specialist</a>
-                    <a href="/mos/68y/" class="sc-dropdown-item">68Y — Eye Specialist</a>
-                    <a href="/mos/68z/" class="sc-dropdown-item">68Z — Chief Medical NCO</a>
+            <div class="school-card school-card--active" data-dropdown-id="68">
+                <div class="sc-icon-text">68</div>
+                <div class="sc-name">Medical</div>
+                <div class="sc-badge">68-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-68">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">68 Series: Medical</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/68a/" class="sc-dropdown-item"><span>68A</span><div>Biomedical</div></a>
+                        <a href="/mos/68b/" class="sc-dropdown-item"><span>68B</span><div>Orthopedic</div></a>
+                        <a href="/mos/68c/" class="sc-dropdown-item"><span>68C</span><div>Nursing</div></a>
+                        <a href="/mos/68d/" class="sc-dropdown-item"><span>68D</span><div>OR Specialist</div></a>
+                        <a href="/mos/68e/" class="sc-dropdown-item"><span>68E</span><div>Dental Specialist</div></a>
+                        <a href="/mos/68f/" class="sc-dropdown-item"><span>68F</span><div>PT Specialist</div></a>
+                        <a href="/mos/68g/" class="sc-dropdown-item"><span>68G</span><div>Patient Admin</div></a>
+                        <a href="/mos/68h/" class="sc-dropdown-item"><span>68H</span><div>Optical Specialist</div></a>
+                        <a href="/mos/68j/" class="sc-dropdown-item"><span>68J</span><div>Logistics Spec</div></a>
+                        <a href="/mos/68k/" class="sc-dropdown-item"><span>68K</span><div>Lab Specialist</div></a>
+                        <a href="/mos/68l/" class="sc-dropdown-item"><span>68L</span><div>OT Specialist</div></a>
+                        <a href="/mos/68m/" class="sc-dropdown-item"><span>68M</span><div>Nutrition Spec</div></a>
+                        <a href="/mos/68n/" class="sc-dropdown-item"><span>68N</span><div>Cardio Specialist</div></a>
+                        <a href="/mos/68p/" class="sc-dropdown-item"><span>68P</span><div>Radiology Spec</div></a>
+                        <a href="/mos/68q/" class="sc-dropdown-item"><span>68Q</span><div>Pharmacy Spec</div></a>
+                        <a href="/mos/68r/" class="sc-dropdown-item"><span>68R</span><div>Veterinary Inspector</div></a>
+                        <a href="/mos/68s/" class="sc-dropdown-item"><span>68S</span><div>Preventive Medicine</div></a>
+                        <a href="/mos/68t/" class="sc-dropdown-item"><span>68T</span><div>Animal Care</div></a>
+                        <a href="/mos/68u/" class="sc-dropdown-item"><span>68U</span><div>ENT Specialist</div></a>
+                        <a href="/mos/68v/" class="sc-dropdown-item"><span>68V</span><div>Respiratory Spec</div></a>
+                        <a href="/mos/68w/" class="sc-dropdown-item"><span>68W</span><div>Combat Medic</div></a>
+                        <a href="/mos/68x/" class="sc-dropdown-item"><span>68X</span><div>BH Specialist</div></a>
+                        <a href="/mos/68y/" class="sc-dropdown-item"><span>68Y</span><div>Eye Specialist</div></a>
+                        <a href="/mos/68z/" class="sc-dropdown-item"><span>68Z</span><div>Chief Medical NCO</div></a>
+                        <a href="/mos/68-medical/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/88-transportation/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">88</div>
-                    <div class="sc-name">Transportation</div>
-                    <div class="sc-badge">88-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">88 Series MOS</div>
-                    <a href="/mos/88a/" class="sc-dropdown-item">88A — TC Officer</a>
-                    <a href="/mos/88b/" class="sc-dropdown-item">88B — Watercraft Op</a>
-                    <a href="/mos/88c/" class="sc-dropdown-item">88C — Traffic Coordinator</a>
-                    <a href="/mos/88d/" class="sc-dropdown-item">88D — Deck Officer</a>
-                    <a href="/mos/88h/" class="sc-dropdown-item">88H — Cargo Specialist</a>
-                    <a href="/mos/88k/" class="sc-dropdown-item">88K — Watercraft Op</a>
-                    <a href="/mos/88l/" class="sc-dropdown-item">88L — Watercraft Engineer</a>
-                    <a href="/mos/88m/" class="sc-dropdown-item">88M — Motor Transport</a>
-                    <a href="/mos/88n/" class="sc-dropdown-item">88N — Management Coordinator</a>
-                    <a href="/mos/88p/" class="sc-dropdown-item">88P — Railway Repairer</a>
-                    <a href="/mos/88t/" class="sc-dropdown-item">88T — Section Repairer</a>
-                    <a href="/mos/88u/" class="sc-dropdown-item">88U — Operations Crewmember</a>
-                    <a href="/mos/88z/" class="sc-dropdown-item">88Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="88">
+                <div class="sc-icon-text">88</div>
+                <div class="sc-name">Transportation</div>
+                <div class="sc-badge">88-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-88">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">88 Series: Transportation</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/88a/" class="sc-dropdown-item"><span>88A</span><div>TC Officer</div></a>
+                        <a href="/mos/88b/" class="sc-dropdown-item"><span>88B</span><div>Watercraft Op</div></a>
+                        <a href="/mos/88c/" class="sc-dropdown-item"><span>88C</span><div>Traffic Coordinator</div></a>
+                        <a href="/mos/88d/" class="sc-dropdown-item"><span>88D</span><div>Deck Officer</div></a>
+                        <a href="/mos/88h/" class="sc-dropdown-item"><span>88H</span><div>Cargo Specialist</div></a>
+                        <a href="/mos/88k/" class="sc-dropdown-item"><span>88K</span><div>Watercraft Op</div></a>
+                        <a href="/mos/88l/" class="sc-dropdown-item"><span>88L</span><div>Watercraft Engineer</div></a>
+                        <a href="/mos/88m/" class="sc-dropdown-item"><span>88M</span><div>Motor Transport</div></a>
+                        <a href="/mos/88n/" class="sc-dropdown-item"><span>88N</span><div>Management Coordinator</div></a>
+                        <a href="/mos/88p/" class="sc-dropdown-item"><span>88P</span><div>Railway Repairer</div></a>
+                        <a href="/mos/88t/" class="sc-dropdown-item"><span>88T</span><div>Section Repairer</div></a>
+                        <a href="/mos/88u/" class="sc-dropdown-item"><span>88U</span><div>Operations Crewmember</div></a>
+                        <a href="/mos/88z/" class="sc-dropdown-item"><span>88Z</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/88-transportation/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/89-ammunition/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">89</div>
-                    <div class="sc-name">Ammunition</div>
-                    <div class="sc-badge">89-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">89 Series MOS</div>
-                    <a href="/mos/89a/" class="sc-dropdown-item">89A — Stock Control</a>
-                    <a href="/mos/89d/" class="sc-dropdown-item">89D — EOD Specialist</a>
+            <div class="school-card school-card--active" data-dropdown-id="89">
+                <div class="sc-icon-text">89</div>
+                <div class="sc-name">Ammunition</div>
+                <div class="sc-badge">89-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-89">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">89 Series: Ammunition</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/89a/" class="sc-dropdown-item"><span>89A</span><div>Stock Control</div></a>
+                        <a href="/mos/89d/" class="sc-dropdown-item"><span>89D</span><div>EOD Specialist</div></a>
+                        <a href="/mos/89-ammunition/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/91-ordnance/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">91</div>
-                    <div class="sc-name">Ordnance</div>
-                    <div class="sc-badge">91-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">91 Series MOS</div>
-                    <a href="/mos/91a/" class="sc-dropdown-item">91A — Tank Maintainer</a>
-                    <a href="/mos/91b/" class="sc-dropdown-item">91B — Wheeled Mechanic</a>
-                    <a href="/mos/91c/" class="sc-dropdown-item">91C — Utilities Repairer</a>
-                    <a href="/mos/91d/" class="sc-dropdown-item">91D — Power Specialist</a>
-                    <a href="/mos/91e/" class="sc-dropdown-item">91E — Allied Specialist</a>
-                    <a href="/mos/91f/" class="sc-dropdown-item">91F — Weapons Repairer</a>
-                    <a href="/mos/91g/" class="sc-dropdown-item">91G — Fire Control Repairer</a>
-                    <a href="/mos/91h/" class="sc-dropdown-item">91H — Track Repairer</a>
-                    <a href="/mos/91j/" class="sc-dropdown-item">91J — QM/Chemical Repairer</a>
-                    <a href="/mos/91k/" class="sc-dropdown-item">91K — Armament Repairer</a>
-                    <a href="/mos/91l/" class="sc-dropdown-item">91L — Construction Repairer</a>
-                    <a href="/mos/91m/" class="sc-dropdown-item">91M — Bradley Maintainer</a>
-                    <a href="/mos/91p/" class="sc-dropdown-item">91P — Artillery Mechanic</a>
-                    <a href="/mos/91s/" class="sc-dropdown-item">91S — Stryker Maintainer</a>
-                    <a href="/mos/91w/" class="sc-dropdown-item">91W — Metal Worker</a>
-                    <a href="/mos/91x/" class="sc-dropdown-item">91X — Maintenance Supervisor</a>
-                    <a href="/mos/91z/" class="sc-dropdown-item">91Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="91">
+                <div class="sc-icon-text">91</div>
+                <div class="sc-name">Ordnance</div>
+                <div class="sc-badge">91-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-91">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">91 Series: Ordnance</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/91a/" class="sc-dropdown-item"><span>91A</span><div>Tank Maintainer</div></a>
+                        <a href="/mos/91b/" class="sc-dropdown-item"><span>91B</span><div>Wheeled Mechanic</div></a>
+                        <a href="/mos/91c/" class="sc-dropdown-item"><span>91C</span><div>Utilities Repairer</div></a>
+                        <a href="/mos/91d/" class="sc-dropdown-item"><span>91D</span><div>Power Specialist</div></a>
+                        <a href="/mos/91e/" class="sc-dropdown-item"><span>91E</span><div>Allied Specialist</div></a>
+                        <a href="/mos/91f/" class="sc-dropdown-item"><span>91F</span><div>Weapons Repairer</div></a>
+                        <a href="/mos/91g/" class="sc-dropdown-item"><span>91G</span><div>Fire Control Repairer</div></a>
+                        <a href="/mos/91h/" class="sc-dropdown-item"><span>91H</span><div>Track Repairer</div></a>
+                        <a href="/mos/91j/" class="sc-dropdown-item"><span>91J</span><div>QM/Chemical Repairer</div></a>
+                        <a href="/mos/91k/" class="sc-dropdown-item"><span>91K</span><div>Armament Repairer</div></a>
+                        <a href="/mos/91l/" class="sc-dropdown-item"><span>91L</span><div>Construction Repairer</div></a>
+                        <a href="/mos/91m/" class="sc-dropdown-item"><span>91M</span><div>Bradley Maintainer</div></a>
+                        <a href="/mos/91p/" class="sc-dropdown-item"><span>91P</span><div>Artillery Mechanic</div></a>
+                        <a href="/mos/91s/" class="sc-dropdown-item"><span>91S</span><div>Stryker Maintainer</div></a>
+                        <a href="/mos/91w/" class="sc-dropdown-item"><span>91W</span><div>Metal Worker</div></a>
+                        <a href="/mos/91x/" class="sc-dropdown-item"><span>91X</span><div>Maintenance Supervisor</div></a>
+                        <a href="/mos/91z/" class="sc-dropdown-item"><span>91Z</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/91-ordnance/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/92-quartermaster/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">92</div>
-                    <div class="sc-name">Quartermaster</div>
-                    <div class="sc-badge">92-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">92 Series MOS</div>
-                    <a href="/mos/92a/" class="sc-dropdown-item">92A — Logistical Specialist</a>
-                    <a href="/mos/92c/" class="sc-dropdown-item">92C — Senior Sergeant</a>
-                    <a href="/mos/92d/" class="sc-dropdown-item">92D — Senior Sergeant</a>
-                    <a href="/mos/92f/" class="sc-dropdown-item">92F — Petroleum Specialist</a>
-                    <a href="/mos/92g/" class="sc-dropdown-item">92G — Culinary Specialist</a>
-                    <a href="/mos/92l/" class="sc-dropdown-item">92L — Lab Specialist</a>
-                    <a href="/mos/92m/" class="sc-dropdown-item">92M — Mortuary Affairs</a>
-                    <a href="/mos/92r/" class="sc-dropdown-item">92R — Parachute Rigger</a>
-                    <a href="/mos/92s/" class="sc-dropdown-item">92S — Shower/Laundry</a>
-                    <a href="/mos/92v/" class="sc-dropdown-item">92V — Senior Sergeant</a>
-                    <a href="/mos/92w/" class="sc-dropdown-item">92W — Water Specialist</a>
-                    <a href="/mos/92y/" class="sc-dropdown-item">92Y — Supply Specialist</a>
-                    <a href="/mos/92z/" class="sc-dropdown-item">92Z — Senior Sergeant</a>
+            <div class="school-card school-card--active" data-dropdown-id="92">
+                <div class="sc-icon-text">92</div>
+                <div class="sc-name">Quartermaster</div>
+                <div class="sc-badge">92-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-92">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">92 Series: Quartermaster</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/92a/" class="sc-dropdown-item"><span>92A</span><div>Logistical Specialist</div></a>
+                        <a href="/mos/92c/" class="sc-dropdown-item"><span>92C</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/92d/" class="sc-dropdown-item"><span>92D</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/92f/" class="sc-dropdown-item"><span>92F</span><div>Petroleum Specialist</div></a>
+                        <a href="/mos/92g/" class="sc-dropdown-item"><span>92G</span><div>Culinary Specialist</div></a>
+                        <a href="/mos/92l/" class="sc-dropdown-item"><span>92L</span><div>Lab Specialist</div></a>
+                        <a href="/mos/92m/" class="sc-dropdown-item"><span>92M</span><div>Mortuary Affairs</div></a>
+                        <a href="/mos/92r/" class="sc-dropdown-item"><span>92R</span><div>Parachute Rigger</div></a>
+                        <a href="/mos/92s/" class="sc-dropdown-item"><span>92S</span><div>Shower/Laundry</div></a>
+                        <a href="/mos/92v/" class="sc-dropdown-item"><span>92V</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/92w/" class="sc-dropdown-item"><span>92W</span><div>Water Specialist</div></a>
+                        <a href="/mos/92y/" class="sc-dropdown-item"><span>92Y</span><div>Supply Specialist</div></a>
+                        <a href="/mos/92z/" class="sc-dropdown-item"><span>92Z</span><div>Senior Sergeant</div></a>
+                        <a href="/mos/92-quartermaster/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
 
-            <div class="school-card school-card--active">
-                <a href="/mos/94-electronics/" style="text-decoration:none; color:inherit; display:contents;">
-                    <div class="sc-icon-text">94</div>
-                    <div class="sc-name">Electronics</div>
-                    <div class="sc-badge">94-Series</div>
-                    <div class="sc-status">Enter &rarr;</div>
-                </a>
-                <div class="sc-dropdown">
-                    <div class="sc-dropdown-title">94 Series MOS</div>
-                    <a href="/mos/94a/" class="sc-dropdown-item">94A — Missile Repairer</a>
-                    <a href="/mos/94d/" class="sc-dropdown-item">94D — ATC Repairer</a>
-                    <a href="/mos/94e/" class="sc-dropdown-item">94E — Radio Repairer</a>
-                    <a href="/mos/94f/" class="sc-dropdown-item">94F — Computer Repairer</a>
-                    <a href="/mos/94h/" class="sc-dropdown-item">94H — TMDE Specialist</a>
-                    <a href="/mos/94l/" class="sc-dropdown-item">94L — Avionic Repairer</a>
-                    <a href="/mos/94m/" class="sc-dropdown-item">94M — Radar Repairer</a>
-                    <a href="/mos/94p/" class="sc-dropdown-item">94P — MLRS Repairer</a>
-                    <a href="/mos/94r/" class="sc-dropdown-item">94R — Avionic Radar Repairer</a>
-                    <a href="/mos/94s/" class="sc-dropdown-item">94S — Patriot Repairer</a>
-                    <a href="/mos/94t/" class="sc-dropdown-item">94T — Avenger Repairer</a>
-                    <a href="/mos/94v/" class="sc-dropdown-item">94V — Electronics Supervisor</a>
-                    <a href="/mos/94w/" class="sc-dropdown-item">94W — Maintenance Chief</a>
-                    <a href="/mos/94x/" class="sc-dropdown-item">94X — Senior Supervisor</a>
-                    <a href="/mos/94y/" class="sc-dropdown-item">94Y — IFTE Maintainer</a>
-                    <a href="/mos/94z/" class="sc-dropdown-item">94Z — Senior Supervisor</a>
+            <div class="school-card school-card--active" data-dropdown-id="94">
+                <div class="sc-icon-text">94</div>
+                <div class="sc-name">Electronics</div>
+                <div class="sc-badge">94-Series</div>
+                <div class="sc-status">View MOS &rarr;</div>
+                
+                <div class="sc-dropdown" id="dropdown-94">
+                    <div class="sc-dropdown-header">
+                        <div class="sc-dropdown-title">94 Series: Electronics</div>
+                        <button class="sc-close-btn">&times;</button>
+                    </div>
+                    <div class="sc-dropdown-grid">
+                        <a href="/mos/94a/" class="sc-dropdown-item"><span>94A</span><div>Missile Repairer</div></a>
+                        <a href="/mos/94d/" class="sc-dropdown-item"><span>94D</span><div>ATC Repairer</div></a>
+                        <a href="/mos/94e/" class="sc-dropdown-item"><span>94E</span><div>Radio Repairer</div></a>
+                        <a href="/mos/94f/" class="sc-dropdown-item"><span>94F</span><div>Computer Repairer</div></a>
+                        <a href="/mos/94h/" class="sc-dropdown-item"><span>94H</span><div>TMDE Specialist</div></a>
+                        <a href="/mos/94l/" class="sc-dropdown-item"><span>94L</span><div>Avionic Repairer</div></a>
+                        <a href="/mos/94m/" class="sc-dropdown-item"><span>94M</span><div>Radar Repairer</div></a>
+                        <a href="/mos/94p/" class="sc-dropdown-item"><span>94P</span><div>MLRS Repairer</div></a>
+                        <a href="/mos/94r/" class="sc-dropdown-item"><span>94R</span><div>Avionic Radar Repairer</div></a>
+                        <a href="/mos/94s/" class="sc-dropdown-item"><span>94S</span><div>Patriot Repairer</div></a>
+                        <a href="/mos/94t/" class="sc-dropdown-item"><span>94T</span><div>Avenger Repairer</div></a>
+                        <a href="/mos/94v/" class="sc-dropdown-item"><span>94V</span><div>Electronics Supervisor</div></a>
+                        <a href="/mos/94w/" class="sc-dropdown-item"><span>94W</span><div>Maintenance Chief</div></a>
+                        <a href="/mos/94x/" class="sc-dropdown-item"><span>94X</span><div>Senior Supervisor</div></a>
+                        <a href="/mos/94y/" class="sc-dropdown-item"><span>94Y</span><div>IFTE Maintainer</div></a>
+                        <a href="/mos/94z/" class="sc-dropdown-item"><span>94Z</span><div>Senior Supervisor</div></a>
+                        <a href="/mos/94-electronics/" class="sc-dropdown-item" style="background:rgba(197,179,88,0.1); border-color:var(--color-gold);"><span>&rarr;</span><div>View Overview</div></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1504,6 +1716,49 @@
                 }
             });
         }, 2000);
+        // MOS Dropdown Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            var overlay = document.getElementById('sc-overlay');
+            var cards = document.querySelectorAll('.school-card[data-dropdown-id]');
+            var dropdowns = document.querySelectorAll('.sc-dropdown');
+            var closeBtns = document.querySelectorAll('.sc-close-btn');
+
+            cards.forEach(function(card) {
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if a link inside was clicked
+                    if (e.target.tagName === 'A' || e.target.closest('a')) return;
+                    
+                    var dropdownId = card.getAttribute('data-dropdown-id');
+                    var dropdown = document.getElementById('dropdown-' + dropdownId);
+                    
+                    if (dropdown) {
+                        dropdown.classList.add('active');
+                        overlay.classList.add('active');
+                        document.body.style.overflow = 'hidden'; // Prevent scroll
+                    }
+                });
+            });
+
+            function closeAll() {
+                dropdowns.forEach(function(d) { d.classList.remove('active'); });
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            closeBtns.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    closeAll();
+                });
+            });
+
+            overlay.addEventListener('click', closeAll);
+
+            // Escape key to close
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeAll();
+            });
+        });
     </script>
 </body>
 </html>

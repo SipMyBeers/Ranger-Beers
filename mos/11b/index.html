@@ -42,7 +42,7 @@
     <section class="school-hero" id="hero">
         <div class="hero-badge-text">11B</div>
         <h1 class="hero-headline">Infantryman</h1>
-        <p class="hero-sub">The backbone of the Army's fighting force. Infantrymen engage the enemy in close combat, operate weapons systems, and accomplish missions in all environments.</p>
+        <p class="hero-sub">The backbone of the Army's fighting force. Infantrymen engage the enemy in close combat and accomplish missions in all environments.</p>
         <div class="hero-cta">
             <a href="../../shop.html" class="btn btn-primary">Shop Gear</a>
             <a href="../../courses.html" class="btn btn-outline">Start Training</a>
@@ -53,26 +53,95 @@
         <div class="ix-container">
             <span class="section-label">Overview</span>
             <h2 class="section-title" style="margin-bottom: var(--space-lg);">What You'll Do</h2>
-            <p class="section-desc" style="max-width: 700px; margin: 0 auto;">As an Infantryman (11B), you'll be the Army's primary ground combat force. Youll engage in close-range combat, operate machine guns, mortars, and anti-tank weapons, and execute dismounted patrol operations in all types of terrain and weather conditions.</p>
+            <p class="section-desc" style="max-width: 700px; margin: 0 auto;">As an Infantryman (11B), you'll be the Army's primary ground combat force. You'll engage in close-range combat, operate machine guns, and execute dismounted patrol operations in all types of terrain.</p>
             
-            <h2 class="section-title" style="margin-top: var(--space-2xl); margin-bottom: var(--space-lg);">Key Responsibilities</h2>
-            <ul style="max-width: 700px; margin: 0 auto; color: var(--color-text-secondary); line-height: 2;">
-                <li>Lead infantry squads and platoons in combat operations</li>
-                <li>Operate machine guns, mortars, and anti-armor weapons</li>
-                <li>Conduct reconnaissance and surveillance operations</li>
-                <li>Execute offensive and defensive operations</li>
-                <li>Navigate using map, compass, and GPS</li>
-                <li>Employ tactical formations and movement techniques</li>
-            </ul>
+            <h2 class="section-title" style="margin-top: var(--space-2xl); margin-bottom: var(--space-lg);">Career Phases</h2>
+            
+            <div class="phase-selector" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); margin-top: 30px;">
+                <button class="phase-card-btn active" data-phase="iet" onclick="togglePhase('iet')">
+                    <span class="phase-card-icon">&#127891;</span>
+                    <span class="phase-card-title">Initial Entry</span>
+                    <span class="phase-card-sub">OSUT Training</span>
+                </button>
+                <button class="phase-card-btn" data-phase="junior" onclick="toggleSeason('junior')">
+                    <span class="phase-card-icon">&#9876;</span>
+                    <span class="phase-card-title">Junior Enlisted</span>
+                    <span class="phase-card-sub">Line Squad</span>
+                </button>
+                <button class="phase-card-btn" data-phase="nco" onclick="toggleSeason('nco')">
+                    <span class="phase-card-icon">&#9733;</span>
+                    <span class="phase-card-title">NCO Leadership</span>
+                    <span class="phase-card-sub">Team/Squad Leader</span>
+                </button>
+                <button class="phase-card-btn" data-phase="senior" onclick="toggleSeason('senior')">
+                    <span class="phase-card-icon">&#11088;</span>
+                    <span class="phase-card-title">Senior NCO</span>
+                    <span class="phase-card-sub">Platoon Sergeant</span>
+                </button>
+            </div>
 
-            <h2 class="section-title" style="margin-top: var(--space-2xl); margin-bottom: var(--space-lg);">Training</h2>
-            <p class="section-desc" style="max-width: 700px; margin: 0 auto;">You'll attend Basic Combat Training (10 weeks) followed by Advanced Individual Training (9 weeks) at Fort Benning, Georgia. Training includes weapons qualification, tactical operations, land navigation, and physical fitness.</p>
+            <!-- IET Detail -->
+            <div class="phase-detail-panel open" id="detail-iet">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge">PHASE 1</span>
+                        <div class="phase-detail-rtb">Infantry OSUT</div>
+                        <div class="phase-detail-standards">
+                            <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duration</span><span>22 Weeks</span></div>
+                            <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Moore, GA</span></div>
+                        </div>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Infantry One Station Unit Training (OSUT) combines Basic Combat Training and Advanced Individual Training into one continuous course. You'll master rifle marksmanship, land navigation, and individual tactical skills.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Junior Detail -->
+            <div class="phase-detail-panel" id="detail-junior">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="border-color:#3b82f6; color:#3b82f6;">PHASE 2</span>
+                        <div class="phase-detail-rtb">Line Company</div>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Arrival at your first duty station (82nd, 101st, 10th Mountain, etc.). Focus on mastering squad-level tactics, weapon systems (M249, M240L), and attending specialized schools like Airborne or Air Assault.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NCO Detail -->
+            <div class="phase-detail-panel" id="detail-nco">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="border-color:#22c55e; color:#22c55e;">PHASE 3</span>
+                        <div class="phase-detail-rtb">NCO Corps</div>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Promotion to Sergeant (E-5) and Staff Sergeant (E-6). Leading a 4-man fire team or 9-man squad. Attending Ranger School and Advanced Leader Course (ALC).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Senior Detail -->
+            <div class="phase-detail-panel" id="detail-senior">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="border-color:var(--color-gold); color:var(--color-gold);">PHASE 4</span>
+                        <div class="phase-detail-rtb">Senior Enlisted</div>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Sergeant First Class (E-7) and above. Roles include Platoon Sergeant, First Sergeant, and Command Sergeant Major. Managing large-scale operations and mentorship.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <section class="section" style="text-align: center; padding: var(--space-3xl) 40px; background: rgba(255,255,255,0.02);">
         <h2 class="section-title">Ready to Train?</h2>
-        <p class="section-desc" style="max-width: 500px; margin: 0 auto var(--space-lg);">Get the gear and training you need to succeed as an Infantryman.</p>
+        <p class="section-desc" style="max-width: 500px; margin: 0 auto var(--space-lg);">Get the gear and training you need for 11B.</p>
         <a href="../../shop.html" class="btn btn-primary">Shop Infantry Gear</a>
     </section>
 
@@ -99,6 +168,22 @@
     <script src="../../js/config.js"></script>
     <script src="../../js/shared.js"></script>
     <script src="../../js/course-auth.js"></script>
-    <script>RangerAuth.initAuthUI();</script>
+    <script>
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+            var buttons = document.querySelectorAll('.phase-card-btn');
+            
+            buttons.forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+        }
+        
+        // Handle season clicks as well (compatibility)
+        function toggleSeason(season) { togglePhase(season); }
+    </script>
 </body>
 </html>
