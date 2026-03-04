@@ -1,15 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="refresh" content="0;url=/ranger/about.html">
-<title>Redirecting…</title>
-<script>
-var dest = '/ranger/about.html';
-if (location.search) dest += location.search;
-if (location.hash) dest += location.hash;
-location.replace(dest);
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" /></noscript>
+    <meta name="theme-color" content="#000000">
+    <style>
+        .about-topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+        .about-topbar-brand {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--color-gold);
+            text-decoration: none;
+        }
+        .about-topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .about-topbar .nav-cart-btn {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--color-text-secondary);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .about-topbar .nav-cart-btn:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold);
+        }
+        .about-topbar .nav-auth-btn {
+            background: var(--color-gold);
+            color: #000;
+            border: none;
+            padding: 6px 18px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            letter-spacing: 0.5px;
+            transition: opacity 0.3s;
+        }
+        .about-topbar .nav-auth-btn:hover { opacity: 0.85; }
+        .about-topbar .nav-user-info {
+            display: none;
+            align-items: center;
+            gap: 12px;
+        }
+        .about-topbar .nav-user-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+        }
+        .about-topbar .nav-sign-out {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--color-text-secondary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: border-color 0.3s, color 0.3s;
+        }
+        .about-topbar .nav-sign-out:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold);
+        }
+        .about-hero {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: calc(var(--space-4xl) + 56px) 40px var(--space-2xl);
+            background: radial-gradient(ellipse at center bottom, rgba(197,179,88,0.08), transparent 50%);
+        }
+        .about-hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: var(--space-md);
+            color: var(--color-text-primary);
+        }
+        .about-hero-title span {
+            color: var(--color-gold);
+        }
+        .about-hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--color-text-secondary);
+            max-width: 640px;
+            line-height: 1.6;
+        }
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-2xl) 40px var(--space-3xl);
+        }
+        .about-section {
+            margin-bottom: var(--space-2xl);
+        }
+        .about-section h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: var(--space-md);
+            color: var(--color-gold);
+        }
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+        }
+        .about-quote {
+            background: rgba(197,179,88,0.08);
+            border: 1px solid rgba(197,179,88,0.2);
+            border-radius: 12px;
+            padding: var(--space-xl);
+            margin: var(--space-2xl) 0;
+            text-align: center;
+        }
+        .about-quote-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-text);
+            font-style: italic;
+            margin-bottom: var(--space-sm);
+        }
+        .about-quote-author {
+            font-size: 0.9rem;
+            color: var(--color-gold);
+            font-weight: 600;
+        }
+        .about-credentials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-2xl) 0;
+        }
+        .about-credential {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: var(--space-lg);
+            text-align: center;
+        }
+        .about-credential-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-sm);
+        }
+        .about-credential-label {
+            font-size: 0.85rem;
+            color: var(--color-gold);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .about-credential-value {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            font-weight: 600;
+            margin-top: var(--space-xs);
+        }
+        .about-cta {
+            text-align: center;
+            padding: var(--space-2xl) 40px;
+            background: rgba(255,255,255,0.02);
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .about-cta-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: var(--space-md);
+            color: var(--color-text);
+        }
+        .about-cta-sub {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-lg);
+        }
+        .about-cta .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .about-cta .btn-primary {
+            background: var(--color-gold);
+            color: #000;
+        }
+        .about-cta .btn-primary:hover {
+            opacity: 0.85;
+        }
+        @media (max-width: 768px) {
+            .about-content {
+                padding: var(--space-xl) 20px;
+            }
+            .about-hero {
+                padding: calc(var(--space-3xl) + 56px) 20px var(--space-xl);
+            }
+        }
+    </style>
 </head>
-<body><p>Redirecting to <a href="/ranger/about.html">about</a>…</p></body>
+<body>
+
+    <!-- TOPBAR -->
+    <div class="about-topbar">
+        <a href="/" class="about-topbar-brand">RANGER BEERS</a>
+        <div class="about-topbar-right">
+            <a href="/leaderboard.html" class="hub-pricing-link">Leaderboard</a>
+            <a href="/pricing.html" class="hub-pricing-link">Pricing</a>
+            <button class="snipcart-checkout nav-cart-btn" aria-label="Shopping cart">
+                Cart (<span class="snipcart-items-count" aria-live="polite">0</span>)
+            </button>
+            <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+            <div class="nav-user-info" id="nav-user-info">
+                <span class="nav-user-name" id="nav-user-name"></span>
+                <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="about-hero">
+        <h1 class="about-hero-title">About <span>Mr. Beers</span></h1>
+        <p class="about-hero-sub">Veteran. Medic. Ranger. Building a community for soldiers.</p>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <div class="about-content">
+        
+        <div class="about-section">
+            <h2>My Story</h2>
+            <p>As a veteran of the United States Army, I've seen firsthand the challenges that soldiers face when navigating the complexities of military life. During my time in service, I often found myself struggling to find reliable resources and guidance for extracurriculars, schools, and career advancement. This experience sparked a passion in me to create a comprehensive resource hub that would serve as a one-stop shop for soldiers.</p>
+        </div>
+
+        <div class="about-credentials">
+            <div class="about-credential">
+                <div class="about-credential-icon">🏥</div>
+                <div class="about-credential-label">MOS</div>
+                <div class="about-credential-value">68W Medic</div>
+            </div>
+            <div class="about-credential">
+                <div class="about-credential-icon">🎯</div>
+                <div class="about-credential-label">Ranger</div>
+                <div class="about-credential-value">Ranger Tab</div>
+            </div>
+            <div class="about-credential">
+                <div class="about-credential-icon">⚔️</div>
+                <div class="about-credential-label">Experience</div>
+                <div class="about-credential-value">Elite Units</div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h2>My Mission</h2>
+            <p>With my 68W medic background and Ranger tab, I've had the privilege of serving in some of the most elite units in the Army. But it's not just my military experience that sets me apart — it's my commitment to transparency and providing actionable resources to soldiers.</p>
+            <p>I believe that every soldier deserves access to accurate and up-to-date information, and I'm dedicated to making that a reality. Through Ranger Beers, I aim to provide a comprehensive resource hub that covers every aspect of military life, from specialty schools and MOS training to college and career advancement.</p>
+        </div>
+
+        <div class="about-quote">
+            <div class="about-quote-text">"I'm committed to transparency and full disclosure, ensuring that every resource and piece of information is accurate and trustworthy."</div>
+            <div class="about-quote-author">— Mr. Beers</div>
+        </div>
+
+        <div class="about-section">
+            <h2>Join the Community</h2>
+            <p>Ranger Beers is more than just a resource hub — it's a community. I'm committed to building a platform that connects soldiers, provides support, and fosters growth and development.</p>
+            <p>Whether you're looking for workout programs, career advancement resources, or simply a place to connect with like-minded individuals, I invite you to join the Ranger Beers community.</p>
+        </div>
+
+    </div>
+
+    <!-- CTA SECTION -->
+    <section class="about-cta">
+        <h3 class="about-cta-title">Ready to Get Started?</h3>
+        <p class="about-cta-sub">Explore our courses, gear, and resources built for soldiers, by a soldier.</p>
+        <a href="/" class="btn btn-primary">Browse Schools</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Army School Supply Co.</div>
+                </div>
+                <nav class="footer-nav">
+                    <div class="footer-col">
+                        <div class="footer-col-title">Shop</div>
+                        <ul>
+                            <li><a href="/">All Schools</a></li>
+                            <li><a href="/shop.html">Gear</a></li>
+                            <li><a href="/pricing.html">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <div class="footer-col-title">Training</div>
+                        <ul>
+                            <li><a href="/courses.html">Courses</a></li>
+                            <li><a href="/resources.html">Resources</a></li>
+                            <li><a href="/standards.html">Standards</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <div class="footer-col-title">Support</div>
+                        <ul>
+                            <li><a href="mailto:support@ranger-beers.com">Contact</a></li>
+                            <li><a href="/about.html">About</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co.</div>
+                <div class="footer-legal">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script defer src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/shared.js"></script>
+    <script defer src="js/course-auth.js"></script>
+    <script defer>
+        if (typeof RangerAuth !== 'undefined') {
+            RangerAuth.initAuthUI();
+        }
+        document.addEventListener('snipcart.ready', () => {
+            document.querySelectorAll('.snipcart-items-count').forEach(el => {
+                el.style.visibility = 'visible';
+            });
+        });
+        setTimeout(() => {
+            document.querySelectorAll('.snipcart-items-count').forEach(el => {
+                if (el.style.visibility === 'hidden') el.style.visibility = 'visible';
+            });
+        }, 2000);
+    </script>
+</body>
 </html>

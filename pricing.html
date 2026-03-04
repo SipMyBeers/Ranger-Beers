@@ -6,9 +6,11 @@
     <title>Pricing — Ranger Beers Supply Co.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" /></noscript>
     <meta name="theme-color" content="#000000">
     <style>
         .pricing-topbar {
@@ -435,16 +437,65 @@
         </div>
     </section>
 
-    <footer class="pricing-footer">
-        <div class="pricing-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    <!-- Consistent Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    Ranger Beers
+                    <div class="footer-brand-sub">Army School Supply Co.</div>
+                </div>
+                <nav class="footer-nav">
+                    <div class="footer-col">
+                        <div class="footer-col-title">Training</div>
+                        <ul>
+                            <li><a href="/">All Schools</a></li>
+                            <li><a href="/pricing.html">Pricing</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <div class="footer-col-title">Support</div>
+                        <ul>
+                            <li><a href="mailto:support@ranger-beers.com">Contact</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co.</div>
+                <div class="footer-legal">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <div hidden id="snipcart"
          data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4"
          data-config-modal-style="side">
     </div>
-    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
-    <script src="course-auth.js"></script>
-    <script>RangerAuth.initAuthUI();</script>
+    <script defer src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/shared.js"></script>
+    <script defer src="js/course-auth.js"></script>
+    <script defer>
+        if (typeof RangerAuth !== 'undefined') {
+            RangerAuth.initAuthUI();
+        }
+
+        // Fix cart count layout shift
+        document.addEventListener('snipcart.ready', () => {
+            document.querySelectorAll('.snipcart-items-count').forEach(el => {
+                el.style.visibility = 'visible';
+            });
+        });
+        setTimeout(() => {
+            document.querySelectorAll('.snipcart-items-count').forEach(el => {
+                if (el.style.visibility === 'hidden') el.style.visibility = 'visible';
+            });
+        }, 2000);
+    </script>
 </body>
 </html>

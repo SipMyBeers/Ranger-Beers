@@ -6,10 +6,13 @@
     <title>Ranger Beers — Army School Supply Co.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" /></noscript>
     <meta name="theme-color" content="#000000">
+    <meta name="view-transition" content="same-origin">
     <style>
         /* ── Hub Top Bar ── */
         .hub-topbar {
@@ -300,29 +303,168 @@
             letter-spacing: 1px;
         }
 
+        /* ── Skip Link ── */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--color-gold);
+            color: #000;
+            padding: 8px 16px;
+            font-weight: 600;
+            z-index: 10000;
+            text-decoration: none;
+            transition: top 0.3s;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* ── Mobile Menu Toggle ── */
+        .hub-topbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+        .hub-topbar-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--color-white);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+        .hub-topbar-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hub-topbar-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hub-topbar-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ── Search ── */
+        .hub-search {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: var(--space-lg) 40px 0;
+        }
+        .hub-search-input {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            display: block;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-glass);
+            padding: 14px 20px 14px 48px;
+            font-family: var(--font-display);
+            font-size: 15px;
+            color: var(--color-text-primary);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cpath d='m21 21-4.3-4.3'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: 16px center;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .hub-search-input::placeholder {
+            color: var(--color-text-muted);
+        }
+        .hub-search-input:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: 0 0 0 3px rgba(197, 179, 88, 0.15);
+        }
+        .hub-search-results {
+            text-align: center;
+            padding: var(--space-md) 40px;
+            font-size: 14px;
+            color: var(--color-text-muted);
+        }
+        .school-card.hidden {
+            display: none;
+        }
+
         /* ── Responsive ── */
         @media (max-width: 900px) {
-            .school-grid { grid-template-columns: repeat(3, 1fr); }
-            .school-grid--4col { grid-template-columns: repeat(3, 1fr); }
-            .school-grid--3col { grid-template-columns: repeat(3, 1fr); }
+            .school-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+            .school-grid--4col { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+            .school-grid--3col { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+        }
+        @media (max-width: 768px) {
+            .hub-topbar { padding: 0 16px; }
+            .hub-topbar-toggle { display: block; }
+            .hub-topbar-right {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.97);
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
+                z-index: 999;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 24px;
+                padding: 80px 20px 40px;
+            }
+            .hub-topbar-right.mobile-open {
+                display: flex;
+            }
+            .hub-topbar-right .hub-pricing-link {
+                font-size: 18px;
+            }
+            .hub-topbar-right .nav-cart-btn,
+            .hub-topbar-right .nav-auth-btn,
+            .hub-topbar-right .nav-sign-out {
+                font-size: 16px;
+                padding: 12px 24px;
+            }
+            .hub-topbar-right .nav-user-info {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .hub-hero-title {
+                font-size: clamp(1.75rem, 8vw, 2.5rem);
+            }
         }
         @media (max-width: 560px) {
-            .school-grid,
-            .school-grid--4col,
-            .school-grid--3col { grid-template-columns: repeat(2, 1fr); }
             .hub-hero { padding: var(--space-3xl) 20px var(--space-2xl); }
             .hub-category { padding: var(--space-xl) 20px var(--space-2xl); }
+            .hub-search { padding: var(--space-lg) 20px 0; }
+            .hub-search-input { max-width: 100%; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- TOP BAR -->
     <div class="hub-topbar">
         <a href="/" class="hub-topbar-brand">Ranger Beers</a>
-        <div class="hub-topbar-right">
+
+        <!-- Mobile menu toggle -->
+        <button class="hub-topbar-toggle" id="hub-topbar-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="hub-topbar-right" id="hub-topbar-right">
+            <a href="/about.html" class="hub-pricing-link">About Me</a>
+            <a href="/leaderboard.html" class="hub-pricing-link">Leaderboard</a>
             <a href="/pricing.html" class="hub-pricing-link">Pricing</a>
-            <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+            <button class="snipcart-checkout nav-cart-btn" aria-label="Shopping cart">
+                Cart (<span class="snipcart-items-count" aria-live="polite">0</span>)
+            </button>
             <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
             <div class="nav-user-info" id="nav-user-info">
                 <span class="nav-user-name" id="nav-user-name"></span>
@@ -336,9 +478,16 @@
         <p class="hub-hero-sub">Gear, courses, and training for the Army's toughest schools. Select a school below to get started.</p>
     </section>
 
+    <!-- Search -->
+    <div class="hub-search">
+        <input type="search" class="hub-search-input" id="school-search" placeholder="Search schools (e.g., Ranger, Airborne, Sniper...)" aria-label="Search schools">
+        <div class="hub-search-results" id="search-results" aria-live="polite"></div>
+    </div>
+
     <!-- ════════════════════════════════════════════════════
          TABS — Shoulder Tabs
          ════════════════════════════════════════════════════ -->
+    <main id="main-content">
     <section class="hub-category">
         <div class="hub-section-label">Tabs</div>
         <div class="hub-category-desc">Shoulder Tabs</div>
@@ -771,6 +920,7 @@
         </div>
 
     </section>
+    </main>
 
     <footer class="hub-footer">
         <div class="hub-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
@@ -780,8 +930,89 @@
          data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4"
          data-config-modal-style="side">
     </div>
-    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
-    <script src="course-auth.js"></script>
-    <script>RangerAuth.initAuthUI();</script>
+    <script defer src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/shared.js"></script>
+    <script defer src="js/course-auth.js"></script>
+    <script>
+        // Initialize auth UI
+        if (typeof RangerAuth !== 'undefined') {
+            RangerAuth.initAuthUI();
+        }
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('hub-topbar-toggle');
+        const mobileMenu = document.getElementById('hub-topbar-right');
+
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', () => {
+                const isOpen = mobileMenu.classList.toggle('mobile-open');
+                mobileToggle.classList.toggle('active');
+                mobileToggle.setAttribute('aria-expanded', isOpen);
+            });
+        }
+
+        // Search functionality
+        const searchInput = document.getElementById('school-search');
+        const searchResults = document.getElementById('search-results');
+        const allCards = document.querySelectorAll('.school-card');
+
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                let visibleCount = 0;
+
+                allCards.forEach(card => {
+                    const name = card.querySelector('.sc-name')?.textContent.toLowerCase() || '';
+                    const badge = card.querySelector('.sc-badge')?.textContent.toLowerCase() || '';
+                    const isMatch = name.includes(query) || badge.includes(query);
+
+                    card.classList.toggle('hidden', !isMatch);
+                    if (isMatch) visibleCount++;
+                });
+
+                // Update results text
+                if (query) {
+                    if (visibleCount === 0) {
+                        searchResults.textContent = 'No schools found matching "' + query + '"';
+                    } else if (visibleCount === 1) {
+                        searchResults.textContent = '1 school found';
+                    } else {
+                        searchResults.textContent = visibleCount + ' schools found';
+                    }
+                } else {
+                    searchResults.textContent = '';
+                }
+
+                // Hide/show empty category sections
+                document.querySelectorAll('.hub-category').forEach(section => {
+                    const visibleCards = section.querySelectorAll('.school-card:not(.hidden)');
+                    section.style.display = visibleCards.length > 0 ? '' : 'none';
+                });
+            });
+        }
+
+        // Fix cart count layout shift - hide until loaded
+        const cartCounts = document.querySelectorAll('.snipcart-items-count');
+        cartCounts.forEach(count => {
+            count.style.visibility = 'hidden';
+        });
+
+        // Show cart count once Snipcart loads
+        document.addEventListener('snipcart.ready', () => {
+            cartCounts.forEach(count => {
+                count.style.visibility = 'visible';
+            });
+        });
+
+        // Fallback: show after 2 seconds even if Snipcart hasn't loaded
+        setTimeout(() => {
+            cartCounts.forEach(count => {
+                if (count.style.visibility === 'hidden') {
+                    count.style.visibility = 'visible';
+                }
+            });
+        }, 2000);
+    </script>
 </body>
 </html>
