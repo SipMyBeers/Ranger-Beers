@@ -14,7 +14,15 @@
     <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(251,191,36,0.08), transparent 60%); }
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(202,138,4,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="bct"]::before { background: radial-gradient(ellipse at center, rgba(197, 179, 88, 0.08), transparent 70%); }
+        .phase-card-btn[data-phase="ait-p1"]::before { background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.08), transparent 70%); }
+        .phase-card-btn[data-phase="ait-p2"]::before { background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.08), transparent 70%); }
+        .phase-card-btn[data-phase="grad"]::before { background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="bct"] { border-color: var(--color-gold); box-shadow: 0 0 20px rgba(197, 179, 88, 0.15); }
+        .phase-card-btn.active[data-phase="ait-p1"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.15); }
+        .phase-card-btn.active[data-phase="ait-p2"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.15); }
+        .phase-card-btn.active[data-phase="grad"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
     </style>
 </head>
 <body>
@@ -28,6 +36,8 @@
                 <li><a href="../../shop.html">Shop</a></li>
                 <li class="nav-sep"></li>
                 <li><a href="../../courses.html">Courses</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../resources.html">Resources</a></li>
             </ul>
             <div class="nav-cta">
                 <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
@@ -53,28 +63,147 @@
             <h2 class="section-title" style="margin-bottom: var(--space-lg);">What You'll Do</h2>
             <p class="section-desc" style="max-width: 700px; margin: 0 auto;">Combat Engineers (12B) are the Army's experts in mobility and counter-mobility. Youll construct bridges, clear obstacles, place explosives, and build defensive positions.</p>
             
-            <h2 class="section-title" style="margin-top: var(--space-2xl); margin-bottom: var(--space-lg);">Key Responsibilities</h2>
-            <ul style="max-width: 700px; margin: 0 auto; color: var(--color-text-secondary); line-height: 2;">
-                <li>Construct and repair bridges and rafts</li>
-                <li>Place and dispose of explosives (demo)</li>
-                <li>Clear obstacles and mines</li>
-                <li>Build defensive positions and bunkers</li>
-                <li>Conduct route clearance operations</li>
-            </ul>
+            <h2 class="section-title" style="margin-top: var(--space-3xl); margin-bottom: var(--space-lg);">MOS Training Pipeline</h2>
+            
+            <div class="phase-selector" style="margin-bottom: 0;">
+                <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr); gap: 15px;">
+                    <button class="phase-card-btn active" data-phase="bct" onclick="togglePhase('bct')">
+                        <div class="pc-icon">&#128170;</div>
+                        <div class="pc-name">Basic Training</div>
+                        <div class="pc-sub">Red/White/Blue Phase</div>
+                        <div class="pc-link">Details &rarr;</div>
+                    </button>
+                    <button class="phase-card-btn" data-phase="ait-p1" onclick="togglePhase('ait-p1')">
+                        <div class="pc-icon">&#128295;</div>
+                        <div class="pc-name">AIT Phase 1</div>
+                        <div class="pc-sub">MOS Fundamentals</div>
+                        <div class="pc-link">Details &rarr;</div>
+                    </button>
+                    <button class="phase-card-btn" data-phase="ait-p2" onclick="togglePhase('ait-p2')">
+                        <div class="pc-icon">&#127919;</div>
+                        <div class="pc-name">AIT Phase 2</div>
+                        <div class="pc-sub">Tactical Validation</div>
+                        <div class="pc-link">Details &rarr;</div>
+                    </button>
+                    <button class="phase-card-btn" data-phase="grad" onclick="togglePhase('grad')">
+                        <div class="pc-icon">&#127891;</div>
+                        <div class="pc-name">MOS Qual</div>
+                        <div class="pc-sub">First Unit Arrival</div>
+                        <div class="pc-link">Details &rarr;</div>
+                    </button>
+                </div>
+
+                <!-- BCT Detail -->
+                <div class="phase-detail-panel open" id="detail-bct">
+                    <div class="phase-detail-inner">
+                        <div class="phase-detail-header">
+                            <div class="phase-detail-title">Basic Combat Training (BCT)</div>
+                            <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">Phase 1-3</span>
+                        </div>
+                        <div class="phase-detail-grid">
+                            <div class="phase-detail-standards">
+                                <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">10 Weeks</span></div>
+                                <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Warrior Tasks</span></div>
+                                <div class="pd-item"><span class="pd-item-name">Requirement</span><span class="pd-item-value">ACFT Pass</span></div>
+                            </div>
+                            <div class="phase-detail-desc">
+                                <p>The transformation from civilian to Soldier. You will master marksmanship, land navigation, and basic combat drills. This phase builds the discipline and physical foundation required for all Engineers Soldiers.</p>
+                                <div class="phase-detail-bullets">
+                                    <div class="pdb-title">Key Milestones</div>
+                                    <ul>
+                                        <li>Hammer Forge / Forge FTX</li>
+                                        <li>Rifle Marksmanship Qualification</li>
+                                        <li>CBRN Confidence Chamber</li>
+                                        <li>US Army Obstacle Course</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AIT P1 Detail -->
+                <div class="phase-detail-panel" id="detail-ait-p1">
+                    <div class="phase-detail-inner">
+                        <div class="phase-detail-header">
+                            <div class="phase-detail-title">Advanced Individual Training (AIT)</div>
+                            <span class="phase-detail-badge" style="color:#3b82f6; border-color:#3b82f6;">Technical Phase</span>
+                        </div>
+                        <div class="phase-detail-grid">
+                            <div class="phase-detail-standards">
+                                <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Fort Leonard Wood, MO</span></div>
+                                <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">12B Systems</span></div>
+                            </div>
+                            <div class="phase-detail-desc">
+                                <p>Master the fundamental technical and tactical skills required for 12B operations. Training focuses on system operations, maintenance, and branch-specific doctrine.</p>
+                                <div class="phase-detail-bullets">
+                                    <div class="pdb-title">Instruction Areas</div>
+                                    <ul>
+                                        <li>Engineers Fundamentals</li><li>System Operations & Mx</li><li>Technical Documentation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AIT P2 Detail -->
+                <div class="phase-detail-panel" id="detail-ait-p2">
+                    <div class="phase-detail-inner">
+                        <div class="phase-detail-header">
+                            <div class="phase-detail-title">Tactical Validation</div>
+                            <span class="phase-detail-badge" style="color:#22c55e; border-color:#22c55e;">Field Phase</span>
+                        </div>
+                        <div class="phase-detail-grid">
+                            <div class="phase-detail-standards">
+                                <div class="pd-item"><span class="pd-item-name">Culmination</span><span class="pd-item-value">FTX</span></div>
+                                <div class="pd-item"><span class="pd-item-name">Standards</span><span class="pd-item-value">Go/No-Go</span></div>
+                            </div>
+                            <div class="phase-detail-desc">
+                                <p>Validate your skills in a field environment. This phase culminates in a multi-day FTX where you will execute 12B tasks under tactical conditions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grad Detail -->
+                <div class="phase-detail-panel" id="detail-grad">
+                    <div class="phase-detail-inner">
+                        <div class="phase-detail-header">
+                            <div class="phase-detail-title">MOS Qualification & Arrival</div>
+                            <span class="phase-detail-badge" style="color:#f59e0b; border-color:#f59e0b;">Operational</span>
+                        </div>
+                        <div class="phase-detail-grid">
+                            <div class="phase-detail-standards">
+                                <div class="pd-item"><span class="pd-item-name">Status</span><span class="pd-item-value">MOS Qualified</span></div>
+                            </div>
+                            <div class="phase-detail-desc">
+                                <p>Upon successful completion of training, you are awarded the 12B MOS and report to your first operational unit. You are now a fully qualified Combat Engineer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <section class="section" style="text-align: center; padding: var(--space-3xl) 40px; background: rgba(255,255,255,0.02);">
         <h2 class="section-title">Ready to Train?</h2>
-        <a href="../../shop.html" class="btn btn-primary">Shop Engineer Gear</a>
+        <p class="section-desc" style="max-width: 500px; margin: 0 auto var(--space-lg);">Get the gear and training you need for 12B.</p>
+        <a href="../../shop.html" class="btn btn-primary">Shop Engineers Gear</a>
     </section>
 
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-top">
-                <div class="footer-brand">Ranger Beers</div>
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Army School Supply Co.</div>
+                </div>
                 <div class="footer-nav">
-                    <div class="footer-col"><div class="footer-col-title">Engineers</div><ul><li><a href="../12-engineers/">12 Series</a></li><li><a href="./">12B — Combat Engineer</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Engineers</div><ul><li><a href="../12-engineers/">Engineers</a></li><li><a href="./">12B — Engineer</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Schools</div><ul><li><a href="../../ranger/index.html">Ranger</a></li><li><a href="../../airborne/index.html">Airborne</a></li></ul></div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -88,6 +217,19 @@
     <script src="../../js/config.js"></script>
     <script src="../../js/shared.js"></script>
     <script src="../../js/course-auth.js"></script>
-    <script>RangerAuth.initAuthUI();</script>
+    <script>
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+            var buttons = document.querySelectorAll('.phase-card-btn');
+            
+            buttons.forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+        }
+    </script>
 </body>
 </html>

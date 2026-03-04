@@ -28,7 +28,7 @@ const CONFIG = {
   // Local Storage Keys
   STORAGE_KEYS: {
     TOKEN: 'rb_token',
-    USER: 'rb_user',
+    USER: 'ranger_auth_user',
     OFFLINE_QUEUE: 'rb_offline_queue'
   },
   
