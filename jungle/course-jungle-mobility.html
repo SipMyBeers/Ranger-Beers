@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Mobility — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Jungle Skills</a></li>
+                        <li><a href="index.html#phases">Jungle Survival</a></li>
+                        <li><a href="index.html#phases">Jungle Patrols</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Jungle Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-jungle-prep.html">JOTC Prep</a></li>
+                        <li><a href="course-jungle-mobility.html">Jungle Mobility</a></li>
+                        <li><a href="course-waterborne.html">Waterborne Ops</a></li>
+                        <li><a href="course-combat-tracking.html">Combat Tracking</a></li>
+                        <li><a href="course-jungle-survival.html">Jungle Survival</a></li>
+                        <li><a href="course-squad-tactics.html">Squad Tactics</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="resources.html">Jungle Resources</a></li>
+                        <li><a href="standards.html">PT Standards</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-jungle-mobility">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Jungle Mobility</h1>
+        <p class="section-desc fade-in">Master movement techniques through dense vegetation, terrain analysis, machete operations, and silent navigation. The jungle restricts mobility—learn to overcome it.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$14</span>
+            <span class="course-tag tag-phase">Phase I</span>
+            <span class="course-tag tag-type">Individual Skills</span>
+            <span class="course-tag tag-bundle">Essential</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-jungle-mobility"
+                data-item-name="Jungle Mobility"
+                data-item-price="14.00"
+                data-item-url="/jungle/course-jungle-mobility.html"
+                data-item-description="Movement techniques, navigation, machete use, and terrain mastery for jungle operations"
+                data-item-categories="course">Buy Course — $14.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Terrain Analysis</a>
+                <a href="#mod2" class="course-sidebar-link">2. Movement Techniques</a>
+                <a href="#mod3" class="course-sidebar-link">3. Machete Operations</a>
+                <a href="#mod4" class="course-sidebar-link">4. Silent Movement</a>
+                <a href="#mod5" class="course-sidebar-link">5. Obstacle Negotiation</a>
+                <a href="#mod6" class="course-sidebar-link">6. Tactical Considerations</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Jungle Terrain Analysis</div>
+                    
+                    <p>Understanding jungle terrain is the foundation of effective mobility. The jungle environment varies dramatically, and each type presents unique challenges and opportunities for movement.</p>
+
+                    <p><strong>Types of Jungle Terrain:</strong></p>
+                    <ul>
+                        <li><strong>Primary (Tropical Rainforest):</strong> Triple canopy cover with dense undergrowth. Visibility limited to 10-20 meters. Movement is slow and requires constant cutting.</li>
+                        <li><strong>Secondary Growth:</strong> Areas previously cleared or disturbed. Dense vegetation including thorns, vines, and bamboo. Extremely difficult to traverse.</li>
+                        <li><strong>Savanna/Grasslands:</strong> Open areas with tall grass offering concealment but limited cover. Excellent for rapid movement if security permits.</li>
+                        <li><strong>Mangrove Swamps:</strong> Coastal wetlands with tangled root systems. Requires wading or specialized movement techniques.</li>
+                        <li><strong>Deciduous Forest:</strong> Seasonal leaf drop creates varying visibility conditions. Easier movement during dry season.</li>
+                        <li><strong>Montane Jungle:</strong> Mountainous jungle with steep slopes and elevation changes. Combines jungle challenges with mountain terrain hazards.</li>
+                    </ul>
+
+                    <p><strong>Route Selection Factors:</strong></p>
+                    <ul>
+                        <li><strong>Ridge Lines:</strong> Offer best drainage, fewest obstacles, and best visibility. Preferred when tactical situation permits.</li>
+                        <li><strong>Stream Beds:</strong> Provide clear paths but present waterborne hazards and limited escape routes. Use with caution.</li>
+                        <li><strong>Game Trails:</strong> Natural paths created by wildlife. Quiet and efficient but may lead to enemy positions or ambush sites.</li>
+                        <li><strong>Contour Lines:</strong> Following elevation contours minimizes energy expenditure on steep slopes.</li>
+                        <li><strong>Vegetation Density:</strong> Balance between concealment and movement speed. Thicker vegetation = slower movement.</li>
+                    </ul>
+
+                    <p><strong>Ground Assessment:</strong></p>
+                    <p>Before moving, analyze the ground for:</p>
+                    <ul>
+                        <li>Soft ground indicating water or mud hazards</li>
+                        <li>Falling hazards from dead branches ("widowmakers")</li>
+                        <li>Vine entanglement that can trap equipment</li>
+                        <li>Natural lines of drift that may be monitored</li>
+                        <li>Escape routes and rally points</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Movement Techniques</div>
+                    
+                    <p>Jungle movement requires modified techniques from standard patrolling. The dense vegetation restricts formations and demands constant adaptation.</p>
+
+                    <p><strong>Individual Movement Techniques:</strong></p>
+                    <ul>
+                        <li><strong>High Crawl:</strong> Used when vegetation provides partial concealment. Body low, weight on forearms and legs, weapon held ready.</li>
+                        <li><strong>Low Crawl:</strong> Used when concealment is minimal. Body flat, pulling with arms, pushing with legs. Slow but quiet.</li>
+                        <li><strong>Sniper Low Crawl:</strong> Extremely slow movement for maximum stealth. Minimal disturbance of vegetation.</li>
+                        <li><strong>3-5 Second Rush:</strong> Rapid movement from cover to cover. Essential when crossing danger areas or under fire.</li>
+                        <li><strong>Stepping:</strong> Deliberate foot placement to avoid snapping twigs or rustling leaves. Roll foot from outside to inside.</li>
+                    </ul>
+
+                    <p><strong>Element Movement Formations:</strong></p>
+                    <ul>
+                        <li><strong>File Formation:</strong> Most common in jungle. Follow the leader's path. Maintains security 360 degrees through sectors.</li>
+                        <li><strong>Modified Wedge:</strong> Used when terrain permits slightly wider dispersion. Point man forward, slack and pace men angled.</li>
+                        <li><strong>Diamond Formation:</strong> Provides all-around security. Used during security halts or when enemy contact is expected.</li>
+                        <li><strong>Single Ranger:</strong> Individual movement for reconnaissance or when dispersion is critical. High risk, high stealth.</li>
+                    </ul>
+
+                    <p><strong>Movement Discipline:</strong></p>
+                    <ul>
+                        <li><strong>Hand and Arm Signals:</strong> Silent communication only. Voice carries surprisingly far in jungle.</li>
+                        <li><strong>Interval:</strong> Maintain 3-5 meters between personnel in dense vegetation. Prevents bunching and casualties.</li>
+                        <li><strong>Security:</strong> Every member maintains 360-degree awareness. Jungle conceals threats at close range.</li>
+                        <li><strong>Pace Count:</strong> Critical for navigation when visibility is limited. Count steps and note terrain features.</li>
+                        <li><strong>Halts:</strong> Conduct security halts every 30-50 minutes or after crossing obstacles.</li>
+                    </ul>
+
+                    <p><strong>Speed Considerations:</strong></p>
+                    <p>Jungle movement rates are significantly slower than open terrain:</p>
+                    <ul>
+                        <li>Primary jungle: 0.5-1 km per hour</li>
+                        <li>Secondary growth: 0.25-0.5 km per hour</li>
+                        <li>Game trails: 1-2 km per hour</li>
+                        <li>Night movement: Reduce day rates by 50%</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Machete Operations</div>
+                    
+                    <p>The machete is essential jungle equipment for clearing vegetation, preparing positions, and survival tasks. Proper technique prevents injury and maximizes efficiency.</p>
+
+                    <p><strong>Machete Types:</strong></p>
+                    <ul>
+                        <li><strong>Latin Machete:</strong> Standard 18-24 inch blade. Versatile for clearing and chopping.</li>
+                        <li><strong>Bolo:</strong> Heavier blade weighted toward tip. Excellent for dense vegetation and light chopping.</li>
+                        <li><strong>Parang:</strong> Curved blade designed for woody vegetation. Preferred by many jungle warfare schools.</li>
+                        <li><strong>Golok:</strong> Shorter, heavier blade for heavy chopping tasks.</li>
+                    </ul>
+
+                    <p><strong>Safety Procedures:</strong></p>
+                    <ul>
+                        <li>Always maintain sharp edge—dull machetes require more force and cause more injuries</li>
+                        <li>Clear swing area 360 degrees before cutting</li>
+                        <li>Never cut toward yourself or others</li>
+                        <li>Wear eye protection—ricocheting debris is common</li>
+                        <li>Secure blade in sheath when not in use</li>
+                        <li>Apply pressure dressing knowledge—machete injuries are common and serious</li>
+                    </ul>
+
+                    <p><strong>Cutting Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Forehand Cut:</strong> Standard cutting stroke. Start at shoulder height, follow through with hips.</li>
+                        <li><strong>Backhand Cut:</strong> Reverse stroke for vegetation on opposite side. Less power, more control.</li>
+                        <li><strong>Jab Cut:</strong> Thrusting motion for thick vines or targeted cutting. Not for woody stems.</li>
+                        <li><strong>Draw Cut:</strong> Pulling motion for controlled, precise cuts. Useful near sensitive equipment.</li>
+                        <li><strong>Chopping:</strong> Overhead stroke for heavy vegetation or construction. Most dangerous technique.</li>
+                    </ul>
+
+                    <p><strong>Jungle Lane Cutting:</strong></p>
+                    <p>When cutting a path through jungle:</p>
+                    <ul>
+                        <li>Cut at 45-degree angle away from direction of movement</li>
+                        <li>Clear vegetation at chest height first, then work down</li>
+                        <li>Remove cut vegetation from path to prevent trip hazards</li>
+                        <li>Rotate cutters every 5-10 minutes to prevent fatigue</li>
+                        <li>Maintain security—cutting noise masks enemy approach</li>
+                        <li>Mark route for rear elements using blazes or tape</li>
+                    </ul>
+
+                    <p><strong>Machete Maintenance:</strong></p>
+                    <ul>
+                        <li>Clean blade after each use—jungle vegetation is acidic</li>
+                        <li>Sharpen regularly using file or stone</li>
+                        <li>Oil blade to prevent rust in high humidity</li>
+                        <li>Check handle for cracks or looseness</li>
+                        <li>Replace worn blades—structural failure is dangerous</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Silent Movement</div>
+                    
+                    <p>Stealth is critical in jungle operations. Sound carries farther than you expect, and the jungle provides ample opportunities for noise discipline.</p>
+
+                    <p><strong>Foot Placement:</strong></p>
+                    <ul>
+                        <li><strong>Feel Before Stepping:</strong> Test ground with toe before committing weight</li>
+                        <li><strong>Outside Edge First:</strong> Roll foot from outside to inside to distribute weight</li>
+                        <li><strong>Avoid Deadfalls:</strong> Step over or around dry branches and leaves</li>
+                        <li><strong>Rock Walking:</strong> Use rocks and roots to avoid ground vegetation</li>
+                        <li><strong>Balance:</strong> Move slowly to maintain balance—recovery movements create noise</li>
+                    </ul>
+
+                    <p><strong>Equipment Noise Reduction:</strong></p>
+                    <ul>
+                        <li><strong>Tape:</strong> Secure all loose straps, buckles, and metal components</li>
+                        <li><strong>Padding:</strong> Use cloth or foam between items that might clang</li>
+                        <li><strong>Magazine Taping:</strong> Tape magazines together to prevent rattling</li>
+                        <li><strong>Weapon Sling:</strong> Use padded sling and secure excess webbing</li>
+                        <li><strong>Canteens:</strong> Fill completely or pad to prevent sloshing</li>
+                        <li><strong>Medic Bag:</strong> Secure all contents to prevent rattling</li>
+                    </ul>
+
+                    <p><strong>Vegetation Management:</strong></p>
+                    <ul>
+                        <li>Move vegetation with hands rather than pushing through</li>
+                        <li>Hold branches for following soldiers—release slowly</li>
+                        <li>Avoid grabbing thorny or stinging vegetation</li>
+                        <li>Step over logs rather than on them (hollow logs create noise)</li>
+                        <li>Anticipate release of bent vegetation—timing matters</li>
+                    </ul>
+
+                    <p><strong>Communication Discipline:</strong></p>
+                    <ul>
+                        <li><strong>Hand and Arm Signals:</strong> Primary method—rehearse extensively</li>
+                        <li><strong>Whispers:</strong> Cup hands around mouth and ear—whispers carry</li>
+                        <li><strong>Clickers:</strong> One click = stop, two clicks = danger, three = rally</li>
+                        <li><strong>Radio:</strong> Lowest power setting, earpiece, whisper mic</li>
+                        <li><strong>Runner:</strong> Most secure method for short distances</li>
+                    </ul>
+
+                    <p><strong>Environmental Awareness:</strong></p>
+                    <p>Use natural sounds to mask movement:</p>
+                    <ul>
+                        <li>Wind gusts</li>
+                        <li>Rain or drizzle</li>
+                        <li>Running water</li>
+                        <li>Wildlife movement</li>
+                        <li>Aircraft or distant explosions</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Obstacle Negotiation</div>
+                    
+                    <p>Jungle obstacles require specialized techniques to overcome safely and efficiently while maintaining tactical posture.</p>
+
+                    <p><strong>Stream and River Crossings:</strong></p>
+                    <ul>
+                        <li><strong>Site Selection:</strong> Look for natural bridges, shallow fords, or narrow points</li>
+                        <li><strong>Current Assessment:</strong> Throw stick to assess speed—if you can't walk alongside, it's too fast</li>
+                        <li><strong>Individual Crossing:</strong> Face upstream, side-step, use walking stick for balance</li>
+                        <li><strong>Team Crossing:</strong> Link arms or use rope for mutual support</li>
+                        <li><strong>Equipment:</strong> Waterproof critical items, secure weapon</li>
+                        <li><strong>Post-Crossing:</strong> Dry feet immediately—maceration leads to incapacitation</li>
+                    </ul>
+
+                    <p><strong>Cliff and Slope Movement:</strong></p>
+                    <ul>
+                        <li><strong>Diagonal Ascent/Descent:</strong> Zigzag to reduce effective slope angle</li>
+                        <li><strong>Three Points of Contact:</strong> Always maintain three secure points when climbing</li>
+                        <li><strong>Vine/Rope Use:</strong> Test before weight—jungle vines can support weight but verify first</li>
+                        <li><strong>Root Steps:</strong> Use exposed roots as natural ladder rungs</li>
+                        <li><strong>Rappelling:</strong> Natural anchors include trees (10-inch minimum diameter), rock horns</li>
+                        <li><strong>Fixed Lines:</strong> Install hand lines for difficult sections</li>
+                    </ul>
+
+                    <p><strong>Thick Vegetation:</strong></p>
+                    <ul>
+                        <li><strong>Bamboo Groves:</strong> Navigate around when possible—nearly impenetrable</li>
+                        <li><strong>Thorn Areas:</strong> Use cutting to clear path; protective clothing essential</li>
+                        <li><strong>Wait-a-While:</strong> Hooked vines that catch equipment—cut or bypass</li>
+                        <li><strong>Fallen Trees:</strong> Use as elevated paths when stable; check for rot</li>
+                        <li><strong>Swamp Areas:</strong> Test footing with stick; stay on roots and tussocks</li>
+                    </ul>
+
+                    <p><strong>Waterlogged Terrain:</strong></p>
+                    <ul>
+                        <li><strong>Mud Movement:</strong> Move quickly through—slow movement creates suction</li>
+                        <li><strong>Quicksand Identification:</strong> Bubbling, wet ground with vegetation. Stay calm, float, backstroke out.</li>
+                        <li><strong>Punji Areas:</strong> Probe with stick; look for disturbed ground</li>
+                        <li><strong>Leeches:</strong> Check constantly; salt or heat for removal</li>
+                    </ul>
+
+                    <p><strong>Navigation Obstacles:</strong></p>
+                    <ul>
+                        <li><strong>Boxing In:</strong> When terrain forces deviation, document offset for correction</li>
+                        <li><strong>Catch Features:</strong> Use streams, ridgelines, or large terrain features to regain position</li>
+                        <li><strong>Dead Reckoning:</strong> Essential when visibility prevents terrain association</li>
+                        <li><strong>GPS Degradation:</strong> Triple canopy blocks signals—plan for manual navigation</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Tactical Considerations</div>
+                    
+                    <p>Mobility in the jungle must always support tactical objectives. Movement techniques change based on the threat environment and mission.</p>
+
+                    <p><strong>Movement Techniques by Threat:</strong></p>
+                    <ul>
+                        <li><strong>Traveling:</strong> Continuous movement when enemy contact unlikely. Faster but less secure.</li>
+                        <li><strong>Traveling Overwatch:</strong> Lead element moves while trail element overwatches. Used when contact possible.</li>
+                        <li><strong>Bounding Overwatch:</strong> Element-by-element movement with overwatch. Used when contact expected.</li>
+                        <li><strong>Stealth:</strong> Slow, silent movement for reconnaissance or close proximity to enemy. Maximum concealment.</li>
+                    </ul>
+
+                    <p><strong>Danger Areas:</strong></p>
+                    <p>Jungle danger areas include:</p>
+                    <ul>
+                        <li><strong>Stream Crossings:</strong> Limited fields of fire, channelized movement</li>
+                        <li><strong>Clearings:</strong> Loss of concealment, exposure to observation</li>
+                        <li><strong>Trails:</strong> Natural lines of drift, likely ambush sites</li>
+                        <li><strong>Ridge Lines:</strong> Skyline exposure, predictable routes</li>
+                        <li><strong>Swamps:</strong> Restricted movement, limited fields of fire</li>
+                    </ul>
+                    <p>Cross danger areas using:</p>
+                    <ul>
+                        <li>90-degree offset to observe before crossing</li>
+                        <li>Designated near and far side rally points</li>
+                        <li>Rapid, covered movement</li>
+                        <li>Security maintained throughout</li>
+                    </ul>
+
+                    <p><strong>Actions on Contact:</strong></p>
+                    <ul>
+                        <li><strong>React to Contact:</strong> Immediate return fire, seek cover, report</li>
+                        <li><strong>Locate:</strong> Identify enemy position, strength, activity</li>
+                        <li><strong>Suppress:</strong> Fix enemy with fire while maneuvering</li>
+                        <li><strong>Attack:</strong> Close with and destroy enemy using fire and movement</li>
+                        <li><strong>Break Contact:</strong> If enemy too strong, withdraw using smoke, indirect fire</li>
+                    </ul>
+
+                    <p><strong>Counter-Ambush:</strong></p>
+                    <ul>
+                        <li>Avoid predictable routes and timing</li>
+                        <li>Vary patrol patterns</li>
+                        <li>Use point and slack men to detect early indicators</li>
+                        <li>Maintain interval—bunching increases casualties</li>
+                        <li>Immediate action drills rehearsed to standard</li>
+                        <li>Counter-ambush through kill zone or into ambush position</li>
+                    </ul>
+
+                    <p><strong>Combat Load Considerations:</strong></p>
+                    <ul>
+                        <li>Balance combat load (35-50 lbs) against mission requirements</li>
+                        <li>High-cut packs for prone movement</li>
+                        <li>Hydration accessible without removing pack</li>
+                        <li>Ammunition accessible for rapid reload</li>
+                        <li>Medical equipment where any soldier can reach it</li>
+                        <li>Redistribute loads during halts to prevent fatigue</li>
+                    </ul>
+
+                    <p><strong>Physical Conditioning:</strong></p>
+                    <p>Maintain jungle-specific fitness:</p>
+                    <ul>
+                        <li>Rucking in heat and humidity with combat load</li>
+                        <li>Pull-ups and grip strength for climbing</li>
+                        <li>Balance and proprioception training</li>
+                        <li>Core strength for load bearing</li>
+                        <li>Ankle stability for uneven terrain</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Jungle Warfare Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Jungle Skills</a></li><li><a href="index.html#phases">Jungle Survival</a></li><li><a href="index.html#phases">Jungle Patrols</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Jungle Gear</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co.</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script>
+        if (typeof RangerAuth !== 'undefined') {
+            RangerAuth.initAuthUI();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginGate = document.getElementById('login-gate');
+            const courseContent = document.getElementById('course-content');
+            
+            function checkAccess() {
+                const user = localStorage.getItem('ranger_auth_user');
+                if (user) {
+                    loginGate.style.display = 'none';
+                    courseContent.style.display = 'block';
+                } else {
+                    loginGate.style.display = 'block';
+                    courseContent.style.display = 'none';
+                }
+            }
+            
+            checkAccess();
+        });
+    </script>
+</body>
+</html>

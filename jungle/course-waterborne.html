@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waterborne Operations — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Jungle Skills</a></li>
+                        <li><a href="index.html#phases">Jungle Survival</a></li>
+                        <li><a href="index.html#phases">Jungle Patrols</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Jungle Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-jungle-prep.html">JOTC Prep</a></li>
+                        <li><a href="course-jungle-mobility.html">Jungle Mobility</a></li>
+                        <li><a href="course-waterborne.html">Waterborne Ops</a></li>
+                        <li><a href="course-combat-tracking.html">Combat Tracking</a></li>
+                        <li><a href="course-jungle-survival.html">Jungle Survival</a></li>
+                        <li><a href="course-squad-tactics.html">Squad Tactics</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="resources.html">Jungle Resources</a></li>
+                        <li><a href="standards.html">PT Standards</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-waterborne">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Waterborne Operations</h1>
+        <p class="section-desc fade-in">Master river crossings, tactical swimming, raft construction, and waterborne infiltration. Learn to use water obstacles as avenues of approach instead of barriers.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$15</span>
+            <span class="course-tag tag-phase">Phase 1</span>
+            <span class="course-tag tag-type">Skills</span>
+            <span class="course-tag tag-bundle">Waterborne</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-waterborne"
+                data-item-name="Waterborne Operations"
+                data-item-price="15.00"
+                data-item-url="/jungle/course-waterborne.html"
+                data-item-description="Comprehensive waterborne training: river crossings, rafting, swimming in gear, and tactical water movement"
+                data-item-categories="course">Buy Course — $15.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Water Assessment</a>
+                <a href="#mod2" class="course-sidebar-link">2. Individual Crossing</a>
+                <a href="#mod3" class="course-sidebar-link">3. Swimming in Combat Gear</a>
+                <a href="#mod4" class="course-sidebar-link">4. Raft Construction</a>
+                <a href="#mod5" class="course-sidebar-link">5. Tactical Water Movement</a>
+                <a href="#mod6" class="course-sidebar-link">6. Waterborne Infiltration</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Water Obstacle Assessment</div>
+                    
+                    <p>Water obstacles in jungle environments range from slow-moving streams to fast-flowing rivers with rapids. Proper assessment determines the safest and most tactically sound crossing method.</p>
+
+                    <p><strong>River Characteristics:</strong></p>
+                    <ul>
+                        <li><strong>Width:</strong> Determines crossing method; under 50m may allow swimming, over 50m requires rafts or bridges</li>
+                        <li><strong>Depth:</strong> Chest-deep or less allows wading; deeper requires swimming or flotation</li>
+                        <li><strong>Current:</strong> Faster than 1 meter/second is dangerous for swimming; use flotation devices</li>
+                        <li><strong>Bottom:</strong> Rocky, sandy, or muddy affects footing; test before committing</li>
+                        <li><strong>Temperature:</strong> Cold water creates hypothermia risk; limit exposure time</li>
+                    </ul>
+
+                    <p><strong>Hazard Identification:</strong></p>
+                    <ul>
+                        <li><strong>Strainers:</strong> Obstacles that allow water through but trap swimmers ( fallen trees, debris)</li>
+                        <li><strong>Hydraulics:</strong> Recirculating currents below drops or obstacles; trap and drown swimmers</li>
+                        <li><strong>Foot Entrapment:</strong> Hidden rocks or debris that trap feet in current</li>
+                        <li><strong>Undercut Banks:</strong> Banks eroded below waterline; create drowning hazards</li>
+                        <li><strong>Rapids:</strong> Class I-VI; military operations generally avoid Class III and above</li>
+                    </ul>
+
+                    <p><strong>Current Assessment:</strong></p>
+                    <ul>
+                        <li>Throw a stick or leaf; observe speed and direction</li>
+                        <li>Surface speed is faster than bottom speed; expect drift downstream</li>
+                        <li>Look for indicators: white water, standing waves, eddies indicate speed changes</li>
+                        <li>Faster current near center, slower near banks</li>
+                    </ul>
+
+                    <p><strong>Site Selection:</strong></p>
+                    <ul>
+                        <li>Select wide, shallow areas when possible</li>
+                        <li>Avoid outside bends (faster current) and inside bends (debris accumulation)</li>
+                        <li>Look for natural fords used by wildlife or locals</li>
+                        <li>Consider far-side terrain; must allow immediate dispersion</li>
+                        <li>Balance concealment with safety; dense vegetation may hide hazards</li>
+                    </ul>
+
+                    <p><strong>Crossing Methods Selection:</strong></p>
+                    <ul>
+                        <li><strong>Wading:</strong> Shallow, slow water; maintain contact with bottom</li>
+                        <li><strong>Swimming:</strong> Deep, slow water; requires waterproofed equipment</li>
+                        <li><strong>Floatation:</strong> Deep or fast water; use rafts, inflatable devices, or expedient flotation</li>
+                        <li><strong>Bridging:</strong> Wide or dangerous water; rope bridges or log bridges</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Individual Water Crossing</div>
+                    
+                    <p>Individual crossing techniques are the foundation of waterborne operations. Each soldier must be able to safely cross water obstacles while maintaining combat load and weapon.</p>
+
+                    <p><strong>Wading Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Diagonal Crossing:</strong> Move upstream at 45-degree angle to compensate for downstream drift</li>
+                        <li><strong>Side-Step Method:</strong> Face upstream, shuffle sideways; most stable for strong current</li>
+                        <li><strong>Staff Technique:</strong> Use pole or rifle for additional support points</li>
+                        <li><strong>Buddy System:</strong> Link arms with partner for mutual support</li>
+                    </ul>
+
+                    <p><strong>Preparation:</strong></p>
+                    <ul>
+                        <li>Waterproof all gear: use waterproof bags, trash bags, or ponchos</li>
+                        <li>Secure loose items that could float away</li>
+                        <li>Tighten load-bearing equipment to prevent shifting</li>
+                        <li>Secure weapon to body with sling</li>
+                        <li>Button all pockets to prevent water filling and dragging</li>
+                    </ul>
+
+                    <p><strong>Crossing Procedure:</strong></p>
+                    <ul>
+                        <li>Test depth and bottom before entering</li>
+                        <li>Enter at selected entry point; maintain weapon above water</li>
+                        <li>Move slowly, testing each step before weight transfer</li>
+                        <li>Face upstream if current is significant</li>
+                        <li>Exit quickly at far bank; establish security</li>
+                    </ul>
+
+                    <p><strong>Safety Procedures:</strong></p>
+                    <ul>
+                        <li>Establish downstream safety (swimmer with rope) for each crossing</li>
+                        <li>Life preservers or flotation for non-swimmers</li>
+                        <li>Never cross alone; minimum two personnel</li>
+                        <li>Abort crossing if depth exceeds chest or current is too strong</li>
+                    </ul>
+
+                    <p><strong>If Swept Away:</strong></p>
+                    <ul>
+                        <li>Assume defensive swimming position: on back, feet downstream, head upstream</li>
+                        <li>Keep knees bent to absorb impacts with obstacles</li>
+                        <li>Use arms to maneuver; backstroke toward shore</li>
+                        <li>Never attempt to stand in fast current until in shallow water</li>
+                        <li>Signal for help but maintain swimming position</li>
+                    </ul>
+
+                    <p><strong>Equipment Recovery:</strong></p>
+                    <p>If equipment is dropped, do not dive after it. Mark the location mentally. Attempt recovery only after reaching safety and if conditions permit. Lost equipment is less important than lost personnel.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Swimming in Combat Gear</div>
+                    
+                    <p>Combat swimming differs dramatically from recreational swimming. Equipment adds weight, reduces mobility, and creates entanglement hazards. Specialized techniques are essential for survival.</p>
+
+                    <p><strong>Equipment Considerations:</strong></p>
+                    <ul>
+                        <li><strong>Weight:</strong> Combat load (35-50 lbs) increases drowning risk significantly</li>
+                        <li><strong>Flotation:</strong> Some items float (empty magazines, plastic), others sink rapidly</li>
+                        <li><strong>Entanglement:</strong> Slings, straps, and loose gear can snag on submerged obstacles</li>
+                        <li><strong>Mobility:</strong> Restricted arm and leg movement due to equipment</li>
+                    </ul>
+
+                    <p><strong>Pre-Swim Preparation:</strong></p>
+                    <ul>
+                        <li>Jettison non-essential heavy equipment if emergency swimming is required</li>
+                        <li>Secure all loose straps with tape or rubber bands</li>
+                        <li>Create flotation from available materials: empty rucksack as flotation device</li>
+                        <li>Waterproof essential items: maps, radios, ammunition</li>
+                        <li>Weapon: sling tight to body or attach to flotation device</li>
+                    </ul>
+
+                    <p><strong>Combat Swimming Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Survival Float:</strong> Minimize energy expenditure; hold position in water</li>
+                        <ul>
+                            <li>Vertical position; gentle sculling with hands</li>
+                            <li>Bob to breathe; exhale underwater, inhale above surface</li>
+                            <li>Use for resting when unable to reach shore</li>
+                        </ul>
+                        <li><strong>Tired Swimmer Carry:</strong> Rescue technique for exhausted personnel</li>
+                        <ul>
+                            <li>Approach from behind to avoid panic response</li>
+                            <li>Hook arm across chest, support with hip</li>
+                            <li>Side-stroke or elementary backstroke to shore</li>
+                        </ul>
+                        <li><strong>Equipment Swim:</strong> Moving with full load</li>
+                        <ul>
+                            <li>Use rucksack as flotation: inflate or trap air inside</li>
+                            <li>Modified breaststroke or sidestroke</li>
+                            <li>Keep head above water for observation</li>
+                        </ul>
+                    </ul>
+
+                    <p><strong>Clothing and Boots:</strong></p>
+                    <ul>
+                        <li>Remove boots for long swims only; keep for protection in short crossings</li>
+                        <li>Uniforms create drag but provide some insulation</li>
+                        <li>Trap air in clothing for additional flotation</li>
+                        <li>BDU/ACU pants can be used as flotation device: knot legs, scoop air, hold around neck</li>
+                    </ul>
+
+                    <p><strong>Tactical Swimming:</strong></p>
+                    <ul>
+                        <li>Low profile: keep body submerged, expose only head and weapon</li>
+                        <li>Silent swimming: minimize splashing, use smooth strokes</li>
+                        <li>Direction changes: use bottom or vegetation as reference points</li>
+                        <li>Rest stops: use floating debris, shallow bars, or vegetation islands</li>
+                    </ul>
+
+                    <p><strong>Water Confidence Training:</strong></p>
+                    <p>Build confidence progressively: swimming without equipment, then with uniform, then with partial load, finally with full combat load. Practice in controlled conditions before attempting operational swimming.</p>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Raft Construction & Use</div>
+                    
+                    <p>Expedient rafts enable movement of personnel and equipment across water obstacles too wide or dangerous for individual crossing. Jungle materials provide excellent raft-building resources.</p>
+
+                    <p><strong>Raft Types:</strong></p>
+                    <ul>
+                        <li><strong>Log Raft:</strong> Most durable; requires tools for cutting and lashing</li>
+                        <ul>
+                            <li>10-15 logs 6-8 feet long, 4-6 inches diameter</li>
+                            <li>Cross-members at 1/3 and 2/3 points</li>
+                            <li>Lash with vines, cordage, or 550 cord</li>
+                        </ul>
+                        <li><strong>Bamboo Raft:</strong> Excellent flotation; naturally buoyant</li>
+                        <ul>
+                            <li>8-12 bamboo poles 8-10 feet long</li>
+                            <li>Green bamboo is more buoyant than dry</li>
+                            <li>Lash with cross-pieces at ends and center</li>
+                        </ul>
+                        <li><strong>Brush Raft:</strong> Expedient when no suitable logs available</li>
+                        <ul>
+                            <li>Bundle small branches and brush</li>
+                            <li>Wrap in tarp or poncho</li>
+                            <li>Short-duration use only</li>
+                        </ul>
+                        <li><strong>Inflatable Raft:</strong> Commercial or military; pack in rucksack</li>
+                    </ul>
+
+                    <p><strong>Construction Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Material Selection:</strong> Straight, sound, similar diameter logs; avoid rotten wood</li>
+                        <li><strong>Lashing Methods:</strong>
+                            <ul>
+                                <li>Square lashing: for 90-degree joints</li>
+                                <li>Diagonal lashing: for crossed members under stress</li>
+                                <li>Shear lashing: for parallel members</li>
+                            </ul>
+                        </li>
+                        <li><strong>Decking:</strong> Add cross-pieces for standing surface and equipment security</li>
+                        <li><strong>Thwarts:</strong> Seats that also serve as cross-members for structural integrity</li>
+                    </ul>
+
+                    <p><strong>Capacity Planning:</strong></p>
+                    <ul>
+                        <li>Calculate buoyancy: green wood displaces approximately 50% of its weight</li>
+                        <li>Allow 200% safety margin for combat loads</li>
+                        <li>Test raft near shore before committing to crossing</li>
+                        <li>Distribute weight evenly; keep center of gravity low</li>
+                    </ul>
+
+                    <p><strong>Raft Operation:</strong></p>
+                    <ul>
+                        <li><strong>Paddling:</strong> Personnel on opposite sides paddling in unison</li>
+                        <li><strong>Poles:</strong> Push off bottom in shallow water; more control than paddling</li>
+                        <li><strong>Current Navigation:</strong> Angle upstream to compensate for drift</li>
+                        <li><strong>Steering:</strong> Rear paddler steers; front paddler provides power</li>
+                    </ul>
+
+                    <p><strong>Tactical Considerations:</strong></p>
+                    <ul>
+                        <li>Rafts are vulnerable; conduct crossing at night or under concealment when possible</li>
+                        <li>Establish far-side security before launching</li>
+                        <li>Maintain noise discipline; avoid metal-on-metal contact</li>
+                        <li>Multiple rafts maintain dispersion; avoid bunching</li>
+                        <li>Plan recovery method: retrieve rafts for return trips or cache for exfiltration</li>
+                    </ul>
+
+                    <p><strong>Expedient Flotation Devices:</strong></p>
+                    <p>When raft construction isn't feasible, create individual flotation:</p>
+                    <ul>
+                        <li>Empty waterproofed rucksacks trap air</li>
+                        <li>Poncho wrapped around vegetation bundle</li>
+                        <li>Log flotation: single log with body draped across</li>
+                        <li>Link multiple devices for personnel without flotation</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Tactical Water Movement</div>
+                    
+                    <p>Water provides both concealment and vulnerability. Tactical water movement minimizes exposure while using waterways as avenues of approach and communication.</p>
+
+                    <p><strong>Water as Avenue of Approach:</strong></p>
+                    <ul>
+                        <li>Rivers provide natural corridors through dense vegetation</li>
+                        <li>Enemy may not expect approach from water</li>
+                        <li>Water travel is faster than cutting trails through jungle</li>
+                        <li>Concealment from vegetation overhanging waterways</li>
+                    </ul>
+
+                    <p><strong>Movement Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Bank Movement:</strong> Travel along shoreline maintaining tree line concealment</li>
+                        <li><strong>Waterline Movement:</strong> Float or swim in shallow water along bank</li>
+                        <li><strong>Channel Movement:</strong> Travel in main channel; faster but more exposed</li>
+                        <li><strong>Island Hopping:</strong> Use mid-stream islands or bars for rest and reconnaissance</li>
+                    </ul>
+
+                    <p><strong>Concealment:</strong></p>
+                    <ul>
+                        <li>Use river bends to mask approach</li>
+                        <li>Travel at night when thermal optics reduce water detection advantages</li>
+                        <li>Stay close to bank vegetation; avoid open water</li>
+                        <li>Submerge when aircraft or threat detected</li>
+                        <li>Minimize wake and noise; smooth, slow movement</li>
+                    </ul>
+
+                    <p><strong>Security Measures:</strong></p>
+                    <ul>
+                        <li>Point swimmer/scout ahead of main element</li>
+                        <li>Flank security observers on banks when possible</li>
+                        <li>Rear security trailing behind</li>
+                        <li>Establish rally points on both banks at regular intervals</li>
+                        <li>Pre-arranged signals for contact or emergency</li>
+                    </ul>
+
+                    <p><strong>Halts and Rest:</strong></p>
+                    <ul>
+                        <li>Identify rest points before departing</li>
+                        <li>Mid-stream bars and islands preferred for 360-degree security</li>
+                        <li>Bank rest points: select with immediate withdrawl route to water</li>
+                        <li>Keep equipment ready for immediate water re-entry</li>
+                        <li>Security rotation: rest half while half maintains watch</li>
+                    </ul>
+
+                    <p><strong>Equipment Management:</strong></p>
+                    <ul>
+                        <li>Waterproof all items even in rafts; capsize risk always present</li>
+                        <li>Secure equipment to raft or body; tether critical items</li>
+                        <li>Weapons: maintain immediate access while preventing submersion</li>
+                        <li>Dry ammunition and magazines at every opportunity</li>
+                        <li>Check equipment function after water exposure</li>
+                    </ul>
+
+                    <p><strong>Portage Operations:</strong></p>
+                    <ul>
+                        <li>Identify portage points around dangerous rapids or obstacles</li>
+                        <li>Maintain security during portage; most vulnerable when out of water</li>
+                        <li>Cache rafts if returning by same route</li>
+                        <li>Mark cache location for recovery</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Waterborne Infiltration & Exfiltration</div>
+                    
+                    <p>Waterborne infiltration and exfiltration are high-risk, high-reward operations. Proper planning and execution enable entry and exit where enemy least expects.</p>
+
+                    <p><strong>Infiltration Planning:</strong></p>
+                    <ul>
+                        <li><strong>Insertion Points:</strong> Upstream of objective; use current to assist approach</li>
+                        <li><strong>Timeline:</strong> Account for slower movement than land travel</li>
+                        <li><strong>Weather:</strong> Monitor for flash flood conditions; avoid during heavy rain</li>
+                        <li><strong>Objective Distance:</strong> Offset landing point from objective; approach overland</li>
+                        <li><strong>Contingencies:</strong> Alternative insertion points and emergency extraction</li>
+                    </ul>
+
+                    <p><strong>Launch Procedures:</strong></p>
+                    <ul>
+                        <li>Final equipment check; waterproof validation</li>
+                        <li>Establish departure time line</li>
+                        <li>Security during launch: overwatch prevents compromise</li>
+                        <li>Silent entry: no splashing, controlled launch</li>
+                        <li>Immediate dispersal once on water; avoid bunching</li>
+                    </ul>
+
+                    <p><strong>Approach Techniques:</strong></p>
+                    <ul>
+                        <li>Navigate by river features: bends, islands, confluences</li>
+                        <li>Maintain noise discipline; voices carry over water</li>
+                        <li>Use river sounds to mask your own noise</li>
+                        <li>Periodical stops to listen and observe</li>
+                        <li>Avoid predictable timing; vary speed and pattern</li>
+                    </ul>
+
+                    <p><strong>Extraction Planning:</strong></p>
+                    <ul>
+                        <li>Pre-arranged extraction points with time windows</li>
+                        <li>Multiple extraction options for flexibility</li>
+                        <li>Downstream of objective; use current for escape</li>
+                        <li>Security at extraction point: arrive early, establish overwatch</li>
+                        <li>Signal methods: visual, audio, or electronic</li>
+                    </ul>
+
+                    <p><strong>Emergency Procedures:</strong></p>
+                    <ul>
+                        <li><strong>Man Overboard:</strong> Immediate stop; downstream safety rescue</li>
+                        <li><strong>Equipment Loss:</strong> Mark location; continue if non-critical</li>
+                        <li><strong>Injury:</strong> Stabilize on shore; call for MEDEVAC if severe</li>
+                        <li><strong>Contact:</strong> Immediate shore movement; establish defensive position</li>
+                        <li><strong>Lost:</strong> Follow river downstream; most rivers lead to civilization</li>
+                    </ul>
+
+                    <p><strong>Recovery Operations:</strong></p>
+                    <ul>
+                        <li>Account for all personnel before leaving water</li>
+                        <li>Equipment inventory; note all losses</li>
+                        <li>Dry and maintain weapons immediately</li>
+                        <li>Reconstitute rations and water</li>
+                        <li>Medical check: immersion injuries, leeches, waterborne illness symptoms</li>
+                    </ul>
+
+                    <p><strong>Advanced Considerations:</strong></p>
+                    <ul>
+                        <li>Underwater breathing apparatus for extended sub-surface travel</li>
+                        <li>Combat Rubber Raiding Craft (CRRC) for squad-level operations</li>
+                        <li>Helicopter casting and recovery techniques</li>
+                        <li>Submarine lock-out/lock-in procedures</li>
+                        <li>Combat diving for clandestine approach</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Jungle Warfare Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Jungle Skills</a></li><li><a href="index.html#phases">Jungle Survival</a></li><li><a href="index.html#phases">Jungle Patrols</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Jungle Gear</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co.</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script>
+        if (typeof RangerAuth !== 'undefined') {
+            RangerAuth.initAuthUI();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginGate = document.getElementById('login-gate');
+            const courseContent = document.getElementById('course-content');
+            
+            function checkAccess() {
+                const user = localStorage.getItem('ranger_auth_user');
+                if (user) {
+                    loginGate.style.display = 'none';
+                    courseContent.style.display = 'block';
+                } else {
+                    loginGate.style.display = 'block';
+                    courseContent.style.display = 'none';
+                }
+            }
+            
+            checkAccess();
+        });
+    </script>
+</body>
+</html>

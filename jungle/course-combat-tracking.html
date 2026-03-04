@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combat Tracking — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Jungle Skills</a></li>
+                        <li><a href="index.html#phases">Jungle Survival</a></li>
+                        <li><a href="index.html#phases">Jungle Patrols</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Jungle Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-jungle-prep.html">JOTC Prep</a></li>
+                        <li><a href="course-jungle-mobility.html">Jungle Mobility</a></li>
+                        <li><a href="course-waterborne.html">Waterborne Ops</a></li>
+                        <li><a href="course-combat-tracking.html">Combat Tracking</a></li>
+                        <li><a href="course-jungle-survival.html">Jungle Survival</a></li>
+                        <li><a href="course-squad-tactics.html">Squad Tactics</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="resources.html">Jungle Resources</a></li>
+                        <li><a href="standards.html">PT Standards</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-combat-tracking">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Combat Tracking</h1>
+        <p class="section-desc fade-in">Learn visual tracking fundamentals, sign identification, spoor interpretation, and counter-tracking techniques used by elite reconnaissance units.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$15</span>
+            <span class="course-tag tag-phase">Phase I</span>
+            <span class="course-tag tag-type">Reconnaissance</span>
+            <span class="course-tag tag-bundle">Elite Skill</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-combat-tracking"
+                data-item-name="Combat Tracking"
+                data-item-price="15.00"
+                data-item-url="/jungle/course-combat-tracking.html"
+                data-item-description="Visual tracking, sign identification, spoor interpretation, and counter-tracking techniques for jungle environments"
+                data-item-categories="course">Buy Course — $15.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Tracking Fundamentals</a>
+                <a href="#mod2" class="course-sidebar-link">2. Ground Sign</a>
+                <a href="#mod3" class="course-sidebar-link">3. Aerial & Vegetation Sign</a>
+                <a href="#mod4" class="course-sidebar-link">4. Spoor Interpretation</a>
+                <a href="#mod5" class="course-sidebar-link">5. Tracking Team Operations</a>
+                <a href="#mod6" class="course-sidebar-link">6. Counter-Tracking</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Combat Tracking Fundamentals</div>
+                    
+                    <p>Combat tracking is the art and science of detecting, interpreting, and following human sign. In jungle warfare, tracking skills enable reconnaissance, pursuit, and avoidance of enemy forces. The jungle records everything—learn to read its story.</p>
+
+                    <p><strong>The Tracker's Mindset:</strong></p>
+                    <ul>
+                        <li><strong>Patience:</strong> Tracking is slow; haste destroys sign and misses details</li>
+                        <li><strong>Observation:</strong> See what others overlook; question every anomaly</li>
+                        <li><strong>Logic:</strong> Apply reason to what sign reveals; build the picture</li>
+                        <li><strong>Empathy:</strong> Think like your quarry; anticipate their decisions</li>
+                        <li><strong>Persistence:</strong> Lost spoor is found again; never give up</li>
+                    </ul>
+
+                    <p><strong>Definition of Sign:</strong></p>
+                    <ul>
+                        <li><strong>Ground Sign:</strong> Impressions left on the surface (footprints, slides, scuffs)</li>
+                        <li><strong>Aerial Sign:</strong> Disturbance above ground level (broken branches, spider webs)</li>
+                        <li><strong>Vegetation Sign:</strong> Plant damage, transfers, and disturbances</li>
+                        <li><strong>Secondary Sign:</strong> Indirect evidence (blood, litter, disturbed wildlife)</li>
+                        <li><strong>Meteorological Sign:</strong> Weather effects on existing sign (aging indicators)</li>
+                    </ul>
+
+                    <p><strong>The Tracking Environment:</strong></p>
+                    <ul>
+                        <li><strong>Jungle Advantages:</strong> Soft ground holds impressions; vegetation damage persists</li>
+                        <li><strong>Jungle Challenges:</strong> Rapid plant growth obscures sign; rain destroys evidence</li>
+                        <li><strong>Best Conditions:</strong> Soft soil after rain; morning light; minimal wind</li>
+                        <li><strong>Worst Conditions:</strong> Rocky terrain; hard-packed trails; heavy rain</li>
+                    </ul>
+
+                    <p><strong>Tracking vs. Following:</strong></p>
+                    <p>Following is moving along a path. Tracking is reading sign to understand who passed, how many, when, in what condition, and where they went. A tracker builds an intelligence picture; a follower just moves. Combat tracking demands the former—every sign tells a story, and that story informs tactical decisions.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Ground Sign Analysis</div>
+                    
+                    <p>Ground sign provides the most reliable tracking evidence. Learn to read footprints, determine numbers, assess condition, and estimate time passage.</p>
+
+                    <p><strong>Footprint Components:</strong></p>
+                    <ul>
+                        <li><strong>Heel:</strong> Strike point; shows direction and weight distribution</li>
+                        <li><strong>Sole:</strong> Tread pattern; identifies footwear type and manufacturer</li>
+                        <li><strong>Toes:</strong> Push-off area; indicates speed and load</li>
+                        <li><strong>Depth:</strong> Pressure; estimates weight and load of individual</li>
+                        <li><strong>Edges:</strong> Crispness indicates freshness; blur indicates age</li>
+                    </ul>
+
+                    <p><strong>Footprint Classification:</strong></p>
+                    <ul>
+                        <li><strong>Clear Print:</strong> Full definition; ideal for analysis</li>
+                        <li><strong>Partial Print:</strong> Incomplete; still useful for direction and pressure</li>
+                        <li><strong>Scuff:</strong> Sliding mark; indicates speed or fatigue</li>
+                        <li><strong>Slide:</strong> Long mark; slip or rapid descent</li>
+                        <li><strong>Flat Foot:</strong> Full sole contact; slow movement or heavy load</li>
+                        <li><strong>Toe Only:</strong> Running or tip-toe movement</li>
+                    </ul>
+
+                    <p><strong>Number Estimation:</strong></p>
+                    <ul>
+                        <li><strong>Box Method:</strong> Count distinct footprints within a defined area</li>
+                        <li><strong>Stride Analysis:</strong> Measure between consistent prints; different strides = different people</li>
+                        <li><strong>Pattern Recognition:</strong> Different tread patterns indicate different footwear</li>
+                        <li><strong>Overlay Technique:</strong> Track single line through multiple prints</li>
+                    </ul>
+
+                    <p><strong>Aging Sign:</strong></p>
+                    <ul>
+                        <li><strong>Fresh (0-1 hour):</strong> Sharp edges; moist interior; debris not settled</li>
+                        <li><strong>Recent (1-4 hours):</strong> Slight drying; edges firming; minimal debris</li>
+                        <li><strong>Old (4-12 hours):</strong> Noticeable drying; debris accumulation; edge erosion</li>
+                        <li><strong>Very Old (12+ hours):</strong> Significant weathering; plant growth; degraded edges</li>
+                    </ul>
+
+                    <p><strong>Ground Conditions:</strong></p>
+                    <ul>
+                        <li><strong>Sand:</strong> Holds detail well; shows pressure clearly</li>
+                        <li><strong>Mud:</strong> Excellent for impressions; shows depth and weight</li>
+                        <li><strong>Clay:</strong> Hard when dry; soft when wet; seasonal variation</li>
+                        <li><strong>Leaf Litter:</strong> Crushed and disturbed; less detail but clear passage</li>
+                        <li><strong>Rock:</strong> Scuff marks only; polished rocks show passage</li>
+                    </ul>
+
+                    <p><strong>Reading the Story:</strong></p>
+                    <p>A deep, flat-footed print with scuff marks indicates a tired, heavily loaded soldier. A shallow print with defined toe push-off suggests alert, lightly equipped movement. Multiple footprints of varying depths indicate a mixed group—perhaps a leader moving lightly and subordinates burdened with equipment. Every detail informs your tactical approach.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Aerial & Vegetation Sign</div>
+                    
+                    <p>Not all sign is on the ground. Aerial and vegetation disturbances often persist longer and are visible from greater distances. The jungle's vertical dimension is a tracking goldmine.</p>
+
+                    <p><strong>Vegetation Transfer:</strong></p>
+                    <ul>
+                        <li><strong>Definition:</strong> Material moved from one location to another by contact</li>
+                        <li><strong>Examples:</strong> Mud on leaves; grass on boots; pollen on clothing</li>
+                        <li><strong>Significance:</strong> Indicates direction of travel; proves recent passage</li>
+                        <li><strong>Persistence:</strong> Transfers can last hours to days depending on weather</li>
+                    </ul>
+
+                    <p><strong>Vegetation Disturbance:</strong></p>
+                    <ul>
+                        <li><strong>Bent Grass:</strong> Direction indicates travel; recovery shows time</li>
+                        <li><strong>Broken Stems:</strong> White or lighter interior visible; estimates timing by browning</li>
+                        <li><strong>Leaf Separation:</strong> Disturbed leaves hang differently; look for unnatural angles</li>
+                        <li><strong>Webbing:</strong> Spider webs disturbed or destroyed; incredibly time-sensitive</li>
+                        <li><strong>Dew Patterns:</strong> Disrupted morning dew reveals night passage</li>
+                    </ul>
+
+                    <p><strong>Branch Sign:</strong></p>
+                    <ul>
+                        <li><strong>Height:</strong> Indicates stature of passerby; different heights = different people</li>
+                        <li><strong>Break Type:</strong> Clean break = knife or tool; ragged break = pushed through</li>
+                        <li><strong>Direction:</strong> Broken branches point in direction of travel</li>
+                        <li><strong>Color Change:</strong> Fresh breaks are lighter; oxidize to match over time</li>
+                        <li><strong>Handholds:</strong> Broken or gripped branches indicate steep terrain navigation</li>
+                    </ul>
+
+                    <p><strong>Height Zones:</strong></p>
+                    <ul>
+                        <li><strong>Ground to Knee:</strong> Footprints; scuffs; low vegetation disturbance</li>
+                        <li><strong>Knee to Waist:</strong> Hand contact; equipment snags; most frequent zone</li>
+                        <li><strong>Waist to Shoulder:</strong> Shoulder brush; weapon contact; head-height branches</li>
+                        <li><strong>Above Shoulder:</strong> Less common; indicates raised arms or equipment carried high</li>
+                    </ul>
+
+                    <p><strong>Light and Shadow:</strong></p>
+                    <ul>
+                        <li><strong>Side Lighting:</strong> Best for revealing texture and disturbance; early morning/late afternoon</li>
+                        <li><strong>Flashlight Tracking:</strong> Side-lighting with flashlight at night reveals sign</li>
+                        <li><strong>Color Contrast:</strong> Disturbed earth is different color; shadow reveals texture</li>
+                        <li><strong>Silhouette:</strong> Stand back and look for unnatural shapes in vegetation</li>
+                    </ul>
+
+                    <p><strong>Tracking with Your Eyes:</strong></p>
+                    <p>Develop "soft eyes"—relaxed, wide-field vision that takes in the whole environment rather than focusing on specific points. Sign often registers in peripheral vision before conscious recognition. Scan systematically: ground, knee, waist, shoulder, above. The tracker who only looks at the ground misses half the story.</p>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Spoor Interpretation</div>
+                    
+                    <p>Spoor is the complete trail left by a person or group. Interpreting spoor correctly tells you not just where they went, but who they are, their condition, their intent, and their capabilities.</p>
+
+                    <p><strong>Determining Numbers:</strong></p>
+                    <ul>
+                        <li><strong>Direct Count:</strong> Count distinct footprints in a 1-meter box</li>
+                        <li><strong>Stride Grouping:</strong> Different stride lengths indicate different individuals</li>
+                        <li><strong>Depth Variation:</strong> Different pressures suggest different body weights</li>
+                        <li><strong>Formation Analysis:</strong> Single file, column, or dispersed formations</li>
+                        <li><strong>Standard Formula:</strong> Count tracks in 10 meters; divide by 2 = approximate number</li>
+                    </ul>
+
+                    <p><strong>Assessing Condition:</strong></p>
+                    <ul>
+                        <li><strong>Fresh Sign:</strong> Crisp, recent; quarry alert and moving well</li>
+                        <li><strong>Fatigue Indicators:</strong> Dragging feet; resting spots; irregular spacing</li>
+                        <li><strong>Equipment Burden:</strong> Deep prints; frequent rest stops; slow pace</li>
+                        <li><strong>Injury Signs:</strong> Asymmetric gait; blood; altered footprint pattern</li>
+                        <li><strong>Morale Clues:</strong> Discarded equipment; haphazard movement; lack of discipline</li>
+                    </ul>
+
+                    <p><strong>Determining Speed:</strong></p>
+                    <ul>
+                        <li><strong>Walking:</strong> Regular stride; full footprints; 3-4 km/h</li>
+                        <li><strong>Fast Walk:</strong> Longer stride; toe-heavy prints; 5-6 km/h</li>
+                        <li><strong>Running:</strong> Extended stride; scuffs; irregular spacing; 8-10 km/h</li>
+                        <li><strong>Route March:</strong> Consistent but fast; military discipline; 5-6 km/h sustained</li>
+                    </ul>
+
+                    <p><strong>Estimating Time:</strong></p>
+                    <ul>
+                        <li><strong>Environmental Aging:</strong> Drying, oxidation, weathering patterns</li>
+                        <li><strong>Vegetation Recovery:</strong> Bent grass recovery rate; leaf turgor</li>
+                        <li><strong>Insect Activity:</strong> Ants, flies, beetles on disturbed ground</li>
+                        <li><strong>Animal Sign:</strong> Wildlife crossing the trail after passage</li>
+                        <li><strong>Weather Impact:</strong> Rain effects; sun exposure; wind degradation</li>
+                    </ul>
+
+                    <p><strong>Tactical Interpretation:</strong></p>
+                    <ul>
+                        <li><strong>Security Discipline:</strong> Well-spaced elements; deliberate movement; concealed rest</li>
+                        <li><strong>Haste:</strong> Direct routes; minimal security; visible trail</li>
+                        <li><strong>Load Type:</strong> Heavy loads = supply movement; light loads = reconnaissance</li>
+                        <li><strong>Equipment:</strong> Military boot patterns; weapon scuff marks; pack frames</li>
+                        <li><strong>Intent:</strong> Route analysis reveals objective and purpose</li>
+                    </ul>
+
+                    <p><strong>The Complete Picture:</strong></p>
+                    <p>A tracker builds a profile: "Eight individuals, military boots, heavy loads, fatigued but disciplined, passed 3-4 hours ago, moving northeast at approximately 4 km/h, likely a supply element returning to base." This information drives tactical decisions—whether to follow, ambush, avoid, or report.</p>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Tracking Team Operations</div>
+                    
+                    <p>Combat tracking is a team effort. Proper team organization multiplies effectiveness, provides security, and ensures mission success in hostile environments.</p>
+
+                    <p><strong>Team Composition:</strong></p>
+                    <ul>
+                        <li><strong>Team Leader:</strong> Overall command; tactical decisions; communication</li>
+                        <li><strong>Lead Tracker:</strong> Primary sign reader; follows spoor directly</li>
+                        <li><strong>Second Tracker:</strong> Confirms sign; takes over when lead tires</li>
+                        <li><strong>Security Element:</strong> Flank and rear security; overwatch</li>
+                        <li><strong>Navigator:</strong> Maintains overall plot; coordinates with higher</li>
+                    </ul>
+
+                    <p><strong>Movement Formations:</strong></p>
+                    <ul>
+                        <li><strong>Single File:</strong> Trackers in front; security follows; use in low threat</li>
+                        <li><strong>Diamond:</strong> Trackers center; security on flanks and rear; balanced security</li>
+                        <li><strong>Box:</strong> Trackers protected on all sides; high threat environment</li>
+                        <li><strong>Leapfrog:</strong> Elements alternate tracking and security; continuous movement</li>
+                    </ul>
+
+                    <p><strong>Tracking Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Step-by-Step:</strong> Identify each footprint; slow but certain</li>
+                        <li><strong>Sign Cutting:</strong> Move ahead in arcs to cut trail; locate spoor quickly</li>
+                        <li><strong>Track Traps:</strong> Identify chokepoints where quarry must pass</li>
+                        <li><strong>Backtracking:</strong> When spoor lost, return to last confirmed sign</li>
+                        <li><strong>Ambush Avoidance:</strong> Never follow blindly; anticipate where trail leads</li>
+                    </ul>
+
+                    <p><strong>Communication:</strong></p>
+                    <ul>
+                        <li><strong>Hand Signals:</strong> Silent communication essential; standardized signals</li>
+                        <li><strong>Sign Confirmation:</strong> Second tracker verifies before team commits</li>
+                        <li><strong>Lost Spoor:</strong> Immediate freeze; leader assesses; systematic search</li>
+                        <li><strong>Contact:</strong> Immediate freeze; security deploys; leader evaluates</li>
+                    </ul>
+
+                    <p><strong>Lost Spoor Procedures:</strong></p>
+                    <ul>
+                        <li><strong>Freeze:</strong> Stop immediately to prevent further sign destruction</li>
+                        <li><strong>Mark:</strong> Note last confirmed spoor location</li>
+                        <li><strong>360 Search:</strong> Expand outward in increasing circles</li>
+                        <li><strong>Track Traps:</strong> Identify likely route; move to cut trail ahead</li>
+                        <li><strong>Backtrack:</strong> Return to last confirmed sign; restart from solid ground</li>
+                    </ul>
+
+                    <p><strong>Tracking Security:</strong></p>
+                    <p>Trackers focus on the ground; security focuses on the environment. Never let tracking obsession override tactical awareness. The best tracker in the world is useless if he's killed because he was staring at footprints. Security elements must be aggressive—trackers are vulnerable, and the enemy knows it.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Counter-Tracking Techniques</div>
+                    
+                    <p>If you can track, you can avoid being tracked. Counter-tracking is the art of concealing your passage, misleading pursuers, and breaking contact with enemy tracking teams.</p>
+
+                    <p><strong>Counter-Tracking Principles:</strong></p>
+                    <ul>
+                        <li><strong>Minimize Sign:</strong> Every action leaves evidence; reduce unnecessary disturbance</li>
+                        <li><strong>Confuse the Trail:</strong> Make tracking difficult, time-consuming, or impossible</li>
+                        <li><strong>Misdirection:</strong> Send pursuers in wrong directions</li>
+                        <li><strong>Speed:</strong> Distance is the best counter-track; open the gap</li>
+                        <li><strong>Knowledge:</strong> Understand tracking to defeat tracking</li>
+                    </ul>
+
+                    <p><strong>Movement Discipline:</strong></p>
+                    <ul>
+                        <li><strong>Step Carefully:</strong> Avoid soft ground; use rocks, roots, hard surfaces</li>
+                        <li><strong>Single File:</strong> All follow same path; minimizes trail width</li>
+                        <li><strong>Brush Repair:</strong> Straighten bent vegetation when possible</li>
+                        <li><strong>Silence:</strong> Noise attracts attention; silent movement avoids detection</li>
+                        <li><strong>Route Selection:</strong> Use hard surfaces; avoid soft mud and sand</li>
+                    </ul>
+
+                    <p><strong>Spoofing Techniques:</strong></p>
+                    <ul>
+                        <li><strong>False Trails:</strong> Send small element on false route; main body splits</li>
+                        <li><strong>Backwards Walking:</strong> Hard to execute convincingly; rarely effective</li>
+                        <li><strong>Jumping Off:</strong> Leap sideways from trail; land on hard surface</li>
+                        <li><strong>Walking Backwards in Shoes:</strong> Tread pattern appears reversed</li>
+                        <li><strong>Multiple Exits:</strong> Leave area in several directions; force enemy to split</li>
+                    </ul>
+
+                    <p><strong>Trail Breaking:</strong></p>
+                    <ul>
+                        <li><strong>Water:</strong> Walk in streams; exit on rock or where sign won't show</li>
+                        <li><strong>Roads:</strong> Walk on hard surfaces; exit where trail is confused</li>
+                        <li><strong>Dense Vegetation:</strong> Pass through thickets where sign is hard to read</li>
+                        <li><strong>Animal Trails:</strong> Use existing trails; confuses human sign</li>
+                        <li><strong>Windfall:</strong> Pass through areas of natural disturbance</li>
+                    </ul>
+
+                    <p><strong>Environmental Exploitation:</strong></p>
+                    <ul>
+                        <li><strong>Wind:</strong> Move when wind covers noise and disturbs vegetation</li>
+                        <li><strong>Rain:</strong> Sign washes away; move before or during rain when possible</li>
+                        <li><strong>Darkness:</strong> Night movement harder to track; but also harder to move</li>
+                        <li><strong>Heat:</strong> Midday heat reduces enemy patrol activity</li>
+                    </ul>
+
+                    <p><strong>Discipline Under Pressure:</strong></p>
+                    <p>Counter-tracking requires discipline when discipline is hardest. When exhausted, frightened, and pursued, the urge to rush, to cut corners, to make noise is overwhelming. Counter-tracking success depends on maintaining standards when every instinct says to abandon them. Train until proper technique is automatic, because in combat, there is no time to think—only to execute.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Jungle Warfare Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Jungle Skills</a></li><li><a href="index.html#phases">Jungle Survival</a></li><li><a href="index.html#phases">Jungle Patrols</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Jungle Gear</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co.</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script>
+        if (typeof RangerAuth !== 'undefined') {
+            RangerAuth.initAuthUI();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginGate = document.getElementById('login-gate');
+            const courseContent = document.getElementById('course-content');
+            
+            function checkAccess() {
+                const user = localStorage.getItem('ranger_auth_user');
+                if (user) {
+                    loginGate.style.display = 'none';
+                    courseContent.style.display = 'block';
+                } else {
+                    loginGate.style.display = 'block';
+                    courseContent.style.display = 'none';
+                }
+            }
+            
+            checkAccess();
+        });
+    </script>
+</body>
+</html>

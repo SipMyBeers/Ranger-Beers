@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Operations Training Prep — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Jungle Skills</a></li>
+                        <li><a href="index.html#phases">Jungle Survival</a></li>
+                        <li><a href="index.html#phases">Jungle Patrols</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Jungle Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="course-jungle-prep.html">JOTC Prep</a></li>
+                        <li><a href="course-jungle-mobility.html">Jungle Mobility</a></li>
+                        <li><a href="course-waterborne.html">Waterborne Ops</a></li>
+                        <li><a href="course-combat-tracking.html">Combat Tracking</a></li>
+                        <li><a href="course-jungle-survival.html">Jungle Survival</a></li>
+                        <li><a href="course-squad-tactics.html">Squad Tactics</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="resources.html">Jungle Resources</a></li>
+                        <li><a href="standards.html">PT Standards</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-jungle-prep">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Jungle Operations Training Course (JOTC) Prep</h1>
+        <p class="section-desc fade-in">The Jungle Operations Training Course is a 12-day course conducted by the Lightning Academy, 25th Infantry Division, at Schofield Barracks, Hawaii. Learn to fight, win, and survive in any jungle environment.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$12</span>
+            <span class="course-tag tag-phase">All Phases</span>
+            <span class="course-tag tag-type">Comprehensive</span>
+            <span class="course-tag tag-bundle">Full Access</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-jungle-prep"
+                data-item-name="JOTC Prep"
+                data-item-price="12.00"
+                data-item-url="/jungle/course-jungle-prep.html"
+                data-item-description="Complete JOTC prep covering jungle mobility, waterborne ops, combat tracking, and survival"
+                data-item-categories="course">Buy Course — $12.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Course Overview</a>
+                <a href="#mod2" class="course-sidebar-link">2. Jungle Environment</a>
+                <a href="#mod3" class="course-sidebar-link">3. Physical Preparation</a>
+                <a href="#mod4" class="course-sidebar-link">4. Week 1: Individual Skills</a>
+                <a href="#mod5" class="course-sidebar-link">5. Week 2: Squad Operations</a>
+                <a href="#mod6" class="course-sidebar-link">6. Graduation Requirements</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Course Overview & What to Expect</div>
+                    
+                    <p>The Jungle Operations Training Course (JOTC) is conducted by the Lightning Academy, Headquarters and Headquarters Battalion, 25th Infantry Division, at Schofield Barracks, Hawaii. This 12-day course teaches soldiers the tactics, techniques, and procedures required to fight, win, and survive within any jungle environment.</p>
+
+                    <p><strong>Course Mission:</strong> To provide jungle mobility training, waterborne operations instruction, combat tracking skills, jungle tactics, survival training, and situational awareness exercises at the squad level.</p>
+
+                    <p><strong>Course Structure:</strong></p>
+                    <ul>
+                        <li><strong>Duration:</strong> 12 days (2 weeks)</li>
+                        <li><strong>Location:</strong> Lightning Academy, Schofield Barracks East Range, Hawaii</li>
+                        <li><strong>Training Unit:</strong> Lightning Academy, HHBN, 25th Infantry Division</li>
+                        <li><strong>Training Area:</strong> Kahuku Training Area, Oahu, Hawaii</li>
+                        <li><strong>Class Size:</strong> Variable, typically squad-sized elements</li>
+                        <li><strong>Pass Rate:</strong> Historically 70-80% (varies by class)</li>
+                    </ul>
+
+                    <p><strong>Training Progression:</strong> The course follows the "crawl, walk, run" methodology:</p>
+                    <ul>
+                        <li><strong>Week One:</strong> Builds individual student skills required to shoot, move, and communicate within the tropical environment</li>
+                        <li><strong>Week Two:</strong> Focuses on planning, preparation, and execution of jungle operations at the squad level</li>
+                    </ul>
+
+                    <p><strong>Why JOTC Matters:</strong> The Indo-Pacific region contains some of the world's densest jungle terrain. As the Army pivots toward near-peer competition, the ability to operate effectively in jungle environments is critical. JOTC graduates bring specialized skills back to their units that can mean the difference between mission success and failure in tropical theaters.</p>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">The Jungle Environment</div>
+                    
+                    <p>The jungle is one of the most challenging environments for military operations. Understanding its unique characteristics is essential for survival and mission success.</p>
+
+                    <p><strong>Jungle Terrain Characteristics:</strong></p>
+                    <ul>
+                        <li><strong>Triple Canopy:</strong> Dense vegetation at multiple levels limits visibility and mobility</li>
+                        <li><strong>Restricted Visibility:</strong> Often limited to 10-20 meters, affecting navigation and observation</li>
+                        <li><strong>Microclimates:</strong> Rapid weather changes, high humidity (80-100%), extreme heat</li>
+                        <li><strong>Water Features:</strong> Rivers, streams, swamps require specialized crossing techniques</li>
+                        <li><strong>Navigational Challenges:</strong> Compass interference, lack of landmarks, GPS limitations</li>
+                    </ul>
+
+                    <p><strong>Environmental Hazards:</strong></p>
+                    <ul>
+                        <li><strong>Flora:</strong> Stinging plants, thorns, poisonous vegetation</li>
+                        <li><strong>Fauna:</strong> Venomous snakes, spiders, insects, disease vectors</li>
+                        <li><strong>Waterborne Diseases:</strong> Leptospirosis, dengue, malaria risks</li>
+                        <li><strong>Weather:</strong> Flash floods, lightning, tropical storms</li>
+                    </ul>
+
+                    <p><strong>Jungle Advantages:</strong></p>
+                    <ul>
+                        <li>Excellent concealment for defensive operations</li>
+                        <li>Abundant water sources (requires purification)</li>
+                        <li>Natural materials for shelter and camouflage</li>
+                        <li>Restricts enemy mobility and observation</li>
+                    </ul>
+
+                    <p><strong>25th Infantry Division's Role:</strong> The 25th ID is nicknamed "Tropic Lightning" for good reason. Stationed in Hawaii, they maintain the Army's premier jungle warfare capability. The Lightning Academy's JOTC is the only active jungle school in the Department of Defense.</p>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Physical Preparation & Prerequisites</div>
+                    
+                    <p>JOTC is physically demanding. The tropical environment, combined with the technical nature of the training, requires specific preparation.</p>
+
+                    <p><strong>Prerequisites:</strong></p>
+                    <ul>
+                        <li>Valid Army Combat Fitness Test (ACFT) within 6 months</li>
+                        <li>Security clearance (minimum Secret for some training)</li>
+                        <li>No permanent medical profiles</li>
+                        <li>Water confidence (not necessarily swim-qualified, but comfortable in water)</li>
+                    </ul>
+
+                    <p><strong>Physical Demands:</strong></p>
+                    <ul>
+                        <li>Operating in full combat load (35-50 lbs) in extreme heat and humidity</li>
+                        <li>Waterborne operations requiring swimming ability</li>
+                        <li>Extended foot marches through dense vegetation</li>
+                        <li>Sustained operations with limited sleep (2-4 hours per night)</li>
+                        <li>Climbing, rappelling, and high-angle movement</li>
+                    </ul>
+
+                    <p><strong>Climate Acclimatization:</strong></p>
+                    <p>If you're coming from a temperate climate, your body needs time to adapt. Arrive in Hawaii 3-5 days early if possible. The combination of heat, humidity, and physical exertion causes rapid dehydration and heat casualties among unprepared students.</p>
+
+                    <p><strong>Pre-Course Training Recommendations:</strong></p>
+                    <ul>
+                        <li><strong>Heat Acclimatization:</strong> Train in heat if possible; sauna exposure helps</li>
+                        <li><strong>Swimming:</strong> Practice swimming in boots and uniform</li>
+                        <li><strong>Rucking:</strong> Build to 12 miles with 50 lbs in under 3 hours</li>
+                        <li><strong>Upper Body:</strong> Pull-ups, rope climbs, grip strength training</li>
+                        <li><strong>Foot Care:</strong> Train in jungle boots; break them in completely</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Week One: Individual Jungle Skills</div>
+                    
+                    <p>Week One of JOTC builds individual skills required to shoot, move, and communicate in the jungle environment. This is the foundation upon which squad operations are built.</p>
+
+                    <p><strong>Subject Areas:</strong></p>
+                    
+                    <p><strong>1. Jungle Mobility:</strong></p>
+                    <ul>
+                        <li>Movement techniques through dense vegetation</li>
+                        <li>Machete use and trail cutting</li>
+                        <li>Silent movement techniques</li>
+                        <li>Navigating restrictive terrain</li>
+                        <li>Stream and river crossing techniques</li>
+                    </ul>
+
+                    <p><strong>2. Waterborne Movement:</strong></p>
+                    <ul>
+                        <li>Individual water crossing methods</li>
+                        <li>Equipment waterproofing</li>
+                        <li>River current assessment</li>
+                        <li>Floatation devices and expedient rafts</li>
+                        <li>Water safety and rescue</li>
+                    </ul>
+
+                    <p><strong>3. Combat Tracking:</strong></p>
+                    <ul>
+                        <li>Visual tracking fundamentals</li>
+                        <li>Sign identification (footprints, broken vegetation, disturbed ground)</li>
+                        <li>Counter-tracking techniques</li>
+                        <li>Lost spoor procedures</li>
+                        <li>Tracking team organization</li>
+                    </ul>
+
+                    <p><strong>4. Jungle Medicine:</strong></p>
+                    <ul>
+                        <li>Heat illness prevention and treatment</li>
+                        <li>Water purification methods</li>
+                        <li>Jungle-specific injuries (insect bites, plant reactions)</li>
+                        <li>Combat lifesaver applications in jungle</li>
+                        <li>Patient evacuation considerations</li>
+                    </ul>
+
+                    <p><strong>5. Early Warning Devices:</strong></p>
+                    <ul>
+                        <li>Natural and man-made early warning systems</li>
+                        <li>Tripwire employment</li>
+                        <li>Noise makers and signals</li>
+                        <li>Perimeter security in jungle</li>
+                    </ul>
+
+                    <p><strong>6. Camouflage Techniques:</strong></p>
+                    <ul>
+                        <li>Jungle-specific camouflage (pattern, shine, shape, silhouette)</li>
+                        <li>Ghillie suit construction and use</li>
+                        <li>Face paint and skin protection</li>
+                        <li>Equipment camouflage</li>
+                        <li>Movement discipline to avoid detection</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">Week Two: Squad Jungle Operations</div>
+                    
+                    <p>Week Two transitions from individual skills to squad-level operations. You'll plan, prepare, and execute jungle missions as part of a team.</p>
+
+                    <p><strong>Squad Operations Focus:</strong></p>
+                    
+                    <p><strong>1. Jungle Patrolling:</strong></p>
+                    <ul>
+                        <li>Modified movement formations for restricted terrain</li>
+                        <li>Security halts and danger areas</li>
+                        <li>Actions on contact in jungle</li>
+                        <li>Route selection and navigation</li>
+                        <li>Communication challenges and solutions</li>
+                    </ul>
+
+                    <p><strong>2. Ambush Operations:</strong></p>
+                    <ul>
+                        <li>Site selection in dense vegetation</li>
+                        <li>Fields of fire and sector assignment</li>
+                        <li>Withdrawal routes</li>
+                        <li>Execution and control</li>
+                    </ul>
+
+                    <p><strong>3. Raid Operations:</strong></p>
+                    <ul>
+                        <li>Approach and withdrawal planning</li>
+                        <li>Objective security</li>
+                        <li>Assault element coordination</li>
+                        <li>Sensitive site exploitation in jungle</li>
+                    </ul>
+
+                    <p><strong>4. Reconnaissance:</strong></p>
+                    <ul>
+                        <li>Observation post operations</li>
+                        <li>Reporting procedures</li>
+                        <li>Stealth and concealment</li>
+                        <li>Withdrawal techniques</li>
+                    </ul>
+
+                    <p><strong>5. Troop Leading Procedures:</strong></p>
+                    <ul>
+                        <li>Receive mission and warning order</li>
+                        <li>Issue warning order to squad</li>
+                        <li>Make a tentative plan</li>
+                        <li>Initiate movement</li>
+                        <li>Conduct reconnaissance</li>
+                        <li>Complete the plan</li>
+                        <li>Issue the order</li>
+                        <li>Supervise and refine</li>
+                    </ul>
+
+                    <p><strong>6. Final Training Exercise (FTX):</strong></p>
+                    <p>The course culminates in a multi-day field training exercise where squads execute realistic jungle missions. You'll apply everything learned in Week One and Week Two under field conditions with limited sleep and harsh environmental conditions. This is where you prove you've earned the Jungle Tab.</p>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Graduation Requirements & The Jungle Tab</div>
+                    
+                    <p>Earning the Jungle Tab requires demonstrating proficiency across all trained tasks. The standards are high because the jungle is unforgiving.</p>
+
+                    <p><strong>Graduation Requirements:</strong></p>
+                    <ul>
+                        <li>Pass all written exams (minimum 70%)</li>
+                        <li>Pass all practical exercises:</li>
+                        <ul>
+                            <li>Individual mobility and navigation</li>
+                            <li>Waterborne operations</li>
+                            <li>Combat tracking evaluation</li>
+                            <li>Jungle survival skills</li>
+                            <li>Squad tactical operations</li>
+                        </ul>
+                        <li>Complete the FTX without safety violations</li>
+                        <li>Demonstrate leadership potential</li>
+                        <li>No disciplinary issues</li>
+                    </ul>
+
+                    <p><strong>The Jungle Tab:</strong></p>
+                    <p>The Jungle Expert Tab is awarded to soldiers who successfully complete JOTC. It is one of the few skill tabs authorized for wear on the Army uniform, signifying specialized expertise in jungle warfare.</p>
+
+                    <p><strong>Tab Significance:</strong></p>
+                    <ul>
+                        <li>Demonstrates ability to lead in jungle environments</li>
+                        <li>Recognizes technical and tactical proficiency</li>
+                        <li>Enhances career progression in light infantry units</li>
+                        <li>Qualifies you to train others in jungle operations</li>
+                    </ul>
+
+                    <p><strong>After Graduation:</strong></p>
+                    <p>Take your knowledge back to your unit. The Army needs jungle-qualified soldiers who can train others. Consider competing in the annual Jungle Operations Competition or volunteering as JOTC cadre in the future. The skills you learned at Lightning Academy could save lives in combat.</p>
+
+                    <p><strong>Jungle Operations Competition:</strong></p>
+                    <p>The Lightning Academy hosts an annual competition testing the best jungle teams from across the Army. Events include navigation lanes, combat tracking, waterborne operations, and squad tactical challenges. Many JOTC graduates return to compete and prove they're among the Army's elite jungle warriors.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Jungle Warfare Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Jungle Skills</a></li><li><a href="index.html#phases">Jungle Survival</a></li><li><a href="index.html#phases">Jungle Patrols</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Jungle Gear</a></li><li><a href="courses.html">Courses</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co.</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script>
+        if (typeof RangerAuth !== 'undefined') {
+            RangerAuth.initAuthUI();
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginGate = document.getElementById('login-gate');
+            const courseContent = document.getElementById('course-content');
+            
+            function checkAccess() {
+                const user = localStorage.getItem('ranger_auth_user');
+                if (user) {
+                    loginGate.style.display = 'none';
+                    courseContent.style.display = 'block';
+                } else {
+                    loginGate.style.display = 'block';
+                    courseContent.style.display = 'none';
+                }
+            }
+            
+            checkAccess();
+        });
+    </script>
+</body>
+</html>
