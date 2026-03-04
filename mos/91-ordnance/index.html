@@ -110,56 +110,27 @@
     <!-- MOS SPECIALTIES SELECTOR -->
     <section class="school-section fade-in" id="specialties">
         <div class="school-section-label">MOS Specialties</div>
-        <div class="phase-selector" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
-            <button class="phase-card-btn" data-phase="91a" onclick="togglePhase('91a')">
-                <span class="phase-card-icon">&#9881;</span>
-                <span class="phase-card-title">91A</span>
-                <span class="phase-card-sub">Tank Maint</span>
-            </button>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
             <button class="phase-card-btn active" data-phase="91b" onclick="togglePhase('91b')">
                 <span class="phase-card-icon">&#128295;</span>
                 <span class="phase-card-title">91B</span>
-                <span class="phase-card-sub">Wheeled</span>
+                <span class="phase-card-sub">Wheeled Vehicle Mechanic</span>
             </button>
             <button class="phase-card-btn" data-phase="91c" onclick="togglePhase('91c')">
                 <span class="phase-card-icon">&#9889;</span>
                 <span class="phase-card-title">91C</span>
-                <span class="phase-card-sub">Utilities</span>
+                <span class="phase-card-sub">Utilities Equipment Repairer</span>
             </button>
             <button class="phase-card-btn" data-phase="91d" onclick="togglePhase('91d')">
-                <span class="phase-card-icon">&#128268;</span>
+                <span class="phase-card-icon">&#9879;</span>
                 <span class="phase-card-title">91D</span>
-                <span class="phase-card-sub">Power Gen</span>
-            </button>
-            <button class="phase-card-btn" data-phase="91e" onclick="togglePhase('91e')">
-                <span class="phase-card-icon">&#128293;</span>
-                <span class="phase-card-title">91E</span>
-                <span class="phase-card-sub">Allied Trades</span>
-            </button>
-            <button class="phase-card-btn" data-phase="91f" onclick="togglePhase('91f')">
-                <span class="phase-card-icon">&#9876;</span>
-                <span class="phase-card-title">91F</span>
-                <span class="phase-card-sub">Small Arms</span>
+                <span class="phase-card-sub">Tactical Power Generation</span>
             </button>
             <button class="phase-card-btn" data-phase="91z" onclick="togglePhase('91z')">
                 <span class="phase-card-icon">&#11088;</span>
                 <span class="phase-card-title">91Z</span>
-                <span class="phase-card-sub">Senior Sgt</span>
+                <span class="phase-card-sub">Senior Ordnance Sergeant</span>
             </button>
-        </div>
-
-        <!-- 91A Detail -->
-        <div class="phase-detail-panel" id="detail-91a">
-            <div class="phase-detail-grid">
-                <div class="phase-detail-sidebar">
-                    <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">91A</span>
-                    <div class="phase-detail-rtb">Tank Maintainer</div>
-                    <a href="../91a/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
-                </div>
-                <div class="phase-detail-content">
-                    <p>Maintaining the Army's heavy armor. Tank Maintainers repair the complex systems and engines of the M1 Abrams main battle tank.</p>
-                </div>
-            </div>
         </div>
 
         <!-- 91B Detail -->
@@ -167,15 +138,27 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b91b">91B</span>
-                    <div class="phase-detail-rtb">Wheeled Mechanic</div>
+                    <div class="phase-detail-rtb">Wheeled Vehicle Mechanic</div>
                     <div class="phase-detail-standards">
                         <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>10 Weeks</span></div>
                         <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Gregg-Adams, VA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>MM: 87</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Support</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>HMMWV, LMTV, FMTV, Automotive Repair, PM Services</span></div>
                     </div>
-                    <a href="../91b/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The backbone of Army maintenance. Wheeled Mechanics keep HMMWVs, LMTVs, and FMTVs rolling in all environments.</p>
+                    <p>The 91B Wheeled Vehicle Mechanic is the backbone of Army maintenance operations. Every unit in the Army depends on 91Bs to keep HMMWVs, LMTVs, FMTVs, and the full fleet of wheeled vehicles rolling. AIT at Fort Gregg-Adams combines classroom instruction with extensive hands-on training in the motor pool, producing mechanics who can diagnose and repair anything on wheels.</p>
+                    <p>Training covers automotive fundamentals, preventive maintenance services, troubleshooting procedures, brake systems, electrical systems, powertrain components, and field-expedient repair techniques. Graduates report to units across the Army ready to turn wrenches from day one.</p>
+                    <ul class="phase-detail-list">
+                        <li>HMMWV, LMTV, FMTV maintenance and repair procedures</li>
+                        <li>Preventive Maintenance Checks and Services (PMCS)</li>
+                        <li>Engine diagnostics, fuel systems, and powertrain repair</li>
+                        <li>Brake systems, steering, and suspension troubleshooting</li>
+                        <li>Electrical systems diagnostics and wiring repair</li>
+                        <li>Technical manual usage and parts requisition</li>
+                        <li>Field-expedient repair and recovery operations</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -185,11 +168,27 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b91c">91C</span>
-                    <div class="phase-detail-rtb">Utilities Repairer</div>
-                    <a href="../91c/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    <div class="phase-detail-rtb">Utilities Equipment Repairer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>13 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Gregg-Adams, VA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>MM: 88</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Support</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Generators, HVAC, Electrical, Plumbing</span></div>
+                    </div>
                 </div>
                 <div class="phase-detail-content">
-                    <p>Maintainers repair generators, HVAC systems, and plumbing infrastructure that keep installations and field ops running.</p>
+                    <p>The 91C Utilities Equipment Repairer maintains and repairs the generators, HVAC systems, electrical infrastructure, and plumbing that keep Army installations and field operations running. 91Cs are the go-to experts for anything that powers, heats, cools, or provides water to soldiers in garrison and deployed environments.</p>
+                    <p>AIT covers generator repair and maintenance, heating and air conditioning systems, electrical distribution, plumbing fixtures, and facility maintenance. The skills learned translate directly to high-demand civilian trades in HVAC, electrical, and plumbing.</p>
+                    <ul class="phase-detail-list">
+                        <li>Generator repair, maintenance, and load testing</li>
+                        <li>HVAC system installation, repair, and refrigerant handling</li>
+                        <li>Electrical systems, wiring, and distribution panels</li>
+                        <li>Plumbing systems, water purification, and waste management</li>
+                        <li>Facility maintenance and environmental control units (ECU)</li>
+                        <li>Tactical utility operations in field environments</li>
+                        <li>Safety procedures for high-voltage and pressurized systems</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -199,39 +198,27 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b91d">91D</span>
-                    <div class="phase-detail-rtb">Power Generation</div>
-                    <a href="../91d/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    <div class="phase-detail-rtb">Tactical Power Generation Specialist</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>12 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Gregg-Adams, VA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>MM: 88</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Support</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Generator Sets, Power Distribution, Tactical Electrical</span></div>
+                    </div>
                 </div>
                 <div class="phase-detail-content">
-                    <p>Specialists operate and maintain tactical power generation systems, ensuring units have electricity in the field.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 91E Detail -->
-        <div class="phase-detail-panel" id="detail-91e">
-            <div class="phase-detail-grid">
-                <div class="phase-detail-sidebar">
-                    <span class="phase-detail-badge" style="color:#ef4444; border-color:#ef4444;">91E</span>
-                    <div class="phase-detail-rtb">Allied Trades</div>
-                    <a href="../91e/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
-                </div>
-                <div class="phase-detail-content">
-                    <p>The fabrication experts. Specialists operate machinery and welding equipment to manufacture and repair critical components.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 91F Detail -->
-        <div class="phase-detail-panel" id="detail-91f">
-            <div class="phase-detail-grid">
-                <div class="phase-detail-sidebar">
-                    <span class="phase-detail-badge" style="color:#ef4444; border-color:#ef4444;">91F</span>
-                    <div class="phase-detail-rtb">Small Arms Repairer</div>
-                    <a href="../91f/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
-                </div>
-                <div class="phase-detail-content">
-                    <p>Maintaining the Army's lethality. Repairers maintain handguns, rifles, and artillery pieces.</p>
+                    <p>The 91D Tactical Power Generation Specialist operates and maintains the generator sets and power distribution systems that provide electrical power to tactical operations, command posts, and field facilities. Without power, communications go dark, TOCs shut down, and the mission stops. 91Ds keep the lights on.</p>
+                    <p>Training focuses on diesel and gas turbine generator sets, power distribution equipment, tactical electrical systems, and the ability to set up and maintain power grids in austere environments. 91Ds are essential to every major Army operation.</p>
+                    <ul class="phase-detail-list">
+                        <li>Diesel and gas turbine generator set operation and maintenance</li>
+                        <li>Power distribution panels, switchgear, and cabling</li>
+                        <li>Tactical power grid setup for command posts and TOCs</li>
+                        <li>Load management, paralleling, and power quality monitoring</li>
+                        <li>Electrical safety, grounding, and fault isolation</li>
+                        <li>Preventive maintenance on 5kW to 200kW generator sets</li>
+                        <li>Field-expedient power solutions in austere environments</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -241,11 +228,27 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b91z">91Z</span>
-                    <div class="phase-detail-rtb">Senior Sergeant</div>
-                    <a href="../91z/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    <div class="phase-detail-rtb">Senior Ordnance Sergeant</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Selection</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>BN/BDE Level</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Maintenance Operations Mgmt</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Readiness Reporting, Maintenance Mgmt, Leadership</span></div>
+                    </div>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The pinnacle of enlisted Ordnance leadership. 91Zs manage equipment readiness and maintenance programs for large units.</p>
+                    <p>The 91Z Senior Ordnance Sergeant is the pinnacle of enlisted Ordnance leadership. 91Zs serve as maintenance operations managers, first sergeants, and command sergeants major at battalion and brigade level. They are responsible for equipment readiness, maintenance program management, and the technical proficiency of all Ordnance Soldiers in their formation.</p>
+                    <p>Reaching 91Z requires decades of maintenance experience across multiple platforms, completion of the Senior Leader Course and Sergeants Major Academy, and a proven record of keeping formations at the highest readiness levels.</p>
+                    <ul class="phase-detail-list">
+                        <li>Maintenance operations management at BN/BDE level</li>
+                        <li>Equipment readiness reporting and metrics tracking</li>
+                        <li>Maintenance allocation and resource management</li>
+                        <li>Technical Inspector oversight and quality assurance</li>
+                        <li>Personnel management, evaluations, and career counseling</li>
+                        <li>Integration of maintenance operations with maneuver plans</li>
+                        <li>Mentorship of junior NCOs and Warrant Officer development</li>
+                    </ul>
                 </div>
             </div>
         </div>

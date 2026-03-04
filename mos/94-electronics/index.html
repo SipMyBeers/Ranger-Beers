@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronics (94-Series) — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/course-styles.css">
+    <link rel="stylesheet" href="../../css/school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#000000">
+    <style>
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(132,204,22,0.08), transparent 60%); }
+    </style>
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li><a href="index.html">Home</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../shop.html">Shop</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../courses.html">Courses</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+            </div>
+            <button class="nav-toggle"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="school-hero" id="hero">
+        <div class="hero-badge-text">94</div>
+        <h1 class="hero-headline">Electronics & Communications</h1>
+        <p class="hero-sub">Keep the Army connected. Electronics specialists maintain and repair communications equipment, radar systems, and electronic warfare systems.</p>
+        <div class="hero-cta">
+            <a href="../../shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="../../courses.html" class="btn btn-outline">Start Training</a>
+        </div>
+    </section>
+
+    <section class="section" style="padding: var(--space-3xl) 40px;" id="specialties">
+        <div class="ix-container">
+            <span class="section-label">MOS Specialties</span>
+            <div class="phase-selector" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); margin-bottom: 40px;">
+                <button class="phase-card-btn active" data-phase="94a" onclick="togglePhase('94a')">
+                    <span class="phase-card-icon">&#128640;</span>
+                    <span class="phase-card-title">94A</span>
+                    <span class="phase-card-sub">Missile Repair</span>
+                </button>
+                <button class="phase-card-btn" data-phase="94e" onclick="togglePhase('94e')">
+                    <span class="phase-card-icon">&#128225;</span>
+                    <span class="phase-card-title">94E</span>
+                    <span class="phase-card-sub">Radio Repair</span>
+                </button>
+                <button class="phase-card-btn" data-phase="94f" onclick="togglePhase('94f')">
+                    <span class="phase-card-icon">&#128187;</span>
+                    <span class="phase-card-title">94F</span>
+                    <span class="phase-card-sub">Computer Repair</span>
+                </button>
+                <button class="phase-card-btn" data-phase="94m" onclick="togglePhase('94m')">
+                    <span class="phase-card-icon">&#128225;</span>
+                    <span class="phase-card-title">94M</span>
+                    <span class="phase-card-sub">Radar Repair</span>
+                </button>
+                <button class="phase-card-btn" data-phase="94s" onclick="togglePhase('94s')">
+                    <span class="phase-card-icon">&#128737;</span>
+                    <span class="phase-card-title">94S</span>
+                    <span class="phase-card-sub">Patriot Repair</span>
+                </button>
+                <button class="phase-card-btn" data-phase="94z" onclick="togglePhase('94z')">
+                    <span class="phase-card-icon">&#11088;</span>
+                    <span class="phase-card-title">94Z</span>
+                    <span class="phase-card-sub">Senior Sgt</span>
+                </button>
+            </div>
+
+            <!-- 94A Detail -->
+            <div class="phase-detail-panel open" id="detail-94a">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:#ef4444; border-color:#ef4444;">94A</span>
+                        <div class="phase-detail-rtb">Missile Repairer</div>
+                        <a href="../94a/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Specialists maintain and repair the advanced electronic and guidance systems of Army anti-tank and combat missiles.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 94E Detail -->
+            <div class="phase-detail-panel" id="detail-94e">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:#3b82f6; border-color:#3b82f6;">94E</span>
+                        <div class="phase-detail-rtb">Radio Repairer</div>
+                        <a href="../94e/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Repairers maintain and repair the advanced radio and cryptography systems that ensure secure Army communication.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 94F Detail -->
+            <div class="phase-detail-panel" id="detail-94f">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:#22c55e; border-color:#22c55e;">94F</span>
+                        <div class="phase-detail-rtb">Computer Repairer</div>
+                        <a href="../94f/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Repairers maintain and repair the complex computer, imaging, and detection systems that power Army intelligence and logistics.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 94M Detail -->
+            <div class="phase-detail-panel" id="detail-94m">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:#ef4444; border-color:#ef4444;">94M</span>
+                        <div class="phase-detail-rtb">Radar Repairer</div>
+                        <a href="../94m/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Repairers maintain and repair the advanced radar systems that detect enemy fire and aerial threats.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 94S Detail -->
+            <div class="phase-detail-panel" id="detail-94s">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:#f59e0b; border-color:#f59e0b;">94S</span>
+                        <div class="phase-detail-rtb">Patriot Repairer</div>
+                        <a href="../94s/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Repairers maintain and repair the complex missile systems, radars, and electronics of the Patriot platform.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 94Z Detail -->
+            <div class="phase-detail-panel" id="detail-94z">
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-sidebar">
+                        <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">94Z</span>
+                        <div class="phase-detail-rtb">Senior Sergeant</div>
+                        <a href="../94z/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    </div>
+                    <div class="phase-detail-content">
+                        <p>Top-tier leadership in the Ordnance branch. Senior NCOs responsible for the training and readiness of large electronics maintenance formations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase Toggle Script -->
+    <script>
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+            var buttons = document.querySelectorAll('.phase-card-btn');
+            
+            buttons.forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+        }
+    </script>
+
+    <section class="section" style="text-align: center; padding: var(--space-3xl) 40px; background: rgba(255,255,255,0.02);">
+        <h2 class="section-title">Ready to Train?</h2>
+        <p class="section-desc" style="max-width: 500px; margin: 0 auto var(--space-lg);">Get the gear and training you need for electronics and communications.</p>
+        <a href="../../shop.html" class="btn btn-primary">Shop Electronics Gear</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Army School Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">MOS</div><ul><li><a href="../25-signal/index.html">Signal</a></li><li><a href="../94-electronics/index.html">Electronics</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Schools</div><ul><li><a href="../../ranger/index.html">Ranger</a></li><li><a href="../../airborne/index.html">Airborne</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co.</div>
+            </div>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../../js/config.js"></script>
+    <script src="../../js/shared.js"></script>
+    <script src="../../js/course-auth.js"></script>
+    <script>RangerAuth.initAuthUI();</script>
+</body>
+</html>

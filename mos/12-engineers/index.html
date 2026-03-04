@@ -110,61 +110,27 @@
     <!-- MOS SPECIALTIES SELECTOR -->
     <section class="school-section fade-in" id="specialties">
         <div class="school-section-label">MOS Specialties</div>
-        <div class="phase-selector" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
-            <button class="phase-card-btn" data-phase="12a" onclick="togglePhase('12a')">
-                <span class="phase-card-icon">&#9878;</span>
-                <span class="phase-card-title">12A</span>
-                <span class="phase-card-sub">Officer</span>
-            </button>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
             <button class="phase-card-btn active" data-phase="12b" onclick="togglePhase('12b')">
                 <span class="phase-card-icon">&#128163;</span>
                 <span class="phase-card-title">12B</span>
-                <span class="phase-card-sub">Combat EN</span>
+                <span class="phase-card-sub">Combat Engineer</span>
             </button>
             <button class="phase-card-btn" data-phase="12c" onclick="togglePhase('12c')">
                 <span class="phase-card-icon">&#127753;</span>
                 <span class="phase-card-title">12C</span>
-                <span class="phase-card-sub">Bridge</span>
-            </button>
-            <button class="phase-card-btn" data-phase="12d" onclick="togglePhase('12d')">
-                <span class="phase-card-icon">&#129416;</span>
-                <span class="phase-card-title">12D</span>
-                <span class="phase-card-sub">Diver</span>
+                <span class="phase-card-sub">Bridge Crewmember</span>
             </button>
             <button class="phase-card-btn" data-phase="12n" onclick="togglePhase('12n')">
                 <span class="phase-card-icon">&#128679;</span>
                 <span class="phase-card-title">12N</span>
-                <span class="phase-card-sub">Horizontal</span>
-            </button>
-            <button class="phase-card-btn" data-phase="12p" onclick="togglePhase('12p')">
-                <span class="phase-card-icon">&#9889;</span>
-                <span class="phase-card-title">12P</span>
-                <span class="phase-card-sub">Prime Power</span>
-            </button>
-            <button class="phase-card-btn" data-phase="12y" onclick="togglePhase('12y')">
-                <span class="phase-card-icon">&#128506;</span>
-                <span class="phase-card-title">12Y</span>
-                <span class="phase-card-sub">Geospatial</span>
+                <span class="phase-card-sub">Horizontal Construction</span>
             </button>
             <button class="phase-card-btn" data-phase="12z" onclick="togglePhase('12z')">
                 <span class="phase-card-icon">&#11088;</span>
                 <span class="phase-card-title">12Z</span>
-                <span class="phase-card-sub">Senior Sgt</span>
+                <span class="phase-card-sub">Senior Engineer Sergeant</span>
             </button>
-        </div>
-
-        <!-- 12A Detail -->
-        <div class="phase-detail-panel" id="detail-12a">
-            <div class="phase-detail-grid">
-                <div class="phase-detail-sidebar">
-                    <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">12A</span>
-                    <div class="phase-detail-rtb">Engineer Officer</div>
-                    <a href="../12a/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
-                </div>
-                <div class="phase-detail-content">
-                    <p>Leading the Army's engineering projects and combat support missions. From construction to demolition, Engineer Officers build the way forward.</p>
-                </div>
-            </div>
         </div>
 
         <!-- 12B Detail -->
@@ -176,12 +142,23 @@
                     <div class="phase-detail-standards">
                         <div class="phase-detail-standard"><span class="phase-detail-standard-label">OSUT</span><span>14 Weeks</span></div>
                         <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Leonard Wood, MO</span></div>
-                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Demolitions, Breaching</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>CO: 87</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Arms</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Demolitions, Breaching, Route Clearance, Bridging</span></div>
                     </div>
-                    <a href="../12b/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The 12B Combat Engineer (Sapper) is the backbone of the Engineer branch. 12Bs operate at the point of contact alongside Infantry and Armor units.</p>
+                    <p>The 12B Combat Engineer (Sapper) is the backbone of the Engineer branch. 12Bs operate at the point of contact alongside Infantry and Armor units, providing mobility, countermobility, and survivability on the battlefield. OSUT at Fort Leonard Wood combines Basic Combat Training and Advanced Individual Training into a continuous 14-week course that transforms civilians into combat-ready Engineers.</p>
+                    <p>Training progresses from individual soldier tasks through demolitions, obstacle breaching, mine/countermine operations, and culminates in field training exercises that test every Engineer skill. Graduates are qualified in explosive demolitions, obstacle construction and reduction, route clearance, and basic construction.</p>
+                    <ul class="phase-detail-list">
+                        <li>Military and commercial explosive demolitions (TNT, C4, det cord, shape charges)</li>
+                        <li>Obstacle breaching &mdash; mechanical, ballistic, and explosive</li>
+                        <li>Route clearance operations and IED detection/defeat</li>
+                        <li>Mine and countermine warfare (emplacement and removal)</li>
+                        <li>Military bridging operations (dry and wet gap crossing)</li>
+                        <li>Fighting position and defensive obstacle construction</li>
+                        <li>Basic construction tasks and equipment operation</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -192,24 +169,26 @@
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b12c">12C</span>
                     <div class="phase-detail-rtb">Bridge Crewmember</div>
-                    <a href="../12c/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>8 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Leonard Wood, MO</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>CO: 87</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Support</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Ribbon Bridges, Fixed Bridges, Gap Crossing</span></div>
+                    </div>
                 </div>
                 <div class="phase-detail-content">
-                    <p>Providing the means for the Army to cross rivers and gaps. Bridge Crewmembers are the masters of tactical bridging and watercraft operations.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 12D Detail -->
-        <div class="phase-detail-panel" id="detail-12d">
-            <div class="phase-detail-grid">
-                <div class="phase-detail-sidebar">
-                    <span class="phase-detail-badge" style="color:#0ea5e9; border-color:#0ea5e9;">12D</span>
-                    <div class="phase-detail-rtb">Army Diver</div>
-                    <a href="../12d/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
-                </div>
-                <div class="phase-detail-content">
-                    <p>Specialists in underwater engineering, salvage, and demolition. Army Divers perform complex missions beneath the surface.</p>
+                    <p>The 12C Bridge Crewmember is a specialized Engineer responsible for constructing, maintaining, and operating military bridging systems. Bridge crews enable maneuver forces to cross rivers, ravines, and other gaps that would otherwise halt an advance. In both combat and humanitarian operations, 12Cs are essential to maintaining freedom of movement.</p>
+                    <p>12Cs must master multiple bridging systems including the Improved Ribbon Bridge (IRB), fixed panel bridges, and float bridge operations. They operate in wet and dry gap environments, often under time pressure and adverse conditions.</p>
+                    <ul class="phase-detail-list">
+                        <li>Improved Ribbon Bridge (IRB) construction and operation</li>
+                        <li>Fixed bridge assembly and site preparation</li>
+                        <li>Wet gap and dry gap crossing operations</li>
+                        <li>Bridge site reconnaissance and classification</li>
+                        <li>Powerboat and bridge erection boat operation</li>
+                        <li>Load classification and bridge capacity calculations</li>
+                        <li>Rapid emplacement and recovery under tactical conditions</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -219,39 +198,27 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b12n">12N</span>
-                    <div class="phase-detail-rtb">Horizontal Engineer</div>
-                    <a href="../12n/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    <div class="phase-detail-rtb">Horizontal Construction Engineer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>9 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Leonard Wood, MO</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>CO: 87</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Support</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Heavy Equipment, Earthmoving, Road/Airfield Ops</span></div>
+                    </div>
                 </div>
                 <div class="phase-detail-content">
-                    <p>Masters of the earth and terrain. Horizontal Construction Engineers operate heavy equipment to build the Army's vital infrastructure.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 12P Detail -->
-        <div class="phase-detail-panel" id="detail-12p">
-            <div class="phase-detail-grid">
-                <div class="phase-detail-sidebar">
-                    <span class="phase-detail-badge" style="color:#eab308; border-color:#eab308;">12P</span>
-                    <div class="phase-detail-rtb">Prime Power</div>
-                    <a href="../12p/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
-                </div>
-                <div class="phase-detail-content">
-                    <p>Providing the energy that powers the Army. Prime Power Specialists operate and maintain the most advanced power generation systems.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 12Y Detail -->
-        <div class="phase-detail-panel" id="detail-12y">
-            <div class="phase-detail-grid">
-                <div class="phase-detail-sidebar">
-                    <span class="phase-detail-badge" style="color:#22c55e; border-color:#22c55e;">12Y</span>
-                    <div class="phase-detail-rtb">Geospatial Engineer</div>
-                    <a href="../12y/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
-                </div>
-                <div class="phase-detail-content">
-                    <p>Providing the geographic intelligence that wins battles. Geospatial Engineers are the masters of mapping, data analysis, and terrain visualization.</p>
+                    <p>The 12N Horizontal Construction Engineer operates heavy earthmoving equipment to build and maintain roads, airfields, helipads, and other horizontal surfaces critical to military operations. In both combat and peacetime, 12Ns are the operators who move earth, grade surfaces, and keep supply routes open.</p>
+                    <p>12Ns are trained on multiple pieces of heavy equipment including bulldozers, graders, scrapers, loaders, and excavators. Their skills translate directly to civilian construction careers, making this one of the most marketable MOS in the Army.</p>
+                    <ul class="phase-detail-list">
+                        <li>Heavy equipment operation &mdash; dozers, graders, scrapers, loaders, excavators</li>
+                        <li>Earthmoving operations and site grading</li>
+                        <li>Road construction and maintenance (gravel, improved, and paved surfaces)</li>
+                        <li>Airfield damage repair and rapid runway construction</li>
+                        <li>Soil compaction, drainage, and erosion control</li>
+                        <li>Equipment preventive maintenance and basic troubleshooting</li>
+                        <li>Survey basics and construction staking for horizontal projects</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -261,11 +228,27 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b12z">12Z</span>
-                    <div class="phase-detail-rtb">Senior Sergeant</div>
-                    <a href="../12z/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    <div class="phase-detail-rtb">Senior Engineer Sergeant</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Selection</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>BN/BDE Level</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Senior Enlisted Leader</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Training Mgmt, Operations, Doctrine, Mentorship</span></div>
+                    </div>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The pinnacle of enlisted Engineer leadership. 12Zs serve as operations sergeants major and first sergeants at battalion and brigade level.</p>
+                    <p>The 12Z Senior Engineer Sergeant is the pinnacle of enlisted Engineer leadership. 12Zs serve as operations sergeants major, first sergeants, and command sergeants major at battalion and brigade level. They are responsible for training management, personnel readiness, and tactical employment of the unit's Engineer force across all construction and combat engineering disciplines.</p>
+                    <p>Reaching 12Z requires decades of Engineer experience, completion of the Senior Leader Course and Sergeants Major Academy, and a record of proven performance across multiple Engineer duty positions including combat engineering, construction, and bridging operations.</p>
+                    <ul class="phase-detail-list">
+                        <li>Training management and readiness reporting at BN/BDE level</li>
+                        <li>Operations planning for mobility, countermobility, and survivability</li>
+                        <li>Personnel management, evaluations, and career counseling</li>
+                        <li>Doctrine development and Engineer tactical innovation</li>
+                        <li>Unit-level resource and logistics management</li>
+                        <li>Mentorship of junior NCOs and officer integration</li>
+                        <li>Combat engineering leadership at the highest enlisted levels</li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -110,12 +110,7 @@
     <!-- MOS SPECIALTIES SELECTOR -->
     <section class="school-section fade-in" id="specialties">
         <div class="school-section-label">MOS Specialties</div>
-        <div class="phase-selector" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
-            <button class="phase-card-btn" data-phase="31a" onclick="togglePhase('31a')">
-                <span class="phase-card-icon">&#9878;</span>
-                <span class="phase-card-title">31A</span>
-                <span class="phase-card-sub">Officer</span>
-            </button>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
             <button class="phase-card-btn active" data-phase="31b" onclick="togglePhase('31b')">
                 <span class="phase-card-icon">&#128110;</span>
                 <span class="phase-card-title">31B</span>
@@ -124,37 +119,18 @@
             <button class="phase-card-btn" data-phase="31d" onclick="togglePhase('31d')">
                 <span class="phase-card-icon">&#128269;</span>
                 <span class="phase-card-title">31D</span>
-                <span class="phase-card-sub">CID Agent</span>
+                <span class="phase-card-sub">CID Special Agent</span>
             </button>
             <button class="phase-card-btn" data-phase="31e" onclick="togglePhase('31e')">
                 <span class="phase-card-icon">&#128274;</span>
                 <span class="phase-card-title">31E</span>
-                <span class="phase-card-sub">Detainee Ops</span>
-            </button>
-            <button class="phase-card-btn" data-phase="31k" onclick="togglePhase('31k')">
-                <span class="phase-card-icon">&#128054;</span>
-                <span class="phase-card-title">31K</span>
-                <span class="phase-card-sub">MWD Handler</span>
+                <span class="phase-card-sub">Internment/Resettlement</span>
             </button>
             <button class="phase-card-btn" data-phase="31z" onclick="togglePhase('31z')">
                 <span class="phase-card-icon">&#11088;</span>
                 <span class="phase-card-title">31Z</span>
-                <span class="phase-card-sub">Senior Sgt</span>
+                <span class="phase-card-sub">Senior MP Sergeant</span>
             </button>
-        </div>
-
-        <!-- 31A Detail -->
-        <div class="phase-detail-panel" id="detail-31a">
-            <div class="phase-detail-grid">
-                <div class="phase-detail-sidebar">
-                    <span class="phase-detail-badge" style="color:var(--color-gold); border-color:var(--color-gold);">31A</span>
-                    <div class="phase-detail-rtb">MP Officer</div>
-                    <a href="../31a/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
-                </div>
-                <div class="phase-detail-content">
-                    <p>Leading the Army's law enforcement and security. Officers plan and lead missions to maintain law, order, and discipline.</p>
-                </div>
-            </div>
         </div>
 
         <!-- 31B Detail -->
@@ -166,11 +142,23 @@
                     <div class="phase-detail-standards">
                         <div class="phase-detail-standard"><span class="phase-detail-standard-label">OSUT</span><span>20 Weeks</span></div>
                         <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Leonard Wood, MO</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>ST: 91</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Support</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Law Enforcement, Security, Detainee Ops, Route Security</span></div>
                     </div>
-                    <a href="../31b/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
                 </div>
                 <div class="phase-detail-content">
-                    <p>The 31B Military Police is the backbone of Army law enforcement, conducting patrol, security, and detainee operations.</p>
+                    <p>The 31B Military Police is the backbone of Army law enforcement. MPs conduct law enforcement operations on every installation, provide area security in combat zones, execute route clearance and security patrols, and manage detainee operations. The 20-week OSUT at Fort Leonard Wood combines Basic Combat Training with police-specific Advanced Individual Training in a single continuous course.</p>
+                    <p>Training covers warrior tasks, law enforcement fundamentals, patrol procedures, traffic management, use of force, evidence collection, and base security operations. Graduates emerge as certified military law enforcement officers ready for garrison or combat deployment.</p>
+                    <ul class="phase-detail-list">
+                        <li>Law enforcement operations and patrol procedures</li>
+                        <li>Base security, access control, and force protection</li>
+                        <li>Detainee operations and EPW handling</li>
+                        <li>Route security and convoy escort operations</li>
+                        <li>Combat support and area security in theater</li>
+                        <li>Traffic management and accident investigation</li>
+                        <li>Use of force, handcuffing, and suspect apprehension</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -180,11 +168,27 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b31d">31D</span>
-                    <div class="phase-detail-rtb">CID Agent</div>
-                    <a href="../31d/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    <div class="phase-detail-rtb">Criminal Investigation Special Agent</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Training</span><span>CID Special Agent Course</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Leonard Wood, MO</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>Additional CID School</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Criminal Investigation</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Felony Investigation, Crime Scene, Forensics, Interrogation</span></div>
+                    </div>
                 </div>
                 <div class="phase-detail-content">
-                    <p>CID Special Agents conduct complex criminal investigations and forensic analysis to maintain Army integrity.</p>
+                    <p>The 31D Criminal Investigation Special Agent serves in the Army's Criminal Investigation Division (CID). CID agents investigate felony-level crimes including homicide, sexual assault, fraud, and drug trafficking. They operate with federal law enforcement authority and work independently or in small teams to solve serious crimes affecting the Army community.</p>
+                    <p>Becoming a CID agent requires completion of the CID Special Agent Course in addition to prior MP or law enforcement experience. Agents are trained in advanced interview and interrogation techniques, crime scene processing, digital forensics, and undercover operations.</p>
+                    <ul class="phase-detail-list">
+                        <li>Felony criminal investigations (homicide, assault, fraud)</li>
+                        <li>Crime scene processing and evidence collection</li>
+                        <li>Interview and interrogation techniques</li>
+                        <li>Digital forensics and cyber crime investigation</li>
+                        <li>Undercover operations and surveillance</li>
+                        <li>Coordination with federal, state, and local law enforcement</li>
+                        <li>Court testimony and case file preparation</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -194,25 +198,27 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b31e">31E</span>
-                    <div class="phase-detail-rtb">Detainee Ops</div>
-                    <a href="../31e/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    <div class="phase-detail-rtb">Internment/Resettlement Specialist</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>8+ Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Leonard Wood, MO</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>ST: 95</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Corrections / Detainee Ops</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Detainee Ops, Corrections, EPW Handling, Facility Mgmt</span></div>
+                    </div>
                 </div>
                 <div class="phase-detail-content">
-                    <p>Managing the custody and welfare of detainees. Specialists oversee the operation of confinement facilities.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 31K Detail -->
-        <div class="phase-detail-panel" id="detail-31k">
-            <div class="phase-detail-grid">
-                <div class="phase-detail-sidebar">
-                    <span class="phase-detail-badge" style="color:#22c55e; border-color:#22c55e;">31K</span>
-                    <div class="phase-detail-rtb">MWD Handler</div>
-                    <a href="../31k/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
-                </div>
-                <div class="phase-detail-content">
-                    <p>Handlers partner with highly trained military working dogs to detect explosives, narcotics, and enemy threats.</p>
+                    <p>The 31E Internment/Resettlement Specialist manages the Army's detainee operations and corrections facilities. These soldiers are responsible for the custody, care, and control of enemy prisoners of war (EPWs), civilian internees, and detained persons in accordance with the Geneva Conventions and Army regulations.</p>
+                    <p>31Es operate detention facilities, process and classify detainees, maintain facility security, and ensure humane treatment in compliance with international law. The role requires strong discipline, attention to detail, and the ability to manage high-stress custody environments.</p>
+                    <ul class="phase-detail-list">
+                        <li>Detainee operations and processing procedures</li>
+                        <li>Corrections facility management and security</li>
+                        <li>Enemy prisoner of war (EPW) handling per Geneva Conventions</li>
+                        <li>Facility construction and sustainment operations</li>
+                        <li>Detainee accountability and records management</li>
+                        <li>Use of force and restraint procedures in custody settings</li>
+                        <li>Humanitarian assistance and displaced civilian operations</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -222,11 +228,27 @@
             <div class="phase-detail-grid">
                 <div class="phase-detail-sidebar">
                     <span class="phase-detail-badge b31z">31Z</span>
-                    <div class="phase-detail-rtb">Senior Sergeant</div>
-                    <a href="../31z/" class="btn btn-primary" style="margin-top: 20px; width: 100%; font-size: 12px; padding: 10px;">Full MOS Page &rarr;</a>
+                    <div class="phase-detail-rtb">Senior MP Sergeant</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Selection</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>BN/BDE Level</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Provost Operations</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Provost Ops, Force Protection, Training Mgmt, Leadership</span></div>
+                    </div>
                 </div>
                 <div class="phase-detail-content">
-                    <p>Top-tier leadership in Military Police. Senior NCOs responsible for large MP formations.</p>
+                    <p>The 31Z Senior MP Sergeant is the pinnacle of enlisted Military Police leadership. 31Zs serve as operations sergeants major, first sergeants, and command sergeants major at battalion and brigade level. They are responsible for provost operations, force protection planning, and the training and readiness of all MP Soldiers in their formation.</p>
+                    <p>Reaching 31Z requires decades of MP experience, completion of the Senior Leader Course and Sergeants Major Academy, and a proven track record of law enforcement and combat operations leadership across multiple assignments.</p>
+                    <ul class="phase-detail-list">
+                        <li>Provost marshal operations at BN/BDE level</li>
+                        <li>Force protection and antiterrorism planning</li>
+                        <li>Training management and unit readiness oversight</li>
+                        <li>Personnel management, evaluations, and career counseling</li>
+                        <li>Law enforcement policy and standards enforcement</li>
+                        <li>Mentorship of junior NCOs and integration with maneuver units</li>
+                        <li>Senior enlisted advisor to the Provost Marshal</li>
+                    </ul>
                 </div>
             </div>
         </div>
