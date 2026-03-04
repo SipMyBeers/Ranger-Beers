@@ -8,108 +8,721 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../course-styles.css">
+    <link rel="stylesheet" href="../../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero { min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:var(--space-4xl) 40px;position:relative;overflow:hidden; }
-        .school-hero::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center bottom,rgba(34,197,94,0.08),transparent 60%); }
-        .school-hero-headline { font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:var(--space-md);position:relative; }
-        .school-hero-sub { font-size:clamp(1rem,2vw,1.25rem);color:var(--color-text-secondary);max-width:640px;line-height:1.6;position:relative; }
-        .school-back { position:fixed;top:var(--space-lg);left:var(--space-lg);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--color-text-secondary);text-decoration:none;z-index:100;transition:color 0.3s; }
-        .school-back:hover { color:var(--color-gold); }
-        .info-section { max-width:900px;margin:0 auto;padding:var(--space-3xl) 40px; }
-        .info-section-label { font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--color-gold);margin-bottom:var(--space-lg); }
-        .info-section h2 { font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;margin-bottom:var(--space-lg); }
-        .info-section p { color:var(--color-text-secondary);line-height:1.8;margin-bottom:var(--space-lg); }
-        .stats-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-md);margin:var(--space-2xl) 0; }
-        .stat-card { background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-glass);padding:var(--space-xl) var(--space-md);text-align:center; }
-        .stat-number { font-size:clamp(1.5rem,3vw,2.5rem);font-weight:900;color:var(--color-gold);display:block; }
-        .stat-label { font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-text-secondary);margin-top:var(--space-xs); }
-        .phase-list { list-style:none;margin:var(--space-xl) 0; }
-        .phase-list li { padding:var(--space-md) 0;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:var(--space-md); }
-        .phase-list .phase-day { font-weight:700;color:var(--color-gold);min-width:80px;font-family:var(--font-tactical);font-size:13px; }
-        .phase-list .phase-desc { color:var(--color-text-secondary);line-height:1.6; }
-        .phase-list .phase-desc strong { color:var(--color-text-primary); }
-        .school-footer { text-align:center;padding:var(--space-3xl) 40px;border-top:1px solid rgba(255,255,255,0.06); }
-        .school-footer-copy { font-size:12px;color:var(--color-text-muted);letter-spacing:1px; }
-        @media (max-width:700px) { .stats-grid{grid-template-columns:repeat(2,1fr);} .school-hero{padding:var(--space-3xl) 20px;} .info-section{padding:var(--space-2xl) 20px;} }
+        /* MOS-specific: hero tint & specialty colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(245,158,11,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="25b"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="25s"]::before { background: radial-gradient(ellipse at center, rgba(34,197,94,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="25u"]::before { background: radial-gradient(ellipse at center, rgba(245,158,11,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="25z"]::before { background: radial-gradient(ellipse at center, rgba(239,68,68,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="25b"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="25s"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.15); }
+        .phase-card-btn.active[data-phase="25u"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.15); }
+        .phase-card-btn.active[data-phase="25z"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239,68,68,0.15); }
+        .phase-detail-badge.b25b { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.b25s { color: #22c55e; border-color: #22c55e; }
+        .phase-detail-badge.b25u { color: #f59e0b; border-color: #f59e0b; }
+        .phase-detail-badge.b25z { color: #ef4444; border-color: #ef4444; }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Specialties</span></li>
+                        <li><a href="index.html#specialties">25B &mdash; IT Specialist</a></li>
+                        <li><a href="index.html#specialties">25S &mdash; SATCOM</a></li>
+                        <li><a href="index.html#specialties">25U &mdash; Signal Support</a></li>
+                        <li><a href="index.html#specialties">25Z &mdash; Senior Signal</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../shop.html">Signal Gear</a></li>
+                        <li><a href="../../shop.html">Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../courses.html">Signal Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="../../resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="snipcart-checkout nav-cart-btn" title="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span class="snipcart-items-count nav-cart-count"></span>
+                </button>
+                <div id="auth-ui">
+                    <button class="btn-sm btn-outline" id="auth-signin-btn" style="display:none;">Sign&nbsp;In</button>
+                    <button class="btn-sm btn-outline" id="auth-signout-btn" style="display:none;">Sign&nbsp;Out</button>
+                </div>
+                <button class="nav-mobile-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- HERO -->
     <section class="school-hero">
-        <div style="height:80px;width:80px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:50%;font-family:var(--font-tactical);font-size:32px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">25</div>
-        <h1 class="school-hero-headline">Signal</h1>
-        <p class="school-hero-sub">Communications and network infrastructure. Signal Soldiers install, operate, and maintain the Army's tactical and strategic communication systems.</p>
-    </section>
-
-    <section class="info-section">
-        <div class="info-section-label">At a Glance</div>
-        <div class="stats-grid">
-            <div class="stat-card"><span class="stat-number">14-20wk</span><div class="stat-label">AIT Length</div></div>
-            <div class="stat-card"><span class="stat-number">10+</span><div class="stat-label"># of MOS</div></div>
-            <div class="stat-card"><span class="stat-number">~90%</span><div class="stat-label">Grad Rate</div></div>
-            <div class="stat-card"><span class="stat-number">Ft Eisenhower</span><div class="stat-label">Key Installation</div></div>
+        <div class="hero-badge-text">25</div>
+        <h1 class="school-hero-headline">Get the Message Through</h1>
+        <p class="school-hero-sub">The communications backbone of the entire Army. Signal Soldiers install, operate, and maintain the tactical and strategic communication systems that connect every echelon from the foxhole to the Pentagon.</p>
+        <div class="school-hero-cta">
+            <a href="../../shop.html" class="btn-primary">Shop Gear</a>
+            <a href="../../courses.html" class="btn-outline">Start Training</a>
+        </div>
+        <div class="school-scroll-indicator">
+            <span class="school-scroll-text">Scroll</span>
+            <div class="school-scroll-line"></div>
         </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Career Field Overview</div>
-        <h2>What is Signal?</h2>
-        <p>The Signal branch provides the communications backbone for the entire Army. Signal Soldiers install, operate, and maintain the tactical and strategic communication systems that enable commanders to exercise command and control across the battlefield. From satellite terminals to fiber optic networks to tactical radios, Signal ensures that information flows from the foxhole to the Pentagon.</p>
-        <p>Training is centered at Ft Eisenhower, Georgia, the Army's Cyber Center of Excellence. The 25-series is one of the most diverse career fields, with over 10 MOS codes covering everything from IT help desk operations to satellite communications to network defense. Signal skills translate directly to civilian IT and telecommunications careers, and many Signal Soldiers earn industry certifications like CompTIA Network+, Security+, and CCNA during their service.</p>
+    <!-- MAIN HEADLINE -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Career Field at a Glance</div>
+        <h2 class="school-section-title">14-43 Week AIT &mdash; 10+ MOS &mdash; 1 Mission: Communications</h2>
+        <p class="school-section-body">The 25-Series is the Army's premier communications and information technology force. From satellite terminals to tactical radios, Signal Soldiers ensure that information flows across every battlefield and garrison network.</p>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">MOS List</div>
-        <h2>25-Series Specialties</h2>
-        <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0;">
-        <thead><tr style="border-bottom:2px solid var(--color-gold);text-align:left;">
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">MOS</th>
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">Title</th>
-        </tr></thead>
-        <tbody>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25B</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Information Technology Specialist</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25C</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Radio Operator/Maintainer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25D</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Cyber Network Defender</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25E</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Electromagnetic Spectrum Manager</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25H</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Network Communication Systems Specialist</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25L</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Cable Systems Installer/Maintainer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25N</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Nodal Network Systems Operator/Maintainer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25S</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Satellite Communication Systems Operator/Maintainer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">25U</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Signal Support Systems Specialist</td></tr>
-        </tbody></table></div>
+    <!-- MOS SPECIALTIES SELECTOR -->
+    <section class="school-section fade-in" id="specialties">
+        <div class="school-section-label">MOS Specialties</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
+            <button class="phase-card-btn active" data-phase="25b" onclick="togglePhase('25b')">
+                <span class="phase-card-icon">&#128187;</span>
+                <span class="phase-card-title">25B</span>
+                <span class="phase-card-sub">IT Specialist</span>
+            </button>
+            <button class="phase-card-btn" data-phase="25s" onclick="togglePhase('25s')">
+                <span class="phase-card-icon">&#128225;</span>
+                <span class="phase-card-title">25S</span>
+                <span class="phase-card-sub">SATCOM Operator-Maintainer</span>
+            </button>
+            <button class="phase-card-btn" data-phase="25u" onclick="togglePhase('25u')">
+                <span class="phase-card-icon">&#128246;</span>
+                <span class="phase-card-title">25U</span>
+                <span class="phase-card-sub">Signal Support Specialist</span>
+            </button>
+            <button class="phase-card-btn" data-phase="25z" onclick="togglePhase('25z')">
+                <span class="phase-card-icon">&#11088;</span>
+                <span class="phase-card-title">25Z</span>
+                <span class="phase-card-sub">Senior Signal Sergeant</span>
+            </button>
+        </div>
+
+        <!-- 25B Detail -->
+        <div class="phase-detail-panel open" id="detail-25b">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b25b">25B</span>
+                    <div class="phase-detail-rtb">Information Technology Specialist</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>20 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Eisenhower, GA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>ST: 95</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Clearance</span><span>Secret</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Network Admin, Hardware/Software Troubleshooting, Help Desk, Server Mgmt</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 25B Information Technology Specialist is the backbone of the Army's IT infrastructure. 25Bs install, configure, and maintain the networks, servers, and workstations that enable every unit to operate. AIT at Fort Eisenhower is a 20-week course that builds proficiency in networking fundamentals, system administration, and cybersecurity basics.</p>
+                    <p>25Bs earn the CompTIA Security+ certification during AIT &mdash; a credential that translates directly to civilian IT careers. They serve in every type of unit from infantry battalions to theater-level signal commands.</p>
+                    <ul class="phase-detail-list">
+                        <li>Network administration and TCP/IP configuration</li>
+                        <li>Hardware and software troubleshooting across Windows and Linux</li>
+                        <li>Help desk operations and trouble ticket management</li>
+                        <li>Server management, Active Directory, and Group Policy</li>
+                        <li>CompTIA Security+ certification (earned during AIT)</li>
+                        <li>Network security fundamentals and vulnerability scanning</li>
+                        <li>Field-expedient networking and tactical infrastructure setup</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 25S Detail -->
+        <div class="phase-detail-panel" id="detail-25s">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b25s">25S</span>
+                    <div class="phase-detail-rtb">Satellite Communication Systems Operator-Maintainer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>20-24 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Eisenhower, GA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>EL: 98</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Clearance</span><span>Secret / TS</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>SATCOM Terminals, Troposcatter, Satellite Network Mgmt, VSAT</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 25S Satellite Communication Systems Operator-Maintainer is responsible for the Army's beyond-line-of-sight communication capability. 25Ss install, operate, and maintain satellite communication terminals and troposcatter systems that provide long-haul connectivity across theaters of operation.</p>
+                    <p>25Ss work with some of the most advanced communication equipment in the military, from VSAT terminals to wideband SATCOM systems. This MOS requires strong technical aptitude and often leads to positions supporting strategic-level communications.</p>
+                    <ul class="phase-detail-list">
+                        <li>SATCOM terminal installation, operation, and maintenance</li>
+                        <li>Troposcatter system setup and signal optimization</li>
+                        <li>Satellite network management and link budgets</li>
+                        <li>VSAT operations and bandwidth allocation</li>
+                        <li>Antenna alignment and RF signal theory</li>
+                        <li>Multiplexing equipment and digital transmission systems</li>
+                        <li>Tactical satellite planning for deployed operations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 25U Detail -->
+        <div class="phase-detail-panel" id="detail-25u">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b25u">25U</span>
+                    <div class="phase-detail-rtb">Signal Support Systems Specialist</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>14-16 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Eisenhower, GA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>EL: 93</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Clearance</span><span>Secret</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Tactical Radios, SINCGARS, JCR/BFT, Network Ops, Retransmission</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 25U Signal Support Systems Specialist is the most common Signal MOS, found in virtually every company-level unit in the Army. 25Us install, operate, and maintain tactical communications equipment including radios, network systems, and battlefield tracking devices that keep units connected during operations.</p>
+                    <p>25Us are the first line of Signal support at the tactical level. They maintain SINCGARS radios, configure JCR/BFT terminals, establish retransmission sites, and troubleshoot communications issues in the field &mdash; often under austere conditions.</p>
+                    <ul class="phase-detail-list">
+                        <li>SINCGARS radio programming, operation, and troubleshooting</li>
+                        <li>JCR/BFT (Joint Capabilities Release / Blue Force Tracker) operations</li>
+                        <li>Tactical network setup and configuration</li>
+                        <li>Retransmission site selection, setup, and monitoring</li>
+                        <li>Signal operating instructions (SOI) and COMSEC management</li>
+                        <li>Antenna theory and field-expedient antenna construction</li>
+                        <li>Vehicle-mounted communications system installation and maintenance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 25Z Detail -->
+        <div class="phase-detail-panel" id="detail-25z">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b25z">25Z</span>
+                    <div class="phase-detail-rtb">Senior Signal Sergeant</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Selection</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>BN/BDE Level</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>S-6 NCOIC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Signal Ops, Network Architecture, BN/BDE S-6 NCOIC</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 25Z Senior Signal Sergeant is the pinnacle of enlisted Signal leadership. 25Zs serve as operations sergeants major, S-6 NCOICs, and command sergeants major at battalion and brigade level. They are responsible for planning, implementing, and maintaining the unit's entire communications architecture.</p>
+                    <p>Reaching 25Z requires decades of Signal experience across multiple MOS codes, completion of the Senior Leader Course and Sergeants Major Academy, and a proven record of technical excellence and leadership across tactical and strategic assignments.</p>
+                    <ul class="phase-detail-list">
+                        <li>Signal operations planning and network architecture design</li>
+                        <li>BN/BDE S-6 NCOIC duties and staff coordination</li>
+                        <li>Communications security (COMSEC) program management</li>
+                        <li>Network infrastructure oversight and capacity planning</li>
+                        <li>Personnel management, evaluations, and career counseling</li>
+                        <li>Mentorship of junior Signal NCOs across all 25-series MOS</li>
+                        <li>Integration of Signal capabilities into maneuver operations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Training Pipeline</div>
-        <h2>From Recruit to Signal Specialist</h2>
-        <ul class="phase-list">
-            <li><span class="phase-day">Step 1</span><span class="phase-desc"><strong>BCT</strong> &mdash; Complete Basic Combat Training before entering Signal AIT at Ft Eisenhower.</span></li>
-            <li><span class="phase-day">Step 2</span><span class="phase-desc"><strong>14-20 Week AIT at Ft Eisenhower, GA</strong> &mdash; MOS-specific training in networking, radio systems, satellite communications, or IT operations. Includes hands-on lab work and field exercises.</span></li>
-            <li><span class="phase-day">Step 3</span><span class="phase-desc"><strong>Unit Assignment</strong> &mdash; Report to a Signal battalion, Brigade Signal company, or staff section. Begin operating and maintaining unit communication systems.</span></li>
-            <li><span class="phase-day">Step 4</span><span class="phase-desc"><strong>Industry Certifications</strong> &mdash; Earn CompTIA Network+, Security+, CCNA, or other certifications. The Army funds certification exams for Signal Soldiers.</span></li>
-            <li><span class="phase-day">Step 5</span><span class="phase-desc"><strong>NCOES &amp; Advanced Courses</strong> &mdash; Progress through NCO Education System. Pursue Joint Network Operations, advanced Cisco training, or transition to Cyber (17-series) MOS.</span></li>
-        </ul>
+    <!-- CAREER PROGRESSION -->
+    <section class="school-section fade-in" id="career">
+        <div class="school-section-label">Career Progression</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
+            <button class="phase-card-btn" data-season="junior" onclick="toggleSeason('junior')">
+                <span class="phase-card-icon">&#127941;</span>
+                <span class="phase-card-title">Junior Enlisted</span>
+                <span class="phase-card-sub">E-1 to E-4</span>
+            </button>
+            <button class="phase-card-btn" data-season="nco" onclick="toggleSeason('nco')">
+                <span class="phase-card-icon">&#9733;</span>
+                <span class="phase-card-title">NCO</span>
+                <span class="phase-card-sub">E-5 to E-6</span>
+            </button>
+            <button class="phase-card-btn" data-season="senior" onclick="toggleSeason('senior')">
+                <span class="phase-card-icon">&#127942;</span>
+                <span class="phase-card-title">Senior NCO</span>
+                <span class="phase-card-sub">E-7 to E-9</span>
+            </button>
+            <button class="phase-card-btn" data-season="officer" onclick="toggleSeason('officer')">
+                <span class="phase-card-icon">&#9878;</span>
+                <span class="phase-card-title">Officer Track</span>
+                <span class="phase-card-sub">Warrant Officer</span>
+            </button>
+        </div>
+
+        <!-- Junior Enlisted Detail -->
+        <div class="phase-detail-panel" id="detail-junior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#3b82f6;border-color:#3b82f6;">E1-E4</span>
+                    <div class="phase-detail-rtb">Junior Enlisted</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>0-4 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>Help Desk, Radio Operator, SATCOM Tech</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Certs</span><span>Security+, Network+</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$24K-$36K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Bonus</span><span>Up to $40K (initial)</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Junior enlisted Signal Soldiers begin their career operating and maintaining communications equipment at the company or battalion level. Depending on MOS, they may work a help desk, operate tactical radios, or maintain satellite terminals. Promotion to SPC/E-4 typically occurs within 2-3 years.</p>
+                    <p>This is the time to earn industry certifications (Security+, Network+, CCNA), build technical depth, and establish the foundation for NCO leadership. Signal MOS qualifies soldiers for some of the Army's most marketable technical training.</p>
+                    <ul class="phase-detail-list">
+                        <li>PVT (E-1) to PV2 (E-2): 6 months &mdash; Apprentice operator, supervised tasks</li>
+                        <li>PFC (E-3): 12 months TIS &mdash; Proficient operator, independent troubleshooting</li>
+                        <li>SPC (E-4): 24 months TIS &mdash; Experienced technician, mentor to new arrivals</li>
+                        <li>Earn CompTIA Security+, Network+, or A+ certifications</li>
+                        <li>Pursue Cisco CCNA or Microsoft certifications through Army funding</li>
+                        <li>Volunteer for deployments and field exercises to build operational experience</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- NCO Detail -->
+        <div class="phase-detail-panel" id="detail-nco">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#22c55e;border-color:#22c55e;">E5-E6</span>
+                    <div class="phase-detail-rtb">Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>4-10 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>Section Chief, Shift NCOIC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>BLC, ALC, CCNA/CCNP</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$36K-$52K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key</span><span>NCOER + Certifications</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Signal NCOs lead teams of 3-8 Soldiers responsible for operating and maintaining communication systems. Sergeants (E-5) serve as section chiefs or shift NCOICs in network operations centers, while Staff Sergeants (E-6) lead larger sections and manage network segments.</p>
+                    <p>Completion of BLC (Basic Leader Course) is required for E-5, and ALC (Advanced Leader Course) for E-6. Advanced technical certifications and NCOES completion significantly improve promotion potential.</p>
+                    <ul class="phase-detail-list">
+                        <li>SGT (E-5): Section Chief &mdash; leads 3-5 soldiers, manages equipment accountability</li>
+                        <li>SSG (E-6): Shift NCOIC / Section NCOIC &mdash; manages network operations</li>
+                        <li>BLC required for promotion to SGT, ALC for SSG</li>
+                        <li>Pursue CCNA, CCNP, or CISSP for competitive advantage</li>
+                        <li>Joint Network Operations Course and advanced vendor training</li>
+                        <li>Strong NCOER evaluations are critical for competitive promotion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Senior NCO Detail -->
+        <div class="phase-detail-panel" id="detail-senior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#f59e0b;border-color:#f59e0b;">E7-E9</span>
+                    <div class="phase-detail-rtb">Senior Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>10-30 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>S-6 NCOIC, 1SG, CSM</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>SLC, USASMA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$52K-$90K+/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Selection</span><span>Board-selected</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Senior Signal NCOs represent the most experienced and capable technical leaders in the branch. Sergeants First Class (E-7) serve as S-6 NCOICs or platoon sergeants in Signal companies, Master Sergeants/First Sergeants (E-8) lead at company level, and Sergeants Major (E-9) serve at battalion, brigade, and higher as the 25Z Senior Signal Sergeant.</p>
+                    <p>These positions are highly competitive and board-selected. A record of technical excellence, advanced certifications, NCOES completion, and consistent top-block evaluations are essential.</p>
+                    <ul class="phase-detail-list">
+                        <li>SFC (E-7): S-6 NCOIC or Signal Platoon Sergeant &mdash; manages section of 15-30 soldiers</li>
+                        <li>MSG/1SG (E-8): Operations NCOIC or First Sergeant &mdash; company-level senior enlisted</li>
+                        <li>SGM/CSM (E-9): 25Z Senior Signal Sergeant &mdash; BN/BDE signal operations</li>
+                        <li>Senior Leader Course (SLC) required for E-7 promotion</li>
+                        <li>Sergeants Major Academy for E-9 selection</li>
+                        <li>Network architecture and strategic communications planning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Officer Track / Warrant Officer Detail -->
+        <div class="phase-detail-panel" id="detail-officer">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#a855f7;border-color:#a855f7;">WO</span>
+                    <div class="phase-detail-rtb">Warrant Officer / Officer Track</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Path</span><span>WOCS / OCS / Green-to-Gold</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duration</span><span>5-7 Weeks (WOCS)</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Novosel / Fort Eisenhower</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Result</span><span>WO1 / 2LT Commission</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Specialty</span><span>255A / 255N / 25A</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Experienced Signal NCOs with deep technical expertise can pursue the Warrant Officer track (255-series) or commission as Signal Officers (25A). Warrant Officers serve as the Army's premier Signal technicians &mdash; subject matter experts in network engineering, satellite systems, and information services management.</p>
+                    <p>Signal Warrant Officers (255A, 255N) are in high demand across the Army. The OCS or Green-to-Gold path leads to Signal Officer (25A) positions, where prior enlisted experience in network operations provides an enormous advantage in understanding the technical challenges at the tactical level.</p>
+                    <ul class="phase-detail-list">
+                        <li>WOCS: 5-7 weeks at Fort Novosel &mdash; Warrant Officer Candidate School</li>
+                        <li>255A: Information Services Technician &mdash; network engineering SME</li>
+                        <li>255N: Network Management Technician &mdash; enterprise network operations</li>
+                        <li>OCS: 12-16 weeks at Fort Moore &mdash; commission as 25A Signal Officer</li>
+                        <li>Green-to-Gold: 2-4 year college program with ROTC scholarship</li>
+                        <li>Prior enlisted Signal experience is a massive advantage in technical leadership</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Advanced Training</div>
-        <h2>Schools &amp; Courses</h2>
-        <p>Signal Soldiers can pursue: CompTIA Network+, Security+, A+, Cisco CCNA/CCNP, Joint Network Operations Course, Satellite Controller Certification, and various vendor-specific training. Senior Signal NCOs may attend the Signal Senior Leader Course or transition to the Cyber branch.</p>
+    <!-- DUTY STATIONS -->
+    <section class="school-section fade-in" id="stations">
+        <div class="school-section-label">Major Duty Stations</div>
+        <h2 class="school-section-title">Where Signal Soldiers Serve</h2>
+        <div class="school-calendar-wrapper">
+            <table class="school-calendar">
+                <thead>
+                    <tr>
+                        <th>Installation</th>
+                        <th>Location</th>
+                        <th>Unit / Mission</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Fort Eisenhower</td><td>GA</td><td>Cyber Center of Excellence (TRADOC)</td><td><span class="season-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;">TRADOC</span></td></tr>
+                    <tr><td>Fort Liberty</td><td>NC</td><td>XVIII ABC / 82nd Airborne Signal</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">FORSCOM</span></td></tr>
+                    <tr><td>Fort Campbell</td><td>KY/TN</td><td>101st Airborne (Air Assault) Signal</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">FORSCOM</span></td></tr>
+                    <tr><td>Fort Carson</td><td>CO</td><td>4th Infantry Division Signal</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">FORSCOM</span></td></tr>
+                    <tr><td>Fort Stewart</td><td>GA</td><td>3rd Infantry Division Signal</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">FORSCOM</span></td></tr>
+                    <tr><td>Fort Meade</td><td>MD</td><td>NSA / CYBERCOM / NETCOM</td><td><span class="season-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Strategic</span></td></tr>
+                    <tr><td>Camp Humphreys</td><td>South Korea</td><td>Eighth Army Signal</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">OCONUS</span></td></tr>
+                    <tr><td>Anywhere</td><td>Worldwide</td><td>Signal supports every unit in the Army</td><td><span class="season-tag" style="background:rgba(34,197,94,0.15);color:#22c55e;">All Commands</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="school-calendar-note">Signal Soldiers serve at virtually every Army installation worldwide. Every brigade has a Signal company or S-6 section, making Signal one of the most geographically diverse branches in the Army.</p>
     </section>
 
-    <section class="info-section" style="text-align:center;padding-bottom:var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width:500px;margin:0 auto;">We're building Signal-specific resources and training guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    <!-- CINEMATIC BREAK -->
+    <section class="school-cinematic fade-in" style="background: linear-gradient(180deg, transparent, rgba(245,158,11,0.06) 50%, transparent);">
+        <div class="school-cinematic-stat">~28,000 Active-Duty Signal Soldiers</div>
+        <p class="school-cinematic-body">From the tactical TOC to the strategic NOC, Signal Soldiers keep the Army connected. Every commander, every echelon, every mission depends on the 25-Series to get the message through.</p>
+        <a href="../../courses.html" class="btn-outline" style="margin-top: var(--space-xl);">Explore Training Courses</a>
     </section>
 
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Common Questions</div>
+        <div class="bento-3">
+            <div class="glass-card">
+                <div class="glass-card-label">Certifications</div>
+                <div class="glass-card-title">Need CompTIA Certs?</div>
+                <p class="glass-card-body">The Army funds Security+, Network+, and A+ exams for Signal Soldiers. Many 25Bs earn Security+ during AIT. These certifications are required for DoD 8570 compliance and translate directly to civilian IT careers.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Training</div>
+                <div class="glass-card-title">Struggling with Networking?</div>
+                <p class="glass-card-body">TCP/IP, subnetting, and routing fundamentals are the backbone of Signal training. Master the OSI model and practice with Packet Tracer before you arrive at Fort Eisenhower. It will pay dividends in AIT.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Career</div>
+                <div class="glass-card-title">Want SATCOM Skills?</div>
+                <p class="glass-card-body">25S SATCOM operators work with cutting-edge satellite terminals and troposcatter systems. High ASVAB scores and a TS clearance open the door to strategic-level communications assignments.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Schools</div>
+                <div class="glass-card-title">How Long is 25B AIT?</div>
+                <p class="glass-card-body">25B AIT at Fort Eisenhower is 20 weeks. The course covers networking, system administration, and cybersecurity fundamentals. You'll earn CompTIA Security+ before graduation.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">MOS</div>
+                <div class="glass-card-title">Radio vs IT MOS?</div>
+                <p class="glass-card-body">25U is tactical radios and field communications &mdash; you'll be in the field setting up retrans and programming SINCGARS. 25B is networks and servers &mdash; you'll manage infrastructure and troubleshoot systems. Both are in high demand.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Transition</div>
+                <div class="glass-card-title">Civilian Tech Career?</div>
+                <p class="glass-card-body">Signal skills translate directly to civilian IT and telecom careers. Network admin, systems engineer, SATCOM tech, and cybersecurity analyst roles all map to 25-series experience. The certifications you earn in the Army are industry-standard.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOS OVERVIEW STATS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">MOS Overview</div>
+        <div class="stats-grid-6">
+            <div class="stat-card-sm">
+                <span class="stat-card-number">14-43 Wk</span>
+                <span class="stat-card-label">AIT Duration</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">10+ MOS</span>
+                <span class="stat-card-label">25-Series Codes</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">~90%</span>
+                <span class="stat-card-label">AIT Grad Rate</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">~28K</span>
+                <span class="stat-card-label">Active Duty</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Up to $40K</span>
+                <span class="stat-card-label">Enlistment Bonus</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Ft Eisenhower</span>
+                <span class="stat-card-label">AIT Location</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- RETENTION / REENLISTMENT RATES -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Retention Rates</div>
+        <h2 class="school-section-title">Signal Reenlistment by Year</h2>
+        <div class="attrition-grid">
+            <div class="attrition-card">
+                <span class="attrition-year">FY19</span>
+                <span class="attrition-rate">52%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY20</span>
+                <span class="attrition-rate">54%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY21</span>
+                <span class="attrition-rate">50%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY22</span>
+                <span class="attrition-rate">48%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY23</span>
+                <span class="attrition-rate">46%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAINING WASHOUT DATA -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Training Data</div>
+        <h2 class="school-section-title">AIT Washout &amp; Qualification Data</h2>
+        <div class="failure-grid">
+            <div class="failure-card">
+                <h3 class="failure-card-title">Common AIT Drop Reasons</h3>
+                <ul class="failure-card-list">
+                    <li><span>Academic failure</span><span>~5%</span></li>
+                    <li><span>Physical fitness failure</span><span>~2%</span></li>
+                    <li><span>Security clearance denial</span><span>~1%</span></li>
+                    <li><span>Voluntary / administrative</span><span>~2%</span></li>
+                </ul>
+            </div>
+            <div class="failure-card">
+                <h3 class="failure-card-title">Key Context</h3>
+                <ul class="failure-card-list">
+                    <li><span>AIT graduation rate is ~90%</span></li>
+                    <li><span>Academic drops are the leading cause (technical coursework)</span></li>
+                    <li><span>Recycled soldiers pass at high rates</span></li>
+                    <li><span>Security clearance required for most 25-series MOS</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY TAKEAWAY -->
+    <section class="school-section fade-in">
+        <div class="school-takeaway">
+            <div class="school-takeaway-label">Key Takeaway</div>
+            <p class="school-takeaway-text">Signal is the Army's most diverse and technically demanding communications career field. If you want industry certifications, hands-on experience with cutting-edge networking and satellite systems, and a direct path to a civilian tech career, the 25-Series is the path. Study networking fundamentals, keep your clearance clean, and never stop learning.</p>
+        </div>
+    </section>
+
+    <!-- SIGNAL CORPS MOTTO -->
+    <section class="school-section school-creed-section fade-in">
+        <div class="school-section-label">Signal Corps Motto</div>
+        <blockquote class="school-creed">
+            <p>Pro Patria Vigilans</p>
+            <p style="margin-top: var(--space-md); font-size: 0.9em; color: var(--color-text-secondary);">"Watchful for the Country"</p>
+            <p style="margin-top: var(--space-lg); font-weight: 700; color: var(--color-gold);">Get the Message Through.</p>
+        </blockquote>
+        <a href="../../courses.html" class="btn-primary" style="margin-top: var(--space-xl);">Start Signal Prep</a>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="school-section school-newsletter-section fade-in">
+        <div class="school-section-label">Stay Informed</div>
+        <h2 class="school-section-title">Get Signal Intel</h2>
+        <p class="school-section-body">Training tips, gear drops, and career guides for the 25-Series &mdash; delivered to your inbox.</p>
+        <form class="school-newsletter-form" id="newsletter-form">
+            <input type="email" class="school-newsletter-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn-primary school-newsletter-btn">Subscribe</button>
+        </form>
+        <p class="school-newsletter-status" id="newsletter-status"></p>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="school-footer">
-        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+        <div class="school-footer-inner">
+            <div class="school-footer-brand">
+                <a href="/" class="school-footer-logo">Ranger Beers</a>
+                <p class="school-footer-sub">Signal Supply Co.</p>
+            </div>
+            <div class="school-footer-columns">
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Specialties</h4>
+                    <ul>
+                        <li><a href="index.html#specialties">25B &mdash; IT Specialist</a></li>
+                        <li><a href="index.html#specialties">25S &mdash; SATCOM</a></li>
+                        <li><a href="index.html#specialties">25U &mdash; Signal Support</a></li>
+                        <li><a href="index.html#specialties">25Z &mdash; Senior Signal</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Supply</h4>
+                    <ul>
+                        <li><a href="../../shop.html">Signal Gear</a></li>
+                        <li><a href="../../courses.html">Training Courses</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Guides</h4>
+                    <ul>
+                        <li><a href="../../standards.html">Standards</a></li>
+                        <li><a href="../../faq.html">FAQ</a></li>
+                        <li><a href="../../about.html">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="school-footer-bottom">
+            <p>&copy; 2026 Ranger Beers Supply Co.</p>
+            <div class="school-footer-legal">
+                <a href="../../privacy.html">Privacy</a>
+                <a href="../../terms.html">Terms</a>
+            </div>
+        </div>
     </footer>
 
+    <!-- SCRIPTS -->
+    <script>
+        // Newsletter
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = this.querySelector('input[type="email"]').value;
+            var status = document.getElementById('newsletter-status');
+            status.textContent = 'Subscribing...';
+            fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, school: '25-signal' })
+            }).then(function(r) { return r.json(); })
+              .then(function() { status.textContent = 'Subscribed — check your inbox.'; })
+              .catch(function() { status.textContent = 'Error — please try again.'; });
+        });
+    </script>
+
+    <script>
+        // Nav scroll + mobile
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 40); });
+        var toggle = document.querySelector('.nav-mobile-toggle');
+        if (toggle) toggle.addEventListener('click', function() { nav.classList.toggle('nav-open'); });
+
+        // Fade-in
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+    </script>
+
+    <!-- Auth -->
+    <script src="../../course-auth.js"></script>
+    <script>if (typeof RangerAuth !== 'undefined') RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase/Career Toggle -->
+    <script>
+        var currentPhase = '25b';
+        var currentSeason = null;
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+            currentSeason = null;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect 25B
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="25b"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
 </body>
 </html>

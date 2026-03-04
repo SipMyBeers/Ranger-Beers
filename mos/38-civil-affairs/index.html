@@ -8,102 +8,690 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../course-styles.css">
+    <link rel="stylesheet" href="../../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero { min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:var(--space-4xl) 40px;position:relative;overflow:hidden; }
-        .school-hero::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center bottom,rgba(34,197,94,0.08),transparent 60%); }
-        .school-hero-tab { max-height:80px;margin-bottom:var(--space-xl);position:relative; }
-        .school-hero-headline { font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:var(--space-md);position:relative; }
-        .school-hero-sub { font-size:clamp(1rem,2vw,1.25rem);color:var(--color-text-secondary);max-width:640px;line-height:1.6;position:relative; }
-        .school-back { position:fixed;top:var(--space-lg);left:var(--space-lg);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--color-text-secondary);text-decoration:none;z-index:100;transition:color 0.3s; }
-        .school-back:hover { color:var(--color-gold); }
-        .info-section { max-width:900px;margin:0 auto;padding:var(--space-3xl) 40px; }
-        .info-section-label { font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--color-gold);margin-bottom:var(--space-lg); }
-        .info-section h2 { font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;margin-bottom:var(--space-lg); }
-        .info-section p { color:var(--color-text-secondary);line-height:1.8;margin-bottom:var(--space-lg); }
-        .stats-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-md);margin:var(--space-2xl) 0; }
-        .stat-card { background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-glass);padding:var(--space-xl) var(--space-md);text-align:center; }
-        .stat-number { font-size:clamp(1.5rem,3vw,2.5rem);font-weight:900;color:var(--color-gold);display:block; }
-        .stat-label { font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-text-secondary);margin-top:var(--space-xs); }
-        .phase-list { list-style:none;margin:var(--space-xl) 0; }
-        .phase-list li { padding:var(--space-md) 0;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:var(--space-md); }
-        .phase-list .phase-day { font-weight:700;color:var(--color-gold);min-width:80px;font-family:var(--font-tactical);font-size:13px; }
-        .phase-list .phase-desc { color:var(--color-text-secondary);line-height:1.6; }
-        .phase-list .phase-desc strong { color:var(--color-text-primary); }
-        .school-footer { text-align:center;padding:var(--space-3xl) 40px;border-top:1px solid rgba(255,255,255,0.06); }
-        .school-footer-copy { font-size:12px;color:var(--color-text-muted);letter-spacing:1px; }
-        @media (max-width:700px) { .stats-grid{grid-template-columns:repeat(2,1fr);} .school-hero{padding:var(--space-3xl) 20px;} .info-section{padding:var(--space-2xl) 20px;} }
+        /* MOS-specific: hero tint & specialty colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(34,197,94,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="38b"]::before { background: radial-gradient(ellipse at center, rgba(34,197,94,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="38a"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="38z"]::before { background: radial-gradient(ellipse at center, rgba(245,158,11,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="38b"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.15); }
+        .phase-card-btn.active[data-phase="38a"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="38z"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.15); }
+        .phase-detail-badge.b38b { color: #22c55e; border-color: #22c55e; }
+        .phase-detail-badge.b38a { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.b38z { color: #f59e0b; border-color: #f59e0b; }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Specialties</span></li>
+                        <li><a href="index.html#specialties">38B &mdash; CA Specialist</a></li>
+                        <li><a href="index.html#specialties">38A &mdash; CA Officer</a></li>
+                        <li><a href="index.html#specialties">38Z &mdash; Senior CA SGT</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../shop.html">Civil Affairs Gear</a></li>
+                        <li><a href="../../shop.html">Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../courses.html">CA Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="../../resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="snipcart-checkout nav-cart-btn" title="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span class="snipcart-items-count nav-cart-count"></span>
+                </button>
+                <div id="auth-ui">
+                    <button class="btn-sm btn-outline" id="auth-signin-btn" style="display:none;">Sign&nbsp;In</button>
+                    <button class="btn-sm btn-outline" id="auth-signout-btn" style="display:none;">Sign&nbsp;Out</button>
+                </div>
+                <button class="nav-mobile-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- HERO -->
     <section class="school-hero">
-        <div style="height:80px;width:80px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:50%;font-family:var(--font-tactical);font-size:32px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">38</div>
-        <h1 class="school-hero-headline">Civil Affairs</h1>
-        <p class="school-hero-sub">Bridge military operations and civilian populations. Civil Affairs Soldiers conduct civil-military operations to support commanders and stabilize regions.</p>
-    </section>
-
-    <section class="info-section">
-        <div class="info-section-label">At a Glance</div>
-        <div class="stats-grid">
-            <div class="stat-card"><span class="stat-number">Varies</span><div class="stat-label">CAQC Length</div></div>
-            <div class="stat-card"><span class="stat-number">2</span><div class="stat-label"># of MOS</div></div>
-            <div class="stat-card"><span class="stat-number">~75%</span><div class="stat-label">Grad Rate</div></div>
-            <div class="stat-card"><span class="stat-number">Ft Liberty</span><div class="stat-label">Key Installation</div></div>
+        <div class="hero-badge-text">38</div>
+        <h1 class="school-hero-headline">Secure the Peace</h1>
+        <p class="school-hero-sub">Bridge military operations and civilian populations. Civil Affairs Soldiers conduct civil reconnaissance, governance support, and humanitarian assistance &mdash; securing lasting stability in the world's most complex environments.</p>
+        <div class="school-hero-cta">
+            <a href="../../shop.html" class="btn-primary">Shop Gear</a>
+            <a href="../../courses.html" class="btn-outline">Start Training</a>
+        </div>
+        <div class="school-scroll-indicator">
+            <span class="school-scroll-text">Scroll</span>
+            <div class="school-scroll-line"></div>
         </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Career Field Overview</div>
-        <h2>What is Civil Affairs?</h2>
-        <p>Civil Affairs (CA) is a special operations branch that serves as the bridge between military forces and civilian populations, governments, and organizations. CA Soldiers assess civil conditions in operational areas, advise commanders on the impact of military operations on civilians, and coordinate humanitarian assistance, governance support, and infrastructure restoration.</p>
-        <p>Active-duty Civil Affairs forces are stationed at Ft Liberty, North Carolina, and are part of U.S. Army Special Operations Command. Army Reserve CA units are spread across the country. CA Soldiers deploy to some of the most complex environments in the world, working in unstable regions where the line between combat and humanitarian operations blurs. Cultural awareness, negotiation skills, and the ability to operate independently are essential.</p>
+    <!-- MAIN HEADLINE -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Career Field at a Glance</div>
+        <h2 class="school-section-title">Selection + Qualification &mdash; 2 MOS &mdash; 1 Mission: Civil-Military Operations</h2>
+        <p class="school-section-body">The 38-Series is the Army's premier civil-military operations force. From foreign humanitarian assistance to governance support, Civil Affairs Soldiers operate at the intersection of military power and civilian stability.</p>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">MOS List</div>
-        <h2>38-Series Specialties</h2>
-        <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0;">
-        <thead><tr style="border-bottom:2px solid var(--color-gold);text-align:left;">
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">MOS</th>
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">Title</th>
-        </tr></thead>
-        <tbody>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">38A</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Civil Affairs Officer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">38B</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Civil Affairs Specialist</td></tr>
-        </tbody></table></div>
+    <!-- MOS SPECIALTIES SELECTOR -->
+    <section class="school-section fade-in" id="specialties">
+        <div class="school-section-label">MOS Specialties</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(3, 1fr);">
+            <button class="phase-card-btn active" data-phase="38b" onclick="togglePhase('38b')">
+                <span class="phase-card-icon">&#127760;</span>
+                <span class="phase-card-title">38B</span>
+                <span class="phase-card-sub">Civil Affairs Specialist</span>
+            </button>
+            <button class="phase-card-btn" data-phase="38a" onclick="togglePhase('38a')">
+                <span class="phase-card-icon">&#9878;</span>
+                <span class="phase-card-title">38A</span>
+                <span class="phase-card-sub">Civil Affairs Officer</span>
+            </button>
+            <button class="phase-card-btn" data-phase="38z" onclick="togglePhase('38z')">
+                <span class="phase-card-icon">&#11088;</span>
+                <span class="phase-card-title">38Z</span>
+                <span class="phase-card-sub">Senior CA Sergeant</span>
+            </button>
+        </div>
+
+        <!-- 38B Detail -->
+        <div class="phase-detail-panel open" id="detail-38b">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b38b">38B</span>
+                    <div class="phase-detail-rtb">Civil Affairs Specialist</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Training</span><span>CA Qualification Course</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Liberty, NC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Prerequisite</span><span>Selection + Airborne</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>SOF / CA Teams</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Civil Recon, FHA, CIM, KLE</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 38B Civil Affairs Specialist is the backbone of Army CA teams. After passing CA Selection and Assessment, 38Bs attend the CA Qualification Course at Fort Liberty, NC, where they learn to operate in austere, complex environments at the intersection of military operations and civilian populations.</p>
+                    <p>38Bs conduct civil reconnaissance to assess local governance, infrastructure, economy, and social systems. They coordinate foreign humanitarian assistance, manage civil information, and engage key leaders to support the commander's objectives and stabilize regions in conflict.</p>
+                    <ul class="phase-detail-list">
+                        <li>Civil reconnaissance and civil information management (CIM)</li>
+                        <li>Foreign humanitarian assistance (FHA) planning and execution</li>
+                        <li>Governance support and institutional capacity building</li>
+                        <li>Economic development assessment and coordination</li>
+                        <li>Key leader engagement (KLE) and negotiation</li>
+                        <li>Interagency and NGO coordination</li>
+                        <li>Cross-cultural communication and regional expertise</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 38A Detail -->
+        <div class="phase-detail-panel" id="detail-38a">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b38a">38A</span>
+                    <div class="phase-detail-rtb">Civil Affairs Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Branch</span><span>Civil Affairs</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Liberty, NC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>All Echelons</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>SOF Officer</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>CA Ops Planning, Interagency, CMO</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 38A Civil Affairs Officer plans and leads CA operations at all echelons, from tactical CA teams to theater-level civil-military operations centers. Officers bring strategic vision and operational planning capability to CA missions, integrating military objectives with civilian stabilization goals.</p>
+                    <p>38A officers coordinate with interagency partners, international organizations, and host-nation governments to develop comprehensive civil-military operations plans. They advise commanders on the civil dimension of the operational environment and lead CA teams in execution.</p>
+                    <ul class="phase-detail-list">
+                        <li>Civil-military operations (CMO) planning at all echelons</li>
+                        <li>Interagency coordination with State, USAID, and international organizations</li>
+                        <li>Theater security cooperation and foreign internal defense</li>
+                        <li>CA team leadership and mission command</li>
+                        <li>Civil considerations integration into military planning (MDMP)</li>
+                        <li>Strategic communication and information operations support</li>
+                        <li>Host-nation government engagement and capacity assessment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 38Z Detail -->
+        <div class="phase-detail-panel" id="detail-38z">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b38z">38Z</span>
+                    <div class="phase-detail-rtb">Senior CA Sergeant</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Board Selection</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>BN / BDE / TSOC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Senior Enlisted Leader</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>CA Ops Planning, Interagency Coordination</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 38Z Senior CA Sergeant represents the pinnacle of enlisted Civil Affairs leadership. Serving at E-8 and E-9, these senior NCOs plan and coordinate CA operations at battalion, brigade, and theater special operations command (TSOC) level. They bring decades of CA experience and regional expertise to complex operational environments.</p>
+                    <p>38Zs are responsible for interagency coordination, mentoring junior CA NCOs, and ensuring CA teams are trained, equipped, and ready for deployment. They serve as the senior enlisted advisor on civil-military operations and maintain relationships across the interagency community.</p>
+                    <ul class="phase-detail-list">
+                        <li>CA operations planning at BN/BDE and TSOC level</li>
+                        <li>Interagency coordination with DOS, USAID, and coalition partners</li>
+                        <li>Senior enlisted advisor on civil-military operations</li>
+                        <li>Training management and readiness for CA formations</li>
+                        <li>Mentorship and professional development of junior CA NCOs</li>
+                        <li>Regional expertise and cross-cultural leadership</li>
+                        <li>Strategic planning for stability and governance operations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Training Pipeline</div>
-        <h2>From Recruit to CA Specialist</h2>
-        <ul class="phase-list">
-            <li><span class="phase-day">Step 1</span><span class="phase-desc"><strong>BCT / OCS</strong> &mdash; Complete Basic Combat Training or Officer Candidate School before entering the Civil Affairs pipeline.</span></li>
-            <li><span class="phase-day">Step 2</span><span class="phase-desc"><strong>CA Qualification Course at Ft Liberty</strong> &mdash; The CAQC teaches civil reconnaissance, governance assessment, humanitarian operations, and tactical CA team operations. Includes assessment and selection.</span></li>
-            <li><span class="phase-day">Step 3</span><span class="phase-desc"><strong>Airborne School</strong> &mdash; Active-duty CA Soldiers attend Airborne School at Ft Moore, GA, for assignment to airborne-capable CA units.</span></li>
-            <li><span class="phase-day">Step 4</span><span class="phase-desc"><strong>Language Training</strong> &mdash; Many CA Soldiers attend the Defense Language Institute or in-country immersion programs to develop language skills essential for their mission.</span></li>
-            <li><span class="phase-day">Step 5</span><span class="phase-desc"><strong>Unit Assignment &amp; Advanced Courses</strong> &mdash; Serve in CA teams at Ft Liberty or deployed. Pursue governance, development studies, and NCOES development.</span></li>
-        </ul>
+    <!-- CAREER PROGRESSION -->
+    <section class="school-section fade-in" id="career">
+        <div class="school-section-label">Career Progression</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
+            <button class="phase-card-btn" data-season="junior" onclick="toggleSeason('junior')">
+                <span class="phase-card-icon">&#127941;</span>
+                <span class="phase-card-title">Junior Enlisted</span>
+                <span class="phase-card-sub">E-1 to E-4</span>
+            </button>
+            <button class="phase-card-btn" data-season="nco" onclick="toggleSeason('nco')">
+                <span class="phase-card-icon">&#9733;</span>
+                <span class="phase-card-title">NCO</span>
+                <span class="phase-card-sub">E-5 to E-6</span>
+            </button>
+            <button class="phase-card-btn" data-season="senior" onclick="toggleSeason('senior')">
+                <span class="phase-card-icon">&#127942;</span>
+                <span class="phase-card-title">Senior NCO</span>
+                <span class="phase-card-sub">E-7 to E-9</span>
+            </button>
+            <button class="phase-card-btn" data-season="officer" onclick="toggleSeason('officer')">
+                <span class="phase-card-icon">&#9878;</span>
+                <span class="phase-card-title">Officer Track</span>
+                <span class="phase-card-sub">38A Branch</span>
+            </button>
+        </div>
+
+        <!-- Junior Enlisted Detail -->
+        <div class="phase-detail-panel" id="detail-junior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#3b82f6;border-color:#3b82f6;">E1-E4</span>
+                    <div class="phase-detail-rtb">Junior Enlisted</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>0-4 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>CA Team Member</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>Airborne, CAQC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$24K-$36K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Path</span><span>Reclass after initial MOS</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Civil Affairs is a reclass MOS &mdash; Soldiers must first serve in another MOS before applying for CA Selection. Junior enlisted Soldiers build foundational skills in their initial career field while preparing physically and mentally for the CA pipeline. Most applicants are E-4 or above with proven performance records.</p>
+                    <p>Preparation includes strong PT scores, language aptitude, cultural awareness, and a demonstrated ability to operate independently. Volunteer for deployments and seek assignments that develop interpersonal and problem-solving skills.</p>
+                    <ul class="phase-detail-list">
+                        <li>Serve in initial MOS and build a strong service record</li>
+                        <li>Develop language skills and cultural awareness</li>
+                        <li>Achieve high ACFT scores and maintain airborne fitness</li>
+                        <li>Study civil-military operations and stability doctrine</li>
+                        <li>Volunteer for deployments and leadership positions</li>
+                        <li>Apply for CA Selection when eligible (typically E-4+)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- NCO Detail -->
+        <div class="phase-detail-panel" id="detail-nco">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#22c55e;border-color:#22c55e;">E5-E6</span>
+                    <div class="phase-detail-rtb">Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>4-10 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>CA Team SGT, Team NCOIC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>BLC, ALC, Language</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$36K-$52K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key</span><span>NCOER + Deployments</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>CA NCOs are the operational backbone of Civil Affairs teams. E-5s and E-6s serve as team sergeants and team NCOICs, leading civil reconnaissance missions, managing key leader engagements, and coordinating with local governments and international organizations in austere environments.</p>
+                    <p>NCO development includes BLC and ALC completion, language training at DLI or through immersion programs, and repeated deployments to build regional expertise. Strong NCOER evaluations and proven performance in complex environments drive promotion.</p>
+                    <ul class="phase-detail-list">
+                        <li>SGT (E-5): CA Team Member &mdash; conducts civil recon and FHA operations</li>
+                        <li>SSG (E-6): Team NCOIC &mdash; leads CA team operations and KLE</li>
+                        <li>BLC required for E-5, ALC for E-6 promotion</li>
+                        <li>Language training at DLI or immersion programs</li>
+                        <li>Deploy with CA teams to CENTCOM, AFRICOM, SOUTHCOM AORs</li>
+                        <li>Build interagency relationships and regional expertise</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Senior NCO Detail -->
+        <div class="phase-detail-panel" id="detail-senior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#f59e0b;border-color:#f59e0b;">E7-E9</span>
+                    <div class="phase-detail-rtb">Senior Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>10-30 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>Ops SGT, 1SG, CSM</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>SLC, USASMA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$52K-$90K+/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Selection</span><span>Board-selected (38Z)</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Senior CA NCOs transition to the 38Z MOS and serve as operations sergeants, first sergeants, and command sergeants major at battalion, brigade, and TSOC level. They bring decades of CA expertise, regional knowledge, and interagency relationships that are irreplaceable at the strategic level.</p>
+                    <p>38Z selection is competitive and board-driven. A record of successful deployments, language proficiency, advanced schooling, and top-block evaluations are essential. Senior CA NCOs often serve in embassy support roles and joint/interagency positions.</p>
+                    <ul class="phase-detail-list">
+                        <li>SFC (E-7): Senior Team NCOIC &mdash; leads complex CA operations</li>
+                        <li>MSG/1SG (E-8): Operations NCOIC or First Sergeant &mdash; company-level leadership</li>
+                        <li>SGM/CSM (E-9): Command Sergeant Major &mdash; BN/BDE senior enlisted advisor</li>
+                        <li>Senior Leader Course (SLC) required for E-7 promotion</li>
+                        <li>Sergeants Major Academy for E-9 selection</li>
+                        <li>Embassy support and interagency liaison positions available</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Officer Track Detail -->
+        <div class="phase-detail-panel" id="detail-officer">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#a855f7;border-color:#a855f7;">38A</span>
+                    <div class="phase-detail-rtb">Civil Affairs Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Path</span><span>Branch Detail / Reclass</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Training</span><span>CA Officer Qual Course</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Liberty, NC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Result</span><span>38A Branch</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>All Echelons</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Officers enter Civil Affairs through branch detail or voluntary transfer after serving in another branch. The CA Officer Qualification Course at Fort Liberty trains officers to plan and lead CA operations at every echelon, from tactical team level to theater strategic support.</p>
+                    <p>38A officers bring unique value by combining conventional military experience with specialized CA training. They advise general officers on the civil dimension, coordinate with interagency partners, and lead CA companies and battalions.</p>
+                    <ul class="phase-detail-list">
+                        <li>Branch detail or voluntary transfer into CA after initial branch service</li>
+                        <li>CA Officer Qualification Course at Fort Liberty, NC</li>
+                        <li>Lead CA teams and plan CMO at brigade and division level</li>
+                        <li>Interagency coordination with DOS, USAID, and international orgs</li>
+                        <li>Career progression: Team Leader &rarr; Company CDR &rarr; BN XO/S3 &rarr; BN CDR</li>
+                        <li>Prior enlisted experience highly valued in CA officer ranks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Advanced Training</div>
-        <h2>Schools &amp; Courses</h2>
-        <p>Civil Affairs Soldiers can pursue: Defense Language Institute (DLI), Governance &amp; Development courses, Humanitarian Assistance programs, Airborne School, Cultural Studies, interagency coordination courses, and joint civil-military operations training.</p>
+    <!-- DUTY STATIONS -->
+    <section class="school-section fade-in" id="stations">
+        <div class="school-section-label">Major Duty Stations</div>
+        <h2 class="school-section-title">Where Civil Affairs Soldiers Serve</h2>
+        <div class="school-calendar-wrapper">
+            <table class="school-calendar">
+                <thead>
+                    <tr>
+                        <th>Installation</th>
+                        <th>Location</th>
+                        <th>Unit / Mission</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Fort Liberty</td><td>NC</td><td>USASOC / 95th CA BDE</td><td><span class="season-tag" style="background:rgba(34,197,94,0.15);color:#22c55e;">SOF / Active</span></td></tr>
+                    <tr><td>Fort Liberty</td><td>NC</td><td>USAJFKSWCS (Training)</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">TRADOC</span></td></tr>
+                    <tr><td>Various CONUS</td><td>US</td><td>Army Reserve CA Commands</td><td><span class="season-tag" style="background:rgba(147,197,253,0.15);color:#93c5fd;">USAR</span></td></tr>
+                    <tr><td>OCONUS Rotations</td><td>Worldwide</td><td>CENTCOM / AFRICOM / SOUTHCOM</td><td><span class="season-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;">Deployed</span></td></tr>
+                    <tr><td>Embassy Support</td><td>Worldwide</td><td>Defense Attach&eacute; / SCO</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">Interagency</span></td></tr>
+                    <tr><td>SOCOM Elements</td><td>Various</td><td>TSOC / JSOC Support</td><td><span class="season-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">SOF</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="school-calendar-note">Active-duty CA forces are concentrated at Fort Liberty, NC, under USASOC. Army Reserve CA units are located across the country. Deployments span every combatant command, with embassy and interagency positions worldwide.</p>
     </section>
 
-    <section class="info-section" style="text-align:center;padding-bottom:var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width:500px;margin:0 auto;">We're building Civil Affairs-specific resources and training guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    <!-- CINEMATIC BREAK -->
+    <section class="school-cinematic fade-in" style="background: linear-gradient(180deg, transparent, rgba(34,197,94,0.06) 50%, transparent);">
+        <div class="school-cinematic-stat">Bridging Military and Civilian Worlds</div>
+        <p class="school-cinematic-body">Civil Affairs Soldiers operate where combat meets stability. From war-torn villages to capital cities, CA teams build the lasting peace that follows the fight.</p>
+        <a href="../../courses.html" class="btn-outline" style="margin-top: var(--space-xl);">Explore Training Courses</a>
     </section>
 
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Common Questions</div>
+        <div class="bento-3">
+            <div class="glass-card">
+                <div class="glass-card-label">Career</div>
+                <div class="glass-card-title">What is Civil Affairs?</div>
+                <p class="glass-card-body">Civil Affairs is a special operations branch that bridges military forces and civilian populations. CA Soldiers conduct civil reconnaissance, governance support, humanitarian assistance, and key leader engagement in the world's most complex environments.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Selection</div>
+                <div class="glass-card-title">How Hard is Selection?</div>
+                <p class="glass-card-body">CA Selection and Assessment is a demanding evaluation of physical fitness, mental toughness, problem-solving, and interpersonal skills. Approximately 55% of candidates are selected. Preparation in land nav, rucking, and team events is critical.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Skills</div>
+                <div class="glass-card-title">Need Cultural Skills?</div>
+                <p class="glass-card-body">Cultural awareness and cross-cultural communication are foundational CA skills. Soldiers develop regional expertise through language training, immersion programs, and repeated deployments to their area of focus.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Interagency</div>
+                <div class="glass-card-title">Want to Work with NGOs?</div>
+                <p class="glass-card-body">CA Soldiers routinely coordinate with NGOs, international organizations, and interagency partners like USAID and the State Department. This interagency skillset is unique to Civil Affairs in the military.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Language</div>
+                <div class="glass-card-title">Language Requirements?</div>
+                <p class="glass-card-body">Language proficiency is highly valued in CA. Many Soldiers attend the Defense Language Institute or in-country immersion programs. DLPT scores and language pay incentivize continued development.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">SOF</div>
+                <div class="glass-card-title">SOF vs Conventional CA?</div>
+                <p class="glass-card-body">Active-duty CA is part of USASOC (Special Operations). Army Reserve CA units fall under conventional commands. SOF CA undergoes selection, earns airborne qualification, and deploys on SOF missions worldwide.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOS OVERVIEW STATS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">MOS Overview</div>
+        <div class="stats-grid-6">
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Selection + QC</span>
+                <span class="stat-card-label">Training Pipeline</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">2 MOS</span>
+                <span class="stat-card-label">38B / 38A</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">~55%</span>
+                <span class="stat-card-label">Selection Rate</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">SOF</span>
+                <span class="stat-card-label">Active Duty Branch</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Airborne</span>
+                <span class="stat-card-label">Required</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Ft Liberty</span>
+                <span class="stat-card-label">Home Station</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- RETENTION / REENLISTMENT RATES -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Retention Rates</div>
+        <h2 class="school-section-title">Civil Affairs Reenlistment by Year</h2>
+        <div class="attrition-grid">
+            <div class="attrition-card">
+                <span class="attrition-year">FY19</span>
+                <span class="attrition-rate">70%</span>
+                <span class="attrition-label">Reenlistment Rate</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY20</span>
+                <span class="attrition-rate">73%</span>
+                <span class="attrition-label">Reenlistment Rate</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY21</span>
+                <span class="attrition-rate">71%</span>
+                <span class="attrition-label">Reenlistment Rate</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY22</span>
+                <span class="attrition-rate">68%</span>
+                <span class="attrition-label">Reenlistment Rate</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY23</span>
+                <span class="attrition-rate">66%</span>
+                <span class="attrition-label">Reenlistment Rate</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAINING WASHOUT / DROP DATA -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Training Data</div>
+        <h2 class="school-section-title">Selection &amp; Qualification Attrition</h2>
+        <div class="failure-grid">
+            <div class="failure-card">
+                <h3 class="failure-card-title">Common Drop Reasons</h3>
+                <ul class="failure-card-list">
+                    <li><span>Selection attrition (non-select)</span><span>~45%</span></li>
+                    <li><span>Academic failure (CAQC)</span><span>~8%</span></li>
+                    <li><span>Voluntary withdrawal</span><span>~5%</span></li>
+                    <li><span>Physical fitness / injury</span><span>~5%</span></li>
+                </ul>
+            </div>
+            <div class="failure-card">
+                <h3 class="failure-card-title">Key Context</h3>
+                <ul class="failure-card-list">
+                    <li><span>Selection is the primary gate (~55% pass)</span></li>
+                    <li><span>CAQC graduation rate is high once selected</span></li>
+                    <li><span>Rucking, land nav, and team events are critical</span></li>
+                    <li><span>Language aptitude assessed throughout pipeline</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY TAKEAWAY -->
+    <section class="school-section fade-in">
+        <div class="school-takeaway">
+            <div class="school-takeaway-label">Key Takeaway</div>
+            <p class="school-takeaway-text">Civil Affairs is one of the most intellectually demanding and globally impactful career fields in the Army. If you want to operate at the intersection of military power and civilian stability, work with governments and NGOs in austere environments, and secure lasting peace, the 38-Series is the path. Arrive fit, culturally aware, and ready to think on your feet.</p>
+        </div>
+    </section>
+
+    <!-- CA CREED -->
+    <section class="school-section school-creed-section fade-in">
+        <div class="school-section-label">The Civil Affairs Commitment</div>
+        <blockquote class="school-creed">
+            <p>I am Civil Affairs.<br>
+            I am the bridge between military force<br>
+            and civilian stability.<br>
+            I operate where combat meets humanity &mdash;<br>
+            in villages, cities, and capitals worldwide.<br>
+            I assess, coordinate, and build<br>
+            what conflict destroys.</p>
+            <p>I am committed to stability operations<br>
+            and securing lasting peace<br>
+            through civil-military cooperation.<br>
+            I engage, I advise, I stabilize.<br>
+            Where others see chaos,<br>
+            I build order.</p>
+            <p style="margin-top: var(--space-lg); font-weight: 700; color: var(--color-gold);">Secure the Peace.</p>
+        </blockquote>
+        <a href="../../courses.html" class="btn-primary" style="margin-top: var(--space-xl);">Start CA Prep</a>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="school-section school-newsletter-section fade-in">
+        <div class="school-section-label">Stay Informed</div>
+        <h2 class="school-section-title">Get Civil Affairs Intel</h2>
+        <p class="school-section-body">Training tips, gear drops, and career guides for the 38-Series &mdash; delivered to your inbox.</p>
+        <form class="school-newsletter-form" id="newsletter-form">
+            <input type="email" class="school-newsletter-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn-primary school-newsletter-btn">Subscribe</button>
+        </form>
+        <p class="school-newsletter-status" id="newsletter-status"></p>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="school-footer">
-        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+        <div class="school-footer-inner">
+            <div class="school-footer-brand">
+                <a href="/" class="school-footer-logo">Ranger Beers</a>
+                <p class="school-footer-sub">Civil Affairs Supply Co.</p>
+            </div>
+            <div class="school-footer-columns">
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Specialties</h4>
+                    <ul>
+                        <li><a href="index.html#specialties">38B &mdash; CA Specialist</a></li>
+                        <li><a href="index.html#specialties">38A &mdash; CA Officer</a></li>
+                        <li><a href="index.html#specialties">38Z &mdash; Senior CA SGT</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Supply</h4>
+                    <ul>
+                        <li><a href="../../shop.html">CA Gear</a></li>
+                        <li><a href="../../courses.html">Training Courses</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Guides</h4>
+                    <ul>
+                        <li><a href="../../standards.html">Standards</a></li>
+                        <li><a href="../../faq.html">FAQ</a></li>
+                        <li><a href="../../about.html">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="school-footer-bottom">
+            <p>&copy; 2026 Ranger Beers Supply Co.</p>
+            <div class="school-footer-legal">
+                <a href="../../privacy.html">Privacy</a>
+                <a href="../../terms.html">Terms</a>
+            </div>
+        </div>
     </footer>
 
+    <!-- SCRIPTS -->
+    <script>
+        // Newsletter
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = this.querySelector('input[type="email"]').value;
+            var status = document.getElementById('newsletter-status');
+            status.textContent = 'Subscribing...';
+            fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, school: '38-civil-affairs' })
+            }).then(function(r) { return r.json(); })
+              .then(function() { status.textContent = 'Subscribed — check your inbox.'; })
+              .catch(function() { status.textContent = 'Error — please try again.'; });
+        });
+    </script>
+
+    <script>
+        // Nav scroll + mobile
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 40); });
+        var toggle = document.querySelector('.nav-mobile-toggle');
+        if (toggle) toggle.addEventListener('click', function() { nav.classList.toggle('nav-open'); });
+
+        // Fade-in
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+    </script>
+
+    <!-- Auth -->
+    <script src="../../course-auth.js"></script>
+    <script>if (typeof RangerAuth !== 'undefined') RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase/Career Toggle -->
+    <script>
+        var currentPhase = '38b';
+        var currentSeason = null;
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+            currentSeason = null;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect 38B
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="38b"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
 </body>
 </html>

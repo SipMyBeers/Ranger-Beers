@@ -502,6 +502,143 @@
     margin: 0;
 }
 
+/* ── HERO BADGE TEXT (schools without badge images) ── */
+.hero-badge-text {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--color-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--color-gold);
+    margin-bottom: var(--space-xl);
+    position: relative;
+    font-family: var(--font-tactical);
+    text-transform: uppercase;
+    box-shadow: 0 0 30px rgba(197,179,88,0.2);
+}
+
+/* ── T-11 PRE-JUMP BRIEFING (jumpmaster) ──── */
+.prejump-section {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(197,179,88,0.2);
+    border-radius: 16px;
+    padding: 40px;
+}
+.prejump-topic-title {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin: var(--space-lg) 0 var(--space-sm);
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+.prejump-topic-title:first-of-type {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+}
+.prejump-section p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin: 0 0 var(--space-sm);
+}
+.prejump-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-md);
+}
+.prejump-section li {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    padding: 4px 0 4px 16px;
+    position: relative;
+}
+.prejump-section li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: var(--color-gold-dim);
+}
+
+/* ── MOS VARIANT STYLES ──────────────────── */
+.mos-progression {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+}
+.mos-progression-step {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-glass);
+    padding: var(--space-md);
+    text-align: center;
+    position: relative;
+}
+.mos-progression-step::after {
+    content: '\2192';
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-gold-dim);
+    font-size: 14px;
+}
+.mos-progression-step:last-child::after { display: none; }
+.mos-progression-rank {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--color-gold);
+    font-family: var(--font-tactical);
+}
+.mos-progression-title {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+.mos-station-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+.mos-station-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-glass);
+    padding: var(--space-lg);
+    transition: all 0.3s ease;
+}
+.mos-station-card:hover { border-color: rgba(197,179,88,0.3); }
+.mos-station-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 4px;
+}
+.mos-station-location {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+}
+.mos-station-unit {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+}
+
 /* ── RESPONSIVE ────────────────────────────── */
 @media (max-width: 1024px) {
     .ix-stats-grid { grid-template-columns: repeat(3, 1fr); }

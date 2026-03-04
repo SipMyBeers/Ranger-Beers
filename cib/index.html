@@ -8,238 +8,738 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
+    <link rel="stylesheet" href="../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: var(--space-4xl) 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        .school-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center bottom, rgba(34, 197, 94, 0.08), transparent 60%);
-        }
-        .school-hero-tab {
-            max-height: 80px;
-            margin-bottom: var(--space-xl);
-            position: relative;
-        }
-        .school-hero-headline {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: var(--space-md);
-            position: relative;
-        }
-        .school-hero-sub {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-secondary);
-            max-width: 640px;
-            line-height: 1.6;
-            position: relative;
-        }
-        .school-hero-cta {
-            display: flex;
-            gap: var(--space-md);
-            margin-top: var(--space-xl);
-            position: relative;
-        }
-        .school-back {
-            position: fixed;
-            top: var(--space-lg);
-            left: var(--space-lg);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            z-index: 100;
-            transition: color 0.3s;
-        }
-        .school-back:hover { color: var(--color-gold); }
-
-        .info-section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: var(--space-3xl) 40px;
-        }
-        .info-section-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--color-gold);
-            margin-bottom: var(--space-lg);
-        }
-        .info-section h2 {
-            font-size: clamp(1.5rem, 3vw, 2.25rem);
-            font-weight: 800;
-            margin-bottom: var(--space-lg);
-        }
-        .info-section p {
-            color: var(--color-text-secondary);
-            line-height: 1.8;
-            margin-bottom: var(--space-lg);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-md);
-            margin: var(--space-2xl) 0;
-        }
-        .stat-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-glass);
-            padding: var(--space-xl) var(--space-md);
-            text-align: center;
-        }
-        .stat-number {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 900;
-            color: var(--color-gold);
-            display: block;
-        }
-        .stat-label {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--color-text-secondary);
-            margin-top: var(--space-xs);
-        }
-
-        .phase-list {
-            list-style: none;
-            margin: var(--space-xl) 0;
-        }
-        .phase-list li {
-            padding: var(--space-md) 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            gap: var(--space-md);
-        }
-        .phase-list .phase-day {
-            font-weight: 700;
-            color: var(--color-gold);
-            min-width: 80px;
-            font-family: var(--font-tactical);
-            font-size: 13px;
-        }
-        .phase-list .phase-desc {
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-        .phase-list .phase-desc strong {
-            color: var(--color-text-primary);
-        }
-
-        .school-footer {
-            text-align: center;
-            padding: var(--space-3xl) 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .school-footer-copy {
-            font-size: 12px;
-            color: var(--color-text-muted);
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 700px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .school-hero { padding: var(--space-3xl) 20px; }
-            .info-section { padding: var(--space-2xl) 20px; }
-        }
+        /* School-specific: hero tint & phase colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(59,130,246,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="eligibility"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="combat"]::before { background: radial-gradient(ellipse at center, rgba(239,68,68,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="award"]::before { background: radial-gradient(ellipse at center, rgba(34,197,94,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="eligibility"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="combat"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239,68,68,0.15); }
+        .phase-card-btn.active[data-phase="award"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.15); }
+        .phase-detail-badge.eligibility { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.combat { color: #ef4444; border-color: #ef4444; }
+        .phase-detail-badge.award { color: #22c55e; border-color: #22c55e; }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Criteria</span></li>
+                        <li><a href="index.html#phases">Eligibility</a></li>
+                        <li><a href="index.html#phases">Combat Action</a></li>
+                        <li><a href="index.html#phases">Award Processing</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">CIB Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="courses.html">CIB Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
-    <section class="school-hero">
-        <div style="height:80px;width:80px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:50%;font-family:var(--font-tactical);font-size:28px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">CIB</div>
-        <h1 class="school-hero-headline">Combat Infantryman Badge</h1>
-        <p class="school-hero-sub">The CIB is the Army's most respected combat award &mdash; recognizing Infantrymen and Special Forces Soldiers who personally fought in active ground combat.</p>
+    <!-- HERO -->
+    <section class="school-hero" id="hero">
+        <div class="hero-badge-text">CIB</div>
+        <h1 class="hero-headline">Been There, Done That</h1>
+        <p class="hero-sub">The Combat Infantryman Badge &mdash; awarded to infantrymen who have personally fought in active ground combat. The most respected badge in the United States Army, earned only through direct engagement with the enemy.</p>
+        <div class="hero-cta">
+            <a href="shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="courses.html" class="btn btn-outline">Learn More</a>
+        </div>
+        <div class="scroll-indicator"><div class="scroll-line"></div>Scroll</div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">At a Glance</div>
+    <!-- MAIN HEADLINE -->
+    <section class="section" style="text-align: center; padding: var(--space-3xl) 40px;">
+        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-family: var(--font-display); color: var(--color-text); margin: 0;">
+            1 Fight &mdash; 1 Badge &mdash; Infinite Respect
+        </h2>
+    </section>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">Award</span>
-                <div class="stat-label">Type</div>
+    <!-- PHASE SELECTOR -->
+    <div class="phase-selector" id="phases">
+        <div class="selector-divider" style="margin-bottom: var(--space-xl);">
+            <span class="selector-divider-label">Criteria</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <button class="phase-card-btn" data-phase="eligibility" onclick="togglePhase('eligibility')">
+                <div class="pc-icon">&#128218;</div>
+                <div class="pc-name">Eligibility</div>
+                <div class="pc-sub">11-Series MOS</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="combat" onclick="togglePhase('combat')">
+                <div class="pc-icon">&#9876;</div>
+                <div class="pc-name">Combat Action</div>
+                <div class="pc-sub">Engage Enemy</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="award" onclick="togglePhase('award')">
+                <div class="pc-icon">&#127942;</div>
+                <div class="pc-name">Award Processing</div>
+                <div class="pc-sub">Unit Recommendation</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+        </div>
+
+        <!-- Eligibility Detail Panel -->
+        <div class="phase-detail-panel open" id="detail-eligibility">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Eligibility &mdash; MOS Qualification</div>
+                    <span class="phase-detail-badge eligibility">Step 1</span>
+                </div>
+                <div class="phase-rtb-info">
+                    <div>
+                        <div class="phase-rtb-name">U.S. Army Human Resources Command (HRC)</div>
+                        <div class="phase-address">Fort Knox, KY &mdash; Award Authority</div>
+                    </div>
+                    <div class="phase-social-links">
+                        <a href="https://www.hrc.army.mil/" target="_blank" rel="noopener">&#127760; Official Site</a>
+                    </div>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Primary MOS</span><span class="pd-item-value">11-series (Infantry)</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Also Eligible</span><span class="pd-item-value">18-series (Special Forces)</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Unit Size</span><span class="pd-item-value">Brigade or smaller</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Assignment</span><span class="pd-item-value">Infantry/SF primary duty</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #3b82f6; font-weight: 600;">Key Requirements</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">MOS Qualification</span><span class="pd-item-value">Must hold 11B, 11C, 11Z, or 18-series</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Duty Position</span><span class="pd-item-value">Serving in infantry/SF capacity</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Grade</span><span class="pd-item-value">Any rank &mdash; E-1 through O-6</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Branch</span><span class="pd-item-value">U.S. Army only</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Retroactive</span><span class="pd-item-value">Eligible back to 6 Dec 1941</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>The CIB is exclusively reserved for <strong>infantrymen and Special Forces soldiers</strong>. Your Military Occupational Specialty must be 11-series (Infantry) or 18-series (Special Forces) at the time of the qualifying combat action.</p>
+                        <p>This is the most critical gate &mdash; <strong>no other MOS qualifies</strong>, regardless of combat exposure. Soldiers with non-qualifying MOS who engage in combat are eligible for the Combat Action Badge (CAB) instead, but never the CIB.</p>
+                        <p>You must be assigned to an infantry or SF unit of brigade size or smaller, actively performing infantry duties. Staff officers or those temporarily attached may not qualify without proper documentation.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Qualifying MOS Codes</div>
+                            <ul>
+                                <li>11B &mdash; Infantryman (primary qualifying MOS)</li>
+                                <li>11C &mdash; Indirect Fire Infantryman (mortarman)</li>
+                                <li>11Z &mdash; Infantry Senior Sergeant</li>
+                                <li>18-series &mdash; Special Forces (all specialties)</li>
+                                <li>Historical MOS codes also qualify for retroactive awards</li>
+                                <li>Officer branch must be Infantry (11A) or SF (18A)</li>
+                                <li>CMF 11 / 18 must be primary MOS at time of action</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">1943</span>
-                <div class="stat-label">Est.</div>
+        </div>
+
+        <!-- Combat Action Detail Panel -->
+        <div class="phase-detail-panel" id="detail-combat">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Combat Action &mdash; Engage the Enemy</div>
+                    <span class="phase-detail-badge combat">Step 2</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Requirement</span><span class="pd-item-value">Active ground combat</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Presence</span><span class="pd-item-value">Personally present &amp; under fire</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Enemy</span><span class="pd-item-value">Hostile forces engaged</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #ef4444; font-weight: 600;">Combat Criteria</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Direct Fire</span><span class="pd-item-value">Small arms, RPG, direct engagement</span></div>
+                        <div class="pd-item"><span class="pd-item-name">IED / Mines</span><span class="pd-item-value">Qualifying if enemy-initiated</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Ambush</span><span class="pd-item-value">Enemy-initiated contact</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Combat Zone</span><span class="pd-item-value">Designated area of operations</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>The core requirement: you must be <strong>personally present and under hostile fire</strong> while engaged in active ground combat. This is not a proximity award &mdash; you must have directly participated in combat action against the enemy.</p>
+                        <p><strong>Indirect fire alone does not always qualify.</strong> The action must involve direct engagement with hostile forces in a ground combat situation. Rocket or mortar attacks on a FOB, while dangerous, may not meet the standard unless accompanied by direct engagement.</p>
+                        <p>The combat action must occur in an area designated as a combat zone or during a qualifying conflict. Each war and conflict has specific qualifying dates and geographic boundaries defined by Department of the Army.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Qualifying Combat Actions</div>
+                            <ul>
+                                <li>Firefight with enemy combatants &mdash; direct fire exchange</li>
+                                <li>Enemy ambush requiring return fire and maneuver</li>
+                                <li>Assault on enemy positions under fire</li>
+                                <li>Defense against enemy ground attack</li>
+                                <li>IED / mine strike with enemy contact</li>
+                                <li>Close combat &mdash; hand-to-hand or close quarters</li>
+                                <li>Patrol actions resulting in direct enemy engagement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">Infantry/SF</span>
-                <div class="stat-label">Eligibility</div>
+        </div>
+
+        <!-- Award Processing Detail Panel -->
+        <div class="phase-detail-panel" id="detail-award">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Award Processing &mdash; Documentation &amp; Approval</div>
+                    <span class="phase-detail-badge award">Step 3</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Initiated By</span><span class="pd-item-value">Unit commander</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Approval</span><span class="pd-item-value">Brigade commander or higher</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Documentation</span><span class="pd-item-value">DA Form 638 / combat reports</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #22c55e; font-weight: 600;">Processing Steps</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Commander Review</span><span class="pd-item-value">Validates combat action occurred</span></div>
+                        <div class="pd-item"><span class="pd-item-name">S-1 Processing</span><span class="pd-item-value">Verifies MOS &amp; assignment orders</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Orders Published</span><span class="pd-item-value">Permanent orders issued</span></div>
+                        <div class="pd-item"><span class="pd-item-name">iPerms Update</span><span class="pd-item-value">Recorded in official military file</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>The award process begins with a <strong>commander's recommendation</strong> through the chain of command. The combat action must be verified against operational reports, SIGACTs, and unit records. This is where many deserving soldiers lose their award &mdash; paperwork gets lost in the fog of war.</p>
+                        <p><strong>Documentation is everything.</strong> Combat action reports, patrol debriefs, and witness statements all support the award. Units rotating out of theater often lose track of pending awards, leaving soldiers without the recognition they earned.</p>
+                        <p>Retroactive awards are possible with sufficient documentation. Veterans who can provide evidence of qualifying combat action &mdash; even decades later &mdash; may submit requests through HRC for review and approval.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Required Documentation</div>
+                            <ul>
+                                <li>DA Form 638 &mdash; Recommendation for Award</li>
+                                <li>Combat action reports / SIGACTs</li>
+                                <li>Unit orders confirming assignment</li>
+                                <li>MOS verification from personnel records</li>
+                                <li>Witness statements (if available)</li>
+                                <li>Deployment orders to qualifying combat zone</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">3 Awards</span>
-                <div class="stat-label">Max</div>
+        </div>
+
+        <!-- SEASON SELECTOR (Deployment Cycles) -->
+        <div class="selector-divider" style="margin: var(--space-xl) 0;">
+            <span class="selector-divider-label">Deployment Cycles</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr);" id="season-selector">
+            <button class="phase-card-btn" data-season="winter" onclick="toggleSeason('winter')">
+                <div class="pc-icon">&#10052;</div>
+                <div class="pc-name">Winter</div>
+                <div class="pc-sub">Dec &mdash; Feb</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="spring" onclick="toggleSeason('spring')">
+                <div class="pc-icon">&#127783;</div>
+                <div class="pc-name">Spring</div>
+                <div class="pc-sub">Mar &mdash; May</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="summer" onclick="toggleSeason('summer')">
+                <div class="pc-icon">&#9728;</div>
+                <div class="pc-name">Summer</div>
+                <div class="pc-sub">Jun &mdash; Aug</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="fall" onclick="toggleSeason('fall')">
+                <div class="pc-icon">&#127810;</div>
+                <div class="pc-name">Fall</div>
+                <div class="pc-sub">Sep &mdash; Nov</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+        </div>
+
+        <!-- WINTER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-winter">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Winter &mdash; Rotation Overlap &amp; Surge Ops</div>
+                    <span class="phase-detail-badge" style="color: #3b82f6; border-color: #3b82f6;">Dec &ndash; Feb</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Deployment Tempo</span><span class="pd-item-value">Moderate &mdash; rotation transitions</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Contact Frequency</span><span class="pd-item-value">Varies by AO</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Historical Note</span><span class="pd-item-value">Battle of the Bulge (Dec 1944)</span></div>
+                        <div class="pd-item"><span class="pd-item-name">GWOT Context</span><span class="pd-item-value">Reduced enemy movement in mountains</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Key Consideration</span><span class="pd-item-value">Unit rotation gaps create risk</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Paperwork Risk</span><span class="pd-item-value">Awards lost during handovers</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Winter rotations often overlap with unit transitions.</strong> Incoming and outgoing units trade battle space, creating gaps in operational continuity. CIB-qualifying actions during this period are at higher risk of incomplete documentation as leadership and admin personnel rotate.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Winter Deployment Tips</div>
+                            <ul>
+                                <li>Document every contact &mdash; don't rely on outgoing unit's records</li>
+                                <li>Ensure SIGACTs are filed before rotation handoff</li>
+                                <li>Coordinate with incoming unit S-1 for pending awards</li>
+                                <li>Cold-weather combat zones add environmental hazards</li>
+                                <li>Keep personal copies of all combat action documentation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPRING Detail Panel -->
+        <div class="phase-detail-panel" id="detail-spring">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Spring &mdash; Peak Fighting Season Begins</div>
+                    <span class="phase-detail-badge" style="color: #22c55e; border-color: #22c55e;">Mar &ndash; May</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Deployment Tempo</span><span class="pd-item-value">Increasing &mdash; spring rotations</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Contact Frequency</span><span class="pd-item-value">Rising as weather improves</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Historical Note</span><span class="pd-item-value">Okinawa (Apr 1945), Ia Drang prep</span></div>
+                        <div class="pd-item"><span class="pd-item-name">GWOT Context</span><span class="pd-item-value">Afghan fighting season kickoff</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Key Consideration</span><span class="pd-item-value">Fresh rotations meet increased contact</span></div>
+                        <div class="pd-item"><span class="pd-item-name">CIB Likelihood</span><span class="pd-item-value">Increases with operational tempo</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Spring marks the traditional start of fighting season.</strong> In Afghanistan, spring thaw opened mountain passes and enemy forces resumed offensive operations. Units deploying in spring often saw their first major contact within weeks of arrival, making spring rotations historically significant for CIB awards.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Spring Deployment Tips</div>
+                            <ul>
+                                <li>New rotations should establish documentation SOPs immediately</li>
+                                <li>Rising contact rates mean more CIB-qualifying events</li>
+                                <li>Coordinate with S-1 for rapid award processing</li>
+                                <li>Don't wait for end of deployment to submit paperwork</li>
+                                <li>Train replacements on award documentation procedures</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-summer">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Summer &mdash; Peak Combat Operations</div>
+                    <span class="phase-detail-badge" style="color: #f59e0b; border-color: #f59e0b;">Jun &ndash; Aug</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Deployment Tempo</span><span class="pd-item-value">Peak &mdash; maximum operations</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Contact Frequency</span><span class="pd-item-value">Highest of the year</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Historical Note</span><span class="pd-item-value">D-Day (Jun 1944), Normandy</span></div>
+                        <div class="pd-item"><span class="pd-item-name">GWOT Context</span><span class="pd-item-value">Peak Afghan fighting season</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Key Consideration</span><span class="pd-item-value">Highest CIB award rates historically</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Admin Challenge</span><span class="pd-item-value">OPTEMPO overwhelms S-1 processing</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Summer is historically the most intense combat period.</strong> From the beaches of Normandy to the valleys of Kunar Province, summer has produced more CIB-qualifying engagements than any other season. High operational tempo means more patrols, more contact, and more qualifying actions.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Summer Deployment Tips</div>
+                            <ul>
+                                <li>High OPTEMPO means paperwork falls behind &mdash; stay on top of it</li>
+                                <li>Document contacts in real-time when possible</li>
+                                <li>Multiple qualifying actions still yield one CIB per conflict</li>
+                                <li>Heat casualties compound combat stress &mdash; maintain hydration</li>
+                                <li>Ensure platoon leaders track all qualifying engagements</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FALL Detail Panel -->
+        <div class="phase-detail-panel" id="detail-fall">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Fall &mdash; Late Season Ops &amp; Redeployment</div>
+                    <span class="phase-detail-badge" style="color: #ef4444; border-color: #ef4444;">Sep &ndash; Nov</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Deployment Tempo</span><span class="pd-item-value">Declining &mdash; pre-winter ops</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Contact Frequency</span><span class="pd-item-value">Decreasing in mountain terrain</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Historical Note</span><span class="pd-item-value">Hurtgen Forest (Sep &ndash; Nov 1944)</span></div>
+                        <div class="pd-item"><span class="pd-item-name">GWOT Context</span><span class="pd-item-value">End of Afghan fighting season</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Key Consideration</span><span class="pd-item-value">Redeployment processing window</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Critical Task</span><span class="pd-item-value">Finalize all pending CIB awards</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Fall is the critical window for award finalization.</strong> As fighting seasons wind down and units prepare for redeployment, pending CIB recommendations must be processed before rotation. Awards not submitted before redeployment are exponentially harder to process retroactively.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Fall Deployment Tips</div>
+                            <ul>
+                                <li>Audit all pending CIB recommendations before redeployment</li>
+                                <li>Ensure every qualifying action has supporting documentation</li>
+                                <li>S-1 should prioritize award processing during drawdown</li>
+                                <li>Soldiers should verify awards appear in iPerms before PCS</li>
+                                <li>Late-season engagements still qualify &mdash; document thoroughly</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLASS CALENDAR (Historical Award Periods) -->
+    <section class="section">
+        <div class="section-label fade-in">Award History</div>
+        <h2 class="section-title fade-in">CIB Qualifying Conflicts</h2>
+        <p class="section-desc fade-in">The CIB has been awarded across every major conflict since its establishment in 1943. Only one CIB may be awarded per qualifying war or conflict. Source: U.S. Army HRC.</p>
+
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--color-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: var(--space-md);">Major Conflicts</h3>
+        <div class="schedule-table-wrap fade-in">
+            <table class="schedule-table">
+                <thead>
+                    <tr><th>Conflict</th><th>Dates</th><th>Theater</th><th>Era</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="schedule-class">World War II</td><td>7 Dec 1941 &ndash; 2 Sep 1945</td><td>ETO / PTO</td><td><span class="season-tag winter">1st Award</span></td></tr>
+                    <tr><td class="schedule-class">Korean War</td><td>27 Jun 1950 &ndash; 27 Jul 1953</td><td>Korea</td><td><span class="season-tag spring">2nd Award</span></td></tr>
+                    <tr><td class="schedule-class">Vietnam War</td><td>2 Mar 1961 &ndash; 28 Mar 1973</td><td>Vietnam / SEA</td><td><span class="season-tag spring">2nd/3rd</span></td></tr>
+                    <tr><td class="schedule-class">GWOT &mdash; OEF/OIF/OND</td><td>18 Sep 2001 &ndash; Present</td><td>Afghanistan / Iraq</td><td><span class="season-tag summer">Current</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CINEMATIC BREAK -->
+    <section class="hero" style="height: 50vh; min-height: 300px; background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(59,130,246,0.1) 100%);">
+        <div class="hero-content" style="position: relative; z-index: 1;">
+            <div class="section-label">The Standard</div>
+            <h2 class="hero-headline" style="font-size: clamp(2rem,4vw,3.5rem);">N/A Grad Rate &mdash; This Isn't a School</h2>
+            <p class="hero-sub">The CIB is earned in combat, not a classroom. There is no graduation &mdash; only the fight. The most respected badge in the Army cannot be trained for. It can only be lived.</p>
+            <div class="hero-cta" style="margin-top: 20px;">
+                <a href="resources.html" class="btn btn-primary">View Resources</a>
             </div>
         </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Course Overview</div>
-        <h2>What is the CIB?</h2>
-        <p>The CIB was established during WWII (1943) to recognize the unique role of infantry Soldiers who bear the primary burden of close combat. It is awarded to Soldiers holding infantry or SF MOS (11/18-series) who have been personally present and under hostile fire while serving in an assigned infantry/SF unit of brigade size or smaller.</p>
-        <p>The CIB is one of the most revered awards in the U.S. Army &mdash; it signifies that a Soldier has "been there" and endured the realities of ground combat. Second and third awards are denoted by superimposed stars.</p>
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 900px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;">
+        <div class="section-label fade-in">Resources</div>
+        <h2 class="section-title fade-in">Know Your Award. Protect Your Record.</h2>
+        <p class="section-desc fade-in">Every lost CIB has a story. We built a guide for each one.</p>
+
+        <div class="bento-grid bento-3 stagger" style="margin-bottom: var(--space-xl);">
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#9876;</div>
+                <div class="card-title">What Qualifies as Combat?</div>
+                <p class="card-desc">Not every engagement meets the standard. Learn exactly what DA considers "active ground combat" and what falls short of CIB criteria.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128203;</div>
+                <div class="card-title">Wrong MOS?</div>
+                <p class="card-desc">Non-11/18 series soldiers don't qualify &mdash; period. If you're combat arms but not infantry, you need the CAB. Know the difference before you submit.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128196;</div>
+                <div class="card-title">Paperwork Lost?</div>
+                <p class="card-desc">Awards get lost in combat. Unit rotations, destroyed records, and admin backlogs mean many earned CIBs never get processed. Here's how to fix it.</p>
+            </a>
+        </div>
+        <div class="bento-grid bento-3 stagger">
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#11088;</div>
+                <div class="card-title">Multiple Awards?</div>
+                <p class="card-desc">Second and third CIBs require combat in separate qualifying conflicts. Stars on the wreath mark additional wars. Know the rules for subsequent awards.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#9881;</div>
+                <div class="card-title">CIB vs CAB?</div>
+                <p class="card-desc">The CAB was created in 2005 for non-infantry soldiers in combat. It's a respected award &mdash; but it's not the CIB. Understand what separates them.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#127963;</div>
+                <div class="card-title">Historical Significance?</div>
+                <p class="card-desc">Since 1943, the CIB has been the infantryman's mark of honor. From WWII beaches to Afghan valleys, the musket and wreath tells the world: "I was there."</p>
+            </a>
+        </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Award Criteria</div>
-        <h2>Steps to the Badge</h2>
+    <!-- COURSE OVERVIEW STATS -->
+    <section class="section" id="stats" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Award Overview</div>
+        <div class="ix-stats-grid stagger">
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">1943</div><div class="ix-stat-label">Established</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">11-Series</div><div class="ix-stat-label">MOS Only</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">Combat</div><div class="ix-stat-label">Action Required</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">3</div><div class="ix-stat-label">Award Levels</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">#1</div><div class="ix-stat-label">Most Respected</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">Infantry</div><div class="ix-stat-label">Only</div></div>
+        </div>
 
-        <ul class="phase-list">
-            <li>
-                <span class="phase-day">Step 1</span>
-                <span class="phase-desc"><strong>Eligibility</strong> &mdash; Must hold an 11-series (Infantry) or 18-series (Special Forces) Military Occupational Specialty.</span>
-            </li>
-            <li>
-                <span class="phase-day">Step 2</span>
-                <span class="phase-desc"><strong>Combat Action</strong> &mdash; Must be personally present and under hostile fire in a ground combat engagement against the enemy.</span>
-            </li>
-            <li>
-                <span class="phase-day">Step 3</span>
-                <span class="phase-desc"><strong>Unit Requirement</strong> &mdash; Must be assigned to an infantry or Special Forces unit of brigade size or smaller while operating in an active combat zone.</span>
-            </li>
-            <li>
-                <span class="phase-day">Step 4</span>
-                <span class="phase-desc"><strong>Award Processing</strong> &mdash; Commander recommendation through the chain of command, verified against orders and combat action reports.</span>
-            </li>
-        </ul>
+        <!-- HISTORICAL AWARD DATA (replaces attrition) -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Historical Awards by Era</div>
+        <div class="ix-attrition-grid stagger">
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">WWII</div><div class="ix-attrition-rate">~1.8M</div><div class="ix-attrition-label">Awards</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">Korea</div><div class="ix-attrition-rate">~270K</div><div class="ix-attrition-label">Awards</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">Vietnam</div><div class="ix-attrition-rate">~600K</div><div class="ix-attrition-label">Awards</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">GWOT</div><div class="ix-attrition-rate">~100K+</div><div class="ix-attrition-label">Awards</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">Total</div><div class="ix-attrition-rate">~2.8M</div><div class="ix-attrition-label">All Time</div></div>
+        </div>
+
+        <!-- NON-AWARD BREAKDOWN (replaces failure breakdown) -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Non-Award Reasons</div>
+        <div class="ix-failure-grid stagger">
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">Common Reasons Awards Are Denied or Lost</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Incomplete Paperwork</span><span class="ix-failure-pct">~30%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Action Not Meeting Criteria</span><span class="ix-failure-pct">~25%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">MOS Not Qualifying</span><span class="ix-failure-pct">~20%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Unit Processing Delays</span><span class="ix-failure-pct">~25%</span></div>
+            </div>
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">Key Context</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Most lost awards due to rotation gaps</span><span class="ix-failure-pct">~40%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Retroactive claims often lack witnesses</span><span class="ix-failure-pct">~35%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">CAB submitted instead of CIB (wrong form)</span><span class="ix-failure-pct">~10%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Awards recovered via Congressional inquiry</span><span class="ix-failure-pct">~5%</span></div>
+            </div>
+        </div>
+
+        <!-- KEY TAKEAWAY -->
+        <div class="ix-takeaway fade-in">
+            <p><strong style="color: var(--color-gold);">Key Takeaway:</strong> The CIB is earned in combat but secured through paperwork. Document every engagement, keep copies of all combat action reports, and don't wait for redeployment to submit recommendations. The fight earns the badge &mdash; the paperwork keeps it on your record.</p>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Key Standards</div>
-        <h2>What It Takes</h2>
-        <p>The CIB cannot be awarded to non-infantry Soldiers regardless of combat action &mdash; those Soldiers receive the CAB instead. Only one CIB may be awarded per qualifying war or conflict. It is retroactive to 6 December 1941.</p>
-        <p>The badge is a silver and enamel musket on a blue background with an oak wreath. Second and third awards are distinguished by superimposed stars on the wreath, marking additional qualifying conflicts.</p>
+    <!-- CREED / MOTTO -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;" class="fade-in">
+            <p class="creed-stanza" style="text-align: center; font-size: 1.1rem;"><strong>I Am the Infantry &mdash; Follow Me</strong></p>
+            <p class="creed-stanza">I am the Infantry. I am my country's strength in war, her deterrent in peace. I am the heart of the fight &mdash; wherever, whenever. I carry America's faith and honor against her enemies. I am the Queen of Battle.</p>
+            <p class="creed-stanza">I march in the footsteps of those who have gone before me &mdash; from the hedgerows of Normandy to the jungles of Vietnam, from the mountains of Korea to the deserts of Iraq and the valleys of Afghanistan. The musket on my chest tells the world I did not flinch. I closed with and destroyed the enemy.</p>
+            <p class="creed-stanza">The Combat Infantryman Badge is not given. It is not trained for. It is earned in the crucible of ground combat &mdash; where the infantryman has always fought, and where the infantryman will always be.</p>
+            <div class="creed-closer">Follow Me!</div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-2xl);">
+            <a href="resources.html" class="btn btn-outline-gold">View CIB Resources &rarr;</a>
+        </div>
     </section>
 
-    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, History &amp; Heritage Guides</h2>
-        <p style="max-width: 500px; margin: 0 auto;">We're building CIB-specific historical breakdowns, eligibility guides, and award verification resources. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    <!-- NEWSLETTER SIGNUP -->
+    <section class="section" id="newsletter" style="text-align:center; padding-bottom:var(--space-3xl);">
+        <span class="section-label">Stay Informed</span>
+        <h2 class="section-title">Get CIB Intel</h2>
+        <p class="section-desc" style="max-width:540px; margin:0 auto var(--space-xl);">Award updates, eligibility guides, historical breakdowns, and heritage gear drops &mdash; straight to your inbox. No spam. Unsubscribe anytime.</p>
+
+        <div id="subscribe-success" style="display:none; background:rgba(197,179,88,0.12); border:1px solid var(--color-gold); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-gold); font-weight:600;">
+            You're in. Check your inbox for a welcome email.
+        </div>
+        <div id="subscribe-error" style="display:none; background:rgba(239,68,68,0.12); border:1px solid var(--color-error); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-error); font-weight:600;"></div>
+
+        <form id="subscribe-form" style="display:flex; gap:var(--space-sm); max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;">
+            <input type="email" name="email" id="subscribe-email" class="form-input" placeholder="Your email address" required style="flex:1 1 260px;">
+            <button type="submit" id="subscribe-btn" class="btn btn-primary" style="flex:0 0 auto; padding:0 var(--space-lg);">Subscribe</button>
+        </form>
     </section>
 
-    <footer class="school-footer">
-        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">CIB Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Criteria</div><ul><li><a href="index.html#phases">Eligibility</a></li><li><a href="index.html#phases">Combat Action</a></li><li><a href="index.html#phases">Award Processing</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">CIB Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Newsletter Script -->
+    <script>
+        (function() {
+            var form = document.getElementById('subscribe-form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('subscribe-email').value;
+                var btn = document.getElementById('subscribe-btn');
+                var success = document.getElementById('subscribe-success');
+                var error = document.getElementById('subscribe-error');
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+                success.style.display = 'none';
+                error.style.display = 'none';
+                fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, school: 'cib' })
+                })
+                .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+                .then(function(result) {
+                    if (result.ok) {
+                        success.style.display = 'block';
+                        form.style.display = 'none';
+                        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        error.textContent = result.data.error || 'Something went wrong. Try again.';
+                        error.style.display = 'block';
+                        btn.textContent = 'Subscribe';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(function() {
+                    error.textContent = 'Network error. Try again.';
+                    error.style.display = 'block';
+                    btn.textContent = 'Subscribe';
+                    btn.disabled = false;
+                });
+            });
+        })();
+    </script>
+
+    <!-- Nav + Scroll -->
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+        });
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                });
+            });
+        })();
+        // Fade-in observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth -->
+    <script src="../course-auth.js"></script>
+    <script>RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase Selector + Season Selector Logic -->
+    <script>
+        var currentPhase = 'eligibility';
+        var currentSeason = null;
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+            currentSeason = null;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect Eligibility phase
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="eligibility"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
 </body>
 </html>

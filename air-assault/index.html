@@ -307,6 +307,170 @@
                 </div>
             </div>
         </div>
+
+        <!-- SEASON SELECTOR -->
+        <div class="selector-divider" style="margin: var(--space-xl) 0;">
+            <span class="selector-divider-label">Seasons</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr);" id="season-selector">
+            <button class="phase-card-btn" data-season="winter" onclick="toggleSeason('winter')">
+                <div class="pc-icon">&#10052;</div>
+                <div class="pc-name">Winter</div>
+                <div class="pc-sub">Dec &mdash; Feb</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="spring" onclick="toggleSeason('spring')">
+                <div class="pc-icon">&#127783;</div>
+                <div class="pc-name">Spring</div>
+                <div class="pc-sub">Mar &mdash; May</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="summer" onclick="toggleSeason('summer')">
+                <div class="pc-icon">&#9728;</div>
+                <div class="pc-name">Summer</div>
+                <div class="pc-sub">Jun &mdash; Aug</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="fall" onclick="toggleSeason('fall')">
+                <div class="pc-icon">&#127810;</div>
+                <div class="pc-name">Fall</div>
+                <div class="pc-sub">Sep &mdash; Nov</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+        </div>
+
+        <!-- WINTER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-winter">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Winter &mdash; Cold Rappels &amp; Icy LZs</div>
+                    <span class="phase-detail-badge" style="color: #3b82f6; border-color: #3b82f6;">Dec &ndash; Feb</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">43 &ndash; 50 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">25 &ndash; 30 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Precipitation</span><span class="pd-item-value">3.5 &ndash; 4 in/mo (rain/snow mix)</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rappel Impact</span><span class="pd-item-value">Cold hands affect grip strength</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Sling Load</span><span class="pd-item-value">Ice on equipment adds risk</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Hypothermia on tower waits</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Winter at Campbell is cold and wet.</strong> Temperatures regularly drop below freezing, and students spend hours waiting at the rappel tower in the wind. Cold hands affect grip strength on the rappel rope &mdash; glove inserts are essential.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Winter Gear Tips</div>
+                            <ul>
+                                <li>Glove inserts &mdash; cold hands fail on the rope</li>
+                                <li>Polypro base layers under BDUs</li>
+                                <li>Neck gaiter &mdash; tower wind is brutal</li>
+                                <li>Hand warmers for waiting periods</li>
+                                <li>Waterproof boots &mdash; slush and mud everywhere</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPRING Detail Panel -->
+        <div class="phase-detail-panel" id="detail-spring">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Spring &mdash; Mud Season &amp; Thunderstorms</div>
+                    <span class="phase-detail-badge" style="color: #22c55e; border-color: #22c55e;">Mar &ndash; May</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">60 &ndash; 78 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">38 &ndash; 56 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rain</span><span class="pd-item-value">4 &ndash; 5 in/mo</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Storms</span><span class="pd-item-value">Thunderstorms delay training</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Ruck March</span><span class="pd-item-value">Comfortable temps for 12-miler</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">PT and ruck march weather</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Spring brings the best temperatures for physical events.</strong> The 12-mile ruck march is most comfortable in March-April. However, Tennessee spring storms can delay rappel tower and sling-load training.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Spring Gear Tips</div>
+                            <ul>
+                                <li>Rain jacket &mdash; afternoon thunderstorms are common</li>
+                                <li>Extra socks &mdash; wet boots from morning dew</li>
+                                <li>Allergy meds &mdash; Tennessee pollen peaks in April</li>
+                                <li>Light layers for temperature swings</li>
+                                <li>Broken-in boots for the ruck march</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-summer">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Summer &mdash; Tennessee Heat &amp; Humidity</div>
+                    <span class="phase-detail-badge" style="color: #f59e0b; border-color: #f59e0b;">Jun &ndash; Aug</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">87 &ndash; 91 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">67 &ndash; 71 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Humidity</span><span class="pd-item-value">65 &ndash; 75%</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Heat Index</span><span class="pd-item-value">Often 95&deg;F+</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Heat Casualties</span><span class="pd-item-value">Peak risk season</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Heat exhaustion on ruck march</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Summer is the hardest season for Air Assault.</strong> The 12-mile ruck march in 90&deg;F heat with full kit produces the most heat casualties of any season. Hydration discipline must start days before the event.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Summer Gear Tips</div>
+                            <ul>
+                                <li>Hydration system &mdash; CamelBak under ruck</li>
+                                <li>Electrolyte packets for every water refill</li>
+                                <li>Anti-chafe for ruck march &mdash; humidity causes hot spots</li>
+                                <li>Cooling towel for tower waits</li>
+                                <li>Arrive early to heat acclimatize</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FALL Detail Panel -->
+        <div class="phase-detail-panel" id="detail-fall">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Fall &mdash; Best Season for the Ruck</div>
+                    <span class="phase-detail-badge" style="color: #ef4444; border-color: #ef4444;">Sep &ndash; Nov</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">65 &ndash; 82 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">42 &ndash; 62 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rain</span><span class="pd-item-value">2.5 &ndash; 3.5 in/mo</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Wind</span><span class="pd-item-value">Mild &mdash; good rappel conditions</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Ruck March</span><span class="pd-item-value">Ideal temperatures</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Overall best season</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Fall is the best time for Air Assault School.</strong> Temperatures are ideal for both physical events and tower training. The 12-mile ruck march in cool fall weather has the highest completion rates of any season.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Fall Gear Tips</div>
+                            <ul>
+                                <li>Light layers for morning-to-afternoon variation</li>
+                                <li>Standard packing list is sufficient</li>
+                                <li>Broken-in boots &mdash; no excuses</li>
+                                <li>Sunglasses for clear-sky rappel days</li>
+                                <li>Lip balm &mdash; dry fall air cracks lips</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- CLASS CALENDAR -->
@@ -573,26 +737,54 @@
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
     <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
 
-    <!-- Phase Selector Logic -->
+    <!-- Phase Selector + Season Selector Logic -->
     <script>
         var currentPhase = 'dayzero';
+        var currentSeason = null;
+
         function togglePhase(phase) {
             var panels = document.querySelectorAll('.phase-detail-panel');
             var panel = document.getElementById('detail-' + phase);
+
             if (currentPhase === phase) {
-                document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
                 panels.forEach(function(p) { p.classList.remove('open'); });
                 currentPhase = null;
                 return;
             }
+            // Clear all active states + close all panels
             document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
             panels.forEach(function(p) { p.classList.remove('open'); });
+            // Open detail panel
             if (panel) panel.classList.add('open');
             var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
             if (btn) btn.classList.add('active');
             currentPhase = phase;
+            currentSeason = null;
         }
-        // Preselect Day Zero
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            // Clear all active states + close all panels
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            // Open detail panel
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect Day Zero on page load
         (function() {
             var btn = document.querySelector('.phase-card-btn[data-phase="dayzero"]');
             if (btn) btn.classList.add('active');

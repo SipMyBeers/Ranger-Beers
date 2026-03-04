@@ -3,235 +3,511 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Fitness Trainer — Ranger Beers Supply Co.</title>
+    <title>Master Fitness Trainer Course — Ranger Beers Supply Co.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
+    <link rel="stylesheet" href="../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: var(--space-4xl) 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        .school-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center bottom, rgba(34, 197, 94, 0.08), transparent 60%);
-        }
-        .school-hero-tab {
-            max-height: 80px;
-            margin-bottom: var(--space-xl);
-            position: relative;
-        }
-        .school-hero-headline {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: var(--space-md);
-            position: relative;
-        }
-        .school-hero-sub {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-secondary);
-            max-width: 640px;
-            line-height: 1.6;
-            position: relative;
-        }
-        .school-hero-cta {
-            display: flex;
-            gap: var(--space-md);
-            margin-top: var(--space-xl);
-            position: relative;
-        }
-        .school-back {
-            position: fixed;
-            top: var(--space-lg);
-            left: var(--space-lg);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            z-index: 100;
-            transition: color 0.3s;
-        }
-        .school-back:hover { color: var(--color-gold); }
-
-        .info-section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: var(--space-3xl) 40px;
-        }
-        .info-section-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--color-gold);
-            margin-bottom: var(--space-lg);
-        }
-        .info-section h2 {
-            font-size: clamp(1.5rem, 3vw, 2.25rem);
-            font-weight: 800;
-            margin-bottom: var(--space-lg);
-        }
-        .info-section p {
-            color: var(--color-text-secondary);
-            line-height: 1.8;
-            margin-bottom: var(--space-lg);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-md);
-            margin: var(--space-2xl) 0;
-        }
-        .stat-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-glass);
-            padding: var(--space-xl) var(--space-md);
-            text-align: center;
-        }
-        .stat-number {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 900;
-            color: var(--color-gold);
-            display: block;
-        }
-        .stat-label {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--color-text-secondary);
-            margin-top: var(--space-xs);
-        }
-
-        .phase-list {
-            list-style: none;
-            margin: var(--space-xl) 0;
-        }
-        .phase-list li {
-            padding: var(--space-md) 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            gap: var(--space-md);
-        }
-        .phase-list .phase-day {
-            font-weight: 700;
-            color: var(--color-gold);
-            min-width: 80px;
-            font-family: var(--font-tactical);
-            font-size: 13px;
-        }
-        .phase-list .phase-desc {
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-        .phase-list .phase-desc strong {
-            color: var(--color-text-primary);
-        }
-
-        .school-footer {
-            text-align: center;
-            padding: var(--space-3xl) 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .school-footer-copy {
-            font-size: 12px;
-            color: var(--color-text-muted);
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 700px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .school-hero { padding: var(--space-3xl) 20px; }
-            .info-section { padding: var(--space-2xl) 20px; }
-        }
+        /* School-specific: hero tint & phase colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(34,197,94,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="science"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="design"]::before { background: radial-gradient(ellipse at center, rgba(34,197,94,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="science"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="design"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.15); }
+        .phase-detail-badge.science { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.design { color: #22c55e; border-color: #22c55e; }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Exercise Science</a></li>
+                        <li><a href="index.html#phases">Program Design</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">MFT Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="courses.html">MFT Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
-    <section class="school-hero">
-        <div style="height:80px;width:auto;min-width:80px;padding:0 20px;border-radius:40px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);font-family:var(--font-tactical);font-size:28px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">MFT</div>
-        <h1 class="school-hero-headline">Master Fitness Trainer Course</h1>
-        <p class="school-hero-sub">The Army's course for producing unit-level fitness experts who design, implement, and supervise physical readiness training programs that build combat-ready soldiers.</p>
+    <!-- HERO -->
+    <section class="school-hero" id="hero">
+        <div class="hero-badge-text">MF</div>
+        <h1 class="hero-headline">Train the Trainers</h1>
+        <p class="hero-sub">Complete the Master Fitness Trainer Course and become your unit's physical readiness expert. Four weeks of exercise science, program design, and injury prevention that produce the Army's fitness leaders.</p>
+        <div class="hero-cta">
+            <a href="shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="courses.html" class="btn btn-outline">Start Training</a>
+        </div>
+        <div class="scroll-indicator"><div class="scroll-line"></div>Scroll</div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">At a Glance</div>
+    <!-- MAIN HEADLINE -->
+    <section class="section" style="text-align: center; padding: var(--space-3xl) 40px;">
+        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-family: var(--font-display); color: var(--color-text); margin: 0;">
+            4 Weeks &mdash; 2 Phases &mdash; 1 Certification
+        </h2>
+    </section>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">4</span>
-                <div class="stat-label">Weeks</div>
+    <!-- PHASE SELECTOR -->
+    <div class="phase-selector" id="phases">
+        <div class="selector-divider" style="margin-bottom: var(--space-xl);">
+            <span class="selector-divider-label">Phases</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <button class="phase-card-btn" data-phase="science" onclick="togglePhase('science')">
+                <div class="pc-icon">&#129504;</div>
+                <div class="pc-name">Exercise Science</div>
+                <div class="pc-sub">Weeks 1 &ndash; 2</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="design" onclick="togglePhase('design')">
+                <div class="pc-icon">&#128203;</div>
+                <div class="pc-name">Program Design</div>
+                <div class="pc-sub">Weeks 3 &ndash; 4</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+        </div>
+
+        <!-- Exercise Science Detail Panel -->
+        <div class="phase-detail-panel open" id="detail-science">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Exercise Science &mdash; Foundations</div>
+                    <span class="phase-detail-badge science">Weeks 1 &ndash; 2</span>
+                </div>
+                <div class="phase-rtb-info">
+                    <div>
+                        <div class="phase-rtb-name">U.S. Army Physical Fitness School</div>
+                        <div class="phase-address">Fort Moore, GA (or various installations)</div>
+                    </div>
+                    <div class="phase-social-links">
+                        <a href="https://www.moore.army.mil/" target="_blank" rel="noopener">&#127760; Official Site</a>
+                    </div>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">2 Weeks</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Fort Moore, GA</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Scientific foundations of fitness</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Eligibility</span><span class="pd-item-value">All MOS / E-4+</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #3b82f6; font-weight: 600;">Key Topics</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Anatomy &amp; Physiology</span><span class="pd-item-value">Musculoskeletal systems</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Kinesiology</span><span class="pd-item-value">Movement mechanics</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Nutrition Science</span><span class="pd-item-value">Macros, hydration, performance</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Injury Prevention</span><span class="pd-item-value">Common training injuries</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Exercise Physiology</span><span class="pd-item-value">Energy systems &amp; adaptation</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>The Exercise Science phase builds the <strong>academic foundation</strong> every Master Fitness Trainer needs. Students learn human anatomy, physiology, and kinesiology &mdash; the science of how the body moves, adapts, and responds to physical stress.</p>
+                        <p>Nutrition science covers macronutrient balance, hydration strategies, and performance fueling. <strong>Injury prevention</strong> training teaches students to identify risk factors, recognize overtraining symptoms, and implement corrective strategies before soldiers get hurt.</p>
+                        <p>Written examinations test comprehension of exercise science fundamentals. Students who cannot demonstrate mastery of the scientific principles will not advance to Program Design.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Exercise Science Topics</div>
+                            <ul>
+                                <li>Human anatomy &mdash; musculoskeletal, cardiovascular, respiratory systems</li>
+                                <li>Exercise physiology &mdash; energy systems, muscle fiber types, adaptation</li>
+                                <li>Kinesiology &mdash; joint mechanics, planes of movement, biomechanics</li>
+                                <li>Nutrition &mdash; macronutrients, hydration, pre/post-workout fueling</li>
+                                <li>Injury prevention &mdash; overuse, acute injuries, corrective exercise</li>
+                                <li>Principles of training &mdash; overload, specificity, periodization</li>
+                                <li>ACFT event analysis &mdash; physical demands by event</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">2</span>
-                <div class="stat-label">Phases</div>
+        </div>
+
+        <!-- Program Design Detail Panel -->
+        <div class="phase-detail-panel" id="detail-design">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Program Design &mdash; Practical Application</div>
+                    <span class="phase-detail-badge design">Weeks 3 &ndash; 4</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">2 Weeks</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Fort Moore, GA</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Building &amp; leading PRT programs</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #22c55e; font-weight: 600;">Key Events</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Program Development</span><span class="pd-item-value">Build unit-specific PRT plans</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Evaluated PRT Session</span><span class="pd-item-value">Conduct &amp; lead a full session</span></div>
+                        <div class="pd-item"><span class="pd-item-name">ACFT Programming</span><span class="pd-item-value">Event-specific training design</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Fitness Assessments</span><span class="pd-item-value">Evaluate individual soldiers</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>Program Design is where the science becomes practical. Students apply everything from Phase 1 to <strong>build real physical readiness training programs</strong> tailored to specific unit missions and individual soldier needs.</p>
+                        <p>Each student must conduct a <strong>fully evaluated PRT session</strong>, demonstrating proper exercise selection, cueing, safety standards, and the ability to coach soldiers through correct movement patterns. Teaching ability matters as much as knowledge.</p>
+                        <p>The capstone requires designing a complete unit fitness program that addresses mission-specific physical demands, presents a progressive and periodized training plan, and accounts for injury prevention and recovery.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Program Design Events</div>
+                            <ul>
+                                <li>Periodization &mdash; building progressive training cycles</li>
+                                <li>Unit PRT program design &mdash; mission-specific programming</li>
+                                <li>ACFT-focused training plans &mdash; event-specific preparation</li>
+                                <li>Evaluated PRT session &mdash; lead a full training session</li>
+                                <li>Individual fitness assessment &mdash; evaluate and prescribe</li>
+                                <li>Corrective exercise programming &mdash; address weaknesses</li>
+                                <li>Teaching methodology &mdash; cueing, demonstration, coaching</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">~90%</span>
-                <div class="stat-label">Grad Rate</div>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">E-4+</span>
-                <div class="stat-label">Eligibility</div>
+        </div>
+    </div>
+
+    <!-- CLASS CALENDAR -->
+    <section class="section">
+        <div class="section-label fade-in">Class Calendar</div>
+        <h2 class="section-title fade-in">MFT Course Schedule</h2>
+        <p class="section-desc fade-in">MFT classes run throughout the fiscal year at Fort Moore and various installations. Contact your training NCO for the most current class dates. Source: U.S. Army Physical Fitness School.</p>
+
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--color-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: var(--space-md);">FY26</h3>
+        <div class="schedule-table-wrap fade-in">
+            <table class="schedule-table">
+                <thead>
+                    <tr><th>Class</th><th>Report Date</th><th>Graduation</th><th>Location</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="schedule-class">MFT 01-26</td><td>13 Jan 2026</td><td>06 Feb 2026</td><td>Fort Moore, GA</td></tr>
+                    <tr><td class="schedule-class">MFT 02-26</td><td>24 Feb 2026</td><td>20 Mar 2026</td><td>Fort Moore, GA</td></tr>
+                    <tr><td class="schedule-class">MFT 03-26</td><td>06 Apr 2026</td><td>01 May 2026</td><td>Fort Moore, GA</td></tr>
+                    <tr><td class="schedule-class">MFT 04-26</td><td>08 Jun 2026</td><td>03 Jul 2026</td><td>Fort Moore, GA</td></tr>
+                    <tr><td class="schedule-class">MFT 05-26</td><td>10 Aug 2026</td><td>04 Sep 2026</td><td>Fort Moore, GA</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CINEMATIC BREAK -->
+    <section class="hero" style="height: 50vh; min-height: 300px; background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(34,197,94,0.1) 100%);">
+        <div class="hero-content" style="position: relative; z-index: 1;">
+            <div class="section-label">Prepare Now</div>
+            <h2 class="hero-headline" style="font-size: clamp(2rem,4vw,3.5rem);">~90% Grad Rate &mdash; But You Have to Earn It</h2>
+            <p class="hero-sub">Written exams, evaluated PRT sessions, and a complete program design capstone. The science is the standard.</p>
+            <div class="hero-cta" style="margin-top: 20px;">
+                <a href="courses.html" class="btn btn-primary">View Courses</a>
             </div>
         </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Course Overview</div>
-        <h2>What is the MFT Course?</h2>
-        <p>The Master Fitness Trainer (MFT) Course produces unit-level fitness experts who are qualified to design and implement physical readiness training (PRT) programs tailored to their unit's mission requirements. MFTs serve as the commander's primary advisor on all matters related to physical fitness and soldier readiness.</p>
-        <p>Graduates return to their units with a deep understanding of exercise science, nutrition, injury prevention, and program design. They are responsible for assessing soldiers' fitness levels, designing progressive training programs, and ensuring that physical training directly supports the unit's combat mission.</p>
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 900px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;">
+        <div class="section-label fade-in">Resources</div>
+        <h2 class="section-title fade-in">Don't Be That MFT Student.</h2>
+        <p class="section-desc fade-in">Every failure at MFT has a type. We built a fix for each one.</p>
+
+        <div class="bento-grid bento-3 stagger" style="margin-bottom: var(--space-xl);">
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#129504;</div>
+                <div class="card-title">No Exercise Science?</div>
+                <p class="card-desc">Anatomy, physiology, and kinesiology are the backbone of the written exam. If you can't name the muscles or explain energy systems, you won't pass Phase 1.</p>
+            </a>
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128203;</div>
+                <div class="card-title">Can't Design Programs?</div>
+                <p class="card-desc">Periodization, progressive overload, and mission-specific programming are all tested. You need to build a complete unit PRT plan from scratch.</p>
+            </a>
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128227;</div>
+                <div class="card-title">Bad at Teaching PT?</div>
+                <p class="card-desc">Your evaluated PRT session is pass/fail. If you can't cue exercises, command a formation, and coach proper movement patterns, you're done.</p>
+            </a>
+        </div>
+        <div class="bento-grid bento-3 stagger">
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#129516;</div>
+                <div class="card-title">Don't Know Anatomy?</div>
+                <p class="card-desc">Muscles, joints, planes of movement, and biomechanics are foundational. Study anatomy before you arrive or you'll spend the entire course catching up.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#127947;</div>
+                <div class="card-title">Weak ACFT Coaching?</div>
+                <p class="card-desc">MFTs are the unit's ACFT experts. If you can't analyze each event, identify weaknesses, and prescribe corrective training, your soldiers will suffer.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#129657;</div>
+                <div class="card-title">No Injury Prevention?</div>
+                <p class="card-desc">Overuse injuries destroy readiness. MFTs must identify risk factors, implement prehab, and modify training before soldiers break down.</p>
+            </a>
+        </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Course Phases</div>
-        <h2>4 Weeks of Fitness Science</h2>
+    <!-- COURSE OVERVIEW STATS -->
+    <section class="section" id="stats" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Course Overview</div>
+        <div class="ix-stats-grid stagger">
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">4</div><div class="ix-stat-label">Weeks</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">2</div><div class="ix-stat-label">Phases</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">~90%</div><div class="ix-stat-label">Grad Rate</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">All MOS</div><div class="ix-stat-label">Eligibility</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">Unit Asset</div><div class="ix-stat-label">Role</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">ACFT</div><div class="ix-stat-label">Focused</div></div>
+        </div>
 
-        <ul class="phase-list">
-            <li>
-                <span class="phase-day">Wks 1-2</span>
-                <span class="phase-desc"><strong>Exercise Science</strong> &mdash; Anatomy, physiology, nutrition, injury prevention, kinesiology, and program design principles. Students learn the science behind physical training and how to build progressive, periodized fitness programs.</span>
-            </li>
-            <li>
-                <span class="phase-day">Wks 3-4</span>
-                <span class="phase-desc"><strong>Practical Application</strong> &mdash; Conduct evaluated PRT sessions, assess individual soldiers, design unit-specific fitness programs, teach proper exercise form, and demonstrate the ability to manage a comprehensive unit physical training program.</span>
-            </li>
-        </ul>
+        <!-- GRADUATION RATES -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Graduation Rates</div>
+        <div class="ix-attrition-grid stagger">
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2019</div><div class="ix-attrition-rate">88%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2020</div><div class="ix-attrition-rate">91%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2021</div><div class="ix-attrition-rate">89%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2022</div><div class="ix-attrition-rate">92%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2023</div><div class="ix-attrition-rate">90%</div><div class="ix-attrition-label">Graduated</div></div>
+        </div>
+
+        <!-- FAILURE BREAKDOWN -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Failure Breakdown</div>
+        <div class="ix-failure-grid stagger">
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">Common Drop Reasons</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Written Exam Failure</span><span class="ix-failure-pct">~4%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Evaluated PRT Session Failure</span><span class="ix-failure-pct">~3%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Program Design Capstone</span><span class="ix-failure-pct">~2%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Voluntary Withdrawal</span><span class="ix-failure-pct">~1%</span></div>
+            </div>
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">Key Context</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Most failures occur on written exams</span><span class="ix-failure-pct">~40% of drops</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Anatomy &amp; physiology hardest sections</span><span class="ix-failure-pct">Highest fail rate</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Prior fitness education helps significantly</span><span class="ix-failure-pct">~50% lower fail</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Teaching ability is the practical differentiator</span><span class="ix-failure-pct">Must demonstrate</span></div>
+            </div>
+        </div>
+
+        <!-- KEY TAKEAWAY -->
+        <div class="ix-takeaway fade-in">
+            <p><strong style="color: var(--color-gold);">Key Takeaway:</strong> MFT is an academic and practical course, not a physical gut-check. The soldiers who fail are those who arrive without studying exercise science fundamentals. Read FM 7-22 cover to cover, study basic anatomy, and practice leading PRT sessions before you report.</p>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Key Standards</div>
-        <h2>What It Takes</h2>
-        <p>Candidates must pass a comprehensive written examination covering exercise science fundamentals, including anatomy, physiology, nutrition, and the principles of physical training program design. The exam ensures MFTs have the academic foundation to make informed training decisions.</p>
-        <p>The practical evaluations require each student to conduct a fully evaluated PRT session, demonstrating proper exercise selection, cueing, and safety standards. Students must also design a complete unit fitness program that addresses mission-specific physical demands and presents a progressive training plan.</p>
+    <!-- CREED / MOTTO -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;" class="fade-in">
+            <p class="creed-stanza" style="text-align: center; font-size: 1.1rem;"><strong>Train the Trainer &mdash; Build the Force</strong></p>
+            <p class="creed-stanza">I am the Master Fitness Trainer. I am my commander's principal advisor on physical readiness. I possess the knowledge of exercise science and the skill to design training programs that build combat-ready soldiers.</p>
+            <p class="creed-stanza">I will lead from the front in every training session. I will hold myself to the highest physical standard because my soldiers deserve nothing less. I will prevent injuries through intelligent programming and protect the fighting strength of my unit.</p>
+            <p class="creed-stanza">I am the standard. I train the trainers. I build the force.</p>
+            <div class="creed-closer">Train to Fight!</div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-2xl);">
+            <a href="courses.html" class="btn btn-outline-gold">Start MFT Prep &rarr;</a>
+        </div>
     </section>
 
-    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width: 500px; margin: 0 auto;">We're building MFT-specific study materials, PRT references, and fitness programming guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    <!-- NEWSLETTER SIGNUP -->
+    <section class="section" id="newsletter" style="text-align:center; padding-bottom:var(--space-3xl);">
+        <span class="section-label">Stay Informed</span>
+        <h2 class="section-title">Get MFT School Intel</h2>
+        <p class="section-desc" style="max-width:540px; margin:0 auto var(--space-xl);">Class dates, gear drops, new courses, and tips from certified MFTs &mdash; straight to your inbox. No spam. Unsubscribe anytime.</p>
+
+        <div id="subscribe-success" style="display:none; background:rgba(197,179,88,0.12); border:1px solid var(--color-gold); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-gold); font-weight:600;">
+            You're in. Check your inbox for a welcome email.
+        </div>
+        <div id="subscribe-error" style="display:none; background:rgba(239,68,68,0.12); border:1px solid var(--color-error); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-error); font-weight:600;"></div>
+
+        <form id="subscribe-form" style="display:flex; gap:var(--space-sm); max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;">
+            <input type="email" name="email" id="subscribe-email" class="form-input" placeholder="Your email address" required style="flex:1 1 260px;">
+            <button type="submit" id="subscribe-btn" class="btn btn-primary" style="flex:0 0 auto; padding:0 var(--space-lg);">Subscribe</button>
+        </form>
     </section>
 
-    <footer class="school-footer">
-        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">MFT School Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Exercise Science</a></li><li><a href="index.html#phases">Program Design</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">MFT Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Newsletter Script -->
+    <script>
+        (function() {
+            var form = document.getElementById('subscribe-form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('subscribe-email').value;
+                var btn = document.getElementById('subscribe-btn');
+                var success = document.getElementById('subscribe-success');
+                var error = document.getElementById('subscribe-error');
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+                success.style.display = 'none';
+                error.style.display = 'none';
+                fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, school: 'mft' })
+                })
+                .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+                .then(function(result) {
+                    if (result.ok) {
+                        success.style.display = 'block';
+                        form.style.display = 'none';
+                        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        error.textContent = result.data.error || 'Something went wrong. Try again.';
+                        error.style.display = 'block';
+                        btn.textContent = 'Subscribe';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(function() {
+                    error.textContent = 'Network error. Try again.';
+                    error.style.display = 'block';
+                    btn.textContent = 'Subscribe';
+                    btn.disabled = false;
+                });
+            });
+        })();
+    </script>
+
+    <!-- Nav + Scroll -->
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+        });
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                });
+            });
+        })();
+        // Fade-in observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth -->
+    <script src="../course-auth.js"></script>
+    <script>RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase Selector Logic -->
+    <script>
+        var currentPhase = 'science';
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+        }
+
+        // Preselect Exercise Science phase
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="science"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
 </body>
 </html>

@@ -8,102 +8,688 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../course-styles.css">
+    <link rel="stylesheet" href="../../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero { min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:var(--space-4xl) 40px;position:relative;overflow:hidden; }
-        .school-hero::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center bottom,rgba(34,197,94,0.08),transparent 60%); }
-        .school-hero-tab { max-height:80px;margin-bottom:var(--space-xl);position:relative; }
-        .school-hero-headline { font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:var(--space-md);position:relative; }
-        .school-hero-sub { font-size:clamp(1rem,2vw,1.25rem);color:var(--color-text-secondary);max-width:640px;line-height:1.6;position:relative; }
-        .school-back { position:fixed;top:var(--space-lg);left:var(--space-lg);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--color-text-secondary);text-decoration:none;z-index:100;transition:color 0.3s; }
-        .school-back:hover { color:var(--color-gold); }
-        .info-section { max-width:900px;margin:0 auto;padding:var(--space-3xl) 40px; }
-        .info-section-label { font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--color-gold);margin-bottom:var(--space-lg); }
-        .info-section h2 { font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;margin-bottom:var(--space-lg); }
-        .info-section p { color:var(--color-text-secondary);line-height:1.8;margin-bottom:var(--space-lg); }
-        .stats-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-md);margin:var(--space-2xl) 0; }
-        .stat-card { background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-glass);padding:var(--space-xl) var(--space-md);text-align:center; }
-        .stat-number { font-size:clamp(1.5rem,3vw,2.5rem);font-weight:900;color:var(--color-gold);display:block; }
-        .stat-label { font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-text-secondary);margin-top:var(--space-xs); }
-        .phase-list { list-style:none;margin:var(--space-xl) 0; }
-        .phase-list li { padding:var(--space-md) 0;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:var(--space-md); }
-        .phase-list .phase-day { font-weight:700;color:var(--color-gold);min-width:80px;font-family:var(--font-tactical);font-size:13px; }
-        .phase-list .phase-desc { color:var(--color-text-secondary);line-height:1.6; }
-        .phase-list .phase-desc strong { color:var(--color-text-primary); }
-        .school-footer { text-align:center;padding:var(--space-3xl) 40px;border-top:1px solid rgba(255,255,255,0.06); }
-        .school-footer-copy { font-size:12px;color:var(--color-text-muted);letter-spacing:1px; }
-        @media (max-width:700px) { .stats-grid{grid-template-columns:repeat(2,1fr);} .school-hero{padding:var(--space-3xl) 20px;} .info-section{padding:var(--space-2xl) 20px;} }
+        /* MOS-specific: hero tint & specialty colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(168,85,247,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="37f"]::before { background: radial-gradient(ellipse at center, rgba(168,85,247,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="37a"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="37z"]::before { background: radial-gradient(ellipse at center, rgba(245,158,11,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="37f"] { border-color: #a855f7; box-shadow: 0 0 20px rgba(168,85,247,0.15); }
+        .phase-card-btn.active[data-phase="37a"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="37z"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.15); }
+        .phase-detail-badge.b37f { color: #a855f7; border-color: #a855f7; }
+        .phase-detail-badge.b37a { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.b37z { color: #f59e0b; border-color: #f59e0b; }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Specialties</span></li>
+                        <li><a href="index.html#specialties">37F &mdash; PSYOP Specialist</a></li>
+                        <li><a href="index.html#specialties">37A &mdash; PSYOP Officer</a></li>
+                        <li><a href="index.html#specialties">37Z &mdash; Senior PSYOP Sergeant</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../shop.html">PSYOP Gear</a></li>
+                        <li><a href="../../shop.html">Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../courses.html">PSYOP Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="../../resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="snipcart-checkout nav-cart-btn" title="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span class="snipcart-items-count nav-cart-count"></span>
+                </button>
+                <div id="auth-ui">
+                    <button class="btn-sm btn-outline" id="auth-signin-btn" style="display:none;">Sign&nbsp;In</button>
+                    <button class="btn-sm btn-outline" id="auth-signout-btn" style="display:none;">Sign&nbsp;Out</button>
+                </div>
+                <button class="nav-mobile-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- HERO -->
     <section class="school-hero">
-        <div style="height:80px;width:80px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:50%;font-family:var(--font-tactical);font-size:32px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">37</div>
-        <h1 class="school-hero-headline">Psychological Operations</h1>
-        <p class="school-hero-sub">Influence foreign audiences through targeted information campaigns. PSYOP Soldiers shape the information environment to support military objectives.</p>
-    </section>
-
-    <section class="info-section">
-        <div class="info-section-label">At a Glance</div>
-        <div class="stats-grid">
-            <div class="stat-card"><span class="stat-number">Varies</span><div class="stat-label">POQC Length</div></div>
-            <div class="stat-card"><span class="stat-number">2</span><div class="stat-label"># of MOS</div></div>
-            <div class="stat-card"><span class="stat-number">~70%</span><div class="stat-label">Grad Rate</div></div>
-            <div class="stat-card"><span class="stat-number">Ft Liberty</span><div class="stat-label">Key Installation</div></div>
+        <div class="hero-badge-text">37</div>
+        <h1 class="school-hero-headline">Persuade, Change, Influence</h1>
+        <p class="school-hero-sub">The Army's information warfare specialists. PSYOP Soldiers shape the information environment, influence foreign audiences, and win battles without firing a shot &mdash; a special operations force multiplier since 1952.</p>
+        <div class="school-hero-cta">
+            <a href="../../shop.html" class="btn-primary">Shop Gear</a>
+            <a href="../../courses.html" class="btn-outline">Start Training</a>
+        </div>
+        <div class="school-scroll-indicator">
+            <span class="school-scroll-text">Scroll</span>
+            <div class="school-scroll-line"></div>
         </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Career Field Overview</div>
-        <h2>What is PSYOP?</h2>
-        <p>Psychological Operations (PSYOP) is a special operations branch that conducts operations to convey selected information and indicators to foreign audiences to influence their emotions, motives, reasoning, and ultimately behavior. PSYOP Soldiers analyze target audiences, develop tailored messages, and deliver them through various media including print, radio, television, internet, and face-to-face engagement.</p>
-        <p>PSYOP forces are stationed primarily at Ft Liberty, North Carolina, and serve in both active duty and Army Reserve components. They deploy globally, working alongside conventional forces and other special operations units. The branch requires strong critical thinking, cultural awareness, and communication skills. Airborne qualification is required for active-duty PSYOP Soldiers.</p>
+    <!-- MAIN HEADLINE -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Career Field at a Glance</div>
+        <h2 class="school-section-title">Selection + Qualification &mdash; 2 MOS &mdash; 1 Mission: Information Warfare</h2>
+        <p class="school-section-body">The 37-Series is the Army's premier information warfare force. PSYOP Soldiers analyze target audiences, develop influence products, and conduct tactical through strategic operations that shape the battlefield before the first round is fired.</p>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">MOS List</div>
-        <h2>37-Series Specialties</h2>
-        <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0;">
-        <thead><tr style="border-bottom:2px solid var(--color-gold);text-align:left;">
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">MOS</th>
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">Title</th>
-        </tr></thead>
-        <tbody>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">37A</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Psychological Operations Officer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">37F</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Psychological Operations Specialist</td></tr>
-        </tbody></table></div>
+    <!-- MOS SPECIALTIES SELECTOR -->
+    <section class="school-section fade-in" id="specialties">
+        <div class="school-section-label">MOS Specialties</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(3, 1fr);">
+            <button class="phase-card-btn active" data-phase="37f" onclick="togglePhase('37f')">
+                <span class="phase-card-icon">&#128483;</span>
+                <span class="phase-card-title">37F</span>
+                <span class="phase-card-sub">PSYOP Specialist</span>
+            </button>
+            <button class="phase-card-btn" data-phase="37a" onclick="togglePhase('37a')">
+                <span class="phase-card-icon">&#9878;</span>
+                <span class="phase-card-title">37A</span>
+                <span class="phase-card-sub">PSYOP Officer</span>
+            </button>
+            <button class="phase-card-btn" data-phase="37z" onclick="togglePhase('37z')">
+                <span class="phase-card-icon">&#11088;</span>
+                <span class="phase-card-title">37Z</span>
+                <span class="phase-card-sub">Senior PSYOP Sergeant</span>
+            </button>
+        </div>
+
+        <!-- 37F Detail -->
+        <div class="phase-detail-panel open" id="detail-37f">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b37f">37F</span>
+                    <div class="phase-detail-rtb">Psychological Operations Specialist</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Course</span><span>PSYOP Qualification (POQC)</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Liberty, NC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Selection</span><span>~50% Pass Rate</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>SOF &mdash; Special Operations</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Target Audience Analysis, Product Development, Media Ops</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 37F Psychological Operations Specialist is the backbone of the Army's information warfare capability. 37Fs serve on tactical PSYOP teams (TPTs) and are responsible for analyzing foreign target audiences, developing influence products across multiple media, and conducting dissemination operations. The PSYOP Qualification Course at Fort Liberty is preceded by a rigorous assessment and selection phase that eliminates approximately half of all candidates.</p>
+                    <p>Once qualified, 37Fs operate in small teams with significant autonomy, deploying globally in support of conventional forces, Special Operations, and interagency partners. The role demands creativity, cultural awareness, critical thinking, and the ability to operate in ambiguous environments.</p>
+                    <ul class="phase-detail-list">
+                        <li>Target audience analysis and behavioral influence planning</li>
+                        <li>Product development: print, audio, visual, and digital media</li>
+                        <li>Tactical PSYOP team (TPT) operations and dissemination</li>
+                        <li>Media production and broadcast operations</li>
+                        <li>Cultural and regional analysis</li>
+                        <li>Face-to-face engagement and key leader interaction</li>
+                        <li>Integration with maneuver and special operations forces</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 37A Detail -->
+        <div class="phase-detail-panel" id="detail-37a">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b37a">37A</span>
+                    <div class="phase-detail-rtb">PSYOP Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Track</span><span>Officer (Branch Transfer)</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Liberty, NC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Entry</span><span>Branch Detail / Transfer</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>SOF &mdash; Special Operations</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>PSYOP Planning, Campaign Design, Strategic Influence</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 37A PSYOP Officer leads psychological operations planning and execution from tactical through strategic levels. Officers enter the PSYOP branch through branch transfer after serving in a basic branch, bringing operational experience that enriches their information warfare capability. 37As plan and synchronize PSYOP across the range of military operations.</p>
+                    <p>PSYOP Officers are responsible for integrating influence operations into the commander's scheme of maneuver, coordinating with interagency partners, and overseeing the development and approval of PSYOP products and campaigns at all echelons.</p>
+                    <ul class="phase-detail-list">
+                        <li>PSYOP planning at tactical, operational, and strategic levels</li>
+                        <li>Campaign design and series development</li>
+                        <li>Interagency coordination and information operations integration</li>
+                        <li>Product approval authority and quality control</li>
+                        <li>Detachment and company command in PSYOP units</li>
+                        <li>Strategic-level influence operations at COCOM and joint staffs</li>
+                        <li>Theater and national-level PSYOP program management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 37Z Detail -->
+        <div class="phase-detail-panel" id="detail-37z">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b37z">37Z</span>
+                    <div class="phase-detail-rtb">Senior PSYOP Sergeant</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Selection</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>BN/Group Level</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Senior Enlisted Leader</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>PSYOP Ops Mgmt, Campaign Planning, Mentorship</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 37Z Senior PSYOP Sergeant represents the pinnacle of enlisted PSYOP leadership. 37Zs serve as operations sergeants major, first sergeants, and command sergeants major at battalion and group level within PSYOP and USASOC formations. They manage PSYOP operations, oversee campaign planning, and mentor the next generation of information warfare NCOs.</p>
+                    <p>Reaching 37Z requires extensive PSYOP experience, completion of the Senior Leader Course and Sergeants Major Academy, combat deployments, and a proven record of excellence across multiple PSYOP duty positions.</p>
+                    <ul class="phase-detail-list">
+                        <li>PSYOP operations management at BN/Group level</li>
+                        <li>Campaign planning and strategic influence oversight</li>
+                        <li>Personnel management, evaluations, and career counseling</li>
+                        <li>Training management and readiness for PSYOP formations</li>
+                        <li>Interagency and joint SOF coordination at senior enlisted level</li>
+                        <li>Mentorship of junior PSYOP NCOs and integration with officers</li>
+                        <li>Senior enlisted advisor to PSYOP commanders</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Training Pipeline</div>
-        <h2>From Recruit to PSYOP Specialist</h2>
-        <ul class="phase-list">
-            <li><span class="phase-day">Step 1</span><span class="phase-desc"><strong>BCT / OCS</strong> &mdash; Complete Basic Combat Training or Officer Candidate School before entering the PSYOP pipeline.</span></li>
-            <li><span class="phase-day">Step 2</span><span class="phase-desc"><strong>PSYOP Qualification Course at Ft Liberty</strong> &mdash; The POQC covers target audience analysis, product development, media production, and tactical PSYOP operations. Includes a rigorous assessment and selection phase.</span></li>
-            <li><span class="phase-day">Step 3</span><span class="phase-desc"><strong>Airborne School</strong> &mdash; Active-duty PSYOP Soldiers attend Airborne School at Ft Moore, GA. Airborne qualification is a requirement for assignment to active PSYOP units.</span></li>
-            <li><span class="phase-day">Step 4</span><span class="phase-desc"><strong>Language Training (DLI)</strong> &mdash; Many PSYOP Soldiers attend the Defense Language Institute in Monterey, CA, to develop foreign language proficiency critical to their mission.</span></li>
-            <li><span class="phase-day">Step 5</span><span class="phase-desc"><strong>Unit Assignment &amp; Advanced Courses</strong> &mdash; Serve in PSYOP units at Ft Liberty or deployed locations. Pursue regional studies, advanced PSYOP courses, and NCOES development.</span></li>
-        </ul>
+    <!-- CAREER PROGRESSION -->
+    <section class="school-section fade-in" id="career">
+        <div class="school-section-label">Career Progression</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
+            <button class="phase-card-btn" data-season="junior" onclick="toggleSeason('junior')">
+                <span class="phase-card-icon">&#127941;</span>
+                <span class="phase-card-title">Junior Enlisted</span>
+                <span class="phase-card-sub">E-1 to E-4</span>
+            </button>
+            <button class="phase-card-btn" data-season="nco" onclick="toggleSeason('nco')">
+                <span class="phase-card-icon">&#9733;</span>
+                <span class="phase-card-title">NCO</span>
+                <span class="phase-card-sub">E-5 to E-6</span>
+            </button>
+            <button class="phase-card-btn" data-season="senior" onclick="toggleSeason('senior')">
+                <span class="phase-card-icon">&#127942;</span>
+                <span class="phase-card-title">Senior NCO</span>
+                <span class="phase-card-sub">E-7 to E-9</span>
+            </button>
+            <button class="phase-card-btn" data-season="officer" onclick="toggleSeason('officer')">
+                <span class="phase-card-icon">&#9878;</span>
+                <span class="phase-card-title">Officer Track</span>
+                <span class="phase-card-sub">Branch Transfer</span>
+            </button>
+        </div>
+
+        <!-- Junior Enlisted Detail -->
+        <div class="phase-detail-panel" id="detail-junior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#3b82f6;border-color:#3b82f6;">E1-E4</span>
+                    <div class="phase-detail-rtb">Junior Enlisted</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>0-4 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>TPT Member, Analyst</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>Airborne, POQC, DLI</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$24K-$36K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Bonus</span><span>SOF enlistment bonus</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Junior enlisted PSYOP Soldiers begin their career by completing BCT, Airborne School, and the PSYOP Assessment &amp; Selection program. Those who pass selection continue to the PSYOP Qualification Course (POQC) at Fort Liberty. Upon graduation, 37Fs are assigned to tactical PSYOP teams where they develop target audience analysis skills and media production capabilities.</p>
+                    <p>This is the time to build language skills (DLI attendance is common), develop cultural expertise, and establish a foundation for the unique demands of information warfare operations.</p>
+                    <ul class="phase-detail-list">
+                        <li>PVT (E-1) to PV2 (E-2): BCT and pipeline &mdash; Selection and POQC</li>
+                        <li>PFC (E-3): 12 months TIS &mdash; TPT member, media production, target analysis</li>
+                        <li>SPC (E-4): 24 months TIS &mdash; Experienced team member, deployment-ready</li>
+                        <li>Attend Defense Language Institute for foreign language proficiency</li>
+                        <li>Build cultural expertise in assigned regional focus area</li>
+                        <li>Pursue deployments to gain operational PSYOP experience early</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- NCO Detail -->
+        <div class="phase-detail-panel" id="detail-nco">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#22c55e;border-color:#22c55e;">E5-E6</span>
+                    <div class="phase-detail-rtb">Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>4-10 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>TPT Leader, Det NCOIC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>BLC, ALC, Advanced PSYOP</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$36K-$52K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key</span><span>NCOER performance</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>PSYOP NCOs lead tactical PSYOP teams and serve as detachment NCOICs. Sergeants (E-5) lead 3-4 person TPTs with significant autonomy in the field, while Staff Sergeants (E-6) take on detachment-level leadership and planning responsibilities. PSYOP NCOs are expected to be experts in their regional focus area and capable of independent operations.</p>
+                    <p>Completion of BLC is required for E-5, and ALC for E-6. Advanced PSYOP courses, regional studies programs, and joint SOF training significantly enhance career progression.</p>
+                    <ul class="phase-detail-list">
+                        <li>SGT (E-5): TPT Leader &mdash; leads tactical PSYOP team operations</li>
+                        <li>SSG (E-6): Detachment NCOIC &mdash; plans and manages PSYOP operations</li>
+                        <li>BLC required for promotion to SGT, ALC for SSG</li>
+                        <li>Advanced PSYOP Course and regional studies programs</li>
+                        <li>Pursue Military Free-Fall, SERE, and joint SOF courses</li>
+                        <li>Strong NCOER evaluations and deployment records are critical</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Senior NCO Detail -->
+        <div class="phase-detail-panel" id="detail-senior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#f59e0b;border-color:#f59e0b;">E7-E9</span>
+                    <div class="phase-detail-rtb">Senior Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>10-30 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>OPS SGT, 1SG, CSM</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>SLC, USASMA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$52K-$90K+/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Selection</span><span>Board-selected</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Senior PSYOP NCOs represent the most experienced information warfare leaders in the enlisted force. Sergeants First Class (E-7) serve as company operations sergeants and senior TPT leaders, Master Sergeants/First Sergeants (E-8) lead at company level, and Sergeants Major/Command Sergeants Major (E-9) serve at battalion, group, and USASOC level.</p>
+                    <p>These positions are highly competitive and board-selected. A record of successful PSYOP operations, combat deployments, advanced school completion, and consistent top-block evaluations are essential for advancement.</p>
+                    <ul class="phase-detail-list">
+                        <li>SFC (E-7): Company OPS SGT &mdash; manages PSYOP operations at company level</li>
+                        <li>MSG/1SG (E-8): First Sergeant or OPS NCOIC &mdash; company-level senior enlisted</li>
+                        <li>SGM/CSM (E-9): Command Sergeant Major &mdash; BN/Group senior enlisted advisor</li>
+                        <li>Senior Leader Course (SLC) required for E-7 promotion</li>
+                        <li>Sergeants Major Academy for E-9 selection</li>
+                        <li>Joint assignments and interagency experience strengthen records</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Officer Track Detail -->
+        <div class="phase-detail-panel" id="detail-officer">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#a855f7;border-color:#a855f7;">37A</span>
+                    <div class="phase-detail-rtb">Officer Branch Transfer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Path</span><span>Branch Detail / Transfer</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duration</span><span>POQC + Assessment</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Liberty, NC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Result</span><span>37A PSYOP Officer</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Bonus</span><span>SOF career track</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Officers enter the PSYOP branch primarily through branch transfer after initial service in a basic branch (Infantry, MI, etc.). The 37A career track requires completion of PSYOP assessment, selection, and the officer qualification course at Fort Liberty. Officers bring operational experience from their basic branch that enriches PSYOP planning and execution.</p>
+                    <p>PSYOP Officers lead at the tactical through strategic levels, planning influence operations, coordinating with interagency partners, and commanding PSYOP detachments and companies. The SOF career track offers unique joint and interagency opportunities.</p>
+                    <ul class="phase-detail-list">
+                        <li>Branch transfer typically at CPT level after basic branch service</li>
+                        <li>PSYOP Officer Qualification Course at Fort Liberty</li>
+                        <li>Detachment Commander &rarr; Company Commander &rarr; BN/Group Staff</li>
+                        <li>Joint and interagency assignments at COCOM and national level</li>
+                        <li>Prior branch experience strengthens operational planning</li>
+                        <li>Career progression: Det CDR &rarr; CO CDR &rarr; BN XO/S3 &rarr; BN CDR</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Advanced Training</div>
-        <h2>Schools &amp; Courses</h2>
-        <p>PSYOP Soldiers can pursue advanced training including: Defense Language Institute (DLI), Regional Studies programs, Advanced PSYOP Course, Airborne School, Military Free-Fall, and joint special operations courses. Many PSYOP personnel also attend cultural immersion programs and interagency training.</p>
+    <!-- DUTY STATIONS -->
+    <section class="school-section fade-in" id="stations">
+        <div class="school-section-label">Major Duty Stations</div>
+        <h2 class="school-section-title">Where PSYOP Soldiers Serve</h2>
+        <div class="school-calendar-wrapper">
+            <table class="school-calendar">
+                <thead>
+                    <tr>
+                        <th>Installation</th>
+                        <th>Location</th>
+                        <th>Unit / Element</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Fort Liberty</td><td>NC</td><td>1st SFC (A) / USASOC / 4th POG</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">SOF / USASOC</span></td></tr>
+                    <tr><td>Fort Liberty</td><td>NC</td><td>SWCS &mdash; JFK Special Warfare Center</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">TRADOC</span></td></tr>
+                    <tr><td>MacDill AFB</td><td>FL</td><td>USSOCOM / CENTCOM elements</td><td><span class="season-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;">Joint / COCOM</span></td></tr>
+                    <tr><td>Stuttgart</td><td>Germany</td><td>SOCEUR / EUCOM support</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">OCONUS</span></td></tr>
+                    <tr><td>Camp Humphreys</td><td>South Korea</td><td>SOCKOR / PACOM support</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">OCONUS</span></td></tr>
+                    <tr><td>Okinawa / Japan</td><td>Pacific</td><td>SOCPAC elements</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">OCONUS</span></td></tr>
+                    <tr><td>Joint Bases Worldwide</td><td>Various</td><td>SOCOM elements &amp; Embassy support</td><td><span class="season-tag" style="background:rgba(34,197,94,0.15);color:#22c55e;">Global</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="school-calendar-note">PSYOP Soldiers are primarily stationed at Fort Liberty, NC, but deploy globally in support of SOCOM, geographic combatant commands, and embassy teams. Active-duty PSYOP is a special operations branch with worldwide mission requirements.</p>
     </section>
 
-    <section class="info-section" style="text-align:center;padding-bottom:var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width:500px;margin:0 auto;">We're building PSYOP-specific resources and training guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    <!-- CINEMATIC BREAK -->
+    <section class="school-cinematic fade-in" style="background: linear-gradient(180deg, transparent, rgba(168,85,247,0.06) 50%, transparent);">
+        <div class="school-cinematic-stat">Elite Information Warriors</div>
+        <p class="school-cinematic-body">From strategic messaging campaigns to face-to-face engagement with local populations, PSYOP Soldiers influence the fight at every echelon &mdash; winning hearts, minds, and battles without firing a round.</p>
+        <a href="../../courses.html" class="btn-outline" style="margin-top: var(--space-xl);">Explore Training Courses</a>
     </section>
 
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Common Questions</div>
+        <div class="bento-3">
+            <div class="glass-card">
+                <div class="glass-card-label">Overview</div>
+                <div class="glass-card-title">What is PSYOP?</div>
+                <p class="glass-card-body">Psychological Operations is a special operations branch that influences foreign audiences through targeted information campaigns. PSYOP Soldiers analyze, develop, and deliver messages that shape the information environment in support of military objectives.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Selection</div>
+                <div class="glass-card-title">How Hard is Selection?</div>
+                <p class="glass-card-body">PSYOP Assessment &amp; Selection has an approximately 50% attrition rate. Candidates are evaluated on physical fitness, critical thinking, problem-solving, communication skills, and psychological resilience over a demanding multi-week program.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Language</div>
+                <div class="glass-card-title">Need Language Skills?</div>
+                <p class="glass-card-body">Foreign language proficiency is a force multiplier for PSYOP Soldiers. Many attend the Defense Language Institute (DLI) in Monterey, CA. Language ability enhances target audience analysis, product development, and face-to-face engagement.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Mindset</div>
+                <div class="glass-card-title">Creative Thinker?</div>
+                <p class="glass-card-body">PSYOP demands creative and critical thinkers who can analyze complex cultural dynamics, develop persuasive messaging, and adapt to ambiguous environments. If you think differently, PSYOP may be your calling.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Deployment</div>
+                <div class="glass-card-title">Want to Deploy Globally?</div>
+                <p class="glass-card-body">PSYOP Soldiers deploy worldwide in support of every geographic combatant command. From embassy support to joint special operations, 37-Series personnel operate in every theater &mdash; often in small teams with significant autonomy.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Career</div>
+                <div class="glass-card-title">SOF vs Conventional?</div>
+                <p class="glass-card-body">Active-duty PSYOP is a special operations branch under USASOC. Army Reserve PSYOP units exist as well, but the active component is fully integrated into the SOF community with airborne requirements and SOF deployments.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOS OVERVIEW STATS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">MOS Overview</div>
+        <div class="stats-grid-6">
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Selection + QC</span>
+                <span class="stat-card-label">Training Pipeline</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">2 MOS</span>
+                <span class="stat-card-label">37F / 37A</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">~50%</span>
+                <span class="stat-card-label">Selection Rate</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">SOF</span>
+                <span class="stat-card-label">Special Operations</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Airborne</span>
+                <span class="stat-card-label">Required</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Ft Liberty</span>
+                <span class="stat-card-label">Home Station</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- RETENTION / REENLISTMENT RATES -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Retention Rates</div>
+        <h2 class="school-section-title">PSYOP Reenlistment by Year</h2>
+        <div class="attrition-grid">
+            <div class="attrition-card">
+                <span class="attrition-year">FY19</span>
+                <span class="attrition-rate">72%</span>
+                <span class="attrition-label">Reenlistment Rate</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY20</span>
+                <span class="attrition-rate">75%</span>
+                <span class="attrition-label">Reenlistment Rate</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY21</span>
+                <span class="attrition-rate">73%</span>
+                <span class="attrition-label">Reenlistment Rate</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY22</span>
+                <span class="attrition-rate">70%</span>
+                <span class="attrition-label">Reenlistment Rate</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY23</span>
+                <span class="attrition-rate">68%</span>
+                <span class="attrition-label">Reenlistment Rate</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAINING WASHOUT DATA -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Training Data</div>
+        <h2 class="school-section-title">Selection &amp; Qualification Attrition</h2>
+        <div class="failure-grid">
+            <div class="failure-card">
+                <h3 class="failure-card-title">Common Drop Reasons</h3>
+                <ul class="failure-card-list">
+                    <li><span>Selection attrition</span><span>~50%</span></li>
+                    <li><span>Academic failure</span><span>~10%</span></li>
+                    <li><span>Voluntary withdrawal</span><span>~5%</span></li>
+                    <li><span>PT failure / injury</span><span>~5%</span></li>
+                </ul>
+            </div>
+            <div class="failure-card">
+                <h3 class="failure-card-title">Key Context</h3>
+                <ul class="failure-card-list">
+                    <li><span>Selection is the primary attrition point (~50%)</span></li>
+                    <li><span>POQC academic standards are rigorous</span></li>
+                    <li><span>Airborne qualification is mandatory for active duty</span></li>
+                    <li><span>Language training adds additional pipeline time</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY TAKEAWAY -->
+    <section class="school-section fade-in">
+        <div class="school-takeaway">
+            <div class="school-takeaway-label">Key Takeaway</div>
+            <p class="school-takeaway-text">PSYOP is one of the most intellectually demanding and globally impactful MOS fields in the Army. If you want to influence the fight through information, deploy worldwide with SOF, and operate with autonomy in complex environments, the 37-Series is the path. Think critically, communicate clearly, and never stop learning.</p>
+        </div>
+    </section>
+
+    <!-- PSYOP CREED -->
+    <section class="school-section school-creed-section fade-in">
+        <div class="school-section-label">The PSYOP Motto</div>
+        <blockquote class="school-creed">
+            <p>Persuade, Change, Influence.</p>
+            <p>We are the quiet professionals of information warfare.<br>
+            We shape the environment before the fight begins<br>
+            and long after the last round is fired.<br>
+            Our weapons are words, images, and ideas.<br>
+            We win without firing a shot.</p>
+            <p>We analyze, we create, we deliver.<br>
+            From tactical teams to strategic campaigns,<br>
+            we are everywhere the mission demands.<br>
+            We are PSYOP.</p>
+            <p style="margin-top: var(--space-lg); font-weight: 700; color: var(--color-gold);">Persuade, Change, Influence</p>
+        </blockquote>
+        <a href="../../courses.html" class="btn-primary" style="margin-top: var(--space-xl);">Start PSYOP Prep</a>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="school-section school-newsletter-section fade-in">
+        <div class="school-section-label">Stay Informed</div>
+        <h2 class="school-section-title">Get PSYOP Intel</h2>
+        <p class="school-section-body">Training tips, gear drops, and career guides for the 37-Series &mdash; delivered to your inbox.</p>
+        <form class="school-newsletter-form" id="newsletter-form">
+            <input type="email" class="school-newsletter-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn-primary school-newsletter-btn">Subscribe</button>
+        </form>
+        <p class="school-newsletter-status" id="newsletter-status"></p>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="school-footer">
-        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+        <div class="school-footer-inner">
+            <div class="school-footer-brand">
+                <a href="/" class="school-footer-logo">Ranger Beers</a>
+                <p class="school-footer-sub">PSYOP Supply Co.</p>
+            </div>
+            <div class="school-footer-columns">
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Specialties</h4>
+                    <ul>
+                        <li><a href="index.html#specialties">37F &mdash; PSYOP Specialist</a></li>
+                        <li><a href="index.html#specialties">37A &mdash; PSYOP Officer</a></li>
+                        <li><a href="index.html#specialties">37Z &mdash; Senior PSYOP Sergeant</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Supply</h4>
+                    <ul>
+                        <li><a href="../../shop.html">PSYOP Gear</a></li>
+                        <li><a href="../../courses.html">Training Courses</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Guides</h4>
+                    <ul>
+                        <li><a href="../../standards.html">Standards</a></li>
+                        <li><a href="../../faq.html">FAQ</a></li>
+                        <li><a href="../../about.html">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="school-footer-bottom">
+            <p>&copy; 2026 Ranger Beers Supply Co.</p>
+            <div class="school-footer-legal">
+                <a href="../../privacy.html">Privacy</a>
+                <a href="../../terms.html">Terms</a>
+            </div>
+        </div>
     </footer>
 
+    <!-- SCRIPTS -->
+    <script>
+        // Newsletter
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = this.querySelector('input[type="email"]').value;
+            var status = document.getElementById('newsletter-status');
+            status.textContent = 'Subscribing...';
+            fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, school: '37-psyop' })
+            }).then(function(r) { return r.json(); })
+              .then(function() { status.textContent = 'Subscribed — check your inbox.'; })
+              .catch(function() { status.textContent = 'Error — please try again.'; });
+        });
+    </script>
+
+    <script>
+        // Nav scroll + mobile
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 40); });
+        var toggle = document.querySelector('.nav-mobile-toggle');
+        if (toggle) toggle.addEventListener('click', function() { nav.classList.toggle('nav-open'); });
+
+        // Fade-in
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+    </script>
+
+    <!-- Auth -->
+    <script src="../../course-auth.js"></script>
+    <script>if (typeof RangerAuth !== 'undefined') RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase/Career Toggle -->
+    <script>
+        var currentPhase = '37f';
+        var currentSeason = null;
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+            currentSeason = null;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect 37F
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="37f"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
 </body>
 </html>

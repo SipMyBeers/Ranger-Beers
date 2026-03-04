@@ -8,164 +8,736 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
+    <link rel="stylesheet" href="../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: var(--space-4xl) 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        .school-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center bottom, rgba(239, 68, 68, 0.08), transparent 60%);
-        }
-        .school-hero-tab {
-            max-height: 80px;
-            margin-bottom: var(--space-xl);
-            position: relative;
-        }
-        .school-hero-headline {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: var(--space-md);
-            position: relative;
-        }
-        .school-hero-sub {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-secondary);
-            max-width: 640px;
-            line-height: 1.6;
-            position: relative;
-        }
-        .school-back {
-            position: fixed;
-            top: var(--space-lg);
-            left: var(--space-lg);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            z-index: 100;
-            transition: color 0.3s;
-        }
-        .school-back:hover { color: var(--color-gold); }
-
-        .info-section { max-width: 900px; margin: 0 auto; padding: var(--space-3xl) 40px; }
-        .info-section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-lg); }
-        .info-section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; margin-bottom: var(--space-lg); }
-        .info-section p { color: var(--color-text-secondary); line-height: 1.8; margin-bottom: var(--space-lg); }
-
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin: var(--space-2xl) 0; }
-        .stat-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-glass); padding: var(--space-xl) var(--space-md); text-align: center; }
-        .stat-number { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 900; color: var(--color-gold); display: block; }
-        .stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-text-secondary); margin-top: var(--space-xs); }
-
-        .phase-list { list-style: none; margin: var(--space-xl) 0; }
-        .phase-list li { padding: var(--space-md) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); display: flex; gap: var(--space-md); }
-        .phase-list .phase-day { font-weight: 700; color: var(--color-gold); min-width: 80px; font-family: var(--font-tactical); font-size: 13px; }
-        .phase-list .phase-desc { color: var(--color-text-secondary); line-height: 1.6; }
-        .phase-list .phase-desc strong { color: var(--color-text-primary); }
-
-        .school-footer { text-align: center; padding: var(--space-3xl) 40px; border-top: 1px solid rgba(255, 255, 255, 0.06); }
-        .school-footer-copy { font-size: 12px; color: var(--color-text-muted); letter-spacing: 1px; }
-
-        @media (max-width: 700px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .school-hero { padding: var(--space-3xl) 20px; }
-            .info-section { padding: var(--space-2xl) 20px; }
-        }
+        /* School-specific: hero tint & phase colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(34,197,94,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="acft"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="medical"]::before { background: radial-gradient(ellipse at center, rgba(34,197,94,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="warrior"]::before { background: radial-gradient(ellipse at center, rgba(239,68,68,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="acft"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="medical"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.15); }
+        .phase-card-btn.active[data-phase="warrior"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239,68,68,0.15); }
+        .phase-detail-badge.acft { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.medical { color: #22c55e; border-color: #22c55e; }
+        .phase-detail-badge.warrior { color: #ef4444; border-color: #ef4444; }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">ACFT &amp; Written</a></li>
+                        <li><a href="index.html#phases">Medical Lanes</a></li>
+                        <li><a href="index.html#phases">Warrior Tasks &amp; Ruck</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">EFMB Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="courses.html">EFMB Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
-    <section class="school-hero">
-        <img src="../images/badges/efmb.svg" alt="Expert Field Medical Badge" class="school-hero-tab">
-        <h1 class="school-hero-headline">Expert Field Medical Badge</h1>
-        <p class="school-hero-sub">The hardest expert badge to earn. Five days of medical warrior tasks, trauma lanes, and a 12-mile ruck march with the lowest pass rate of any expert-level qualification.</p>
+    <!-- HERO -->
+    <section class="school-hero" id="hero">
+        <img src="../images/badges/efmb.svg" alt="Expert Field Medical Badge" class="hero-tab-img">
+        <h1 class="hero-headline">First to Respond</h1>
+        <p class="hero-sub">Earn the Expert Field Medical Badge through rigorous testing of combat medic skills. Five days of day and night land navigation, written exams, warrior tasks, and medical lanes that prove you are the Army's best combat medic.</p>
+        <div class="hero-cta">
+            <a href="shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="courses.html" class="btn btn-outline">Start Training</a>
+        </div>
+        <div class="scroll-indicator"><div class="scroll-line"></div>Scroll</div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">At a Glance</div>
+    <!-- MAIN HEADLINE -->
+    <section class="section" style="text-align: center; padding: var(--space-3xl) 40px;">
+        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-family: var(--font-display); color: var(--color-text); margin: 0;">
+            5 Days &mdash; 3 Events &mdash; 1 Badge
+        </h2>
+    </section>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">5</span>
-                <div class="stat-label">Days</div>
+    <!-- PHASE SELECTOR -->
+    <div class="phase-selector" id="phases">
+        <div class="selector-divider" style="margin-bottom: var(--space-xl);">
+            <span class="selector-divider-label">Phases</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <button class="phase-card-btn" data-phase="acft" onclick="togglePhase('acft')">
+                <div class="pc-icon">&#128221;</div>
+                <div class="pc-name">ACFT &amp; Written</div>
+                <div class="pc-sub">Day 1</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="medical" onclick="togglePhase('medical')">
+                <div class="pc-icon">&#9884;</div>
+                <div class="pc-name">Medical Lanes</div>
+                <div class="pc-sub">Days 2 &ndash; 3</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="warrior" onclick="togglePhase('warrior')">
+                <div class="pc-icon">&#127942;</div>
+                <div class="pc-name">Warrior Tasks &amp; Ruck</div>
+                <div class="pc-sub">Days 4 &ndash; 5</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+        </div>
+
+        <!-- ACFT & Written Detail Panel -->
+        <div class="phase-detail-panel open" id="detail-acft">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">ACFT &amp; Written Exam &mdash; Screening</div>
+                    <span class="phase-detail-badge acft">Day 1</span>
+                </div>
+                <div class="phase-rtb-info">
+                    <div>
+                        <div class="phase-rtb-name">Unit-Level Testing</div>
+                        <div class="phase-address">Various CONUS Installations &mdash; Schedule set by unit</div>
+                    </div>
+                    <div class="phase-social-links">
+                        <a href="https://www.army.mil/efmb" target="_blank" rel="noopener">&#127760; Official Info</a>
+                    </div>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">1 Day</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Home installation</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Physical &amp; academic screening</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Eligibility</span><span class="pd-item-value">68W primary MOS</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #3b82f6; font-weight: 600;">Key Events</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">ACFT</span><span class="pd-item-value">Minimum passing score required</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Written Exam</span><span class="pd-item-value">Medical doctrine &amp; TC 4-02 series</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Land Navigation (Day)</span><span class="pd-item-value">Compass, map, terrain association</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Land Navigation (Night)</span><span class="pd-item-value">Pace count &amp; compass under darkness</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>Day 1 is the <strong>screening gate</strong> that eliminates candidates before they ever touch a medical lane. The ACFT must be passed to standard, followed immediately by a comprehensive written exam covering medical doctrine from the TC 4-02 series &mdash; the Whiskey's bible.</p>
+                        <p>Land navigation is tested both day and night. <strong>Night land nav is the killer</strong> &mdash; candidates must find points using only a compass and pace count in unfamiliar terrain with zero ambient light. Approximately 15% of all candidates fail land navigation alone.</p>
+                        <p>Candidates who fail any Day 1 event are eliminated before the medical lanes even begin. This phase rewards disciplined study and consistent physical training.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Day 1 Events</div>
+                            <ul>
+                                <li>Army Combat Fitness Test (ACFT) &mdash; must meet minimum standard</li>
+                                <li>Written exam &mdash; TC 4-02 series, casualty care doctrine, evacuation procedures</li>
+                                <li>Day land navigation &mdash; map reading, terrain association, point finding</li>
+                                <li>Night land navigation &mdash; compass and pace count only</li>
+                                <li>Failure on any event results in immediate elimination</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">3</span>
-                <div class="stat-label">Phases</div>
+        </div>
+
+        <!-- Medical Lanes Detail Panel -->
+        <div class="phase-detail-panel" id="detail-medical">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Medical Lanes &mdash; Zero Deficiency</div>
+                    <span class="phase-detail-badge medical">Days 2 &ndash; 3</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">2 Days</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Designated medical lanes</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Standard</span><span class="pd-item-value">Zero deficiency &mdash; no missed steps</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #22c55e; font-weight: 600;">Key Events</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Casualty Assessment</span><span class="pd-item-value">Systematic head-to-toe evaluation</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Airway Management</span><span class="pd-item-value">NPA, cricothyrotomy, suction</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Hemorrhage Control</span><span class="pd-item-value">Tourniquets, pressure dressings, packing</span></div>
+                        <div class="pd-item"><span class="pd-item-name">IV Therapy</span><span class="pd-item-value">Start IV under stress, fluid resuscitation</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Litter Evacuation</span><span class="pd-item-value">Casualty packaging &amp; movement</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>Medical lanes are the <strong>#1 elimination point</strong> in EFMB testing. Approximately 40% of all failures occur here. Candidates must perform 12+ medical tasks tested to a zero-deficiency standard &mdash; one missed step on any single task and you fail the entire lane.</p>
+                        <p>The tasks cover the full spectrum of combat medic skills: <strong>casualty assessment, airway management, hemorrhage control, IV therapy, and litter evacuation</strong>. Each task has a detailed sequence of steps that must be performed in exact order under time pressure.</p>
+                        <p>There is no partial credit. A missed tourniquet high-and-tight, a skipped reassessment, or an improperly secured airway adjunct results in an immediate NO-GO. Practice every task to muscle memory.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Medical Lane Tasks</div>
+                            <ul>
+                                <li>Casualty assessment &mdash; systematic head-to-toe, MARCH algorithm</li>
+                                <li>Airway management &mdash; NPA insertion, recovery position, suction</li>
+                                <li>Hemorrhage control &mdash; tourniquet, wound packing, pressure dressing</li>
+                                <li>IV therapy &mdash; 18-gauge IV start under stress, saline lock</li>
+                                <li>Litter evacuation &mdash; casualty packaging, carries, and vehicle loading</li>
+                                <li>Splinting and immobilization &mdash; combat splints, traction devices</li>
+                                <li>All tasks graded GO/NO-GO with zero-deficiency standard</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">~15%</span>
-                <div class="stat-label">Grad Rate</div>
+        </div>
+
+        <!-- Warrior Tasks & Ruck Detail Panel -->
+        <div class="phase-detail-panel" id="detail-warrior">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Warrior Tasks &amp; Ruck March &mdash; Finish Strong</div>
+                    <span class="phase-detail-badge warrior">Days 4 &ndash; 5</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">2 Days</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Training area &amp; ruck route</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Soldier skills &amp; endurance</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #ef4444; font-weight: 600;">Requirements</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Weapons</span><span class="pd-item-value">Assemble, disassemble, function check</span></div>
+                        <div class="pd-item"><span class="pd-item-name">CBRN</span><span class="pd-item-value">Mask confidence, decon procedures</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Communications</span><span class="pd-item-value">Radio setup &amp; 9-line MEDEVAC</span></div>
+                        <div class="pd-item"><span class="pd-item-name">12-Mile Ruck</span><span class="pd-item-value">35 lb minimum, under 3 hours</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>Warrior tasks are where many medics get caught off guard. The EFMB demands that <strong>combat medics are soldiers first</strong> &mdash; proficient in weapons handling, CBRN operations, communications, and demolitions. Medics who focus only on medical skills neglect these tasks at their peril.</p>
+                        <p>The culminating event is the <strong>12-mile ruck march</strong> with a 35-pound minimum load, completed in under 3 hours. After four days of intense testing, the ruck march tests grit and endurance. Approximately 10% of remaining candidates fail here &mdash; usually from pacing errors or heat casualties.</p>
+                        <p>Completing the ruck march earns you the Expert Field Medical Badge &mdash; one of the rarest and most respected qualifications in the Army.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Warrior Task Requirements</div>
+                            <ul>
+                                <li>Weapons &mdash; assemble, disassemble, and perform functions checks</li>
+                                <li>CBRN &mdash; MOPP gear, mask confidence, decontamination procedures</li>
+                                <li>Communications &mdash; radio operations, call for MEDEVAC (9-line)</li>
+                                <li>Demolitions &mdash; basic demolition knowledge and safety</li>
+                                <li>12-mile ruck march &mdash; 35 lb minimum, must finish under 3 hours</li>
+                                <li>All tasks graded GO/NO-GO to standard</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">68-series</span>
-                <div class="stat-label">Eligibility</div>
+        </div>
+
+        <!-- SEASON SELECTOR -->
+        <div class="selector-divider" style="margin: var(--space-xl) 0;">
+            <span class="selector-divider-label">Seasons</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr);" id="season-selector">
+            <button class="phase-card-btn" data-season="winter" onclick="toggleSeason('winter')">
+                <div class="pc-icon">&#10052;</div>
+                <div class="pc-name">Winter</div>
+                <div class="pc-sub">Dec &mdash; Feb</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="spring" onclick="toggleSeason('spring')">
+                <div class="pc-icon">&#127783;</div>
+                <div class="pc-name">Spring</div>
+                <div class="pc-sub">Mar &mdash; May</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="summer" onclick="toggleSeason('summer')">
+                <div class="pc-icon">&#9728;</div>
+                <div class="pc-name">Summer</div>
+                <div class="pc-sub">Jun &mdash; Aug</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="fall" onclick="toggleSeason('fall')">
+                <div class="pc-icon">&#127810;</div>
+                <div class="pc-name">Fall</div>
+                <div class="pc-sub">Sep &mdash; Nov</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+        </div>
+
+        <!-- WINTER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-winter">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Winter &mdash; Low Testing Frequency</div>
+                    <span class="phase-detail-badge" style="color: #3b82f6; border-color: #3b82f6;">Dec &ndash; Feb</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Testing Frequency</span><span class="pd-item-value">Low &mdash; fewest iterations</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Temperature</span><span class="pd-item-value">Varies by installation</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Dexterity Impact</span><span class="pd-item-value">Cold hands affect medical tasks</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Ruck Conditions</span><span class="pd-item-value">Cold reduces heat casualties</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Medical Lane Risk</span><span class="pd-item-value">Numb fingers slow IV starts</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Use winter for train-up prep</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Winter has the fewest EFMB testing iterations.</strong> Cold weather affects dexterity &mdash; numb fingers make IV starts, tourniquet application, and fine-motor medical tasks significantly harder. However, cooler temperatures reduce heat casualties during the 12-mile ruck march.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Winter Prep Tips</div>
+                            <ul>
+                                <li>Practice medical tasks with cold hands &mdash; wear wet gloves during rehearsals</li>
+                                <li>IV therapy in cold weather requires extra practice</li>
+                                <li>Keep hand warmers available during train-up</li>
+                                <li>Ruck in cold conditions to build tolerance</li>
+                                <li>Study written exam material during indoor downtime</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPRING Detail Panel -->
+        <div class="phase-detail-panel" id="detail-spring">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Spring &mdash; Most Popular Testing Season</div>
+                    <span class="phase-detail-badge" style="color: #22c55e; border-color: #22c55e;">Mar &ndash; May</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Testing Frequency</span><span class="pd-item-value">High &mdash; most iterations</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Temperature</span><span class="pd-item-value">Comfortable, moderate conditions</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Dexterity</span><span class="pd-item-value">Ideal for medical tasks</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Ruck Conditions</span><span class="pd-item-value">Cool mornings, manageable heat</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Competition</span><span class="pd-item-value">Higher candidate volume</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">First-time EFMB candidates</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Spring is the most popular EFMB testing season.</strong> Comfortable temperatures mean optimal conditions for medical lanes &mdash; your hands work properly, and the ruck march is conducted in manageable weather. Most units schedule their primary EFMB iteration in spring.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Spring Prep Tips</div>
+                            <ul>
+                                <li>Start train-up in January for spring testing</li>
+                                <li>Ramp up ruck march distance and pace by March</li>
+                                <li>Medical lane rehearsals should be daily by this point</li>
+                                <li>Take practice written exams weekly</li>
+                                <li>Land nav practice in varying terrain and conditions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-summer">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Summer &mdash; Heat Is the Enemy</div>
+                    <span class="phase-detail-badge" style="color: #f59e0b; border-color: #f59e0b;">Jun &ndash; Aug</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Testing Frequency</span><span class="pd-item-value">Moderate &mdash; some installations</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Temperature</span><span class="pd-item-value">High heat at most CONUS posts</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Heat Casualties</span><span class="pd-item-value">Significant risk during ruck</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus Impact</span><span class="pd-item-value">Heat degrades concentration on lanes</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Hydration</span><span class="pd-item-value">Critical &mdash; plan water intake</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Heat stroke on 12-mile ruck</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Summer EFMB testing is brutal.</strong> Heat casualties during the 12-mile ruck march spike in summer months. High temperatures also degrade focus and concentration during medical lanes &mdash; when every single step matters, heat-induced fatigue leads to missed procedures.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Summer Prep Tips</div>
+                            <ul>
+                                <li>Heat acclimatization &mdash; train outdoors for at least 2 weeks prior</li>
+                                <li>Hydration plan &mdash; pre-hydrate aggressively before ruck day</li>
+                                <li>Ruck in the heat during train-up to build tolerance</li>
+                                <li>Practice medical tasks when fatigued to simulate lane conditions</li>
+                                <li>Know heat casualty signs &mdash; you're a medic, recognize them in yourself</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FALL Detail Panel -->
+        <div class="phase-detail-panel" id="detail-fall">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Fall &mdash; Second Most Popular Season</div>
+                    <span class="phase-detail-badge" style="color: #ef4444; border-color: #ef4444;">Sep &ndash; Nov</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Testing Frequency</span><span class="pd-item-value">High &mdash; second most popular</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Temperature</span><span class="pd-item-value">Cooling, ideal for ruck march</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Ruck Conditions</span><span class="pd-item-value">Best ruck weather of the year</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Medical Lanes</span><span class="pd-item-value">Comfortable working conditions</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Night Nav</span><span class="pd-item-value">Earlier darkness, longer night portions</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Re-testers and experienced candidates</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Fall is the second most popular testing season</strong> and offers arguably the best overall conditions. Cooler temperatures are ideal for the 12-mile ruck march, and comfortable weather keeps hands dexterous for medical lanes. Many units schedule a fall iteration as a re-test opportunity.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Fall Prep Tips</div>
+                            <ul>
+                                <li>Use summer to complete full train-up cycle</li>
+                                <li>Practice night land navigation &mdash; earlier sunset means longer dark hours</li>
+                                <li>Peak physical fitness should be achieved by testing date</li>
+                                <li>If re-testing, focus specifically on previous failure points</li>
+                                <li>Mental preparation &mdash; fall is your best shot at ideal conditions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLASS CALENDAR -->
+    <section class="section">
+        <div class="section-label fade-in">Class Calendar</div>
+        <h2 class="section-title fade-in">EFMB Testing Schedule</h2>
+        <p class="section-desc fade-in">EFMB testing is conducted at the unit level across various CONUS installations. Schedules vary by division and brigade &mdash; coordinate with your unit medical training NCO for specific dates. Most units conduct 2&ndash;4 iterations per fiscal year.</p>
+
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--color-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: var(--space-md);">Unit-Level Testing</h3>
+        <div class="schedule-table-wrap fade-in">
+            <table class="schedule-table">
+                <thead>
+                    <tr><th>Window</th><th>Typical Period</th><th>Notes</th><th>Season</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="schedule-class">Spring Iteration</td><td>Mar &ndash; May</td><td>Most common &mdash; highest candidate volume</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">Summer Iteration</td><td>Jun &ndash; Aug</td><td>Heat mitigation required &mdash; some units skip</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">Fall Iteration</td><td>Sep &ndash; Nov</td><td>Second most popular &mdash; re-test opportunity</td><td><span class="season-tag fall">Fall</span></td></tr>
+                    <tr><td class="schedule-class">Winter Iteration</td><td>Dec &ndash; Feb</td><td>Least common &mdash; cold weather considerations</td><td><span class="season-tag winter">Winter</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CINEMATIC BREAK -->
+    <section class="hero" style="height: 50vh; min-height: 300px; background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(34,197,94,0.1) 100%);">
+        <div class="hero-content" style="position: relative; z-index: 1;">
+            <div class="section-label">Prepare Now</div>
+            <h2 class="hero-headline" style="font-size: clamp(2rem,4vw,3.5rem);">~82% Fail &mdash; One Missed Step Ends It</h2>
+            <p class="hero-sub">Zero-deficiency grading means perfection is the standard. Medical lanes, warrior tasks, and the 12-mile ruck march eliminate the unprepared.</p>
+            <div class="hero-cta" style="margin-top: 20px;">
+                <a href="courses.html" class="btn btn-primary">View Courses</a>
             </div>
         </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Course Overview</div>
-        <h2>What is the EFMB?</h2>
-        <p>The Expert Field Medical Badge (EFMB) is the medical branch's equivalent of the EIB. Established in 1965, it is awarded to medical soldiers who demonstrate exceptional proficiency in field medical skills, warrior tasks, and physical fitness. The EFMB has consistently maintained the lowest pass rate of any expert-level badge in the Army.</p>
-        <p>The EFMB tests not only medical knowledge but also core soldier skills. Candidates must be equally proficient in trauma care, evacuation procedures, land navigation, weapons handling, and NBC operations. The breadth of tested tasks &mdash; combined with zero-deficiency grading &mdash; makes the EFMB one of the most challenging qualifications in the military.</p>
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 900px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;">
+        <div class="section-label fade-in">Resources</div>
+        <h2 class="section-title fade-in">Don't Be That Medic.</h2>
+        <p class="section-desc fade-in">Every EFMB failure has a type. We built a fix for each one.</p>
+
+        <div class="bento-grid bento-3 stagger" style="margin-bottom: var(--space-xl);">
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#129657;</div>
+                <div class="card-title">Bad Casualty Assessment?</div>
+                <p class="card-desc">Systematic head-to-toe is the foundation. Skip one step and you fail the entire lane. Practice the MARCH algorithm until it's automatic.</p>
+            </a>
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128137;</div>
+                <div class="card-title">Can't Start an IV?</div>
+                <p class="card-desc">IV therapy under stress is a different skill than IV therapy in a classroom. Practice blindfolded, with cold hands, and under time pressure.</p>
+            </a>
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#129517;</div>
+                <div class="card-title">Failed Land Nav?</div>
+                <p class="card-desc">Night nav is the killer. If you can't hold a compass bearing and count paces in the dark, you're done before medical lanes even start.</p>
+            </a>
+        </div>
+        <div class="bento-grid bento-3 stagger">
+            <a href="shop.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#127939;</div>
+                <div class="card-title">Slow on the Ruck?</div>
+                <p class="card-desc">12 miles in under 3 hours with 35 pounds. Train with weight, build your pace, and don't let the last event be the one that breaks you.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128163;</div>
+                <div class="card-title">Weak on Warrior Tasks?</div>
+                <p class="card-desc">Weapons, CBRN, demo, comms &mdash; medics neglect these. The EFMB demands you're a soldier first. Don't lose your badge on a task you didn't study.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128214;</div>
+                <div class="card-title">Forgot Doctrine?</div>
+                <p class="card-desc">The TC 4-02 series isn't light reading, but the written exam has no mercy. Know your doctrine cold or go home on Day 1.</p>
+            </a>
+        </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Course Phases</div>
-        <h2>5 Days of Testing</h2>
+    <!-- COURSE OVERVIEW STATS -->
+    <section class="section" id="stats" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Course Overview</div>
+        <div class="ix-stats-grid stagger">
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">5</div><div class="ix-stat-label">Total Days</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">12+</div><div class="ix-stat-label">Medical Tasks</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">3</div><div class="ix-stat-label">Test Events</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">~18%</div><div class="ix-stat-label">Grad Rate</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">~4</div><div class="ix-stat-label">Iterations / Unit / Yr</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">68W</div><div class="ix-stat-label">Primary MOS</div></div>
+        </div>
 
-        <ul class="phase-list">
-            <li>
-                <span class="phase-day">Day 1</span>
-                <span class="phase-desc"><strong>APFT &amp; Written Exam</strong> &mdash; Extended-scale APFT with minimum 80% per event, followed by a comprehensive written exam covering medical doctrine, trauma protocols, evacuation procedures, and common soldier tasks.</span>
-            </li>
-            <li>
-                <span class="phase-day">Days 2-3</span>
-                <span class="phase-desc"><strong>Hands-On Medical &amp; Warrior Tasks</strong> &mdash; Graded lanes testing tactical combat casualty care (TCCC), IV administration, airway management, litter carries, splinting, land navigation, weapons qualification, communications, and NBC procedures. All tasks GO/NO-GO.</span>
-            </li>
-            <li>
-                <span class="phase-day">Day 4</span>
-                <span class="phase-desc"><strong>Trauma Lanes &amp; Evacuations</strong> &mdash; Scenario-based trauma lanes requiring triage, treatment, and evacuation under simulated combat conditions. Candidates must manage multiple casualties with competing priorities and limited resources.</span>
-            </li>
-            <li>
-                <span class="phase-day">Day 5</span>
-                <span class="phase-desc"><strong>12-Mile Ruck March</strong> &mdash; The final event: a 12-mile foot march with a 35-pound minimum load, completed within 3 hours. Successful completion earns the Expert Field Medical Badge.</span>
-            </li>
-        </ul>
+        <!-- ATTRITION RATES -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Graduation Rates</div>
+        <div class="ix-attrition-grid stagger">
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2019</div><div class="ix-attrition-rate">20%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2020</div><div class="ix-attrition-rate">17%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2021</div><div class="ix-attrition-rate">15%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2022</div><div class="ix-attrition-rate">19%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2023</div><div class="ix-attrition-rate">18%</div><div class="ix-attrition-label">Graduated</div></div>
+        </div>
+
+        <!-- FAILURE BREAKDOWN -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Failure Breakdown</div>
+        <div class="ix-failure-grid stagger">
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">Common Failure Points</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Medical Lane Failures</span><span class="ix-failure-pct">~40%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Land Navigation</span><span class="ix-failure-pct">~15%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Written Exam</span><span class="ix-failure-pct">~10%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">12-Mile Ruck March</span><span class="ix-failure-pct">~10%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Voluntary Withdrawal</span><span class="ix-failure-pct">~7%</span></div>
+            </div>
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">Key Context</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Zero-deficiency standard on all medical tasks</span><span class="ix-failure-pct">1 miss = fail</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Most drops occur during medical lanes</span><span class="ix-failure-pct">Days 2&ndash;3</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Night land nav eliminates more than day</span><span class="ix-failure-pct">~60% of nav fails</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Summer ruck march has highest heat casualties</span><span class="ix-failure-pct">Jun&ndash;Aug peak</span></div>
+            </div>
+        </div>
+
+        <!-- KEY TAKEAWAY -->
+        <div class="ix-takeaway fade-in">
+            <p><strong style="color: var(--color-gold);">Key Takeaway:</strong> Medical lanes are the #1 elimination point. Zero-deficiency means one missed step on any task and you fail. Practice every task to muscle memory &mdash; casualty assessment, airway management, hemorrhage control, IV therapy. The written exam and land nav will catch the underprepared on Day 1. Train with the same intensity you'd bring to a trauma patient.</p>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Key Standards</div>
-        <h2>What It Takes</h2>
-        <p>Candidates must be 68-series (Medical) MOS. The APFT requires an extended-scale score of 80% per event. The breadth of tested tasks is enormous &mdash; candidates must be proficient in both medical procedures and common warrior tasks. A single NO-GO on any lane typically results in elimination.</p>
-        <p>The ~15% pass rate speaks for itself. The EFMB demands months of dedicated preparation across two entirely different skill domains: medicine and soldiering. Successful candidates are true dual-threat experts who can save lives while fighting alongside their infantry counterparts.</p>
+    <!-- CREED / MOTTO -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;" class="fade-in">
+            <p class="creed-stanza" style="text-align: center; font-size: 1.1rem;"><strong>Combat Medic Creed</strong></p>
+            <p class="creed-stanza">I am a Combat Medic. I serve all members of my team regardless of rank, religion, or creed. I will always place the care of my patients above all else. I will never leave a fallen comrade. I will always be there for my brothers and sisters in arms.</p>
+            <p class="creed-stanza">The Expert Field Medical Badge represents mastery of both the healing arts and the warrior's craft. Holders of this badge have proven they can save lives under fire, navigate hostile terrain, and endure the physical demands that break lesser soldiers. They are the Army's finest combat medics &mdash; first to respond, last to quit.</p>
+            <div class="creed-closer">First to Respond!</div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-2xl);">
+            <a href="courses.html" class="btn btn-outline-gold">Start EFMB Prep &rarr;</a>
+        </div>
     </section>
 
-    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width: 500px; margin: 0 auto;">We're building EFMB-specific study guides, medical task breakdowns, and prep courses. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    <!-- NEWSLETTER SIGNUP -->
+    <section class="section" id="newsletter" style="text-align:center; padding-bottom:var(--space-3xl);">
+        <span class="section-label">Stay Informed</span>
+        <h2 class="section-title">Get EFMB School Intel</h2>
+        <p class="section-desc" style="max-width:540px; margin:0 auto var(--space-xl);">Testing dates, medical task breakdowns, study guides, and tips from badge holders &mdash; straight to your inbox. No spam. Unsubscribe anytime.</p>
+
+        <div id="subscribe-success" style="display:none; background:rgba(197,179,88,0.12); border:1px solid var(--color-gold); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-gold); font-weight:600;">
+            You're in. Check your inbox for a welcome email.
+        </div>
+        <div id="subscribe-error" style="display:none; background:rgba(239,68,68,0.12); border:1px solid var(--color-error); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-error); font-weight:600;"></div>
+
+        <form id="subscribe-form" style="display:flex; gap:var(--space-sm); max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;">
+            <input type="email" name="email" id="subscribe-email" class="form-input" placeholder="Your email address" required style="flex:1 1 260px;">
+            <button type="submit" id="subscribe-btn" class="btn btn-primary" style="flex:0 0 auto; padding:0 var(--space-lg);">Subscribe</button>
+        </form>
     </section>
 
-    <footer class="school-footer">
-        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">EFMB Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">ACFT &amp; Written</a></li><li><a href="index.html#phases">Medical Lanes</a></li><li><a href="index.html#phases">Warrior Tasks &amp; Ruck</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">EFMB Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Newsletter Script -->
+    <script>
+        (function() {
+            var form = document.getElementById('subscribe-form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('subscribe-email').value;
+                var btn = document.getElementById('subscribe-btn');
+                var success = document.getElementById('subscribe-success');
+                var error = document.getElementById('subscribe-error');
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+                success.style.display = 'none';
+                error.style.display = 'none';
+                fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, school: 'efmb' })
+                })
+                .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+                .then(function(result) {
+                    if (result.ok) {
+                        success.style.display = 'block';
+                        form.style.display = 'none';
+                        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        error.textContent = result.data.error || 'Something went wrong. Try again.';
+                        error.style.display = 'block';
+                        btn.textContent = 'Subscribe';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(function() {
+                    error.textContent = 'Network error. Try again.';
+                    error.style.display = 'block';
+                    btn.textContent = 'Subscribe';
+                    btn.disabled = false;
+                });
+            });
+        })();
+    </script>
+
+    <!-- Nav + Scroll -->
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+        });
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                });
+            });
+        })();
+        // Fade-in observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth -->
+    <script src="../course-auth.js"></script>
+    <script>RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase Selector + Season Selector Logic -->
+    <script>
+        var currentPhase = 'acft';
+        var currentSeason = null;
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+            currentSeason = null;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect ACFT & Written phase
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="acft"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
 </body>
 </html>

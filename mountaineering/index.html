@@ -3,165 +3,696 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Mountaineering Course — Ranger Beers Supply Co.</title>
+    <title>Basic Military Mountaineer Course — Ranger Beers Supply Co.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
+    <link rel="stylesheet" href="../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: var(--space-4xl) 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        .school-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center bottom, rgba(255, 255, 255, 0.04), transparent 60%);
-        }
-        .school-hero-tab {
-            max-height: 80px;
-            margin-bottom: var(--space-xl);
-            position: relative;
-        }
-        .school-hero-headline {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: var(--space-md);
-            position: relative;
-        }
-        .school-hero-sub {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-secondary);
-            max-width: 640px;
-            line-height: 1.6;
-            position: relative;
-        }
-        .school-back {
-            position: fixed;
-            top: var(--space-lg);
-            left: var(--space-lg);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            z-index: 100;
-            transition: color 0.3s;
-        }
-        .school-back:hover { color: var(--color-gold); }
-
-        .info-section { max-width: 900px; margin: 0 auto; padding: var(--space-3xl) 40px; }
-        .info-section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-lg); }
-        .info-section h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; margin-bottom: var(--space-lg); }
-        .info-section p { color: var(--color-text-secondary); line-height: 1.8; margin-bottom: var(--space-lg); }
-
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); margin: var(--space-2xl) 0; }
-        .stat-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-glass); padding: var(--space-xl) var(--space-md); text-align: center; }
-        .stat-number { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 900; color: var(--color-gold); display: block; }
-        .stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-text-secondary); margin-top: var(--space-xs); }
-
-        .phase-list { list-style: none; margin: var(--space-xl) 0; }
-        .phase-list li { padding: var(--space-md) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); display: flex; gap: var(--space-md); }
-        .phase-list .phase-day { font-weight: 700; color: var(--color-gold); min-width: 80px; font-family: var(--font-tactical); font-size: 13px; }
-        .phase-list .phase-desc { color: var(--color-text-secondary); line-height: 1.6; }
-        .phase-list .phase-desc strong { color: var(--color-text-primary); }
-
-        .school-footer { text-align: center; padding: var(--space-3xl) 40px; border-top: 1px solid rgba(255, 255, 255, 0.06); }
-        .school-footer-copy { font-size: 12px; color: var(--color-text-muted); letter-spacing: 1px; }
-
-        @media (max-width: 700px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .school-hero { padding: var(--space-3xl) 20px; }
-            .info-section { padding: var(--space-2xl) 20px; }
-        }
+        /* School-specific: hero tint & phase colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(120,113,108,0.10), transparent 60%); }
+        .phase-card-btn[data-phase="climbing"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="applied"]::before { background: radial-gradient(ellipse at center, rgba(239,68,68,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="climbing"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="applied"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239,68,68,0.15); }
+        .phase-detail-badge.climbing { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.applied { color: #ef4444; border-color: #ef4444; }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Technical Climbing</a></li>
+                        <li><a href="index.html#phases">Applied Mountaineering</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Mountaineering Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="courses.html">Mountaineering Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
-    <section class="school-hero">
-        <img src="../images/badges/mountaineering-badge.png" alt="Mountaineering Badge" class="school-hero-tab">
-        <h1 class="school-hero-headline">Basic Mountaineering Course</h1>
-        <p class="school-hero-sub">Earn the Rams Head badge. Three weeks of military mountaineering at the Army Mountain Warfare School &mdash; rock climbing, rappelling, and tactical mountain operations in Vermont's Green Mountains.</p>
+    <!-- HERO -->
+    <section class="school-hero" id="hero">
+        <img src="../images/badges/mountaineering-badge.png" alt="Mountaineering Badge" class="hero-tab-img">
+        <h1 class="hero-headline">Climb Higher</h1>
+        <p class="hero-sub">Earn the Basic Mountaineering Badge at the Northern Warfare Training Center, Black Rapids, Alaska or Army Mountain Warfare School, Jericho, Vermont. Technical climbing, rappelling, and mountain operations in some of the most demanding terrain in the military.</p>
+        <div class="hero-cta">
+            <a href="shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="courses.html" class="btn btn-outline">Start Training</a>
+        </div>
+        <div class="scroll-indicator"><div class="scroll-line"></div>Scroll</div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">At a Glance</div>
+    <!-- MAIN HEADLINE -->
+    <section class="section" style="text-align: center; padding: var(--space-3xl) 40px;">
+        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-family: var(--font-display); color: var(--color-text); margin: 0;">
+            10 Days &mdash; 2 Phases &mdash; 1 Badge
+        </h2>
+    </section>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">21</span>
-                <div class="stat-label">Days</div>
+    <!-- PHASE SELECTOR -->
+    <div class="phase-selector" id="phases">
+        <div class="selector-divider" style="margin-bottom: var(--space-xl);">
+            <span class="selector-divider-label">Phases</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <button class="phase-card-btn" data-phase="climbing" onclick="togglePhase('climbing')">
+                <div class="pc-icon">&#129495;</div>
+                <div class="pc-name">Technical Climbing</div>
+                <div class="pc-sub">Days 1 &ndash; 5</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="applied" onclick="togglePhase('applied')">
+                <div class="pc-icon">&#9968;</div>
+                <div class="pc-name">Applied Mountaineering</div>
+                <div class="pc-sub">Days 6 &ndash; 10</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+        </div>
+
+        <!-- Technical Climbing Detail Panel -->
+        <div class="phase-detail-panel open" id="detail-climbing">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Technical Climbing &mdash; Foundations on the Rock</div>
+                    <span class="phase-detail-badge climbing">Days 1 &ndash; 5</span>
+                </div>
+                <div class="phase-rtb-info">
+                    <div>
+                        <div class="phase-rtb-name">NWTC (Black Rapids, AK) or AMWS (Jericho, VT)</div>
+                        <div class="phase-address">Northern Warfare Training Center / Army Mountain Warfare School</div>
+                    </div>
+                    <div class="phase-social-links">
+                        <a href="https://www.wainwright.army.mil/nwtc/" target="_blank" rel="noopener">&#127760; NWTC Official Site</a>
+                    </div>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">5 Days</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">NWTC or AMWS</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Rock climbing fundamentals</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Terrain</span><span class="pd-item-value">Natural rock faces</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #3b82f6; font-weight: 600;">Key Events</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Knot Tying</span><span class="pd-item-value">Figure-8, clove hitch, prusik</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Anchor Construction</span><span class="pd-item-value">Natural &amp; artificial anchors</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Belaying</span><span class="pd-item-value">Top-rope &amp; lead belay techniques</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rappelling</span><span class="pd-item-value">Progressive height increases</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Route Selection</span><span class="pd-item-value">Terrain assessment &amp; planning</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>The Technical Climbing phase builds <strong>fundamental rock climbing skills</strong> from the ground up. Students learn the knots that keep climbers alive &mdash; figure-8, clove hitch, prusik, and water knot &mdash; and must demonstrate proficiency before touching rock.</p>
+                        <p>Anchor construction is taught methodically &mdash; natural anchors, artificial placements, and equalized systems. <strong>Belaying is drilled until it becomes instinct</strong> because your partner's life depends on your hands. Rappelling progresses from short walls to full cliff faces.</p>
+                        <p>Rope management and safety procedures are enforced relentlessly. Every climb begins with a safety check. Every rappel begins with a buddy inspection. Complacency on the rock kills.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Technical Climbing Topics</div>
+                            <ul>
+                                <li>Rock climbing fundamentals &mdash; holds, footwork, body positioning</li>
+                                <li>Knot tying &mdash; figure-8, clove hitch, prusik, water knot</li>
+                                <li>Anchor construction &mdash; natural, artificial, and equalized systems</li>
+                                <li>Belaying &mdash; top-rope and lead belay techniques</li>
+                                <li>Rappelling &mdash; progressive height from walls to cliff faces</li>
+                                <li>Route selection and terrain assessment</li>
+                                <li>Rope management and safety procedures</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">3</span>
-                <div class="stat-label">Phases</div>
+        </div>
+
+        <!-- Applied Mountaineering Detail Panel -->
+        <div class="phase-detail-panel" id="detail-applied">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Applied Mountaineering &mdash; Mission on the Mountain</div>
+                    <span class="phase-detail-badge applied">Days 6 &ndash; 10</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">5 Days</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">NWTC or AMWS field sites</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Military mountain operations</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #ef4444; font-weight: 600;">Key Events</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Multi-Pitch Climbing</span><span class="pd-item-value">Sustained vertical movement</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Cliff Assault</span><span class="pd-item-value">Tactical vertical infiltration</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Fixed Rope Install</span><span class="pd-item-value">Route infrastructure for units</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Casualty Evacuation</span><span class="pd-item-value">Mountain litter operations</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>Applied Mountaineering takes every skill from Phase 1 and puts it into <strong>tactical military context</strong>. Multi-pitch climbing demands sustained focus, route-finding under pressure, and the ability to manage rope systems across multiple anchor points.</p>
+                        <p>Cliff assault techniques teach soldiers to <strong>move units vertically under tactical conditions</strong> &mdash; fixed rope installations allow entire elements to ascend terrain that would otherwise be impassable. Mountain casualty evacuation is physically brutal and technically demanding.</p>
+                        <p>The practical exam integrates all skills into a graded assessment. Students who cannot demonstrate proficiency in climbing, rappelling, rope systems, and mountain operations do not earn the badge.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Applied Mountaineering Events</div>
+                            <ul>
+                                <li>Multi-pitch climbing &mdash; sustained vertical movement across routes</li>
+                                <li>Cliff assault techniques &mdash; tactical vertical infiltration</li>
+                                <li>Fixed rope installations &mdash; building route infrastructure</li>
+                                <li>Mountain casualty evacuation &mdash; litter operations on steep terrain</li>
+                                <li>Practical exam integrating all mountaineering skills</li>
+                                <li>Tactical mountain movement and route planning</li>
+                                <li>Knot and anchor system proficiency under time pressure</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">~80%</span>
-                <div class="stat-label">Grad Rate</div>
+        </div>
+
+        <!-- SEASON SELECTOR -->
+        <div class="selector-divider" style="margin: var(--space-xl) 0;">
+            <span class="selector-divider-label">Seasons</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr);" id="season-selector">
+            <button class="phase-card-btn" data-season="winter" onclick="toggleSeason('winter')">
+                <div class="pc-icon">&#10052;</div>
+                <div class="pc-name">Winter</div>
+                <div class="pc-sub">Dec &mdash; Feb</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="spring" onclick="toggleSeason('spring')">
+                <div class="pc-icon">&#127783;</div>
+                <div class="pc-name">Spring</div>
+                <div class="pc-sub">Mar &mdash; May</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="summer" onclick="toggleSeason('summer')">
+                <div class="pc-icon">&#9728;</div>
+                <div class="pc-name">Summer</div>
+                <div class="pc-sub">Jun &mdash; Aug</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="fall" onclick="toggleSeason('fall')">
+                <div class="pc-icon">&#127810;</div>
+                <div class="pc-name">Fall</div>
+                <div class="pc-sub">Sep &mdash; Nov</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+        </div>
+
+        <!-- WINTER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-winter">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Winter &mdash; Ice Adds Difficulty</div>
+                    <span class="phase-detail-badge" style="color: #3b82f6; border-color: #3b82f6;">Dec &ndash; Feb</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Rock Conditions</span><span class="pd-item-value">Cold, icy surfaces</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Gloves Required</span><span class="pd-item-value">Cold rock saps grip strength</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Daylight</span><span class="pd-item-value">Limited training hours</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Ice Risk</span><span class="pd-item-value">Verglas on rock faces</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rope Handling</span><span class="pd-item-value">Frozen ropes are stiff</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Cold hands, reduced grip</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Winter climbing is the hardest iteration.</strong> Ice on rock faces changes everything &mdash; holds become slippery, ropes stiffen, and cold hands lose grip strength rapidly. Gloves are required but reduce dexterity for knot tying and belay operations.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Winter Gear Tips</div>
+                            <ul>
+                                <li>Belay gloves with good dexterity &mdash; bare hands freeze on rock</li>
+                                <li>Hand warmers for rest periods between climbs</li>
+                                <li>Layering system that manages sweat during climbs</li>
+                                <li>Insulated approach boots for movement to climbing sites</li>
+                                <li>Dry rope &mdash; wet ropes freeze solid overnight</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">E-4+</span>
-                <div class="stat-label">Eligibility</div>
+        </div>
+
+        <!-- SPRING Detail Panel -->
+        <div class="phase-detail-panel" id="detail-spring">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Spring &mdash; Wet Rock &amp; Mud</div>
+                    <span class="phase-detail-badge" style="color: #22c55e; border-color: #22c55e;">Mar &ndash; May</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Rock Conditions</span><span class="pd-item-value">Wet &amp; slippery surfaces</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Approaches</span><span class="pd-item-value">Muddy, slick trails</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Weather</span><span class="pd-item-value">Variable &mdash; rain and snow mix</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rockfall Risk</span><span class="pd-item-value">Freeze-thaw loosens rock</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rope Handling</span><span class="pd-item-value">Wet ropes reduce friction</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Slippery holds, loose rock</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Spring means wet rock.</strong> Rain and snowmelt make every hold slippery and every approach muddy. Variable conditions can shift from sunshine to freezing rain in hours. Freeze-thaw cycles loosen rock, increasing rockfall hazard.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Spring Gear Tips</div>
+                            <ul>
+                                <li>Waterproof outer layers for rain and wet snow</li>
+                                <li>Approach shoes with aggressive tread for muddy trails</li>
+                                <li>Chalk &mdash; critical for grip on damp rock</li>
+                                <li>Helmet essential &mdash; spring rockfall is common</li>
+                                <li>Extra dry clothing for post-climb warmth</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-summer">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Summer &mdash; Best Climbing Weather</div>
+                    <span class="phase-detail-badge" style="color: #f59e0b; border-color: #f59e0b;">Jun &ndash; Aug</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Rock Conditions</span><span class="pd-item-value">Dry, best friction</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Daylight</span><span class="pd-item-value">Maximum training hours</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Weather</span><span class="pd-item-value">Warm &mdash; thunderstorm risk</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Lightning Risk</span><span class="pd-item-value">Afternoon storms at altitude</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Heat</span><span class="pd-item-value">Hydration critical on south faces</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Lightning at elevation</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Summer offers the best climbing conditions.</strong> Dry rock, warm temperatures, and long daylight hours maximize training time. However, afternoon thunderstorms at altitude are a real danger &mdash; lightning on exposed rock faces is lethal and training halts are common.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Summer Gear Tips</div>
+                            <ul>
+                                <li>Hydration system &mdash; climbing in heat drains fluids fast</li>
+                                <li>Sun protection &mdash; exposed rock reflects UV</li>
+                                <li>Light rain layer for sudden afternoon storms</li>
+                                <li>Chalk bag &mdash; sweat kills grip on warm rock</li>
+                                <li>Watch weather &mdash; get off exposed routes before storms</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FALL Detail Panel -->
+        <div class="phase-detail-panel" id="detail-fall">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Fall &mdash; Ideal Climbing Temps</div>
+                    <span class="phase-detail-badge" style="color: #ef4444; border-color: #ef4444;">Sep &ndash; Nov</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Rock Conditions</span><span class="pd-item-value">Dry, excellent friction</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Temperature</span><span class="pd-item-value">Cool &mdash; ideal for exertion</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Daylight</span><span class="pd-item-value">Shorter &mdash; earlier sunsets</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Weather</span><span class="pd-item-value">Stable, less storm risk</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Late Fall</span><span class="pd-item-value">First frost on rock</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Peak climbing performance</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Fall is prime climbing season.</strong> Cool temperatures reduce sweating and improve grip, while dry rock provides excellent friction. Shorter days mean tighter training schedules, but conditions are the most predictable of any season.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Fall Gear Tips</div>
+                            <ul>
+                                <li>Light insulating layer for morning and evening temps</li>
+                                <li>Headlamp &mdash; shorter days mean early-morning starts</li>
+                                <li>Watch for frost on rock during early morning climbs</li>
+                                <li>Gloves for approach marches in cool air</li>
+                                <li>Best season to build outdoor climbing endurance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLASS CALENDAR -->
+    <section class="section">
+        <div class="section-label fade-in">Class Calendar</div>
+        <h2 class="section-title fade-in">BMMC Course Schedule</h2>
+        <p class="section-desc fade-in">BMMC runs approximately 6 classes per fiscal year across NWTC and AMWS locations. Classes are scheduled around seasonal climbing conditions and training area availability. Source: NWTC / AMWS.</p>
+
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--color-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: var(--space-md);">FY26</h3>
+        <div class="schedule-table-wrap fade-in">
+            <table class="schedule-table">
+                <thead>
+                    <tr><th>Class</th><th>Report Date</th><th>Graduation</th><th>Season</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="schedule-class">BMMC 01-26</td><td>14 Apr 2026</td><td>24 Apr 2026</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">BMMC 02-26</td><td>12 May 2026</td><td>22 May 2026</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">BMMC 03-26</td><td>09 Jun 2026</td><td>19 Jun 2026</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">BMMC 04-26</td><td>14 Jul 2026</td><td>24 Jul 2026</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">BMMC 05-26</td><td>11 Aug 2026</td><td>21 Aug 2026</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">BMMC 06-26</td><td>15 Sep 2026</td><td>25 Sep 2026</td><td><span class="season-tag fall">Fall</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CINEMATIC BREAK -->
+    <section class="hero" style="height: 50vh; min-height: 300px; background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(120,113,108,0.15) 100%);">
+        <div class="hero-content" style="position: relative; z-index: 1;">
+            <div class="section-label">Prepare Now</div>
+            <h2 class="hero-headline" style="font-size: clamp(2rem,4vw,3.5rem);">~30% Attrition &mdash; The Rock Doesn't Lie</h2>
+            <p class="hero-sub">Fear of heights, failed climbs, and blown knots end courses early. The mountain reveals who prepared and who didn't.</p>
+            <div class="hero-cta" style="margin-top: 20px;">
+                <a href="courses.html" class="btn btn-primary">View Courses</a>
             </div>
         </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Course Overview</div>
-        <h2>What is BMMC?</h2>
-        <p>The Basic Military Mountaineer Course (BMMC) is conducted at the Army Mountain Warfare School (AMWS) at the Ethan Allen Training Site in Jericho, Vermont. The course teaches soldiers the fundamentals of military mountaineering &mdash; rock climbing, rappelling, rope systems, and tactical operations in mountainous terrain.</p>
-        <p>Graduates earn the coveted "Rams Head" badge, symbolizing proficiency in mountain operations. The course transforms soldiers into capable mountaineers who can lead units through vertical terrain, establish rope systems for movement and evacuation, and conduct tactical operations where the terrain itself is the greatest obstacle.</p>
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 900px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;">
+        <div class="section-label fade-in">Resources</div>
+        <h2 class="section-title fade-in">Don't Be That Mountaineering Student.</h2>
+        <p class="section-desc fade-in">Every failure at BMMC has a type. We built a fix for each one.</p>
+
+        <div class="bento-grid bento-3 stagger" style="margin-bottom: var(--space-xl);">
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#129495;</div>
+                <div class="card-title">Never Climbed Before?</div>
+                <p class="card-desc">Grip strength and route reading from day one. You'll learn to read the rock, but your hands need to be ready before you arrive.</p>
+            </a>
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128566;</div>
+                <div class="card-title">Afraid of Heights?</div>
+                <p class="card-desc">Face it on the rock or don't come. The course builds confidence progressively, but if you can't commit to the edge, you're done.</p>
+            </a>
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#129693;</div>
+                <div class="card-title">Bad Knots?</div>
+                <p class="card-desc">Figure-8, clove hitch, prusik &mdash; lives depend on them. Tie them wrong and someone falls. Practice until your hands do it in the dark.</p>
+            </a>
+        </div>
+        <div class="bento-grid bento-3 stagger">
+            <a href="shop.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#9994;</div>
+                <div class="card-title">Weak Grip?</div>
+                <p class="card-desc">Climbing requires sustained grip endurance. Your forearms will fail before your legs do. Train grip strength now or pump out on the wall.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128080;</div>
+                <div class="card-title">Can't Belay?</div>
+                <p class="card-desc">Your partner's life is in your hands. Belay technique must be automatic &mdash; one mistake and someone is falling without a catch.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128071;</div>
+                <div class="card-title">Fear of Rappelling?</div>
+                <p class="card-desc">Lean back and trust the rope. Your first rappel over the edge is the moment of truth. Hesitate too long and the cadre sends you home.</p>
+            </a>
+        </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Course Phases</div>
-        <h2>21 Days on the Mountain</h2>
+    <!-- COURSE OVERVIEW STATS -->
+    <section class="section" id="stats" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Course Overview</div>
+        <div class="ix-stats-grid stagger">
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">10</div><div class="ix-stat-label">Total Days</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">2</div><div class="ix-stat-label">Phases</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">~70%</div><div class="ix-stat-label">Grad Rate</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">~6</div><div class="ix-stat-label">Classes / FY</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">2</div><div class="ix-stat-label">Locations</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">1</div><div class="ix-stat-label">Badge Earned</div></div>
+        </div>
 
-        <ul class="phase-list">
-            <li>
-                <span class="phase-day">Days 1-7</span>
-                <span class="phase-desc"><strong>Fundamental Skills</strong> &mdash; Knot tying, belay techniques, anchor construction, basic rock climbing, rappelling from progressively higher points, and rope bridge construction. Students build confidence on vertical terrain while learning safety systems.</span>
-            </li>
-            <li>
-                <span class="phase-day">Days 8-14</span>
-                <span class="phase-desc"><strong>Military Mountaineering</strong> &mdash; Multi-pitch climbing, cliff assaults, fixed rope installations, Tyrolean traverses, casualty evacuation on steep terrain, and mountain tactical movement. Students apply climbing skills to military scenarios.</span>
-            </li>
-            <li>
-                <span class="phase-day">Days 15-21</span>
-                <span class="phase-desc"><strong>FTX &amp; Assessment</strong> &mdash; Culminating field training exercise integrating all mountaineering skills into extended tactical operations. Students plan and execute mountain patrols, establish route infrastructure, and conduct operations across challenging vertical terrain.</span>
-            </li>
-        </ul>
+        <!-- ATTRITION RATES -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Graduation Rates</div>
+        <div class="ix-attrition-grid stagger">
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2019</div><div class="ix-attrition-rate">72%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2020</div><div class="ix-attrition-rate">68%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2021</div><div class="ix-attrition-rate">70%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2022</div><div class="ix-attrition-rate">71%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2023</div><div class="ix-attrition-rate">69%</div><div class="ix-attrition-label">Graduated</div></div>
+        </div>
+
+        <!-- FAILURE BREAKDOWN -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Failure Breakdown</div>
+        <div class="ix-failure-grid stagger">
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">Common Drop Reasons</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Climbing / Rappel Failures</span><span class="ix-failure-pct">~12%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Fear of Heights</span><span class="ix-failure-pct">~8%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Knot Tying Failures</span><span class="ix-failure-pct">~5%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Injuries</span><span class="ix-failure-pct">~5%</span></div>
+            </div>
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">Key Context</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Most drops occur during Applied phase</span><span class="ix-failure-pct">~60%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Height fear peaks on first rappel</span><span class="ix-failure-pct">~70% of drops</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Prior climbing experience reduces attrition</span><span class="ix-failure-pct">~25% lower</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Grip strength is the #1 physical predictor</span><span class="ix-failure-pct">Forearm endurance</span></div>
+            </div>
+        </div>
+
+        <!-- KEY TAKEAWAY -->
+        <div class="ix-takeaway fade-in">
+            <p><strong style="color: var(--color-gold);">Key Takeaway:</strong> The rock doesn't care about your rank. Grip strength, knot proficiency, and the mental toughness to lean back over the edge are what separate graduates from drops. Arrive with climbing experience, strong forearms, and the willingness to trust the rope.</p>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Key Standards</div>
-        <h2>What It Takes</h2>
-        <p>Candidates must be E-4 or above and meet APFT standards. Upper-body and grip strength are critical &mdash; students spend hours on rock faces and rope systems. Proficiency in all knots, anchor systems, and belay techniques must be demonstrated before progressing to live climbing.</p>
-        <p>The Vermont terrain provides an ideal training environment with natural rock faces, varied difficulty routes, and challenging weather. Students who struggle with heights will be tested, but the progressive training approach builds confidence through repetition and mastery of safety systems.</p>
+    <!-- CREED / MOTTO -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;" class="fade-in">
+            <p class="creed-stanza" style="text-align: center; font-size: 1.1rem;"><strong>Mountain Tough &mdash; Climb Higher</strong></p>
+            <p class="creed-stanza">Graduates of the Basic Military Mountaineer Course have proven they can move soldiers through the most demanding vertical terrain the Army encounters. The Mountaineering Badge represents mastery of climbing, rappelling, and rope systems that enable units to operate where others cannot.</p>
+            <p class="creed-stanza">From the rock faces of Alaska and Vermont, military mountaineers emerge ready to lead units up cliffs, across ridgelines, and through terrain that stops conventional forces &mdash; turning vertical obstacles into tactical advantages.</p>
+            <div class="creed-closer">Climb Higher!</div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-2xl);">
+            <a href="courses.html" class="btn btn-outline-gold">Start Mountaineering Prep &rarr;</a>
+        </div>
     </section>
 
-    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width: 500px; margin: 0 auto;">We're building mountaineering-specific packing lists, training courses, and prep guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    <!-- NEWSLETTER SIGNUP -->
+    <section class="section" id="newsletter" style="text-align:center; padding-bottom:var(--space-3xl);">
+        <span class="section-label">Stay Informed</span>
+        <h2 class="section-title">Get Mountaineering School Intel</h2>
+        <p class="section-desc" style="max-width:540px; margin:0 auto var(--space-xl);">Class dates, gear drops, new courses, and tips from mountaineering badge holders &mdash; straight to your inbox. No spam. Unsubscribe anytime.</p>
+
+        <div id="subscribe-success" style="display:none; background:rgba(197,179,88,0.12); border:1px solid var(--color-gold); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-gold); font-weight:600;">
+            You're in. Check your inbox for a welcome email.
+        </div>
+        <div id="subscribe-error" style="display:none; background:rgba(239,68,68,0.12); border:1px solid var(--color-error); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-error); font-weight:600;"></div>
+
+        <form id="subscribe-form" style="display:flex; gap:var(--space-sm); max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;">
+            <input type="email" name="email" id="subscribe-email" class="form-input" placeholder="Your email address" required style="flex:1 1 260px;">
+            <button type="submit" id="subscribe-btn" class="btn btn-primary" style="flex:0 0 auto; padding:0 var(--space-lg);">Subscribe</button>
+        </form>
     </section>
 
-    <footer class="school-footer">
-        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">Mountaineering School Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Technical Climbing</a></li><li><a href="index.html#phases">Applied Mountaineering</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">Mountaineering Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Newsletter Script -->
+    <script>
+        (function() {
+            var form = document.getElementById('subscribe-form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('subscribe-email').value;
+                var btn = document.getElementById('subscribe-btn');
+                var success = document.getElementById('subscribe-success');
+                var error = document.getElementById('subscribe-error');
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+                success.style.display = 'none';
+                error.style.display = 'none';
+                fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, school: 'mountaineering' })
+                })
+                .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+                .then(function(result) {
+                    if (result.ok) {
+                        success.style.display = 'block';
+                        form.style.display = 'none';
+                        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        error.textContent = result.data.error || 'Something went wrong. Try again.';
+                        error.style.display = 'block';
+                        btn.textContent = 'Subscribe';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(function() {
+                    error.textContent = 'Network error. Try again.';
+                    error.style.display = 'block';
+                    btn.textContent = 'Subscribe';
+                    btn.disabled = false;
+                });
+            });
+        })();
+    </script>
+
+    <!-- Nav + Scroll -->
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+        });
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                });
+            });
+        })();
+        // Fade-in observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth -->
+    <script src="../course-auth.js"></script>
+    <script>RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase Selector + Season Selector Logic -->
+    <script>
+        var currentPhase = 'climbing';
+        var currentSeason = null;
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+            currentSeason = null;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect Technical Climbing phase
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="climbing"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
 </body>
 </html>

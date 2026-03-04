@@ -262,6 +262,170 @@
                 </div>
             </div>
         </div>
+
+        <!-- SEASON SELECTOR -->
+        <div class="selector-divider" style="margin: var(--space-xl) 0;">
+            <span class="selector-divider-label">Seasons</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr);" id="season-selector">
+            <button class="phase-card-btn" data-season="winter" onclick="toggleSeason('winter')">
+                <div class="pc-icon">&#10052;</div>
+                <div class="pc-name">Winter</div>
+                <div class="pc-sub">Dec &mdash; Feb</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="spring" onclick="toggleSeason('spring')">
+                <div class="pc-icon">&#127783;</div>
+                <div class="pc-name">Spring</div>
+                <div class="pc-sub">Mar &mdash; May</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="summer" onclick="toggleSeason('summer')">
+                <div class="pc-icon">&#9728;</div>
+                <div class="pc-name">Summer</div>
+                <div class="pc-sub">Jun &mdash; Aug</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="fall" onclick="toggleSeason('fall')">
+                <div class="pc-icon">&#127810;</div>
+                <div class="pc-name">Fall</div>
+                <div class="pc-sub">Sep &mdash; Nov</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+        </div>
+
+        <!-- WINTER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-winter">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Winter &mdash; Wind Holds &amp; Cold DZs</div>
+                    <span class="phase-detail-badge" style="color: #3b82f6; border-color: #3b82f6;">Dec &ndash; Feb</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">52 &ndash; 58 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">32 &ndash; 37 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rain</span><span class="pd-item-value">3.5 &ndash; 4.5 in/mo</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Wind</span><span class="pd-item-value">Frequent holds on DZ</span></div>
+                        <div class="pd-item"><span class="pd-item-name">JMPI Impact</span><span class="pd-item-value">Cold hands slow inspections</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Wind delays extend course</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Winter jumpmaster courses face wind holds.</strong> Cold fingers slow JMPI inspections, and DZ conditions are frequently marginal. Students may wait days for acceptable wind speeds for their practice jumps.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Winter Gear Tips</div>
+                            <ul>
+                                <li>Glove inserts &mdash; keep hands functional for JMPI</li>
+                                <li>Polypro base layers for sustained aircraft area waits</li>
+                                <li>Neck gaiter for DZ wind</li>
+                                <li>Hand warmers &mdash; essential for inspection dexterity</li>
+                                <li>Patience &mdash; wind holds are part of winter JM school</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPRING Detail Panel -->
+        <div class="phase-detail-panel" id="detail-spring">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Spring &mdash; Good Jump Weather, Pollen</div>
+                    <span class="phase-detail-badge" style="color: #22c55e; border-color: #22c55e;">Mar &ndash; May</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">68 &ndash; 82 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">44 &ndash; 60 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rain</span><span class="pd-item-value">3.5 &ndash; 4.5 in/mo</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Pollen</span><span class="pd-item-value">Extreme &mdash; affects DZ visibility</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Jump Conditions</span><span class="pd-item-value">Generally favorable</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Comfortable JMPI and study weather</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Spring offers the best balance for Jumpmaster School.</strong> Comfortable temperatures for the intense academic study periods, and generally favorable jump weather. Georgia pollen is brutal &mdash; bring medication.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Spring Gear Tips</div>
+                            <ul>
+                                <li>Allergy meds &mdash; Georgia pine pollen is extreme</li>
+                                <li>Rain jacket for afternoon showers</li>
+                                <li>Light layers for morning JMPI practice</li>
+                                <li>Comfortable study gear for classroom phases</li>
+                                <li>Sunscreen for DZ time</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-summer">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Summer &mdash; Heat on the Tarmac</div>
+                    <span class="phase-detail-badge" style="color: #f59e0b; border-color: #f59e0b;">Jun &ndash; Aug</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">89 &ndash; 93 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">68 &ndash; 72 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Humidity</span><span class="pd-item-value">70 &ndash; 80%</span></div>
+                        <div class="pd-item"><span class="pd-item-name">JMPI Impact</span><span class="pd-item-value">Sweating affects grip and vision</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Heat Index</span><span class="pd-item-value">100&deg;F+ on flight line</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Heat exhaustion during DZ ops</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Georgia summer heat on the tarmac is punishing.</strong> JMPI practice in full sun with body armor and T-11 parachutes is brutal. The flight line and DZ have no shade. Hydration discipline is critical for the academic and practical phases.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Summer Gear Tips</div>
+                            <ul>
+                                <li>Hydration system for all outdoor training</li>
+                                <li>Electrolytes &mdash; essential for tarmac time</li>
+                                <li>Cooling towel for JMPI practice breaks</li>
+                                <li>Extra undershirts &mdash; multiple per day</li>
+                                <li>Arrive acclimatized to Georgia heat</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FALL Detail Panel -->
+        <div class="phase-detail-panel" id="detail-fall">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Fall &mdash; Best Overall Season</div>
+                    <span class="phase-detail-badge" style="color: #ef4444; border-color: #ef4444;">Sep &ndash; Nov</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">70 &ndash; 85 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">46 &ndash; 65 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rain</span><span class="pd-item-value">2.5 &ndash; 3.5 in/mo</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Wind</span><span class="pd-item-value">Generally calm</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Jump Conditions</span><span class="pd-item-value">Excellent</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Best overall conditions</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Fall is the best time for Jumpmaster School.</strong> Comfortable temperatures for study sessions and JMPI practice, calm winds for jump requirements, and minimal weather delays. New FY classes start in October with full cadre staffing.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Fall Gear Tips</div>
+                            <ul>
+                                <li>Light layers for morning-to-afternoon changes</li>
+                                <li>Standard packing list is sufficient</li>
+                                <li>Comfortable indoor shoes for long study sessions</li>
+                                <li>Good lighting for evening JMPI study</li>
+                                <li>Bring all study materials &mdash; perfect weather for focus</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- CLASS CALENDAR -->
@@ -300,15 +464,48 @@
         </div>
     </section>
 
-    <!-- CINEMATIC BREAK -->
-    <section class="hero" style="height: 50vh; min-height: 300px; background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(245,158,11,0.1) 100%);">
-        <div class="hero-content" style="position: relative; z-index: 1;">
-            <div class="section-label">Prepare Now</div>
-            <h2 class="hero-headline" style="font-size: clamp(2rem,4vw,3.5rem);">~60% Wash Rate &mdash; Trust Is Earned</h2>
-            <p class="hero-sub">Every jumper's life depends on their jumpmaster. The standard is absolute.</p>
-            <div class="hero-cta" style="margin-top: 20px;">
-                <a href="courses.html" class="btn btn-primary">View Courses</a>
-            </div>
+    <!-- T-11 PRE-JUMP BRIEFING -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div class="prejump-section fade-in">
+            <div class="section-label" style="margin-bottom: var(--space-lg);">ATPS T-11 Pre-Jump Training</div>
+            <h2 style="font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; color: var(--color-white); margin-bottom: var(--space-xl); text-align: center;">T-11 Advanced Tactical Parachute System &mdash; Pre-Jump Briefing</h2>
+
+            <div class="prejump-topic-title">1. Actions Inside the Aircraft</div>
+            <p>The Jumpmaster commands the stick through all pre-jump actions. Upon the command &ldquo;GET READY,&rdquo; jumpers assume the preparatory position. On &ldquo;STAND UP,&rdquo; jumpers rise and face the skin of the aircraft. &ldquo;HOOK UP&rdquo; &mdash; attach the static line snap hook to the anchor line cable. &ldquo;CHECK STATIC LINES&rdquo; &mdash; trace your static line from the snap hook to the pack tray. &ldquo;CHECK EQUIPMENT&rdquo; &mdash; conduct a head-to-toe self-check and check the jumper in front of you. &ldquo;SOUND OFF FOR EQUIPMENT CHECK&rdquo; &mdash; slap the jumper ahead and shout &ldquo;OK!&rdquo;</p>
+
+            <div class="prejump-topic-title">2. Proper Exit Technique</div>
+            <p>On &ldquo;GO,&rdquo; hand your static line to the safety and step into the door. Maintain a tight body position &mdash; feet and knees together, hands on the ends of the reserve, chin on chest, elbows tight. Jump up and out at a 45-degree angle with a vigorous exit. Count: &ldquo;One thousand, two thousand, three thousand, four thousand.&rdquo; Check canopy.</p>
+
+            <div class="prejump-topic-title">3. Canopy Check &amp; Control</div>
+            <p>At the end of the four-second count, look up and check your canopy. The T-11 is a round parachute with a modified shape that reduces oscillation and descent rate compared to the T-10D. Verify: canopy is fully deployed, no malfunctions (blown panels, line-overs, cigarette rolls, Mae Wests, or inversions). If the canopy is good, gain canopy control by pulling on the appropriate risers to steer toward the DZ.</p>
+
+            <div class="prejump-topic-title">4. Malfunctions &amp; Reserve Procedures</div>
+            <p>If you have a total malfunction (no canopy deployment by the end of your count): immediately activate the reserve parachute. Pull the ripcord handle with your right hand, pull the reserve straight out, and throw it into the airstream away from your body. For partial malfunctions (canopy deployed but not functioning properly): if you cannot correct it with riser manipulation within 2 seconds, activate the reserve.</p>
+            <ul>
+                <li>Total malfunction &mdash; activate reserve immediately</li>
+                <li>Partial malfunction &mdash; attempt to correct, then reserve</li>
+                <li>Towed jumper &mdash; await Jumpmaster action, prepare reserve</li>
+                <li>Entanglement &mdash; communicate with other jumper, separate if possible</li>
+            </ul>
+
+            <div class="prejump-topic-title">5. Parachute Landing Fall (PLF)</div>
+            <p>The T-11 descends at approximately 19 feet per second (compared to 24 fps for the T-10D). Prepare for landing at 200 feet AGL. Feet and knees together, knees slightly bent, chin on chest, elbows tight. Make contact on the balls of the feet and execute a PLF through the five points of contact: balls of feet, calf, thigh, buttocks, and pull-up muscle. Do NOT try to stand up &mdash; fall into the PLF.</p>
+
+            <div class="prejump-topic-title">6. Jumpmaster Personnel Inspection (JMPI)</div>
+            <p>The JMPI is the heart of Jumpmaster School. The Jumpmaster inspects each parachutist from head to toe in a specific sequence covering every point of attachment, routing, and rigging. A single missed deficiency on the JMPI practical exam results in failure. The sequence covers: helmet, reserve parachute, harness, main parachute, static line, combat equipment, and lowering line.</p>
+            <ul>
+                <li>Front inspection &mdash; helmet, reserve, harness, equipment</li>
+                <li>Right-side inspection &mdash; static line routing, connector snap</li>
+                <li>Rear inspection &mdash; main pack tray, static line stowage</li>
+                <li>Left-side inspection &mdash; universal static line, ALICE clips</li>
+            </ul>
+
+            <div class="prejump-topic-title">7. Sustained Airborne Training (SAT)</div>
+            <p>After graduation, Jumpmasters are responsible for conducting sustained airborne training for their units. This includes pre-jump briefings for every airborne operation, JMPI of all jumpers, safety of flight coordination, and DZ operations. The Jumpmaster is the final authority on whether conditions are safe for a jump. This responsibility is absolute.</p>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-2xl);">
+            <a href="courses.html" class="btn btn-outline-gold">Start Jumpmaster Prep &rarr;</a>
         </div>
     </section>
 
@@ -534,24 +731,44 @@
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
     <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
 
-    <!-- Phase Selector Logic -->
+    <!-- Phase + Season Selector Logic -->
     <script>
         var currentPhase = 'ground';
+        var currentSeason = null;
         function togglePhase(phase) {
             var panels = document.querySelectorAll('.phase-detail-panel');
             var panel = document.getElementById('detail-' + phase);
             if (currentPhase === phase) {
-                document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
                 panels.forEach(function(p) { p.classList.remove('open'); });
                 currentPhase = null;
                 return;
             }
-            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
             panels.forEach(function(p) { p.classList.remove('open'); });
             if (panel) panel.classList.add('open');
             var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
             if (btn) btn.classList.add('active');
             currentPhase = phase;
+        }
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                if (panel) panel.classList.remove('open');
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+            ['winter','spring','summer','fall'].forEach(function(s) {
+                var p = document.getElementById('detail-' + s);
+                if (p) p.classList.remove('open');
+            });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
         }
         // Preselect Ground Phase
         (function() {

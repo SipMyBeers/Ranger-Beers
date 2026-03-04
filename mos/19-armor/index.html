@@ -8,248 +8,689 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../course-styles.css">
+    <link rel="stylesheet" href="../../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: var(--space-4xl) 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        .school-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center bottom, rgba(34, 197, 94, 0.08), transparent 60%);
-        }
-        .school-hero-tab {
-            max-height: 80px;
-            margin-bottom: var(--space-xl);
-            position: relative;
-        }
-        .school-hero-headline {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: var(--space-md);
-            position: relative;
-        }
-        .school-hero-sub {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-secondary);
-            max-width: 640px;
-            line-height: 1.6;
-            position: relative;
-        }
-        .school-back {
-            position: fixed;
-            top: var(--space-lg);
-            left: var(--space-lg);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            z-index: 100;
-            transition: color 0.3s;
-        }
-        .school-back:hover { color: var(--color-gold); }
-
-        .info-section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: var(--space-3xl) 40px;
-        }
-        .info-section-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--color-gold);
-            margin-bottom: var(--space-lg);
-        }
-        .info-section h2 {
-            font-size: clamp(1.5rem, 3vw, 2.25rem);
-            font-weight: 800;
-            margin-bottom: var(--space-lg);
-        }
-        .info-section p {
-            color: var(--color-text-secondary);
-            line-height: 1.8;
-            margin-bottom: var(--space-lg);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-md);
-            margin: var(--space-2xl) 0;
-        }
-        .stat-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-glass);
-            padding: var(--space-xl) var(--space-md);
-            text-align: center;
-        }
-        .stat-number {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 900;
-            color: var(--color-gold);
-            display: block;
-        }
-        .stat-label {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--color-text-secondary);
-            margin-top: var(--space-xs);
-        }
-
-        .phase-list {
-            list-style: none;
-            margin: var(--space-xl) 0;
-        }
-        .phase-list li {
-            padding: var(--space-md) 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            gap: var(--space-md);
-        }
-        .phase-list .phase-day {
-            font-weight: 700;
-            color: var(--color-gold);
-            min-width: 80px;
-            font-family: var(--font-tactical);
-            font-size: 13px;
-        }
-        .phase-list .phase-desc {
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-        .phase-list .phase-desc strong {
-            color: var(--color-text-primary);
-        }
-
-        .school-footer {
-            text-align: center;
-            padding: var(--space-3xl) 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .school-footer-copy {
-            font-size: 12px;
-            color: var(--color-text-muted);
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 700px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .school-hero { padding: var(--space-3xl) 20px; }
-            .info-section { padding: var(--space-2xl) 20px; }
-        }
+        /* MOS-specific: hero tint & specialty colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(245,158,11,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="19k"]::before { background: radial-gradient(ellipse at center, rgba(245,158,11,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="19d"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="19z"]::before { background: radial-gradient(ellipse at center, rgba(239,68,68,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="19k"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.15); }
+        .phase-card-btn.active[data-phase="19d"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="19z"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239,68,68,0.15); }
+        .phase-detail-badge.b19k { color: #f59e0b; border-color: #f59e0b; }
+        .phase-detail-badge.b19d { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.b19z { color: #ef4444; border-color: #ef4444; }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Specialties</span></li>
+                        <li><a href="index.html#specialties">19K &mdash; M1 Armor Crewman</a></li>
+                        <li><a href="index.html#specialties">19D &mdash; Cavalry Scout</a></li>
+                        <li><a href="index.html#specialties">19Z &mdash; Senior Armor Sergeant</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../shop.html">Armor Gear</a></li>
+                        <li><a href="../../shop.html">Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../courses.html">Armor Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="../../resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="snipcart-checkout nav-cart-btn" title="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span class="snipcart-items-count nav-cart-count"></span>
+                </button>
+                <div id="auth-ui">
+                    <button class="btn-sm btn-outline" id="auth-signin-btn" style="display:none;">Sign&nbsp;In</button>
+                    <button class="btn-sm btn-outline" id="auth-signout-btn" style="display:none;">Sign&nbsp;Out</button>
+                </div>
+                <button class="nav-mobile-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- HERO -->
     <section class="school-hero">
-        <div style="height:80px;width:80px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:50%;font-family:var(--font-tactical);font-size:32px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">19</div>
-        <h1 class="school-hero-headline">Armor</h1>
-        <p class="school-hero-sub">Mounted combat power. Armor and Cavalry Soldiers operate tanks, fighting vehicles, and conduct reconnaissance to find, fix, and destroy the enemy.</p>
+        <div class="hero-badge-text">19</div>
+        <h1 class="school-hero-headline">Treat 'Em Rough</h1>
+        <p class="school-hero-sub">The Army's mounted combat arm. Armor and Cavalry Soldiers operate tanks, fighting vehicles, and conduct reconnaissance to close with and destroy the enemy by fire, maneuver, and shock action.</p>
+        <div class="school-hero-cta">
+            <a href="../../shop.html" class="btn-primary">Shop Gear</a>
+            <a href="../../courses.html" class="btn-outline">Start Training</a>
+        </div>
+        <div class="school-scroll-indicator">
+            <span class="school-scroll-text">Scroll</span>
+            <div class="school-scroll-line"></div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">At a Glance</div>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">22-wk</span>
-                <div class="stat-label">OSUT</div>
+    <!-- MAIN HEADLINE -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Career Field at a Glance</div>
+        <h2 class="school-section-title">22-Week OSUT &mdash; 3 MOS &mdash; 1 Mission: Armored Warfare</h2>
+        <p class="school-section-body">The 19-Series is the Army's armored combat force. From M1 Abrams tankers to Cavalry Scouts on the forward edge, Armor Soldiers deliver overwhelming firepower and shock action in every fight.</p>
+    </section>
+
+    <!-- MOS SPECIALTIES SELECTOR -->
+    <section class="school-section fade-in" id="specialties">
+        <div class="school-section-label">MOS Specialties</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(3, 1fr);">
+            <button class="phase-card-btn active" data-phase="19k" onclick="togglePhase('19k')">
+                <span class="phase-card-icon">&#9881;</span>
+                <span class="phase-card-title">19K</span>
+                <span class="phase-card-sub">M1 Armor Crewman</span>
+            </button>
+            <button class="phase-card-btn" data-phase="19d" onclick="togglePhase('19d')">
+                <span class="phase-card-icon">&#128065;</span>
+                <span class="phase-card-title">19D</span>
+                <span class="phase-card-sub">Cavalry Scout</span>
+            </button>
+            <button class="phase-card-btn" data-phase="19z" onclick="togglePhase('19z')">
+                <span class="phase-card-icon">&#11088;</span>
+                <span class="phase-card-title">19Z</span>
+                <span class="phase-card-sub">Senior Armor Sergeant</span>
+            </button>
+        </div>
+
+        <!-- 19K Detail -->
+        <div class="phase-detail-panel open" id="detail-19k">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b19k">19K</span>
+                    <div class="phase-detail-rtb">M1 Armor Crewman</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">OSUT</span><span>22 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Moore, GA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>CO: 87</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Arms</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Gunnery, Tank Ops, Maintenance, Crew Drills</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 19K M1 Armor Crewman operates the M1 Abrams &mdash; one of the most lethal main battle tanks in the world. Tankers crew a 70-ton, 1,500-horsepower platform armed with a 120mm smoothbore cannon, delivering devastating firepower and shock action on the modern battlefield. OSUT at Fort Moore combines Basic Combat Training and Advanced Individual Training into a continuous 22-week course.</p>
+                    <p>Training progresses from individual soldier skills through crew-level gunnery tables, culminating in live-fire maneuver exercises. Graduates are qualified in M1 Abrams operations, gunnery, maintenance, and combined arms maneuver.</p>
+                    <ul class="phase-detail-list">
+                        <li>M1 Abrams tank operations: driving, loading, gunning, and tank commanding</li>
+                        <li>Gunnery tables I through XII &mdash; individual through platoon live fire</li>
+                        <li>Preventive maintenance checks and services (PMCS) on the M1 platform</li>
+                        <li>Crew drills: react to contact, action on FASCAM, breach obstacle</li>
+                        <li>Combined arms maneuver with infantry and artillery</li>
+                        <li>Mounted and dismounted land navigation</li>
+                        <li>Field training exercise (FTX) with live-fire gunnery lanes</li>
+                    </ul>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">2</span>
-                <div class="stat-label"># of MOS</div>
+        </div>
+
+        <!-- 19D Detail -->
+        <div class="phase-detail-panel" id="detail-19d">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b19d">19D</span>
+                    <div class="phase-detail-rtb">Cavalry Scout</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">OSUT</span><span>22 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Moore, GA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>CO: 87</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Arms</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Recon, Surveillance, Bradley Ops, Target Acquisition</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 19D Cavalry Scout is the eyes and ears of the battlefield. Cav Scouts conduct reconnaissance, surveillance, and security operations far forward of friendly lines, providing commanders with critical intelligence on enemy disposition, terrain, and obstacles. They operate Bradley Fighting Vehicles, HMMWVs, and Strykers depending on the unit type.</p>
+                    <p>19Ds complete 22-week OSUT at Fort Moore with specialized training in reconnaissance techniques, reporting procedures, and mounted/dismounted operations. Scouts must master route, zone, and area reconnaissance as well as screening operations.</p>
+                    <ul class="phase-detail-list">
+                        <li>Route, zone, and area reconnaissance operations</li>
+                        <li>Surveillance and target acquisition techniques</li>
+                        <li>Bradley Fighting Vehicle operations and gunnery</li>
+                        <li>Screening operations and counter-reconnaissance</li>
+                        <li>Call for fire and close air support procedures</li>
+                        <li>Mounted and dismounted patrol operations</li>
+                        <li>SALUTE and intelligence reporting, map overlay production</li>
+                    </ul>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">~95%</span>
-                <div class="stat-label">Grad Rate</div>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">Ft Moore</span>
-                <div class="stat-label">Key Installation</div>
+        </div>
+
+        <!-- 19Z Detail -->
+        <div class="phase-detail-panel" id="detail-19z">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b19z">19Z</span>
+                    <div class="phase-detail-rtb">Senior Armor Sergeant</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Selection</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>BN/BDE Level</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Senior Enlisted Leader</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Master Gunner, Training Mgmt, Armor Operations</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 19Z Senior Armor Sergeant is the pinnacle of enlisted Armor leadership. 19Zs serve as operations sergeants major, first sergeants, and command sergeants major at battalion and brigade level. They are responsible for BN/BDE armor operations, training management, and the tactical employment of the unit's armored combat power.</p>
+                    <p>Reaching 19Z requires decades of Armor experience, completion of the Senior Leader Course and Sergeants Major Academy, the Master Gunner track, and a record of proven performance across multiple duty positions in both tank and cavalry organizations.</p>
+                    <ul class="phase-detail-list">
+                        <li>BN/BDE armor operations planning and execution</li>
+                        <li>Master Gunner track &mdash; unit gunnery training expert</li>
+                        <li>Training management and readiness reporting at BN/BDE level</li>
+                        <li>Personnel management, evaluations, and career counseling</li>
+                        <li>Doctrine development and combined arms integration</li>
+                        <li>Mentorship of junior NCOs and officer integration</li>
+                        <li>Combat leadership at the highest enlisted levels</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Career Field Overview</div>
-        <h2>What is Armor?</h2>
-        <p>The Armor Branch is the Army's mounted combat arm, employing tanks, Bradley Fighting Vehicles, Strykers, and other armored platforms to deliver overwhelming firepower and shock action. Cavalry Scouts serve as the eyes and ears of the battlefield, conducting reconnaissance and security operations far forward of friendly lines. Tankers crew the M1 Abrams, one of the most lethal main battle tanks in the world.</p>
-        <p>Armor Soldiers train at Ft Moore, Georgia &mdash; the Home of Maneuver &mdash; alongside Infantry. The Armor branch traces its lineage to the horse cavalry and has evolved into a highly mobile, lethal force capable of decisive action in any environment. From the deserts of Iraq to the training grounds of Europe, Armor units are a cornerstone of combined arms warfare.</p>
+    <!-- CAREER PROGRESSION -->
+    <section class="school-section fade-in" id="career">
+        <div class="school-section-label">Career Progression</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
+            <button class="phase-card-btn" data-season="junior" onclick="toggleSeason('junior')">
+                <span class="phase-card-icon">&#127941;</span>
+                <span class="phase-card-title">Junior Enlisted</span>
+                <span class="phase-card-sub">E-1 to E-4</span>
+            </button>
+            <button class="phase-card-btn" data-season="nco" onclick="toggleSeason('nco')">
+                <span class="phase-card-icon">&#9733;</span>
+                <span class="phase-card-title">NCO</span>
+                <span class="phase-card-sub">E-5 to E-6</span>
+            </button>
+            <button class="phase-card-btn" data-season="senior" onclick="toggleSeason('senior')">
+                <span class="phase-card-icon">&#127942;</span>
+                <span class="phase-card-title">Senior NCO</span>
+                <span class="phase-card-sub">E-7 to E-9</span>
+            </button>
+            <button class="phase-card-btn" data-season="officer" onclick="toggleSeason('officer')">
+                <span class="phase-card-icon">&#9878;</span>
+                <span class="phase-card-title">Officer Track</span>
+                <span class="phase-card-sub">OCS / Green-to-Gold</span>
+            </button>
+        </div>
+
+        <!-- Junior Enlisted Detail -->
+        <div class="phase-detail-panel" id="detail-junior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#3b82f6;border-color:#3b82f6;">E1-E4</span>
+                    <div class="phase-detail-rtb">Junior Enlisted</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>0-4 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>Loader, Driver, Gunner, Scout</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>Airborne, Air Assault</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$24K-$36K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Bonus</span><span>Up to $50K (initial)</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Junior enlisted Armor Soldiers begin their career as loaders and drivers on the M1 Abrams or as scouts in a cavalry troop. Promotion to SPC/E-4 typically occurs within 2-3 years and brings increased responsibility as a gunner or vehicle commander trainee.</p>
+                    <p>This is the time to master your platform, qualify on gunnery tables, and build the foundation for NCO leadership. Pursue additional schools and volunteer for deployment opportunities.</p>
+                    <ul class="phase-detail-list">
+                        <li>PVT (E-1) to PV2 (E-2): 6 months &mdash; Loader/Driver, basic crew tasks</li>
+                        <li>PFC (E-3): 12 months TIS &mdash; Proficient crew member, gunnery qualification</li>
+                        <li>SPC (E-4): 24 months TIS &mdash; Gunner position, mentor to new arrivals</li>
+                        <li>Pursue Airborne, Air Assault, or Ranger School early</li>
+                        <li>Volunteer for deployment and gunnery competitions</li>
+                        <li>Build PT score for competitive promotion and school selection</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- NCO Detail -->
+        <div class="phase-detail-panel" id="detail-nco">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#22c55e;border-color:#22c55e;">E5-E6</span>
+                    <div class="phase-detail-rtb">Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>4-10 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>TC, Section Sgt, PSG</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>BLC, ALC, Master Gunner</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$36K-$52K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key</span><span>NCOER performance</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The NCO corps is the backbone of Armor. Sergeants (E-5) serve as tank commanders or scout section leaders, while Staff Sergeants (E-6) lead sections and platoons. This is where Armor leaders are forged &mdash; directly responsible for crew training, vehicle maintenance, and tactical employment in combined arms operations.</p>
+                    <p>Completion of BLC (Basic Leader Course) is required for E-5, and ALC (Advanced Leader Course) for E-6. Master Gunner School and Ranger School significantly improve promotion potential.</p>
+                    <ul class="phase-detail-list">
+                        <li>SGT (E-5): Tank Commander / Scout Section Leader &mdash; owns the crew and vehicle</li>
+                        <li>SSG (E-6): Section Sergeant &mdash; leads 2-4 vehicles, manages gunnery training</li>
+                        <li>BLC required for promotion to SGT, ALC for SSG</li>
+                        <li>Master Gunner Course is the premier technical school for Armor NCOs</li>
+                        <li>Pursue Ranger, Airborne, RSLC, or Cavalry Leader Course</li>
+                        <li>Strong NCOER evaluations are critical for competitive promotion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Senior NCO Detail -->
+        <div class="phase-detail-panel" id="detail-senior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#f59e0b;border-color:#f59e0b;">E7-E9</span>
+                    <div class="phase-detail-rtb">Senior Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>10-30 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>PSG, 1SG, CSM</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>SLC, USASMA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$52K-$90K+/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Selection</span><span>Board-selected</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Senior NCOs represent the most experienced and capable leaders in Armor. Sergeants First Class (E-7) serve as Platoon Sergeants, Master Sergeants/First Sergeants (E-8) lead at company/troop level, and Sergeants Major/Command Sergeants Major (E-9) serve at battalion, brigade, and higher.</p>
+                    <p>These positions are highly competitive and board-selected. A record of combat leadership, Master Gunner qualification, advanced school completion, and consistent top-block evaluations are essential.</p>
+                    <ul class="phase-detail-list">
+                        <li>SFC (E-7): Platoon Sergeant &mdash; senior tactical NCO for the platoon's vehicles and crews</li>
+                        <li>MSG/1SG (E-8): Operations NCOIC or First Sergeant &mdash; company/troop-level senior enlisted</li>
+                        <li>SGM/CSM (E-9): Command Sergeant Major &mdash; BN/BDE senior enlisted advisor</li>
+                        <li>Senior Leader Course (SLC) required for E-7 promotion</li>
+                        <li>Sergeants Major Academy for E-9 selection</li>
+                        <li>Master Gunner and instructor duty build competitive records</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Officer Track Detail -->
+        <div class="phase-detail-panel" id="detail-officer">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#a855f7;border-color:#a855f7;">OCS</span>
+                    <div class="phase-detail-rtb">Officer Commissioning</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Path</span><span>OCS / Green-to-Gold</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duration</span><span>12-16 Weeks (OCS)</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Moore, GA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Result</span><span>2LT Commission</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Bonus</span><span>Branch selection</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Enlisted Armor Soldiers with leadership potential and a bachelor's degree (or willingness to earn one) can pursue commissioning through Officer Candidate School (OCS) or the Green-to-Gold program. OCS is a 12-week intensive course at Fort Moore, while Green-to-Gold sends soldiers to college full-time with an ROTC scholarship.</p>
+                    <p>Former enlisted Armor soldiers who commission as Armor Officers bring invaluable tactical and gunnery experience that sets them apart from their peers. Understanding crew dynamics and vehicle operations from the ground up makes for exceptional platoon leaders.</p>
+                    <ul class="phase-detail-list">
+                        <li>OCS: 12-16 weeks at Fort Moore &mdash; rapid commissioning path</li>
+                        <li>Green-to-Gold: 2-4 year college program with ROTC scholarship</li>
+                        <li>Armor Basic Officer Leader Course (ABOLC) follows commissioning</li>
+                        <li>Ranger School and Maneuver Captain's Career Course for career progression</li>
+                        <li>Prior enlisted experience is a massive advantage in platoon leadership</li>
+                        <li>Career progression: PL &rarr; XO &rarr; CO CDR &rarr; BN/BDE Staff &rarr; BN CDR</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">MOS List</div>
-        <h2>19-Series Specialties</h2>
-        <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0;">
-        <thead><tr style="border-bottom:2px solid var(--color-gold);text-align:left;">
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">MOS</th>
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">Title</th>
-        </tr></thead>
-        <tbody>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">19D</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Cavalry Scout</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">19K</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">M1 Armor Crewman</td></tr>
-        </tbody></table></div>
+    <!-- DUTY STATIONS -->
+    <section class="school-section fade-in" id="stations">
+        <div class="school-section-label">Major Duty Stations</div>
+        <h2 class="school-section-title">Where Armor Soldiers Serve</h2>
+        <div class="school-calendar-wrapper">
+            <table class="school-calendar">
+                <thead>
+                    <tr>
+                        <th>Installation</th>
+                        <th>Location</th>
+                        <th>Division / Unit</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Fort Moore</td><td>GA</td><td>Maneuver Center of Excellence</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">TRADOC</span></td></tr>
+                    <tr><td>Fort Carson</td><td>CO</td><td>4th Infantry Division</td><td><span class="season-tag" style="background:rgba(34,197,94,0.15);color:#22c55e;">FORSCOM</span></td></tr>
+                    <tr><td>Fort Stewart</td><td>GA</td><td>3rd Infantry Division</td><td><span class="season-tag" style="background:rgba(34,197,94,0.15);color:#22c55e;">FORSCOM</span></td></tr>
+                    <tr><td>Fort Cavazos</td><td>TX</td><td>1st Cavalry Division</td><td><span class="season-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;">Armored</span></td></tr>
+                    <tr><td>Camp Humphreys</td><td>South Korea</td><td>2nd Infantry Division</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">OCONUS</span></td></tr>
+                    <tr><td>Grafenwoehr</td><td>Germany</td><td>2CR / 3-4 CAV</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">OCONUS</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="school-calendar-note">Armor Soldiers serve at major Army installations with armored brigade combat teams and cavalry squadrons. Duty station assignment depends on unit needs, platform qualification (Abrams/Bradley/Stryker), and soldier preference.</p>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Training Pipeline</div>
-        <h2>From Recruit to Crewman</h2>
-        <ul class="phase-list">
-            <li>
-                <span class="phase-day">Step 1</span>
-                <span class="phase-desc"><strong>22-Week OSUT at Ft Moore, GA</strong> &mdash; One Station Unit Training covers basic soldiering skills plus platform-specific training on the M1 Abrams or Bradley Fighting Vehicle. Includes gunnery, mounted maneuver, and reconnaissance fundamentals.</span>
-            </li>
-            <li>
-                <span class="phase-day">Step 2</span>
-                <span class="phase-desc"><strong>First Unit Assignment</strong> &mdash; Report to an Armored Brigade Combat Team or Cavalry squadron. Begin crew qualification, participate in gunnery tables, and learn unit-level tactics.</span>
-            </li>
-            <li>
-                <span class="phase-day">Step 3</span>
-                <span class="phase-desc"><strong>Master Gunner Course</strong> &mdash; Highly competitive course that produces unit gunnery experts. Master Gunners advise commanders on weapons employment and manage gunnery training programs.</span>
-            </li>
-            <li>
-                <span class="phase-day">Step 4</span>
-                <span class="phase-desc"><strong>NCOES (BLC / ALC / SLC)</strong> &mdash; NCO Education System courses develop leadership and technical expertise at each rank. Armor-specific modules cover platoon and company-level tactics.</span>
-            </li>
-            <li>
-                <span class="phase-day">Step 5</span>
-                <span class="phase-desc"><strong>Advanced Schools</strong> &mdash; Senior Armor NCOs pursue Ranger School, RSLC, Sniper School, Airborne, or Maneuver Senior Leader Course to broaden their expertise.</span>
-            </li>
-        </ul>
+    <!-- CINEMATIC BREAK -->
+    <section class="school-cinematic fade-in" style="background: linear-gradient(180deg, transparent, rgba(245,158,11,0.06) 50%, transparent);">
+        <div class="school-cinematic-stat">~20,000 Active-Duty Armor Soldiers</div>
+        <p class="school-cinematic-body">The Army's mounted combat power. From the plains of Fort Cavazos to the training grounds of Grafenwoehr, Armor Soldiers stand ready to close with the enemy by fire, maneuver, and shock action.</p>
+        <a href="../../courses.html" class="btn-outline" style="margin-top: var(--space-xl);">Explore Training Courses</a>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Advanced Training</div>
-        <h2>Schools &amp; Courses</h2>
-        <p>Armor Soldiers have access to advanced training including: Master Gunner Course, Reconnaissance and Surveillance Leaders Course (RSLC), Sniper School, Ranger School, Airborne School, Bradley Leader Course, Stryker Leader Course, and the Cavalry Leader Course.</p>
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Common Questions</div>
+        <div class="bento-3">
+            <div class="glass-card">
+                <div class="glass-card-label">Career</div>
+                <div class="glass-card-title">Want to Drive a Tank?</div>
+                <p class="glass-card-body">19K tankers crew the M1 Abrams &mdash; 70 tons of American firepower. OSUT at Fort Moore teaches you to drive, load, gun, and command the most lethal main battle tank on the planet.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">MOS</div>
+                <div class="glass-card-title">Cav Scout or Tanker?</div>
+                <p class="glass-card-body">19D Scouts are the eyes and ears of the battlefield. 19K Tankers bring the thunder. Both share the same Armor branch and OSUT location, but the mission and platform are different. Choose your path.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Training</div>
+                <div class="glass-card-title">Struggling with Gunnery Tables?</div>
+                <p class="glass-card-body">Gunnery qualification is the defining skill in Armor. Master your fire commands, engagement techniques, and target identification. Table VIII crew qualification is what separates good crews from great ones.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Schools</div>
+                <div class="glass-card-title">Need Master Gunner?</div>
+                <p class="glass-card-body">The Master Gunner Course is the premier technical school for Armor NCOs. Master Gunners are the unit's gunnery experts, advising commanders on weapons employment and managing gunnery programs.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Platform</div>
+                <div class="glass-card-title">Bradley or Abrams?</div>
+                <p class="glass-card-body">19Ks crew the M1 Abrams tank. 19Ds typically operate Bradleys, HMMWVs, or Strykers depending on the unit. Both platforms are lethal &mdash; your MOS determines which you'll master first.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Promotion</div>
+                <div class="glass-card-title">How Fast Can I Promote?</div>
+                <p class="glass-card-body">Armor promotion to E-5 averages 3-4 years. BLC completion, a strong NCOER, Master Gunner qualification, and Ranger tab dramatically accelerate the timeline.</p>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width: 500px; margin: 0 auto;">We're building Armor-specific packing lists, training courses, and preparation guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    <!-- MOS OVERVIEW STATS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">MOS Overview</div>
+        <div class="stats-grid-6">
+            <div class="stat-card-sm">
+                <span class="stat-card-number">22 Wks</span>
+                <span class="stat-card-label">OSUT Duration</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">3 MOS</span>
+                <span class="stat-card-label">19K / 19D / 19Z</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">~94%</span>
+                <span class="stat-card-label">OSUT Grad Rate</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">~20K</span>
+                <span class="stat-card-label">Active Duty</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Up to $50K</span>
+                <span class="stat-card-label">Enlistment Bonus</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Ft Moore</span>
+                <span class="stat-card-label">OSUT Location</span>
+            </div>
+        </div>
     </section>
 
+    <!-- RETENTION / REENLISTMENT RATES -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Retention Rates</div>
+        <h2 class="school-section-title">Armor Reenlistment by Year</h2>
+        <div class="attrition-grid">
+            <div class="attrition-card">
+                <span class="attrition-year">FY19</span>
+                <span class="attrition-rate">42%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY20</span>
+                <span class="attrition-rate">44%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY21</span>
+                <span class="attrition-rate">48%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY22</span>
+                <span class="attrition-rate">46%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY23</span>
+                <span class="attrition-rate">43%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAINING WASHOUT / QUALIFICATION DATA -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Training Data</div>
+        <h2 class="school-section-title">OSUT Washout &amp; Qualification Data</h2>
+        <div class="failure-grid">
+            <div class="failure-card">
+                <h3 class="failure-card-title">Common OSUT Drop Reasons</h3>
+                <ul class="failure-card-list">
+                    <li><span>Physical fitness failure</span><span>~3%</span></li>
+                    <li><span>Injury / medical</span><span>~2%</span></li>
+                    <li><span>Academic / gunnery</span><span>~1%</span></li>
+                    <li><span>Voluntary / administrative</span><span>~1%</span></li>
+                </ul>
+            </div>
+            <div class="failure-card">
+                <h3 class="failure-card-title">Key Context</h3>
+                <ul class="failure-card-list">
+                    <li><span>OSUT graduation rate is ~94%</span></li>
+                    <li><span>Most drops occur in first 4 weeks (Red Phase)</span></li>
+                    <li><span>Recycled soldiers pass at ~90%+</span></li>
+                    <li><span>ASVAB CO score of 87 required</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY TAKEAWAY -->
+    <section class="school-section fade-in">
+        <div class="school-takeaway">
+            <div class="school-takeaway-label">Key Takeaway</div>
+            <p class="school-takeaway-text">Armor is the Army's mounted combat arm &mdash; lethal, mobile, and decisive. Whether you crew an M1 Abrams or scout the battlefield in a Bradley, the 19-Series puts you at the tip of the spear in armored warfare. Arrive ready to learn your platform, master gunnery, and never quit on your crew.</p>
+        </div>
+    </section>
+
+    <!-- ARMOR / CAVALRY CREED -->
+    <section class="school-section school-creed-section fade-in">
+        <div class="school-section-label">Armor/Cavalry Spirit</div>
+        <blockquote class="school-creed">
+            <p>Treat 'Em Rough.</p>
+            <p>I am Armor.<br>
+            I am the combat arm of decision.<br>
+            I close with the enemy<br>
+            by fire and maneuver<br>
+            to destroy or capture him.<br>
+            I am the mounted warrior,<br>
+            the eyes and ears of the battlefield.</p>
+            <p>From the horse cavalry to the M1 Abrams,<br>
+            I carry the legacy of speed, shock, and firepower.<br>
+            I am always forward, always ready.<br>
+            My crew is my family. My tank is my home.</p>
+            <p style="margin-top: var(--space-lg); font-weight: 700; color: var(--color-gold);">Treat 'Em Rough!</p>
+        </blockquote>
+        <a href="../../courses.html" class="btn-primary" style="margin-top: var(--space-xl);">Start Armor Prep</a>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="school-section school-newsletter-section fade-in">
+        <div class="school-section-label">Stay Informed</div>
+        <h2 class="school-section-title">Get Armor Intel</h2>
+        <p class="school-section-body">Training tips, gear drops, and career guides for the 19-Series &mdash; delivered to your inbox.</p>
+        <form class="school-newsletter-form" id="newsletter-form">
+            <input type="email" class="school-newsletter-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn-primary school-newsletter-btn">Subscribe</button>
+        </form>
+        <p class="school-newsletter-status" id="newsletter-status"></p>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="school-footer">
-        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+        <div class="school-footer-inner">
+            <div class="school-footer-brand">
+                <a href="/" class="school-footer-logo">Ranger Beers</a>
+                <p class="school-footer-sub">Armor Supply Co.</p>
+            </div>
+            <div class="school-footer-columns">
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Specialties</h4>
+                    <ul>
+                        <li><a href="index.html#specialties">19K &mdash; M1 Armor Crewman</a></li>
+                        <li><a href="index.html#specialties">19D &mdash; Cavalry Scout</a></li>
+                        <li><a href="index.html#specialties">19Z &mdash; Senior Armor Sergeant</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Supply</h4>
+                    <ul>
+                        <li><a href="../../shop.html">Armor Gear</a></li>
+                        <li><a href="../../courses.html">Training Courses</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Guides</h4>
+                    <ul>
+                        <li><a href="../../standards.html">Standards</a></li>
+                        <li><a href="../../faq.html">FAQ</a></li>
+                        <li><a href="../../about.html">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="school-footer-bottom">
+            <p>&copy; 2026 Ranger Beers Supply Co.</p>
+            <div class="school-footer-legal">
+                <a href="../../privacy.html">Privacy</a>
+                <a href="../../terms.html">Terms</a>
+            </div>
+        </div>
     </footer>
 
+    <!-- SCRIPTS -->
+    <script>
+        // Newsletter
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = this.querySelector('input[type="email"]').value;
+            var status = document.getElementById('newsletter-status');
+            status.textContent = 'Subscribing...';
+            fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, school: '19-armor' })
+            }).then(function(r) { return r.json(); })
+              .then(function() { status.textContent = 'Subscribed — check your inbox.'; })
+              .catch(function() { status.textContent = 'Error — please try again.'; });
+        });
+    </script>
+
+    <script>
+        // Nav scroll + mobile
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 40); });
+        var toggle = document.querySelector('.nav-mobile-toggle');
+        if (toggle) toggle.addEventListener('click', function() { nav.classList.toggle('nav-open'); });
+
+        // Fade-in
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+    </script>
+
+    <!-- Auth -->
+    <script src="../../course-auth.js"></script>
+    <script>if (typeof RangerAuth !== 'undefined') RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase/Career Toggle -->
+    <script>
+        var currentPhase = '19k';
+        var currentSeason = null;
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+            currentSeason = null;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect 19K
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="19k"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
 </body>
 </html>

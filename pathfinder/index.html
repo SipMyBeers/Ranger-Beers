@@ -262,6 +262,170 @@
                 </div>
             </div>
         </div>
+
+        <!-- SEASON SELECTOR -->
+        <div class="selector-divider" style="margin: var(--space-xl) 0;">
+            <span class="selector-divider-label">Seasons</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr);" id="season-selector">
+            <button class="phase-card-btn" data-season="winter" onclick="toggleSeason('winter')">
+                <div class="pc-icon">&#10052;</div>
+                <div class="pc-name">Winter</div>
+                <div class="pc-sub">Dec &mdash; Feb</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="spring" onclick="toggleSeason('spring')">
+                <div class="pc-icon">&#127783;</div>
+                <div class="pc-name">Spring</div>
+                <div class="pc-sub">Mar &mdash; May</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="summer" onclick="toggleSeason('summer')">
+                <div class="pc-icon">&#9728;</div>
+                <div class="pc-name">Summer</div>
+                <div class="pc-sub">Jun &mdash; Aug</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="fall" onclick="toggleSeason('fall')">
+                <div class="pc-icon">&#127810;</div>
+                <div class="pc-name">Fall</div>
+                <div class="pc-sub">Sep &mdash; Nov</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+        </div>
+
+        <!-- WINTER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-winter">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Winter &mdash; Cold DZ Ops &amp; Fog</div>
+                    <span class="phase-detail-badge" style="color: #3b82f6; border-color: #3b82f6;">Dec &ndash; Feb</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">52 &ndash; 58 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">32 &ndash; 37 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rain</span><span class="pd-item-value">3.5 &ndash; 4.5 in/mo</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Fog</span><span class="pd-item-value">Morning fog delays DZ setup</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Sling Load</span><span class="pd-item-value">Cold hands affect rigging</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Weather delays for DZ ops</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Winter Pathfinder classes face weather delays.</strong> Morning fog at Fort Moore delays DZ setup operations. Cold hands make sling-load rigging and beacon placement more challenging. The academic portions benefit from cooler weather for focus.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Winter Gear Tips</div>
+                            <ul>
+                                <li>Glove inserts for sling-load rigging</li>
+                                <li>Polypro base layers for field exercises</li>
+                                <li>Waterproof notebook for DZ operations</li>
+                                <li>Hand warmers for extended outdoor training</li>
+                                <li>Fleece cap for pre-dawn DZ setup</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPRING Detail Panel -->
+        <div class="phase-detail-panel" id="detail-spring">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Spring &mdash; Best Study Weather</div>
+                    <span class="phase-detail-badge" style="color: #22c55e; border-color: #22c55e;">Mar &ndash; May</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">68 &ndash; 82 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">44 &ndash; 60 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rain</span><span class="pd-item-value">3.5 &ndash; 4.5 in/mo</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Pollen</span><span class="pd-item-value">Extreme &mdash; Georgia pine</span></div>
+                        <div class="pd-item"><span class="pd-item-name">DZ Ops</span><span class="pd-item-value">Good visibility, mild temps</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Comfortable field training</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Spring is excellent for Pathfinder School.</strong> Moderate temperatures are ideal for the academic-heavy curriculum and field DZ operations. Bring allergy medication &mdash; Georgia pollen affects focus and visibility.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Spring Gear Tips</div>
+                            <ul>
+                                <li>Allergy medication &mdash; Georgia pollen is extreme</li>
+                                <li>Rain jacket for field exercises</li>
+                                <li>Comfortable study materials for classroom</li>
+                                <li>Sunscreen for outdoor DZ training</li>
+                                <li>Bug spray for field lane operations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-summer">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Summer &mdash; Heat on the DZ</div>
+                    <span class="phase-detail-badge" style="color: #f59e0b; border-color: #f59e0b;">Jun &ndash; Aug</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">89 &ndash; 93 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">68 &ndash; 72 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Humidity</span><span class="pd-item-value">70 &ndash; 80%</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Heat Index</span><span class="pd-item-value">100&deg;F+ on open DZ</span></div>
+                        <div class="pd-item"><span class="pd-item-name">DZ Ops</span><span class="pd-item-value">Open fields with zero shade</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Heat exhaustion during field ops</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Summer DZ operations in Georgia heat are brutal.</strong> Setting up helicopter landing zones and drop zones on open fields with no shade in 100&deg;F heat is the biggest physical challenge. The academic classroom portions provide relief from the heat.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Summer Gear Tips</div>
+                            <ul>
+                                <li>Hydration system &mdash; DZ has no water sources</li>
+                                <li>Electrolytes for outdoor training blocks</li>
+                                <li>Wide-brim boonie cap for DZ sun exposure</li>
+                                <li>Cooling towel for breaks</li>
+                                <li>Arrive acclimatized to Georgia heat</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FALL Detail Panel -->
+        <div class="phase-detail-panel" id="detail-fall">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Fall &mdash; Best Overall Conditions</div>
+                    <span class="phase-detail-badge" style="color: #ef4444; border-color: #ef4444;">Sep &ndash; Nov</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">70 &ndash; 85 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">46 &ndash; 65 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Rain</span><span class="pd-item-value">2.5 &ndash; 3.5 in/mo</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Wind</span><span class="pd-item-value">Calm &mdash; ideal for DZ ops</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Visibility</span><span class="pd-item-value">Excellent for sling-load training</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Best overall conditions</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Fall is the best time for Pathfinder School.</strong> Cool temperatures, calm winds, and clear skies provide ideal conditions for DZ operations, sling-load training, and the field exercise. New FY classes benefit from full cadre energy.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Fall Gear Tips</div>
+                            <ul>
+                                <li>Light layers for temperature swings</li>
+                                <li>Standard packing list is sufficient</li>
+                                <li>Good flashlight for pre-dawn DZ setup</li>
+                                <li>Broken-in boots for field exercise</li>
+                                <li>Study materials &mdash; weather is perfect for focus</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- CLASS CALENDAR -->
@@ -524,14 +688,16 @@
     <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
     <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
 
-    <!-- Phase Selector Logic -->
+    <!-- Phase Selector + Season Selector Logic -->
     <script>
         var currentPhase = 'navigation';
+        var currentSeason = null;
+
         function togglePhase(phase) {
             var panels = document.querySelectorAll('.phase-detail-panel');
             var panel = document.getElementById('detail-' + phase);
             if (currentPhase === phase) {
-                document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
                 panels.forEach(function(p) { p.classList.remove('open'); });
                 currentPhase = null;
                 return;
@@ -542,8 +708,28 @@
             var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
             if (btn) btn.classList.add('active');
             currentPhase = phase;
+            currentSeason = null;
         }
-        // Preselect Navigation phase
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect first phase
         (function() {
             var btn = document.querySelector('.phase-card-btn[data-phase="navigation"]');
             if (btn) btn.classList.add('active');

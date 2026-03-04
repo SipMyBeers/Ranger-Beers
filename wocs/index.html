@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warrant Officer Candidate School (WOCS) — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
+    <link rel="stylesheet" href="../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+    <style>
+        /* School-specific: hero tint & phase colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(245,158,11,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="foundation"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="leadership"]::before { background: radial-gradient(ellipse at center, rgba(245,158,11,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="assessment"]::before { background: radial-gradient(ellipse at center, rgba(239,68,68,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="foundation"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="leadership"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.15); }
+        .phase-card-btn.active[data-phase="assessment"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239,68,68,0.15); }
+        .phase-detail-badge.foundation { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.leadership { color: #f59e0b; border-color: #f59e0b; }
+        .phase-detail-badge.assessment { color: #ef4444; border-color: #ef4444; }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Foundation</a></li>
+                        <li><a href="index.html#phases">Leadership Development</a></li>
+                        <li><a href="index.html#phases">Candidate Assessment</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">WOCS Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="courses.html">WOCS Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="school-hero" id="hero">
+        <div class="hero-badge-text">WO</div>
+        <h1 class="hero-headline">The Quiet Professional</h1>
+        <p class="hero-sub">Earn your commission at the Warrant Officer Candidate School at Fort Novosel (formerly Fort Rucker), Alabama. Five weeks of leadership development, academic rigor, and officer evaluation to become a Warrant Officer.</p>
+        <div class="hero-cta">
+            <a href="shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="courses.html" class="btn btn-outline">Start Training</a>
+        </div>
+        <div class="scroll-indicator"><div class="scroll-line"></div>Scroll</div>
+    </section>
+
+    <!-- MAIN HEADLINE -->
+    <section class="section" style="text-align: center; padding: var(--space-3xl) 40px;">
+        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-family: var(--font-display); color: var(--color-text); margin: 0;">
+            5 Weeks &mdash; 3 Phases &mdash; 1 Commission
+        </h2>
+    </section>
+
+    <!-- PHASE SELECTOR -->
+    <div class="phase-selector" id="phases">
+        <div class="selector-divider" style="margin-bottom: var(--space-xl);">
+            <span class="selector-divider-label">Phases</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <button class="phase-card-btn" data-phase="foundation" onclick="togglePhase('foundation')">
+                <div class="pc-icon">&#128218;</div>
+                <div class="pc-name">Foundation</div>
+                <div class="pc-sub">Weeks 1 &ndash; 2</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="leadership" onclick="togglePhase('leadership')">
+                <div class="pc-icon">&#9733;</div>
+                <div class="pc-name">Leadership</div>
+                <div class="pc-sub">Weeks 3 &ndash; 4</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="assessment" onclick="togglePhase('assessment')">
+                <div class="pc-icon">&#127942;</div>
+                <div class="pc-name">Assessment</div>
+                <div class="pc-sub">Week 5</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+        </div>
+
+        <!-- Foundation Detail Panel -->
+        <div class="phase-detail-panel open" id="detail-foundation">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Foundation &mdash; Building the Officer</div>
+                    <span class="phase-detail-badge foundation">Weeks 1 &ndash; 2</span>
+                </div>
+                <div class="phase-rtb-info">
+                    <div>
+                        <div class="phase-rtb-name">Warrant Officer Career College (WOCC)</div>
+                        <div class="phase-address">Fort Novosel (formerly Fort Rucker), AL 36362</div>
+                    </div>
+                    <div class="phase-social-links">
+                        <a href="https://www.wocc.army.mil/" target="_blank" rel="noopener">&#127760; Official Site</a>
+                    </div>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">2 Weeks</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Fort Novosel, AL</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">WO heritage &amp; fundamentals</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Eligibility</span><span class="pd-item-value">Select MOS / Board Approved</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #3b82f6; font-weight: 600;">Key Events</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">WO History &amp; Heritage</span><span class="pd-item-value">Origins, role, and evolution</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Army Leadership Doctrine</span><span class="pd-item-value">ADP 6-22, leadership framework</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Counseling</span><span class="pd-item-value">DA Form 4856, developmental counseling</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Written Communication</span><span class="pd-item-value">Army writing style &amp; staff papers</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Physical Fitness</span><span class="pd-item-value">ACFT preparation &amp; standards</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Drill &amp; Ceremonies</span><span class="pd-item-value">TC 3-21.5, officer bearing</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>The Foundation phase establishes <strong>Warrant Officer heritage and core competencies</strong>. Candidates learn the unique history and role of Warrant Officers in the Army &mdash; technical experts who bridge the gap between enlisted soldiers and commissioned officers.</p>
+                        <p>Army leadership doctrine forms the academic backbone. Candidates study ADP 6-22 extensively, learning the <strong>Army leadership requirements model</strong> and how Warrant Officers apply it as technical leaders. Counseling and written communication skills are tested rigorously.</p>
+                        <p>Physical fitness and drill &amp; ceremonies build the discipline and military bearing expected of an officer. <strong>Standards are enforced from day one</strong> &mdash; candidates who cannot meet them are recycled or dropped.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Foundation Topics</div>
+                            <ul>
+                                <li>Warrant Officer history &mdash; origins from 1918 to modern role</li>
+                                <li>Army leadership doctrine &mdash; ADP 6-22, attributes and competencies</li>
+                                <li>Developmental counseling &mdash; DA Form 4856 techniques</li>
+                                <li>Army writing style &mdash; staff papers, memorandums, briefs</li>
+                                <li>ACFT standards and physical training regimen</li>
+                                <li>Drill and ceremonies &mdash; commands, formations, inspections</li>
+                                <li>Military bearing and officer conduct expectations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leadership Development Detail Panel -->
+        <div class="phase-detail-panel" id="detail-leadership">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Leadership Development &mdash; Adapt &amp; Lead</div>
+                    <span class="phase-detail-badge leadership">Weeks 3 &ndash; 4</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">2 Weeks</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Fort Novosel, AL</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Adaptive leadership &amp; tactics</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #f59e0b; font-weight: 600;">Key Events</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Adaptive Leadership</span><span class="pd-item-value">Scenario-based exercises</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Tactical Planning</span><span class="pd-item-value">MDMP &amp; troop leading procedures</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Operations Orders</span><span class="pd-item-value">5-paragraph OPORD format</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Ethical Decision Making</span><span class="pd-item-value">Case studies &amp; moral reasoning</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Small Group Instruction</span><span class="pd-item-value">Teach-back &amp; peer leadership</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>Leadership Development is where WOCS separates candidates from future officers. <strong>Adaptive leadership exercises</strong> force candidates to solve complex problems under pressure, demonstrating they can think critically and lead effectively in ambiguous situations.</p>
+                        <p>Tactical planning introduces candidates to the <strong>Military Decision Making Process (MDMP)</strong> and operations orders. While Warrant Officers are technical experts first, they must understand tactical planning to advise commanders and lead within their units.</p>
+                        <p><strong>Ethical decision making</strong> is woven throughout this phase. Warrant Officers hold positions of trust &mdash; candidates study real-world case studies and demonstrate moral reasoning under pressure. Small group instruction develops their ability to teach and mentor.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Leadership Events</div>
+                            <ul>
+                                <li>Adaptive leadership exercises &mdash; ambiguous scenarios, time pressure</li>
+                                <li>Tactical planning &mdash; MDMP and troop leading procedures</li>
+                                <li>Operations orders &mdash; write and brief 5-paragraph OPORDs</li>
+                                <li>Ethical decision making &mdash; case studies and moral dilemmas</li>
+                                <li>Small group instruction &mdash; prepare and deliver classes</li>
+                                <li>Peer evaluations &mdash; leadership assessed by fellow candidates</li>
+                                <li>Graded leadership positions &mdash; platoon and squad leader roles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Candidate Assessment Detail Panel -->
+        <div class="phase-detail-panel" id="detail-assessment">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Candidate Assessment &mdash; Prove Your Worth</div>
+                    <span class="phase-detail-badge assessment">Week 5</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">1 Week</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Fort Novosel, AL</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Comprehensive evaluation</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #ef4444; font-weight: 600;">Requirements</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">Field Leadership Exercise</span><span class="pd-item-value">Lead under field conditions</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Written Comprehensive Exam</span><span class="pd-item-value">All academic material tested</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Oral Board</span><span class="pd-item-value">Panel of senior Warrant Officers</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Officer Evaluation</span><span class="pd-item-value">Overall assessment of potential</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Commissioning Prep</span><span class="pd-item-value">Oath, ceremony, uniform transition</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>The Candidate Assessment phase is the <strong>culminating evaluation</strong> of everything learned at WOCS. The field leadership exercise puts candidates in charge of tactical scenarios, assessing their ability to lead soldiers under realistic conditions.</p>
+                        <p>The <strong>written comprehensive exam</strong> covers all academic material from the entire course &mdash; Army doctrine, leadership principles, WO history, counseling, and operations orders. Candidates who fail can be recycled or dropped.</p>
+                        <p>The <strong>oral board</strong> is the defining event of WOCS. Candidates face a panel of senior Warrant Officers and answer questions about doctrine, leadership, ethics, and their MOS. This is where "the quiet professional" is tested &mdash; poise, knowledge, and bearing under pressure determine who earns a commission.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Assessment Requirements</div>
+                            <ul>
+                                <li>Field leadership exercise &mdash; plan and execute tactical operations</li>
+                                <li>Written comprehensive exam &mdash; all course academic material</li>
+                                <li>Oral board &mdash; panel evaluation by senior Warrant Officers</li>
+                                <li>Officer evaluation &mdash; holistic assessment of leadership potential</li>
+                                <li>ACFT &mdash; final physical fitness assessment</li>
+                                <li>Commissioning preparation &mdash; oath of office and ceremony</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEASON SELECTOR -->
+        <div class="selector-divider" style="margin: var(--space-xl) 0;">
+            <span class="selector-divider-label">Seasons</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr);" id="season-selector">
+            <button class="phase-card-btn" data-season="winter" onclick="toggleSeason('winter')">
+                <div class="pc-icon">&#10052;</div>
+                <div class="pc-name">Winter</div>
+                <div class="pc-sub">Dec &mdash; Feb</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="spring" onclick="toggleSeason('spring')">
+                <div class="pc-icon">&#127783;</div>
+                <div class="pc-name">Spring</div>
+                <div class="pc-sub">Mar &mdash; May</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="summer" onclick="toggleSeason('summer')">
+                <div class="pc-icon">&#9728;</div>
+                <div class="pc-name">Summer</div>
+                <div class="pc-sub">Jun &mdash; Aug</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="fall" onclick="toggleSeason('fall')">
+                <div class="pc-icon">&#127810;</div>
+                <div class="pc-name">Fall</div>
+                <div class="pc-sub">Sep &mdash; Nov</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+        </div>
+
+        <!-- WINTER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-winter">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Winter &mdash; Mild &amp; Good Training Weather</div>
+                    <span class="phase-detail-badge" style="color: #3b82f6; border-color: #3b82f6;">Dec &ndash; Feb</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">45 &ndash; 55 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">35 &ndash; 40 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Precipitation</span><span class="pd-item-value">Moderate rain, rare frost</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Humidity</span><span class="pd-item-value">Moderate &mdash; comfortable</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Field Conditions</span><span class="pd-item-value">Cool &amp; manageable</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Good training weather overall</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Winter at Fort Novosel is mild compared to most Army posts.</strong> Southeast Alabama rarely sees extreme cold. Temperatures hover in the 35&ndash;55&deg;F range, making it comfortable for outdoor training and physical fitness. Occasional cold snaps dip below freezing but rarely last more than a day or two.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Winter Gear Tips</div>
+                            <ul>
+                                <li>Layering system for cool mornings &mdash; fleece or waffle top</li>
+                                <li>Waterproof outer layer for occasional rain</li>
+                                <li>Gloves for early morning formations</li>
+                                <li>Reflective PT belt for low-light morning runs</li>
+                                <li>Standard ACU/OCP &mdash; no extreme cold gear needed</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPRING Detail Panel -->
+        <div class="phase-detail-panel" id="detail-spring">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Spring &mdash; Warm with Occasional Storms</div>
+                    <span class="phase-detail-badge" style="color: #22c55e; border-color: #22c55e;">Mar &ndash; May</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">65 &ndash; 75 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">45 &ndash; 55 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Storms</span><span class="pd-item-value">Occasional thunderstorms</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Humidity</span><span class="pd-item-value">Rising &mdash; noticeable</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Field Conditions</span><span class="pd-item-value">Warm &amp; pleasant</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Comfortable outdoor training</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Spring at Fort Novosel is warm and increasingly humid.</strong> Temperatures climb into the 70s and thunderstorms become more frequent. Training outdoors is still comfortable but candidates should prepare for rapidly changing weather conditions.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Spring Gear Tips</div>
+                            <ul>
+                                <li>Moisture-wicking base layers for warming temps</li>
+                                <li>Rain jacket always accessible &mdash; storms roll in fast</li>
+                                <li>Sunscreen for increasing UV exposure</li>
+                                <li>Extra socks &mdash; feet stay drier with changes</li>
+                                <li>Hydration planning &mdash; start increasing water intake now</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-summer">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Summer &mdash; Hot, Humid &amp; Heat Cats Common</div>
+                    <span class="phase-detail-badge" style="color: #f59e0b; border-color: #f59e0b;">Jun &ndash; Aug</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">85 &ndash; 95 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">70 &ndash; 75 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Humidity</span><span class="pd-item-value">Very high &mdash; oppressive</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Heat Index</span><span class="pd-item-value">Often 100&deg;F+</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Heat Casualties</span><span class="pd-item-value">Common &mdash; hydrate aggressively</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Heat exhaustion &amp; heat stroke</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Summer at Fort Novosel is brutal.</strong> Southeast Alabama heat combined with extreme humidity creates dangerous conditions for physical training. Heat cat (heat casualty) flags are frequently raised, and heat-related injuries are the top medical concern for summer WOCS classes.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Summer Survival Tips</div>
+                            <ul>
+                                <li>Hydrate aggressively &mdash; minimum 1 gallon per day</li>
+                                <li>Acclimatize for 2+ weeks before reporting</li>
+                                <li>Moisture-wicking everything &mdash; cotton kills in humidity</li>
+                                <li>Electrolyte supplements for sustained outdoor training</li>
+                                <li>Know heat casualty signs &mdash; it can happen to anyone</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FALL Detail Panel -->
+        <div class="phase-detail-panel" id="detail-fall">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Fall &mdash; Pleasant &amp; Prime Training Season</div>
+                    <span class="phase-detail-badge" style="color: #ef4444; border-color: #ef4444;">Sep &ndash; Nov</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">60 &ndash; 70 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">45 &ndash; 55 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Humidity</span><span class="pd-item-value">Dropping &mdash; comfortable</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Weather</span><span class="pd-item-value">Clear skies, low rain</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Field Conditions</span><span class="pd-item-value">Ideal training environment</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Prime training season</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Fall is the best time to attend WOCS.</strong> The oppressive summer heat breaks by October, humidity drops, and temperatures settle into a comfortable 50&ndash;70&deg;F range. Physical training is significantly easier without heat stress, and field exercises are conducted in ideal conditions.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Fall Prep Tips</div>
+                            <ul>
+                                <li>Light layers for cool mornings and warm afternoons</li>
+                                <li>Maintain hydration even as temps drop</li>
+                                <li>Best season for ACFT performance</li>
+                                <li>Focus study time on doctrine &mdash; conditions won't distract</li>
+                                <li>Perfect weather for oral board preparation walks</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLASS CALENDAR -->
+    <section class="section">
+        <div class="section-label fade-in">Class Calendar</div>
+        <h2 class="section-title fade-in">WOCS Course Schedule</h2>
+        <p class="section-desc fade-in">WOCS runs approximately 6 classes per year at Fort Novosel, AL. Source: Warrant Officer Career College (WOCC).</p>
+
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--color-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: var(--space-md);">FY26</h3>
+        <div class="schedule-table-wrap fade-in">
+            <table class="schedule-table">
+                <thead>
+                    <tr><th>Class</th><th>Report Date</th><th>Graduation</th><th>Season</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="schedule-class">WOCS 01-26</td><td>13 Jan 2026</td><td>13 Feb 2026</td><td><span class="season-tag winter">Winter</span></td></tr>
+                    <tr><td class="schedule-class">WOCS 02-26</td><td>10 Mar 2026</td><td>10 Apr 2026</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">WOCS 03-26</td><td>05 May 2026</td><td>05 Jun 2026</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">WOCS 04-26</td><td>30 Jun 2026</td><td>31 Jul 2026</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">WOCS 05-26</td><td>25 Aug 2026</td><td>25 Sep 2026</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">WOCS 06-26</td><td>20 Oct 2026</td><td>20 Nov 2026</td><td><span class="season-tag fall">Fall</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CINEMATIC BREAK -->
+    <section class="hero" style="height: 50vh; min-height: 300px; background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(245,158,11,0.1) 100%);">
+        <div class="hero-content" style="position: relative; z-index: 1;">
+            <div class="section-label">Prepare Now</div>
+            <h2 class="hero-headline" style="font-size: clamp(2rem,4vw,3.5rem);">~85% Graduation Rate &mdash; Earn Your Bar</h2>
+            <p class="hero-sub">Academic rigor, leadership evaluation, and the oral board separate candidates from Warrant Officers. The quiet professional earns it.</p>
+            <div class="hero-cta" style="margin-top: 20px;">
+                <a href="courses.html" class="btn btn-primary">View Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 900px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;">
+        <div class="section-label fade-in">Resources</div>
+        <h2 class="section-title fade-in">Don't Be That WOCS Candidate.</h2>
+        <p class="section-desc fade-in">Every failure at WOCS has a type. We built a fix for each one.</p>
+
+        <div class="bento-grid bento-3 stagger" style="margin-bottom: var(--space-xl);">
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128214;</div>
+                <div class="card-title">Weak on Army Doctrine?</div>
+                <p class="card-desc">ADP 6-22 and Army leadership doctrine are the academic backbone of WOCS. If you can't quote the leadership requirements model, you'll fail the written exam and oral board.</p>
+            </a>
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128221;</div>
+                <div class="card-title">Bad at Counseling?</div>
+                <p class="card-desc">Developmental counseling is a core WO competency. If you've never written a DA Form 4856 or conducted a counseling session, start practicing now.</p>
+            </a>
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128196;</div>
+                <div class="card-title">Can't Write OPORDs?</div>
+                <p class="card-desc">The 5-paragraph operations order is tested in writing and briefing. If you can't produce a clear, concise OPORD under time pressure, you're at risk.</p>
+            </a>
+        </div>
+        <div class="bento-grid bento-3 stagger">
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#9733;</div>
+                <div class="card-title">No Leadership Experience?</div>
+                <p class="card-desc">WOCS evaluates your ability to lead under pressure. If your only leadership was a duty roster, you need scenario-based practice before you arrive.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#127947;</div>
+                <div class="card-title">Poor Physical Fitness?</div>
+                <p class="card-desc">The ACFT isn't optional. Candidates who can't meet the standard are dropped. Build your fitness now &mdash; you won't have time to get in shape at WOCS.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128172;</div>
+                <div class="card-title">Afraid of the Oral Board?</div>
+                <p class="card-desc">The oral board is the defining event. Senior Warrant Officers will grill you on doctrine, ethics, and your MOS. If you can't think on your feet, practice now.</p>
+            </a>
+        </div>
+        </div>
+    </section>
+
+    <!-- COURSE OVERVIEW STATS -->
+    <section class="section" id="stats" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Course Overview</div>
+        <div class="ix-stats-grid stagger">
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">5</div><div class="ix-stat-label">Weeks</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">3</div><div class="ix-stat-label">Phases</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">~85%</div><div class="ix-stat-label">Grad Rate</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">All MOS</div><div class="ix-stat-label">Eligible</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">WO1</div><div class="ix-stat-label">Commission</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">Tech</div><div class="ix-stat-label">Expert</div></div>
+        </div>
+
+        <!-- ATTRITION RATES -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Graduation Rates</div>
+        <div class="ix-attrition-grid stagger">
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2019</div><div class="ix-attrition-rate">83%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2020</div><div class="ix-attrition-rate">86%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2021</div><div class="ix-attrition-rate">84%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2022</div><div class="ix-attrition-rate">87%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2023</div><div class="ix-attrition-rate">85%</div><div class="ix-attrition-label">Graduated</div></div>
+        </div>
+
+        <!-- FAILURE BREAKDOWN -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Failure Breakdown</div>
+        <div class="ix-failure-grid stagger">
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">Common Drop Reasons</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Academic Failure</span><span class="ix-failure-pct">~5%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Leadership Evaluation</span><span class="ix-failure-pct">~4%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Physical Fitness</span><span class="ix-failure-pct">~3%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Voluntary / Administrative</span><span class="ix-failure-pct">~3%</span></div>
+            </div>
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">Key Context</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Most academic drops occur in Phase 3</span><span class="ix-failure-pct">Comp exam</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Oral board is the highest-stress event</span><span class="ix-failure-pct">Week 5</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Prior NCO experience reduces attrition</span><span class="ix-failure-pct">~15% lower</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Summer classes see more PT failures</span><span class="ix-failure-pct">Heat stress</span></div>
+            </div>
+        </div>
+
+        <!-- KEY TAKEAWAY -->
+        <div class="ix-takeaway fade-in">
+            <p><strong style="color: var(--color-gold);">Key Takeaway:</strong> WOCS is an academic and leadership challenge, not a survival course. Know your Army doctrine cold, practice counseling and OPORD writing, and prepare relentlessly for the oral board. Arrive physically fit and mentally ready to be evaluated every single day for five weeks.</p>
+        </div>
+    </section>
+
+    <!-- CREED / MOTTO -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;" class="fade-in">
+            <p class="creed-stanza" style="text-align: center; font-size: 1.1rem;"><strong>The Warrant Officer Creed</strong></p>
+            <p class="creed-stanza">I am a Warrant Officer. I am the quiet professional. I am a technical expert, a leader by example, and the backbone of the Army. I bridge the gap between the enlisted force and the commissioned officer corps.</p>
+            <p class="creed-stanza">I will always place the mission first. I will never accept defeat. I will never quit. I will never leave a fallen comrade. My technical knowledge and leadership are the foundation upon which commanders rely to accomplish their missions.</p>
+            <p class="creed-stanza">I am the quiet professional &mdash; I let my expertise speak for itself. I lead from the front, mentor those around me, and maintain the highest standards of competence, integrity, and selfless service.</p>
+            <div class="creed-closer">Quiet Professionals!</div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-2xl);">
+            <a href="courses.html" class="btn btn-outline-gold">Start WOCS Prep &rarr;</a>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER SIGNUP -->
+    <section class="section" id="newsletter" style="text-align:center; padding-bottom:var(--space-3xl);">
+        <span class="section-label">Stay Informed</span>
+        <h2 class="section-title">Get WOCS Intel</h2>
+        <p class="section-desc" style="max-width:540px; margin:0 auto var(--space-xl);">Class dates, gear drops, new courses, and tips from Warrant Officers &mdash; straight to your inbox. No spam. Unsubscribe anytime.</p>
+
+        <div id="subscribe-success" style="display:none; background:rgba(197,179,88,0.12); border:1px solid var(--color-gold); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-gold); font-weight:600;">
+            You're in. Check your inbox for a welcome email.
+        </div>
+        <div id="subscribe-error" style="display:none; background:rgba(239,68,68,0.12); border:1px solid var(--color-error); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-error); font-weight:600;"></div>
+
+        <form id="subscribe-form" style="display:flex; gap:var(--space-sm); max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;">
+            <input type="email" name="email" id="subscribe-email" class="form-input" placeholder="Your email address" required style="flex:1 1 260px;">
+            <button type="submit" id="subscribe-btn" class="btn btn-primary" style="flex:0 0 auto; padding:0 var(--space-lg);">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">WOCS Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Foundation</a></li><li><a href="index.html#phases">Leadership Development</a></li><li><a href="index.html#phases">Candidate Assessment</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">WOCS Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Newsletter Script -->
+    <script>
+        (function() {
+            var form = document.getElementById('subscribe-form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('subscribe-email').value;
+                var btn = document.getElementById('subscribe-btn');
+                var success = document.getElementById('subscribe-success');
+                var error = document.getElementById('subscribe-error');
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+                success.style.display = 'none';
+                error.style.display = 'none';
+                fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, school: 'wocs' })
+                })
+                .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+                .then(function(result) {
+                    if (result.ok) {
+                        success.style.display = 'block';
+                        form.style.display = 'none';
+                        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        error.textContent = result.data.error || 'Something went wrong. Try again.';
+                        error.style.display = 'block';
+                        btn.textContent = 'Subscribe';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(function() {
+                    error.textContent = 'Network error. Try again.';
+                    error.style.display = 'block';
+                    btn.textContent = 'Subscribe';
+                    btn.disabled = false;
+                });
+            });
+        })();
+    </script>
+
+    <!-- Nav + Scroll -->
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+        });
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                });
+            });
+        })();
+        // Fade-in observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth -->
+    <script src="../course-auth.js"></script>
+    <script>RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase Selector + Season Selector Logic -->
+    <script>
+        var currentPhase = 'foundation';
+        var currentSeason = null;
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+            currentSeason = null;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect Foundation phase
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="foundation"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
+</body>
+</html>

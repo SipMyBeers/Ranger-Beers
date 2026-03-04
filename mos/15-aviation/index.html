@@ -8,111 +8,733 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../course-styles.css">
+    <link rel="stylesheet" href="../../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero { min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:var(--space-4xl) 40px;position:relative;overflow:hidden; }
-        .school-hero::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center bottom,rgba(34,197,94,0.08),transparent 60%); }
-        .school-hero-tab { max-height:80px;margin-bottom:var(--space-xl);position:relative; }
-        .school-hero-headline { font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:var(--space-md);position:relative; }
-        .school-hero-sub { font-size:clamp(1rem,2vw,1.25rem);color:var(--color-text-secondary);max-width:640px;line-height:1.6;position:relative; }
-        .school-back { position:fixed;top:var(--space-lg);left:var(--space-lg);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--color-text-secondary);text-decoration:none;z-index:100;transition:color 0.3s; }
-        .school-back:hover { color:var(--color-gold); }
-        .info-section { max-width:900px;margin:0 auto;padding:var(--space-3xl) 40px; }
-        .info-section-label { font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--color-gold);margin-bottom:var(--space-lg); }
-        .info-section h2 { font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;margin-bottom:var(--space-lg); }
-        .info-section p { color:var(--color-text-secondary);line-height:1.8;margin-bottom:var(--space-lg); }
-        .stats-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-md);margin:var(--space-2xl) 0; }
-        .stat-card { background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-glass);padding:var(--space-xl) var(--space-md);text-align:center; }
-        .stat-number { font-size:clamp(1.5rem,3vw,2.5rem);font-weight:900;color:var(--color-gold);display:block; }
-        .stat-label { font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-text-secondary);margin-top:var(--space-xs); }
-        .phase-list { list-style:none;margin:var(--space-xl) 0; }
-        .phase-list li { padding:var(--space-md) 0;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:var(--space-md); }
-        .phase-list .phase-day { font-weight:700;color:var(--color-gold);min-width:80px;font-family:var(--font-tactical);font-size:13px; }
-        .phase-list .phase-desc { color:var(--color-text-secondary);line-height:1.6; }
-        .phase-list .phase-desc strong { color:var(--color-text-primary); }
-        .school-footer { text-align:center;padding:var(--space-3xl) 40px;border-top:1px solid rgba(255,255,255,0.06); }
-        .school-footer-copy { font-size:12px;color:var(--color-text-muted);letter-spacing:1px; }
-        @media (max-width:700px) { .stats-grid{grid-template-columns:repeat(2,1fr);} .school-hero{padding:var(--space-3xl) 20px;} .info-section{padding:var(--space-2xl) 20px;} }
+        /* MOS-specific: hero tint & specialty colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(59,130,246,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="15t"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="15r"]::before { background: radial-gradient(ellipse at center, rgba(239,68,68,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="15w"]::before { background: radial-gradient(ellipse at center, rgba(34,197,94,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="15z"]::before { background: radial-gradient(ellipse at center, rgba(245,158,11,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="15t"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="15r"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239,68,68,0.15); }
+        .phase-card-btn.active[data-phase="15w"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.15); }
+        .phase-card-btn.active[data-phase="15z"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.15); }
+        .phase-detail-badge.b15t { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.b15r { color: #ef4444; border-color: #ef4444; }
+        .phase-detail-badge.b15w { color: #22c55e; border-color: #22c55e; }
+        .phase-detail-badge.b15z { color: #f59e0b; border-color: #f59e0b; }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Specialties</span></li>
+                        <li><a href="index.html#specialties">15T &mdash; Black Hawk Repairer</a></li>
+                        <li><a href="index.html#specialties">15R &mdash; Apache Repairer</a></li>
+                        <li><a href="index.html#specialties">15W &mdash; UAS Operator</a></li>
+                        <li><a href="index.html#specialties">15Z &mdash; Senior Aviation SGT</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../shop.html">Aviation Gear</a></li>
+                        <li><a href="../../shop.html">Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../courses.html">Aviation Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="../../resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="snipcart-checkout nav-cart-btn" title="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span class="snipcart-items-count nav-cart-count"></span>
+                </button>
+                <div id="auth-ui">
+                    <button class="btn-sm btn-outline" id="auth-signin-btn" style="display:none;">Sign&nbsp;In</button>
+                    <button class="btn-sm btn-outline" id="auth-signout-btn" style="display:none;">Sign&nbsp;Out</button>
+                </div>
+                <button class="nav-mobile-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- HERO -->
     <section class="school-hero">
-        <div style="height:80px;width:80px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:50%;font-family:var(--font-tactical);font-size:32px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">15</div>
-        <h1 class="school-hero-headline">Aviation</h1>
-        <p class="school-hero-sub">Army aviation maintenance and operations. Aviation Soldiers keep the Army's fleet of rotary-wing, fixed-wing, and unmanned aircraft mission-ready.</p>
-    </section>
-
-    <section class="info-section">
-        <div class="info-section-label">At a Glance</div>
-        <div class="stats-grid">
-            <div class="stat-card"><span class="stat-number">15-23wk</span><div class="stat-label">AIT Length</div></div>
-            <div class="stat-card"><span class="stat-number">15+</span><div class="stat-label"># of MOS</div></div>
-            <div class="stat-card"><span class="stat-number">~90%</span><div class="stat-label">Grad Rate</div></div>
-            <div class="stat-card"><span class="stat-number">Ft Novosel</span><div class="stat-label">Key Installation</div></div>
+        <div class="hero-badge-text">15</div>
+        <h1 class="school-hero-headline">Above the Best</h1>
+        <p class="school-hero-sub">Army Aviation keeps over 4,000 rotary-wing, fixed-wing, and unmanned aircraft mission-ready. Aviation Soldiers maintain, repair, and operate the fleet that dominates the battlespace from above.</p>
+        <div class="school-hero-cta">
+            <a href="../../shop.html" class="btn-primary">Shop Gear</a>
+            <a href="../../courses.html" class="btn-outline">Start Training</a>
+        </div>
+        <div class="school-scroll-indicator">
+            <span class="school-scroll-text">Scroll</span>
+            <div class="school-scroll-line"></div>
         </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Career Field Overview</div>
-        <h2>What is Army Aviation?</h2>
-        <p>The Aviation branch maintains and operates the Army's fleet of over 4,000 aircraft, including the AH-64 Apache attack helicopter, UH-60 Black Hawk utility helicopter, CH-47 Chinook heavy-lift helicopter, and a growing fleet of unmanned aircraft systems. Aviation Soldiers serve as mechanics, avionics technicians, crew chiefs, and UAS operators, ensuring that Army aircraft are safe and mission-capable around the clock.</p>
-        <p>The 15-series encompasses one of the largest career fields in the Army, with over 15 distinct MOS codes covering everything from powerplant repair to aircraft structural maintenance to unmanned systems operation. Training is conducted primarily at Ft Novosel (formerly Ft Rucker), Alabama &mdash; the Home of Army Aviation. The technical skills learned in Aviation translate directly to high-paying civilian careers in the aerospace industry.</p>
+    <!-- MAIN HEADLINE -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Career Field at a Glance</div>
+        <h2 class="school-section-title">15-23 Week AIT &mdash; 10+ MOS &mdash; 1 Mission: Army Aviation</h2>
+        <p class="school-section-body">The 15-Series is one of the Army's largest and most technically demanding career fields. From Black Hawks to Apaches to Gray Eagles, Aviation Soldiers keep the fleet flying and the mission moving.</p>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">MOS List</div>
-        <h2>15-Series Specialties</h2>
-        <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0;">
-        <thead><tr style="border-bottom:2px solid var(--color-gold);text-align:left;">
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">MOS</th>
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">Title</th>
-        </tr></thead>
-        <tbody>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">15B</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Aircraft Powerplant Repairer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">15D</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Aircraft Powertrain Repairer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">15E</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Unmanned Aircraft Systems Repairer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">15G</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Aircraft Structural Repairer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">15H</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Aircraft Pneudraulics Repairer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">15N</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Avionic Mechanic</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">15R</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">AH-64 Attack Helicopter Repairer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">15T</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">UH-60 Helicopter Repairer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">15U</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">CH-47 Helicopter Repairer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">15W</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Unmanned Aircraft Systems Operator</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">15Y</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">AH-64D Armament/Electrical/Avionics Systems Repairer</td></tr>
-        </tbody></table></div>
+    <!-- MOS SPECIALTIES SELECTOR -->
+    <section class="school-section fade-in" id="specialties">
+        <div class="school-section-label">MOS Specialties</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
+            <button class="phase-card-btn active" data-phase="15t" onclick="togglePhase('15t')">
+                <span class="phase-card-icon">&#9992;</span>
+                <span class="phase-card-title">15T</span>
+                <span class="phase-card-sub">UH-60 Black Hawk Repairer</span>
+            </button>
+            <button class="phase-card-btn" data-phase="15r" onclick="togglePhase('15r')">
+                <span class="phase-card-icon">&#128296;</span>
+                <span class="phase-card-title">15R</span>
+                <span class="phase-card-sub">AH-64 Apache Repairer</span>
+            </button>
+            <button class="phase-card-btn" data-phase="15w" onclick="togglePhase('15w')">
+                <span class="phase-card-icon">&#127758;</span>
+                <span class="phase-card-title">15W</span>
+                <span class="phase-card-sub">UAS Operator</span>
+            </button>
+            <button class="phase-card-btn" data-phase="15z" onclick="togglePhase('15z')">
+                <span class="phase-card-icon">&#11088;</span>
+                <span class="phase-card-title">15Z</span>
+                <span class="phase-card-sub">Senior Aviation Sergeant</span>
+            </button>
+        </div>
+
+        <!-- 15T Detail -->
+        <div class="phase-detail-panel open" id="detail-15t">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b15t">15T</span>
+                    <div class="phase-detail-rtb">UH-60 Black Hawk Helicopter Repairer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>15 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Novosel, AL</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>MM: 104</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Aviation Maintenance</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Maintenance, Inspections, Phase Mx, Component Repair</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 15T UH-60 Black Hawk Helicopter Repairer is responsible for maintaining the Army's workhorse utility helicopter. Black Hawks serve in every Aviation unit across the force &mdash; medevac, assault, command and control, and special operations. 15Ts perform scheduled and unscheduled maintenance, troubleshoot mechanical and hydraulic systems, and ensure aircraft are safe for flight.</p>
+                    <p>AIT at Fort Novosel covers airframe systems, powerplant operations, rotor and drive train maintenance, and aviation ground support equipment. Graduates report to Combat Aviation Brigades, General Support Aviation Battalions, and Medevac units worldwide.</p>
+                    <ul class="phase-detail-list">
+                        <li>Scheduled and unscheduled maintenance on UH-60A/L/M airframes</li>
+                        <li>Phase maintenance inspections and component-level repair</li>
+                        <li>Rotor head, drive train, and flight control system servicing</li>
+                        <li>Engine run-up, ground handling, and pre-flight/post-flight inspections</li>
+                        <li>Aviation ground support equipment (AGSE) operation</li>
+                        <li>Technical manual interpretation and maintenance documentation</li>
+                        <li>Crew Chief progression &mdash; fly as part of the aircrew</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 15R Detail -->
+        <div class="phase-detail-panel" id="detail-15r">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b15r">15R</span>
+                    <div class="phase-detail-rtb">AH-64 Apache Attack Helicopter Repairer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>15 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Novosel, AL</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>MM: 104</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Attack Aviation Mx</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Attack Helo Mx, Weapons Systems, Avionics</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 15R AH-64 Apache Attack Helicopter Repairer maintains the Army's premier attack helicopter platform. The Apache is a twin-engine attack helicopter equipped with a 30mm chain gun, Hellfire missiles, and advanced avionics &mdash; and 15Rs keep it lethal and mission-capable. This MOS demands strong mechanical aptitude and the ability to troubleshoot complex weapons and avionics systems.</p>
+                    <p>15Rs work in Attack Reconnaissance Battalions and Squadrons, performing maintenance on airframe, armament, and electronic systems. The technical skills translate directly to defense contractor and aerospace careers.</p>
+                    <ul class="phase-detail-list">
+                        <li>AH-64D/E Apache airframe maintenance and inspections</li>
+                        <li>Weapons systems maintenance &mdash; M230 chain gun, Hellfire, Hydra 70</li>
+                        <li>Avionics troubleshooting and line replaceable unit (LRU) swap</li>
+                        <li>TADS/PNVS (Target Acquisition / Pilot Night Vision) system servicing</li>
+                        <li>Engine, transmission, and rotor system maintenance</li>
+                        <li>Integrated vehicle health management system (IVHMS) diagnostics</li>
+                        <li>Phase maintenance and aircraft battle damage assessment/repair</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 15W Detail -->
+        <div class="phase-detail-panel" id="detail-15w">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b15w">15W</span>
+                    <div class="phase-detail-rtb">Unmanned Aircraft Systems Operator</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>23 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Novosel, AL</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">ASVAB</span><span>ST: 101</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>UAS Operations</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>UAS Ops, Mission Planning, Sensor Ops</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 15W Unmanned Aircraft Systems Operator is one of the fastest-growing specialties in Army Aviation. 15Ws operate the Army's fleet of unmanned aerial vehicles, including the MQ-1C Gray Eagle and RQ-7B Shadow, providing real-time intelligence, surveillance, and reconnaissance (ISR) to commanders on the battlefield. This MOS sits at the intersection of aviation and intelligence.</p>
+                    <p>AIT is the longest in the 15-Series at 23 weeks, covering UAS flight operations, mission planning, sensor payload operation, airspace coordination, and tactical employment. Graduates serve in UAS companies organic to Combat Aviation Brigades and Military Intelligence Battalions.</p>
+                    <ul class="phase-detail-list">
+                        <li>MQ-1C Gray Eagle and RQ-7B Shadow flight operations</li>
+                        <li>Mission planning, route development, and airspace deconfliction</li>
+                        <li>EO/IR sensor and SAR payload operation and target acquisition</li>
+                        <li>Launch, recovery, and ground control station (GCS) procedures</li>
+                        <li>Real-time ISR feed dissemination to supported units</li>
+                        <li>Emergency procedures, lost link protocols, and flight safety</li>
+                        <li>Integration with brigade-level intelligence and fires cells</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 15Z Detail -->
+        <div class="phase-detail-panel" id="detail-15z">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b15z">15Z</span>
+                    <div class="phase-detail-rtb">Senior Aviation Sergeant</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Selection</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>BN/BDE Level</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Aviation Mx Management</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Readiness Reporting, Maintenance Mgmt, Leadership</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 15Z Senior Aviation Sergeant is the pinnacle of enlisted Aviation leadership. 15Zs serve as production control NCOICs, aviation maintenance technicians, first sergeants, and command sergeants major at battalion and brigade level. They are responsible for aircraft readiness reporting, maintenance management, and the training and welfare of all Aviation enlisted personnel.</p>
+                    <p>Reaching 15Z requires decades of aviation maintenance experience across multiple airframes, completion of the Senior Leader Course and Sergeants Major Academy, and a proven record of maintaining high operational readiness rates across the fleet.</p>
+                    <ul class="phase-detail-list">
+                        <li>Aviation maintenance management and production control oversight</li>
+                        <li>Unit readiness reporting and aircraft availability tracking</li>
+                        <li>Personnel management, evaluations, and career counseling</li>
+                        <li>Quality assurance and Technical Inspector program supervision</li>
+                        <li>Safety program management and accident prevention</li>
+                        <li>Mentorship of junior NCOs across all 15-series specialties</li>
+                        <li>Senior enlisted advisor for aviation operations at BN/BDE level</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Training Pipeline</div>
-        <h2>From Recruit to Aviation Specialist</h2>
-        <ul class="phase-list">
-            <li><span class="phase-day">Step 1</span><span class="phase-desc"><strong>BCT</strong> &mdash; Complete Basic Combat Training at one of the Army's BCT installations before moving to Aviation AIT.</span></li>
-            <li><span class="phase-day">Step 2</span><span class="phase-desc"><strong>15-23 Week AIT at Ft Novosel, AL</strong> &mdash; Advanced Individual Training covers aircraft-specific maintenance, safety procedures, technical manuals, and hands-on repair skills. Length varies by MOS.</span></li>
-            <li><span class="phase-day">Step 3</span><span class="phase-desc"><strong>Unit Assignment</strong> &mdash; Report to a Combat Aviation Brigade, General Support Aviation Battalion, or other aviation unit. Begin on-the-job training and aircraft qualification.</span></li>
-            <li><span class="phase-day">Step 4</span><span class="phase-desc"><strong>Aircraft-Specific Qualifications</strong> &mdash; Earn certifications for specific airframes and systems. Progress toward Crew Chief, Technical Inspector, or maintenance supervisor roles.</span></li>
-            <li><span class="phase-day">Step 5</span><span class="phase-desc"><strong>NCOES &amp; Advanced Schools</strong> &mdash; Attend NCO Education System courses. Senior Aviation NCOs may pursue Flight School (Warrant Officer), Instructor Pilot, Aviation Safety, or Maintenance Test Pilot programs.</span></li>
-        </ul>
+    <!-- CAREER PROGRESSION -->
+    <section class="school-section fade-in" id="career">
+        <div class="school-section-label">Career Progression</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
+            <button class="phase-card-btn" data-season="junior" onclick="toggleSeason('junior')">
+                <span class="phase-card-icon">&#127941;</span>
+                <span class="phase-card-title">Junior Enlisted</span>
+                <span class="phase-card-sub">E-1 to E-4</span>
+            </button>
+            <button class="phase-card-btn" data-season="nco" onclick="toggleSeason('nco')">
+                <span class="phase-card-icon">&#9733;</span>
+                <span class="phase-card-title">NCO</span>
+                <span class="phase-card-sub">E-5 to E-6</span>
+            </button>
+            <button class="phase-card-btn" data-season="senior" onclick="toggleSeason('senior')">
+                <span class="phase-card-icon">&#127942;</span>
+                <span class="phase-card-title">Senior NCO</span>
+                <span class="phase-card-sub">E-7 to E-9</span>
+            </button>
+            <button class="phase-card-btn" data-season="warrant" onclick="toggleSeason('warrant')">
+                <span class="phase-card-icon">&#9878;</span>
+                <span class="phase-card-title">Warrant Officer</span>
+                <span class="phase-card-sub">WOFT / Flight School</span>
+            </button>
+        </div>
+
+        <!-- Junior Enlisted Detail -->
+        <div class="phase-detail-panel" id="detail-junior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#3b82f6;border-color:#3b82f6;">E1-E4</span>
+                    <div class="phase-detail-rtb">Junior Enlisted</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>0-4 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>Mechanic, Crew Member</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>Airborne, Air Assault</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$24K-$36K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Bonus</span><span>Up to $40K (initial)</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Junior enlisted Aviation Soldiers begin on the flight line learning hands-on maintenance under the supervision of experienced NCOs and warrant officers. Expect long hours on the hangar floor, learning technical manuals, and building proficiency on your assigned airframe. Promotion to SPC/E-4 typically occurs within 2-3 years.</p>
+                    <p>This is the time to earn your Crew Chief wings, pursue additional certifications, and build the technical foundation that will define your Aviation career. Aviation MOS qualifies soldiers for FAA Airframe &amp; Powerplant (A&amp;P) certification &mdash; start tracking your hours early.</p>
+                    <ul class="phase-detail-list">
+                        <li>PVT (E-1) to PV2 (E-2): 6 months &mdash; apprentice mechanic, basic tasks under supervision</li>
+                        <li>PFC (E-3): 12 months TIS &mdash; proficient maintainer, pre-flight/post-flight qualified</li>
+                        <li>SPC (E-4): 24 months TIS &mdash; Crew Chief qualified, mentor to new soldiers</li>
+                        <li>Pursue Air Assault and Airborne qualification early</li>
+                        <li>Begin tracking maintenance hours toward FAA A&amp;P certification</li>
+                        <li>Build technical competence for competitive promotion to SGT</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- NCO Detail -->
+        <div class="phase-detail-panel" id="detail-nco">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#22c55e;border-color:#22c55e;">E5-E6</span>
+                    <div class="phase-detail-rtb">Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>4-10 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>Section SGT, TI, Prod Control</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>BLC, ALC, AMTC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$36K-$52K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key</span><span>NCOER + Technical Skill</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Aviation NCOs are the backbone of maintenance operations. Sergeants (E-5) lead maintenance sections and serve as Technical Inspectors, while Staff Sergeants (E-6) manage production control and serve as section leaders responsible for aircraft readiness. Aviation demands both leadership ability and deep technical knowledge.</p>
+                    <p>Completion of BLC is required for E-5, ALC for E-6. Aviation Maintenance Technician Course (AMTC) and advanced airframe-specific courses significantly improve promotion potential and technical credibility.</p>
+                    <ul class="phase-detail-list">
+                        <li>SGT (E-5): Section Sergeant / Technical Inspector &mdash; quality assurance on maintenance tasks</li>
+                        <li>SSG (E-6): Production Control / Platoon Sergeant &mdash; manages maintenance workflow and readiness</li>
+                        <li>BLC required for SGT, ALC for SSG promotion</li>
+                        <li>Technical Inspector (TI) certification is a career-defining qualification</li>
+                        <li>Pursue advanced airframe courses and instructor duty</li>
+                        <li>Strong NCOER evaluations and readiness metrics drive promotion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Senior NCO Detail -->
+        <div class="phase-detail-panel" id="detail-senior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#f59e0b;border-color:#f59e0b;">E7-E9</span>
+                    <div class="phase-detail-rtb">Senior Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>10-30 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>Maint Tech, 1SG, CSM</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>SLC, USASMA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$52K-$90K+/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Selection</span><span>Board-selected</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Senior Aviation NCOs represent the most experienced maintainers and leaders in the branch. Sergeants First Class (E-7) serve as aviation maintenance technicians and platoon sergeants, Master Sergeants/First Sergeants (E-8) lead at company level, and Sergeants Major/Command Sergeants Major (E-9) serve at battalion, brigade, and higher as the senior enlisted advisor for all aviation operations.</p>
+                    <p>These positions are highly competitive and board-selected. A record of high aircraft readiness rates, advanced school completion, and consistent top-block evaluations are essential for selection.</p>
+                    <ul class="phase-detail-list">
+                        <li>SFC (E-7): Aviation Maintenance Technician &mdash; senior technical authority for maintenance operations</li>
+                        <li>MSG/1SG (E-8): First Sergeant or Operations NCOIC &mdash; company-level senior enlisted</li>
+                        <li>SGM/CSM (E-9): Command Sergeant Major &mdash; BN/BDE senior enlisted advisor</li>
+                        <li>Senior Leader Course (SLC) required for E-7 promotion</li>
+                        <li>Sergeants Major Academy for E-9 selection</li>
+                        <li>Aviation Safety Course and instructor duty build competitive records</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Warrant Officer Track Detail -->
+        <div class="phase-detail-panel" id="detail-warrant">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#a855f7;border-color:#a855f7;">WOFT</span>
+                    <div class="phase-detail-rtb">Warrant Officer Flight Training</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Path</span><span>WOFT / Street-to-Seat</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duration</span><span>~18 Months</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Novosel, AL</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Result</span><span>WO1 Aviator</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Unique</span><span>No degree required</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Aviation offers a unique career path found in no other branch: the Warrant Officer Flight Training (WOFT) program. Enlisted Aviation Soldiers &mdash; and even civilians through the "Street-to-Seat" program &mdash; can apply to become Army helicopter pilots without a college degree. This is the only commissioning-equivalent path in the military that does not require a bachelor's degree.</p>
+                    <p>WOFT is approximately 18 months of intensive flight training at Fort Novosel, progressing from the TH-67 trainer through advanced airframe qualification in Apache, Black Hawk, or Chinook. Warrant Officer Aviators serve as the Army's primary helicopter pilots and technical aviation experts throughout their career.</p>
+                    <ul class="phase-detail-list">
+                        <li>WOCS: 5 weeks of Warrant Officer Candidate School at Fort Novosel</li>
+                        <li>IERW: Initial Entry Rotary Wing &mdash; primary flight training and instrument qualification</li>
+                        <li>Advanced airframe track: AH-64 Apache, UH-60 Black Hawk, or CH-47 Chinook</li>
+                        <li>Street-to-Seat: civilians can apply directly &mdash; no prior military service required</li>
+                        <li>Prior enlisted maintainers have a significant advantage in the selection process</li>
+                        <li>Career progression: WO1 &rarr; CW2 &rarr; CW3 &rarr; CW4 &rarr; CW5 (Master Aviator)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Advanced Training</div>
-        <h2>Schools &amp; Courses</h2>
-        <p>Aviation Soldiers can pursue: Aircraft-specific advanced maintenance courses, Flight School (for Warrant Officer candidates), Instructor Pilot Course, Aviation Safety Officer Course, Maintenance Test Pilot Course, UAS Master Trainer, and FAA certifications including A&amp;P (Airframe &amp; Powerplant) mechanic licensure.</p>
+    <!-- DUTY STATIONS -->
+    <section class="school-section fade-in" id="stations">
+        <div class="school-section-label">Major Duty Stations</div>
+        <h2 class="school-section-title">Where Aviation Soldiers Serve</h2>
+        <div class="school-calendar-wrapper">
+            <table class="school-calendar">
+                <thead>
+                    <tr>
+                        <th>Installation</th>
+                        <th>Location</th>
+                        <th>Division / Unit</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Fort Novosel</td><td>AL</td><td>U.S. Army Aviation Center of Excellence</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">TRADOC</span></td></tr>
+                    <tr><td>Fort Campbell</td><td>KY/TN</td><td>101st Airborne (Air Assault) / 160th SOAR</td><td><span class="season-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;">Air Assault / SOF</span></td></tr>
+                    <tr><td>Fort Liberty</td><td>NC</td><td>82nd Airborne CAB / USASOC</td><td><span class="season-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">Airborne</span></td></tr>
+                    <tr><td>Fort Carson</td><td>CO</td><td>4th Infantry Division CAB</td><td><span class="season-tag" style="background:rgba(34,197,94,0.15);color:#22c55e;">FORSCOM</span></td></tr>
+                    <tr><td>Fort Drum</td><td>NY</td><td>10th Mountain Division CAB</td><td><span class="season-tag" style="background:rgba(147,197,253,0.15);color:#93c5fd;">Light / CAB</span></td></tr>
+                    <tr><td>Camp Humphreys</td><td>South Korea</td><td>2nd Infantry Division CAB</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">OCONUS</span></td></tr>
+                    <tr><td>Wheeler AAF</td><td>HI</td><td>25th Infantry Division CAB</td><td><span class="season-tag" style="background:rgba(147,197,253,0.15);color:#93c5fd;">INDOPACOM</span></td></tr>
+                    <tr><td>Hunter AAF</td><td>GA</td><td>3rd Infantry Division CAB</td><td><span class="season-tag" style="background:rgba(34,197,94,0.15);color:#22c55e;">FORSCOM</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="school-calendar-note">Aviation Soldiers serve at nearly every major installation worldwide. Duty station assignment depends on unit needs, airframe qualification, and soldier preference. Every division has a Combat Aviation Brigade (CAB).</p>
     </section>
 
-    <section class="info-section" style="text-align:center;padding-bottom:var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width:500px;margin:0 auto;">We're building Aviation-specific resources and training guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    <!-- CINEMATIC BREAK -->
+    <section class="school-cinematic fade-in" style="background: linear-gradient(180deg, transparent, rgba(59,130,246,0.06) 50%, transparent);">
+        <div class="school-cinematic-stat">~30,000 Active-Duty Aviation Soldiers</div>
+        <p class="school-cinematic-body">From the flight line to the cockpit, Aviation Soldiers maintain and operate the fleet that dominates the battlespace. Above the Best &mdash; always.</p>
+        <a href="../../courses.html" class="btn-outline" style="margin-top: var(--space-xl);">Explore Training Courses</a>
     </section>
 
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Common Questions</div>
+        <div class="bento-3">
+            <div class="glass-card">
+                <div class="glass-card-label">Career</div>
+                <div class="glass-card-title">Want to Work on Helicopters?</div>
+                <p class="glass-card-body">Aviation AIT trains you hands-on with the Army's rotary-wing fleet. From Black Hawks to Apaches to Chinooks, 15-series maintainers keep the aircraft mission-ready and earn skills that translate directly to civilian aerospace careers.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">UAS</div>
+                <div class="glass-card-title">Interested in UAS?</div>
+                <p class="glass-card-body">15W Unmanned Aircraft Systems Operators fly Gray Eagle and Shadow drones, providing real-time ISR to commanders on the battlefield. It's the fastest-growing specialty in Aviation with massive civilian demand.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Flight</div>
+                <div class="glass-card-title">How Do I Become a Pilot?</div>
+                <p class="glass-card-body">The Warrant Officer Flight Training (WOFT) program lets enlisted soldiers &mdash; and even civilians &mdash; become Army helicopter pilots without a college degree. Prior 15-series experience gives you a real edge in the selection process.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Certification</div>
+                <div class="glass-card-title">Need A&amp;P License?</div>
+                <p class="glass-card-body">Army Aviation maintenance hours count toward your FAA Airframe &amp; Powerplant (A&amp;P) mechanic certification. Start tracking hours from Day 1 &mdash; the A&amp;P license is your ticket to six-figure civilian aviation jobs.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Medical</div>
+                <div class="glass-card-title">Flight Medic Questions?</div>
+                <p class="glass-card-body">68W Combat Medics can earn the Flight Medic (F) identifier and serve on medevac crews alongside 15T Black Hawk maintainers. It's one of the most rewarding and high-demand specialties in Army Aviation.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Promotion</div>
+                <div class="glass-card-title">How Fast Can I Promote?</div>
+                <p class="glass-card-body">Aviation promotion to E-5 averages 3-4 years. BLC completion, strong NCOERs, Technical Inspector certification, and airframe-specific advanced courses accelerate the timeline significantly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOS OVERVIEW STATS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">MOS Overview</div>
+        <div class="stats-grid-6">
+            <div class="stat-card-sm">
+                <span class="stat-card-number">15-23 Wk</span>
+                <span class="stat-card-label">AIT Duration</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">10+ MOS</span>
+                <span class="stat-card-label">15-Series Specialties</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">~90%</span>
+                <span class="stat-card-label">AIT Grad Rate</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">~30K</span>
+                <span class="stat-card-label">Active Duty</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Up to $40K</span>
+                <span class="stat-card-label">Enlistment Bonus</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Ft Novosel</span>
+                <span class="stat-card-label">AIT Location</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- RETENTION / REENLISTMENT RATES -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Retention Rates</div>
+        <h2 class="school-section-title">Aviation Reenlistment by Year</h2>
+        <div class="attrition-grid">
+            <div class="attrition-card">
+                <span class="attrition-year">FY19</span>
+                <span class="attrition-rate">55%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY20</span>
+                <span class="attrition-rate">57%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY21</span>
+                <span class="attrition-rate">60%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY22</span>
+                <span class="attrition-rate">58%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY23</span>
+                <span class="attrition-rate">56%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAINING WASHOUT / DROP DATA -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Training Data</div>
+        <h2 class="school-section-title">AIT Washout &amp; Qualification Data</h2>
+        <div class="failure-grid">
+            <div class="failure-card">
+                <h3 class="failure-card-title">Common AIT Drop Reasons</h3>
+                <ul class="failure-card-list">
+                    <li><span>Academic failure</span><span>~4%</span></li>
+                    <li><span>Physical fitness failure</span><span>~2%</span></li>
+                    <li><span>Injury / medical</span><span>~2%</span></li>
+                    <li><span>Voluntary / administrative</span><span>~2%</span></li>
+                </ul>
+            </div>
+            <div class="failure-card">
+                <h3 class="failure-card-title">Key Context</h3>
+                <ul class="failure-card-list">
+                    <li><span>AIT graduation rate is ~90%</span></li>
+                    <li><span>Academic standards are the primary challenge</span></li>
+                    <li><span>Recycled soldiers pass at ~85%+</span></li>
+                    <li><span>Technical aptitude (ASVAB MM/ST scores) is critical</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY TAKEAWAY -->
+    <section class="school-section fade-in">
+        <div class="school-takeaway">
+            <div class="school-takeaway-label">Key Takeaway</div>
+            <p class="school-takeaway-text">Aviation is one of the most technically rewarding career fields in the Army. Whether you want to wrench on Apaches, fly Gray Eagles, or earn your wings as a Warrant Officer pilot, the 15-Series puts you at the cutting edge of Army combat power. Arrive ready to learn, study hard, and the flight line will take care of the rest.</p>
+        </div>
+    </section>
+
+    <!-- AVIATION CREED / MOTTO -->
+    <section class="school-section school-creed-section fade-in">
+        <div class="school-section-label">Above the Best</div>
+        <blockquote class="school-creed">
+            <p>I am an Army Aviator.<br>
+            I am a member of a team &mdash;<br>
+            trained and proud,<br>
+            a professional in the United States Army.<br>
+            I will always maintain my aircraft,<br>
+            my equipment, and myself<br>
+            in a state of readiness.</p>
+            <p>I am an expert &mdash;<br>
+            I am a professional.<br>
+            I am a Soldier and a member<br>
+            of the greatest Aviation force<br>
+            in the world.<br>
+            I will never leave a fallen comrade.<br>
+            I will never accept defeat.</p>
+            <p style="margin-top: var(--space-lg); font-weight: 700; color: var(--color-gold);">Above the Best!</p>
+        </blockquote>
+        <a href="../../courses.html" class="btn-primary" style="margin-top: var(--space-xl);">Start Aviation Prep</a>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="school-section school-newsletter-section fade-in">
+        <div class="school-section-label">Stay Informed</div>
+        <h2 class="school-section-title">Get Aviation Intel</h2>
+        <p class="school-section-body">Training tips, gear drops, and career guides for the 15-Series &mdash; delivered to your inbox.</p>
+        <form class="school-newsletter-form" id="newsletter-form">
+            <input type="email" class="school-newsletter-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn-primary school-newsletter-btn">Subscribe</button>
+        </form>
+        <p class="school-newsletter-status" id="newsletter-status"></p>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="school-footer">
-        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+        <div class="school-footer-inner">
+            <div class="school-footer-brand">
+                <a href="/" class="school-footer-logo">Ranger Beers</a>
+                <p class="school-footer-sub">Aviation Supply Co.</p>
+            </div>
+            <div class="school-footer-columns">
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Specialties</h4>
+                    <ul>
+                        <li><a href="index.html#specialties">15T &mdash; Black Hawk Repairer</a></li>
+                        <li><a href="index.html#specialties">15R &mdash; Apache Repairer</a></li>
+                        <li><a href="index.html#specialties">15W &mdash; UAS Operator</a></li>
+                        <li><a href="index.html#specialties">15Z &mdash; Senior Aviation SGT</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Supply</h4>
+                    <ul>
+                        <li><a href="../../shop.html">Aviation Gear</a></li>
+                        <li><a href="../../courses.html">Training Courses</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Guides</h4>
+                    <ul>
+                        <li><a href="../../standards.html">Standards</a></li>
+                        <li><a href="../../faq.html">FAQ</a></li>
+                        <li><a href="../../about.html">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="school-footer-bottom">
+            <p>&copy; 2026 Ranger Beers Supply Co.</p>
+            <div class="school-footer-legal">
+                <a href="../../privacy.html">Privacy</a>
+                <a href="../../terms.html">Terms</a>
+            </div>
+        </div>
     </footer>
 
+    <!-- SCRIPTS -->
+    <script>
+        // Newsletter
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = this.querySelector('input[type="email"]').value;
+            var status = document.getElementById('newsletter-status');
+            status.textContent = 'Subscribing...';
+            fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, school: '15-aviation' })
+            }).then(function(r) { return r.json(); })
+              .then(function() { status.textContent = 'Subscribed — check your inbox.'; })
+              .catch(function() { status.textContent = 'Error — please try again.'; });
+        });
+    </script>
+
+    <script>
+        // Nav scroll + mobile
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 40); });
+        var toggle = document.querySelector('.nav-mobile-toggle');
+        if (toggle) toggle.addEventListener('click', function() { nav.classList.toggle('nav-open'); });
+
+        // Fade-in
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+    </script>
+
+    <!-- Auth -->
+    <script src="../../course-auth.js"></script>
+    <script>if (typeof RangerAuth !== 'undefined') RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase/Career Toggle -->
+    <script>
+        var currentPhase = '15t';
+        var currentSeason = null;
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+            currentSeason = null;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect 15T
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="15t"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
 </body>
 </html>

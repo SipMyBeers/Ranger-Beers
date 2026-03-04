@@ -8,303 +8,728 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../course-styles.css">
+    <link rel="stylesheet" href="../../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: var(--space-4xl) 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        .school-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center bottom, rgba(34, 197, 94, 0.08), transparent 60%);
-        }
-        .school-hero-tab {
-            max-height: 80px;
-            margin-bottom: var(--space-xl);
-            position: relative;
-        }
-        .school-hero-headline {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: var(--space-md);
-            position: relative;
-        }
-        .school-hero-sub {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-secondary);
-            max-width: 640px;
-            line-height: 1.6;
-            position: relative;
-        }
-        .school-hero-cta {
-            display: flex;
-            gap: var(--space-md);
-            margin-top: var(--space-xl);
-            position: relative;
-        }
-        .school-back {
-            position: fixed;
-            top: var(--space-lg);
-            left: var(--space-lg);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            z-index: 100;
-            transition: color 0.3s;
-        }
-        .school-back:hover { color: var(--color-gold); }
-
-        .info-section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: var(--space-3xl) 40px;
-        }
-        .info-section-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--color-gold);
-            margin-bottom: var(--space-lg);
-        }
-        .info-section h2 {
-            font-size: clamp(1.5rem, 3vw, 2.25rem);
-            font-weight: 800;
-            margin-bottom: var(--space-lg);
-        }
-        .info-section p {
-            color: var(--color-text-secondary);
-            line-height: 1.8;
-            margin-bottom: var(--space-lg);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-md);
-            margin: var(--space-2xl) 0;
-        }
-        .stat-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-glass);
-            padding: var(--space-xl) var(--space-md);
-            text-align: center;
-        }
-        .stat-number {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 900;
-            color: var(--color-gold);
-            display: block;
-        }
-        .stat-label {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--color-text-secondary);
-            margin-top: var(--space-xs);
-        }
-
-        .phase-list {
-            list-style: none;
-            margin: var(--space-xl) 0;
-        }
-        .phase-list li {
-            padding: var(--space-md) 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            gap: var(--space-md);
-        }
-        .phase-list .phase-day {
-            font-weight: 700;
-            color: var(--color-gold);
-            min-width: 80px;
-            font-family: var(--font-tactical);
-            font-size: 13px;
-        }
-        .phase-list .phase-desc {
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-        .phase-list .phase-desc strong {
-            color: var(--color-text-primary);
-        }
-
-        .school-footer {
-            text-align: center;
-            padding: var(--space-3xl) 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .school-footer-copy {
-            font-size: 12px;
-            color: var(--color-text-muted);
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 700px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .school-hero { padding: var(--space-3xl) 20px; }
-            .info-section { padding: var(--space-2xl) 20px; }
-        }
+        /* MOS-specific: hero tint & specialty colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(239,68,68,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="68w"]::before { background: radial-gradient(ellipse at center, rgba(239,68,68,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="68c"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="68d"]::before { background: radial-gradient(ellipse at center, rgba(34,197,94,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="68z"]::before { background: radial-gradient(ellipse at center, rgba(245,158,11,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="68w"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239,68,68,0.15); }
+        .phase-card-btn.active[data-phase="68c"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="68d"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.15); }
+        .phase-card-btn.active[data-phase="68z"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.15); }
+        .phase-detail-badge.b68w { color: #ef4444; border-color: #ef4444; }
+        .phase-detail-badge.b68c { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.b68d { color: #22c55e; border-color: #22c55e; }
+        .phase-detail-badge.b68z { color: #f59e0b; border-color: #f59e0b; }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Specialties</span></li>
+                        <li><a href="index.html#specialties">68W &mdash; Combat Medic</a></li>
+                        <li><a href="index.html#specialties">68C &mdash; Practical Nursing</a></li>
+                        <li><a href="index.html#specialties">68D &mdash; Operating Room</a></li>
+                        <li><a href="index.html#specialties">68Z &mdash; Senior Medical SGT</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../shop.html">Medical Gear</a></li>
+                        <li><a href="../../shop.html">Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../courses.html">Medical Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="../../resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="snipcart-checkout nav-cart-btn" title="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span class="snipcart-items-count nav-cart-count"></span>
+                </button>
+                <div id="auth-ui">
+                    <button class="btn-sm btn-outline" id="auth-signin-btn" style="display:none;">Sign&nbsp;In</button>
+                    <button class="btn-sm btn-outline" id="auth-signout-btn" style="display:none;">Sign&nbsp;Out</button>
+                </div>
+                <button class="nav-mobile-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- HERO -->
     <section class="school-hero">
-        <div style="height:80px;width:80px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:50%;font-family:var(--font-tactical);font-size:32px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">68</div>
-        <h1 class="school-hero-headline">Medical</h1>
-        <p class="school-hero-sub">The 68-Series is the Army's healthcare force &mdash; from combat medics treating casualties under fire to surgical techs, nurses, and laboratory specialists keeping soldiers healthy worldwide.</p>
+        <div class="hero-badge-text">68</div>
+        <h1 class="school-hero-headline">To Conserve Fighting Strength</h1>
+        <p class="school-hero-sub">The Army's healthcare force. From combat medics treating casualties under fire to surgical techs, nurses, and laboratory specialists &mdash; 68-Series soldiers keep the force alive and fighting on every front.</p>
+        <div class="school-hero-cta">
+            <a href="../../shop.html" class="btn-primary">Shop Gear</a>
+            <a href="../../courses.html" class="btn-outline">Start Training</a>
+        </div>
+        <div class="school-scroll-indicator">
+            <span class="school-scroll-text">Scroll</span>
+            <div class="school-scroll-line"></div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">At a Glance</div>
+    <!-- MAIN HEADLINE -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Career Field at a Glance</div>
+        <h2 class="school-section-title">16-52 Week AIT &mdash; 20+ MOS &mdash; 1 Mission: Save Lives</h2>
+        <p class="school-section-body">The 68-Series is the Army's largest career field. From the iconic Combat Medic to operating room specialists, practical nurses, and senior medical NCOs, AMEDD enlisted soldiers deliver healthcare across the full spectrum of military operations.</p>
+    </section>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">16-52 wk</span>
-                <div class="stat-label">AIT</div>
+    <!-- MOS SPECIALTIES SELECTOR -->
+    <section class="school-section fade-in" id="specialties">
+        <div class="school-section-label">MOS Specialties</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
+            <button class="phase-card-btn active" data-phase="68w" onclick="togglePhase('68w')">
+                <span class="phase-card-icon">&#9769;</span>
+                <span class="phase-card-title">68W</span>
+                <span class="phase-card-sub">Combat Medic Specialist</span>
+            </button>
+            <button class="phase-card-btn" data-phase="68c" onclick="togglePhase('68c')">
+                <span class="phase-card-icon">&#128137;</span>
+                <span class="phase-card-title">68C</span>
+                <span class="phase-card-sub">Practical Nursing Specialist</span>
+            </button>
+            <button class="phase-card-btn" data-phase="68d" onclick="togglePhase('68d')">
+                <span class="phase-card-icon">&#128296;</span>
+                <span class="phase-card-title">68D</span>
+                <span class="phase-card-sub">Operating Room Specialist</span>
+            </button>
+            <button class="phase-card-btn" data-phase="68z" onclick="togglePhase('68z')">
+                <span class="phase-card-icon">&#11088;</span>
+                <span class="phase-card-title">68Z</span>
+                <span class="phase-card-sub">Senior Medical Sergeant</span>
+            </button>
+        </div>
+
+        <!-- 68W Detail -->
+        <div class="phase-detail-panel open" id="detail-68w">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b68w">68W</span>
+                    <div class="phase-detail-rtb">Combat Medic Specialist</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>16 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Sam Houston, TX (METC)</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Cert</span><span>EMT-B (NREMT)</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Support</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>TCCC, Trauma, Sick Call, Field Medicine</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 68W Combat Medic Specialist is the most iconic medical MOS in the Army. Whiskeys serve at every echelon of care, from the infantry platoon aid bag to battalion aid stations and combat support hospitals. The 16-week AIT at Fort Sam Houston's Medical Education and Training Campus (METC) produces nationally certified EMT-Bs who are trained in tactical combat casualty care (TCCC), trauma management, and primary care.</p>
+                    <p>68Ws are embedded with line units across every branch and serve as the first responder on the battlefield. They are the most widely assigned MOS in the Army Medical Department and often the difference between life and death for wounded soldiers.</p>
+                    <ul class="phase-detail-list">
+                        <li>Tactical Combat Casualty Care (TCCC) &mdash; care under fire, tactical field care, CASEVAC</li>
+                        <li>EMT-Basic certification through NREMT national exam</li>
+                        <li>Trauma assessment, hemorrhage control, airway management</li>
+                        <li>IV therapy, medication administration, and pharmacology</li>
+                        <li>Sick call procedures, primary care screening, and triage</li>
+                        <li>Field sanitation, preventive medicine, and force health protection</li>
+                        <li>Clinical rotations in emergency departments and ambulance services</li>
+                    </ul>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">20+</span>
-                <div class="stat-label">MOS</div>
+        </div>
+
+        <!-- 68C Detail -->
+        <div class="phase-detail-panel" id="detail-68c">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b68c">68C</span>
+                    <div class="phase-detail-rtb">Practical Nursing Specialist</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>52 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Sam Houston, TX (METC)</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Cert</span><span>LPN (NCLEX-PN)</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Clinical Nursing</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Patient Care, Meds, Clinical Rotations</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 68C Practical Nursing Specialist completes the longest AIT in the 68-Series at 52 weeks, emerging as a Licensed Practical Nurse (LPN) eligible to sit for the NCLEX-PN exam. 68Cs provide direct patient care in military treatment facilities, combat support hospitals, and field medical units worldwide.</p>
+                    <p>Training covers the full scope of practical nursing: patient assessment, medication administration, wound care, IV therapy, and clinical documentation. Extensive clinical rotations in hospital wards, surgical units, and outpatient clinics prepare 68Cs for independent patient care under registered nurse supervision.</p>
+                    <ul class="phase-detail-list">
+                        <li>LPN certification &mdash; nationally recognized credential through NCLEX-PN</li>
+                        <li>Patient assessment, vital signs monitoring, and documentation</li>
+                        <li>Medication administration including IV push, IM, and oral routes</li>
+                        <li>Wound care, dressing changes, and infection control</li>
+                        <li>Clinical rotations in med-surg, OB, pediatrics, and psychiatry</li>
+                        <li>Care planning and coordination with RN and physician teams</li>
+                        <li>Combat nursing operations in field and CSH environments</li>
+                    </ul>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">~85%</span>
-                <div class="stat-label">Grad Rate</div>
+        </div>
+
+        <!-- 68D Detail -->
+        <div class="phase-detail-panel" id="detail-68d">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b68d">68D</span>
+                    <div class="phase-detail-rtb">Operating Room Specialist</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>24 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Sam Houston, TX (METC)</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Cert</span><span>Certified Surgical Tech</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Surgical Support</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Sterile Technique, OR Procedures, Instruments</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 68D Operating Room Specialist is the surgical technologist of the Army Medical Department. 68Ds assist surgeons during operations by preparing the sterile field, handling instruments, and maintaining surgical equipment. They serve in hospital operating rooms, forward surgical teams, and combat support hospitals where trauma surgery saves lives.</p>
+                    <p>Training at METC covers surgical anatomy, sterile technique, instrument identification, and hands-on clinical rotations in operating rooms. Graduates are eligible for national certification as a Certified Surgical Technologist (CST).</p>
+                    <ul class="phase-detail-list">
+                        <li>Surgical technology fundamentals and operating room protocols</li>
+                        <li>Sterile technique, gowning, gloving, and field maintenance</li>
+                        <li>Surgical instrument identification, use, and management</li>
+                        <li>Patient positioning, prepping, and draping for surgery</li>
+                        <li>Hemostasis, tissue handling, and suture/staple assistance</li>
+                        <li>Clinical rotations in general surgery, orthopedics, and trauma</li>
+                        <li>Forward surgical team (FST) operations in austere environments</li>
+                    </ul>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">Ft Sam Houston</span>
-                <div class="stat-label">TX</div>
+        </div>
+
+        <!-- 68Z Detail -->
+        <div class="phase-detail-panel" id="detail-68z">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b68z">68Z</span>
+                    <div class="phase-detail-rtb">Senior Medical Sergeant</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Selection</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>Clinic / Hospital NCOIC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Medical Operations Mgmt</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Med Ops, Training Mgmt, Mentorship</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 68Z Senior Medical Sergeant is the pinnacle of enlisted medical leadership. 68Zs serve as clinic NCOICs, hospital section leaders, and medical operations managers at battalion, brigade, and hospital levels. They are responsible for medical readiness, personnel management, and clinical standards across Army Medicine.</p>
+                    <p>Reaching 68Z requires years of medical experience across multiple specialties, completion of the Senior Leader Course and Sergeants Major Academy, and a proven record of clinical excellence and leadership in both garrison and deployed environments.</p>
+                    <ul class="phase-detail-list">
+                        <li>Medical operations management at clinic and hospital level</li>
+                        <li>Training management and medical readiness reporting</li>
+                        <li>Personnel management, evaluations, and career counseling for medical soldiers</li>
+                        <li>Clinical standards oversight and quality assurance</li>
+                        <li>Unit medical readiness and force health protection programs</li>
+                        <li>Mentorship of junior medical NCOs across all 68-Series specialties</li>
+                        <li>Senior enlisted medical advisor to commanders at BN/BDE level</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Career Field Overview</div>
-        <h2>Saving Lives on Every Front</h2>
-        <p>The Army Medical Department (AMEDD) enlisted force is one of the largest and most diverse career fields in the military. The 68-Series encompasses over 20 specialties spanning the full spectrum of healthcare &mdash; from the iconic 68W Combat Medic who provides lifesaving care on the battlefield to operating room specialists, dental technicians, radiology techs, pharmacy specialists, and behavioral health professionals. Army medics serve in every type of unit, from infantry platoons to world-class military hospitals.</p>
-        <p>Medical MOS training is centered at the Medical Education and Training Campus (METC) at Ft Sam Houston, TX, where soldiers receive clinical instruction that often leads to nationally recognized certifications. Many 68-Series soldiers earn credentials as EMTs, paramedics, licensed practical nurses, or certified surgical technologists during their military training. The medical career field offers some of the strongest civilian career translation in the Army, with graduates entering healthcare careers at every level.</p>
+    <!-- CAREER PROGRESSION -->
+    <section class="school-section fade-in" id="career">
+        <div class="school-section-label">Career Progression</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
+            <button class="phase-card-btn" data-season="junior" onclick="toggleSeason('junior')">
+                <span class="phase-card-icon">&#127941;</span>
+                <span class="phase-card-title">Junior Enlisted</span>
+                <span class="phase-card-sub">E-1 to E-4</span>
+            </button>
+            <button class="phase-card-btn" data-season="nco" onclick="toggleSeason('nco')">
+                <span class="phase-card-icon">&#9733;</span>
+                <span class="phase-card-title">NCO</span>
+                <span class="phase-card-sub">E-5 to E-6</span>
+            </button>
+            <button class="phase-card-btn" data-season="senior" onclick="toggleSeason('senior')">
+                <span class="phase-card-icon">&#127942;</span>
+                <span class="phase-card-title">Senior NCO</span>
+                <span class="phase-card-sub">E-7 to E-9</span>
+            </button>
+            <button class="phase-card-btn" data-season="officer" onclick="toggleSeason('officer')">
+                <span class="phase-card-icon">&#9878;</span>
+                <span class="phase-card-title">Officer Track</span>
+                <span class="phase-card-sub">IPAP / PA Program</span>
+            </button>
+        </div>
+
+        <!-- Junior Enlisted Detail -->
+        <div class="phase-detail-panel" id="detail-junior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#3b82f6;border-color:#3b82f6;">E1-E4</span>
+                    <div class="phase-detail-rtb">Junior Enlisted</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>0-4 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>Medic, Tech, Aide</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>Airborne, Flight Medic</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$24K-$36K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Bonus</span><span>Up to $40K (initial)</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Junior enlisted medical soldiers begin their career providing direct patient care or clinical support under supervision. 68Ws deploy with line units as platoon medics, while other specialties work in clinics, labs, and hospitals. Promotion to SPC/E-4 typically occurs within 2-3 years and brings increased clinical autonomy.</p>
+                    <p>This is the time to earn additional certifications, pursue advanced medical schools, and build the clinical foundation for NCO leadership. Medical MOS soldiers have access to some of the Army's best continuing education opportunities.</p>
+                    <ul class="phase-detail-list">
+                        <li>PVT (E-1) to PV2 (E-2): 6 months &mdash; Basic clinical duties, supervised patient care</li>
+                        <li>PFC (E-3): 12 months TIS &mdash; Proficient technician, independent clinical tasks</li>
+                        <li>SPC (E-4): 24 months TIS &mdash; Experienced medic/tech, mentor to new arrivals</li>
+                        <li>Pursue advanced certifications (Paramedic, ACLS, PHTLS)</li>
+                        <li>Volunteer for Airborne, Flight Medic, or special duty assignments</li>
+                        <li>Maintain and upgrade clinical certifications for promotion competitiveness</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- NCO Detail -->
+        <div class="phase-detail-panel" id="detail-nco">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#22c55e;border-color:#22c55e;">E5-E6</span>
+                    <div class="phase-detail-rtb">Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>4-10 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>Senior Medic, Clinic NCOIC</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>BLC, ALC, EFMB</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$36K-$52K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key</span><span>NCOER + Certifications</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Medical NCOs lead clinical teams and manage patient care operations. Sergeants (E-5) serve as senior medics, shift leaders, or clinic supervisors, while Staff Sergeants (E-6) manage sections and mentor junior medical soldiers. This is where medical leaders are forged &mdash; balancing clinical excellence with soldier development.</p>
+                    <p>Completion of BLC is required for E-5, and ALC for E-6. The Expert Field Medical Badge (EFMB) is the premier recognition for medical NCOs and significantly improves promotion potential.</p>
+                    <ul class="phase-detail-list">
+                        <li>SGT (E-5): Senior Medic / Shift Leader &mdash; oversees clinical operations and junior soldiers</li>
+                        <li>SSG (E-6): Section NCOIC &mdash; manages clinic sections, training, and medical readiness</li>
+                        <li>BLC required for SGT promotion, ALC for SSG</li>
+                        <li>Expert Field Medical Badge (EFMB) is the gold standard for medical NCOs</li>
+                        <li>Pursue Flight Medic, SOCM, or Critical Care certification</li>
+                        <li>Strong NCOER evaluations and maintained certifications drive competitive promotion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Senior NCO Detail -->
+        <div class="phase-detail-panel" id="detail-senior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#f59e0b;border-color:#f59e0b;">E7-E9</span>
+                    <div class="phase-detail-rtb">Senior Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>10-30 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>Clinic NCOIC, 1SG, CSM</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>SLC, USASMA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$52K-$90K+/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Selection</span><span>Board-selected</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Senior medical NCOs represent the most experienced clinical and administrative leaders in Army Medicine. Sergeants First Class (E-7) serve as clinic NCOICs and medical platoon sergeants, Master Sergeants/First Sergeants (E-8) lead at company and hospital section level, and Sergeants Major/Command Sergeants Major (E-9) serve at battalion, brigade, and medical center level.</p>
+                    <p>These positions are board-selected and require a proven record of clinical leadership, advanced school completion, and top-block evaluations across both garrison and deployed medical operations.</p>
+                    <ul class="phase-detail-list">
+                        <li>SFC (E-7): Medical Platoon Sergeant / Clinic NCOIC &mdash; senior clinical NCO</li>
+                        <li>MSG/1SG (E-8): Operations NCOIC or First Sergeant &mdash; company/hospital section leader</li>
+                        <li>SGM/CSM (E-9): Command Sergeant Major &mdash; BN/BDE/Medical Center senior enlisted advisor</li>
+                        <li>Senior Leader Course (SLC) required for E-7 promotion</li>
+                        <li>Sergeants Major Academy for E-9 selection</li>
+                        <li>Instructor and drill sergeant duty build competitive records</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Officer Track Detail -->
+        <div class="phase-detail-panel" id="detail-officer">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#a855f7;border-color:#a855f7;">IPAP</span>
+                    <div class="phase-detail-rtb">Physician Assistant Program</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Path</span><span>IPAP / OCS / Green-to-Gold</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duration</span><span>29 Months (IPAP)</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Sam Houston, TX</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Result</span><span>PA-C / Officer Commission</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Degree</span><span>Master's in PA Studies</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The Interservice Physician Assistant Program (IPAP) is the premier commissioning pathway for enlisted medical soldiers. IPAP is a 29-month program at Fort Sam Houston that produces Physician Assistants with a master's degree and officer commission. Applicants must be active-duty enlisted with strong clinical experience and prerequisite coursework.</p>
+                    <p>IPAP graduates serve as PA-Cs across the military healthcare system, providing primary care, emergency medicine, and surgical support. Former enlisted medics who complete IPAP bring invaluable clinical experience that sets them apart from their peers.</p>
+                    <ul class="phase-detail-list">
+                        <li>IPAP: 29-month program at Fort Sam Houston &mdash; master's degree + PA-C certification</li>
+                        <li>OCS: 12-16 weeks at Fort Moore &mdash; rapid commissioning for degree holders</li>
+                        <li>Green-to-Gold: 2-4 year college program with ROTC scholarship</li>
+                        <li>AMEDD direct commission opportunities for qualified clinical professionals</li>
+                        <li>Prior enlisted medical experience is a massive advantage in clinical leadership</li>
+                        <li>Career progression: PA &rarr; Senior PA &rarr; Clinic Director &rarr; DCCS &rarr; Hospital leadership</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">MOS List</div>
-        <h2>68-Series Specialties</h2>
-
-        <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0;">
-        <thead><tr style="border-bottom:2px solid var(--color-gold);text-align:left;">
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">MOS</th>
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">Title</th>
-        </tr></thead>
-        <tbody>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68W</td>
-                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Combat Medic Specialist</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68C</td>
-                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Practical Nursing Specialist</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68D</td>
-                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Operating Room Specialist</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68E</td>
-                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Dental Specialist</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68G</td>
-                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Patient Administration Specialist</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68K</td>
-                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Medical Laboratory Specialist</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68P</td>
-                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Radiology Specialist</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68Q</td>
-                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Pharmacy Specialist</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68S</td>
-                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Preventive Medicine Specialist</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68T</td>
-                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Animal Care Specialist</td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
-                <td style="padding:var(--space-sm) var(--space-md);font-weight:700;color:var(--color-gold);font-family:var(--font-tactical);">68X</td>
-                <td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Behavioral Health Specialist</td>
-            </tr>
-        </tbody></table></div>
+    <!-- DUTY STATIONS -->
+    <section class="school-section fade-in" id="stations">
+        <div class="school-section-label">Major Duty Stations</div>
+        <h2 class="school-section-title">Where Medical Soldiers Serve</h2>
+        <div class="school-calendar-wrapper">
+            <table class="school-calendar">
+                <thead>
+                    <tr>
+                        <th>Installation</th>
+                        <th>Location</th>
+                        <th>Facility / Unit</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Fort Sam Houston</td><td>TX</td><td>METC / Brooke AMC / BAMC</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">TRADOC / MTF</span></td></tr>
+                    <tr><td>Fort Liberty</td><td>NC</td><td>Womack AMC / 82nd Airborne</td><td><span class="season-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">FORSCOM</span></td></tr>
+                    <tr><td>Fort Campbell</td><td>KY/TN</td><td>Blanchfield ACH / 101st Airborne</td><td><span class="season-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;">FORSCOM</span></td></tr>
+                    <tr><td>Fort Carson</td><td>CO</td><td>Evans ACH / 4th Infantry Division</td><td><span class="season-tag" style="background:rgba(34,197,94,0.15);color:#22c55e;">FORSCOM</span></td></tr>
+                    <tr><td>JBLM (Madigan AMC)</td><td>WA</td><td>Madigan Army Medical Center</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">Medical Center</span></td></tr>
+                    <tr><td>Walter Reed NMMC</td><td>MD</td><td>Walter Reed National Military Medical Center</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">Medical Center</span></td></tr>
+                    <tr><td>Tripler AMC</td><td>HI</td><td>Tripler Army Medical Center</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">Pacific</span></td></tr>
+                    <tr><td>Landstuhl RMC</td><td>Germany</td><td>Landstuhl Regional Medical Center</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">OCONUS</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="school-calendar-note">Medical soldiers serve at every Army installation worldwide. 68-Series MOS holders are assigned to line units, military treatment facilities, combat support hospitals, and medical centers across CONUS and OCONUS.</p>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Training Pipeline</div>
-        <h2>From Trainee to Healthcare Professional</h2>
-
-        <ul class="phase-list">
-            <li>
-                <span class="phase-day">Phase 1</span>
-                <span class="phase-desc"><strong>Basic Combat Training</strong> &mdash; 10 weeks of BCT covering warrior tasks, physical fitness, and fundamental soldiering skills.</span>
-            </li>
-            <li>
-                <span class="phase-day">Phase 2</span>
-                <span class="phase-desc"><strong>16-52 Week AIT</strong> &mdash; Advanced Individual Training at Ft Sam Houston, TX (METC). Training length varies significantly by specialty, with clinical rotations and nationally recognized certification exams.</span>
-            </li>
-            <li>
-                <span class="phase-day">Phase 3</span>
-                <span class="phase-desc"><strong>Unit Assignment</strong> &mdash; Report to your first unit &mdash; whether a line infantry company, a combat support hospital, or a military treatment facility &mdash; and begin applying clinical skills.</span>
-            </li>
-            <li>
-                <span class="phase-day">Phase 4</span>
-                <span class="phase-desc"><strong>Clinical Certifications</strong> &mdash; Obtain and maintain nationally recognized clinical certifications such as EMT, NREMT, LPN, or specialty-specific credentials.</span>
-            </li>
-            <li>
-                <span class="phase-day">Phase 5</span>
-                <span class="phase-desc"><strong>NCOES</strong> &mdash; Noncommissioned Officer Education System courses for leadership development and career progression within Army Medicine.</span>
-            </li>
-            <li>
-                <span class="phase-day">Phase 6</span>
-                <span class="phase-desc"><strong>Advanced Training</strong> &mdash; Opportunities for flight medic, special operations medical training, critical care, and advanced clinical specialization.</span>
-            </li>
-        </ul>
+    <!-- CINEMATIC BREAK -->
+    <section class="school-cinematic fade-in" style="background: linear-gradient(180deg, transparent, rgba(239,68,68,0.06) 50%, transparent);">
+        <div class="school-cinematic-stat">~50,000 Active-Duty Medical Soldiers</div>
+        <p class="school-cinematic-body">The Army's largest career field. From forward aid stations on the battlefield to world-class military hospitals, medical soldiers are always there when it matters most.</p>
+        <a href="../../courses.html" class="btn-outline" style="margin-top: var(--space-xl);">Explore Training Courses</a>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Advanced Training</div>
-        <h2>Specialized Courses</h2>
-        <p>Medical soldiers have access to some of the Army's most prestigious advanced courses: Flight Medic qualification for aeromedical evacuation, SOCM (Special Operations Combat Medic) for SOF support, EFMB (Expert Field Medical Badge) testing, Paramedic certification, Critical Care training for ICU-level patient management, and the Interservice Physician Assistant Program (IPAP) for enlisted soldiers pursuing a PA degree and officer commission.</p>
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Common Questions</div>
+        <div class="bento-3">
+            <div class="glass-card">
+                <div class="glass-card-label">Career</div>
+                <div class="glass-card-title">Want to Be a Combat Medic?</div>
+                <p class="glass-card-body">68W is the most widely assigned MOS in the Army. 16 weeks at Fort Sam Houston earns you EMT-B certification and the skills to save lives under fire. Every unit needs a medic &mdash; you'll never lack for purpose.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Certification</div>
+                <div class="glass-card-title">Need EMT Certification?</div>
+                <p class="glass-card-body">68W AIT includes NREMT-B certification as part of the course. You'll graduate with a nationally recognized EMT credential that translates directly to civilian emergency medical services.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Advanced</div>
+                <div class="glass-card-title">Interested in Flight Medic?</div>
+                <p class="glass-card-body">Flight Medic qualification opens the door to aeromedical evacuation on Black Hawks and Chinooks. It requires paramedic certification and critical care training &mdash; the pinnacle of tactical medicine.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Training</div>
+                <div class="glass-card-title">How Long is 68C AIT?</div>
+                <p class="glass-card-body">68C Practical Nursing AIT is 52 weeks &mdash; the longest in the 68-Series. You'll graduate as a Licensed Practical Nurse with LPN credentials and extensive clinical rotation experience.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">SOF</div>
+                <div class="glass-card-title">SOCM vs Regular Medic?</div>
+                <p class="glass-card-body">Special Operations Combat Medic (SOCM) training at Fort Liberty produces tactical medicine experts for SOF units. It's significantly harder than standard 68W AIT and requires SOF selection first.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Transition</div>
+                <div class="glass-card-title">Civilian Healthcare Career?</div>
+                <p class="glass-card-body">The 68-Series offers the strongest civilian career translation in the Army. Medics become paramedics, nurses, PAs, and healthcare administrators. Your military certifications transfer directly.</p>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width: 500px; margin: 0 auto;">We're building MOS-specific packing lists, training courses, and career guides for the 68-Series. Check back soon or explore other career fields in the meantime.</p>
+    <!-- MOS OVERVIEW STATS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">MOS Overview</div>
+        <div class="stats-grid-6">
+            <div class="stat-card-sm">
+                <span class="stat-card-number">16-52 Wk</span>
+                <span class="stat-card-label">AIT Duration</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">20+ MOS</span>
+                <span class="stat-card-label">68-Series Specialties</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">~85%</span>
+                <span class="stat-card-label">AIT Grad Rate</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">~50K</span>
+                <span class="stat-card-label">Active Duty</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Up to $40K</span>
+                <span class="stat-card-label">Enlistment Bonus</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Ft Sam Houston</span>
+                <span class="stat-card-label">METC Location</span>
+            </div>
+        </div>
     </section>
 
+    <!-- RETENTION / REENLISTMENT RATES -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Retention Rates</div>
+        <h2 class="school-section-title">Medical Reenlistment by Year</h2>
+        <div class="attrition-grid">
+            <div class="attrition-card">
+                <span class="attrition-year">FY19</span>
+                <span class="attrition-rate">52%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY20</span>
+                <span class="attrition-rate">55%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY21</span>
+                <span class="attrition-rate">58%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY22</span>
+                <span class="attrition-rate">56%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY23</span>
+                <span class="attrition-rate">54%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAINING WASHOUT DATA -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Training Data</div>
+        <h2 class="school-section-title">AIT Washout &amp; Qualification Data</h2>
+        <div class="failure-grid">
+            <div class="failure-card">
+                <h3 class="failure-card-title">Common AIT Drop Reasons</h3>
+                <ul class="failure-card-list">
+                    <li><span>Academic failure</span><span>~8%</span></li>
+                    <li><span>Clinical failure</span><span>~3%</span></li>
+                    <li><span>Physical fitness failure</span><span>~2%</span></li>
+                    <li><span>Voluntary / administrative</span><span>~2%</span></li>
+                </ul>
+            </div>
+            <div class="failure-card">
+                <h3 class="failure-card-title">Key Context</h3>
+                <ul class="failure-card-list">
+                    <li><span>Overall AIT graduation rate is ~85%</span></li>
+                    <li><span>Academic standards are the primary challenge</span></li>
+                    <li><span>Clinical rotations require passing practical exams</span></li>
+                    <li><span>Longer AIT courses (68C) have higher drop rates</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY TAKEAWAY -->
+    <section class="school-section fade-in">
+        <div class="school-takeaway">
+            <div class="school-takeaway-label">Key Takeaway</div>
+            <p class="school-takeaway-text">The 68-Series is the Army's largest and most diverse career field, offering nationally recognized healthcare certifications, strong civilian career translation, and the honor of keeping soldiers alive. Whether you want to treat casualties under fire as a Combat Medic or pursue a PA degree through IPAP, Army Medicine has a path for you.</p>
+        </div>
+    </section>
+
+    <!-- AMEDD CREED -->
+    <section class="school-section school-creed-section fade-in">
+        <div class="school-section-label">The AMEDD Motto</div>
+        <blockquote class="school-creed">
+            <p>"To Conserve Fighting Strength"</p>
+            <p>The motto of the Army Medical Department &mdash;<br>
+            a commitment to every soldier's life,<br>
+            on every battlefield,<br>
+            in every hospital and aid station,<br>
+            wherever the Army goes.<br>
+            The medic's sacred duty:<br>
+            preserve the force, save the fallen,<br>
+            and never leave a soldier behind.</p>
+            <p style="margin-top: var(--space-lg); font-weight: 700; color: var(--color-gold);">To Conserve Fighting Strength</p>
+        </blockquote>
+        <a href="../../courses.html" class="btn-primary" style="margin-top: var(--space-xl);">Start Medical Prep</a>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="school-section school-newsletter-section fade-in">
+        <div class="school-section-label">Stay Informed</div>
+        <h2 class="school-section-title">Get Medical Intel</h2>
+        <p class="school-section-body">Training tips, gear drops, and career guides for the 68-Series &mdash; delivered to your inbox.</p>
+        <form class="school-newsletter-form" id="newsletter-form">
+            <input type="email" class="school-newsletter-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn-primary school-newsletter-btn">Subscribe</button>
+        </form>
+        <p class="school-newsletter-status" id="newsletter-status"></p>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="school-footer">
-        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+        <div class="school-footer-inner">
+            <div class="school-footer-brand">
+                <a href="/" class="school-footer-logo">Ranger Beers</a>
+                <p class="school-footer-sub">Medical Supply Co.</p>
+            </div>
+            <div class="school-footer-columns">
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Specialties</h4>
+                    <ul>
+                        <li><a href="index.html#specialties">68W &mdash; Combat Medic</a></li>
+                        <li><a href="index.html#specialties">68C &mdash; Practical Nursing</a></li>
+                        <li><a href="index.html#specialties">68D &mdash; Operating Room</a></li>
+                        <li><a href="index.html#specialties">68Z &mdash; Senior Medical SGT</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Supply</h4>
+                    <ul>
+                        <li><a href="../../shop.html">Medical Gear</a></li>
+                        <li><a href="../../courses.html">Training Courses</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Guides</h4>
+                    <ul>
+                        <li><a href="../../standards.html">Standards</a></li>
+                        <li><a href="../../faq.html">FAQ</a></li>
+                        <li><a href="../../about.html">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="school-footer-bottom">
+            <p>&copy; 2026 Ranger Beers Supply Co.</p>
+            <div class="school-footer-legal">
+                <a href="../../privacy.html">Privacy</a>
+                <a href="../../terms.html">Terms</a>
+            </div>
+        </div>
     </footer>
 
+    <!-- SCRIPTS -->
+    <script>
+        // Newsletter
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = this.querySelector('input[type="email"]').value;
+            var status = document.getElementById('newsletter-status');
+            status.textContent = 'Subscribing...';
+            fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, school: '68-medical' })
+            }).then(function(r) { return r.json(); })
+              .then(function() { status.textContent = 'Subscribed — check your inbox.'; })
+              .catch(function() { status.textContent = 'Error — please try again.'; });
+        });
+    </script>
+
+    <script>
+        // Nav scroll + mobile
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 40); });
+        var toggle = document.querySelector('.nav-mobile-toggle');
+        if (toggle) toggle.addEventListener('click', function() { nav.classList.toggle('nav-open'); });
+
+        // Fade-in
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+    </script>
+
+    <!-- Auth -->
+    <script src="../../course-auth.js"></script>
+    <script>if (typeof RangerAuth !== 'undefined') RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase/Career Toggle -->
+    <script>
+        var currentPhase = '68w';
+        var currentSeason = null;
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+            currentSeason = null;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect 68W
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="68w"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
 </body>
 </html>

@@ -8,104 +8,733 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../course-styles.css">
+    <link rel="stylesheet" href="../../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero { min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:var(--space-4xl) 40px;position:relative;overflow:hidden; }
-        .school-hero::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center bottom,rgba(34,197,94,0.08),transparent 60%); }
-        .school-hero-headline { font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:var(--space-md);position:relative; }
-        .school-hero-sub { font-size:clamp(1rem,2vw,1.25rem);color:var(--color-text-secondary);max-width:640px;line-height:1.6;position:relative; }
-        .school-back { position:fixed;top:var(--space-lg);left:var(--space-lg);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--color-text-secondary);text-decoration:none;z-index:100;transition:color 0.3s; }
-        .school-back:hover { color:var(--color-gold); }
-        .info-section { max-width:900px;margin:0 auto;padding:var(--space-3xl) 40px; }
-        .info-section-label { font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--color-gold);margin-bottom:var(--space-lg); }
-        .info-section h2 { font-size:clamp(1.5rem,3vw,2.25rem);font-weight:800;margin-bottom:var(--space-lg); }
-        .info-section p { color:var(--color-text-secondary);line-height:1.8;margin-bottom:var(--space-lg); }
-        .stats-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-md);margin:var(--space-2xl) 0; }
-        .stat-card { background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-glass);padding:var(--space-xl) var(--space-md);text-align:center; }
-        .stat-number { font-size:clamp(1.5rem,3vw,2.5rem);font-weight:900;color:var(--color-gold);display:block; }
-        .stat-label { font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-text-secondary);margin-top:var(--space-xs); }
-        .phase-list { list-style:none;margin:var(--space-xl) 0; }
-        .phase-list li { padding:var(--space-md) 0;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;gap:var(--space-md); }
-        .phase-list .phase-day { font-weight:700;color:var(--color-gold);min-width:80px;font-family:var(--font-tactical);font-size:13px; }
-        .phase-list .phase-desc { color:var(--color-text-secondary);line-height:1.6; }
-        .phase-list .phase-desc strong { color:var(--color-text-primary); }
-        .school-footer { text-align:center;padding:var(--space-3xl) 40px;border-top:1px solid rgba(255,255,255,0.06); }
-        .school-footer-copy { font-size:12px;color:var(--color-text-muted);letter-spacing:1px; }
-        @media (max-width:700px) { .stats-grid{grid-template-columns:repeat(2,1fr);} .school-hero{padding:var(--space-3xl) 20px;} .info-section{padding:var(--space-2xl) 20px;} }
+        /* MOS-specific: hero tint & specialty colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(59,130,246,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="88m"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="88n"]::before { background: radial-gradient(ellipse at center, rgba(34,197,94,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="88k"]::before { background: radial-gradient(ellipse at center, rgba(245,158,11,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="88z"]::before { background: radial-gradient(ellipse at center, rgba(239,68,68,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="88m"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="88n"] { border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.15); }
+        .phase-card-btn.active[data-phase="88k"] { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245,158,11,0.15); }
+        .phase-card-btn.active[data-phase="88z"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239,68,68,0.15); }
+        .phase-detail-badge.b88m { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.b88n { color: #22c55e; border-color: #22c55e; }
+        .phase-detail-badge.b88k { color: #f59e0b; border-color: #f59e0b; }
+        .phase-detail-badge.b88z { color: #ef4444; border-color: #ef4444; }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Specialties</span></li>
+                        <li><a href="index.html#specialties">88M &mdash; Motor Transport</a></li>
+                        <li><a href="index.html#specialties">88N &mdash; Trans Mgmt Coord</a></li>
+                        <li><a href="index.html#specialties">88K &mdash; Watercraft Operator</a></li>
+                        <li><a href="index.html#specialties">88Z &mdash; Senior Sergeant</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../shop.html">Transportation Gear</a></li>
+                        <li><a href="../../shop.html">Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="../../courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../../courses.html">Transportation Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="../../resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="../../standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="snipcart-checkout nav-cart-btn" title="Cart">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span class="snipcart-items-count nav-cart-count"></span>
+                </button>
+                <div id="auth-ui">
+                    <button class="btn-sm btn-outline" id="auth-signin-btn" style="display:none;">Sign&nbsp;In</button>
+                    <button class="btn-sm btn-outline" id="auth-signout-btn" style="display:none;">Sign&nbsp;Out</button>
+                </div>
+                <button class="nav-mobile-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- HERO -->
     <section class="school-hero">
-        <div style="height:80px;width:80px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);border-radius:50%;font-family:var(--font-tactical);font-size:32px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">88</div>
-        <h1 class="school-hero-headline">Transportation</h1>
-        <p class="school-hero-sub">Moving soldiers, equipment, and supplies wherever they're needed. Transportation Soldiers keep the Army rolling by road, rail, air, and sea.</p>
-    </section>
-
-    <section class="info-section">
-        <div class="info-section-label">At a Glance</div>
-        <div class="stats-grid">
-            <div class="stat-card"><span class="stat-number">7-12wk</span><div class="stat-label">AIT Length</div></div>
-            <div class="stat-card"><span class="stat-number">5</span><div class="stat-label"># of MOS</div></div>
-            <div class="stat-card"><span class="stat-number">~95%</span><div class="stat-label">Grad Rate</div></div>
-            <div class="stat-card"><span class="stat-number">Ft Gregg-Adams</span><div class="stat-label">Key Installation</div></div>
+        <div class="hero-badge-text">88</div>
+        <h1 class="school-hero-headline">Nothing Happens Until Something Moves</h1>
+        <p class="school-hero-sub">The Transportation Corps keeps the Army rolling by road, rail, air, and sea &mdash; moving soldiers, equipment, ammunition, and supplies wherever they're needed, whenever they're needed.</p>
+        <div class="school-hero-cta">
+            <a href="../../shop.html" class="btn-primary">Shop Gear</a>
+            <a href="../../courses.html" class="btn-outline">Start Training</a>
+        </div>
+        <div class="school-scroll-indicator">
+            <span class="school-scroll-text">Scroll</span>
+            <div class="school-scroll-line"></div>
         </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Career Field Overview</div>
-        <h2>What is Transportation?</h2>
-        <p>The Transportation branch is responsible for moving everything the Army needs to fight &mdash; soldiers, ammunition, fuel, food, equipment, and vehicles &mdash; by ground, water, rail, and air. Motor Transport Operators (88M) are the backbone of the branch, driving everything from HMMWVs to Heavy Equipment Transporters across hostile terrain. Watercraft operators keep Army vessels running on rivers, harbors, and open seas worldwide.</p>
-        <p>Training is centered at Ft Gregg-Adams (formerly Ft Lee), Virginia, home of the Army Combined Arms Support Command. The Transportation branch is critical to sustainment operations &mdash; without it, combat forces cannot be supplied, reinforced, or repositioned. The 88-series offers a CDL (Commercial Driver's License) and other certifications that translate directly to well-paying civilian transportation and logistics careers.</p>
+    <!-- MAIN HEADLINE -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Career Field at a Glance</div>
+        <h2 class="school-section-title">7-12 Week AIT &mdash; 5+ MOS &mdash; 1 Mission: Movement &amp; Distribution</h2>
+        <p class="school-section-body">The 88-Series is the Army's lifeline. From convoy operations across hostile terrain to watercraft missions on open seas, Transportation Soldiers ensure nothing stops moving.</p>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">MOS List</div>
-        <h2>88-Series Specialties</h2>
-        <div style="overflow-x:auto;">
-        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0;">
-        <thead><tr style="border-bottom:2px solid var(--color-gold);text-align:left;">
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">MOS</th>
-        <th style="padding:var(--space-sm) var(--space-md);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-gold);">Title</th>
-        </tr></thead>
-        <tbody>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">88H</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Cargo Specialist</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">88K</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Watercraft Operator</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">88L</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Watercraft Engineer</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">88M</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Motor Transport Operator</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.06);"><td style="padding:var(--space-sm) var(--space-md);font-family:var(--font-tactical);font-weight:700;color:var(--color-text-primary);">88N</td><td style="padding:var(--space-sm) var(--space-md);color:var(--color-text-secondary);">Transportation Management Coordinator</td></tr>
-        </tbody></table></div>
+    <!-- MOS SPECIALTIES SELECTOR -->
+    <section class="school-section fade-in" id="specialties">
+        <div class="school-section-label">MOS Specialties</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
+            <button class="phase-card-btn active" data-phase="88m" onclick="togglePhase('88m')">
+                <span class="phase-card-icon">&#128666;</span>
+                <span class="phase-card-title">88M</span>
+                <span class="phase-card-sub">Motor Transport Operator</span>
+            </button>
+            <button class="phase-card-btn" data-phase="88n" onclick="togglePhase('88n')">
+                <span class="phase-card-icon">&#128203;</span>
+                <span class="phase-card-title">88N</span>
+                <span class="phase-card-sub">Trans Mgmt Coordinator</span>
+            </button>
+            <button class="phase-card-btn" data-phase="88k" onclick="togglePhase('88k')">
+                <span class="phase-card-icon">&#9875;</span>
+                <span class="phase-card-title">88K</span>
+                <span class="phase-card-sub">Watercraft Operator</span>
+            </button>
+            <button class="phase-card-btn" data-phase="88z" onclick="togglePhase('88z')">
+                <span class="phase-card-icon">&#11088;</span>
+                <span class="phase-card-title">88Z</span>
+                <span class="phase-card-sub">Senior Trans Sergeant</span>
+            </button>
+        </div>
+
+        <!-- 88M Detail -->
+        <div class="phase-detail-panel open" id="detail-88m">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b88m">88M</span>
+                    <div class="phase-detail-rtb">Motor Transport Operator</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>7 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Gregg-Adams, VA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Certification</span><span>CDL Qualification</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Support</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Convoy Ops, Vehicle Maint, Load Planning, Hazmat</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 88M Motor Transport Operator is the backbone of the Transportation Corps. 88Ms drive everything from HMMWVs and LMTVs to Heavy Equipment Transporters (HETs), moving soldiers, ammunition, fuel, and equipment across every type of terrain in any conditions. AIT at Fort Gregg-Adams, Virginia, transforms soldiers into qualified military truck drivers with a CDL that transfers directly to civilian careers.</p>
+                    <p>Training covers vehicle inspection, preventive maintenance, convoy operations, defensive driving, load planning, and hazmat transport. Graduates are immediately deployable and will spend their career behind the wheel, keeping the Army's supply lines open.</p>
+                    <ul class="phase-detail-list">
+                        <li>CDL qualification on military tactical vehicles</li>
+                        <li>Convoy operations and route planning in hostile environments</li>
+                        <li>Preventive maintenance checks and services (PMCS)</li>
+                        <li>Load planning, weight distribution, and cargo securement</li>
+                        <li>Hazmat transport procedures and safety compliance</li>
+                        <li>Defensive driving and rollover avoidance techniques</li>
+                        <li>Night and blackout driving operations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 88N Detail -->
+        <div class="phase-detail-panel" id="detail-88n">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b88n">88N</span>
+                    <div class="phase-detail-rtb">Transportation Management Coordinator</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>10-12 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Gregg-Adams, VA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Focus</span><span>Movement Control</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Support</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Cargo Tracking, Logistics, Port Ops, ITV Systems</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 88N Transportation Management Coordinator is the logistician behind the movement. 88Ns plan, coordinate, and track the flow of cargo, personnel, and equipment through the Army's distribution network. They operate in movement control teams, ports, railheads, and logistics operations centers, ensuring that the right supplies reach the right place at the right time.</p>
+                    <p>Training covers the Army's In-Transit Visibility (ITV) systems, cargo documentation, movement planning, port operations, and intermodal coordination. 88Ns are essential to sustainment operations and develop skills that translate directly to civilian supply chain and logistics management careers.</p>
+                    <ul class="phase-detail-list">
+                        <li>Movement control operations and transportation planning</li>
+                        <li>Cargo tracking using In-Transit Visibility (ITV) systems</li>
+                        <li>Logistics planning and distribution management</li>
+                        <li>Port and terminal operations coordination</li>
+                        <li>Intermodal transportation (road, rail, air, sea)</li>
+                        <li>Transportation documentation and regulatory compliance</li>
+                        <li>Automated movement and logistics information systems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 88K Detail -->
+        <div class="phase-detail-panel" id="detail-88k">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b88k">88K</span>
+                    <div class="phase-detail-rtb">Watercraft Operator</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">AIT</span><span>12 Weeks</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Eustis, VA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Focus</span><span>Vessel Operations</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Combat Support</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Harbor Craft, Inshore/Offshore, Marine Engineering</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 88K Watercraft Operator is one of the Army's most unique MOS specialties. 88Ks operate Army vessels ranging from harbor tugs and landing craft to logistics support vessels (LSVs), conducting inshore and offshore operations that move troops, vehicles, and cargo where roads and airfields don't exist. This is the Army's Navy.</p>
+                    <p>Training covers vessel navigation, marine engineering fundamentals, harbor operations, deck seamanship, and watercraft safety. 88Ks serve at Army watercraft units stationed at coastal installations and deploy worldwide to support joint logistics-over-the-shore (JLOTS) operations.</p>
+                    <ul class="phase-detail-list">
+                        <li>Army vessel operations &mdash; tugs, landing craft, LSVs</li>
+                        <li>Harbor craft navigation and piloting</li>
+                        <li>Inshore and offshore watercraft operations</li>
+                        <li>Marine engineering and vessel maintenance</li>
+                        <li>Deck seamanship, line handling, and anchoring</li>
+                        <li>JLOTS (Joint Logistics Over-the-Shore) operations</li>
+                        <li>Maritime safety, damage control, and emergency procedures</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 88Z Detail -->
+        <div class="phase-detail-panel" id="detail-88z">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge b88z">88Z</span>
+                    <div class="phase-detail-rtb">Senior Transportation Sergeant</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Rank</span><span>E-8 / E-9</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Requires</span><span>SLC + Selection</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Scope</span><span>BN/BDE Level</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duty</span><span>Senior Enlisted Leader</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key Skills</span><span>Movement Planning, Trans Ops, Doctrine, Mentorship</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>The 88Z Senior Transportation Sergeant is the pinnacle of enlisted Transportation leadership. 88Zs serve as operations sergeants major, first sergeants, and command sergeants major at battalion and brigade level. They oversee all transportation operations, movement planning, and distribution management across their organization.</p>
+                    <p>Reaching 88Z requires decades of transportation experience across multiple MOS specialties, completion of the Senior Leader Course and Sergeants Major Academy, and a proven record of performance in increasingly complex logistics assignments.</p>
+                    <ul class="phase-detail-list">
+                        <li>BN/BDE transportation operations management</li>
+                        <li>Movement planning and distribution oversight</li>
+                        <li>Personnel management, evaluations, and career counseling</li>
+                        <li>Doctrine development and transportation innovation</li>
+                        <li>Unit readiness and logistics resource management</li>
+                        <li>Mentorship of junior NCOs and officer integration</li>
+                        <li>Senior enlisted leadership at the highest levels</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Training Pipeline</div>
-        <h2>From Recruit to Transporter</h2>
-        <ul class="phase-list">
-            <li><span class="phase-day">Step 1</span><span class="phase-desc"><strong>BCT</strong> &mdash; Complete Basic Combat Training before reporting to Transportation AIT.</span></li>
-            <li><span class="phase-day">Step 2</span><span class="phase-desc"><strong>7-12 Week AIT at Ft Gregg-Adams, VA</strong> &mdash; MOS-specific training in vehicle operations, cargo handling, watercraft, or transportation management. 88M Soldiers earn a military CDL.</span></li>
-            <li><span class="phase-day">Step 3</span><span class="phase-desc"><strong>Unit Assignment</strong> &mdash; Report to a Transportation company or battalion. Begin convoy operations, cargo distribution, or movement control missions.</span></li>
-            <li><span class="phase-day">Step 4</span><span class="phase-desc"><strong>Master Driver &amp; Certifications</strong> &mdash; Pursue Master Driver Course to become the unit's driver training expert. Earn hazmat endorsements and additional vehicle licenses.</span></li>
-            <li><span class="phase-day">Step 5</span><span class="phase-desc"><strong>NCOES &amp; Advanced Logistics</strong> &mdash; Progress through NCOES while pursuing Convoy Live Fire, Movement Control, and Multimodal Operations courses.</span></li>
-        </ul>
+    <!-- CAREER PROGRESSION -->
+    <section class="school-section fade-in" id="career">
+        <div class="school-section-label">Career Progression</div>
+        <div class="phase-selector" style="grid-template-columns: repeat(4, 1fr);">
+            <button class="phase-card-btn" data-season="junior" onclick="toggleSeason('junior')">
+                <span class="phase-card-icon">&#127941;</span>
+                <span class="phase-card-title">Junior Enlisted</span>
+                <span class="phase-card-sub">E-1 to E-4</span>
+            </button>
+            <button class="phase-card-btn" data-season="nco" onclick="toggleSeason('nco')">
+                <span class="phase-card-icon">&#9733;</span>
+                <span class="phase-card-title">NCO</span>
+                <span class="phase-card-sub">E-5 to E-6</span>
+            </button>
+            <button class="phase-card-btn" data-season="senior" onclick="toggleSeason('senior')">
+                <span class="phase-card-icon">&#127942;</span>
+                <span class="phase-card-title">Senior NCO</span>
+                <span class="phase-card-sub">E-7 to E-9</span>
+            </button>
+            <button class="phase-card-btn" data-season="officer" onclick="toggleSeason('officer')">
+                <span class="phase-card-icon">&#9878;</span>
+                <span class="phase-card-title">Officer Track</span>
+                <span class="phase-card-sub">TC Branch</span>
+            </button>
+        </div>
+
+        <!-- Junior Enlisted Detail -->
+        <div class="phase-detail-panel" id="detail-junior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#3b82f6;border-color:#3b82f6;">E1-E4</span>
+                    <div class="phase-detail-rtb">Junior Enlisted</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>0-4 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>Driver, Dispatcher, Deckhand</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Certs</span><span>CDL, Hazmat</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$24K-$36K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Bonus</span><span>Up to $20K (initial)</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Junior enlisted Transportation Soldiers begin their career as vehicle operators, cargo handlers, or watercraft crew members. This is where you earn your CDL, learn convoy procedures, and build the hands-on experience that defines the Transportation Corps. Promotion to SPC/E-4 typically occurs within 2-3 years.</p>
+                    <p>Use this time to earn additional vehicle licenses, hazmat endorsements, and Master Driver qualification. Build a strong foundation of technical competence and leadership potential for NCO development.</p>
+                    <ul class="phase-detail-list">
+                        <li>PVT (E-1) to PV2 (E-2): 6 months &mdash; Vehicle operator, basic soldier tasks</li>
+                        <li>PFC (E-3): 12 months TIS &mdash; Qualified driver, additional vehicle certifications</li>
+                        <li>SPC (E-4): 24 months TIS &mdash; Experienced operator, convoy team member</li>
+                        <li>Earn CDL and pursue hazmat endorsements early</li>
+                        <li>Volunteer for deployment and convoy missions</li>
+                        <li>Build PT score and pursue Master Driver qualification</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- NCO Detail -->
+        <div class="phase-detail-panel" id="detail-nco">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#22c55e;border-color:#22c55e;">E5-E6</span>
+                    <div class="phase-detail-rtb">Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>4-10 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>TC, Convoy CDR, Dispatcher</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>BLC, ALC, Master Driver</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$36K-$52K/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Key</span><span>NCOER performance</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Transportation NCOs lead crews, convoys, and movement control teams. Sergeants (E-5) serve as truck commanders and team leaders, while Staff Sergeants (E-6) lead sections and serve as convoy commanders responsible for the safe delivery of critical supplies through hostile territory.</p>
+                    <p>Completion of BLC (Basic Leader Course) is required for E-5, and ALC (Advanced Leader Course) for E-6. Master Driver Trainer certification and additional vehicle qualifications significantly improve promotion potential.</p>
+                    <ul class="phase-detail-list">
+                        <li>SGT (E-5): Truck Commander / Team Leader &mdash; leads vehicle crews</li>
+                        <li>SSG (E-6): Section Sergeant / Convoy Commander &mdash; leads convoy operations</li>
+                        <li>BLC required for promotion to SGT, ALC for SSG</li>
+                        <li>Master Driver Trainer Course enhances career progression</li>
+                        <li>Pursue Convoy Live Fire and Movement Control courses</li>
+                        <li>Strong NCOER evaluations are critical for competitive promotion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Senior NCO Detail -->
+        <div class="phase-detail-panel" id="detail-senior">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#f59e0b;border-color:#f59e0b;">E7-E9</span>
+                    <div class="phase-detail-rtb">Senior Noncommissioned Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Timeline</span><span>10-30 Years</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Positions</span><span>PSG, 1SG, CSM</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Schools</span><span>SLC, USASMA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Pay</span><span>$52K-$90K+/yr</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Selection</span><span>Board-selected</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Senior NCOs represent the most experienced leaders in the Transportation Corps. Sergeants First Class (E-7) serve as Platoon Sergeants overseeing convoy platoons and movement control sections. Master Sergeants/First Sergeants (E-8) lead at company level, and Sergeants Major/Command Sergeants Major (E-9) serve at battalion, brigade, and higher.</p>
+                    <p>These positions are highly competitive and board-selected. A record of successful movement operations, advanced course completion, and consistent top-block evaluations are essential for selection.</p>
+                    <ul class="phase-detail-list">
+                        <li>SFC (E-7): Platoon Sergeant &mdash; senior tactical NCO for transportation platoon</li>
+                        <li>MSG/1SG (E-8): Operations NCOIC or First Sergeant &mdash; company-level senior enlisted</li>
+                        <li>SGM/CSM (E-9): Command Sergeant Major &mdash; BN/BDE senior enlisted advisor</li>
+                        <li>Senior Leader Course (SLC) required for E-7 promotion</li>
+                        <li>Sergeants Major Academy for E-9 selection</li>
+                        <li>Instructor and drill sergeant duty build competitive records</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Officer Track Detail -->
+        <div class="phase-detail-panel" id="detail-officer">
+            <div class="phase-detail-grid">
+                <div class="phase-detail-sidebar">
+                    <span class="phase-detail-badge" style="color:#a855f7;border-color:#a855f7;">TC</span>
+                    <div class="phase-detail-rtb">Transportation Corps Officer</div>
+                    <div class="phase-detail-standards">
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Path</span><span>OCS / Green-to-Gold</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Duration</span><span>12-16 Weeks (OCS)</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Location</span><span>Fort Moore, GA</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Result</span><span>2LT Commission</span></div>
+                        <div class="phase-detail-standard"><span class="phase-detail-standard-label">Branch</span><span>Transportation Corps</span></div>
+                    </div>
+                </div>
+                <div class="phase-detail-content">
+                    <p>Enlisted Transportation Soldiers with leadership potential and a bachelor's degree (or willingness to earn one) can pursue commissioning through Officer Candidate School (OCS) or the Green-to-Gold program. Upon commissioning, officers attend the Transportation Basic Officer Leader Course (TBOLC) at Fort Gregg-Adams before leading transportation platoons.</p>
+                    <p>Former enlisted soldiers who commission as Transportation Corps Officers bring invaluable hands-on logistics experience. Many of the Army's best sustainment leaders came up through the enlisted ranks, understanding distribution operations from the driver's seat to the operations center.</p>
+                    <ul class="phase-detail-list">
+                        <li>OCS: 12-16 weeks at Fort Moore &mdash; rapid commissioning path</li>
+                        <li>Green-to-Gold: 2-4 year college program with ROTC scholarship</li>
+                        <li>Transportation Basic Officer Leader Course (TBOLC) follows commissioning</li>
+                        <li>TC officers manage movement operations at BN/BDE level</li>
+                        <li>Prior enlisted experience is a major advantage in logistics leadership</li>
+                        <li>Career progression: PL &rarr; XO &rarr; CO CDR &rarr; BN/BDE Staff &rarr; BN CDR</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Advanced Training</div>
-        <h2>Schools &amp; Courses</h2>
-        <p>Transportation Soldiers can pursue: Master Driver Trainer Course, Convoy Live Fire Exercise, Movement Control Course, Multimodal Operations, Hazmat certification, and various CDL endorsements. Senior NCOs attend the Transportation Senior Leader Course and may serve as movement control advisors.</p>
+    <!-- DUTY STATIONS -->
+    <section class="school-section fade-in" id="stations">
+        <div class="school-section-label">Major Duty Stations</div>
+        <h2 class="school-section-title">Where Transportation Soldiers Serve</h2>
+        <div class="school-calendar-wrapper">
+            <table class="school-calendar">
+                <thead>
+                    <tr>
+                        <th>Installation</th>
+                        <th>Location</th>
+                        <th>Unit / Mission</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Fort Gregg-Adams</td><td>VA</td><td>CASCOM / TRADOC (Training Base)</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">TRADOC</span></td></tr>
+                    <tr><td>Fort Liberty</td><td>NC</td><td>XVIII Airborne Corps / Sustainment BDE</td><td><span class="season-tag" style="background:rgba(239,68,68,0.15);color:#ef4444;">FORSCOM</span></td></tr>
+                    <tr><td>Fort Campbell</td><td>KY/TN</td><td>101st Sustainment BDE</td><td><span class="season-tag" style="background:rgba(245,158,11,0.15);color:#f59e0b;">FORSCOM</span></td></tr>
+                    <tr><td>Fort Carson</td><td>CO</td><td>4th Sustainment BDE</td><td><span class="season-tag" style="background:rgba(34,197,94,0.15);color:#22c55e;">FORSCOM</span></td></tr>
+                    <tr><td>Fort Eustis</td><td>VA</td><td>Army Watercraft / 7th Trans BDE</td><td><span class="season-tag" style="background:rgba(59,130,246,0.15);color:#3b82f6;">Watercraft</span></td></tr>
+                    <tr><td>Various Ports</td><td>CONUS</td><td>Military Surface Deployment &amp; Distribution</td><td><span class="season-tag" style="background:rgba(147,197,253,0.15);color:#93c5fd;">Port Ops</span></td></tr>
+                    <tr><td>Camp Arifjan</td><td>Kuwait</td><td>Area Support Group &mdash; Kuwait</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">OCONUS</span></td></tr>
+                    <tr><td>Grafenwoehr / Baumholder</td><td>Germany</td><td>21st TSC / Sustainment Units</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">OCONUS</span></td></tr>
+                    <tr><td>Camp Humphreys</td><td>South Korea</td><td>19th ESC / Sustainment Units</td><td><span class="season-tag" style="background:rgba(168,85,247,0.15);color:#a855f7;">OCONUS</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="school-calendar-note">Transportation Soldiers serve at nearly every Army installation worldwide. Duty station assignment depends on unit needs, MOS specialty, and soldier preference (CONUS/OCONUS). Watercraft operators are stationed at coastal and port facilities.</p>
     </section>
 
-    <section class="info-section" style="text-align:center;padding-bottom:var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width:500px;margin:0 auto;">We're building Transportation-specific resources and training guides. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    <!-- CINEMATIC BREAK -->
+    <section class="school-cinematic fade-in" style="background: linear-gradient(180deg, transparent, rgba(59,130,246,0.06) 50%, transparent);">
+        <div class="school-cinematic-stat">~25,000 Active-Duty Transportation Soldiers</div>
+        <p class="school-cinematic-body">The spearhead of logistics. From the highways of the homeland to convoy routes across hostile terrain, Transportation Soldiers keep the Army moving &mdash; by road, rail, sea, and air.</p>
+        <a href="../../courses.html" class="btn-outline" style="margin-top: var(--space-xl);">Explore Training Courses</a>
     </section>
 
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Common Questions</div>
+        <div class="bento-3">
+            <div class="glass-card">
+                <div class="glass-card-label">Career</div>
+                <div class="glass-card-title">Want a CDL?</div>
+                <p class="glass-card-body">88M Soldiers earn a military CDL during AIT that transfers directly to civilian trucking careers. It's one of the most valuable certifications the Army offers &mdash; and it's free.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">MOS</div>
+                <div class="glass-card-title">Love Driving Trucks?</div>
+                <p class="glass-card-body">88M Motor Transport Operators drive everything from tactical trucks to Heavy Equipment Transporters across the world. If you want to be behind the wheel, this is your MOS.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Unique</div>
+                <div class="glass-card-title">Interested in Watercraft?</div>
+                <p class="glass-card-body">The Army has boats. 88K Watercraft Operators run landing craft, tugs, and logistics support vessels. It's one of the most unique jobs in the entire military.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Training</div>
+                <div class="glass-card-title">Convoy Operations?</div>
+                <p class="glass-card-body">Convoy operations are the bread and butter of the Transportation Corps. Learn route planning, threat mitigation, and how to move critical supplies through hostile territory.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Schools</div>
+                <div class="glass-card-title">Logistics Career?</div>
+                <p class="glass-card-body">Transportation experience translates directly to civilian logistics, supply chain management, and commercial trucking careers. The skills you learn are in high demand worldwide.</p>
+            </div>
+            <div class="glass-card">
+                <div class="glass-card-label">Promotion</div>
+                <div class="glass-card-title">How Fast Can I Promote?</div>
+                <p class="glass-card-body">Transportation promotion to E-5 averages 3-4 years. BLC completion, strong NCOERs, Master Driver certification, and deployment experience accelerate the timeline.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MOS OVERVIEW STATS -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">MOS Overview</div>
+        <div class="stats-grid-6">
+            <div class="stat-card-sm">
+                <span class="stat-card-number">7-12 Wk</span>
+                <span class="stat-card-label">AIT Duration</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">5+ MOS</span>
+                <span class="stat-card-label">88-Series Specialties</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">~95%</span>
+                <span class="stat-card-label">AIT Grad Rate</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">~25K</span>
+                <span class="stat-card-label">Active Duty</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Up to $20K</span>
+                <span class="stat-card-label">Enlistment Bonus</span>
+            </div>
+            <div class="stat-card-sm">
+                <span class="stat-card-number">Ft Gregg-Adams</span>
+                <span class="stat-card-label">AIT Location</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- RETENTION / REENLISTMENT RATES -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Retention Rates</div>
+        <h2 class="school-section-title">Transportation Reenlistment by Year</h2>
+        <div class="attrition-grid">
+            <div class="attrition-card">
+                <span class="attrition-year">FY19</span>
+                <span class="attrition-rate">48%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY20</span>
+                <span class="attrition-rate">50%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY21</span>
+                <span class="attrition-rate">53%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY22</span>
+                <span class="attrition-rate">51%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+            <div class="attrition-card">
+                <span class="attrition-year">FY23</span>
+                <span class="attrition-rate">49%</span>
+                <span class="attrition-label">First-Term Reenlistment</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRAINING WASHOUT DATA -->
+    <section class="school-section fade-in">
+        <div class="school-section-label">Training Data</div>
+        <h2 class="school-section-title">AIT Washout &amp; Qualification Data</h2>
+        <div class="failure-grid">
+            <div class="failure-card">
+                <h3 class="failure-card-title">Common AIT Drop Reasons</h3>
+                <ul class="failure-card-list">
+                    <li><span>Physical fitness failure</span><span>~2%</span></li>
+                    <li><span>Academic failure</span><span>~1%</span></li>
+                    <li><span>Driving qualification</span><span>~1%</span></li>
+                    <li><span>Voluntary / administrative</span><span>~1%</span></li>
+                </ul>
+            </div>
+            <div class="failure-card">
+                <h3 class="failure-card-title">Key Context</h3>
+                <ul class="failure-card-list">
+                    <li><span>AIT graduation rate is ~95%</span></li>
+                    <li><span>Most drops occur in first 2 weeks</span></li>
+                    <li><span>Recycled soldiers pass at ~90%+</span></li>
+                    <li><span>CDL qualification is the primary gate for 88M</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY TAKEAWAY -->
+    <section class="school-section fade-in">
+        <div class="school-takeaway">
+            <div class="school-takeaway-label">Key Takeaway</div>
+            <p class="school-takeaway-text">Transportation is the lifeline of the Army. If you want a career that earns you a CDL, takes you around the world, and puts you at the center of every logistics operation, the 88-Series is the path. Show up ready to drive, learn, and keep the Army moving.</p>
+        </div>
+    </section>
+
+    <!-- TRANSPORTATION CREED -->
+    <section class="school-section school-creed-section fade-in">
+        <div class="school-section-label">Spearhead of Logistics</div>
+        <blockquote class="school-creed">
+            <p>Nothing happens until something moves.<br>
+            We are the Transportation Corps &mdash;<br>
+            the spearhead of logistics.<br>
+            We move the Army.<br>
+            By road, by rail, by sea, by air &mdash;<br>
+            we deliver the fight<br>
+            to every corner of the globe.</p>
+            <p>We are the drivers, the operators,<br>
+            the planners, the movers.<br>
+            Where others see obstacles,<br>
+            we see routes.<br>
+            Where others stop,<br>
+            we keep rolling.</p>
+            <p style="margin-top: var(--space-lg); font-weight: 700; color: var(--color-gold);">Spearhead of Logistics!</p>
+        </blockquote>
+        <a href="../../courses.html" class="btn-primary" style="margin-top: var(--space-xl);">Start Transportation Prep</a>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="school-section school-newsletter-section fade-in">
+        <div class="school-section-label">Stay Informed</div>
+        <h2 class="school-section-title">Get Transportation Intel</h2>
+        <p class="school-section-body">Training tips, gear drops, and career guides for the 88-Series &mdash; delivered to your inbox.</p>
+        <form class="school-newsletter-form" id="newsletter-form">
+            <input type="email" class="school-newsletter-input" placeholder="Enter your email" required>
+            <button type="submit" class="btn-primary school-newsletter-btn">Subscribe</button>
+        </form>
+        <p class="school-newsletter-status" id="newsletter-status"></p>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="school-footer">
-        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+        <div class="school-footer-inner">
+            <div class="school-footer-brand">
+                <a href="/" class="school-footer-logo">Ranger Beers</a>
+                <p class="school-footer-sub">Transportation Supply Co.</p>
+            </div>
+            <div class="school-footer-columns">
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Specialties</h4>
+                    <ul>
+                        <li><a href="index.html#specialties">88M &mdash; Motor Transport</a></li>
+                        <li><a href="index.html#specialties">88N &mdash; Trans Mgmt Coord</a></li>
+                        <li><a href="index.html#specialties">88K &mdash; Watercraft Operator</a></li>
+                        <li><a href="index.html#specialties">88Z &mdash; Senior Sergeant</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Supply</h4>
+                    <ul>
+                        <li><a href="../../shop.html">Transportation Gear</a></li>
+                        <li><a href="../../courses.html">Training Courses</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="school-footer-col">
+                    <h4 class="school-footer-col-title">Guides</h4>
+                    <ul>
+                        <li><a href="../../standards.html">Standards</a></li>
+                        <li><a href="../../faq.html">FAQ</a></li>
+                        <li><a href="../../about.html">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="school-footer-bottom">
+            <p>&copy; 2026 Ranger Beers Supply Co.</p>
+            <div class="school-footer-legal">
+                <a href="../../privacy.html">Privacy</a>
+                <a href="../../terms.html">Terms</a>
+            </div>
+        </div>
     </footer>
 
+    <!-- SCRIPTS -->
+    <script>
+        // Newsletter
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var email = this.querySelector('input[type="email"]').value;
+            var status = document.getElementById('newsletter-status');
+            status.textContent = 'Subscribing...';
+            fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, school: '88-transportation' })
+            }).then(function(r) { return r.json(); })
+              .then(function() { status.textContent = 'Subscribed — check your inbox.'; })
+              .catch(function() { status.textContent = 'Error — please try again.'; });
+        });
+    </script>
+
+    <script>
+        // Nav scroll + mobile
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 40); });
+        var toggle = document.querySelector('.nav-mobile-toggle');
+        if (toggle) toggle.addEventListener('click', function() { nav.classList.toggle('nav-open'); });
+
+        // Fade-in
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+    </script>
+
+    <!-- Auth -->
+    <script src="../../course-auth.js"></script>
+    <script>if (typeof RangerAuth !== 'undefined') RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase/Career Toggle -->
+    <script>
+        var currentPhase = '88m';
+        var currentSeason = null;
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+            currentSeason = null;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect 88M
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="88m"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
 </body>
 </html>

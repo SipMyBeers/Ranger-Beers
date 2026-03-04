@@ -3,229 +3,695 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMOC — Ranger Beers Supply Co.</title>
+    <title>Advanced Maneuver Operations Course (AMOC) — Ranger Beers Supply Co.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../course-styles.css">
+    <link rel="stylesheet" href="../school-landing.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#000000">
     <style>
-        .school-hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: var(--space-4xl) 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        .school-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at center bottom, rgba(34, 197, 94, 0.08), transparent 60%);
-        }
-        .school-hero-tab {
-            max-height: 80px;
-            margin-bottom: var(--space-xl);
-            position: relative;
-        }
-        .school-hero-headline {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: var(--space-md);
-            position: relative;
-        }
-        .school-hero-sub {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--color-text-secondary);
-            max-width: 640px;
-            line-height: 1.6;
-            position: relative;
-        }
-        .school-back {
-            position: fixed;
-            top: var(--space-lg);
-            left: var(--space-lg);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            z-index: 100;
-            transition: color 0.3s;
-        }
-        .school-back:hover { color: var(--color-gold); }
-
-        .info-section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: var(--space-3xl) 40px;
-        }
-        .info-section-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--color-gold);
-            margin-bottom: var(--space-lg);
-        }
-        .info-section h2 {
-            font-size: clamp(1.5rem, 3vw, 2.25rem);
-            font-weight: 800;
-            margin-bottom: var(--space-lg);
-        }
-        .info-section p {
-            color: var(--color-text-secondary);
-            line-height: 1.8;
-            margin-bottom: var(--space-lg);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-md);
-            margin: var(--space-2xl) 0;
-        }
-        .stat-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: var(--radius-glass);
-            padding: var(--space-xl) var(--space-md);
-            text-align: center;
-        }
-        .stat-number {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 900;
-            color: var(--color-gold);
-            display: block;
-        }
-        .stat-label {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--color-text-secondary);
-            margin-top: var(--space-xs);
-        }
-
-        .phase-list {
-            list-style: none;
-            margin: var(--space-xl) 0;
-        }
-        .phase-list li {
-            padding: var(--space-md) 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            gap: var(--space-md);
-        }
-        .phase-list .phase-day {
-            font-weight: 700;
-            color: var(--color-gold);
-            min-width: 80px;
-            font-family: var(--font-tactical);
-            font-size: 13px;
-        }
-        .phase-list .phase-desc {
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-        .phase-list .phase-desc strong {
-            color: var(--color-text-primary);
-        }
-
-        .school-footer {
-            text-align: center;
-            padding: var(--space-3xl) 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .school-footer-copy {
-            font-size: 12px;
-            color: var(--color-text-muted);
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 700px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .school-hero { padding: var(--space-3xl) 20px; }
-            .info-section { padding: var(--space-2xl) 20px; }
-        }
+        /* School-specific: hero tint & phase colors */
+        .school-hero::before { background: radial-gradient(ellipse at center bottom, rgba(120,113,108,0.08), transparent 60%); }
+        .phase-card-btn[data-phase="academics"]::before { background: radial-gradient(ellipse at center, rgba(59,130,246,0.08), transparent 70%); }
+        .phase-card-btn[data-phase="applied"]::before { background: radial-gradient(ellipse at center, rgba(239,68,68,0.08), transparent 70%); }
+        .phase-card-btn.active[data-phase="academics"] { border-color: #3b82f6; box-shadow: 0 0 20px rgba(59,130,246,0.15); }
+        .phase-card-btn.active[data-phase="applied"] { border-color: #ef4444; box-shadow: 0 0 20px rgba(239,68,68,0.15); }
+        .phase-detail-badge.academics { color: #3b82f6; border-color: #3b82f6; }
+        .phase-detail-badge.applied { color: #ef4444; border-color: #ef4444; }
     </style>
 </head>
 <body>
 
-    <a href="/" class="school-back">&larr; All Schools</a>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Academics</a></li>
+                        <li><a href="index.html#phases">Applied Operations</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">AMOC Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="courses.html">AMOC Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
 
-    <section class="school-hero">
-        <div style="height:80px;width:auto;min-width:80px;padding:0 20px;border-radius:40px;display:flex;align-items:center;justify-content:center;border:3px solid var(--color-gold);font-family:var(--font-tactical);font-size:28px;font-weight:700;color:var(--color-gold);margin-bottom:var(--space-xl);">AMOC</div>
-        <h1 class="school-hero-headline">Air Movement Operations Course</h1>
-        <p class="school-hero-sub">Trains soldiers to plan and execute air movement operations using rotary and fixed-wing aircraft, producing qualified unit air movement planners.</p>
+    <!-- HERO -->
+    <section class="school-hero" id="hero">
+        <div class="hero-badge-text">AM</div>
+        <h1 class="hero-headline">Maneuver Warfare</h1>
+        <p class="hero-sub">Complete the Advanced Maneuver Operations Course. Advanced tactical planning, combined arms operations, and maneuver warfare concepts for experienced leaders ready to operate at higher echelons.</p>
+        <div class="hero-cta">
+            <a href="shop.html" class="btn btn-primary">Shop Gear</a>
+            <a href="courses.html" class="btn btn-outline">Start Training</a>
+        </div>
+        <div class="scroll-indicator"><div class="scroll-line"></div>Scroll</div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">At a Glance</div>
+    <!-- MAIN HEADLINE -->
+    <section class="section" style="text-align: center; padding: var(--space-3xl) 40px;">
+        <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-family: var(--font-display); color: var(--color-text); margin: 0;">
+            2 Weeks &mdash; 2 Phases &mdash; 1 Qualification
+        </h2>
+    </section>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">2</span>
-                <div class="stat-label">Weeks</div>
+    <!-- PHASE SELECTOR -->
+    <div class="phase-selector" id="phases">
+        <div class="selector-divider" style="margin-bottom: var(--space-xl);">
+            <span class="selector-divider-label">Phases</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <button class="phase-card-btn" data-phase="academics" onclick="togglePhase('academics')">
+                <div class="pc-icon">&#128218;</div>
+                <div class="pc-name">Academics</div>
+                <div class="pc-sub">Week 1</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-phase="applied" onclick="togglePhase('applied')">
+                <div class="pc-icon">&#127919;</div>
+                <div class="pc-name">Applied Operations</div>
+                <div class="pc-sub">Week 2</div>
+                <div class="pc-link">Learn More &rarr;</div>
+            </button>
+        </div>
+
+        <!-- Academics Detail Panel -->
+        <div class="phase-detail-panel open" id="detail-academics">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Academics &mdash; Foundations of Maneuver</div>
+                    <span class="phase-detail-badge academics">Week 1</span>
+                </div>
+                <div class="phase-rtb-info">
+                    <div>
+                        <div class="phase-rtb-name">Maneuver Center of Excellence (MCoE)</div>
+                        <div class="phase-address">Fort Moore, GA 31905</div>
+                    </div>
+                    <div class="phase-social-links">
+                        <a href="https://www.moore.army.mil/" target="_blank" rel="noopener">&#127760; Official Site</a>
+                    </div>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">5 Days</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Fort Moore, GA</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Doctrine &amp; planning</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Eligibility</span><span class="pd-item-value">Senior NCO / Officer</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #3b82f6; font-weight: 600;">Key Events</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">MDMP Deep Dive</span><span class="pd-item-value">Military Decision-Making Process</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Combined Arms Planning</span><span class="pd-item-value">Integrating all warfighting functions</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Terrain Analysis</span><span class="pd-item-value">OAKOC &amp; IPB fundamentals</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Fires Integration</span><span class="pd-item-value">Fire support planning &amp; coordination</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Maneuver Doctrine</span><span class="pd-item-value">ADP 3-90, FM 3-90-1</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>The Academics phase builds the <strong>doctrinal foundation for combined arms maneuver</strong>. Students work through the Military Decision-Making Process (MDMP) from mission analysis through orders production, learning to integrate fires, maneuver, and sustainment into a coherent operational plan.</p>
+                        <p>Terrain analysis and Intelligence Preparation of the Battlefield (IPB) are taught at an advanced level. <strong>Students must demonstrate mastery of OAKOC</strong> and its application to course of action development before proceeding to the applied phase.</p>
+                        <p>Fire support integration is a critical component &mdash; students learn to synchronize indirect fires, close air support, and electronic warfare with ground maneuver elements to create combined arms effects at the point of decision.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Academic Topics</div>
+                            <ul>
+                                <li>Military Decision-Making Process (MDMP) &mdash; all seven steps</li>
+                                <li>Course of action development and wargaming</li>
+                                <li>Intelligence Preparation of the Battlefield (IPB)</li>
+                                <li>Fire support planning and coordination measures</li>
+                                <li>Combined arms integration at battalion and brigade echelons</li>
+                                <li>Maneuver doctrine &mdash; ADP 3-90, FM 3-90-1, FM 3-90-2</li>
+                                <li>Operations order (OPORD) format and production</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">2</span>
-                <div class="stat-label">Phases</div>
+        </div>
+
+        <!-- Applied Operations Detail Panel -->
+        <div class="phase-detail-panel" id="detail-applied">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Applied Operations &mdash; Plan, Brief, Execute</div>
+                    <span class="phase-detail-badge applied">Week 2</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">5 Days</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Fort Moore, GA</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Focus</span><span class="pd-item-value">Practical application &amp; assessment</span></div>
+                        <div class="pd-item" style="padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.06);"><span class="pd-item-name" style="color: #ef4444; font-weight: 600;">Key Events</span><span class="pd-item-value"></span></div>
+                        <div class="pd-item"><span class="pd-item-name">OPORD Production</span><span class="pd-item-value">Complete five-paragraph order</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Operations Brief</span><span class="pd-item-value">Present plan to senior evaluators</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Combined Arms STX</span><span class="pd-item-value">Situational training exercises</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Final Assessment</span><span class="pd-item-value">Graded planning exercise</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p>Applied Operations is where students <strong>put doctrine into practice</strong>. Working in staff groups, students receive a tactical scenario and must produce a complete operations order integrating all warfighting functions under time pressure.</p>
+                        <p>The operations brief is a high-stakes event &mdash; students present their plan to <strong>senior evaluators who challenge every assumption</strong>. Poor terrain analysis, weak fires integration, or an unsynchronized scheme of maneuver results in failure.</p>
+                        <p>Situational training exercises force students to adapt their plans when the enemy doesn't cooperate. The final graded exercise requires students to demonstrate they can plan, brief, and execute a combined arms operation from start to finish.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Applied Operations Events</div>
+                            <ul>
+                                <li>Receive tactical scenario and conduct mission analysis</li>
+                                <li>Develop courses of action and conduct wargaming</li>
+                                <li>Produce a complete five-paragraph OPORD</li>
+                                <li>Conduct operations brief to senior evaluators</li>
+                                <li>Execute combined arms situational training exercises</li>
+                                <li>Adapt plans under changing battlefield conditions</li>
+                                <li>Complete final graded combined arms planning exercise</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">~85%</span>
-                <div class="stat-label">Grad Rate</div>
+        </div>
+
+        <!-- SEASON SELECTOR -->
+        <div class="selector-divider" style="margin: var(--space-xl) 0;">
+            <span class="selector-divider-label">Location</span>
+        </div>
+
+        <div class="phase-selector-grid" style="grid-template-columns: repeat(4, 1fr);" id="season-selector">
+            <button class="phase-card-btn" data-season="winter" onclick="toggleSeason('winter')">
+                <div class="pc-icon">&#10052;</div>
+                <div class="pc-name">Winter</div>
+                <div class="pc-sub">Dec &mdash; Feb</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="spring" onclick="toggleSeason('spring')">
+                <div class="pc-icon">&#127783;</div>
+                <div class="pc-name">Spring</div>
+                <div class="pc-sub">Mar &mdash; May</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="summer" onclick="toggleSeason('summer')">
+                <div class="pc-icon">&#9728;</div>
+                <div class="pc-name">Summer</div>
+                <div class="pc-sub">Jun &mdash; Aug</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+            <button class="phase-card-btn" data-season="fall" onclick="toggleSeason('fall')">
+                <div class="pc-icon">&#127810;</div>
+                <div class="pc-name">Fall</div>
+                <div class="pc-sub">Sep &mdash; Nov</div>
+                <div class="pc-link">View Details &rarr;</div>
+            </button>
+        </div>
+
+        <!-- WINTER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-winter">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Winter &mdash; Fort Moore, GA</div>
+                    <span class="phase-detail-badge" style="color: #3b82f6; border-color: #3b82f6;">Dec &ndash; Feb</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">50 &ndash; 60 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">30 &ndash; 40 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Conditions</span><span class="pd-item-value">Mild, occasional rain</span></div>
+                        <div class="pd-item"><span class="pd-item-name">AMOC Status</span><span class="pd-item-value">Classes run year-round</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Class Size</span><span class="pd-item-value">Moderate enrollment</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Comfortable classroom conditions</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Winter at Fort Moore is mild</strong> compared to northern installations. Classroom-heavy instruction means weather has minimal impact on training. Temperatures rarely drop below freezing, making any outdoor STX events comfortable.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Winter Tips</div>
+                            <ul>
+                                <li>Lightweight cold-weather layers for outdoor events</li>
+                                <li>Focus study time on MDMP and fires integration</li>
+                                <li>Review ADP 3-90 and FM 3-90-1 before arrival</li>
+                                <li>Prepare briefing skills &mdash; public speaking under pressure</li>
+                                <li>Georgia winter is mild &mdash; focus on academics not weather</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <span class="stat-number">E-4+</span>
-                <div class="stat-label">Eligibility</div>
+        </div>
+
+        <!-- SPRING Detail Panel -->
+        <div class="phase-detail-panel" id="detail-spring">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Spring &mdash; Fort Moore, GA</div>
+                    <span class="phase-detail-badge" style="color: #22c55e; border-color: #22c55e;">Mar &ndash; May</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">70 &ndash; 85 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">45 &ndash; 60 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Conditions</span><span class="pd-item-value">Warming, occasional storms</span></div>
+                        <div class="pd-item"><span class="pd-item-name">AMOC Status</span><span class="pd-item-value">Peak enrollment period</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Class Size</span><span class="pd-item-value">Higher enrollment</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Comfortable outdoor STX weather</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Spring is a popular time for AMOC classes.</strong> Pleasant weather at Fort Moore makes outdoor situational training exercises comfortable. Many units schedule leaders for spring classes to avoid summer training conflicts.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Spring Tips</div>
+                            <ul>
+                                <li>Expect higher class sizes &mdash; spring is popular</li>
+                                <li>Weather is ideal for outdoor training events</li>
+                                <li>Georgia spring storms can be sudden &mdash; have rain gear</li>
+                                <li>Use daylight hours for additional study and rehearsal</li>
+                                <li>Networking opportunities with larger peer groups</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMER Detail Panel -->
+        <div class="phase-detail-panel" id="detail-summer">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Summer &mdash; Fort Moore, GA</div>
+                    <span class="phase-detail-badge" style="color: #f59e0b; border-color: #f59e0b;">Jun &ndash; Aug</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">90 &ndash; 95 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">70 &ndash; 75 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Humidity</span><span class="pd-item-value">High &mdash; heat index 100&deg;F+</span></div>
+                        <div class="pd-item"><span class="pd-item-name">AMOC Status</span><span class="pd-item-value">Classes run &mdash; reduced enrollment</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Class Size</span><span class="pd-item-value">Smaller &mdash; summer training conflicts</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Biggest Threat</span><span class="pd-item-value">Heat &mdash; hydrate for outdoor events</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Georgia summers are brutal.</strong> Fort Moore heat and humidity make outdoor STX events challenging. Classrooms are air-conditioned, but any field time requires aggressive hydration. Smaller class sizes mean more individual attention from instructors.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Summer Tips</div>
+                            <ul>
+                                <li>Hydrate aggressively &mdash; heat casualties are real</li>
+                                <li>Smaller class sizes can be advantageous for learning</li>
+                                <li>Most instruction is classroom-based and climate-controlled</li>
+                                <li>Pack light, breathable clothing for any outdoor events</li>
+                                <li>Use evening hours for study &mdash; less competition for resources</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FALL Detail Panel -->
+        <div class="phase-detail-panel" id="detail-fall">
+            <div class="phase-detail-inner">
+                <div class="phase-detail-header">
+                    <div class="phase-detail-title">Fall &mdash; Fort Moore, GA</div>
+                    <span class="phase-detail-badge" style="color: #ef4444; border-color: #ef4444;">Sep &ndash; Nov</span>
+                </div>
+                <div class="phase-detail-grid">
+                    <div class="phase-detail-standards">
+                        <div class="pd-item"><span class="pd-item-name">Avg High</span><span class="pd-item-value">70 &ndash; 85 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Avg Low</span><span class="pd-item-value">45 &ndash; 65 &deg;F</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Conditions</span><span class="pd-item-value">Cooling, pleasant weather</span></div>
+                        <div class="pd-item"><span class="pd-item-name">AMOC Status</span><span class="pd-item-value">Classes run &mdash; end-of-FY push</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Class Size</span><span class="pd-item-value">Moderate to high enrollment</span></div>
+                        <div class="pd-item"><span class="pd-item-name">Best For</span><span class="pd-item-value">Ideal weather, motivated students</span></div>
+                    </div>
+                    <div class="phase-detail-desc">
+                        <p><strong>Fall is an excellent time for AMOC.</strong> Heat subsides, weather is comfortable, and end-of-fiscal-year scheduling often fills classes with motivated leaders trying to get qualified before the new training year.</p>
+                        <div class="phase-detail-bullets">
+                            <div class="pdb-title">Fall Tips</div>
+                            <ul>
+                                <li>Weather is ideal for focused study and outdoor events</li>
+                                <li>End-of-FY classes may fill quickly &mdash; get a slot early</li>
+                                <li>Lighter layers for morning and evening temperature swings</li>
+                                <li>Great time for networking with end-of-year cohorts</li>
+                                <li>Post-summer focus &mdash; students return motivated</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLASS CALENDAR -->
+    <section class="section">
+        <div class="section-label fade-in">Class Calendar</div>
+        <h2 class="section-title fade-in">AMOC Course Schedule</h2>
+        <p class="section-desc fade-in">AMOC runs multiple classes throughout the fiscal year at Fort Moore, GA. Source: MCoE / Fort Moore.</p>
+
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--color-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: var(--space-md);">FY26</h3>
+        <div class="schedule-table-wrap fade-in">
+            <table class="schedule-table">
+                <thead>
+                    <tr><th>Class</th><th>Report Date</th><th>Graduation</th><th>Season</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="schedule-class">AMOC 01-26</td><td>13 Jan 2026</td><td>23 Jan 2026</td><td><span class="season-tag winter">Winter</span></td></tr>
+                    <tr><td class="schedule-class">AMOC 02-26</td><td>10 Mar 2026</td><td>20 Mar 2026</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">AMOC 03-26</td><td>12 May 2026</td><td>22 May 2026</td><td><span class="season-tag spring">Spring</span></td></tr>
+                    <tr><td class="schedule-class">AMOC 04-26</td><td>14 Jul 2026</td><td>24 Jul 2026</td><td><span class="season-tag summer">Summer</span></td></tr>
+                    <tr><td class="schedule-class">AMOC 05-26</td><td>08 Sep 2026</td><td>18 Sep 2026</td><td><span class="season-tag fall">Fall</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- CINEMATIC BREAK -->
+    <section class="hero" style="height: 50vh; min-height: 300px; background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(120,113,108,0.1) 100%);">
+        <div class="hero-content" style="position: relative; z-index: 1;">
+            <div class="section-label">Prepare Now</div>
+            <h2 class="hero-headline" style="font-size: clamp(2rem,4vw,3.5rem);">~20% Attrition &mdash; The Plan Must Be Airtight</h2>
+            <p class="hero-sub">Weak MDMP skills, poor fires integration, and bad briefings are the leading causes of failure. Master the planning process before you arrive.</p>
+            <div class="hero-cta" style="margin-top: 20px;">
+                <a href="courses.html" class="btn btn-primary">View Courses</a>
             </div>
         </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Course Overview</div>
-        <h2>What is AMOC?</h2>
-        <p>The Air Movement Operations Course (AMOC) trains soldiers to plan and execute air movement operations using rotary and fixed-wing aircraft. Taught at Fort Lee, Virginia, the course produces qualified unit air movement planners who can coordinate the safe and efficient transport of personnel, equipment, and supplies by air.</p>
-        <p>AMOC graduates return to their units as subject matter experts capable of planning air movements from scratch, coordinating with aviation assets, and executing complex loading and sling-load operations in support of tactical missions.</p>
+    <!-- RESOURCE CALLOUT CARDS -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 900px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;">
+        <div class="section-label fade-in">Resources</div>
+        <h2 class="section-title fade-in">Don't Be That AMOC Student.</h2>
+        <p class="section-desc fade-in">Every failure at AMOC has a type. We built a fix for each one.</p>
+
+        <div class="bento-grid bento-3 stagger" style="margin-bottom: var(--space-xl);">
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128203;</div>
+                <div class="card-title">Weak MDMP?</div>
+                <p class="card-desc">The Military Decision-Making Process is the backbone of AMOC. If you can't execute all seven steps under time pressure, you will not pass the planning exercises.</p>
+            </a>
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128165;</div>
+                <div class="card-title">Bad Fires Integration?</div>
+                <p class="card-desc">Combined arms means integrating fires with maneuver. If your fire support plan is an afterthought, your scheme of maneuver falls apart under evaluation.</p>
+            </a>
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#127760;</div>
+                <div class="card-title">Poor Terrain Analysis?</div>
+                <p class="card-desc">OAKOC isn't optional. If you can't conduct a thorough terrain analysis and integrate it into your IPB, your entire plan will be built on a weak foundation.</p>
+            </a>
+        </div>
+        <div class="bento-grid bento-3 stagger">
+            <a href="courses.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128196;</div>
+                <div class="card-title">No OPORD Experience?</div>
+                <p class="card-desc">You must produce a complete five-paragraph operations order under time constraints. If you've never written one from scratch, start practicing now.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#127908;</div>
+                <div class="card-title">Weak Briefing Skills?</div>
+                <p class="card-desc">You will brief senior evaluators who will challenge your plan. Stumbling through a briefing or failing to defend your decisions is a fast path to a no-go.</p>
+            </a>
+            <a href="resources.html" class="glass-card fade-in" style="text-decoration:none; color:inherit;">
+                <div class="card-icon" style="font-size: 2rem;">&#128663;</div>
+                <div class="card-title">Can't Plan Movement?</div>
+                <p class="card-desc">Tactical movement planning and route selection are critical. If you can't synchronize movement with fires and maneuver, your plan will not survive contact.</p>
+            </a>
+        </div>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Course Phases</div>
-        <h2>Two Weeks of Air Movement Mastery</h2>
+    <!-- COURSE OVERVIEW STATS -->
+    <section class="section" id="stats" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Course Overview</div>
+        <div class="ix-stats-grid stagger">
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">14</div><div class="ix-stat-label">Total Days</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">2</div><div class="ix-stat-label">Phases</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">~80%</div><div class="ix-stat-label">Grad Rate</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">Sr NCO</div><div class="ix-stat-label">Senior NCO/Officer</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">CA</div><div class="ix-stat-label">Combined Arms</div></div>
+            <div class="ix-stat-card fade-in"><div class="ix-stat-number">Adv</div><div class="ix-stat-label">Advanced Planning</div></div>
+        </div>
 
-        <ul class="phase-list">
-            <li>
-                <span class="phase-day">Week 1</span>
-                <span class="phase-desc"><strong>Planning Phase</strong> &mdash; Load planning, aircraft characteristics and capabilities, documentation procedures, chalking procedures, and bump plan development. Students learn to calculate loads, prepare manifests, and plan for contingencies.</span>
-            </li>
-            <li>
-                <span class="phase-day">Week 2</span>
-                <span class="phase-desc"><strong>Execution Phase</strong> &mdash; Sling-load operations, personnel loading procedures, mock-up training, and a full-scale air movement exercise. Students execute everything they planned in Week 1 under realistic field conditions.</span>
-            </li>
-        </ul>
+        <!-- ATTRITION RATES -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Graduation Rates</div>
+        <div class="ix-attrition-grid stagger">
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2019</div><div class="ix-attrition-rate">78%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2020</div><div class="ix-attrition-rate">82%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2021</div><div class="ix-attrition-rate">76%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2022</div><div class="ix-attrition-rate">80%</div><div class="ix-attrition-label">Graduated</div></div>
+            <div class="ix-attrition-card fade-in"><div class="ix-attrition-year">2023</div><div class="ix-attrition-rate">83%</div><div class="ix-attrition-label">Graduated</div></div>
+        </div>
+
+        <!-- FAILURE BREAKDOWN -->
+        <div class="section-label fade-in" style="margin-bottom: var(--space-lg);">Failure Breakdown</div>
+        <div class="ix-failure-grid stagger">
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">Common Drop Reasons</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Failed MDMP / Planning Exercise</span><span class="ix-failure-pct">~8%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Failed Operations Brief</span><span class="ix-failure-pct">~5%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Failed Written Examination</span><span class="ix-failure-pct">~4%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Voluntary Withdrawal / Admin</span><span class="ix-failure-pct">~3%</span></div>
+            </div>
+            <div class="ix-failure-card fade-in">
+                <div class="ix-failure-card-title">Key Context</div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Most drops in Applied Operations phase</span><span class="ix-failure-pct">~65%</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Fires integration is #1 weak area</span><span class="ix-failure-pct">~40% of fails</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Prior staff experience reduces attrition</span><span class="ix-failure-pct">~25% lower</span></div>
+                <div class="ix-failure-item"><span class="ix-failure-event">Officers outperform NCOs slightly</span><span class="ix-failure-pct">~5% higher</span></div>
+            </div>
+        </div>
+
+        <!-- KEY TAKEAWAY -->
+        <div class="ix-takeaway fade-in">
+            <p><strong style="color: var(--color-gold);">Key Takeaway:</strong> AMOC is a thinking course, not a gut-check. Mastery of the MDMP, fires integration, and the ability to produce and brief a coherent operations order under pressure is what separates graduates from failures. Arrive with doctrine studied and briefing skills sharp.</p>
+        </div>
     </section>
 
-    <section class="info-section">
-        <div class="info-section-label">Key Standards</div>
-        <h2>What It Takes</h2>
-        <p>Students must produce a complete air movement plan, conduct a sling-load inspection to standard, and execute personnel manifesting procedures. A written exam tests knowledge of aircraft characteristics, load planning, and air movement doctrine.</p>
-        <p>The course emphasizes practical application &mdash; students must demonstrate they can plan, brief, and execute an air movement operation from start to finish, including contingency procedures when plans change on the fly.</p>
+    <!-- CREED / MOTTO -->
+    <section class="section" style="padding: var(--space-3xl) 40px;">
+        <div style="max-width: 800px; margin: 0 auto; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(197,179,88,0.2); border-radius: 16px; padding: 40px;" class="fade-in">
+            <p class="creed-stanza" style="text-align: center; font-size: 1.1rem;"><strong>Plan the Fight &mdash; Fight the Plan</strong></p>
+            <p class="creed-stanza">Graduates of the Advanced Maneuver Operations Course have proven they can plan and synchronize combined arms operations at echelons above company level. The AMOC qualification represents mastery of maneuver warfare doctrine, fire support integration, and the ability to produce and execute a coherent operational plan under pressure.</p>
+            <p class="creed-stanza">From the classrooms of the Maneuver Center of Excellence at Fort Moore, Georgia, AMOC graduates return to their formations as the planners, briefers, and operational thinkers their units depend on when the mission demands precision and speed.</p>
+            <div class="creed-closer">Plan the Fight &mdash; Fight the Plan!</div>
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-2xl);">
+            <a href="courses.html" class="btn btn-outline-gold">Start AMOC Prep &rarr;</a>
+        </div>
     </section>
 
-    <section class="info-section" style="text-align: center; padding-bottom: var(--space-4xl);">
-        <div class="info-section-label">Coming Soon</div>
-        <h2>Gear, Courses &amp; Training Guides</h2>
-        <p style="max-width: 500px; margin: 0 auto;">We're building AMOC-specific packing lists, study guides, and training resources. Check back soon or head to Ranger School for a preview of what's coming.</p>
+    <!-- NEWSLETTER SIGNUP -->
+    <section class="section" id="newsletter" style="text-align:center; padding-bottom:var(--space-3xl);">
+        <span class="section-label">Stay Informed</span>
+        <h2 class="section-title">Get AMOC School Intel</h2>
+        <p class="section-desc" style="max-width:540px; margin:0 auto var(--space-xl);">Class dates, gear drops, new courses, and tips from AMOC graduates &mdash; straight to your inbox. No spam. Unsubscribe anytime.</p>
+
+        <div id="subscribe-success" style="display:none; background:rgba(197,179,88,0.12); border:1px solid var(--color-gold); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-gold); font-weight:600;">
+            You're in. Check your inbox for a welcome email.
+        </div>
+        <div id="subscribe-error" style="display:none; background:rgba(239,68,68,0.12); border:1px solid var(--color-error); border-radius:var(--radius-glass); padding:var(--space-md) var(--space-lg); max-width:480px; margin:0 auto var(--space-lg); color:var(--color-error); font-weight:600;"></div>
+
+        <form id="subscribe-form" style="display:flex; gap:var(--space-sm); max-width:480px; margin:0 auto; flex-wrap:wrap; justify-content:center;">
+            <input type="email" name="email" id="subscribe-email" class="form-input" placeholder="Your email address" required style="flex:1 1 260px;">
+            <button type="submit" id="subscribe-btn" class="btn btn-primary" style="flex:0 0 auto; padding:0 var(--space-lg);">Subscribe</button>
+        </form>
     </section>
 
-    <footer class="school-footer">
-        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-brand">Ranger Beers</div>
+                    <div class="footer-brand-sub">AMOC School Supply Co.</div>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">Phases</div><ul><li><a href="index.html#phases">Academics</a></li><li><a href="index.html#phases">Applied Operations</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Supply</div><ul><li><a href="shop.html">AMOC Gear</a></li><li><a href="courses.html">Courses</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Guides</div><ul><li><a href="standards.html">Standards</a></li><li><a href="/ranger/faq.html">FAQ</a></li><li><a href="/ranger/about.html">About Us</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Newsletter Script -->
+    <script>
+        (function() {
+            var form = document.getElementById('subscribe-form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('subscribe-email').value;
+                var btn = document.getElementById('subscribe-btn');
+                var success = document.getElementById('subscribe-success');
+                var error = document.getElementById('subscribe-error');
+                btn.textContent = 'Sending...';
+                btn.disabled = true;
+                success.style.display = 'none';
+                error.style.display = 'none';
+                fetch('https://ranger-beers-api.dzbeers747.workers.dev/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, school: 'amoc' })
+                })
+                .then(function(res) { return res.json().then(function(d) { return { ok: res.ok, data: d }; }); })
+                .then(function(result) {
+                    if (result.ok) {
+                        success.style.display = 'block';
+                        form.style.display = 'none';
+                        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        error.textContent = result.data.error || 'Something went wrong. Try again.';
+                        error.style.display = 'block';
+                        btn.textContent = 'Subscribe';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(function() {
+                    error.textContent = 'Network error. Try again.';
+                    error.style.display = 'block';
+                    btn.textContent = 'Subscribe';
+                    btn.disabled = false;
+                });
+            });
+        })();
+    </script>
+
+    <!-- Nav + Scroll -->
+    <script>
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+        });
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) { d.classList.remove('mobile-expanded'); });
+                });
+            });
+        })();
+        // Fade-in observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <!-- Auth -->
+    <script src="../course-auth.js"></script>
+    <script>RangerAuth.initAuthUI();</script>
+
+    <!-- Snipcart -->
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+
+    <!-- Phase Selector + Season Selector Logic -->
+    <script>
+        var currentPhase = 'academics';
+        var currentSeason = null;
+
+        function togglePhase(phase) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + phase);
+
+            if (currentPhase === phase) {
+                document.querySelectorAll('.phase-card-btn[data-phase]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentPhase = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-phase="' + phase + '"]');
+            if (btn) btn.classList.add('active');
+            currentPhase = phase;
+            currentSeason = null;
+        }
+
+        function toggleSeason(season) {
+            var panels = document.querySelectorAll('.phase-detail-panel');
+            var panel = document.getElementById('detail-' + season);
+
+            if (currentSeason === season) {
+                document.querySelectorAll('.phase-card-btn[data-season]').forEach(function(b) { b.classList.remove('active'); });
+                panels.forEach(function(p) { p.classList.remove('open'); });
+                currentSeason = null;
+                return;
+            }
+            document.querySelectorAll('.phase-card-btn').forEach(function(b) { b.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('open'); });
+            if (panel) panel.classList.add('open');
+            var btn = document.querySelector('.phase-card-btn[data-season="' + season + '"]');
+            if (btn) btn.classList.add('active');
+            currentSeason = season;
+            currentPhase = null;
+        }
+
+        // Preselect Academics phase
+        (function() {
+            var btn = document.querySelector('.phase-card-btn[data-phase="academics"]');
+            if (btn) btn.classList.add('active');
+        })();
+    </script>
 </body>
 </html>
