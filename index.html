@@ -388,138 +388,88 @@
             display: none;
         }
 
-        /* ── MOS Click Drawer ── */
+        /* ── MOS Accordion Dropdown ── */
         .sc-dropdown {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90vw;
-            max-width: 800px;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 16px;
-            padding: 24px;
-            z-index: 2000;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0 0 12px 12px;
+            padding: 20px;
             display: none;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-            margin-top: 0;
+            overflow: hidden;
+            margin-top: var(--space-md);
         }
         .sc-dropdown.active {
             display: block;
-            animation: drawerFadeIn 0.3s ease-out;
+            animation: accordionSlide 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        @keyframes drawerFadeIn {
-            from { opacity: 0; transform: translate(-50%, -45%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
+        @keyframes accordionSlide {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .sc-dropdown-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.7);
-            z-index: 1999;
-            display: none;
-            backdrop-filter: blur(4px);
+        
+        /* Make the card expand to fit */
+        .school-card.dropdown-active {
+            grid-column: 1 / -1; /* Occupy full width when active */
+            border-color: var(--color-gold);
+            background: rgba(255, 255, 255, 0.05);
+            cursor: default;
         }
-        .sc-dropdown-overlay.active {
-            display: block;
+        .school-card.dropdown-active .sc-status {
+            color: var(--color-white);
+            font-weight: 800;
         }
+        .school-card.dropdown-active .sc-status::after {
+            content: ' (Click to Close)';
+            font-size: 9px;
+            opacity: 0.6;
+        }
+
         .sc-dropdown-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 12px;
-            margin-top: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
         }
         .sc-dropdown-item {
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 12px;
-            padding: 16px;
+            padding: 20px;
             color: var(--color-text-primary);
             text-decoration: none;
-            font-size: 13px;
-            text-align: center;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            min-height: 100px;
+            min-height: 120px;
             position: relative;
             overflow: hidden;
         }
-        .sc-dropdown-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(197, 179, 88, 0.1), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
         .sc-dropdown-item:hover {
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.08);
             border-color: var(--color-gold);
             transform: translateY(-4px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
-        .sc-dropdown-item:hover::before { opacity: 1; }
         .sc-dropdown-item span {
             font-family: var(--font-tactical);
             font-weight: 800;
             color: var(--color-gold);
-            font-size: 18px;
+            font-size: 20px;
             letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
         }
         .sc-dropdown-item div {
-            font-weight: 600;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--color-text-secondary);
-            position: relative;
-            z-index: 1;
-        }
-        .sc-dropdown-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 16px;
-        }
-        .sc-dropdown-title {
-            padding: 0;
-            font-size: 16px;
-            font-weight: 800;
+            font-weight: 700;
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--color-gold);
-            border-bottom: none;
-            margin-bottom: 0;
+            color: var(--color-text-primary);
+            text-align: center;
         }
-        .sc-close-btn {
-            background: none;
-            border: none;
-            color: var(--color-text-muted);
-            cursor: pointer;
-            font-size: 20px;
-            padding: 4px;
-        }
-        .sc-close-btn:hover { color: var(--color-white); }
-
-        /* Remove hover state for desktop dropdown */
-        .school-card:hover .sc-dropdown {
-            display: none;
-        }
-        .school-card:hover .sc-dropdown.active {
-            display: block;
+        .sc-dropdown-header {
+            display: none; /* Hide header in accordion mode */
         }
 
         /* ── Responsive ── */
@@ -580,8 +530,6 @@
 
     <!-- Skip to content link for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <div class="sc-dropdown-overlay" id="sc-overlay"></div>
 
     <!-- TOP BAR -->
     <div class="hub-topbar">
@@ -1716,12 +1664,9 @@
                 }
             });
         }, 2000);
-        // MOS Dropdown Logic
+        // MOS Accordion Logic
         document.addEventListener('DOMContentLoaded', function() {
-            var overlay = document.getElementById('sc-overlay');
             var cards = document.querySelectorAll('.school-card[data-dropdown-id]');
-            var dropdowns = document.querySelectorAll('.sc-dropdown');
-            var closeBtns = document.querySelectorAll('.sc-close-btn');
 
             cards.forEach(function(card) {
                 card.addEventListener('click', function(e) {
@@ -1730,33 +1675,23 @@
                     
                     var dropdownId = card.getAttribute('data-dropdown-id');
                     var dropdown = document.getElementById('dropdown-' + dropdownId);
-                    
-                    if (dropdown) {
+                    var isActive = card.classList.contains('dropdown-active');
+
+                    // Close all others
+                    document.querySelectorAll('.school-card').forEach(c => {
+                        c.classList.remove('dropdown-active');
+                    });
+                    document.querySelectorAll('.sc-dropdown').forEach(d => {
+                        d.classList.remove('active');
+                    });
+
+                    if (!isActive && dropdown) {
+                        card.classList.add('dropdown-active');
                         dropdown.classList.add('active');
-                        overlay.classList.add('active');
-                        document.body.style.overflow = 'hidden'; // Prevent scroll
+                        // Scroll to card
+                        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 });
-            });
-
-            function closeAll() {
-                dropdowns.forEach(function(d) { d.classList.remove('active'); });
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            closeBtns.forEach(function(btn) {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    closeAll();
-                });
-            });
-
-            overlay.addEventListener('click', closeAll);
-
-            // Escape key to close
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeAll();
             });
         });
     </script>
