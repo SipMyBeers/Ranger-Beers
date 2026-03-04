@@ -16,15 +16,40 @@
         .courses-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -1px; margin-bottom: var(--space-md); }
         .courses-hero h1 span { color: var(--color-gold); }
         .courses-hero p { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--color-text-secondary); max-width: 600px; line-height: 1.6; }
+
         .courses-section { max-width: 900px; margin: 0 auto; padding: var(--space-2xl) 40px var(--space-3xl); }
-        .coming-soon-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-glass); padding: var(--space-3xl) var(--space-xl); text-align: center; }
-        .coming-soon-card h3 { font-size: 18px; font-weight: 700; margin-bottom: var(--space-sm); }
+        .courses-section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-sm); text-align: center; }
+        .courses-section h2 { font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 800; text-align: center; margin-bottom: var(--space-lg); }
+        .courses-section p { color: var(--color-text-secondary); text-align: center; max-width: 560px; margin: 0 auto var(--space-xl); line-height: 1.6; }
+
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-top: var(--space-xl); }
+        .course-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-glass); padding: var(--space-xl); text-decoration: none; color: inherit; transition: all 0.3s; display: flex; flex-direction: column; }
+        .course-card:hover { border-color: var(--color-gold-border); background: rgba(197,179,88,0.03); transform: translateY(-2px); }
+        .course-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm); }
+        .course-card-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-gold); background: rgba(197,179,88,0.1); padding: 4px 10px; border-radius: 4px; }
+        .course-card-price { font-size: 16px; font-weight: 800; color: var(--color-text-secondary); }
+        .course-card-title { font-size: 18px; font-weight: 800; margin-bottom: var(--space-xs); color: var(--color-text-primary); }
+        .course-card-desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: var(--space-md); flex-grow: 1; }
+        .course-card-meta { display: flex; gap: var(--space-md); font-size: 12px; color: var(--color-text-muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--space-sm); }
+
+        .bundle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-lg); margin-top: var(--space-xl); }
+        .bundle-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-glass); padding: var(--space-xl); text-align: center; }
+        .bundle-card--featured { border-color: var(--color-gold-border); background: rgba(197,179,88,0.03); }
+        .bundle-card h3 { font-size: 16px; font-weight: 700; margin-bottom: var(--space-xs); }
+        .bundle-price { font-size: 28px; font-weight: 900; color: var(--color-gold); margin-bottom: var(--space-xs); }
+        .bundle-desc { font-size: 13px; color: var(--color-text-secondary); margin-bottom: var(--space-lg); line-height: 1.5; }
+
         .school-footer { text-align: center; padding: var(--space-3xl) 40px; border-top: 1px solid rgba(255,255,255,0.06); }
         .school-footer-copy { font-size: 12px; color: var(--color-text-muted); letter-spacing: 1px; }
-        @media (max-width: 700px) { .courses-hero { padding-left: 20px; padding-right: 20px; } .courses-section { padding-left: 20px; padding-right: 20px; } }
+
+        @media (max-width: 700px) {
+            .courses-hero { padding-left: 20px; padding-right: 20px; }
+            .courses-section { padding-left: 20px; padding-right: 20px; }
+        }
     </style>
 </head>
 <body>
+
     <nav class="nav scrolled" id="nav">
         <div class="nav-inner">
             <a href="/" class="nav-brand">Ranger Beers</a>
@@ -37,7 +62,7 @@
                         <li><span class="nav-dropdown-label">Phases</span></li>
                         <li><a href="index.html#phases">Qualification</a></li>
                         <li><a href="index.html#phases">NTI Match</a></li>
-                        <li><a href="index.html#phases">President's Hundred</a></li>
+                        <li><a href="index.html#phases">President's Hundred Match</a></li>
                     </ul>
                 </li>
                 <li class="nav-sep"></li>
@@ -59,6 +84,8 @@
                         <li><a href="course-marksmanship-prep.html">President's Hundred Prep</a></li>
                         <li><a href="course-precision-rifle.html">Precision Rifle</a></li>
                         <li><a href="course-precision-pistol.html">Precision Pistol</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
                     </ul>
                 </li>
                 <li class="nav-sep"></li>
@@ -79,44 +106,113 @@
             </button>
         </div>
     </nav>
+
     <section class="courses-hero" data-school-id="presidents-hundred">
         <h1><span>Marksmanship</span> Courses</h1>
         <p>Training courses and study materials for President's Hundred Tab.</p>
     </section>
-    <section class="courses-section" id="bundles">
-        <div class="section-label" style="text-align: center; margin-bottom: var(--space-lg);">Available Courses</div>
-        <div class="bento-grid bento-3" style="margin-bottom: var(--space-xl);">
-            <a href="course-marksmanship-prep.html" class="glass-card" style="text-decoration: none; color: inherit;">
-                <div class="card-icon" style="font-size: 2rem;">&#127942;</div>
-                <div class="card-title">President's Hundred Prep</div>
-                <p class="card-desc">Complete competition overview, qualification requirements, NTI match format, and training calendar for earning the tab.</p>
-                <div style="margin-top: var(--space-md); font-weight: 600; color: var(--color-gold);">$12</div>
+
+    <section class="courses-section" id="courses">
+        <div class="courses-section-label">Individual Courses</div>
+        <h2>Master Competitive Shooting</h2>
+        <p>Comprehensive training courses for the President's Hundred competition and precision marksmanship.</p>
+
+        <div class="course-grid">
+            <a href="course-marksmanship-prep.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Competition</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">President's Hundred Prep</h3>
+                <p class="course-card-desc">Complete competition overview, qualification requirements, NTI match format, and training calendar for earning the tab.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>All Phases</span>
+                </div>
             </a>
-            <a href="course-precision-rifle.html" class="glass-card" style="text-decoration: none; color: inherit;">
-                <div class="card-icon" style="font-size: 2rem;">&#127788;</div>
-                <div class="card-title">Precision Rifle</div>
-                <p class="card-desc">High-power rifle fundamentals, position shooting, wind reading mastery, 600-yard precision, and data book management.</p>
-                <div style="margin-top: var(--space-md); font-weight: 600; color: var(--color-gold);">$12</div>
+
+            <a href="course-precision-rifle.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Rifle</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">Precision Rifle</h3>
+                <p class="course-card-desc">High-power rifle fundamentals, position shooting, wind reading mastery, 600-yard precision, and data book management.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>High Power</span>
+                </div>
             </a>
-            <a href="course-precision-pistol.html" class="glass-card" style="text-decoration: none; color: inherit;">
-                <div class="card-icon" style="font-size: 2rem;">&#128299;</div>
-                <div class="card-title">Precision Pistol</div>
-                <p class="card-desc">Bullseye fundamentals, slow fire precision, timed and rapid fire technique, equipment setup, and match preparation.</p>
-                <div style="margin-top: var(--space-md); font-weight: 600; color: var(--color-gold);">$12</div>
+
+            <a href="course-precision-pistol.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Pistol</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">Precision Pistol</h3>
+                <p class="course-card-desc">Bullseye fundamentals, slow fire precision, timed and rapid fire technique, equipment setup, and match preparation.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Bullseye</span>
+                </div>
             </a>
         </div>
     </section>
+
+    <section class="courses-section" id="bundles">
+        <div class="courses-section-label">Course Bundles</div>
+        <h2>Save with Bundles</h2>
+        <p>Get comprehensive training at a discounted price.</p>
+
+        <div class="bundle-grid">
+            <div class="bundle-card bundle-card--featured">
+                <h3>Complete Marksmanship Package</h3>
+                <div class="bundle-price">$30</div>
+                <div class="bundle-desc">All 3 marksmanship courses — everything you need to earn the President's Hundred Tab.</div>
+                <button class="snipcart-add-item btn btn-primary"
+                    data-item-id="bundle-presidents-hundred-complete"
+                    data-item-name="Complete Marksmanship Package"
+                    data-item-price="30.00"
+                    data-item-url="/presidents-hundred/courses.html"
+                    data-item-description="All 3 marksmanship courses"
+                    data-item-categories="bundle">Buy Bundle — $30</button>
+            </div>
+
+            <div class="bundle-card">
+                <h3>Precision Shooting Bundle</h3>
+                <div class="bundle-price">$20</div>
+                <div class="bundle-desc">Precision Rifle and Precision Pistol courses.</div>
+                <button class="snipcart-add-item btn btn-outline"
+                    data-item-id="bundle-presidents-hundred-precision"
+                    data-item-name="Precision Shooting Bundle"
+                    data-item-price="20.00"
+                    data-item-url="/presidents-hundred/courses.html"
+                    data-item-description="Precision Rifle and Pistol courses"
+                    data-item-categories="bundle">Buy Bundle — $20</button>
+            </div>
+        </div>
+    </section>
+
     <footer class="school-footer">
         <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
     </footer>
-    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+
+    <div hidden id="snipcart"
+         data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4"
+         data-config-modal-style="side">
+    </div>
     <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/shared.js"></script>
     <script src="../js/course-auth.js"></script>
     <script>
         RangerAuth.initAuthUI();
-        (function(){ const toggle = document.querySelector('.nav-toggle'); const nav = document.getElementById('nav'); if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('nav-open')); window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }); })();
+        (function(){
+            const toggle = document.querySelector('.nav-toggle');
+            const nav = document.getElementById('nav');
+            if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('nav-open'));
+            window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+        })();
     </script>
 </body>
 </html>

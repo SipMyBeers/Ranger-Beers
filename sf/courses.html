@@ -22,9 +22,15 @@
         .courses-section h2 { font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 800; text-align: center; margin-bottom: var(--space-lg); }
         .courses-section p { color: var(--color-text-secondary); text-align: center; max-width: 560px; margin: 0 auto var(--space-xl); line-height: 1.6; }
 
-        .coming-soon-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-glass); padding: var(--space-3xl) var(--space-xl); text-align: center; }
-        .coming-soon-card h3 { font-size: 18px; font-weight: 700; margin-bottom: var(--space-sm); }
-        .coming-soon-card p { color: var(--color-text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: var(--space-lg); max-width: 100%; }
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-top: var(--space-xl); }
+        .course-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-glass); padding: var(--space-xl); text-decoration: none; color: inherit; transition: all 0.3s; display: flex; flex-direction: column; }
+        .course-card:hover { border-color: var(--color-gold-border); background: rgba(197,179,88,0.03); transform: translateY(-2px); }
+        .course-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm); }
+        .course-card-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-gold); background: rgba(197,179,88,0.1); padding: 4px 10px; border-radius: 4px; }
+        .course-card-price { font-size: 16px; font-weight: 800; color: var(--color-text-secondary); }
+        .course-card-title { font-size: 18px; font-weight: 800; margin-bottom: var(--space-xs); color: var(--color-text-primary); }
+        .course-card-desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: var(--space-md); flex-grow: 1; }
+        .course-card-meta { display: flex; gap: var(--space-md); font-size: 12px; color: var(--color-text-muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--space-sm); }
 
         .bundle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-lg); margin-top: var(--space-xl); }
         .bundle-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-glass); padding: var(--space-xl); text-align: center; }
@@ -75,8 +81,15 @@
                     <ul class="nav-dropdown-menu">
                         <li><a href="courses.html">All Courses</a></li>
                         <li class="nav-dropdown-divider"></li>
-                        <li><span class="nav-dropdown-label">Training</span></li>
-                        <li><a href="courses.html">SFQC Prep</a></li>
+                        <li><span class="nav-dropdown-label">SF Training</span></li>
+                        <li><a href="course-sfas-prep.html">SFAS Prep</a></li>
+                        <li><a href="course-small-unit.html">Small Unit Tactics</a></li>
+                        <li><a href="course-mff.html">Military Freefall</a></li>
+                        <li><a href="course-combat-dive.html">Combat Diving</a></li>
+                        <li><a href="course-unconventional.html">Unconventional Warfare</a></li>
+                        <li><a href="course-sr.html">Special Reconnaissance</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
                     </ul>
                 </li>
                 <li class="nav-sep"></li>
@@ -103,11 +116,136 @@
         <p>Training courses and study materials for Special Forces Qualification Course (SFQC).</p>
     </section>
 
+    <section class="courses-section" id="courses">
+        <div class="courses-section-label">Individual Courses</div>
+        <h2>Master Special Forces</h2>
+        <p>Comprehensive training courses for SFAS, SFQC, and Special Forces operations.</p>
+
+        <div class="course-grid">
+            <a href="course-sfas-prep.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Assessment</span>
+                    <span class="course-card-price">$15</span>
+                </div>
+                <h3 class="course-card-title">SFAS Prep</h3>
+                <p class="course-card-desc">Complete guide to crush the 24-day Special Forces Assessment and Selection. Land navigation, rucking, team events, and psychological preparation.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>High Attrition</span>
+                </div>
+            </a>
+
+            <a href="course-small-unit.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Tactical</span>
+                    <span class="course-card-price">$15</span>
+                </div>
+                <h3 class="course-card-title">Small Unit Tactics</h3>
+                <p class="course-card-desc">Patrolling, ambushes, raids, reconnaissance, and battle drills for ODA operations.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>SFQC Phase</span>
+                </div>
+            </a>
+
+            <a href="course-mff.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Airborne</span>
+                    <span class="course-card-price">$15</span>
+                </div>
+                <h3 class="course-card-title">Military Freefall</h3>
+                <p class="course-card-desc">HALO/HAHO operations, parachute systems, body position, canopy control, and jumpmaster procedures.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Specialized</span>
+                </div>
+            </a>
+
+            <a href="course-combat-dive.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Maritime</span>
+                    <span class="course-card-price">$15</span>
+                </div>
+                <h3 class="course-card-title">Combat Diving</h3>
+                <p class="course-card-desc">Open and closed-circuit SCUBA operations, underwater navigation, infiltration techniques, and submarine lock-out.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Closed Circuit</span>
+                </div>
+            </a>
+
+            <a href="course-unconventional.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">UW</span>
+                    <span class="course-card-price">$15</span>
+                </div>
+                <h3 class="course-card-title">Unconventional Warfare</h3>
+                <p class="course-card-desc">Resistance movements, guerrilla warfare, foreign internal defense, and operational planning.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Core SF Mission</span>
+                </div>
+            </a>
+
+            <a href="course-sr.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Recon</span>
+                    <span class="course-card-price">$15</span>
+                </div>
+                <h3 class="course-card-title">Special Reconnaissance</h3>
+                <p class="course-card-desc">Intelligence collection, surveillance, reconnaissance planning, and reporting techniques.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Core SF Mission</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
     <section class="courses-section" id="bundles">
-        <div class="coming-soon-card">
-            <h3>Training Content Coming Soon</h3>
-            <p>We're building comprehensive training courses for Special Forces Qualification Course (SFQC). Check back soon for detailed study guides, practice tests, and preparation materials.</p>
-            <a href="resources.html" class="btn btn-outline">View Resources</a>
+        <div class="courses-section-label">Course Bundles</div>
+        <h2>Save with Bundles</h2>
+        <p>Get comprehensive training at a discounted price.</p>
+
+        <div class="bundle-grid">
+            <div class="bundle-card bundle-card--featured">
+                <h3>Complete SFQC Package</h3>
+                <div class="bundle-price">$75</div>
+                <div class="bundle-desc">All 6 SF courses — comprehensive preparation for the Special Forces Qualification Course.</div>
+                <button class="snipcart-add-item btn btn-primary"
+                    data-item-id="bundle-sf-complete"
+                    data-item-name="Complete SFQC Package"
+                    data-item-price="75.00"
+                    data-item-url="/sf/courses.html"
+                    data-item-description="All 6 Special Forces courses"
+                    data-item-categories="bundle">Buy Bundle — $75</button>
+            </div>
+
+            <div class="bundle-card">
+                <h3>SFAS Essentials</h3>
+                <div class="bundle-price">$25</div>
+                <div class="bundle-desc">SFAS Prep and Small Unit Tactics for selection success.</div>
+                <button class="snipcart-add-item btn btn-outline"
+                    data-item-id="bundle-sf-sfas"
+                    data-item-name="SFAS Essentials Bundle"
+                    data-item-price="25.00"
+                    data-item-url="/sf/courses.html"
+                    data-item-description="SFAS Prep and Small Unit Tactics"
+                    data-item-categories="bundle">Buy Bundle — $25</button>
+            </div>
+
+            <div class="bundle-card">
+                <h3>Technical Skills Bundle</h3>
+                <div class="bundle-price">$40</div>
+                <div class="bundle-desc">Military Freefall and Combat Diving specialized training.</div>
+                <button class="snipcart-add-item btn btn-outline"
+                    data-item-id="bundle-sf-technical"
+                    data-item-name="SF Technical Skills Bundle"
+                    data-item-price="40.00"
+                    data-item-url="/sf/courses.html"
+                    data-item-description="Military Freefall and Combat Diving"
+                    data-item-categories="bundle">Buy Bundle — $40</button>
+            </div>
         </div>
     </section>
 

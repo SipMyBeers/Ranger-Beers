@@ -22,9 +22,15 @@
         .courses-section h2 { font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 800; text-align: center; margin-bottom: var(--space-lg); }
         .courses-section p { color: var(--color-text-secondary); text-align: center; max-width: 560px; margin: 0 auto var(--space-xl); line-height: 1.6; }
 
-        .coming-soon-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-glass); padding: var(--space-3xl) var(--space-xl); text-align: center; }
-        .coming-soon-card h3 { font-size: 18px; font-weight: 700; margin-bottom: var(--space-sm); }
-        .coming-soon-card p { color: var(--color-text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: var(--space-lg); max-width: 100%; }
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-top: var(--space-xl); }
+        .course-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-glass); padding: var(--space-xl); text-decoration: none; color: inherit; transition: all 0.3s; display: flex; flex-direction: column; }
+        .course-card:hover { border-color: var(--color-gold-border); background: rgba(197,179,88,0.03); transform: translateY(-2px); }
+        .course-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm); }
+        .course-card-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-gold); background: rgba(197,179,88,0.1); padding: 4px 10px; border-radius: 4px; }
+        .course-card-price { font-size: 16px; font-weight: 800; color: var(--color-text-secondary); }
+        .course-card-title { font-size: 18px; font-weight: 800; margin-bottom: var(--space-xs); color: var(--color-text-primary); }
+        .course-card-desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: var(--space-md); flex-grow: 1; }
+        .course-card-meta { display: flex; gap: var(--space-md); font-size: 12px; color: var(--color-text-muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--space-sm); }
 
         .bundle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-lg); margin-top: var(--space-xl); }
         .bundle-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-glass); padding: var(--space-xl); text-align: center; }
@@ -75,11 +81,22 @@
                         <li><a href="courses.html">All Courses</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><span class="nav-dropdown-label">Training</span></li>
-                        <li><a href="courses.html">Arctic Prep</a></li>
+                        <li><a href="course-arctic-prep.html">Arctic Prep</a></li>
+                        <li><a href="course-cold-weather.html">Cold Weather Survival</a></li>
+                        <li><a href="course-ski-ops.html">Ski Operations</a></li>
+                        <li><a href="course-snowshoe.html">Snowshoe Operations</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
                     </ul>
                 </li>
                 <li class="nav-sep"></li>
-                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-dropdown">
+                    <a href="resources.html">Resources</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="resources.html">Arctic Resources</a></li>
+                        <li><a href="standards.html">PT Standards</a></li>
+                    </ul>
+                </li>
                 <li class="nav-sep"></li>
                 <li><a href="standards.html">Standards</a></li>
             </ul>
@@ -102,11 +119,97 @@
         <p>Training courses and study materials for Cold Weather Leaders Course (CWLC).</p>
     </section>
 
+    <section class="courses-section" id="courses">
+        <div class="courses-section-label">Individual Courses</div>
+        <h2>Master Arctic Warfare</h2>
+        <p>Comprehensive training courses for the Cold Weather Leaders Course and extreme cold operations.</p>
+
+        <div class="course-grid">
+            <a href="course-arctic-prep.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Foundation</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">Arctic Warfare Prep</h3>
+                <p class="course-card-desc">Complete CWLC preparation — cold acclimatization, physical conditioning, equipment familiarization, and mental conditioning.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>All Phases</span>
+                </div>
+            </a>
+
+            <a href="course-cold-weather.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Survival</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">Cold Weather Survival</h3>
+                <p class="course-card-desc">Shelter construction, hypothermia prevention, ECWCS layering system, cold injury treatment, and emergency procedures.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Field Phase</span>
+                </div>
+            </a>
+
+            <a href="course-ski-ops.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Mobility</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">Ski Operations</h3>
+                <p class="course-card-desc">Military cross-country skiing, equipment setup, uphill/downhill techniques, trail breaking, and tactical ski movement.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Field Phase</span>
+                </div>
+            </a>
+
+            <a href="course-snowshoe.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Mobility</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">Snowshoe Operations</h3>
+                <p class="course-card-desc">Snowshoe techniques, load hauling with ahkio sleds, trail breaking, and tactical snowshoe patrolling.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Field Phase</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
     <section class="courses-section" id="bundles">
-        <div class="coming-soon-card">
-            <h3>Training Content Coming Soon</h3>
-            <p>We're building comprehensive training courses for Cold Weather Leaders Course (CWLC). Check back soon for detailed study guides, practice tests, and preparation materials.</p>
-            <a href="resources.html" class="btn btn-outline">View Resources</a>
+        <div class="courses-section-label">Course Bundles</div>
+        <h2>Save with Bundles</h2>
+        <p>Get comprehensive training at a discounted price.</p>
+
+        <div class="bundle-grid">
+            <div class="bundle-card bundle-card--featured">
+                <h3>Complete CWLC Package</h3>
+                <div class="bundle-price">$40</div>
+                <div class="bundle-desc">All 4 Arctic courses — everything you need to earn your Arctic Tab.</div>
+                <button class="snipcart-add-item btn btn-primary"
+                    data-item-id="bundle-arctic-complete"
+                    data-item-name="Complete CWLC Package"
+                    data-item-price="40.00"
+                    data-item-url="/arctic/courses.html"
+                    data-item-description="All 4 Arctic warfare courses"
+                    data-item-categories="bundle">Buy Bundle — $40</button>
+            </div>
+
+            <div class="bundle-card">
+                <h3>Mobility Bundle</h3>
+                <div class="bundle-price">$20</div>
+                <div class="bundle-desc">Ski Operations and Snowshoe Operations courses.</div>
+                <button class="snipcart-add-item btn btn-outline"
+                    data-item-id="bundle-arctic-mobility"
+                    data-item-name="Arctic Mobility Bundle"
+                    data-item-price="20.00"
+                    data-item-url="/arctic/courses.html"
+                    data-item-description="Ski and snowshoe operations courses"
+                    data-item-categories="bundle">Buy Bundle — $20</button>
+            </div>
         </div>
     </section>
 
