@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sapper Mountaineering — Sapper Leader Course — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#000000">
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Assessment</a></li>
+                        <li><a href="index.html#phases">Engineering</a></li>
+                        <li><a href="index.html#phases">Tactical</a></li>
+                        <li><a href="index.html#phases">Patrol</a></li>
+                        <li><a href="index.html#phases">Final</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">Sapper Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Engineering</span></li>
+                        <li><a href="course-demolitions.html">Demolitions</a></li>
+                        <li><a href="course-bridging.html">Bridging Operations</a></li>
+                        <li><a href="course-mine-warfare.html">Mine Warfare</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Tactical</span></li>
+                        <li><a href="course-breaching.html">Breaching Operations</a></li>
+                        <li><a href="course-mountaineering.html">Sapper Mountaineering</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="section course-hero" data-course-id="course-mountaineering">
+        <div class="section-label fade-in">Course</div>
+        <h1 class="section-title fade-in">Sapper Mountaineering</h1>
+        <p class="section-desc fade-in">Master rope systems, rappelling techniques, high-angle rescue, and fixed rope operations. Advanced mountaineering skills for combat engineers operating in mountainous terrain.</p>
+        <div class="course-hero-meta fade-in">
+            <span class="course-price-tag">$15</span>
+            <span class="course-tag tag-phase">Tactical Phase</span>
+            <span class="course-tag tag-type">Technical</span>
+            <span class="course-tag tag-bundle">Sapper School Pass</span>
+        </div>
+        <div style="margin-top: var(--space-lg);" class="fade-in">
+            <button class="snipcart-add-item btn btn-primary"
+                data-item-id="course-mountaineering"
+                data-item-name="Sapper Mountaineering"
+                data-item-price="15.00"
+                data-item-url="/sapper/course-mountaineering.html"
+                data-item-description="Rope systems, rappelling, high-angle rescue, fixed ropes"
+                data-item-categories="course">Buy Course — $15.00</button>
+        </div>
+    </div>
+
+    <!-- LOGIN GATE -->
+    <div id="login-gate" class="login-gate" style="display: none;">
+        <div class="login-gate-card">
+            <div class="login-gate-title">Sign In to Access</div>
+            <div class="login-gate-desc">Create a free account or sign in to access this course content.</div>
+            <button class="btn btn-primary" id="gate-sign-in" style="width: 100%;">Sign In</button>
+            <a href="#" class="login-gate-link" id="gate-create-account">Create free account</a>
+        </div>
+    </div>
+
+    <!-- COURSE CONTENT -->
+    <div id="course-content" style="display: none;">
+        <div class="course-layout">
+            <!-- Sidebar -->
+            <nav class="course-sidebar">
+                <div class="course-sidebar-title">Modules</div>
+                <a href="#mod1" class="course-sidebar-link active">1. Mountaineering Fundamentals</a>
+                <a href="#mod2" class="course-sidebar-link">2. Rope Systems & Knots</a>
+                <a href="#mod3" class="course-sidebar-link">3. Rappelling Techniques</a>
+                <a href="#mod4" class="course-sidebar-link">4. Fixed Rope Operations</a>
+                <a href="#mod5" class="course-sidebar-link">5. High-Angle Rescue</a>
+                <a href="#mod6" class="course-sidebar-link">6. Tactical Applications</a>
+            </nav>
+
+            <!-- Content -->
+            <div class="course-content-area">
+
+                <!-- MODULE 1 -->
+                <div class="course-module" id="mod1" data-module="mod1">
+                    <div class="course-module-label">Module 1</div>
+                    <div class="course-module-title">Mountaineering Fundamentals</div>
+                    <p>Mountaineering operations enable combat engineers to operate effectively in mountainous terrain. While Sapper School focuses primarily on horizontal construction and demolitions, mountaineering skills may be integrated into training and are essential for engineers deploying to mountainous regions.</p>
+
+                    <p><strong>Mountain Terrain Categories:</strong></p>
+                    <ul>
+                        <li><strong>Class 1:</strong> Trail hiking — hands not required</li>
+                        <li><strong>Class 2:</strong> Off-trail hiking — occasional hand use</li>
+                        <li><strong>Class 3:</strong> Scrambling — hands required, ropes optional</li>
+                        <li><strong>Class 4:</strong> Simple climbing — ropes recommended</li>
+                        <li><strong>Class 5:</strong> Technical climbing — ropes required</li>
+                    </ul>
+
+                    <p><strong>Slope Angle Classifications:</strong></p>
+                    <ul>
+                        <li><strong>Gentle slope:</strong> 0-15 degrees — easy walking</li>
+                        <li><strong>Moderate slope:</strong> 15-30 degrees — increased effort</li>
+                        <li><strong>Steep slope:</strong> 30-45 degrees — hands frequently used</li>
+                        <li><strong>Very steep:</strong> 45-60 degrees — ropes usually required</li>
+                        <li><strong>Vertical:</strong> 60-90 degrees — technical climbing</li>
+                        <li><strong>Overhanging:</strong> Greater than 90 degrees — aid climbing</li>
+                    </ul>
+
+                    <p><strong>Basic Equipment:</strong></p>
+                    <ul>
+                        <li><strong>Helmet:</strong> Protection from rockfall and impact</li>
+                        <li><strong>Harness:</strong> Seat harness for rope attachment</li>
+                        <li><strong>Carabiners:</strong> Steel or aluminum locking and non-locking</li>
+                        <li><strong>Ropes:</strong> Dynamic (climbing) vs static (rappelling/rescue)</li>
+                        <li><strong>Webbing:</strong> For anchors and slings</li>
+                        <li><strong>Cordage:</strong> Prusik cords and accessory cord</li>
+                        <li><strong>Belay device:</strong> ATC, figure-8, or similar</li>
+                        <li><strong>Protection:</strong> Nuts, cams, pitons (if required)</li>
+                    </ul>
+
+                    <p><strong>Rope Specifications:</strong></p>
+                    <ul>
+                        <li><strong>Static rope:</strong> Minimal stretch — ideal for rappelling and fixed lines
+                            <ul>
+                                <li>Typical diameter: 9-11mm</li>
+                                <li>Used for hauling, rescue, and rappelling</li>
+                                <li>Not for lead climbing (no energy absorption)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Dynamic rope:</strong> Designed to stretch and absorb energy
+                            <ul>
+                                <li>Typical diameter: 9-11mm</li>
+                                <li>Required for lead climbing protection</li>
+                                <li>Reduces impact forces in falls</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <p><strong>Mountain Hazards:</strong></p>
+                    <ul>
+                        <li><strong>Rockfall:</strong> Primary objective hazard — wear helmets</li>
+                        <li><strong>Weather:</strong> Rapid changes, lightning, cold, wind</li>
+                        <li><strong>Altitude:</strong> Acclimatization required above 8,000 feet</li>
+                        <li><strong>Avalanche:</strong> Snow and terrain evaluation required</li>
+                        <li><strong>Stream crossings:</strong> Swift water hazards</li>
+                        <li><strong>Wildlife:</strong> Encounters in remote areas</li>
+                    </ul>
+
+                    <p><strong>Movement Techniques:</strong></p>
+                    <ul>
+                        <li><strong>Rest step:</strong> Brief pause with each step to conserve energy</li>
+                        <li><strong>Pressure breathing:</strong> Forceful exhalation at altitude</li>
+                        <li><strong>Three points of contact:</strong> Maintain stability on steep terrain</li>
+                        <li><strong>Downclimbing:</strong> Face outward, use hands for balance</li>
+                        <li><strong>Route selection:</strong> Choose paths with natural protection</li>
+                    </ul>
+
+                    <p><strong>Tactical Considerations:</strong></p>
+                    <ul>
+                        <li>High ground provides observation advantage</li>
+                        <li>Ridges offer better movement than valleys</li>
+                        <li>Key terrain often controls movement corridors</li>
+                        <li>Weather can isolate units in mountains</li>
+                        <li>Resupply and evacuation more difficult</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 2 -->
+                <div class="course-module locked-module" id="mod2" data-module="mod2">
+                    <div class="course-module-label">Module 2</div>
+                    <div class="course-module-title">Rope Systems & Knots</div>
+                    <p>Proficiency with rope systems and knots is essential for mountaineering operations. Sappers must be able to tie critical knots quickly and correctly under stress, and understand how to construct basic rope systems for movement and rescue.</p>
+
+                    <p><strong>Essential Knots for Sappers:</strong></p>
+                    <ul>
+                        <li><strong>Figure-8 knot:</strong>
+                            <ul>
+                                <li>Primary tie-in knot for harness attachment</li>
+                                <li>Strong, secure, easy to inspect</li>
+                                <li>Must be dressed (tightened) and backed up</li>
+                                <li>Retrace figure-8 for attaching to anchors</li>
+                            </ul>
+                        </li>
+                        <li><strong>Overhand knot:</strong>
+                            <ul>
+                                <li>Simple backup knot</li>
+                                <li>Used to secure rope ends</li>
+                                <li>Basis for other knots</li>
+                            </ul>
+                        </li>
+                        <li><strong>Prusik knot:</strong>
+                            <ul>
+                                <li>Friction hitch for ascending ropes</li>
+                                <li>Slides when unloaded, grips when loaded</li>
+                                <li>Requires cord of smaller diameter than main rope</li>
+                                <li>Used in rescue and self-rescue</li>
+                            </ul>
+                        </li>
+                        <li><strong>Clove hitch:</strong>
+                            <ul>
+                                <li>Quick attachment to carabiners</li>
+                                <li>Adjustable when loaded</li>
+                                <li>Useful for equalizing anchors</li>
+                            </ul>
+                        </li>
+                        <li><strong>Bowline:</strong>
+                            <ul>
+                                <li>Creates fixed loop in rope end</li>
+                                <li>Easy to untie after loading</li>
+                                <li>Must be backed up for safety</li>
+                            </ul>
+                        </li>
+                        <li><strong>Water knot (overhand follow-through):</strong>
+                            <ul>
+                                <li>Joins two ends of webbing</li>
+                                <li>Leave minimum 3-inch tails</li>
+                                <li>Check periodically for tightening</li>
+                            </ul>
+                        </li>
+                        <li><strong>Italian hitch (Munter hitch):</strong>
+                            <ul>
+                                <li>Emergency belay/rappel hitch</li>
+                                <li>Works with single locking carabiner</li>
+                                <li>Adds twist to rope over time</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <p><strong>Rope Care and Maintenance:</strong></p>
+                    <ul>
+                        <li>Inspect before each use — look for cuts, fraying, flat spots</li>
+                        <li>Keep ropes clean — wash with mild soap when dirty</li>
+                        <li>Store dry and out of direct sunlight</li>
+                        <li>Avoid contact with sharp edges</li>
+                        <li>Do not step on ropes — grinds dirt into fibers</li>
+                        <li>Retire ropes after major falls or visible damage</li>
+                        <li>Mark rope ends with tape for identification</li>
+                    </ul>
+
+                    <p><strong>Carabiner Types and Use:</strong></p>
+                    <ul>
+                        <li><strong>Locking carabiners:</strong>
+                            <ul>
+                                <li>Screw-gate or auto-locking</li>
+                                <li>Required for belay and rappel connections</li>
+                                <li>Always locked during use</li>
+                            </ul>
+                        </li>
+                        <li><strong>Non-locking carabiners:</strong>
+                            <ul>
+                                <li>Quick attachment for non-critical uses</li>
+                                <li>Wire gate or solid gate</li>
+                                <li>Never use where carabiner could unclip</li>
+                            </ul>
+                        </li>
+                        <li><strong>Steel vs aluminum:</strong>
+                            <ul>
+                                <li>Steel: Stronger, more durable, heavier</li>
+                                <li>Aluminum: Lighter, sufficient for most uses</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <p><strong>Anchor Systems:</strong></p>
+                    <ul>
+                        <li><strong>Natural anchors:</strong>
+                            <ul>
+                                <li>Trees (minimum 6-inch diameter)</li>
+                                <li>Rock features (horns, boulders)</li>
+                                <li>Ice features (in alpine environments)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Artificial anchors:</strong>
+                            <ul>
+                                <li>Pitons — hammered into cracks</li>
+                                <li>Cams — spring-loaded devices</li>
+                                <li>Nuts/hexes — passive protection</li>
+                                <li>Bolts — fixed anchors (permanent)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Anchor principles:</strong>
+                            <ul>
+                                <li>Always use redundant anchors (minimum 2)</li>
+                                <li>Independent — failure of one doesn't affect others</li>
+                                <li>Equalized — load shared between anchors</li>
+                                <li>No extension — system doesn't shock load if one anchor fails</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <p><strong>Belay Systems:</strong></p>
+                    <ul>
+                        <li><strong>Belay device:</strong> ATC, grigri, figure-8, plate</li>
+                        <li><strong>Belay stance:</strong> Positioned to brake effectively</li>
+                        <li><strong>Communication:</strong> Standard commands (on belay, climbing, slack, tension, falling, rock)</li>
+                        <li><strong>PBUS method:</strong> Pull, Brake, Under, Slide</li>
+                        <li><strong>Body belay:</strong> Emergency technique using friction around body</li>
+                    </ul>
+
+                    <p><strong>Practice Requirements:</strong></p>
+                    <ul>
+                        <li>Tie figure-8 knot 50 times before mountain operations</li>
+                        <li>Practice knots wearing gloves</li>
+                        <li>Practice in low-light conditions</li>
+                        <li>Inspect partner's knots — double-check everything</li>
+                        <li>Build anchor systems with instructor verification</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 3 -->
+                <div class="course-module locked-module" id="mod3" data-module="mod3">
+                    <div class="course-module-label">Module 3</div>
+                    <div class="course-module-title">Rappelling Techniques</div>
+                    <p>Rappelling (abseiling) is the controlled descent of a rope. It is a fundamental mountaineering skill used for descending vertical terrain, crossing obstacles, and tactical infiltration. At Sapper School, basic rappelling may be introduced as part of specialized training.</p>
+
+                    <p><strong>Rappel Equipment Setup:</strong></p>
+                    <ul>
+                        <li><strong>Harness:</strong> Seat harness properly fitted and doubled back</li>
+                        <li><strong>Rappel device:</strong> Figure-8 or ATC attached to belay loop</li>
+                        <li><strong>Locking carabiner:</strong> Connects device to harness, gate locked</li>
+                        <li><strong>Gloves:</strong> Leather or rappel gloves protect from rope burn</li>
+                        <li><strong>Helmet:</strong> Protection from rockfall and impact</li>
+                        <li><strong>Prusik backup:</strong> Friction hitch on brake hand side</li>
+                    </ul>
+
+                    <p><strong>Figure-8 Device Setup:</strong></p>
+                    <ul>
+                        <li>Feed rope through large hole of figure-8</li>
+                        <li>Loop around outside and through small hole</li>
+                        <li>Attach small hole to locking carabiner on harness</li>
+                        <li>Lock carabiner gate</li>
+                        <li>Rope runs from anchor through device to brake hand</li>
+                    </ul>
+
+                    <p><strong>Rappel Commands:</strong></p>
+                    <ul>
+                        <li><strong>"On rappel"</strong> — Rappeller ready to descend</li>
+                        <li><strong>"Rappel on"</strong> — Belayer acknowledges</li>
+                        <li><strong>"Off rappel"</strong> — Rappeller has reached bottom and detached</li>
+                        <li><strong>"Rappel clear"</strong> — Next person may begin</li>
+                    </ul>
+
+                    <p><strong>Body Position:</strong></p>
+                    <ul>
+                        <li>Face slightly sideways to wall</li>
+                        <li>Legs shoulder-width apart, knees slightly bent</li>
+                        <li>Feet flat against wall (not pointed down)</li>
+                        <li>Upper body leaned back from wall</li>
+                        <li>Brake hand on rope below device (controls descent)</li>
+                        <li>Guide hand above device (manages rope)</li>
+                    </ul>
+
+                    <p><strong>Braking and Control:</strong></p>
+                    <ul>
+                        <li>Bring brake hand across body to hip to brake</li>
+                        <li>More friction = slower/stopped descent</li>
+                        <li>Less friction = faster descent</li>
+                        <li>Never let go of brake hand</li>
+                        <li>Practice controlled bouncing off wall</li>
+                        <li>Keep feet ahead to push off obstacles</li>
+                    </ul>
+
+                    <p><strong>Rappel Safety:</strong></p>
+                    <ul>
+                        <li>Always use a backup (fireman's belay from below or Prusik)</li>
+                        <li>Inspect anchor before committing weight</li>
+                        <li>Double-check all connections before going over edge</li>
+                        <li>Test system with partial weight before full commit</li>
+                        <li>Stay on rappel until feet are on secure ground</li>
+                        <li>Protect rope from sharp edges with padding</li>
+                        <li>Minimum two points of attachment during rigging</li>
+                    </ul>
+
+                    <p><strong>Fireman's Belay:</strong></p>
+                    <ul>
+                        <li>Partner holds both rope ends from below</li>
+                        <li>If rappeller loses control, belayer pulls rope tight</li>
+                        <li>Simple and effective backup method</li>
+                        <li>Requires communication and attentiveness</li>
+                        <li>Standard for all training rappels</li>
+                    </ul>
+
+                    <p><strong>Prusik Backup:</strong></p>
+                    <ul>
+                        <li>Prusik cord attached to leg loop or harness</li>
+                        <li>Wraps around descending rope below device</li>
+                        <li>Slides down with controlled descent</li>
+                        <li>Locks automatically if brake hand releases</li>
+                        <li>Must be properly dressed to function</li>
+                    </ul>
+
+                    <p><strong>Tactical Rappelling Considerations:</strong></p>
+                    <ul>
+                        <li>Minimize equipment noise during descent</li>
+                        <li>Speed vs noise trade-off</li>
+                        <li>Multiple rappel stations for rapid descent</li>
+                        <li>Retrieval of ropes after descent</li>
+                        <li>Offset anchors to prevent rope jam</li>
+                        <li>Night rappelling with minimal light</li>
+                    </ul>
+
+                    <p><strong>Common Mistakes:</strong></p>
+                    <ul>
+                        <li>Letting go of brake hand</li>
+                        <li>Leaning too far forward or back</li>
+                        <li>Pointing feet downward</li>
+                        <li>Descending too fast</li>
+                        <li>Not using backup</li>
+                        <li>Rigging errors (carabiner not locked, etc.)</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 4 -->
+                <div class="course-module locked-module" id="mod4" data-module="mod4">
+                    <div class="course-module-label">Module 4</div>
+                    <div class="course-module-title">Fixed Rope Operations</div>
+                    <p>Fixed rope systems allow rapid movement of multiple personnel up or down steep terrain. They are essential for accessing difficult positions, conducting rescues, and moving equipment. Sappers must understand how to establish and use fixed rope installations.</p>
+
+                    <p><strong>Fixed Rope Applications:</strong></p>
+                    <ul>
+                        <li><strong>Infiltration/exfiltration routes:</strong> Steep approaches to objectives</li>
+                        <li><strong>Rescue operations:</strong> Evacuation of casualties from vertical terrain</li>
+                        <li><strong>Equipment movement:</strong> Hauling supplies up or down slopes</li>
+                        <li><strong>Reconnaissance:</strong> Access to observation positions</li>
+                        <li><strong>Assault:</strong> Vertical envelopment operations</li>
+                    </ul>
+
+                    <p><strong>Fixed Rope Installation:</strong></p>
+                    <ul>
+                        <li><strong>Anchor selection:</strong> Bombproof natural or artificial anchors</li>
+                        <li><strong>Rope length:</strong> Minimum 1.5 times vertical distance</li>
+                        <li><strong>Rope type:</strong> Static rope preferred (minimal stretch)</li>
+                        <li><strong>Edge protection:</strong> Padding where rope contacts rock</li>
+                        <li><strong>Rope management:</strong> Coiled and secured at top and bottom</li>
+                        <li><strong>Marking:</strong> Clear identification of rope function</li>
+                    </ul>
+
+                    <p><strong>Ascending Fixed Ropes:</strong></p>
+                    <p>Two primary methods using mechanical ascenders or Prusik knots:</p>
+                    <ul>
+                        <li><strong>Two-Prusik method:</strong>
+                            <ul>
+                                <li>Prusik attached to harness belay loop (foot)</li>
+                                <li>Second Prusik attached to harness (safety)</li>
+                                <li>Stand in foot Prusik, slide safety up</li>
+                                <li>Sit on harness, slide foot Prusik up</li>
+                                <li>Repeat rhythmically</li>
+                            </ul>
+                        </li>
+                        <li><strong>Mechanical ascenders:</strong>
+                            <ul>
+                                <li>Jumar or similar cam device</li>
+                                <li>More efficient than Prusiks</li>
+                                <li>Can attach foot loop for efficiency</li>
+                                <li>Always use backup knot or second ascender</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <p><strong>Rope Hauling Systems:</strong></p>
+                    <ul>
+                        <li><strong>Simple haul:</strong> Direct pull with personnel</li>
+                        <li><strong>2:1 mechanical advantage:</strong> Single pulley or carabiner redirect</li>
+                        <li><strong>3:1 Z-system:</strong> Common rescue hauling setup</li>
+                        <li><strong>5:1 system:</strong> For heavy loads or limited personnel</li>
+                        <li><strong>Progress capture:</strong> Prusik or ratchet prevents backsliding</li>
+                    </ul>
+
+                    <p><strong>3:1 Z-System Setup:</strong></p>
+                    <ol>
+                        <li>Anchor rope at top of route</li>
+                        <li>Run rope down to load, attach pulley</li>
+                        <li>Run rope back up to anchor, attach second pulley</li>
+                        <li>Pull on free end — each foot of pull raises load 1/3 foot</li>
+                        <li>Install progress capture Prusik on load line</li>
+                        <li>Reset system by sliding Prusik up</li>
+                    </ol>
+
+                    <p><strong>Fixed Rope Safety:</strong></p>
+                    <ul>
+                        <li>Inspect rope before each use</li>
+                        <li>Verify all anchor points</li>
+                        <li>Use edge protection</li>
+                        <li>Maximum rope capacity (typically 2-3 personnel at once)</li>
+                        <li>Communication between top and bottom</li>
+                        <li>Emergency descent capability for ascending personnel</li>
+                        <li>Regular inspection of installation</li>
+                    </ul>
+
+                    <p><strong>Tactical Fixed Line Considerations:</strong></p>
+                    <ul>
+                        <li>Minimize signature — avoid unnecessary noise</li>
+                        <li>Camouflage ropes when possible</li>
+                        <li>Multiple routes prevent single point of failure</li>
+                        <li>Security elements at top and bottom</li>
+                        <li>Quick release capability if compromise</li>
+                        <li>Retrieve or secure ropes after use</li>
+                    </ul>
+
+                    <p><strong>Tyrolean Traverse:</strong></p>
+                    <ul>
+                        <li>Horizontal or diagonal rope crossing</li>
+                        <li>Rope tensioned between two points</li>
+                        <li>Personnel traverse using ascenders or pulleys</li>
+                        <li>May include safety line above or below</li>
+                        <li>Used to cross gaps, rivers, or obstacles</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 5 -->
+                <div class="course-module locked-module" id="mod5" data-module="mod5">
+                    <div class="course-module-label">Module 5</div>
+                    <div class="course-module-title">High-Angle Rescue</div>
+                    <p>High-angle rescue involves evacuating injured personnel from steep or vertical terrain. Combat engineers must be prepared to conduct rescue operations for casualties in mountainous environments. These techniques require careful preparation and execution.</p>
+
+                    <p><strong>Rescue Priorities:</strong></p>
+                    <ul>
+                        <li>1. Scene safety — ensure no additional casualties</li>
+                        <li>2. Access casualty — reach the injured person</li>
+                        <li>3. Stabilize casualty — treat life-threatening injuries</li>
+                        <li>4. Package for transport — secure in litter or harness</li>
+                        <li>5. Evacuate — lower or raise to safety</li>
+                    </ul>
+
+                    <p><strong>Rescue Equipment:</strong></p>
+                    <ul>
+                        <li><strong>Litter:</strong> SKED, Stokes, or improvised</li>
+                        <li><strong>Litters straps:</strong> Secure casualty to litter</li>
+                        <li><strong>Rigging hardware:</strong> Pulleys, carabiners, slings</li>
+                        <li><strong>Ropes:</strong> Main line and belay line minimum</li>
+                        <li><strong>Ascending gear:</strong> For rescuer access</li>
+                        <li><strong>Medical kit:</strong> Trauma supplies</li>
+                        <li><strong>Communication:</strong> Radios, whistle, signals</li>
+                    </ul>
+
+                    <p><strong>Casualty Packaging:</strong></p>
+                    <ul>
+                        <li>Assess and treat immediate threats to life</li>
+                        <li>Immobilize suspected spinal injuries</li>
+                        <li>Secure casualty to rigid litter when possible</li>
+                        <li>Protect from environmental exposure</li>
+                        <li>Ensure airway remains clear during movement</li>
+                        <li>Monitor vital signs throughout evacuation</li>
+                    </ul>
+
+                    <p><strong>Lowering Systems:</strong></p>
+                    <ul>
+                        <li><strong>Two-rope system:</strong> Main line and belay line</li>
+                        <li><strong>Main line:</strong> Controlled descent with brake rack or Munter hitch</li>
+                        <li><strong>Belay line:</strong> Secondary protection, follows main line</li>
+                        <li><strong>Attendant:</strong> Medic or rescuer accompanies casualty</li>
+                        <li><strong>Tag line:</strong> Guide rope to control litter direction</li>
+                        <li><strong>Communication:</strong> Clear signals between top and bottom</li>
+                    </ul>
+
+                    <p><strong>Raise/lower conversions:</strong></p>
+                    <ul>
+                        <li>If lowering impossible, convert to raising system</li>
+                        <li>Add mechanical advantage (3:1 or 5:1)</li>
+                        <li>Progress capture prevents backsliding</li>
+                        <li>More personnel required for hauling</li>
+                        <li>Slower but may be only option</li>
+                    </ul>
+
+                    <p><strong>Rescuer Safety:</strong></p>
+                    <ul>
+                        <li>Rescuer must be on separate attachment point</li>
+                        <li>Self-rescue capability at all times</li>
+                        <li>Avoid becoming second casualty</li>
+                        <li>Backup systems for all critical connections</li>
+                        <li>Edge protection for ropes</li>
+                        <li>Regular equipment inspection</li>
+                    </ul>
+
+                    <p><strong>Tandem Rappel Rescue:</strong></p>
+                    <p>Quick method for evacuating casualty down vertical terrain:</p>
+                    <ul>
+                        <li>Rescuer rappels to casualty</li>
+                        <li>Connects casualty to rescuer's harness</li>
+                        <li>Both descend together on rescuer's system</li>
+                        <li>Casualty may be conscious or unconscious</li>
+                        <li>Requires strong anchor and experienced rescuer</li>
+                    </ul>
+
+                    <p><strong>Communication:</strong></p>
+                    <ul>
+                        <li>Establish clear signals before operation</li>
+                        <li>Rope tugs if radio unavailable</li>
+                        <li>One tug: stop, two tugs: up, three tugs: down</li>
+                        <li>Continuous communication during critical phases</li>
+                        <li>Designated incident commander coordinates</li>
+                    </ul>
+
+                    <p><strong>Training Requirements:</strong></p>
+                    <ul>
+                        <li>Practice with weighted litter (simulated casualty)</li>
+                        <li>Day and night operations</li>
+                        <li>Multiple terrain types</li>
+                        <li>Communication under stress</li>
+                        <li>Medical care during evacuation</li>
+                        <li>Equipment familiarity — blindfolded gear access</li>
+                    </ul>
+                </div>
+
+                <!-- MODULE 6 -->
+                <div class="course-module locked-module" id="mod6" data-module="mod6">
+                    <div class="course-module-label">Module 6</div>
+                    <div class="course-module-title">Tactical Applications</div>
+                    <p>Mountaineering skills have direct tactical applications for combat engineers. Understanding how to integrate vertical mobility into operations provides commanders with additional options for maneuver and obstacle reduction.</p>
+
+                    <p><strong>Vertical Obstacle Reduction:</strong></p>
+                    <ul>
+                        <li>Cliff faces as obstacles to vehicle/foot movement</li>
+                        <li>Rope installations to bypass vertical terrain</li>
+                        <li>Rappel points for rapid descent</li>
+                        <li>Anchor points for lowering demolitions</li>
+                        <li>Positioning charges on cliff faces</li>
+                    </ul>
+
+                    <p><strong>Infiltration and Exfiltration:</strong></p>
+                    <ul>
+                        <li>Vertical approaches to avoid detection</li>
+                        <li>Ridge lines for covered movement</li>
+                        <li>Rappel exfiltration after mission completion</li>
+                        <li>Fixed ropes for rapid withdrawal</li>
+                        <li>Terrain masking using vertical features</li>
+                    </ul>
+
+                    <p><strong>Reconnaissance Positions:</strong></p>
+                    <ul>
+                        <li>Elevated observation posts</li>
+                        <li>Cliff edge overwatch positions</li>
+                        <li>Rope access to otherwise unreachable points</li>
+                        <li>Stealthy approach using vertical terrain</li>
+                        <li>Emergency evacuation routes</li>
+                    </ul>
+
+                    <p><strong>Assault Operations:</strong></p>
+                    <ul>
+                        <li>Vertical envelopment — attacking from above</li>
+                        <li>Infiltration through difficult terrain</li>
+                        <li>Rope bridges for crossing gaps</li>
+                        <li>Fixed lines for rapid reinforcement</li>
+                        <li>Casualty evacuation under fire</li>
+                    </ul>
+
+                    <p><strong>Engineer Support to Mountain Operations:</strong></p>
+                    <ul>
+                        <li>Route improvement in mountainous terrain</li>
+                        <li>Trail construction and marking</li>
+                        <li>Stairway and ladder installation</li>
+                        <li>Bridging at height (suspension bridges)</li>
+                        <li>Snow and avalanche mitigation</li>
+                        <li>High-altitude construction techniques</li>
+                    </ul>
+
+                    <p><strong>Equipment Considerations:</strong></p>
+                    <ul>
+                        <li>Weight management critical in mountains</li>
+                        <li>Multi-use equipment preferred</li>
+                        <li>Cold weather effects on gear</li>
+                        <li>Rope lengths for anticipated terrain</li>
+                        <li>Redundant critical systems</li>
+                        <li>Maintenance in field conditions</li>
+                    </ul>
+
+                    <p><strong>Environmental Factors:</strong></p>
+                    <ul>
+                        <li><strong>Altitude:</strong> Reduced performance above 8,000 feet</li>
+                        <li><strong>Weather:</strong> Rapid changes, limited visibility</li>
+                        <li><strong>Temperature:</strong> Cold injury risk, equipment effects</li>
+                        <li><strong>Rockfall:</strong> Constant hazard on steep terrain</li>
+                        <li><strong>Water:</strong> Stream crossings, hydration</li>
+                        <li><strong>Vegetation:</strong> Can aid or hinder movement</li>
+                    </ul>
+
+                    <p><strong>Integration with Combat Operations:</strong></p>
+                    <ul>
+                        <li>Coordinate vertical routes with maneuver plan</li>
+                        <li>Time rope installations with operation timeline</li>
+                        <li>Security for rope installation teams</li>
+                        <li>Communication plan for vertical terrain</li>
+                        <li>Casualty evacuation plan before operations</li>
+                        <li>Equipment recovery or destruction plan</li>
+                    </ul>
+
+                    <p><strong>Training Development:</strong></p>
+                    <ul>
+                        <li>Start with basics: knots, harness, anchors</li>
+                        <li>Progress to rappelling on training towers</li>
+                        <li>Move to natural cliff environments</li>
+                        <li>Integrate with tactical scenarios</li>
+                        <li>Practice at night and in adverse weather</li>
+                        <li>Maintain currency — skills degrade without practice</li>
+                    </ul>
+
+                    <p>Mountaineering skills expand the combat engineer's capability to operate in any terrain. While not the primary focus of Sapper School, these skills enable engineers to support operations in mountainous regions worldwide. Vertical terrain is an obstacle until you have the skills to master it.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div><div class="footer-brand">Ranger Beers</div><div class="footer-brand-sub">Sapper Leader Course</div></div>
+                <div class="footer-nav">
+                    <div class="footer-col"><div class="footer-col-title">School</div><ul><li><a href="index.html">Home</a></li><li><a href="courses.html">Courses</a></li><li><a href="shop.html">Shop</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Courses</div><ul><li><a href="course-demolitions.html">Demolitions</a></li><li><a href="course-bridging.html">Bridging</a></li><li><a href="course-breaching.html">Breaching</a></li></ul></div>
+                    <div class="footer-col"><div class="footer-col-title">Resources</div><ul><li><a href="resources.html">Resources</a></li><li><a href="standards.html">Standards</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
+                <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => { document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60); });
+
+        (function() {
+            const toggle = document.querySelector('.nav-toggle');
+            const navCenter = document.querySelector('.nav-center');
+            if (!toggle || !navCenter) return;
+
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const isOpen = navCenter.classList.toggle('mobile-open');
+                toggle.classList.toggle('active', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth > 768) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const parent = this.closest('.nav-dropdown');
+                    const wasOpen = parent.classList.contains('mobile-expanded');
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                    if (!wasOpen) parent.classList.add('mobile-expanded');
+                });
+            });
+
+            navCenter.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    navCenter.classList.remove('mobile-open');
+                    toggle.classList.remove('active');
+                    document.body.style.overflow = '';
+                    navCenter.querySelectorAll('.nav-dropdown.mobile-expanded').forEach(function(d) {
+                        d.classList.remove('mobile-expanded');
+                    });
+                });
+            });
+        })();
+
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script src="../js/course-engine.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        RangerAuth.initCourseGate();
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    </script>
+
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+</body>
+</html>
