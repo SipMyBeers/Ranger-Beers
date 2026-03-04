@@ -3,7 +3,7 @@
 // Network-first for all resources, cache as offline fallback
 // ============================================
 
-const CACHE_NAME = 'ranger-beers-v9'; // Increment version when JS/CSS paths change
+const CACHE_NAME = 'ranger-beers-v10'; // Increment version when JS/CSS paths change
 
 const PRECACHE_URLS = [
   '/ranger/courses.html',
