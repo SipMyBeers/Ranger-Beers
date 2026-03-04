@@ -26,6 +26,16 @@
         .coming-soon-card h3 { font-size: 18px; font-weight: 700; margin-bottom: var(--space-sm); }
         .coming-soon-card p { color: var(--color-text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: var(--space-lg); max-width: 100%; }
 
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-top: var(--space-xl); }
+        .course-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-glass); padding: var(--space-xl); text-decoration: none; color: inherit; transition: all 0.3s; display: flex; flex-direction: column; }
+        .course-card:hover { border-color: var(--color-gold-border); background: rgba(197,179,88,0.03); transform: translateY(-2px); }
+        .course-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm); }
+        .course-card-tag { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-gold); background: rgba(197,179,88,0.1); padding: 4px 10px; border-radius: 4px; }
+        .course-card-price { font-size: 16px; font-weight: 800; color: var(--color-text-secondary); }
+        .course-card-title { font-size: 18px; font-weight: 800; margin-bottom: var(--space-xs); color: var(--color-text-primary); }
+        .course-card-desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: var(--space-md); flex-grow: 1; }
+        .course-card-meta { display: flex; gap: var(--space-md); font-size: 12px; color: var(--color-text-muted); border-top: 1px solid rgba(255,255,255,0.06); padding-top: var(--space-sm); }
+
         .bundle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-lg); margin-top: var(--space-xl); }
         .bundle-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-glass); padding: var(--space-xl); text-align: center; }
         .bundle-card--featured { border-color: var(--color-gold-border); background: rgba(197,179,88,0.03); }
@@ -75,7 +85,14 @@
                         <li><a href="courses.html">All Courses</a></li>
                         <li class="nav-dropdown-divider"></li>
                         <li><span class="nav-dropdown-label">Training</span></li>
-                        <li><a href="courses.html">Jungle Prep</a></li>
+                        <li><a href="course-jungle-prep.html">JOTC Prep</a></li>
+                        <li><a href="course-jungle-mobility.html">Jungle Mobility</a></li>
+                        <li><a href="course-waterborne.html">Waterborne Ops</a></li>
+                        <li><a href="course-combat-tracking.html">Combat Tracking</a></li>
+                        <li><a href="course-jungle-survival.html">Jungle Survival</a></li>
+                        <li><a href="course-squad-tactics.html">Squad Tactics</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="courses.html#bundles">Course Bundles</a></li>
                     </ul>
                 </li>
                 <li class="nav-sep"></li>
@@ -102,11 +119,123 @@
         <p>Training courses and study materials for Jungle Operations Training Course (JOTC).</p>
     </section>
 
+    <section class="courses-section" id="courses">
+        <div class="courses-section-label">Individual Courses</div>
+        <h2>Master Jungle Warfare</h2>
+        <p>Comprehensive training courses for the Jungle Operations Training Course (JOTC) and jungle warfare operations.</p>
+
+        <div class="course-grid">
+            <a href="course-jungle-prep.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Foundation</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">JOTC Prep</h3>
+                <p class="course-card-desc">Complete guide to Jungle Operations Training Course — preparation, what to expect, and graduation requirements.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>All Phases</span>
+                </div>
+            </a>
+
+            <a href="course-jungle-mobility.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Movement</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">Jungle Mobility</h3>
+                <p class="course-card-desc">Movement techniques, navigation, trail cutting, and terrain negotiation in dense jungle.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Week 1</span>
+                </div>
+            </a>
+
+            <a href="course-waterborne.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Water</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">Waterborne Operations</h3>
+                <p class="course-card-desc">River crossings, rafting, swimming, and water safety in jungle environments.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Week 1</span>
+                </div>
+            </a>
+
+            <a href="course-combat-tracking.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Tracking</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">Combat Tracking</h3>
+                <p class="course-card-desc">Visual tracking fundamentals, sign identification, and counter-tracking techniques.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Week 1</span>
+                </div>
+            </a>
+
+            <a href="course-jungle-survival.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Survival</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">Jungle Survival</h3>
+                <p class="course-card-desc">Shelter, water, fire, food procurement, and evasion tactics for the jungle environment.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Week 1</span>
+                </div>
+            </a>
+
+            <a href="course-squad-tactics.html" class="course-card">
+                <div class="course-card-header">
+                    <span class="course-card-tag">Tactical</span>
+                    <span class="course-card-price">$12</span>
+                </div>
+                <h3 class="course-card-title">Squad Tactics</h3>
+                <p class="course-card-desc">Patrolling, ambushes, raids, troop leading procedures, and FTX preparation.</p>
+                <div class="course-card-meta">
+                    <span>6 modules</span>
+                    <span>Week 2</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
     <section class="courses-section" id="bundles">
-        <div class="coming-soon-card">
-            <h3>Training Content Coming Soon</h3>
-            <p>We're building comprehensive training courses for Jungle Operations Training Course (JOTC). Check back soon for detailed study guides, practice tests, and preparation materials.</p>
-            <a href="resources.html" class="btn btn-outline">View Resources</a>
+        <div class="courses-section-label">Course Bundles</div>
+        <h2>Save with Bundles</h2>
+        <p>Get comprehensive training at a discounted price.</p>
+
+        <div class="bundle-grid">
+            <div class="bundle-card bundle-card--featured">
+                <h3>Complete JOTC Package</h3>
+                <div class="bundle-price">$60</div>
+                <div class="bundle-desc">All 6 jungle courses — everything you need to earn your Jungle Tab.</div>
+                <button class="snipcart-add-item btn btn-primary"
+                    data-item-id="bundle-jungle-complete"
+                    data-item-name="Complete JOTC Package"
+                    data-item-price="60.00"
+                    data-item-url="/jungle/courses.html"
+                    data-item-description="All 6 jungle warfare courses"
+                    data-item-categories="bundle">Buy Bundle — $60</button>
+            </div>
+
+            <div class="bundle-card">
+                <h3>Week 1 Essentials</h3>
+                <div class="bundle-price">$30</div>
+                <div class="bundle-desc">Jungle Prep, Mobility, Waterborne, and Tracking courses.</div>
+                <button class="snipcart-add-item btn btn-outline"
+                    data-item-id="bundle-jungle-week1"
+                    data-item-name="Week 1 Essentials"
+                    data-item-price="30.00"
+                    data-item-url="/jungle/courses.html"
+                    data-item-description="Week 1 jungle training courses"
+                    data-item-categories="bundle">Buy Bundle — $30</button>
+            </div>
         </div>
     </section>
 
