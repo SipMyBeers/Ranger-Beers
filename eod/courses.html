@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EOD Courses — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/course-styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <meta name="theme-color" content="#000000">
+    <style>
+        .courses-hero { min-height: 40vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: calc(var(--space-4xl) + 60px) 40px var(--space-2xl); }
+        .courses-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -1px; margin-bottom: var(--space-md); }
+        .courses-hero h1 span { color: var(--color-gold); }
+        .courses-hero p { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--color-text-secondary); max-width: 600px; line-height: 1.6; }
+        .courses-section { max-width: 900px; margin: 0 auto; padding: var(--space-2xl) 40px var(--space-3xl); }
+        .coming-soon-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-glass); padding: var(--space-3xl) var(--space-xl); text-align: center; }
+        .coming-soon-card h3 { font-size: 18px; font-weight: 700; margin-bottom: var(--space-sm); }
+        .school-footer { text-align: center; padding: var(--space-3xl) 40px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .school-footer-copy { font-size: 12px; color: var(--color-text-muted); letter-spacing: 1px; }
+        @media (max-width: 700px) { .courses-hero { padding-left: 20px; padding-right: 20px; } .courses-section { padding-left: 20px; padding-right: 20px; } }
+    </style>
+</head>
+<body>
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Academics</a></li>
+                        <li><a href="index.html#phases">Conventional Ordnance</a></li>
+                        <li><a href="index.html#phases">IED / Improvised</a></li>
+                        <li><a href="index.html#phases">Nuclear / WMD</a></li>
+                        <li><a href="index.html#phases">Academics</a></li>
+                        <li><a href="index.html#phases">Conventional</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">EOD Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="courses.html">EOD Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <section class="courses-hero" data-school-id="eod">
+        <h1><span>EOD</span> Courses</h1>
+        <p>Training courses and study materials for Explosive Ordnance Disposal (EOD) School.</p>
+    </section>
+    <section class="courses-section" id="bundles">
+        <div class="coming-soon-card">
+            <h3>Training Content Coming Soon</h3>
+            <p>We're building comprehensive training courses for Explosive Ordnance Disposal (EOD) School. Check back soon for detailed study guides, practice tests, and preparation materials.</p>
+            <a href="resources.html" class="btn btn-outline">View Resources</a>
+        </div>
+    </section>
+    <footer class="school-footer">
+        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    </footer>
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        (function(){ const toggle = document.querySelector('.nav-toggle'); const nav = document.getElementById('nav'); if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('nav-open')); window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }); })();
+    </script>
+</body>
+</html>

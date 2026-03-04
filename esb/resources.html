@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESB Resources — Ranger Beers Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+    <meta name="theme-color" content="#000000">
+    <style>
+        .resources-hero { min-height: 35vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: calc(var(--space-4xl) + 60px) 40px var(--space-2xl); }
+        .resources-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -1px; margin-bottom: var(--space-md); }
+        .resources-hero h1 span { color: var(--color-gold); }
+        .resources-hero p { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--color-text-secondary); max-width: 600px; line-height: 1.6; }
+        .resources-section { max-width: 900px; margin: 0 auto; padding: var(--space-2xl) 40px; }
+        .resources-section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--color-gold); margin-bottom: var(--space-lg); }
+        .resources-section h2 { font-size: clamp(1.25rem, 3vw, 1.75rem); font-weight: 800; margin-bottom: var(--space-lg); }
+        .resource-list { list-style: none; }
+        .resource-list li { padding: var(--space-md) 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .resource-list a { color: var(--color-gold); text-decoration: none; font-weight: 600; font-size: 15px; transition: opacity 0.3s; }
+        .resource-list a:hover { opacity: 0.8; }
+        .resource-list .resource-desc { font-size: 13px; color: var(--color-text-secondary); margin-top: 4px; }
+        .school-footer { text-align: center; padding: var(--space-3xl) 40px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .school-footer-copy { font-size: 12px; color: var(--color-text-muted); letter-spacing: 1px; }
+        @media (max-width: 700px) { .resources-hero { padding-left: 20px; padding-right: 20px; } .resources-section { padding-left: 20px; padding-right: 20px; } }
+    </style>
+</head>
+<body>
+    <nav class="nav scrolled" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">Ranger Beers</a>
+            <ul class="nav-center">
+                <li class="nav-dropdown">
+                    <a href="index.html">Home</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Phases</span></li>
+                        <li><a href="index.html#phases">Overview</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="shop.html">Shop</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="shop.html">ESB Gear</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><a href="/ranger/shop.html">View Full Store</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li class="nav-dropdown">
+                    <a href="courses.html">Courses</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="courses.html">All Courses</a></li>
+                        <li class="nav-dropdown-divider"></li>
+                        <li><span class="nav-dropdown-label">Training</span></li>
+                        <li><a href="courses.html">ESB Prep</a></li>
+                    </ul>
+                </li>
+                <li class="nav-sep"></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="nav-sep"></li>
+                <li><a href="standards.html">Standards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="snipcart-checkout nav-cart-btn">Cart (<span class="snipcart-items-count">0</span>)</button>
+                <button class="nav-auth-btn" id="nav-auth-btn">Sign In</button>
+                <div class="nav-user-info" id="nav-user-info">
+                    <span class="nav-user-name" id="nav-user-name"></span>
+                    <button class="nav-sign-out" id="nav-sign-out">Sign Out</button>
+                </div>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <section class="resources-hero">
+        <h1><span>ESB</span> Resources</h1>
+        <p>Official references, field manuals, and training resources for Expert Soldier Badge (ESB) preparation.</p>
+    </section>
+    <section class="resources-section">
+        <div class="resources-section-label">Official References</div>
+        <h2>Army Publications & Resources</h2>
+        <ul class="resource-list">
+            <li><a href="courses.html">ESB Training Courses &rarr;</a><div class="resource-desc">Interactive courses and study materials for Expert Soldier Badge (ESB) preparation.</div></li>
+            <li><a href="shop.html">ESB Gear &rarr;</a><div class="resource-desc">Essential gear and study materials for Expert Soldier Badge (ESB).</div></li>
+            <li><a href="standards.html">Standards & Requirements &rarr;</a><div class="resource-desc">Physical fitness standards, grading criteria, and course requirements.</div></li>
+            <li><a href="/ranger/resources.html">Ranger Beers Resource Library &rarr;</a><div class="resource-desc">Access our full library of training resources and reference materials.</div></li>
+        </ul>
+    </section>
+    <section class="resources-section" style="border-top: 1px solid rgba(255,255,255,0.06);">
+        <div class="resources-section-label">Study Aids</div>
+        <h2>Preparation Materials</h2>
+        <ul class="resource-list">
+            <li><a href="shop.html">Study Cards & Reference Guides &rarr;</a><div class="resource-desc">Waterproof reference cards for quick review of key concepts.</div></li>
+            <li><a href="/ranger/inventory.html">Packing List Reference &rarr;</a><div class="resource-desc">General packing list template — adapt for your specific course requirements.</div></li>
+        </ul>
+    </section>
+    <footer class="school-footer">
+        <div class="school-footer-copy">&copy; 2026 Ranger Beers Supply Co. &mdash; ranger-beers.com</div>
+    </footer>
+    <div hidden id="snipcart" data-api-key="Y2QzMWQ1NWQtNjc3NC00MDY1LThkMmQtY2ZmNzg5ZDkwMWE2NjM5MDc5MTUyNTMxMDc3MzE4" data-config-modal-style="side"></div>
+    <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/shared.js"></script>
+    <script src="../js/course-auth.js"></script>
+    <script>
+        RangerAuth.initAuthUI();
+        (function(){ const toggle = document.querySelector('.nav-toggle'); const nav = document.getElementById('nav'); if (toggle) toggle.addEventListener('click', () => nav.classList.toggle('nav-open')); window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }); })();
+    </script>
+</body>
+</html>
