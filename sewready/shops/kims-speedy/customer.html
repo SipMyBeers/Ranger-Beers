@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SewReady — Military Uniform Alterations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../customer.css">
+  <link rel="stylesheet" href="../../print.css">
+  <style>
+    /* ── Warm Dark Editorial Theme ── */
+    :root {
+      --bg-deep:      #242120;
+      --bg-surface:   #2e2b28;
+      --glass:        rgba(255,255,255,0.04);
+      --glass-hover:  rgba(255,255,255,0.07);
+      --glass-border: rgba(255,255,255,0.08);
+      --glass-strong: rgba(255,255,255,0.06);
+      --white:        #f0ece4;
+      --text:         #e8e2d8;
+      --text-muted:   rgba(232,226,216,0.5);
+      --text-dim:     rgba(232,226,216,0.3);
+      --border:       rgba(255,255,255,0.08);
+      --accent-blue:    #c5b358;
+      --accent-cyan:    #c5b358;
+      --accent-purple:  #c5b358;
+      --accent-pink:    #c5b358;
+      --accent-green:   #4a8c6f;
+      --accent-teal:    #5ba4a4;
+      --accent-orange:  #c5b358;
+      --accent-yellow:  #c5b358;
+      --status-received:  #5ba4a4;
+      --status-progress:  #c5b358;
+      --status-ready:     #4a8c6f;
+      --status-completed: rgba(255,255,255,0.3);
+      --urgent:   #c0392b;
+      --soon:     #c5b358;
+      --on-track: #4a8c6f;
+      --radius:    10px;
+      --radius-sm: 6px;
+      --shadow: 0 4px 24px rgba(0,0,0,.3);
+      --glow-blue:   0 0 20px rgba(197,179,88,.2);
+      --glow-purple: 0 0 20px rgba(197,179,88,.15);
+      --glow-green:  0 0 20px rgba(74,140,111,.2);
+      --glow-orange: 0 0 20px rgba(197,179,88,.2);
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif !important;
+      background: #242120 !important;
+      color: #e8e2d8 !important;
+    }
+    h1, h2, h3, h4, .cust-brand-name, .cust-hero-title,
+    .cust-section-title, .cust-trust-num, .cust-bigcal-month {
+      font-family: 'JetBrains Mono', 'SF Mono', monospace !important;
+      letter-spacing: 1px;
+    }
+    .cust-nav {
+      top: 0 !important;
+      background: rgba(36,33,32,0.92) !important;
+      backdrop-filter: blur(20px) !important;
+      border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    }
+    .cust-hero {
+      background: #1a1714 !important;
+      position: relative !important;
+      overflow: hidden !important;
+      min-height: 100vh !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    .cust-hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      z-index: 0;
+      opacity: 0.35;
+    }
+    .cust-hero::before {
+      z-index: 1 !important;
+    }
+    .cust-hero-content {
+      position: relative !important;
+      z-index: 2 !important;
+    }
+    .cherry-petal { display: none !important; }
+    .cust-hero-title {
+      text-shadow: none !important;
+      background: linear-gradient(135deg, #c5b358, #f5f0e6) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+    }
+    .cust-hero-sub {
+      color: rgba(245,240,230,0.55) !important;
+    }
+    .cust-hero-motto {
+      color: rgba(245,240,230,0.5) !important;
+    }
+    /* Hero CTA stays light on dark hero */
+    .cust-btn-editorial {
+      border-color: rgba(245,240,230,0.4) !important;
+      color: #f5f0e6 !important;
+    }
+    .cust-btn-editorial:hover {
+      background: #f5f0e6 !important;
+      color: #1a1714 !important;
+      border-color: #f5f0e6 !important;
+    }
+    .cust-btn-primary {
+      border-radius: 50px !important;
+      letter-spacing: 1px !important;
+      text-transform: uppercase !important;
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+    }
+    .cust-btn-secondary {
+      border-radius: 50px !important;
+      letter-spacing: 1px !important;
+      text-transform: uppercase !important;
+      font-size: 0.8rem !important;
+    }
+    /* Cards & surfaces — warm dark */
+    .cust-card, .cust-bigcal-card, .cust-bigcal-hours-card {
+      background: #2e2b28 !important;
+      border: 1px solid rgba(255,255,255,0.06) !important;
+      backdrop-filter: none !important;
+    }
+    .cust-bigcal-section { background: #282523 !important; }
+    .cust-newsletter { background: #2e2b28 !important; }
+    .cust-footer {
+      background: #121110 !important;
+      border-top: none !important;
+    }
+    .cust-footer p { color: rgba(232,226,216,0.4) !important; }
+    .cust-auth-modal {
+      background: #2e2b28 !important;
+      border: 1px solid rgba(255,255,255,0.1) !important;
+      color: #e8e2d8 !important;
+    }
+    .cust-auth-close { color: #e8e2d8 !important; }
+    .cust-chat-panel {
+      background: #2e2b28 !important;
+      border: 1px solid rgba(255,255,255,0.1) !important;
+    }
+    .cust-chat-fab {
+      background: var(--accent-blue) !important;
+      color: #1a1714 !important;
+    }
+    .cust-svc-card:hover, .cust-inv-card:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    .cust-filter-pill.active {
+      background: var(--accent-blue) !important;
+      color: #1a1714 !important;
+    }
+    /* Section titles — warm gold on dark */
+    .cust-section-title {
+      background: linear-gradient(135deg, #c5b358, #e8e2d8) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #242120; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+    .cust-input {
+      background: #242120 !important;
+      border: 1px solid rgba(255,255,255,0.1) !important;
+      color: #e8e2d8 !important;
+    }
+    .cust-input:focus {
+      border-color: var(--accent-blue) !important;
+      box-shadow: 0 0 0 2px rgba(197,179,88,0.2) !important;
+    }
+
+    /* ── Shop Logo ── */
+    .cust-brand-logo {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .cust-hero-logo {
+      height: 120px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
+    }
+
+    /* ── Calendar on dark ── */
+    .cust-bigcal-cell {
+      background: #2e2b28 !important;
+      border-color: rgba(255,255,255,0.06) !important;
+    }
+    .cust-bigcal-cell.cust-bigcal-today {
+      border-color: var(--accent-blue) !important;
+      background: rgba(197,179,88,0.12) !important;
+    }
+    .cust-bigcal-cell.cust-bigcal-closed,
+    .cust-bigcal-cell.cust-bigcal-past {
+      background: rgba(255,255,255,0.02) !important;
+    }
+    .cust-bigcal-nav {
+      color: #e8e2d8 !important;
+      border-color: rgba(255,255,255,0.1) !important;
+    }
+
+    /* ── Military Theme Enhancements ── */
+    .cust-hero-sub {
+      font-family: 'JetBrains Mono', monospace !important;
+      text-transform: uppercase !important;
+      letter-spacing: 3px !important;
+      font-size: 0.85rem !important;
+    }
+    .cust-orders-banner-text, .cust-orders-banner-cta {
+      font-family: 'JetBrains Mono', monospace !important;
+      letter-spacing: 2px !important;
+    }
+    .cust-trust-num { letter-spacing: 2px !important; }
+    .cust-trust-label {
+      text-transform: uppercase !important;
+      letter-spacing: 2px !important;
+      font-size: 0.65rem !important;
+    }
+    .cust-section-sub { letter-spacing: 0.5px !important; }
+    .cust-chat-header-title {
+      font-family: 'JetBrains Mono', monospace !important;
+      letter-spacing: 1px !important;
+    }
+
+    /* Hide lang toggle via CSS as backup */
+    .cust-lang-toggle { display: none !important; }
+
+    /* ── Prolific Typography — Light text on dark ── */
+    .cust-hero-sub { font-weight: 500 !important; }
+    .cust-section-sub {
+      color: rgba(232,226,216,0.55) !important;
+      font-size: 16px !important;
+      font-weight: 400 !important;
+      line-height: 1.6 !important;
+    }
+    .cust-nav-link {
+      font-weight: 700 !important;
+      letter-spacing: 2px !important;
+      font-size: 12px !important;
+      text-transform: uppercase !important;
+      color: #e8e2d8 !important;
+    }
+    .cust-nav-link:hover { color: var(--accent-blue) !important; }
+    .cust-brand-name {
+      font-size: 22px !important;
+      font-weight: 800 !important;
+      letter-spacing: 2px !important;
+      background: linear-gradient(135deg, #c5b358, #e8e2d8) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+    }
+    .cust-svc-card {
+      background: #2e2b28 !important;
+      border: 1px solid rgba(255,255,255,0.06) !important;
+    }
+    .cust-svc-name {
+      font-weight: 700 !important;
+      font-size: 16px !important;
+      color: #e8e2d8 !important;
+    }
+    .cust-svc-price {
+      color: #c5b358 !important;
+      font-weight: 800 !important;
+      font-size: 18px !important;
+    }
+    .cust-svc-time {
+      color: rgba(232,226,216,0.45) !important;
+      font-weight: 600 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      font-size: 11px !important;
+    }
+    .cust-svc-desc {
+      color: rgba(232,226,216,0.5) !important;
+      line-height: 1.5 !important;
+    }
+    .cust-filter-pill {
+      font-weight: 700 !important;
+      letter-spacing: 1px !important;
+      text-transform: uppercase !important;
+      font-size: 11px !important;
+      color: #e8e2d8 !important;
+      border-color: rgba(255,255,255,0.1) !important;
+    }
+    .cust-bigcal-month {
+      font-size: 24px !important;
+      font-weight: 800 !important;
+      letter-spacing: 3px !important;
+      text-transform: uppercase !important;
+      color: #c5b358 !important;
+    }
+    .cust-bigcal-weekdays span {
+      font-weight: 700 !important;
+      color: rgba(232,226,216,0.45) !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      font-size: 11px !important;
+    }
+    .cust-bigcal-num {
+      font-weight: 800 !important;
+      color: #e8e2d8 !important;
+    }
+    .cust-bigcal-hrs {
+      font-weight: 600 !important;
+      letter-spacing: 0.5px !important;
+      color: rgba(232,226,216,0.4) !important;
+    }
+    .cust-card-title {
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 2px !important;
+      font-size: 13px !important;
+      color: #c5b358 !important;
+    }
+    .cust-hours-list li {
+      font-weight: 500 !important;
+      color: rgba(232,226,216,0.7) !important;
+    }
+    .cust-hours-list .hours {
+      font-weight: 700 !important;
+      color: #e8e2d8 !important;
+    }
+    .cust-location-addr {
+      font-weight: 600 !important;
+      color: #e8e2d8 !important;
+      line-height: 1.6 !important;
+    }
+    .cust-location-detail {
+      color: rgba(232,226,216,0.6) !important;
+      font-weight: 500 !important;
+    }
+    .cust-footer {
+      text-align: center !important;
+      letter-spacing: 1px !important;
+    }
+    .cust-newsletter .cust-section-title { font-size: 28px !important; }
+    .cust-hero-motto {
+      font-size: 24px !important;
+      letter-spacing: 0.5px !important;
+    }
+    .cust-work-textblock-num { font-weight: 900 !important; }
+    .cust-work-textblock-label { font-weight: 700 !important; }
+
+    /* ── Geometric motifs ── */
+    .cust-section::before { color: rgba(232,226,216,0.06) !important; }
+    .cust-hero-content::before { color: rgba(245,240,230,0.35) !important; }
+    .cust-hero-content::after { color: rgba(245,240,230,0.2) !important; }
+    .cust-footer::before { color: rgba(232,226,216,0.08) !important; }
+    .cust-bigcal-card::before { color: rgba(232,226,216,0.06) !important; }
+
+    /* ── Scroll-Reveal Animations ── */
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes revealScale {
+      from { opacity: 0; transform: scale(0.95); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .cust-reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .cust-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .cust-reveal-scale {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .cust-reveal-scale.revealed {
+      opacity: 1;
+      transform: scale(1);
+    }
+    /* Stagger children */
+    .cust-reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .cust-reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0s; opacity: 1; transform: translateY(0); }
+    .cust-reveal-stagger.revealed > *:nth-child(2) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+    .cust-reveal-stagger.revealed > *:nth-child(3) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+    .cust-reveal-stagger.revealed > *:nth-child(4) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+    .cust-reveal-stagger.revealed > *:nth-child(5) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+    .cust-reveal-stagger.revealed > *:nth-child(6) { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
+    .cust-reveal-stagger.revealed > *:nth-child(7) { transition-delay: 0.6s; opacity: 1; transform: translateY(0); }
+    .cust-reveal-stagger.revealed > *:nth-child(8) { transition-delay: 0.7s; opacity: 1; transform: translateY(0); }
+
+    /* Gallery card hover lift */
+    .cust-work-card {
+      transition: transform 0.5s ease, box-shadow 0.5s ease !important;
+    }
+    .cust-work-card:hover {
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5) !important;
+    }
+    /* Service card entrance */
+    .cust-svc-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease !important;
+    }
+    /* Nav slide down */
+    .cust-nav {
+      animation: slideDown 0.5s ease !important;
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof shopConfig !== 'undefined') {
+        /* Set brand name from config */
+        var bn = document.getElementById('brandName');
+        if (bn && shopConfig.name) bn.textContent = shopConfig.name;
+        var ch = document.querySelector('.cust-chat-header-title');
+        if (ch && shopConfig.name) ch.innerHTML = '&#9733; ' + shopConfig.name + ' Assistant';
+
+        if (shopConfig.themeColors) {
+          const accent = shopConfig.themeColors.accent || shopConfig.themeColors.primary || '#c5b358';
+          const r = document.documentElement;
+          r.style.setProperty('--accent-blue', accent);
+          r.style.setProperty('--accent-cyan', accent);
+          r.style.setProperty('--accent-purple', accent);
+          r.style.setProperty('--accent-pink', accent);
+          r.style.setProperty('--accent-orange', accent);
+          r.style.setProperty('--accent-yellow', accent);
+          const style = document.createElement('style');
+          style.textContent = `
+            .cust-hero-title, .cust-section-title {
+              background: linear-gradient(135deg, ${accent}, #ddd) !important;
+              -webkit-background-clip: text !important;
+              -webkit-text-fill-color: transparent !important;
+              background-clip: text !important;
+            }
+            .cust-orders-banner {
+              background: linear-gradient(90deg, ${accent}, ${accent}cc) !important;
+            }
+            .cust-chat-fab { background: ${accent} !important; }
+            .cust-filter-pill.active { background: ${accent} !important; }
+            .cust-btn-primary {
+              background: ${accent} !important;
+              color: #0a0a0a !important;
+            }
+            .cust-btn-primary:hover {
+              background: ${accent}dd !important;
+              box-shadow: 0 0 20px ${accent}33 !important;
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      }
+    });
+  </script>
+</head>
+<body class="cust-body">
+
+  <nav class="cust-nav" id="custNav">
+    <div class="cust-nav-inner">
+      <div class="cust-nav-brand">
+        <img src="logo.png" alt="" class="cust-brand-logo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span class="cust-brand-icon" style="display:none">&#9733;</span>
+        <span class="cust-brand-name" id="brandName">SewReady</span>
+      </div>
+      <div class="cust-nav-links" id="custNavLinks">
+        <a href="#" class="cust-nav-link" onclick="event.preventDefault();switchToLanding()" data-i18n="nav.home">HOME</a>
+        <a href="#" class="cust-nav-link" onclick="event.preventDefault();openAboutModal()">ABOUT US</a>
+        <a href="#" class="cust-nav-link" onclick="event.preventDefault();openContactModal()">CONTACT</a>
+      </div>
+      <div class="cust-nav-right">
+        <div class="cust-nav-auth" id="navAuth"></div>
+        <button class="cust-hamburger" id="custHamburger" aria-label="Menu">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="custLanding">
+    <section class="cust-hero">
+      <video class="cust-hero-video" autoplay muted loop playsinline>
+        <source src="../../background-video.mp4" type="video/mp4">
+      </video>
+      <div class="cust-hero-content">
+        <img src="logo.png" alt="" class="cust-hero-logo" onerror="this.style.display='none'">
+        <h1 class="cust-hero-title cust-fade-up" data-i18n="hero.title">Our Shop</h1>
+        <p class="cust-hero-motto cust-fade-up cust-fade-up-delay-1" id="heroMotto"></p>
+        <p class="cust-hero-sub cust-fade-up cust-fade-up-delay-2" data-i18n="hero.sub">Military-Grade Alterations. Mission-Ready Uniforms.</p>
+        <div class="cust-hero-ctas cust-fade-up cust-fade-up-delay-3">
+          <button class="cust-btn-editorial" onclick="openContactModal()">&#128222; Contact Now</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="cust-work-section" id="ourWork">
+      <div class="cust-work-grid cust-reveal-stagger" id="workGallery"></div>
+    </section>
+
+    <section class="cust-section cust-reveal" id="services">
+      <h2 class="cust-section-title" data-i18n="services.title">Our Services</h2>
+      <p class="cust-section-sub" data-i18n="services.sub">Everything your uniform needs — expert craftsmanship, fast turnaround.</p>
+      <div class="cust-filter-pills" id="svcFilterPills"></div>
+      <div class="cust-svc-grid" id="custSvcGrid"></div>
+    </section>
+
+    <section class="cust-bigcal-section cust-reveal" id="heroCal">
+      <h2 class="cust-section-title" style="text-align:center" data-i18n="schedule.title">STORE HOURS</h2>
+      <p class="cust-section-sub" style="text-align:center" data-i18n="schedule.sub">View our hours and tap a day to learn more</p>
+      <div class="cust-bigcal-layout">
+        <div class="cust-bigcal-card">
+          <div class="cust-bigcal-header">
+            <button class="cust-bigcal-nav" id="bigcalPrev">&#9664;</button>
+            <span class="cust-bigcal-month" id="bigcalMonth"></span>
+            <button class="cust-bigcal-nav" id="bigcalNext">&#9654;</button>
+          </div>
+          <div class="cust-bigcal-weekdays">
+            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+          </div>
+          <div class="cust-bigcal-grid" id="bigcalGrid"></div>
+        </div>
+        <div class="cust-bigcal-sidebar">
+          <div class="cust-bigcal-hours-card">
+            <h3 class="cust-card-title" data-i18n="schedule.hours">Shop Hours</h3>
+            <ul class="cust-hours-list" id="custHours"></ul>
+          </div>
+          <div class="cust-bigcal-hours-card">
+            <h3 class="cust-card-title" data-i18n="schedule.location">Location</h3>
+            <p class="cust-location-addr">123 Bragg Blvd<br>Fayetteville, NC 28301</p>
+            <p class="cust-location-detail">&#128222; (555) 867-5309</p>
+            <p class="cust-location-detail">&#9993; owner@ranger-beers.com</p>
+            <div id="shopMapEmbed" style="border-radius:12px;overflow:hidden;margin-top:12px"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <!-- Gallery / Portfolio -->
+      <section class="cust-section" id="custGallery" style="display:none">
+        <h2 class="cust-section-title">Our Work</h2>
+        <p class="cust-section-sub">See examples of our craftsmanship</p>
+        <div id="galleryGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:20px"></div>
+      </section>
+
+    <section class="cust-section cust-newsletter cust-reveal">
+      <h2 class="cust-section-title" data-i18n="newsletter.title">Stay Updated</h2>
+      <p class="cust-section-sub" data-i18n="newsletter.sub">Sign up for news and updates from our shop.</p>
+      <div class="cust-newsletter-form">
+        <input type="email" id="newsletterEmail" class="cust-input" placeholder="Enter your email" data-i18n-placeholder="newsletter.placeholder">
+        <button class="cust-btn-primary" onclick="subscribeNewsletter()" data-i18n="newsletter.btn">Subscribe</button>
+      </div>
+    </section>
+
+    <footer class="cust-footer">
+      <p>&copy; 2026 SewReady. All rights reserved.</p>
+      <p style="margin-top:8px;font-size:11px"><a href="/legal/terms.html" style="color:var(--text-dim)">Terms</a> &middot; <a href="/legal/privacy.html" style="color:var(--text-dim)">Privacy</a></p>
+    </footer>
+  </div>
+
+  <div id="custAboutPage" style="display:none">
+    <div class="cust-about-page">
+      <button class="cust-about-back" onclick="switchToLanding()">&larr; Back to Home</button>
+      <div class="cust-about-header">
+        <h1 id="aboutShopName">SewReady</h1>
+        <span class="cust-about-est" id="aboutEst" style="display:none"></span>
+      </div>
+      <div class="cust-about-section">
+        <h2>Our Story</h2>
+        <p id="aboutStory"></p>
+      </div>
+      <div class="cust-about-section" id="aboutOwnerSection">
+        <h2>Owner</h2>
+        <p id="aboutOwner"></p>
+      </div>
+      <div class="cust-about-section">
+        <h2>Hours</h2>
+        <ul class="cust-about-hours-list" id="aboutHours"></ul>
+      </div>
+      <div class="cust-about-section">
+        <h2>Location</h2>
+        <div class="cust-about-contact-row" id="aboutAddrRow">
+          <span>&#128205;</span> <a id="aboutAddr" href="#" target="_blank"></a>
+        </div>
+        <div class="cust-about-map" id="aboutMapEmbed"></div>
+      </div>
+      <div class="cust-about-section">
+        <h2>Contact</h2>
+        <div class="cust-about-contact-row" id="aboutPhoneRow">
+          <span>&#128222;</span> <a id="aboutPhone" href="#"></a>
+        </div>
+        <div class="cust-about-contact-row" id="aboutEmailRow">
+          <span>&#9993;</span> <a id="aboutEmail" href="#"></a>
+        </div>
+        <div class="cust-about-socials" id="aboutSocials">
+          <a class="cust-contact-social" id="aboutFacebook" href="#" target="_blank" title="Facebook" style="display:none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a class="cust-contact-social" id="aboutInstagram" href="#" target="_blank" title="Instagram" style="display:none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a class="cust-contact-social" id="aboutGoogle" href="#" target="_blank" title="Google" style="display:none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+          </a>
+          <a class="cust-contact-social" id="aboutYelp" href="#" target="_blank" title="Yelp" style="display:none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.16 12.594l-4.995 1.433c-.96.276-1.74-.8-1.272-1.7l2.67-4.93c.36-.665 1.272-.738 1.632-.073l2.965 4.93c.36.665-.036 1.34-1 1.34zm-3.9 5.79l-1.65-4.8c-.4-.96.5-1.87 1.47-1.47l4.8 1.65c.73.252.93 1.17.36 1.65l-3.33 3.33c-.57.57-1.47.4-1.65-.36zm-4.56-1.8l4.8-1.65c.97-.33 1.87.51 1.47 1.47l-1.65 4.8c-.18.76-1.08.93-1.65.36l-3.33-3.33c-.57-.48-.4-1.4.36-1.65zM7.2 13.8c-.12.78-.96 1.14-1.56.66L1.41 11.13c-.6-.48-.48-1.38.18-1.62l5.22-1.89c.84-.31 1.62.56 1.32 1.41L7.2 13.8zm4.2-2.4c-1.32 0-2.4-1.08-2.4-2.4V3c0-1.32 1.08-2.4 2.4-2.4s2.4 1.08 2.4 2.4v6c0 1.32-1.08 2.4-2.4 2.4z"/></svg>
+          </a>
+          <a class="cust-contact-social" id="aboutTiktok" href="#" target="_blank" title="TikTok" style="display:none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty placeholders for JS compatibility (tier3 has no shop/dashboard pages) -->
+  <div id="custShopPage" style="display:none"></div>
+  <div id="custDashboard" style="display:none"></div>
+
+  <div class="cust-auth-overlay" id="aboutOverlay" style="display:none">
+    <div class="cust-auth-modal cust-contact-card cust-about-modal">
+      <button class="cust-auth-close" onclick="closeAboutModal()">&times;</button>
+      <h3 class="cust-contact-card-name" id="aboutModalName">SewReady</h3>
+      <p class="cust-about-modal-est" id="aboutModalEst" style="display:none"></p>
+      <div class="cust-about-modal-story" id="aboutModalStory"></div>
+      <div class="cust-about-modal-owner" id="aboutModalOwnerSection">
+        <div class="cust-about-modal-label">Owner</div>
+        <div id="aboutModalOwner"></div>
+      </div>
+      <div class="cust-about-modal-hours">
+        <div class="cust-about-modal-label">Hours</div>
+        <ul class="cust-about-modal-hours-list" id="aboutModalHours"></ul>
+      </div>
+      <div class="cust-about-modal-location">
+        <div class="cust-about-modal-label">Location</div>
+        <a id="aboutModalAddr" href="#" target="_blank" class="cust-contact-card-row" style="padding-left:0">
+          <span class="cust-contact-card-icon">&#128205;</span>
+          <span class="cust-contact-card-text" id="aboutModalAddrText"></span>
+        </a>
+      </div>
+      <div class="cust-contact-card-actions" style="margin-top:16px">
+        <button class="cust-btn-primary cust-btn-full" onclick="closeAboutModal();openContactModal()">&#128222; Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cust-auth-overlay" id="contactOverlay" style="display:none">
+    <div class="cust-auth-modal cust-contact-card">
+      <button class="cust-auth-close" onclick="closeContactModal()">&times;</button>
+      <h3 class="cust-contact-card-name" id="contactCardName">SewReady</h3>
+      <div class="cust-contact-card-rows">
+        <a class="cust-contact-card-row" id="contactCardAddr" href="#" target="_blank">
+          <span class="cust-contact-card-icon">&#128205;</span>
+          <span class="cust-contact-card-text" id="contactCardAddrText">123 Bragg Blvd, Fayetteville, NC 28301</span>
+        </a>
+        <a class="cust-contact-card-row" id="contactCardPhone" href="tel:5558675309">
+          <span class="cust-contact-card-icon">&#128222;</span>
+          <span class="cust-contact-card-text" id="contactCardPhoneText">(555) 867-5309</span>
+        </a>
+        <a class="cust-contact-card-row" id="contactCardEmail" href="mailto:owner@ranger-beers.com">
+          <span class="cust-contact-card-icon">&#9993;</span>
+          <span class="cust-contact-card-text" id="contactCardEmailText">owner@ranger-beers.com</span>
+        </a>
+      </div>
+      <div class="cust-contact-card-socials" id="contactCardSocials">
+        <a class="cust-contact-social" id="socialFacebook" href="#" target="_blank" title="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a class="cust-contact-social" id="socialInstagram" href="#" target="_blank" title="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a class="cust-contact-social" id="socialGoogle" href="#" target="_blank" title="Google">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+        </a>
+        <a class="cust-contact-social" id="socialYelp" href="#" target="_blank" title="Yelp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.16 12.594l-4.995 1.433c-.96.276-1.74-.8-1.272-1.7l2.67-4.93c.36-.665 1.272-.738 1.632-.073l2.965 4.93c.36.665-.036 1.34-1 1.34zm-3.9 5.79l-1.65-4.8c-.4-.96.5-1.87 1.47-1.47l4.8 1.65c.73.252.93 1.17.36 1.65l-3.33 3.33c-.57.57-1.47.4-1.65-.36zm-4.56-1.8l4.8-1.65c.97-.33 1.87.51 1.47 1.47l-1.65 4.8c-.18.76-1.08.93-1.65.36l-3.33-3.33c-.57-.48-.4-1.4.36-1.65zM7.2 13.8c-.12.78-.96 1.14-1.56.66L1.41 11.13c-.6-.48-.48-1.38.18-1.62l5.22-1.89c.84-.31 1.62.56 1.32 1.41L7.2 13.8zm4.2-2.4c-1.32 0-2.4-1.08-2.4-2.4V3c0-1.32 1.08-2.4 2.4-2.4s2.4 1.08 2.4 2.4v6c0 1.32-1.08 2.4-2.4 2.4z"/></svg>
+        </a>
+        <a class="cust-contact-social" id="socialTiktok" href="#" target="_blank" title="TikTok">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+      </div>
+      <div class="cust-contact-card-actions">
+        <a href="tel:5558675309" class="cust-btn-primary cust-btn-full" id="contactModalCallBtn">&#128222; Call Now</a>
+        <a href="https://maps.google.com" target="_blank" class="cust-btn-secondary cust-btn-full" id="contactModalDirBtn">&#128205; Get Directions</a>
+      </div>
+      <div class="cust-contact-form" style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08)">
+        <h4 style="font-size:0.95rem;font-weight:700;margin-bottom:12px">Send a Message</h4>
+        <input type="text" id="contactFormName" placeholder="Your name" style="width:100%;padding:10px 14px;margin-bottom:8px;background:var(--glass-bg,#1e1c1a);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:var(--text,#f5f0eb);font-size:0.9rem;outline:none">
+        <input type="tel" id="contactFormPhone" placeholder="Phone number" style="width:100%;padding:10px 14px;margin-bottom:8px;background:var(--glass-bg,#1e1c1a);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:var(--text,#f5f0eb);font-size:0.9rem;outline:none">
+        <textarea id="contactFormMsg" placeholder="Your message..." rows="3" style="width:100%;padding:10px 14px;margin-bottom:12px;background:var(--glass-bg,#1e1c1a);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:var(--text,#f5f0eb);font-size:0.9rem;outline:none;resize:vertical;font-family:inherit"></textarea>
+        <button onclick="submitContactForm()" style="width:100%;padding:12px;background:var(--accent,#c9a84c);color:#1a1816;border:none;border-radius:10px;font-weight:700;font-size:0.9rem;cursor:pointer">Send Message</button>
+        <div id="contactFormStatus" style="margin-top:8px;font-size:0.8rem;text-align:center"></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="cust-chat-fab" id="chatFab" onclick="toggleChat()" title="Chat with us">&#128172;</button>
+  <div class="cust-chat-panel" id="chatPanel" style="display:none">
+    <div class="cust-chat-header">
+      <span class="cust-chat-header-title">&#9733; Shop Assistant</span>
+      <button class="cust-chat-header-close" onclick="toggleChat()">&times;</button>
+    </div>
+    <div class="cust-chat-messages" id="chatMessages"></div>
+    <div class="cust-chat-quick" id="chatQuick"></div>
+    <div class="cust-chat-input-bar">
+      <input type="text" class="cust-chat-input" id="chatInput" placeholder="Ask about services, hours, location..." onkeydown="if(event.key==='Enter')sendChat()">
+      <button class="cust-chat-send" onclick="sendChat()">&#10148;</button>
+    </div>
+  </div>
+
+  <div class="cust-toast" id="custToast"></div>
+
+  <script>
+    // Unregister any service worker so customer pages always load fresh
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(regs) {
+        regs.forEach(function(r) { r.unregister(); });
+      });
+    }
+  </script>
+  <script src="../../translations.js"></script>
+  <script src="shop-config.js"></script>
+  <script src="../../shared-data.js"></script>
+  <script src="../../services-data.js"></script>
+  <script src="../../inventory-data.js"></script>
+  <script src="../../data-store.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="../../receipt.js"></script>
+  <script src="../../customer.js"></script>
+</body>
+</html>

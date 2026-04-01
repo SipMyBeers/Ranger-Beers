@@ -1,0 +1,56 @@
+{
+  "name": "McMurray Fabrics",
+  "slug": "mcmurray-fabrics",
+  "colors": [
+    "#8b5cf6",
+    "#8b4513",
+    "#1a1a1a"
+  ],
+  "midjourney": {
+    "logo": "Minimalist logo for McMurray Fabrics, industrial, established, B2B style, #8b5cf6 and #8b4513, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+    "hero": "Modern website hero image for McMurray Fabrics, Textile manufacturer - nets, webbing, automotive textiles, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+    "about": "Portrait of skilled tailor working at sewing machine, McMurray Fabrics - Textile manufacturer - nets, webbing, automotive textiles, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+    "services": "Clean service menu graphic for McMurray Fabrics, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+  },
+  "video": {
+    "hero": "Cinematic intro video for McMurray Fabrics, Textile manufacturer - nets, webbing, automotive textiles, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+    "about": "B-roll footage of tailor working, McMurray Fabrics, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style"
+  },
+  "heygen_script": "Welcome to McMurray Fabrics, your premier destination for Textile manufacturer - nets, webbing, automotive textiles.\n\nWhat sets us apart: Established 1968 - 58+ years in textile manufacturing\n\nVisit us today and experience the quality that has made us a local favorite.\n\nMcMurray Fabrics - Quality Service, Every Time.",
+  "stock_keywords": {
+    "primary": [
+      "sewing machine",
+      "tailor working",
+      "alterations"
+    ],
+    "secondary": [
+      "fabric",
+      "thread",
+      "needle and thread"
+    ],
+    "background": [
+      "shop interior",
+      "clothing rack",
+      "military uniforms"
+    ],
+    "theme_specific": {
+      "military": [
+        "army uniform",
+        "tactical gear",
+        "military surplus"
+      ],
+      "sewing": [
+        "sewing workshop",
+        "dressmaker",
+        "clothing alteration"
+      ],
+      "cleaners": [
+        "dry cleaning",
+        "laundry service",
+        "ironing"
+      ]
+    },
+    "shop_name": "McMurray Fabrics",
+    "specialty": "Textile manufacturer - nets, webbing, automotive textiles"
+  }
+}

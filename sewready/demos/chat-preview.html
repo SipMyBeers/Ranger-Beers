@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Chat Concierge — Demo</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow-x:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0e0c0a;color:#e0dcd5;display:flex;align-items:center;justify-content:center;padding:16px}
+.container{width:100%;max-width:440px;position:relative}
+
+/* Notification stack */
+.notif-stack{display:flex;flex-direction:column;gap:8px}
+.notif{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:clamp(10px,2.5vw,14px) clamp(12px,3vw,16px);display:flex;align-items:center;gap:10px;position:relative;animation:slideDown .4s ease both}
+.notif:nth-child(2){animation-delay:.15s}
+.notif:nth-child(3){animation-delay:.3s}
+.notif:nth-child(4){animation-delay:.45s}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.notif-icon{font-size:clamp(18px,4vw,22px);flex-shrink:0}
+.notif-body{flex:1;min-width:0}
+.notif-title{font-size:clamp(12px,2.8vw,14px);color:#fff;font-weight:600}
+.notif-sub{font-size:clamp(11px,2.4vw,12px);color:#999;margin-top:2px}
+.notif-time{font-size:10px;color:#777;flex-shrink:0;text-align:right}
+.badge-unread{display:inline-block;padding:1px 6px;background:rgba(231,76,60,.2);border:1px solid rgba(231,76,60,.35);border-radius:4px;font-size:9px;color:#e74c3c;font-weight:700;text-transform:uppercase;margin-top:3px}
+
+.missed-big{text-align:center;margin-top:20px}
+.missed-num{font-size:clamp(36px,8vw,52px);font-weight:900;color:#e74c3c;line-height:1}
+.missed-label{font-size:clamp(13px,3vw,16px);color:#e74c3c;margin-top:4px;font-weight:600}
+.missed-sub{font-size:clamp(11px,2.5vw,13px);color:#999;margin-top:8px;line-height:1.4}
+
+/* Flash */
+.flash-wrap{position:relative}
+.flash-overlay{position:absolute;inset:0;background:radial-gradient(circle,rgba(201,168,76,.4),transparent 70%);opacity:0;pointer-events:none;z-index:10;border-radius:14px;transition:opacity .3s}
+.flash-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(16px,4vw,22px);font-weight:800;color:#c9a84c;text-transform:uppercase;letter-spacing:3px;opacity:0;z-index:11;pointer-events:none;text-shadow:0 0 20px rgba(201,168,76,.6);transition:opacity .3s}
+
+/* Chat widget */
+.chat-widget{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;display:none}
+.chat-header{background:rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.15);padding:clamp(10px,2.5vw,14px) clamp(12px,3vw,16px);display:flex;align-items:center;gap:10px}
+.chat-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#c9a84c,#a8893a);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.chat-title{font-size:clamp(13px,3vw,15px);font-weight:700;color:#fff}
+.chat-status{font-size:11px;color:#00ff41;display:flex;align-items:center;gap:4px}
+.chat-status::before{content:'';width:6px;height:6px;border-radius:50%;background:#00ff41;display:inline-block}
+
+.chat-messages{padding:clamp(12px,3vw,18px);display:flex;flex-direction:column;gap:10px;min-height:200px;max-height:340px;overflow-y:auto}
+.msg{max-width:82%;padding:clamp(8px,2vw,12px) clamp(10px,2.5vw,14px);border-radius:14px;font-size:clamp(12px,2.8vw,14px);line-height:1.45;animation:msgIn .35s ease both}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.msg.customer{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);align-self:flex-end;color:#e0dcd5;border-bottom-right-radius:4px}
+.msg.bot{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.15);align-self:flex-start;color:#ddd;border-bottom-left-radius:4px}
+.typing-dots{align-self:flex-start;display:flex;gap:4px;padding:10px 16px;background:rgba(201,168,76,.08);border-radius:14px;border-bottom-left-radius:4px}
+.typing-dots span{width:7px;height:7px;border-radius:50%;background:#c9a84c;animation:dotBounce 1.2s infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes dotBounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
+
+/* Stats */
+.chat-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:14px;opacity:0;transition:opacity .6s}
+.chat-stats.show{opacity:1}
+.cs-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:clamp(8px,2vw,12px);text-align:center}
+.cs-val{font-size:clamp(16px,3.5vw,22px);font-weight:800;color:#00ff41;font-variant-numeric:tabular-nums}
+.cs-val.gold{color:#c9a84c}
+.cs-label{font-size:clamp(9px,2vw,11px);color:#888;margin-top:2px}
+
+.zero-badge{text-align:center;margin-top:12px;opacity:0;transition:opacity .5s}
+.zero-badge.show{opacity:1}
+.zero-badge span{display:inline-block;background:rgba(0,255,65,.12);color:#00ff41;border:1px solid rgba(0,255,65,.25);border-radius:20px;padding:5px 16px;font-size:clamp(12px,2.8vw,14px);font-weight:700}
+
+/* Interactive input */
+.chat-input-area{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;margin-top:14px;overflow:hidden;display:none}
+.chat-input-bar{display:flex;align-items:center;gap:8px;padding:8px 10px}
+.chat-input{flex:1;background:transparent;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 12px;color:#e0dcd5;font-size:14px;outline:none;font-family:inherit}
+.chat-input::placeholder{color:#666}
+.chat-input:focus{border-color:rgba(201,168,76,.4)}
+.btn-send{padding:10px 16px;background:linear-gradient(135deg,#c9a84c,#a8893a);border:none;border-radius:8px;color:#0e0c0a;font-weight:700;font-size:13px;cursor:pointer;flex-shrink:0;transition:transform .15s}
+.btn-send:hover{transform:translateY(-1px)}
+.interactive-label{padding:10px 14px 0;font-size:clamp(12px,2.8vw,13px);color:#c9a84c;font-weight:600}
+.bot-reply-area{padding:0 14px 12px}
+.bot-reply-area .msg{margin-top:10px;display:none}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="flash-wrap" id="flashWrap">
+<div class="flash-overlay" id="flash"></div>
+<div class="flash-label" id="flashLabel">AI Activated</div>
+
+<!-- BEFORE phase -->
+<div id="beforePhase">
+<div class="notif-stack" id="notifStack">
+<div class="notif">
+<span class="notif-icon">&#128222;</span>
+<div class="notif-body">
+<div class="notif-title">Missed call from (910) 555-0142</div>
+</div>
+<div class="notif-time">10:23 AM</div>
+</div>
+<div class="notif">
+<span class="notif-icon">&#128172;</span>
+<div class="notif-body">
+<div class="notif-title">"How much for name tapes?"</div>
+<div class="badge-unread">UNREAD</div>
+</div>
+<div class="notif-time">11:45 AM</div>
+</div>
+<div class="notif">
+<span class="notif-icon">&#128172;</span>
+<div class="notif-body">
+<div class="notif-title">"Are you open Saturday?"</div>
+<div class="badge-unread">UNREAD</div>
+</div>
+<div class="notif-time">1:12 PM</div>
+</div>
+<div class="notif">
+<span class="notif-icon">&#128172;</span>
+<div class="notif-body">
+<div class="notif-title">"I need a rush order"</div>
+<div class="badge-unread">UNREAD</div>
+</div>
+<div class="notif-time">2:30 PM</div>
+</div>
+</div>
+<div class="missed-big">
+<div class="missed-num">4</div>
+<div class="missed-label">missed opportunities today</div>
+<div class="missed-sub">You were busy sewing. They went to your competitor.</div>
+</div>
+</div>
+
+<!-- AFTER phase -->
+<div id="afterPhase" style="display:none">
+<div class="chat-widget" id="chatWidget">
+<div class="chat-header">
+<div class="chat-avatar">&#129302;</div>
+<div>
+<div class="chat-title">AAA Tailor Shop</div>
+<div class="chat-status">Online now</div>
+</div>
+</div>
+<div class="chat-messages" id="chatMessages"></div>
+</div>
+
+<div class="chat-stats" id="chatStats">
+<div class="cs-card"><div class="cs-val" id="csAnswered">0</div><div class="cs-label">Questions answered</div></div>
+<div class="cs-card"><div class="cs-val gold" id="csBooked">0</div><div class="cs-label">Appointments booked</div></div>
+<div class="cs-card"><div class="cs-val" id="csRevenue">$0</div><div class="cs-label">Revenue captured</div></div>
+<div class="cs-card"><div class="cs-val gold" id="csResponse">--</div><div class="cs-label">Response time</div></div>
+</div>
+
+<div class="zero-badge" id="zeroBadge"><span>0 missed messages</span></div>
+</div>
+</div>
+
+<!-- Interactive input (always visible after first cycle) -->
+<div class="chat-input-area" id="interactiveChat">
+<div class="interactive-label">Try it — ask a question</div>
+<div class="chat-input-bar">
+<input type="text" class="chat-input" id="userInput" placeholder="e.g. How much for a hem?">
+<button class="btn-send" id="btnSend">Send</button>
+</div>
+<div class="bot-reply-area">
+<div class="msg bot" id="botReply"></div>
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+const $ = s => document.querySelector(s);
+const chatMsgs = $('#chatMessages');
+
+let autoTimer = null;
+let interactionPause = false;
+let resumeTimer = null;
+let firstCycleDone = false;
+
+/* Counter animation */
+function animateCounter(el, from, to, prefix, suffix, dur) {
+const start = performance.now();
+function frame(now) {
+const p = Math.min((now - start) / dur, 1);
+const ease = 1 - Math.pow(1 - p, 3);
+const v = from + (to - from) * ease;
+el.textContent = prefix + Math.round(v).toLocaleString() + suffix;
+if(p < 1) requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+}
+
+/* Chat conversation script */
+const convo = [
+{ type: 'customer', text: 'How much for a full OCP setup?' },
+{ type: 'typing', dur: 1000 },
+{ type: 'bot', text: 'A full OCP top setup is $45 and takes about 45 minutes. I can book you in right now \u2014 we have slots at 10am, 1:30pm, and 3pm tomorrow. \ud83d\udccb' },
+{ type: 'pause', dur: 1200 },
+{ type: 'customer', text: '1:30 works' },
+{ type: 'typing', dur: 800 },
+{ type: 'bot', text: 'Booked! \u2705 You\u2019re confirmed for tomorrow at 1:30 PM. We\u2019ll text you a reminder in the morning. Anything else I can help with?' }
+];
+
+function playConvo(idx) {
+if(idx >= convo.length) {
+// Show stats after conversation
+setTimeout(showStats, 400);
+return;
+}
+const step = convo[idx];
+if(step.type === 'pause') {
+setTimeout(() => playConvo(idx + 1), step.dur);
+return;
+}
+if(step.type === 'typing') {
+const dots = document.createElement('div');
+dots.className = 'typing-dots';
+dots.innerHTML = '<span></span><span></span><span></span>';
+chatMsgs.appendChild(dots);
+chatMsgs.scrollTop = chatMsgs.scrollHeight;
+setTimeout(() => {
+dots.remove();
+playConvo(idx + 1);
+}, step.dur);
+return;
+}
+const msg = document.createElement('div');
+msg.className = 'msg ' + step.type;
+msg.textContent = step.text;
+chatMsgs.appendChild(msg);
+chatMsgs.scrollTop = chatMsgs.scrollHeight;
+setTimeout(() => playConvo(idx + 1), step.type === 'customer' ? 800 : 1200);
+}
+
+function showStats() {
+$('#chatStats').classList.add('show');
+animateCounter($('#csAnswered'), 0, 23, '', '', 1000);
+animateCounter($('#csBooked'), 0, 7, '', '', 800);
+animateCounter($('#csRevenue'), 0, 1890, '$', '', 1200);
+$('#csResponse').textContent = 'Instant';
+setTimeout(() => $('#zeroBadge').classList.add('show'), 400);
+}
+
+function showBefore() {
+$('#beforePhase').style.display = '';
+$('#afterPhase').style.display = 'none';
+}
+
+function showAfter() {
+$('#beforePhase').style.display = 'none';
+$('#afterPhase').style.display = '';
+const cw = $('#chatWidget');
+cw.style.display = '';
+chatMsgs.innerHTML = '';
+$('#chatStats').classList.remove('show');
+$('#zeroBadge').classList.remove('show');
+$('#csAnswered').textContent = '0';
+$('#csBooked').textContent = '0';
+$('#csRevenue').textContent = '$0';
+$('#csResponse').textContent = '--';
+
+setTimeout(() => playConvo(0), 300);
+}
+
+function doTransition(cb) {
+$('#flash').style.opacity = '1';
+$('#flashLabel').style.opacity = '1';
+setTimeout(() => {
+$('#flash').style.opacity = '0';
+$('#flashLabel').style.opacity = '0';
+cb();
+}, 800);
+}
+
+function runCycle() {
+showBefore();
+autoTimer = setTimeout(() => {
+doTransition(() => {
+showAfter();
+if(!firstCycleDone) {
+firstCycleDone = true;
+$('#interactiveChat').style.display = '';
+}
+autoTimer = setTimeout(() => {
+if(!interactionPause) runCycle();
+}, 11000);
+});
+}, 3000);
+}
+
+function userInteracted() {
+interactionPause = true;
+if(autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
+if(resumeTimer) clearTimeout(resumeTimer);
+resumeTimer = setTimeout(() => {
+interactionPause = false;
+runCycle();
+}, 16000);
+}
+
+/* Canned responses by keyword */
+const responses = [
+{ keys: ['price','cost','much','charge','rate','quote','fee'], reply: 'Great question! Here are our most popular services:\n\u2022 Name tapes: $5 each\n\u2022 Rank/patches: $5 each\n\u2022 Full OCP top setup: $45\n\u2022 Hem (pants): $12\n\u2022 Hem (dress): $15\n\nWant me to book an appointment?' },
+{ keys: ['hour','open','close','time','schedule','saturday','sunday','weekend'], reply: 'We\u2019re open:\n\u2022 Mon\u2013Fri: 9 AM \u2013 6 PM\n\u2022 Saturday: 10 AM \u2013 3 PM\n\u2022 Sunday: Closed\n\nWe\u2019re located at 123 Bragg Blvd. Want me to book you in?' },
+{ keys: ['book','appointment','slot','reserve','available','schedule','come in'], reply: 'I\u2019d love to get you scheduled! We have openings tomorrow at:\n\u2022 10:00 AM\n\u2022 1:30 PM\n\u2022 3:00 PM\n\nJust let me know which works and I\u2019ll confirm your spot!' },
+{ keys: ['rush','fast','urgent','asap','hurry','quick','emergency'], reply: 'We offer rush service! Most rush alterations are done same-day for an additional $10. Drop off before noon and pick up by 5 PM. Want me to reserve a rush slot for you?' },
+{ keys: ['name tape','nametape','name tapes'], reply: 'Name tapes are $5 each to sew on. Most customers get them done in about 15 minutes. I can book you a quick appointment \u2014 we have openings all day tomorrow!' },
+{ keys: ['patch','rank','unit','insignia'], reply: 'Patches and rank insignias are $5 each to sew on. A full setup (all patches) runs $45 for an OCP top. Takes about 45 minutes. Ready to book?' },
+{ keys: ['hem','shorten','length','pants','trousers'], reply: 'Hemming starts at $12 for pants and $15 for dresses/skirts. Standard turnaround is 24 hours, or same-day with rush service (+$10). Shall I schedule you?' }
+];
+
+const defaultReply = 'Thanks for reaching out! I can help with pricing, appointments, hours, and more. Just ask away \u2014 I\u2019m here 24/7 so you never have to wait. What would you like to know?';
+
+function getReply(text) {
+const lower = text.toLowerCase();
+for(const r of responses) {
+if(r.keys.some(k => lower.includes(k))) return r.reply;
+}
+return defaultReply;
+}
+
+$('#btnSend').addEventListener('click', sendMessage);
+$('#userInput').addEventListener('keydown', e => { if(e.key === 'Enter') sendMessage(); });
+$('#userInput').addEventListener('focus', userInteracted);
+
+function sendMessage() {
+const input = $('#userInput');
+const text = input.value.trim();
+if(!text) return;
+userInteracted();
+input.value = '';
+
+const reply = getReply(text);
+const replyEl = $('#botReply');
+replyEl.style.display = 'block';
+replyEl.textContent = '';
+
+// Typewriter for reply
+let i = 0;
+function tick() {
+if(i < reply.length) {
+replyEl.textContent = reply.slice(0, ++i);
+setTimeout(tick, 10);
+}
+}
+setTimeout(tick, 300);
+}
+
+/* Init */
+$('#interactiveChat').style.display = 'none';
+runCycle();
+})();
+</script>
+</body>
+</html>

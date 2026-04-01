@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SewReady — Site Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../customer.css">
+<style>
+/* ── Preview Lock System ─────────────────────────────── */
+.preview-section{position:relative;transition:all .4s ease}
+.preview-section.locked{filter:grayscale(1);opacity:.3;pointer-events:none;user-select:none}
+.preview-section.locked .lock-overlay{display:flex}
+.lock-overlay{display:none;position:absolute;inset:0;z-index:50;align-items:center;justify-content:center;pointer-events:auto;cursor:default}
+.lock-badge{display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:10px;background:rgba(0,71,160,.92);color:#fff;font-size:12px;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,.4);backdrop-filter:blur(6px);cursor:pointer;transition:all .2s;border:1px solid rgba(255,255,255,.2);white-space:nowrap}
+.lock-badge:hover{transform:scale(1.05);box-shadow:0 6px 28px rgba(0,71,160,.5)}
+.lock-badge .lock-icon{font-size:14px}
+.lock-badge .lock-price{font-size:13px;font-weight:800}
+
+/* Unlocked animation */
+@keyframes pvUnlock{
+  0%{filter:grayscale(1);opacity:.3}
+  50%{filter:grayscale(0);opacity:.8;transform:scale(1.01)}
+  100%{filter:none;opacity:1;transform:scale(1)}
+}
+.preview-section.just-unlocked{animation:pvUnlock .5s ease forwards}
+
+/* ── Admin Feature Sections (not on customer site) ──── */
+.admin-feature-section{padding:40px 24px;max-width:1100px;margin:0 auto}
+.admin-feature-section h2{font-size:22px;font-weight:700;margin:0 0 8px;color:var(--cust-text,#1a1a2e)}
+.admin-feature-section p{font-size:14px;color:#666;margin:0 0 20px}
+
+/* Employee management mock */
+.mock-emp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mock-emp-card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.08);text-align:center}
+.mock-emp-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#0047a0,#c73240);margin:0 auto 8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px}
+.mock-emp-name{font-weight:600;font-size:14px;margin-bottom:2px}
+.mock-emp-role{font-size:12px;color:#888}
+
+/* Analytics mock */
+.mock-chart{display:flex;align-items:flex-end;gap:8px;height:120px;padding:16px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.mock-bar{flex:1;background:linear-gradient(to top,#0047a0,#3d7ec7);border-radius:6px 6px 0 0;min-height:20px;transition:height .3s}
+
+/* SOP mock */
+.mock-sop-list{display:flex;flex-direction:column;gap:8px}
+.mock-sop-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.mock-sop-icon{width:36px;height:36px;border-radius:8px;background:#e8f0fe;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.mock-sop-info{flex:1}
+.mock-sop-title{font-weight:600;font-size:13px}
+.mock-sop-meta{font-size:11px;color:#888}
+
+/* Driver mock */
+.mock-driver-map{height:140px;border-radius:12px;background:linear-gradient(135deg,#e8f0fe,#d4e4f7);display:flex;align-items:center;justify-content:center;font-size:14px;color:#0047a0;font-weight:600;position:relative;overflow:hidden}
+.mock-driver-pin{position:absolute;font-size:24px}
+.mock-driver-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.mock-driver-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.mock-driver-status{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.mock-driver-status.active{background:#2ecc71}
+.mock-driver-status.transit{background:#f39c12}
+
+/* Inventory mock */
+.mock-inv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.mock-inv-item{background:#fff;border-radius:10px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,.08);text-align:center}
+.mock-inv-icon{font-size:24px;margin-bottom:6px}
+.mock-inv-name{font-size:11px;font-weight:600;margin-bottom:2px}
+.mock-inv-qty{font-size:10px;color:#888}
+
+/* Notification mock */
+.mock-notif-list{display:flex;flex-direction:column;gap:8px}
+.mock-notif-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.mock-notif-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.mock-notif-icon.sms{background:#e8f5e9}
+.mock-notif-icon.email{background:#e3f2fd}
+.mock-notif-icon.auto{background:#fff3e0}
+.mock-notif-text{flex:1;font-size:12px;line-height:1.4}
+.mock-notif-time{font-size:10px;color:#aaa;white-space:nowrap}
+
+/* Receipt/label printing mock */
+.mock-print-row{display:flex;gap:16px;flex-wrap:wrap}
+.mock-receipt,.mock-label{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.08);flex:1;min-width:180px}
+.mock-receipt h4,.mock-label h4{font-size:13px;margin:0 0 8px;font-weight:700}
+.mock-receipt-line{display:flex;justify-content:space-between;font-size:11px;padding:2px 0;color:#555}
+.mock-label-tag{display:inline-block;padding:6px 12px;border:2px dashed #0047a0;border-radius:8px;font-size:11px;color:#0047a0;font-weight:600;margin-top:4px}
+.mock-qr{width:48px;height:48px;background:repeating-conic-gradient(#0047a0 0% 25%, #fff 0% 50%) 50%/8px 8px;border-radius:4px;margin-top:8px}
+
+/* General section background for admin sections */
+.admin-section-bg{background:#f8f9fb;border-top:1px solid #eee;border-bottom:1px solid #eee}
+
+/* Mobile */
+@media(max-width:600px){
+  .mock-emp-grid{grid-template-columns:1fr 1fr}
+  .mock-inv-grid{grid-template-columns:repeat(2,1fr)}
+  .mock-print-row{flex-direction:column}
+  .lock-badge{font-size:11px;padding:6px 12px}
+}
+</style>
+</head>
+<body class="cust-body">
+
+<!-- ── Online Orders Banner ────────────────────────── -->
+<div class="preview-section" data-feature="order-wizard">
+  <div class="cust-orders-banner">
+    <span class="cust-orders-banner-text"><strong>ONLINE ORDERS NOW AVAILABLE!</strong></span>
+    <span class="cust-orders-banner-cta">Shop Now &rarr;</span>
+  </div>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('order-wizard')"><span class="lock-icon">&#128274;</span> Unlock Online Ordering <span class="lock-price">$99</span></div></div>
+</div>
+
+<!-- ── Sticky Nav ─────────────────────────────────── -->
+<nav class="cust-nav" style="position:relative">
+  <div class="cust-nav-inner">
+    <div class="cust-nav-brand">
+      <span class="cust-brand-icon">&#9986;</span>
+      <span class="cust-brand-name" id="pvShopName">SewReady</span>
+    </div>
+    <div class="cust-nav-links">
+      <a href="#" class="cust-nav-link">HOME</a>
+      <a href="#" class="cust-nav-link">SHOP NOW</a>
+      <a href="#" class="cust-nav-link">ABOUT US</a>
+    </div>
+    <div class="cust-nav-right">
+      <button class="cust-lang-toggle">EN | 한</button>
+      <div class="preview-section" data-feature="customer-accounts" style="display:inline-block">
+        <button class="cust-btn-primary cust-btn-sm">Sign In</button>
+        <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('customer-accounts')"><span class="lock-icon">&#128274;</span> Unlock <span class="lock-price">$49</span></div></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ───────────────────────────────────────── -->
+<section class="cust-hero">
+  <div class="cherry-petal"></div><div class="cherry-petal"></div><div class="cherry-petal"></div>
+  <div class="cherry-petal"></div><div class="cherry-petal"></div><div class="cherry-petal"></div>
+  <div class="cust-hero-content">
+    <h1 class="cust-hero-title">ORDER ONLINE NOW</h1>
+    <p class="cust-hero-sub">Military-Grade Sewing. Mission-Ready Uniforms.</p>
+    <div class="cust-hero-ctas">
+      <div class="preview-section" data-feature="order-tracking" style="display:inline-block">
+        <button class="cust-btn-primary">Track My Order</button>
+        <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('order-tracking')"><span class="lock-icon">&#128274;</span> Unlock <span class="lock-price">$49</span></div></div>
+      </div>
+      <div class="preview-section" data-feature="order-wizard" style="display:inline-block">
+        <button class="cust-btn-secondary">Make an Order</button>
+        <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('order-wizard')"><span class="lock-icon">&#128274;</span> Unlock <span class="lock-price">$99</span></div></div>
+      </div>
+    </div>
+    <div class="preview-section" data-feature="contact" style="margin-top:20px">
+      <button class="cust-btn-secondary">Contact Now</button>
+      <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('contact')"><span class="lock-icon">&#128274;</span> Unlock Contact Form <span class="lock-price">$19</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Trust Signals ──────────────────────────────── -->
+<section class="cust-section cust-trust">
+  <div class="cust-trust-grid">
+    <div class="cust-trust-item"><span class="cust-trust-num">500+</span><span class="cust-trust-label">Orders Completed</span></div>
+    <div class="cust-trust-item"><span class="cust-trust-num">AR 670-1</span><span class="cust-trust-label">Compliant</span></div>
+    <div class="cust-trust-item"><span class="cust-trust-num">24hr</span><span class="cust-trust-label">Rush Available</span></div>
+    <div class="cust-trust-item"><span class="cust-trust-num">4.9&#9733;</span><span class="cust-trust-label">Rating</span></div>
+  </div>
+</section>
+
+<!-- ── Calendar & Hours ──────────────────────────── -->
+<div class="preview-section" data-feature="calendar">
+  <section class="cust-bigcal-section">
+    <h2 class="cust-section-title" style="text-align:center">STORE HOURS</h2>
+    <p class="cust-section-sub" style="text-align:center">Book an appointment now or make a drop off / pickup during our business hours</p>
+    <div class="cust-bigcal-layout">
+      <div class="cust-bigcal-card">
+        <div class="cust-bigcal-header">
+          <button class="cust-bigcal-nav">&#9664;</button>
+          <span class="cust-bigcal-month">March 2026</span>
+          <button class="cust-bigcal-nav">&#9654;</button>
+        </div>
+        <div class="cust-bigcal-weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+        <div class="cust-bigcal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;padding:8px">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span style="padding:6px;text-align:center;font-size:12px;border-radius:6px;background:rgba(0,71,160,.08)">1</span>
+          <span style="padding:6px;text-align:center;font-size:12px">2</span>
+          <span style="padding:6px;text-align:center;font-size:12px;border-radius:6px;background:rgba(0,71,160,.15);color:#0047a0;font-weight:700">3</span>
+          <span style="padding:6px;text-align:center;font-size:12px;border-radius:6px;background:rgba(0,71,160,.08)">4</span>
+          <span style="padding:6px;text-align:center;font-size:12px">5</span>
+          <span style="padding:6px;text-align:center;font-size:12px">6</span>
+          <span style="padding:6px;text-align:center;font-size:12px">7</span>
+          <span style="padding:6px;text-align:center;font-size:12px">8</span>
+          <span style="padding:6px;text-align:center;font-size:12px">9</span>
+          <span style="padding:6px;text-align:center;font-size:12px;border-radius:6px;background:rgba(0,71,160,.08)">10</span>
+          <span style="padding:6px;text-align:center;font-size:12px">11</span>
+          <span style="padding:6px;text-align:center;font-size:12px">12</span>
+          <span style="padding:6px;text-align:center;font-size:12px">13</span>
+          <span style="padding:6px;text-align:center;font-size:12px">14</span>
+        </div>
+      </div>
+      <div class="cust-bigcal-sidebar">
+        <div class="cust-bigcal-hours-card">
+          <h3 class="cust-card-title">Shop Hours</h3>
+          <ul class="cust-hours-list">
+            <li style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px"><span>Monday</span><span>9:00 AM - 6:00 PM</span></li>
+            <li style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px"><span>Tuesday</span><span>9:00 AM - 6:00 PM</span></li>
+            <li style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px"><span>Wednesday</span><span>9:00 AM - 6:00 PM</span></li>
+            <li style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px"><span>Thursday</span><span>9:00 AM - 6:00 PM</span></li>
+            <li style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px"><span>Friday</span><span>9:00 AM - 5:00 PM</span></li>
+            <li style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px;color:#c73240"><span>Saturday</span><span>Closed</span></li>
+            <li style="display:flex;justify-content:space-between;padding:4px 0;font-size:13px;color:#c73240"><span>Sunday</span><span>Closed</span></li>
+          </ul>
+        </div>
+        <div class="cust-bigcal-hours-card">
+          <h3 class="cust-card-title">Location</h3>
+          <p class="cust-location-addr">123 Bragg Blvd<br>Fayetteville, NC 28301</p>
+          <div class="preview-section" data-feature="contact">
+            <p class="cust-location-detail">&#128222; (555) 867-5309</p>
+            <p class="cust-location-detail">&#9993; owner@ranger-beers.com</p>
+            <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('contact')"><span class="lock-icon">&#128274;</span> Unlock <span class="lock-price">$19</span></div></div>
+          </div>
+          <div class="preview-section" data-feature="maps" style="border-radius:12px;overflow:hidden;margin-top:12px;min-height:120px;background:linear-gradient(135deg,#e8f0fe,#d4e4f7);display:flex;align-items:center;justify-content:center">
+            <div style="text-align:center;color:#0047a0;font-size:13px">
+              <div style="font-size:32px;margin-bottom:4px">&#128506;</div>
+              Google Maps
+            </div>
+            <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('maps')"><span class="lock-icon">&#128274;</span> Unlock Maps <span class="lock-price">$29</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('calendar')"><span class="lock-icon">&#128274;</span> Unlock Calendar & Scheduling <span class="lock-price">$49</span></div></div>
+</div>
+
+<!-- ── Services Display ──────────────────────────── -->
+<div class="preview-section" data-feature="services-display">
+  <section class="cust-section" style="padding:40px 24px;max-width:1100px;margin:0 auto">
+    <h2 class="cust-section-title">Our Services</h2>
+    <p class="cust-section-sub">55 services across 5 categories. Everything your uniform needs.</p>
+    <div class="cust-filter-pills" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+      <span style="padding:6px 14px;border-radius:20px;background:#0047a0;color:#fff;font-size:12px;font-weight:600">All</span>
+      <span style="padding:6px 14px;border-radius:20px;background:rgba(0,71,160,.08);font-size:12px;cursor:pointer">Patches</span>
+      <span style="padding:6px 14px;border-radius:20px;background:rgba(0,71,160,.08);font-size:12px;cursor:pointer">Alterations</span>
+      <span style="padding:6px 14px;border-radius:20px;background:rgba(0,71,160,.08);font-size:12px;cursor:pointer">Insignia</span>
+      <span style="padding:6px 14px;border-radius:20px;background:rgba(0,71,160,.08);font-size:12px;cursor:pointer">Badges</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+      <div style="background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><div style="font-weight:600;font-size:14px">Name Tape Sewing</div><div style="font-size:12px;color:#888;margin-top:4px">$5.00</div></div>
+      <div style="background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><div style="font-weight:600;font-size:14px">Rank Patch</div><div style="font-size:12px;color:#888;margin-top:4px">$8.00</div></div>
+      <div style="background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><div style="font-weight:600;font-size:14px">Unit Patch</div><div style="font-size:12px;color:#888;margin-top:4px">$10.00</div></div>
+      <div style="background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><div style="font-weight:600;font-size:14px">Hem Pants</div><div style="font-size:12px;color:#888;margin-top:4px">$12.00</div></div>
+      <div style="background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><div style="font-weight:600;font-size:14px">Take In Waist</div><div style="font-size:12px;color:#888;margin-top:4px">$15.00</div></div>
+      <div style="background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)"><div style="font-weight:600;font-size:14px">ASU Jacket Fit</div><div style="font-size:12px;color:#888;margin-top:4px">$25.00</div></div>
+    </div>
+  </section>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('services-display')"><span class="lock-icon">&#128274;</span> Unlock Services Display <span class="lock-price">$19</span></div></div>
+</div>
+
+<!-- ── Inventory ─────────────────────────────────── -->
+<div class="preview-section admin-section-bg" data-feature="inventory">
+  <div class="admin-feature-section">
+    <h2>&#128230; Inventory Tracking</h2>
+    <p>Track supplies, patches, thread, and materials in real-time</p>
+    <div class="mock-inv-grid">
+      <div class="mock-inv-item"><div class="mock-inv-icon">&#129526;</div><div class="mock-inv-name">Thread (OCP)</div><div class="mock-inv-qty">24 spools</div></div>
+      <div class="mock-inv-item"><div class="mock-inv-icon">&#127987;</div><div class="mock-inv-name">Name Tapes</div><div class="mock-inv-qty">150 pcs</div></div>
+      <div class="mock-inv-item"><div class="mock-inv-icon">&#9733;</div><div class="mock-inv-name">Rank Insignia</div><div class="mock-inv-qty">45 sets</div></div>
+      <div class="mock-inv-item"><div class="mock-inv-icon">&#128205;</div><div class="mock-inv-name">Unit Patches</div><div class="mock-inv-qty">82 pcs</div></div>
+      <div class="mock-inv-item"><div class="mock-inv-icon">&#128268;</div><div class="mock-inv-name">Velcro Strips</div><div class="mock-inv-qty">200 pcs</div></div>
+      <div class="mock-inv-item"><div class="mock-inv-icon">&#9986;</div><div class="mock-inv-name">Scissors</div><div class="mock-inv-qty">6 pairs</div></div>
+      <div class="mock-inv-item"><div class="mock-inv-icon">&#128207;</div><div class="mock-inv-name">Pins & Needles</div><div class="mock-inv-qty">500 pcs</div></div>
+      <div class="mock-inv-item"><div class="mock-inv-icon">&#128230;</div><div class="mock-inv-name">Zipper Pulls</div><div class="mock-inv-qty">35 pcs</div></div>
+    </div>
+  </div>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('inventory')"><span class="lock-icon">&#128274;</span> Unlock Inventory Tracking <span class="lock-price">$49</span></div></div>
+</div>
+
+<!-- ── Notifications (SMS, Email, Auto-pickup) ──── -->
+<div class="preview-section admin-section-bg" data-feature="sms">
+  <div class="admin-feature-section">
+    <h2>&#128172; SMS Alerts</h2>
+    <p>Send automated text messages to customers about their orders</p>
+    <div class="mock-notif-list">
+      <div class="mock-notif-item"><div class="mock-notif-icon sms">&#128241;</div><div class="mock-notif-text"><strong>SGT Rodriguez:</strong> Your order SR-047 is ready for pickup!</div><div class="mock-notif-time">2 min ago</div></div>
+      <div class="mock-notif-item"><div class="mock-notif-icon sms">&#128241;</div><div class="mock-notif-text"><strong>CPL Park:</strong> Name tape sewing complete. Pick up anytime.</div><div class="mock-notif-time">15 min ago</div></div>
+      <div class="mock-notif-item"><div class="mock-notif-icon sms">&#128241;</div><div class="mock-notif-text"><strong>PFC Kim:</strong> Your uniform alteration has been received.</div><div class="mock-notif-time">1 hr ago</div></div>
+    </div>
+  </div>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('sms')"><span class="lock-icon">&#128274;</span> Unlock SMS Alerts <span class="lock-price">$49/mo</span></div></div>
+</div>
+
+<div class="preview-section admin-section-bg" data-feature="email-notif">
+  <div class="admin-feature-section">
+    <h2>&#9993; Email Notifications</h2>
+    <p>Automated email updates for order confirmations, status changes, and receipts</p>
+    <div class="mock-notif-list">
+      <div class="mock-notif-item"><div class="mock-notif-icon email">&#9993;</div><div class="mock-notif-text"><strong>Order Confirmation</strong> — SR-048 received from SGT Williams</div><div class="mock-notif-time">Just now</div></div>
+      <div class="mock-notif-item"><div class="mock-notif-icon email">&#9993;</div><div class="mock-notif-text"><strong>Order Complete</strong> — SR-045 ready, auto-email sent to CPL Davis</div><div class="mock-notif-time">30 min ago</div></div>
+    </div>
+  </div>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('email-notif')"><span class="lock-icon">&#128274;</span> Unlock Email Alerts <span class="lock-price">$29/mo</span></div></div>
+</div>
+
+<div class="preview-section admin-section-bg" data-feature="auto-pickup">
+  <div class="admin-feature-section">
+    <h2>&#128276; Automated Pickup Alerts</h2>
+    <p>Automatically notify customers when their orders are ready for pickup</p>
+    <div class="mock-notif-list">
+      <div class="mock-notif-item"><div class="mock-notif-icon auto">&#128276;</div><div class="mock-notif-text"><strong>Auto-sent:</strong> "Your order is ready! Pick up at 123 Bragg Blvd before 6 PM"</div><div class="mock-notif-time">Auto</div></div>
+      <div class="mock-notif-item"><div class="mock-notif-icon auto">&#128276;</div><div class="mock-notif-text"><strong>Reminder:</strong> "Order SR-042 has been ready for 3 days. Please pick up soon."</div><div class="mock-notif-time">Auto</div></div>
+    </div>
+  </div>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('auto-pickup')"><span class="lock-icon">&#128274;</span> Unlock Pickup Alerts <span class="lock-price">$19/mo</span></div></div>
+</div>
+
+<!-- ── Receipt Printing ──────────────────────────── -->
+<div class="preview-section admin-section-bg" data-feature="receipt-printing">
+  <div class="admin-feature-section">
+    <h2>&#128424; Receipt Printing</h2>
+    <p>Print professional thermal receipts for every transaction</p>
+    <div class="mock-print-row">
+      <div class="mock-receipt">
+        <h4>&#9986; SewReady Receipt</h4>
+        <div style="border-bottom:1px dashed #ccc;margin:8px 0"></div>
+        <div class="mock-receipt-line"><span>Name Tape Sewing x2</span><span>$10.00</span></div>
+        <div class="mock-receipt-line"><span>Rank Patch (SGT)</span><span>$8.00</span></div>
+        <div class="mock-receipt-line"><span>Unit Patch (82nd)</span><span>$10.00</span></div>
+        <div style="border-bottom:1px dashed #ccc;margin:8px 0"></div>
+        <div class="mock-receipt-line" style="font-weight:700"><span>Total</span><span>$28.00</span></div>
+        <div style="text-align:center;font-size:10px;color:#aaa;margin-top:8px">Order #SR-048 | Thank you!</div>
+      </div>
+    </div>
+  </div>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('receipt-printing')"><span class="lock-icon">&#128274;</span> Unlock Receipt Printing <span class="lock-price">$39</span></div></div>
+</div>
+
+<!-- ── Label Printing ────────────────────────────── -->
+<div class="preview-section admin-section-bg" data-feature="label-printing">
+  <div class="admin-feature-section">
+    <h2>&#127991; Label Printing & Garment Tags</h2>
+    <p>Print QR-coded garment tags for easy tracking and customer pickup</p>
+    <div class="mock-print-row">
+      <div class="mock-label">
+        <h4>Garment Tag</h4>
+        <div class="mock-label-tag">SR-048 | SGT Rodriguez<br>Name Tape x2, Rank Patch</div>
+        <div class="mock-qr"></div>
+        <div style="font-size:10px;color:#888;margin-top:6px">Scan to view order details</div>
+      </div>
+      <div class="mock-label">
+        <h4>Rack Label</h4>
+        <div class="mock-label-tag">READY FOR PICKUP<br>Rodriguez | 03/04/2026</div>
+        <div class="mock-qr"></div>
+      </div>
+    </div>
+  </div>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('label-printing')"><span class="lock-icon">&#128274;</span> Unlock Label Printing <span class="lock-price">$39</span></div></div>
+</div>
+
+<!-- ── Employee Management ───────────────────────── -->
+<div class="preview-section admin-section-bg" data-feature="employee-mgmt">
+  <div class="admin-feature-section">
+    <h2>&#128101; Employee Management</h2>
+    <p>Manage your team, track hours, assign tasks, and monitor productivity</p>
+    <div class="mock-emp-grid">
+      <div class="mock-emp-card"><div class="mock-emp-avatar">MK</div><div class="mock-emp-name">Maria Kim</div><div class="mock-emp-role">Owner / Master Tailor</div></div>
+      <div class="mock-emp-card"><div class="mock-emp-avatar">JP</div><div class="mock-emp-name">Jin Park</div><div class="mock-emp-role">Seamstress</div></div>
+      <div class="mock-emp-card"><div class="mock-emp-avatar">SL</div><div class="mock-emp-name">Sarah Lee</div><div class="mock-emp-role">Counter Staff</div></div>
+    </div>
+  </div>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('employee-mgmt')"><span class="lock-icon">&#128274;</span> Unlock Employee Management <span class="lock-price">$29</span></div></div>
+</div>
+
+<!-- ── SOP Library ───────────────────────────────── -->
+<div class="preview-section admin-section-bg" data-feature="sop">
+  <div class="admin-feature-section">
+    <h2>&#128214; SOP Library</h2>
+    <p>Standard operating procedures for every task — train new employees fast</p>
+    <div class="mock-sop-list">
+      <div class="mock-sop-item"><div class="mock-sop-icon">&#128203;</div><div class="mock-sop-info"><div class="mock-sop-title">AR 670-1 Name Tape Placement</div><div class="mock-sop-meta">Updated 2 weeks ago &bull; 12 steps</div></div></div>
+      <div class="mock-sop-item"><div class="mock-sop-icon">&#9986;</div><div class="mock-sop-info"><div class="mock-sop-title">OCP Rank Patch Sewing Guide</div><div class="mock-sop-meta">Updated 1 month ago &bull; 8 steps</div></div></div>
+      <div class="mock-sop-item"><div class="mock-sop-icon">&#128736;</div><div class="mock-sop-info"><div class="mock-sop-title">Machine Maintenance Checklist</div><div class="mock-sop-meta">Updated 3 days ago &bull; 15 steps</div></div></div>
+    </div>
+  </div>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('sop')"><span class="lock-icon">&#128274;</span> Unlock SOP Library <span class="lock-price">$29</span></div></div>
+</div>
+
+<!-- ── Driver Pickup Coordination ────────────────── -->
+<div class="preview-section admin-section-bg" data-feature="driver">
+  <div class="admin-feature-section">
+    <h2>&#128666; Driver Pickup Coordination</h2>
+    <p>Coordinate pickup and delivery drivers for customer convenience</p>
+    <div class="mock-driver-map">
+      <span class="mock-driver-pin" style="top:20%;left:30%">&#128205;</span>
+      <span class="mock-driver-pin" style="top:60%;left:70%">&#128666;</span>
+      <span class="mock-driver-pin" style="top:40%;left:50%">&#127978;</span>
+      Route Map View
+    </div>
+    <div class="mock-driver-list">
+      <div class="mock-driver-item"><div class="mock-driver-status active"></div><div style="flex:1;font-size:13px"><strong>Driver A</strong> — En route to Fort Liberty Gate 1</div><div style="font-size:11px;color:#888">ETA 15 min</div></div>
+      <div class="mock-driver-item"><div class="mock-driver-status transit"></div><div style="flex:1;font-size:13px"><strong>Driver B</strong> — Picking up from Barracks 214</div><div style="font-size:11px;color:#888">ETA 25 min</div></div>
+    </div>
+  </div>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('driver')"><span class="lock-icon">&#128274;</span> Unlock Driver Coordination <span class="lock-price">$39</span></div></div>
+</div>
+
+<!-- ── Analytics ──────────────────────────────────── -->
+<div class="preview-section admin-section-bg" data-feature="analytics">
+  <div class="admin-feature-section">
+    <h2>&#128200; Cost & Revenue Analytics</h2>
+    <p>Track revenue, costs, profit margins, and business trends</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);text-align:center"><div style="font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.5px">Revenue (Mar)</div><div style="font-size:22px;font-weight:800;color:#0047a0;margin-top:4px">$4,280</div></div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);text-align:center"><div style="font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.5px">Orders</div><div style="font-size:22px;font-weight:800;color:#0047a0;margin-top:4px">127</div></div>
+      <div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);text-align:center"><div style="font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.5px">Avg Order</div><div style="font-size:22px;font-weight:800;color:#0047a0;margin-top:4px">$33.70</div></div>
+    </div>
+    <div class="mock-chart">
+      <div class="mock-bar" style="height:45%"></div>
+      <div class="mock-bar" style="height:62%"></div>
+      <div class="mock-bar" style="height:38%"></div>
+      <div class="mock-bar" style="height:75%"></div>
+      <div class="mock-bar" style="height:58%"></div>
+      <div class="mock-bar" style="height:82%"></div>
+      <div class="mock-bar" style="height:90%"></div>
+      <div class="mock-bar" style="height:70%"></div>
+      <div class="mock-bar" style="height:95%"></div>
+      <div class="mock-bar" style="height:88%"></div>
+      <div class="mock-bar" style="height:65%"></div>
+      <div class="mock-bar" style="height:78%"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:#aaa;margin-top:4px;padding:0 4px"><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span></div>
+  </div>
+  <div class="lock-overlay"><div class="lock-badge" onclick="requestUnlock('analytics')"><span class="lock-icon">&#128274;</span> Unlock Analytics <span class="lock-price">$49</span></div></div>
+</div>
+
+<!-- ── Newsletter (always visible) ───────────────── -->
+<section class="cust-section cust-newsletter">
+  <h2 class="cust-section-title">Get 10% Off Your First Order</h2>
+  <p class="cust-section-sub">Sign up for our newsletter and receive a discount code.</p>
+  <div class="cust-newsletter-form">
+    <input type="email" class="cust-input" placeholder="Enter your email" disabled>
+    <button class="cust-btn-primary" disabled>Subscribe</button>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────── -->
+<footer class="cust-footer">
+  <p>&copy; 2026 SewReady &mdash; Maria's Alterations. All rights reserved.</p>
+</footer>
+
+<script>
+/* ── Feature→Price mapping (must match CONFIGURATOR in packages.html) ── */
+var FEATURE_PRICES = {
+  'maps': '$29', 'seo': '$49', 'contact': '$19', 'services-display': '$19',
+  'order-wizard': '$99', 'customer-accounts': '$49', 'order-tracking': '$49',
+  'employee-mgmt': '$29', 'inventory': '$49', 'calendar': '$49',
+  'receipt-printing': '$39', 'label-printing': '$39',
+  'sms': '$49/mo', 'email-notif': '$29/mo', 'auto-pickup': '$19/mo',
+  'sop': '$29', 'driver': '$39', 'analytics': '$49',
+  'ai-leads': 'Rev share', 'marketing': 'Rev share'
+};
+
+/* Current unlocked features — updated via postMessage from parent */
+var unlockedFeatures = new Set();
+
+/* Apply lock state to all preview sections */
+function applyLockState() {
+  var sections = document.querySelectorAll('.preview-section[data-feature]');
+  sections.forEach(function(sec) {
+    var feat = sec.getAttribute('data-feature');
+    if (unlockedFeatures.has(feat)) {
+      if (sec.classList.contains('locked')) {
+        sec.classList.remove('locked');
+        sec.classList.add('just-unlocked');
+        setTimeout(function() { sec.classList.remove('just-unlocked'); }, 600);
+      }
+    } else {
+      sec.classList.add('locked');
+      sec.classList.remove('just-unlocked');
+    }
+  });
+}
+
+/* Request parent to unlock a feature */
+function requestUnlock(featureId) {
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: 'unlockFeature', featureId: featureId }, '*');
+  }
+}
+
+/* Listen for messages from parent configurator */
+window.addEventListener('message', function(e) {
+  if (!e.data || !e.data.type) return;
+
+  if (e.data.type === 'updateFeatures') {
+    unlockedFeatures = new Set(e.data.features || []);
+    applyLockState();
+  }
+
+  if (e.data.type === 'updateShopName' && e.data.name) {
+    var el = document.getElementById('pvShopName');
+    if (el) el.textContent = e.data.name || 'SewReady';
+  }
+});
+
+/* Init — lock everything, then ask parent for current state */
+applyLockState();
+if (window.parent && window.parent !== window) {
+  window.parent.postMessage({ type: 'previewReady' }, '*');
+}
+</script>
+</body>
+</html>

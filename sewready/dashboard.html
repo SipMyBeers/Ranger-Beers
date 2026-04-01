@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SewReady — Shop Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#a855f7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" href="print.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">&#9776;</button>
+      <div class="brand">
+        <span class="brand-icon">&#9986;</span>
+        <span class="brand-name">SewReady</span>
+      </div>
+    </div>
+    <div class="header-center">
+      <span class="shop-name">Maria's Alterations</span>
+    </div>
+    <div class="header-right">
+      <button class="cust-lang-toggle" id="langToggle" onclick="toggleLanguage()" title="Switch language">EN | 한</button>
+      <button class="notif-btn" id="notifBtn" aria-label="Notifications">
+        <span class="notif-icon">&#128276;</span>
+        <span class="notif-badge" id="notifBadge">3</span>
+      </button>
+      <div class="user-info">
+        <span class="user-avatar">M</span>
+        <span class="user-name">Maria S.</span>
+      </div>
+
+      <!-- Notification Dropdown -->
+      <div class="notif-dropdown" id="notifDropdown">
+        <div class="notif-dropdown-header">
+          <h3>Notifications</h3>
+          <button class="notif-mark-read" id="markAllRead">Mark all read</button>
+        </div>
+        <div class="notif-list" id="notifList"></div>
+        <div class="notif-dropdown-footer">
+          <button class="btn-dropoff" id="openDropoffBtn">Walk-in Drop-off</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item active">
+          <span class="nav-icon">&#9632;</span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+        <a href="incoming.html" class="nav-item">
+          <span class="nav-icon">&#128229;</span>
+          <span class="nav-label">Incoming</span>
+        </a>
+        <a href="orders.html" class="nav-item">
+          <span class="nav-icon">&#128203;</span>
+          <span class="nav-label">Orders</span>
+        </a>
+        <a href="services.html" class="nav-item">
+          <span class="nav-icon">&#9997;</span>
+          <span class="nav-label">Services</span>
+        </a>
+        <a href="inventory.html" class="nav-item">
+          <span class="nav-icon">&#128230;</span>
+          <span class="nav-label">Inventory</span>
+        </a>
+        <a href="sop-library.html" class="nav-item">
+          <span class="nav-icon">&#128214;</span>
+          <span class="nav-label">SOP Library</span>
+        </a>
+        <a href="calendar.html" class="nav-item">
+          <span class="nav-icon">&#128197;</span>
+          <span class="nav-label">Calendar</span>
+        </a>
+        <a href="dispatch.html" class="nav-item">
+          <span class="nav-icon">&#128666;</span>
+          <span class="nav-label">Dispatch</span>
+          <span class="nav-badge" style="background:var(--accent-blue); color:white; font-size:10px; padding:2px 6px; border-radius:10px; margin-left:auto;">LIVE</span>
+        </a>
+        <a href="analytics.html" class="nav-item">
+          <span class="nav-icon">&#128200;</span>
+          <span class="nav-label" data-i18n="admin.analytics">Analytics</span>
+        </a>
+        <a href="settings.html" class="nav-item">
+          <span class="nav-icon">&#9881;</span>
+          <span class="nav-label">Settings</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+
+      <!-- Welcome + Date -->
+      <div class="dash-welcome">
+        <div>
+          <h1 class="dash-greeting" id="greeting">Good morning, Maria</h1>
+          <p class="dash-date" id="todayDate">Saturday, March 1, 2026</p>
+        </div>
+        <div style="display:flex; gap:10px">
+          <button class="btn-primary" style="background:var(--accent-purple)" onclick="simulateReadySMS()">Simulate Ready SMS</button>
+          <a href="orders.html" class="btn-primary">View All Orders</a>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <section class="dash-stats">
+        <div class="dash-stat stat-new">
+          <div class="dash-stat-icon">&#128229;</div>
+          <div class="dash-stat-info">
+            <div class="dash-stat-number" id="statNew">2</div>
+            <div class="dash-stat-label">New Orders</div>
+          </div>
+        </div>
+        <div class="dash-stat stat-progress">
+          <div class="dash-stat-icon">&#9881;</div>
+          <div class="dash-stat-info">
+            <div class="dash-stat-number" id="statProgress">2</div>
+            <div class="dash-stat-label">In Progress</div>
+          </div>
+        </div>
+        <div class="dash-stat stat-ready">
+          <div class="dash-stat-icon">&#10003;</div>
+          <div class="dash-stat-info">
+            <div class="dash-stat-number" id="statReady">1</div>
+            <div class="dash-stat-label">Ready for Pickup</div>
+          </div>
+        </div>
+        <div class="dash-stat stat-completed">
+          <div class="dash-stat-icon">&#9733;</div>
+          <div class="dash-stat-info">
+            <div class="dash-stat-number" id="statCompleted">1</div>
+            <div class="dash-stat-label">Completed</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Day-by-Day Timeline -->
+      <section class="dash-section">
+        <h2 class="dash-section-title">This Week's Deadlines</h2>
+        <div class="timeline-strip" id="timelineStrip">
+          <!-- JS fills this -->
+        </div>
+        <div class="timeline-detail-panel" id="timelineDetail"></div>
+      </section>
+
+      <!-- Two-column: Pickups + Active Orders -->
+      <div class="dash-two-col">
+
+        <!-- Scheduled Pickups -->
+        <section class="dash-section dash-pickups">
+          <h2 class="dash-section-title">Scheduled Pickups</h2>
+          <div class="pickup-list" id="pickupList">
+            <!-- JS fills this -->
+          </div>
+        </section>
+
+        <!-- Active Orders -->
+        <section class="dash-section dash-active">
+          <h2 class="dash-section-title">Active Orders</h2>
+          <div class="active-list" id="activeList">
+            <!-- JS fills this -->
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Drop-off Modal -->
+  <div class="dropoff-overlay" id="dropoffOverlay">
+    <div class="dropoff-modal">
+      <button class="dropoff-close" id="dropoffClose">&times;</button>
+      <h2>Walk-in Drop-off</h2>
+      <p class="dropoff-subtitle">Search for an order awaiting drop-off (status: Received)</p>
+      <input type="text" class="dropoff-search" id="dropoffSearch" placeholder="Search by customer name or order #...">
+      <div class="dropoff-results" id="dropoffResults"></div>
+      <div class="dropoff-confirm" id="dropoffConfirm">
+        <h3>Confirm Drop-off</h3>
+        <div class="dropoff-confirm-details" id="dropoffConfirmDetails"></div>
+        <div class="dropoff-checklist" id="dropoffChecklist"></div>
+        <div class="dropoff-actions">
+          <button class="btn-primary" id="dropoffConfirmBtn">Confirm Drop-off</button>
+          <button class="btn-secondary" id="dropoffCancelBtn">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="translations.js"></script>
+  <script src="shared-data.js"></script>
+  <script src="data-store.js"></script>
+  <script src="user-switch.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="receipt.js"></script>
+  <script src="admin-auth.js?v=2"></script>
+  <script src="auth-gate.js"></script>
+  <script src="script.js"></script>
+  <script src="sms-sim.js"></script>
+  <script src="demo-tour.js"></script>
+  <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');</script>
+</body>
+</html>

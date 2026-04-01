@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>SewRunner — Driver</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="manifest" href="../../driver-manifest.json">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body class="drv-body">
+
+  <!-- ── Login Overlay ──────────────────────────────────── -->
+  <div class="drv-login-overlay" id="drvLoginOverlay">
+    <div class="drv-login-card">
+      <div class="drv-login-logo">&#128666; SewRunner</div>
+      <p class="drv-login-tagline">Delivery, simplified.</p>
+      <p class="drv-login-subtitle">Sign in to start driving</p>
+      <div class="drv-form-group">
+        <label for="drvEmail">Email</label>
+        <input type="email" id="drvEmail" placeholder="driver@example.com" autocomplete="email">
+      </div>
+      <div class="drv-form-group">
+        <label for="drvPassword">Password</label>
+        <input type="password" id="drvPassword" placeholder="Your password" autocomplete="current-password">
+      </div>
+      <div class="drv-login-error" id="drvLoginError"></div>
+      <button class="drv-login-btn" id="drvLoginBtn">Sign In</button>
+    </div>
+  </div>
+
+  <!-- ── Set Password Overlay ──────────────────────────── -->
+  <div class="drv-login-overlay" id="drvSetupOverlay" style="display:none">
+    <div class="drv-login-card">
+      <div class="drv-login-logo">&#128666; SewRunner</div>
+      <p class="drv-login-tagline">Almost there!</p>
+      <p class="drv-login-subtitle">Set your password to get started</p>
+      <div class="drv-form-group">
+        <label for="drvNewPassword">New Password</label>
+        <input type="password" id="drvNewPassword" placeholder="Min 6 characters" autocomplete="new-password">
+      </div>
+      <div class="drv-form-group">
+        <label for="drvConfirmPassword">Confirm Password</label>
+        <input type="password" id="drvConfirmPassword" placeholder="Confirm password" autocomplete="new-password">
+      </div>
+      <div class="drv-login-error" id="drvSetupError"></div>
+      <button class="drv-login-btn" id="drvSetupBtn">Set Password</button>
+    </div>
+  </div>
+
+  <!-- ── App Shell ──────────────────────────────────────── -->
+  <div class="drv-app" id="drvApp" style="display:none">
+
+    <!-- Header -->
+    <header class="drv-header">
+      <div class="drv-header-brand">
+        <span class="drv-header-icon">&#128666;</span>
+        <span class="drv-header-title" id="drvShopName">SewRunner</span>
+      </div>
+      <div class="drv-header-user">
+        <span class="drv-status-dot"></span>
+        <span class="drv-header-name" id="drvDriverName">Driver</span>
+      </div>
+    </header>
+
+    <!-- Tab Panels -->
+    <main class="drv-main">
+      <!-- Welcome Banner (populated by JS) -->
+      <div class="drv-welcome-banner" id="drvWelcomeBanner" style="display:none">
+        <div class="drv-welcome-greeting" id="drvWelcomeGreeting">
+          Welcome back <span class="drv-status-dot" style="width:8px;height:8px"></span>
+        </div>
+        <p class="drv-welcome-subtitle">You're online and ready to deliver</p>
+        <div class="drv-welcome-stats" id="drvWelcomeStats">
+          <div class="drv-welcome-stat">
+            <span class="drv-welcome-stat-value" id="drvStatAvailable">—</span>
+            <span class="drv-welcome-stat-label">Available</span>
+          </div>
+          <div class="drv-welcome-stat">
+            <span class="drv-welcome-stat-value" id="drvStatActive">—</span>
+            <span class="drv-welcome-stat-label">Active</span>
+          </div>
+          <div class="drv-welcome-stat">
+            <span class="drv-welcome-stat-value" id="drvStatCompleted">—</span>
+            <span class="drv-welcome-stat-label">Completed</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="drv-tab-panel active" id="drvPanelAvailable">
+        <div class="drv-panel-title">Available Deliveries</div>
+        <div class="drv-delivery-list" id="drvAvailableList"></div>
+      </div>
+      <div class="drv-tab-panel" id="drvPanelActive">
+        <div class="drv-panel-title">Active Deliveries</div>
+        <div class="drv-delivery-list" id="drvActiveList"></div>
+      </div>
+      <div class="drv-tab-panel" id="drvPanelHistory">
+        <div class="drv-panel-title">Delivery History</div>
+        <div class="drv-delivery-list" id="drvHistoryList"></div>
+      </div>
+      <div class="drv-tab-panel" id="drvPanelProfile">
+        <div class="drv-panel-title">Profile</div>
+        <div class="drv-profile-card" id="drvProfileCard"></div>
+      </div>
+    </main>
+
+    <!-- Bottom Tab Bar -->
+    <nav class="drv-tab-bar">
+      <button class="drv-tab active" data-panel="drvPanelAvailable">
+        <span class="drv-tab-icon">&#128230;</span>
+        <span class="drv-tab-label">Available</span>
+      </button>
+      <button class="drv-tab" data-panel="drvPanelActive">
+        <span class="drv-tab-icon">&#128663;</span>
+        <span class="drv-tab-label">Active</span>
+      </button>
+      <button class="drv-tab" data-panel="drvPanelHistory">
+        <span class="drv-tab-icon">&#128203;</span>
+        <span class="drv-tab-label">History</span>
+      </button>
+      <button class="drv-tab" data-panel="drvPanelProfile">
+        <span class="drv-tab-icon">&#128100;</span>
+        <span class="drv-tab-label">Profile</span>
+      </button>
+    </nav>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="shop-config.js"></script>
+  <script src="../../translations.js"></script>
+  <script src="../../driver-app.js"></script>
+  <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');</script>
+</body>
+</html>

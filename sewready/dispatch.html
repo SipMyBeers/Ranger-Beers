@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SewRunner — Fleet Dispatch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --drv-blue: #3a6ea5;
+      --drv-green: #10b981;
+      --drv-amber: #f59e0b;
+      --drv-red: #ef4444;
+    }
+    .dispatch-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr 300px;
+      height: calc(100vh - 124px); /* Adjusted for the new top bars */
+      overflow: hidden;
+    }
+    /* Map area */
+    .dispatch-map-container {
+      position: relative;
+      background: #0f172a;
+      overflow: hidden;
+      border-right: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+    .driver-marker-icon {
+      background: var(--drv-blue);
+      border: 2px solid white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+    .shop-marker-icon {
+      background: #111;
+      border: 1px solid #c73240;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      box-shadow: 0 0 10px rgba(199, 50, 64, 0.4);
+    }
+
+    /* Leaflet Popup Theme - Match Pipeline index.html */
+    .leaflet-popup-content-wrapper {
+      background: #111 !important;
+      color: #00ff41 !important;
+      border: 1px solid #333 !important;
+      border-radius: 12px !important;
+      padding: 0 !important;
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.1) !important;
+    }
+    .leaflet-popup-content {
+      margin: 0 !important;
+      padding: 16px !important;
+      line-height: 1.5 !important;
+    }
+    .leaflet-popup-tip {
+      background: #111 !important;
+      border: 1px solid #333 !important;
+    }
+    .leaflet-popup-close-button {
+      color: #666 !important;
+      padding: 8px !important;
+    }
+    .leaflet-popup-close-button:hover {
+      color: #fff !important;
+    }
+
+    .map-card-header {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 14px;
+      font-weight: 800;
+      color: #c73240;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .map-card-details {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 11px;
+      color: #999;
+      margin-bottom: 12px;
+    }
+    .map-card-details b { color: #00ff41; }
+    .map-card-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: #00ff4111;
+      color: #00ff41;
+      border: 1px solid #00ff4133;
+      padding: 8px;
+      border-radius: 6px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+    .map-card-btn:hover {
+      background: #00ff4122;
+      border-color: #00ff4155;
+    }
+
+    /* Sidebars */
+    .dispatch-sidebar {
+      background: var(--bg-surface);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .sidebar-header {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sidebar-header h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+    .driver-list-item {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .driver-list-item:hover {
+      background: rgba(255,255,255,0.03);
+    }
+    .driver-list-item.active {
+      background: rgba(58, 110, 165, 0.1);
+      border-left: 4px solid var(--drv-blue);
+    }
+    .driver-info-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .driver-name { font-weight: 600; font-size: 14px; }
+    .driver-status { font-size: 11px; font-weight: 700; text-transform: uppercase; }
+    .status-online { color: var(--drv-green); }
+    .status-busy { color: var(--drv-amber); }
+    .driver-meta { font-size: 12px; color: var(--text-muted); }
+
+    .pending-order-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 12px;
+      cursor: grab;
+    }
+    .order-top { display: flex; justify-content: space-between; margin-bottom: 4px; }
+    .order-id { font-weight: 700; color: var(--accent-purple); font-size: 12px; }
+    .order-dist { font-size: 11px; color: var(--text-muted); }
+    .order-cust { font-size: 13px; font-weight: 500; }
+    .order-addr { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+    
+    .dispatch-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--drv-blue);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Stats bar */
+    .dispatch-stats-top {
+      grid-column: 1 / -1;
+      background: var(--bg-deep);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      padding: 0 24px;
+      height: 60px;
+      align-items: center;
+      gap: 40px;
+    }
+    .stat-item { display: flex; flex-direction: column; }
+    .stat-val { font-size: 18px; font-weight: 800; color: var(--white); }
+    .stat-lbl { font-size: 10px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; }
+
+    /* Animations */
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .pulse { animation: pulse 2s infinite; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <a href="dashboard.html" style="text-decoration:none; color:inherit;" class="brand">
+        <span class="brand-icon">&#128666;</span>
+        <span class="brand-name">SewRunner Dispatch</span>
+      </a>
+    </div>
+    <div class="header-center">
+      <span class="shop-name">Fleet Management Center</span>
+    </div>
+    <div class="header-right">
+      <div class="user-info">
+        <span class="user-avatar" style="background:var(--drv-blue)">D</span>
+        <span class="user-name">Dispatcher Mode</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="dispatch-stats-top">
+    <div class="stat-item">
+      <span class="stat-val" id="stat-active-drivers">3</span>
+      <span class="stat-lbl">Active Drivers</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val" id="stat-pending-pickups">5</span>
+      <span class="stat-lbl">Pending Pickups</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val" id="stat-completed-today">12</span>
+      <span class="stat-lbl">Deliveries Today</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val" style="color:var(--drv-green)">$284.50</span>
+      <span class="stat-lbl">Fleet Revenue</span>
+    </div>
+  </div>
+
+  <div class="dispatch-layout">
+    <!-- Left Sidebar: Drivers -->
+    <aside class="dispatch-sidebar">
+      <div class="sidebar-header">
+        <h3>Live Drivers</h3>
+        <span class="status-badge status-online">3 Online</span>
+      </div>
+      <div id="driver-list">
+        <!-- Driver 1 -->
+        <div class="driver-list-item active" onclick="focusDriver('drv-1')">
+          <div class="driver-info-top">
+            <span class="driver-name">Marcus Thompson</span>
+            <span class="driver-status status-busy">En Route</span>
+          </div>
+          <div class="driver-meta">Ford F-150 (Silver) &bull; 2 active tasks</div>
+          <div class="driver-meta" style="margin-top:4px; color:var(--drv-blue)">Current: Delivering to 82nd Abn Div</div>
+        </div>
+        <!-- Driver 2 -->
+        <div class="driver-list-item" onclick="focusDriver('drv-2')">
+          <div class="driver-info-top">
+            <span class="driver-name">Sarah Jenkins</span>
+            <span class="driver-status status-online">Idle</span>
+          </div>
+          <div class="driver-meta">Toyota RAV4 (White) &bull; 0 active tasks</div>
+          <div class="driver-meta" style="margin-top:4px;">Waiting for assignment...</div>
+        </div>
+        <!-- Driver 3 -->
+        <div class="driver-list-item" onclick="focusDriver('drv-3')">
+          <div class="driver-info-top">
+            <span class="driver-name">James Lee</span>
+            <span class="driver-status status-busy">Pickup</span>
+          </div>
+          <div class="driver-meta">Honda Civic (Blue) &bull; 1 active task</div>
+          <div class="driver-meta" style="margin-top:4px; color:var(--drv-amber)">Current: Picking up from Yadkin Rd</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Center: Map -->
+    <main class="dispatch-map-container">
+      <div id="map"></div>
+    </main>
+
+    <!-- Right Sidebar: Queue -->
+    <aside class="dispatch-sidebar">
+      <div class="sidebar-header">
+        <h3>Pickup Queue</h3>
+        <button class="btn-sm" style="font-size:10px" onclick="optimizeRoutes()">Optimize</button>
+      </div>
+      <div id="pickup-queue">
+        <!-- Order 1 -->
+        <div class="pending-order-card">
+          <div class="order-top">
+            <span class="order-id">ORD-8821</span>
+            <span class="order-dist">1.2 mi</span>
+          </div>
+          <div class="order-cust">SFC Miller, David</div>
+          <div class="order-addr">6474 Yadkin Rd (Lone Wolf)</div>
+          <button class="dispatch-btn">Assign to Marcus</button>
+        </div>
+        <!-- Order 2 -->
+        <div class="pending-order-card">
+          <div class="order-top">
+            <span class="order-id">ORD-9012</span>
+            <span class="order-dist">3.5 mi</span>
+          </div>
+          <div class="order-cust">CPT Reynolds, Sarah</div>
+          <div class="order-addr">524 S. Reilly Rd (NC Military)</div>
+          <button class="dispatch-btn" style="background:var(--drv-green)">Assign to Sarah</button>
+        </div>
+        <!-- Order 3 -->
+        <div class="pending-order-card">
+          <div class="order-top">
+            <span class="order-id">ORD-7741</span>
+            <span class="order-dist">0.8 mi</span>
+          </div>
+          <div class="order-cust">PV2 Henderson, Kyle</div>
+          <div class="order-addr">6441 Yadkin Rd (S.A.S.)</div>
+          <button class="dispatch-btn">Assign to James</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>
+    // ── Map Initialization ─────────────────────────────────────────
+    const map = L.map('map', {
+      zoomControl: false,
+      attributionControl: false
+    }).setView([35.092, -78.966], 13);
+
+    // Dark Mode Map Layer
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      maxZoom: 19
+    }).addTo(map);
+
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+    // ── Shop Data ──────────────────────────────────────────────────
+    const SHOPS = [
+      { name: "S.A.S. Military Surplus", lat: 35.0931, lng: -78.9665, addr: "6441-D Yadkin Rd", phone: "(910) 867-8786", url: "Clients/SAS%20Military%20Surplus/site/customer.html" },
+      { name: "Lone Wolf Tactical, Inc.", lat: 35.0938, lng: -78.9682, addr: "6474 Yadkin Road", phone: "(910) 745-9960", url: "Clients/Lone%20Wolf%20Tactical/site/customer.html" },
+      { name: "NC Military Supplies", lat: 35.0885, lng: -79.0121, addr: "524 S. Reilly Rd", phone: "(910) 864-5952", url: "Clients/NC%20Military%20Supplies/site/customer.html" },
+      { name: "Jin Sewing", lat: 35.1052, lng: -78.9452, addr: "3640 Bragg Blvd", phone: "(910) 555-0111", url: "Clients/Jin%20Sewing/site/customer.html" },
+      { name: "Kim's #1 Sewing", lat: 35.0721, lng: -78.9152, addr: "2501 Bragg Blvd", phone: "(910) 555-0101", url: "Clients/Kim's%20#1%20Sewing%20&%20Dry%20Cleaning/site/customer.html" },
+      { name: "Kim's Speedy Sewing", lat: 35.1102, lng: -78.9552, addr: "3870 Bragg Blvd", phone: "(910) 555-0113", url: "Clients/Kim's%20Speedy%20Sewing%20Shop/site/customer.html" },
+      { name: "Lee's Alterations", lat: 35.0825, lng: -78.9252, addr: "2950 Bragg Blvd", phone: "(910) 555-0105", url: "Clients/Lee's%20Alterations%20&%20Sewing/site/customer.html" },
+      { name: "Lee's Tailors", lat: 35.1252, lng: -78.9852, addr: "5020 Bragg Blvd", phone: "(910) 555-0123", url: "Clients/Lee's%20Tailors/site/customer.html" },
+      { name: "Make It Fit", lat: 35.1152, lng: -78.9652, addr: "4330 Bragg Blvd", phone: "(910) 555-0117", url: "Clients/Make%20It%20Fit/site/customer.html" },
+      { name: "Mary's Alterations", lat: 35.1012, lng: -78.9352, addr: "3525 Bragg Blvd", phone: "(910) 555-0110", url: "Clients/Mary's%20Alterations/site/customer.html" },
+      { name: "McMurray Fabrics", lat: 35.1212, lng: -78.9752, addr: "4905 Bragg Blvd", phone: "(910) 555-0122", url: "Clients/McMurray%20Fabrics/site/customer.html" },
+      { name: "Minh's Alteration", lat: 35.1182, lng: -78.9722, addr: "4790 Bragg Blvd", phone: "(910) 555-0121", url: "Clients/Minh's%20Alteration%20Shop/site/customer.html" },
+      { name: "Monarch Cleaners", lat: 35.0922, lng: -78.9312, addr: "3295 Bragg Blvd", phone: "(910) 555-0108", url: "Clients/Monarch%20Cleaners/site/customer.html" },
+      { name: "Nan's Cleaners", lat: 35.1122, lng: -78.9612, addr: "4215 Bragg Blvd", phone: "(910) 555-0116", url: "Clients/Nans%20Cleaners/site/customer.html" },
+      { name: "One Stop Sewing", lat: 35.0802, lng: -78.9192, addr: "2835 Bragg Blvd", phone: "(910) 555-0104", url: "Clients/One%20Stop%20Sewing%20&%20Cleaning/site/customer.html" },
+      { name: "Otrebla's Tailoring", lat: 35.0782, lng: -78.9142, addr: "2720 Bragg Blvd", phone: "(910) 555-0103", url: "Clients/Otrebla's%20Tailoring/site/customer.html" },
+      { name: "Pak Cleaners", lat: 35.1082, lng: -78.9512, addr: "3755 Bragg Blvd", phone: "(910) 555-0112", url: "Clients/Pak%20Cleaners/site/customer.html" },
+      { name: "Perfit", lat: 35.1322, lng: -78.9952, addr: "5595 Bragg Blvd", phone: "(910) 555-0128", url: "Clients/Perfit/site/customer.html" },
+      { name: "S & F Sewing", lat: 35.1262, lng: -78.9902, addr: "5135 Bragg Blvd", phone: "(910) 555-0124", url: "Clients/S%20&%20F%20Sewing%20And%20Alterations/site/customer.html" },
+      { name: "Sewing Sensations", lat: 35.1162, lng: -78.9662, addr: "4445 Bragg Blvd", phone: "(910) 555-0118", url: "Clients/Sewing%20Sensations/site/customer.html" },
+      { name: "Spotless Cleaners", lat: 35.1202, lng: -78.9702, addr: "4560 Bragg Blvd", phone: "(910) 555-0119", url: "Clients/Spotless%20Cleaners%20&%20Alterations/site/customer.html" },
+      { name: "STAR Sewing", lat: 35.0742, lng: -78.9172, addr: "2615 Bragg Blvd", phone: "(910) 555-0102", url: "Clients/STAR%20Sewing%20&%20Cleaners/site/customer.html" },
+      { name: "Sue's Sewing", lat: 35.0882, lng: -78.9302, addr: "3180 Bragg Blvd", phone: "(910) 555-0107", url: "Clients/Sue's%20Sewing%20&%20Laundry/site/customer.html" },
+      { name: "T & S Cleaning", lat: 35.1382, lng: -79.0102, addr: "5825 Bragg Blvd", phone: "(910) 555-0130", url: "Clients/T%20&%20S%20Cleaning/site/customer.html" },
+      { name: "T & T Tailor", lat: 35.1122, lng: -78.9502, addr: "4100 Bragg Blvd", phone: "(910) 555-0115", url: "Clients/T%20&%20T%20Tailor%20&%20Alterations/site/customer.html" },
+      { name: "Tailorite", lat: 35.1282, lng: -78.9922, addr: "5250 Bragg Blvd", phone: "(910) 555-0125", url: "Clients/Tailorite/site/customer.html" },
+      { name: "Tina's Alterations", lat: 35.1222, lng: -78.9712, addr: "4675 Bragg Blvd", phone: "(910) 555-0120", url: "Clients/Tina's%20Alterations/site/customer.html" },
+      { name: "AAA Tailor Shop", lat: 35.1352, lng: -79.0052, addr: "5710 Bragg Blvd", phone: "(910) 555-0129", url: "Clients/AAA%20Tailor%20Shop/site/customer.html" },
+      { name: "Choi's Sewing", lat: 35.0952, lng: -78.9382, addr: "3410 Bragg Blvd", phone: "(910) 555-0109", url: "Clients/Choi's%20Sewing%20&%20Cleaning/site/customer.html" },
+      { name: "Connie's Sewing Room", lat: 35.1112, lng: -78.9542, addr: "3985 Bragg Blvd", phone: "(910) 555-0114", url: "Clients/Connie's%20Sewing%20Room/site/customer.html" },
+      { name: "Final Stitch", lat: 35.1302, lng: -78.9982, addr: "5365 Bragg Blvd", phone: "(910) 555-0126", url: "Clients/Final%20Stitch%20Alterations%20&%20Clothing/site/customer.html" },
+      { name: "Jan's Cleaners", lat: 35.0852, lng: -78.9282, addr: "3065 Bragg Blvd", phone: "(910) 555-0106", url: "Clients/Jan's%20Cleaners%20&%20Alterations/site/customer.html" }
+    ];
+
+    const shopIcon = L.divIcon({
+      className: 'shop-marker-icon',
+      html: '🧵',
+      iconSize: [24, 24]
+    });
+
+    SHOPS.forEach(shop => {
+      const popupContent = `
+        <div class="map-card">
+          <div class="map-card-header">${shop.name}</div>
+          <div class="map-card-details">
+            <b>LOC:</b> ${shop.addr}<br>
+            <b>TEL:</b> ${shop.phone}
+          </div>
+          <a href="${shop.url}" target="_blank" class="map-card-btn">INITIALIZE CUSTOMER DEMO &gt;</a>
+        </div>
+      `;
+      L.marker([shop.lat, shop.lng], { icon: shopIcon })
+        .bindPopup(popupContent)
+        .addTo(map);
+    });
+
+    // ── Driver Logic ───────────────────────────────────────────────
+    const DRIVER_DATA = [
+      { id: 'drv-1', name: 'Marcus', vehicle: '🚚', color: 'var(--drv-blue)', lat: 35.092, lng: -78.966 },
+      { id: 'drv-2', name: 'Sarah', vehicle: '🚗', color: 'var(--drv-green)', lat: 35.115, lng: -78.945 },
+      { id: 'drv-3', name: 'James', vehicle: '🚙', color: 'var(--drv-amber)', lat: 35.088, lng: -79.012 },
+      { id: 'drv-4', name: 'Elena', vehicle: '🛵', color: '#ec4899', lat: 35.105, lng: -78.985 },
+      { id: 'drv-5', name: 'Darnell', vehicle: '🚛', color: '#8b5cf6', lat: 35.075, lng: -78.935 }
+    ];
+
+    const driverMarkers = {};
+
+    DRIVER_DATA.forEach(d => {
+      const icon = L.divIcon({
+        className: 'driver-marker-icon',
+        html: d.vehicle,
+        iconSize: [32, 32],
+        iconAnchor: [16, 16]
+      });
+      const marker = L.marker([d.lat, d.lng], { icon: icon }).addTo(map);
+      marker.bindTooltip(d.name, { permanent: true, direction: 'bottom', offset: [0, 16], className: 'drv-tooltip' });
+      driverMarkers[d.id] = { marker, lat: d.lat, lng: d.lng };
+    });
+
+    function simulateMovement() {
+      Object.keys(driverMarkers).forEach(id => {
+        const d = driverMarkers[id];
+        d.lat += (Math.random() - 0.5) * 0.002;
+        d.lng += (Math.random() - 0.5) * 0.002;
+        d.marker.setLatLng([d.lat, d.lng]);
+      });
+    }
+
+    setInterval(simulateMovement, 3000);
+
+    function focusDriver(id) {
+      document.querySelectorAll('.driver-list-item').forEach(el => el.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      
+      const d = driverMarkers[id];
+      if (d) {
+        map.flyTo([d.lat, d.lng], 15);
+        d.marker.openTooltip();
+      }
+    }
+    /* ── Route Optimization (Nearest Neighbor TSP) ──── */
+    function optimizeRoutes() {
+      const btn = event.target;
+      btn.textContent = 'Optimizing...';
+      btn.disabled = true;
+
+      // Collect all pickup locations from queue cards
+      const cards = document.querySelectorAll('.pending-order-card');
+      if (cards.length < 2) {
+        btn.textContent = 'Optimize';
+        btn.disabled = false;
+        showToast('Need at least 2 pickups to optimize');
+        return;
+      }
+
+      const locations = [];
+      cards.forEach(card => {
+        const addr = card.querySelector('.order-addr');
+        const lat = parseFloat(card.dataset.lat || (35.05 + Math.random() * 0.08));
+        const lng = parseFloat(card.dataset.lng || (-78.88 + Math.random() * 0.08));
+        locations.push({
+          el: card,
+          addr: addr ? addr.textContent : '',
+          lat, lng,
+          visited: false
+        });
+      });
+
+      // Nearest-neighbor algorithm starting from shop location
+      const shopLat = 35.0527, shopLng = -78.8784; // Fort Liberty area
+      const route = [];
+      let currentLat = shopLat, currentLng = shopLng;
+
+      for (let i = 0; i < locations.length; i++) {
+        let nearest = null, nearestDist = Infinity;
+        locations.forEach(loc => {
+          if (loc.visited) return;
+          const d = haversine(currentLat, currentLng, loc.lat, loc.lng);
+          if (d < nearestDist) { nearestDist = d; nearest = loc; }
+        });
+        if (nearest) {
+          nearest.visited = true;
+          nearest.distance = nearestDist;
+          route.push(nearest);
+          currentLat = nearest.lat;
+          currentLng = nearest.lng;
+        }
+      }
+
+      // Reorder cards in the DOM
+      const parent = cards[0].parentElement;
+      route.forEach((loc, i) => {
+        const badge = loc.el.querySelector('.pickup-order-badge') || document.createElement('span');
+        badge.className = 'pickup-order-badge';
+        badge.style.cssText = 'position:absolute;top:8px;right:8px;background:var(--accent,#c9a84c);color:#1a1816;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700';
+        badge.textContent = i + 1;
+        loc.el.style.position = 'relative';
+        if (!loc.el.querySelector('.pickup-order-badge')) loc.el.appendChild(badge);
+        parent.appendChild(loc.el);
+      });
+
+      // Draw route on map if Leaflet map exists
+      if (typeof map !== 'undefined' && map) {
+        // Remove old route line
+        if (window._routeLine) map.removeLayer(window._routeLine);
+        const coords = [[shopLat, shopLng], ...route.map(r => [r.lat, r.lng])];
+        window._routeLine = L.polyline(coords, { color: '#c9a84c', weight: 3, dashArray: '8 4' }).addTo(map);
+        map.fitBounds(window._routeLine.getBounds().pad(0.1));
+      }
+
+      // Total distance
+      const totalMiles = route.reduce((sum, r) => sum + (r.distance || 0), 0);
+      btn.textContent = 'Optimized (' + totalMiles.toFixed(1) + ' mi)';
+      setTimeout(() => { btn.textContent = 'Optimize'; btn.disabled = false; }, 5000);
+    }
+
+    function haversine(lat1, lng1, lat2, lng2) {
+      const R = 3959; // Earth radius in miles
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLng = (lng2 - lng1) * Math.PI / 180;
+      const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLng/2) * Math.sin(dLng/2);
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      if (t) { t.textContent = msg; t.classList.add('show'); setTimeout(function(){ t.classList.remove('show'); }, 3000); }
+      else { alert(msg); }
+    }
+  </script>
+</body>
+</html>

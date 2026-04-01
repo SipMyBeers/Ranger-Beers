@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SewReady — My Schedule</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#a855f7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body class="emp-body">
+
+  <!-- Compact Header -->
+  <header class="emp-header">
+    <div class="emp-header-brand">
+      <span class="brand-icon">&#9986;</span>
+      <span class="brand-name">SewReady</span>
+    </div>
+    <div class="emp-header-user">
+      <button class="cust-lang-toggle" id="langToggle" onclick="toggleLanguage()" title="Switch language" style="margin-right:12px">EN | 한</button>
+      <div class="emp-header-info">
+        <div class="emp-header-name" id="empName">—</div>
+        <div class="emp-header-role" id="empRole">—</div>
+      </div>
+      <div class="emp-avatar" id="empAvatar">?</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="emp-main">
+
+    <!-- This Week -->
+    <div class="emp-section">
+      <div class="emp-section-title" data-i18n="emp.thisWeek">This Week</div>
+      <div class="emp-week-strip" id="empWeekStrip"></div>
+    </div>
+
+    <!-- Today's Orders -->
+    <div class="emp-section">
+      <div class="emp-section-title" data-i18n="emp.todayOrders">Today's Orders</div>
+      <div class="emp-orders" id="empTodayOrders"></div>
+    </div>
+
+    <!-- Upcoming Orders -->
+    <div class="emp-section">
+      <div class="emp-section-title" data-i18n="emp.upcomingOrders">Upcoming Orders</div>
+      <div class="emp-orders" id="empUpcomingOrders"></div>
+    </div>
+
+  </div>
+
+  <!-- Request Shift Change Button -->
+  <button class="emp-request-btn" id="empRequestBtn" data-i18n="emp.requestShift">Request Shift Change</button>
+
+  <!-- Request Modal -->
+  <div class="emp-overlay" id="empOverlay">
+    <div class="emp-modal">
+      <button class="emp-modal-close" id="empModalClose">&times;</button>
+      <h3 data-i18n="emp.requestShift">Request Shift Change</h3>
+
+      <div class="emp-form-group">
+        <label for="reqDate" data-i18n="emp.date">Date</label>
+        <input type="date" id="reqDate">
+      </div>
+
+      <div class="emp-form-group">
+        <label for="reqType" data-i18n="emp.reqType">Request Type</label>
+        <select id="reqType">
+          <option value="day-off" data-i18n="emp.dayOff">Day Off</option>
+          <option value="change-hours" data-i18n="emp.changeHours">Change Hours</option>
+          <option value="swap" data-i18n="emp.swapCoworker">Swap With Coworker</option>
+        </select>
+      </div>
+
+      <div class="emp-time-row" id="reqTimeRow" style="display:none;">
+        <div class="emp-form-group">
+          <label for="reqStartTime" data-i18n="emp.startTime">Start Time</label>
+          <input type="time" id="reqStartTime" value="08:00">
+        </div>
+        <div class="emp-form-group">
+          <label for="reqEndTime" data-i18n="emp.endTime">End Time</label>
+          <input type="time" id="reqEndTime" value="18:00">
+        </div>
+      </div>
+
+      <div class="emp-form-group" id="reqSwapGroup" style="display:none;">
+        <label for="reqSwapWith" data-i18n="emp.swapWith">Swap With</label>
+        <select id="reqSwapWith"></select>
+      </div>
+
+      <div class="emp-form-group">
+        <label for="reqReason" data-i18n="emp.reason">Reason</label>
+        <textarea id="reqReason" data-i18n-placeholder="emp.reasonPlaceholder" placeholder="Why are you requesting this change?"></textarea>
+      </div>
+
+      <button class="emp-submit-btn" id="reqSubmit" data-i18n="emp.submitRequest">Submit Request</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="translations.js"></script>
+  <script src="shared-data.js"></script>
+  <script src="data-store.js"></script>
+  <script src="employee.js"></script>
+  <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');</script>
+</body>
+</html>

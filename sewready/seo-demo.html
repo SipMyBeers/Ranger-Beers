@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO &amp; Structured Data — SewReady Demo</title>
+<style>
+:root{--bg:#0f1117;--surface:#1a1b26;--surface2:#24253a;--text:#e1e1e6;--muted:#8b8fa3;--dim:#555;--accent:#0047a0;--green:#2ecc71;--border:rgba(255,255,255,.1);--radius:12px}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:32px 24px}
+h1{text-align:center;font-size:28px;font-weight:800;margin:0 0 4px;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;font-size:14px;color:var(--muted);margin:0 0 32px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1100px;margin:0 auto}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.card-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.card-header .icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.card-header .icon.blue{background:rgba(0,71,160,.15);color:#4a9eff}
+.card-header .icon.green{background:rgba(46,204,113,.15);color:#2ecc71}
+.card-header .icon.orange{background:rgba(255,165,0,.15);color:#ffa500}
+.card-header .icon.purple{background:rgba(155,89,182,.15);color:#b39ddb}
+.card-header h2{font-size:15px;font-weight:700;margin:0}
+.card-header .badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.3px;margin-left:auto}
+.badge.active{background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
+.card-body{padding:18px}
+pre{margin:0;font-size:12px;line-height:1.6;overflow-x:auto;white-space:pre-wrap;word-break:break-all}
+.tag{color:#4a9eff}.attr{color:#ffa500}.val{color:#2ecc71}.comment{color:var(--dim);font-style:italic}.key{color:#b39ddb}.str{color:#2ecc71}.punct{color:var(--muted)}
+
+/* Google Search Preview */
+.search-preview{background:#fff;border-radius:12px;padding:20px 24px;max-width:600px}
+.search-url{font-size:13px;color:#202124;display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.search-url .favicon{width:20px;height:20px;border-radius:50%;background:#0047a0;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:700}
+.search-url .breadcrumb{color:#4d5156;font-size:12px}
+.search-title{font-size:20px;color:#1a0dab;font-weight:400;margin:0 0 4px;line-height:1.3;cursor:pointer;text-decoration:none;display:block}
+.search-title:hover{text-decoration:underline}
+.search-snippet{font-size:14px;color:#4d5156;line-height:1.5;margin:0}
+.search-snippet b{color:#202124}
+.search-rich{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:#4d5156}
+.search-rich .label{color:#70757a}
+.search-rich .value{color:#202124;font-weight:500}
+
+.full-width{grid-column:1/-1}
+.method-list{list-style:none;padding:0;margin:0}
+.method-list li{padding:10px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.5}
+.method-list li:last-child{border-bottom:none}
+.method-list .check{color:#2ecc71;font-size:16px;font-weight:700;flex-shrink:0;margin-top:1px}
+.method-list .method-name{font-weight:700;color:var(--text)}
+.method-list .method-desc{color:var(--muted)}
+
+@media(max-width:768px){.grid{grid-template-columns:1fr}.full-width{grid-column:1}}
+</style>
+</head>
+<body>
+
+<h1>SEO &amp; Structured Data</h1>
+<p class="subtitle">How SewReady optimizes your shop for search engines</p>
+
+<div class="grid">
+
+  <!-- Google Search Preview -->
+  <div class="card full-width">
+    <div class="card-header">
+      <div class="icon green">G</div>
+      <h2>Google Search Preview</h2>
+      <span class="badge active">Live</span>
+    </div>
+    <div class="card-body" style="background:#f8f9fa;display:flex;justify-content:center;padding:28px">
+      <div class="search-preview">
+        <div class="search-url">
+          <span class="favicon">A</span>
+          <span>sewing.ranger-beers.com</span>
+          <span class="breadcrumb"> &rsaquo; shops &rsaquo; aaa-tailor</span>
+        </div>
+        <a class="search-title">AAA Tailor &amp; Alterations — SewReady</a>
+        <p class="search-snippet"><b>Professional uniform alterations</b> &amp; embroidery near Fort Liberty. OCP, AGSU, ASU sewing services. Open Mon–Sat. <b>Call (910) 555-0123</b> or visit us today.</p>
+        <div class="search-rich">
+          <span><span class="label">Hours:</span> <span class="value">Mon–Fri 9 AM–6 PM, Sat 10 AM–3 PM</span></span>
+          <span><span class="label">Phone:</span> <span class="value">(910) 555-0123</span></span>
+          <span><span class="label">Address:</span> <span class="value">2596 S Peak Dr, Fayetteville NC</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JSON-LD Structured Data -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon purple">{}</div>
+      <h2>JSON-LD Schema</h2>
+      <span class="badge active">Injected</span>
+    </div>
+    <div class="card-body">
+      <pre><span class="comment">&lt;!-- Automatically injected into &lt;head&gt; --&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="val">"application/ld+json"</span><span class="tag">&gt;</span>
+<span class="punct">{</span>
+  <span class="key">"@context"</span><span class="punct">:</span> <span class="str">"https://schema.org"</span><span class="punct">,</span>
+  <span class="key">"@type"</span><span class="punct">:</span> <span class="str">"LocalBusiness"</span><span class="punct">,</span>
+  <span class="key">"name"</span><span class="punct">:</span> <span class="str">"AAA Tailor &amp; Alterations"</span><span class="punct">,</span>
+  <span class="key">"description"</span><span class="punct">:</span> <span class="str">"Professional uniform alterations..."</span><span class="punct">,</span>
+  <span class="key">"address"</span><span class="punct">:</span> <span class="str">"2596 S Peak Dr, Fayetteville NC"</span><span class="punct">,</span>
+  <span class="key">"telephone"</span><span class="punct">:</span> <span class="str">"(910) 555-0123"</span><span class="punct">,</span>
+  <span class="key">"email"</span><span class="punct">:</span> <span class="str">"info@aaatailor.com"</span><span class="punct">,</span>
+  <span class="key">"openingHours"</span><span class="punct">:</span> <span class="punct">[</span>
+    <span class="str">"Mo 09:00-18:00"</span><span class="punct">,</span> <span class="str">"Tu 09:00-18:00"</span><span class="punct">,</span>
+    <span class="str">"We 09:00-18:00"</span><span class="punct">,</span> <span class="str">"Th 09:00-18:00"</span><span class="punct">,</span>
+    <span class="str">"Fr 09:00-18:00"</span><span class="punct">,</span> <span class="str">"Sa 10:00-15:00"</span>
+  <span class="punct">]</span>
+<span class="punct">}</span>
+<span class="tag">&lt;/script&gt;</span></pre>
+    </div>
+  </div>
+
+  <!-- Open Graph Tags -->
+  <div class="card">
+    <div class="card-header">
+      <div class="icon blue">OG</div>
+      <h2>Open Graph Tags</h2>
+      <span class="badge active">Injected</span>
+    </div>
+    <div class="card-body">
+      <pre><span class="comment">&lt;!-- Social media sharing optimization --&gt;</span>
+
+<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="val">"og:title"</span>
+      <span class="attr">content</span>=<span class="val">"AAA Tailor — SewReady"</span> <span class="tag">/&gt;</span>
+
+<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="val">"og:description"</span>
+      <span class="attr">content</span>=<span class="val">"Professional uniform
+      alterations &amp; embroidery"</span> <span class="tag">/&gt;</span>
+
+<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="val">"og:type"</span>
+      <span class="attr">content</span>=<span class="val">"business.business"</span> <span class="tag">/&gt;</span>
+
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"description"</span>
+      <span class="attr">content</span>=<span class="val">"Professional uniform
+      alterations &amp; embroidery"</span> <span class="tag">/&gt;</span></pre>
+    </div>
+  </div>
+
+  <!-- Methods Summary -->
+  <div class="card full-width">
+    <div class="card-header">
+      <div class="icon orange">&#9733;</div>
+      <h2>What SewReady Sets Up For You</h2>
+    </div>
+    <div class="card-body">
+      <ul class="method-list">
+        <li>
+          <span class="check">&#10003;</span>
+          <div><span class="method-name">JSON-LD LocalBusiness Schema</span><br><span class="method-desc">Tells Google your shop name, address, phone, email, and hours in a structured format. Powers the rich snippet panel in search results.</span></div>
+        </li>
+        <li>
+          <span class="check">&#10003;</span>
+          <div><span class="method-name">Open Graph Meta Tags</span><br><span class="method-desc">When someone shares your link on Facebook, iMessage, or Slack, it shows your shop name and description instead of a blank preview.</span></div>
+        </li>
+        <li>
+          <span class="check">&#10003;</span>
+          <div><span class="method-name">Meta Description</span><br><span class="method-desc">Controls the snippet text shown below your link in Google search results. Auto-generated from your shop tagline.</span></div>
+        </li>
+        <li>
+          <span class="check">&#10003;</span>
+          <div><span class="method-name">Opening Hours in Search</span><br><span class="method-desc">Your business hours appear directly in Google results so customers know when you're open before they click.</span></div>
+        </li>
+        <li>
+          <span class="check">&#10003;</span>
+          <div><span class="method-name">Semantic HTML Structure</span><br><span class="method-desc">Proper heading hierarchy, ARIA labels, and landmark regions help search engines understand your page content.</span></div>
+        </li>
+        <li>
+          <span class="check">&#10003;</span>
+          <div><span class="method-name">Mobile-First Indexing Ready</span><br><span class="method-desc">Google indexes the mobile version of sites first. SewReady is fully responsive so your ranking isn't penalized.</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

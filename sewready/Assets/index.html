@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sewing Ops | Asset Generator</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      background: #0a0a0a;
+      color: #00ff41;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { text-align: center; font-size: 1.5rem; margin-bottom: 8px; letter-spacing: 3px; }
+    .subtitle { text-align: center; color: #666; margin-bottom: 20px; font-size: 0.8rem; }
+    
+    .shop-section {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .shop-name { font-size: 1.1rem; color: #8b5cf6; font-weight: bold; margin-bottom: 12px; }
+    
+    .prompt-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+    .prompt-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: #555;
+      width: 100px;
+      flex-shrink: 0;
+      padding-top: 8px;
+    }
+    .prompt-box {
+      flex: 1;
+      background: #0d0d0d;
+      border: 1px solid #222;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 0.7rem;
+      color: #999;
+      line-height: 1.4;
+      position: relative;
+      word-break: break-word;
+    }
+    .copy-btn {
+      background: #222;
+      border: none;
+      color: #666;
+      font-size: 0.6rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .copy-btn:hover { background: #333; color: #00ff41; }
+    
+    .colors { display: flex; gap: 6px; margin-bottom: 12px; }
+    .color-dot { width: 16px; height: 16px; border-radius: 50%; }
+    
+    .search-box {
+      width: 100%;
+      background: #111;
+      border: 1px solid #333;
+      color: #00ff41;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    .search-box:focus { outline: none; border-color: #00ff41; }
+    
+    .toolbar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .toolbar a, .toolbar button {
+      background: #111;
+      border: 1px solid #333;
+      color: #888;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.75rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .toolbar a:hover, .toolbar button:hover { border-color: #00ff41; color: #00ff41; }
+    
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>🎬 ASSET GENERATOR</h1>
+  <p class="subtitle">Copy prompts for Midjourney, HeyGen, Stock Videos | 32 Shops</p>
+
+  <input type="text" class="search-box" id="search" placeholder="Search shops..." oninput="filter()">
+  
+  <div class="toolbar">
+    <button onclick="copyAllMJ()">Copy All Midjourney</button>
+    <button onclick="copyAllHeygen()">Copy All HeyGen</button>
+    <a href="https://midjourney.com/imagine" target="_blank">Midjourney →</a>
+    <a href="https://heygen.com" target="_blank">HeyGen →</a>
+    <a href="https://pixabay.com/videos/" target="_blank">Pixabay →</a>
+  </div>
+
+  <div id="shops"></div>
+</div>
+
+<script>
+var SHOPS = [
+  {
+    name: "AAA Tailor Shop",
+    colors: ["#8b5cf6", "#ffd700", "#1a1a1a"],
+    mj_hero: `Modern website hero image for AAA Tailor Shop, Quality tailoring services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for AAA Tailor Shop, premium, professional, reliable style, #8b5cf6 and #ffd700, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for AAA Tailor Shop, Quality tailoring services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to AAA Tailor Shop, your premier destination for Quality tailoring services.  What sets us apart: Top-rated local tailor  Visit us today and experience the quality that has made us a local favorite.  AAA Tailor Shop - Quality Service, Every Time.`
+  },
+  {
+    name: "Choi's Sewing & Cleaning",
+    colors: ["#8b5cf6", "#ff5722", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Choi's Sewing & Cleaning, Dry cleaning, sewing, alterations, custom sewing, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Choi's Sewing & Cleaning, friendly, affordable, quality style, #8b5cf6 and #ff5722, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Choi's Sewing & Cleaning, Dry cleaning, sewing, alterations, custom sewing, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Choi's Sewing & Cleaning, your premier destination for Dry cleaning, sewing, alterations, custom sewing.  What sets us apart: Praised as affordable and reliable on neighborhood forums  Visit us today and experience the quality that has made us a local favorite.  Choi's Sewing & Cleaning - Quality Service, Every Time.`
+  },
+  {
+    name: "Connie's Sewing Room",
+    colors: ["#8b5cf6", "#f48fb1", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Connie's Sewing Room, Personalized sewing services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Connie's Sewing Room, personal, creative, warm style, #8b5cf6 and #f48fb1, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Connie's Sewing Room, Personalized sewing services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Connie's Sewing Room, your premier destination for Personalized sewing services.  What sets us apart: Personal touch with sewing projects  Visit us today and experience the quality that has made us a local favorite.  Connie's Sewing Room - Quality Service, Every Time.`
+  },
+  {
+    name: "Final Stitch: Alterations & Clothing",
+    colors: ["#8b5cf6", "#ff5722", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Final Stitch: Alterations & Clothing, Final touch alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Final Stitch: Alterations & Clothing, detail-oriented, precise, quality style, #8b5cf6 and #ff5722, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Final Stitch: Alterations & Clothing, Final touch alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Final Stitch: Alterations & Clothing, your premier destination for Final touch alterations.  What sets us apart: Focus on perfect finishing  Visit us today and experience the quality that has made us a local favorite.  Final Stitch: Alterations & Clothing - Quality Service, Every Time.`
+  },
+  {
+    name: "Jan's Cleaners & Alterations",
+    colors: ["#8b5cf6", "#009688", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Jan's Cleaners & Alterations, Full-service cleaners and alterations near Fort Bragg, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Jan's Cleaners & Alterations, personal, quick, meticulous style, #8b5cf6 and #009688, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Jan's Cleaners & Alterations, Full-service cleaners and alterations near Fort Bragg, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Jan's Cleaners & Alterations, your premier destination for Full-service cleaners and alterations near Fort Bragg.  What sets us apart: Personalized approach, quick alterations  Visit us today and experience the quality that has made us a local favorite.  Jan's Cleaners & Alterations - Quality Service, Every Time.`
+  },
+  {
+    name: "Jin Sewing",
+    colors: ["#8b5cf6", "#1a1a1a", "#f0f0f0"],
+    mj_hero: `Modern website hero image for Jin Sewing, Professional sewing, precise alterations, military uniform services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Jin Sewing, family, trustworthy, precise style, #8b5cf6 and #1a1a1a, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Jin Sewing, Professional sewing, precise alterations, military uniform services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Jin Sewing, your premier destination for Professional sewing, precise alterations, military uniform services.  What sets us apart: Husband is retired Army AND ordained Deacon at his church  Visit us today and experience the quality that has made us a local favorite.  Jin Sewing - Quality Service, Every Time.`
+  },
+  {
+    name: "Kim's #1 Sewing & Dry Cleaning",
+    colors: ["#8b5cf6", "#ffd700", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Kim's #1 Sewing & Dry Cleaning, Fort Bragg's #1 sewing shop - uniform setup, shaped berets, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Kim's #1 Sewing & Dry Cleaning, established, premium, military-focused style, #8b5cf6 and #ffd700, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Kim's #1 Sewing & Dry Cleaning, Fort Bragg's #1 sewing shop - uniform setup, shaped berets, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Kim's #1 Sewing & Dry Cleaning, your premier destination for Fort Bragg's #1 sewing shop - uniform setup, shaped berets.  What sets us apart: 58+ years, 360+ 5-star reviews, 'Home of Inspection'  Visit us today and experience the quality that has made us a local favorite.  Kim's #1 Sewing & Dry Cleaning - Quality Service, Every Time.`
+  },
+  {
+    name: "Kim's Speedy Sewing Shop",
+    colors: ["#8b5cf6", "#00ff41", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Kim's Speedy Sewing Shop, Speedy alterations, wedding apparel, leather work, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Kim's Speedy Sewing Shop, fast, efficient, reliable style, #8b5cf6 and #00ff41, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Kim's Speedy Sewing Shop, Speedy alterations, wedding apparel, leather work, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Kim's Speedy Sewing Shop, your premier destination for Speedy alterations, wedding apparel, leather work.  What sets us apart: Fast turnaround - 'lived up to their name, speedy!'  Visit us today and experience the quality that has made us a local favorite.  Kim's Speedy Sewing Shop - Quality Service, Every Time.`
+  },
+  {
+    name: "Lee's Alterations & Sewing",
+    colors: ["#8b5cf6", "#ff69b4", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Lee's Alterations & Sewing, Alterations, sewing, dry cleaning - same day service, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Lee's Alterations & Sewing, family, elegant, detail-oriented style, #8b5cf6 and #ff69b4, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Lee's Alterations & Sewing, Alterations, sewing, dry cleaning - same day service, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Lee's Alterations & Sewing, your premier destination for Alterations, sewing, dry cleaning - same day service.  What sets us apart: Family-owned, specializes in wedding dresses  Visit us today and experience the quality that has made us a local favorite.  Lee's Alterations & Sewing - Quality Service, Every Time.`
+  },
+  {
+    name: "Lee's Tailors",
+    colors: ["#8b5cf6", "#4a90d9", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Lee's Tailors, Professional tailoring and alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Lee's Tailors, professional, classic, skilled style, #8b5cf6 and #4a90d9, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Lee's Tailors, Professional tailoring and alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Lee's Tailors, your premier destination for Professional tailoring and alterations.  What sets us apart: Experienced seamstress, quality craftsmanship  Visit us today and experience the quality that has made us a local favorite.  Lee's Tailors - Quality Service, Every Time.`
+  },
+  {
+    name: "Lone Wolf Tactical, Inc.",
+    colors: ["#ff6f00", "#1a1a1a", "#333"],
+    mj_hero: `Modern website hero image for Lone Wolf Tactical, Inc., Tactical gear, military surplus, outdoor equipment, warm inviting atmosphere, professional lighting, #ff6f00 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Lone Wolf Tactical, Inc., adventure, tactical, bold style, #ff6f00 and #1a1a1a, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Lone Wolf Tactical, Inc., Tactical gear, military surplus, outdoor equipment, slow motion sewing machine needle, warm golden light, #ff6f00 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Lone Wolf Tactical, Inc., your premier destination for Tactical gear, military surplus, outdoor equipment.  What sets us apart: Veteran owned - 'Gear Up for Adventure'  Visit us today and experience the quality that has made us a local favorite.  Lone Wolf Tactical, Inc. - Quality Service, Every Time.`
+  },
+  {
+    name: "Make It Fit",
+    colors: ["#8b5cf6", "#ff4081", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Make It Fit, Custom alterations and fittings, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Make It Fit, custom, personal, precise style, #8b5cf6 and #ff4081, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Make It Fit, Custom alterations and fittings, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Make It Fit, your premier destination for Custom alterations and fittings.  What sets us apart: Focus on custom fit solutions  Visit us today and experience the quality that has made us a local favorite.  Make It Fit - Quality Service, Every Time.`
+  },
+  {
+    name: "Mary's Alterations",
+    colors: ["#8b5cf6", "#e91e63", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Mary's Alterations, Formalwear alterations, bridesmaid dresses, prom dresses, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Mary's Alterations, elegant, caring, detail-focused style, #8b5cf6 and #e91e63, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Mary's Alterations, Formalwear alterations, bridesmaid dresses, prom dresses, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Mary's Alterations, your premier destination for Formalwear alterations, bridesmaid dresses, prom dresses.  What sets us apart: Specialist in military dress uniforms - 'sweet lady'  Visit us today and experience the quality that has made us a local favorite.  Mary's Alterations - Quality Service, Every Time.`
+  },
+  {
+    name: "McMurray Fabrics",
+    colors: ["#8b5cf6", "#8b4513", "#1a1a1a"],
+    mj_hero: `Modern website hero image for McMurray Fabrics, Textile manufacturer - nets, webbing, automotive textiles, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for McMurray Fabrics, industrial, established, B2B style, #8b5cf6 and #8b4513, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for McMurray Fabrics, Textile manufacturer - nets, webbing, automotive textiles, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to McMurray Fabrics, your premier destination for Textile manufacturer - nets, webbing, automotive textiles.  What sets us apart: Established 1968 - 58+ years in textile manufacturing  Visit us today and experience the quality that has made us a local favorite.  McMurray Fabrics - Quality Service, Every Time.`
+  },
+  {
+    name: "Minh's Alteration Shop",
+    colors: ["#8b5cf6", "#00bcd4", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Minh's Alteration Shop, Expert alterations and tailoring, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Minh's Alteration Shop, precise, personal, skilled style, #8b5cf6 and #00bcd4, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Minh's Alteration Shop, Expert alterations and tailoring, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Minh's Alteration Shop, your premier destination for Expert alterations and tailoring.  What sets us apart: Personalized tailoring approach  Visit us today and experience the quality that has made us a local favorite.  Minh's Alteration Shop - Quality Service, Every Time.`
+  },
+  {
+    name: "Monarch Cleaners",
+    colors: ["#8b5cf6", "#9c27b0", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Monarch Cleaners, Military uniform care, wedding dresses, leather, fur, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Monarch Cleaners, established, premium, comprehensive style, #8b5cf6 and #9c27b0, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Monarch Cleaners, Military uniform care, wedding dresses, leather, fur, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Monarch Cleaners, your premier destination for Military uniform care, wedding dresses, leather, fur.  What sets us apart: 3 locations, 34+ years, 4.8/5 rating  Visit us today and experience the quality that has made us a local favorite.  Monarch Cleaners - Quality Service, Every Time.`
+  },
+  {
+    name: "Nan's Cleaners",
+    colors: ["#8b5cf6", "#00bcd4", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Nan's Cleaners, Army uniform dry cleaning & services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Nan's Cleaners, reliable, military-focused style, #8b5cf6 and #00bcd4, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Nan's Cleaners, Army uniform dry cleaning & services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Nan's Cleaners, your premier destination for Army uniform dry cleaning & services.  What sets us apart: Military uniform specialists  Visit us today and experience the quality that has made us a local favorite.  Nan's Cleaners - Quality Service, Every Time.`
+  },
+  {
+    name: "North Carolina Military Supplies",
+    colors: ["#1b5e20", "#1a1a1a", "#c5b358"],
+    mj_hero: `Modern website hero image for North Carolina Military Supplies, Military supplies, wholesale durable goods, warm inviting atmosphere, professional lighting, #1b5e20 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for North Carolina Military Supplies, professional, elite, military-grade style, #1b5e20 and #1a1a1a, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for North Carolina Military Supplies, Military supplies, wholesale durable goods, slow motion sewing machine needle, warm golden light, #1b5e20 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to North Carolina Military Supplies, your premier destination for Military supplies, wholesale durable goods.  What sets us apart: SF Veteran owned - Jeffrey Cormier, retired US Army Special Forces  Visit us today and experience the quality that has made us a local favorite.  North Carolina Military Supplies - Quality Service, Every Time.`
+  },
+  {
+    name: "One Stop Sewing & Cleaning",
+    colors: ["#8b5cf6", "#4caf50", "#1a1a1a"],
+    mj_hero: `Modern website hero image for One Stop Sewing & Cleaning, Fort Bragg soldiers - uniform setup, boot shining, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for One Stop Sewing & Cleaning, community, dedicated, full-service style, #8b5cf6 and #4caf50, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for One Stop Sewing & Cleaning, Fort Bragg soldiers - uniform setup, boot shining, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to One Stop Sewing & Cleaning, your premier destination for Fort Bragg soldiers - uniform setup, boot shining.  What sets us apart: Since 2008, made cloth masks during COVID  Visit us today and experience the quality that has made us a local favorite.  One Stop Sewing & Cleaning - Quality Service, Every Time.`
+  },
+  {
+    name: "Otrebla's Tailoring",
+    colors: ["#8b5cf6", "#795548", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Otrebla's Tailoring, Full-service custom tailoring & haberdashery, tuxedo rentals, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Otrebla's Tailoring, luxury, craftsmanship, bespoke style, #8b5cf6 and #795548, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Otrebla's Tailoring, Full-service custom tailoring & haberdashery, tuxedo rentals, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Otrebla's Tailoring, your premier destination for Full-service custom tailoring & haberdashery, tuxedo rentals.  What sets us apart: One of the last true bench tailors - high-end craftsmanship  Visit us today and experience the quality that has made us a local favorite.  Otrebla's Tailoring - Quality Service, Every Time.`
+  },
+  {
+    name: "Pak Cleaners",
+    colors: ["#8b5cf6", "#607d8b", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Pak Cleaners, Military and civilian tailoring, alterations, dry cleaning, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Pak Cleaners, modern, convenient style, #8b5cf6 and #607d8b, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Pak Cleaners, Military and civilian tailoring, alterations, dry cleaning, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Pak Cleaners, your premier destination for Military and civilian tailoring, alterations, dry cleaning.  What sets us apart: WiFi available for waiting customers  Visit us today and experience the quality that has made us a local favorite.  Pak Cleaners - Quality Service, Every Time.`
+  },
+  {
+    name: "Perfit",
+    colors: ["#8b5cf6", "#e91e63", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Perfit, Perfect fit alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Perfit, precise, quality, focused style, #8b5cf6 and #e91e63, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Perfit, Perfect fit alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Perfit, your premier destination for Perfect fit alterations.  What sets us apart: Focus on precision fitting  Visit us today and experience the quality that has made us a local favorite.  Perfit - Quality Service, Every Time.`
+  },
+  {
+    name: "S & F Sewing And Alterations",
+    colors: ["#8b5cf6", "#2196f3", "#1a1a1a"],
+    mj_hero: `Modern website hero image for S & F Sewing And Alterations, Professional sewing services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for S & F Sewing And Alterations, family, professional, reliable style, #8b5cf6 and #2196f3, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for S & F Sewing And Alterations, Professional sewing services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to S & F Sewing And Alterations, your premier destination for Professional sewing services.  What sets us apart: Local family-run business  Visit us today and experience the quality that has made us a local favorite.  S & F Sewing And Alterations - Quality Service, Every Time.`
+  },
+  {
+    name: "S.A.S. Military Surplus",
+    colors: ["#b71c1c", "#1a1a1a", "#c5b358"],
+    mj_hero: `Modern website hero image for S.A.S. Military Surplus, Military surplus buy/sell/trade - Cash for military gear, warm inviting atmosphere, professional lighting, #b71c1c accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for S.A.S. Military Surplus, tactical, authentic, veteran-owned style, #b71c1c and #1a1a1a, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for S.A.S. Military Surplus, Military surplus buy/sell/trade - Cash for military gear, slow motion sewing machine needle, warm golden light, #b71c1c color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to S.A.S. Military Surplus, your premier destination for Military surplus buy/sell/trade - Cash for military gear.  What sets us apart: High-traffic Yadkin Rd location - prime military corridor  Visit us today and experience the quality that has made us a local favorite.  S.A.S. Military Surplus - Quality Service, Every Time.`
+  },
+  {
+    name: "STAR Sewing & Cleaners",
+    colors: ["#8b5cf6", "#ff9800", "#1a1a1a"],
+    mj_hero: `Modern website hero image for STAR Sewing & Cleaners, Uniform tailoring, military supply, express service, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for STAR Sewing & Cleaners, star-quality, reliable, comprehensive style, #8b5cf6 and #ff9800, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for STAR Sewing & Cleaners, Uniform tailoring, military supply, express service, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to STAR Sewing & Cleaners, your premier destination for Uniform tailoring, military supply, express service.  What sets us apart: 20+ years, complete military uniform services  Visit us today and experience the quality that has made us a local favorite.  STAR Sewing & Cleaners - Quality Service, Every Time.`
+  },
+  {
+    name: "Sewing Sensations",
+    colors: ["#8b5cf6", "#ff4081", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Sewing Sensations, Quality sewing and alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Sewing Sensations, creative, community, quality style, #8b5cf6 and #ff4081, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Sewing Sensations, Quality sewing and alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Sewing Sensations, your premier destination for Quality sewing and alterations.  What sets us apart: Community sewing shop with personal service  Visit us today and experience the quality that has made us a local favorite.  Sewing Sensations - Quality Service, Every Time.`
+  },
+  {
+    name: "Spotless Cleaners & Alterations",
+    colors: ["#8b5cf6", "#4caf50", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Spotless Cleaners & Alterations, Cleaning and alteration specialists, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Spotless Cleaners & Alterations, clean, professional, thorough style, #8b5cf6 and #4caf50, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Spotless Cleaners & Alterations, Cleaning and alteration specialists, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Spotless Cleaners & Alterations, your premier destination for Cleaning and alteration specialists.  What sets us apart: Combined cleaning and alterations service  Visit us today and experience the quality that has made us a local favorite.  Spotless Cleaners & Alterations - Quality Service, Every Time.`
+  },
+  {
+    name: "Sue's Sewing & Laundry",
+    colors: ["#8b5cf6", "#e91e63", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Sue's Sewing & Laundry, One-stop: alterations, sewing, boot repair, dry cleaning, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Sue's Sewing & Laundry, family, fast, veteran-friendly style, #8b5cf6 and #e91e63, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Sue's Sewing & Laundry, One-stop: alterations, sewing, boot repair, dry cleaning, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Sue's Sewing & Laundry, your premier destination for One-stop: alterations, sewing, boot repair, dry cleaning.  What sets us apart: Since 1998, military discounts, 24-hour turnaround  Visit us today and experience the quality that has made us a local favorite.  Sue's Sewing & Laundry - Quality Service, Every Time.`
+  },
+  {
+    name: "T & S Cleaning",
+    colors: ["#8b5cf6", "#00acc1", "#1a1a1a"],
+    mj_hero: `Modern website hero image for T & S Cleaning, Cleaning and alteration services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for T & S Cleaning, local, convenient, thorough style, #8b5cf6 and #00acc1, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for T & S Cleaning, Cleaning and alteration services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to T & S Cleaning, your premier destination for Cleaning and alteration services.  What sets us apart: Located near Benjamin Martin School, embroidery services  Visit us today and experience the quality that has made us a local favorite.  T & S Cleaning - Quality Service, Every Time.`
+  },
+  {
+    name: "T & T Tailor & Alterations",
+    colors: ["#8b5cf6", "#5c6bc0", "#1a1a1a"],
+    mj_hero: `Modern website hero image for T & T Tailor & Alterations, Professional tailoring and alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for T & T Tailor & Alterations, professional, reliable, skilled style, #8b5cf6 and #5c6bc0, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for T & T Tailor & Alterations, Professional tailoring and alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to T & T Tailor & Alterations, your premier destination for Professional tailoring and alterations.  What sets us apart: Combined tailoring service  Visit us today and experience the quality that has made us a local favorite.  T & T Tailor & Alterations - Quality Service, Every Time.`
+  },
+  {
+    name: "Tailorite",
+    colors: ["#8b5cf6", "#673ab7", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Tailorite, Professional tailoring, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Tailorite, classic, professional, skilled style, #8b5cf6 and #673ab7, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Tailorite, Professional tailoring, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Tailorite, your premier destination for Professional tailoring.  What sets us apart: Quality tailoring services  Visit us today and experience the quality that has made us a local favorite.  Tailorite - Quality Service, Every Time.`
+  },
+  {
+    name: "Tina's Alterations",
+    colors: ["#8b5cf6", "#ff9800", "#1a1a1a"],
+    mj_hero: `Modern website hero image for Tina's Alterations, Expert alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250`,
+    mj_logo: `Minimalist logo for Tina's Alterations, personal, caring, skilled style, #8b5cf6 and #ff9800, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250`,
+    video: `Cinematic intro video for Tina's Alterations, Expert alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial`,
+    heygen: `Welcome to Tina's Alterations, your premier destination for Expert alterations.  What sets us apart: Personalized service approach  Visit us today and experience the quality that has made us a local favorite.  Tina's Alterations - Quality Service, Every Time.`
+  },
+];
+
+function render() {
+  document.getElementById('shops').innerHTML = SHOPS.map((s, i) => `
+    <div class="shop-section" data-name="${s.name.toLowerCase()}">
+      <div class="shop-name">${s.name}</div>
+      <div class="colors">${s.colors.map(c => `<div class="color-dot" style="background:${c}"></div>`).join('')}</div>
+      
+      <div class="prompt-row">
+        <div class="prompt-label">MIDJOURNEY</div>
+        <div class="prompt-box">${s.mj_hero}</div>
+        <button class="copy-btn" onclick="copy(this, s.mj_hero)">Copy</button>
+      </div>
+      
+      <div class="prompt-row">
+        <div class="prompt-label">LOGO</div>
+        <div class="prompt-box">${s.mj_logo}</div>
+        <button class="copy-btn" onclick="copy(this, s.mj_logo)">Copy</button>
+      </div>
+      
+      <div class="prompt-row">
+        <div class="prompt-label">VIDEO</div>
+        <div class="prompt-box">${s.video}</div>
+        <button class="copy-btn" onclick="copy(this, s.video)">Copy</button>
+      </div>
+      
+      <div class="prompt-row">
+        <div class="prompt-label">HEYGEN</div>
+        <div class="prompt-box">${s.heygen}</div>
+        <button class="copy-btn" onclick="copy(this, s.heygen)">Copy</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function copy(btn, text) {
+  navigator.clipboard.writeText(text);
+  btn.textContent = '✓ Copied';
+  setTimeout(() => btn.textContent = 'Copy', 1500);
+}
+
+function copyAllMJ() {
+  var all = SHOPS.map(s => s.mj_hero).join('\n\n');
+  navigator.clipboard.writeText(all);
+  alert('All Midjourney prompts copied!');
+}
+
+function copyAllHeygen() {
+  var all = SHOPS.map(s => s.heygen).join('\n\n---\n');
+  navigator.clipboard.writeText(all);
+  alert('All HeyGen scripts copied!');
+}
+
+function filter() {
+  var q = document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.shop-section').forEach(el => {
+    el.classList.toggle('hidden', !el.dataset.name.includes(q));
+  });
+}
+
+render();
+</script>
+</body>
+</html>

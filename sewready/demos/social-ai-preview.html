@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media AI Preview</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0e0c0a;color:#f5f0eb;display:flex;align-items:center;justify-content:center;min-height:100vh;overflow:hidden}
+
+.scene{position:relative;width:100%;max-width:420px;margin:0 auto;padding:20px}
+
+/* Phone Mockup */
+.phone{width:280px;margin:0 auto;background:#1a1714;border-radius:28px;border:2px solid rgba(255,255,255,.08);padding:12px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.phone-notch{width:80px;height:6px;background:#0e0c0a;border-radius:3px;margin:0 auto 12px}
+.phone-screen{background:#0e0c0a;border-radius:16px;overflow:hidden;min-height:320px;position:relative}
+
+/* Profile Header */
+.profile-header{padding:16px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06)}
+.avatar{width:56px;height:56px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.avatar-before{background:rgba(255,255,255,.06);border:2px dashed rgba(255,255,255,.1)}
+.avatar-after{background:linear-gradient(135deg,#c9a84c,#e8d48b);border:2px solid #c9a84c;box-shadow:0 0 20px rgba(201,168,76,.3)}
+.shop-name{font-size:14px;font-weight:700;margin-bottom:4px}
+.shop-bio{font-size:10px;color:rgba(245,240,235,.4);margin-bottom:12px}
+
+/* Stats Row */
+.stats-row{display:flex;justify-content:center;gap:24px;margin-bottom:12px}
+.stat{text-align:center}
+.stat-num{font-size:18px;font-weight:800;font-variant-numeric:tabular-nums}
+.stat-label{font-size:9px;color:rgba(245,240,235,.4);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+/* Before State */
+.before-state .stat-num{color:#e74c3c}
+.last-post{font-size:11px;color:#e74c3c;font-weight:700;margin-top:8px;padding:6px 12px;background:rgba(231,76,60,.1);border-radius:6px;display:inline-block}
+.empty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding:12px}
+.empty-cell{aspect-ratio:1;background:rgba(255,255,255,.02);border-radius:4px;border:1px dashed rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:16px;color:rgba(255,255,255,.06)}
+.before-state{filter:saturate(.3) brightness(.8)}
+
+/* After State */
+.after-state{display:none}
+.engagement-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(0,255,65,.1);color:#00ff41;font-size:10px;font-weight:700;padding:4px 10px;border-radius:10px;margin-top:4px}
+.engagement-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#00ff41;animation:pulse 1.5s infinite}
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding:12px}
+.post-thumb{aspect-ratio:1;border-radius:4px;position:relative;overflow:hidden;background-size:cover;background-position:center}
+.post-thumb-1{background:linear-gradient(135deg,#2c1810,#4a2c1a)}
+.post-thumb-2{background:linear-gradient(135deg,#1a2c10,#2a4a1a)}
+.post-thumb-3{background:linear-gradient(135deg,#101a2c,#1a2a4a)}
+.post-thumb .icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:22px}
+.post-likes{position:absolute;bottom:4px;left:4px;font-size:8px;color:#fff;background:rgba(0,0,0,.6);padding:2px 6px;border-radius:4px;font-weight:600;opacity:0;transform:translateY(4px);animation:likeAppear .4s ease forwards}
+.post-thumb:nth-child(1) .post-likes{animation-delay:.6s}
+.post-thumb:nth-child(2) .post-likes{animation-delay:.9s}
+.post-thumb:nth-child(3) .post-likes{animation-delay:1.2s}
+
+@keyframes likeAppear{to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* Activity Ticker */
+.ticker-wrap{margin-top:16px;overflow:hidden;max-width:280px;margin-left:auto;margin-right:auto}
+.ticker{display:flex;flex-direction:column;gap:6px}
+.tick-item{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,255,255,.04);border-radius:8px;font-size:11px;opacity:0;transform:translateX(-20px);border:1px solid rgba(255,255,255,.04)}
+.tick-item.show{opacity:1;transform:translateX(0);transition:all .5s ease}
+.tick-icon{font-size:14px;flex-shrink:0}
+.tick-text{color:rgba(245,240,235,.7);flex:1}
+.tick-time{font-size:9px;color:rgba(245,240,235,.3);white-space:nowrap}
+
+/* Generate Button */
+.gen-btn{display:block;width:240px;margin:16px auto 0;padding:10px;background:linear-gradient(135deg,#c9a84c,#b8943f);color:#0e0c0a;border:none;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.5px;transition:all .2s;opacity:0;transform:translateY(8px)}
+.gen-btn.show{opacity:1;transform:translateY(0);transition:all .5s ease .3s}
+.gen-btn:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(201,168,76,.3)}
+.gen-btn:active{transform:scale(.97)}
+
+/* Typewriter Output */
+.typewriter-out{max-width:280px;margin:12px auto 0;padding:12px;background:rgba(255,255,255,.04);border-radius:10px;border:1px solid rgba(201,168,76,.15);font-size:11px;color:rgba(245,240,235,.7);line-height:1.5;min-height:0;overflow:hidden;display:none}
+.typewriter-out.visible{display:block}
+.tw-cursor{display:inline-block;width:2px;height:12px;background:#c9a84c;animation:blink .6s step-end infinite;vertical-align:middle;margin-left:2px}
+@keyframes blink{50%{opacity:0}}
+
+/* AI Activated Overlay */
+.ai-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .3s}
+.ai-overlay.show{opacity:1}
+.ai-overlay-bg{position:absolute;inset:0;background:radial-gradient(circle,rgba(201,168,76,.15),transparent 70%)}
+.ai-text{font-size:28px;font-weight:900;color:#c9a84c;text-transform:uppercase;letter-spacing:6px;text-shadow:0 0 40px rgba(201,168,76,.5),0 0 80px rgba(201,168,76,.2);position:relative;z-index:1}
+
+/* Sparkles */
+.sparkle{position:absolute;width:4px;height:4px;background:#c9a84c;border-radius:50%;pointer-events:none;opacity:0}
+.sparkle.go{animation:sparkleAnim .8s ease-out forwards}
+@keyframes sparkleAnim{
+0%{opacity:1;transform:scale(0) translate(0,0)}
+50%{opacity:1;transform:scale(1.5)}
+100%{opacity:0;transform:scale(0) translate(var(--tx),var(--ty))}
+}
+
+/* Responsive */
+@media(max-width:380px){
+.phone{width:240px}
+.scene{padding:10px}
+.ai-text{font-size:20px;letter-spacing:3px}
+.ticker-wrap,.gen-btn,.typewriter-out{max-width:240px}
+}
+@media(min-width:600px){
+.phone{width:320px}
+.ticker-wrap,.gen-btn,.typewriter-out{max-width:320px}
+}
+</style>
+</head>
+<body>
+
+<div class="scene">
+  <!-- AI Activated Overlay -->
+  <div class="ai-overlay" id="aiOverlay">
+    <div class="ai-overlay-bg"></div>
+    <div class="ai-text">AI Activated</div>
+  </div>
+
+  <!-- BEFORE STATE -->
+  <div id="beforeState">
+    <div class="phone before-state">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="profile-header">
+          <div class="avatar avatar-before">🪡</div>
+          <div class="shop-name">AAA Tailor Shop</div>
+          <div class="shop-bio">Military & Civilian Alterations</div>
+          <div class="stats-row">
+            <div class="stat"><div class="stat-num">0</div><div class="stat-label">Posts</div></div>
+            <div class="stat"><div class="stat-num">12</div><div class="stat-label">Followers</div></div>
+            <div class="stat"><div class="stat-num">0</div><div class="stat-label">Following</div></div>
+          </div>
+          <div class="last-post">Last post: Never</div>
+        </div>
+        <div class="empty-grid">
+          <div class="empty-cell">+</div>
+          <div class="empty-cell">+</div>
+          <div class="empty-cell">+</div>
+          <div class="empty-cell">+</div>
+          <div class="empty-cell">+</div>
+          <div class="empty-cell">+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AFTER STATE -->
+  <div id="afterState" class="after-state">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="profile-header">
+          <div class="avatar avatar-after">🪡</div>
+          <div class="shop-name">AAA Tailor Shop</div>
+          <div class="shop-bio">Military & Civilian Alterations</div>
+          <div class="stats-row">
+            <div class="stat"><div class="stat-num" id="postsCount">0</div><div class="stat-label">Posts</div></div>
+            <div class="stat"><div class="stat-num" id="followersCount">12</div><div class="stat-label">Followers</div></div>
+            <div class="stat"><div class="stat-num" id="followingCount">0</div><div class="stat-label">Following</div></div>
+          </div>
+          <div class="engagement-badge">8.2% Engagement</div>
+        </div>
+        <div class="post-grid">
+          <div class="post-thumb post-thumb-1"><div class="icon">👔</div><div class="post-likes">❤️ 142</div></div>
+          <div class="post-thumb post-thumb-2"><div class="icon">🎖️</div><div class="post-likes">❤️ 89</div></div>
+          <div class="post-thumb post-thumb-3"><div class="icon">✂️</div><div class="post-likes">❤️ 204</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity Ticker -->
+    <div class="ticker-wrap">
+      <div class="ticker">
+        <div class="tick-item" id="tick1"><span class="tick-icon">📱</span><span class="tick-text">Posted to Instagram</span><span class="tick-time">2 min ago</span></div>
+        <div class="tick-item" id="tick2"><span class="tick-icon">🐦</span><span class="tick-text">Scheduled for X</span><span class="tick-time">Tomorrow 9am</span></div>
+        <div class="tick-item" id="tick3"><span class="tick-icon">📊</span><span class="tick-text">Weekly report generated</span><span class="tick-time">Just now</span></div>
+      </div>
+    </div>
+
+    <!-- Generate Post Button -->
+    <button class="gen-btn" id="genBtn" onclick="generatePost()">Generate Post</button>
+
+    <!-- Typewriter Output -->
+    <div class="typewriter-out" id="twOut"></div>
+  </div>
+</div>
+
+<script>
+const CYCLE_MS = 12000;
+const BEFORE_DUR = 3000;
+const TRANSITION_DUR = 800;
+let loopTimer = null;
+let twTimer = null;
+
+function animateCounter(el, from, to, duration) {
+  const start = performance.now();
+  const fmt = (n) => n >= 1000 ? (n/1000).toFixed(n%1000===0?0:0).replace(/\B(?=(\d{3})+(?!\d))/g,',') : n.toLocaleString();
+  function tick(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(from + (to - from) * eased).toLocaleString();
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function showSparkles() {
+  const overlay = document.getElementById('aiOverlay');
+  for (let i = 0; i < 12; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    const angle = (i / 12) * Math.PI * 2;
+    const dist = 60 + Math.random() * 80;
+    s.style.cssText = `left:50%;top:50%;--tx:${Math.cos(angle)*dist}px;--ty:${Math.sin(angle)*dist}px`;
+    overlay.appendChild(s);
+    setTimeout(() => s.classList.add('go'), 50 + i * 40);
+    setTimeout(() => s.remove(), 1000);
+  }
+}
+
+function showBefore() {
+  document.getElementById('beforeState').style.display = '';
+  document.getElementById('afterState').style.display = 'none';
+  document.getElementById('afterState').classList.remove('after-state');
+  document.getElementById('aiOverlay').classList.remove('show');
+  const twOut = document.getElementById('twOut');
+  twOut.classList.remove('visible');
+  twOut.innerHTML = '';
+  document.getElementById('genBtn').classList.remove('show');
+}
+
+function showTransition() {
+  const overlay = document.getElementById('aiOverlay');
+  overlay.classList.add('show');
+  showSparkles();
+  setTimeout(() => overlay.classList.remove('show'), TRANSITION_DUR);
+}
+
+function showAfter() {
+  document.getElementById('beforeState').style.display = 'none';
+  const after = document.getElementById('afterState');
+  after.style.display = '';
+  after.style.opacity = '0';
+  after.style.transition = 'opacity .6s ease';
+  requestAnimationFrame(() => { after.style.opacity = '1'; });
+
+  // Animate counters
+  animateCounter(document.getElementById('postsCount'), 0, 47, 1800);
+  animateCounter(document.getElementById('followersCount'), 12, 1204, 2000);
+  setTimeout(() => {
+    document.getElementById('followingCount').textContent = '83';
+  }, 800);
+
+  // Ticker items
+  setTimeout(() => document.getElementById('tick1').classList.add('show'), 600);
+  setTimeout(() => document.getElementById('tick2').classList.add('show'), 1000);
+  setTimeout(() => document.getElementById('tick3').classList.add('show'), 1400);
+
+  // Show generate button
+  setTimeout(() => document.getElementById('genBtn').classList.add('show'), 1800);
+}
+
+function resetAfterState() {
+  document.getElementById('postsCount').textContent = '0';
+  document.getElementById('followersCount').textContent = '12';
+  document.getElementById('followingCount').textContent = '0';
+  ['tick1','tick2','tick3'].forEach(id => document.getElementById(id).classList.remove('show'));
+  document.getElementById('genBtn').classList.remove('show');
+  const twOut = document.getElementById('twOut');
+  twOut.classList.remove('visible');
+  twOut.innerHTML = '';
+}
+
+function runCycle() {
+  resetAfterState();
+  showBefore();
+
+  setTimeout(() => {
+    showTransition();
+    setTimeout(showAfter, TRANSITION_DUR);
+  }, BEFORE_DUR);
+}
+
+function generatePost() {
+  const twOut = document.getElementById('twOut');
+  if (twOut.classList.contains('visible')) return;
+  twOut.classList.add('visible');
+  const caption = "Fresh uniforms, sharp creases, ready for inspection! ✨ Whether it's OCP patches or dress blues hemming, we've got you covered. Walk-ins welcome! 🪡 #MilitaryTailor #SewingOps #AAAShop";
+  let i = 0;
+  twOut.innerHTML = '<span class="tw-cursor"></span>';
+  clearInterval(twTimer);
+  twTimer = setInterval(() => {
+    if (i < caption.length) {
+      const cursor = twOut.querySelector('.tw-cursor');
+      twOut.insertBefore(document.createTextNode(caption[i]), cursor);
+      i++;
+    } else {
+      clearInterval(twTimer);
+      setTimeout(() => {
+        const cursor = twOut.querySelector('.tw-cursor');
+        if (cursor) cursor.remove();
+      }, 1500);
+    }
+  }, 30);
+}
+
+// Start loop
+runCycle();
+loopTimer = setInterval(runCycle, CYCLE_MS);
+</script>
+</body>
+</html>

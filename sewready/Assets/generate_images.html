@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sewing Ops - Generate Images</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #eee;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #8b5cf6, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle { text-align: center; color: #888; margin-bottom: 30px; }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 16px;
+    }
+    
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 16px;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-2px); border-color: #8b5cf6; }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .color-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    .shop-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+    
+    .prompt {
+      background: rgba(0,0,0,0.3);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: #aaa;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      white-space: pre-wrap;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-copy { background: #8b5cf6; color: white; }
+    .btn-copy:hover { background: #7c3aed; }
+    .btn-midjourney { background: #f59e0b; color: #000; }
+    .btn-leonardo { background: #0ea5e9; color: white; }
+    .btn-bing { background: #22c55e; color: #000; }
+    
+    .btn:hover { opacity: 0.9; transform: scale(1.02); }
+    
+    .counter {
+      text-align: center;
+      color: #666;
+      margin-top: 30px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>🎨 Image Prompt Generator</h1>
+  <p class="subtitle">Click copy, then paste into your favorite AI image generator</p>
+  
+  <div class="grid" id="grid"></div>
+  
+  <div class="counter">32 shops ready to generate</div>
+</div>
+
+<script>
+var shops = [
+  {name: "Kim's #1 Sewing & Dry Cleaning", color: "#8b5cf6", prompt: "Modern website hero image for Kim's #1 Sewing & Dry Cleaning, Fort Bragg's #1 sewing shop - uniform setup, shaped berets, boot shining, warm inviting atmosphere, professional lighting, purple and gold accent colors, professional photography"},
+  {name: "Jin Sewing", color: "#8b5cf6", prompt: "Modern website hero image for Jin Sewing, Professional sewing and alterations, military uniform specialist, warm inviting atmosphere, professional lighting, purple accent, skilled tailor working"},
+  {name: "STAR Sewing & Cleaners", color: "#8b5cf6", prompt: "Modern website hero image for STAR Sewing & Cleaners, Military uniform tailoring, alterations, express service, warm inviting atmosphere, professional lighting, purple and orange accents"},
+  {name: "Monarch Cleaners", color: "#8b5cf6", prompt: "Modern website hero image for Monarch Cleaners, Professional dry cleaning, military uniform care, wedding dress cleaning, warm inviting atmosphere, professional lighting, purple and purple accents"},
+  {name: "One Stop Sewing & Cleaning", color: "#8b5cf6", prompt: "Modern website hero image for One Stop Sewing & Cleaning, Fort Bragg military sewing, uniform setup, boot shining, warm inviting atmosphere, professional lighting, purple and green accents"},
+  {name: "Otrebla's Tailoring", color: "#8b5cf6", prompt: "Modern website hero image for Otrebla's Tailoring, Custom bespoke tailoring, tuxedo rentals, haberdashery, luxury atmosphere, professional lighting, brown and purple accents, elegant tailor shop"},
+  {name: "Lee's Alterations & Sewing", color: "#8b5cf6", prompt: "Modern website hero image for Lee's Alterations & Sewing, Wedding dress alterations, same day service, family owned, warm inviting atmosphere, professional lighting, purple and pink accents"},
+  {name: "Sue's Sewing & Laundry", color: "#8b5cf6", prompt: "Modern website hero image for Sue's Sewing & Laundry, One-stop alterations, boot repair, military discounts, warm inviting atmosphere, professional lighting, purple and pink accents"},
+  {name: "Nan's Cleaners", color: "#8b5cf6", prompt: "Modern website hero image for Nan's Cleaners, Military uniform dry cleaning, army specialist, warm inviting atmosphere, professional lighting, purple and cyan accents"},
+  {name: "Kim's Speedy Sewing Shop", color: "#8b5cf6", prompt: "Modern website hero image for Kim's Speedy Sewing Shop, Fast alterations, wedding dresses, leather work, warm inviting atmosphere, professional lighting, purple and green accents"},
+  {name: "Lee's Tailors", color: "#8b5cf6", prompt: "Modern website hero image for Lee's Tailors, Professional tailoring and alterations, skilled craftsmanship, warm inviting atmosphere, professional lighting, purple and blue accents"},
+  {name: "Pak Cleaners", color: "#8b5cf6", prompt: "Modern website hero image for Pak Cleaners, Military and civilian tailoring, alterations, dry cleaning, warm inviting atmosphere, professional lighting, purple and gray accents"},
+  {name: "Choi's Sewing & Cleaning", color: "#8b5cf6", prompt: "Modern website hero image for Choi's Sewing & Cleaning, Dry cleaning, alterations, affordable prices, warm inviting atmosphere, professional lighting, purple and orange accents"},
+  {name: "S.A.S. Military Surplus", color: "#b71c1c", prompt: "Modern website hero image for S.A.S. Military Surplus, Military surplus buy sell trade, tactical gear, army uniforms, warm inviting atmosphere, professional lighting, red and gold accents"},
+  {name: "Lone Wolf Tactical", color: "#ff6f00", prompt: "Modern website hero image for Lone Wolf Tactical, Veteran owned tactical gear, military surplus, outdoor equipment, adventure themed, warm inviting atmosphere, professional lighting, orange and black accents"},
+  {name: "North Carolina Military Supplies", color: "#1b5e20", prompt: "Modern website hero image for North Carolina Military Supplies, SF Veteran owned, military supplies, wholesale, warm inviting atmosphere, professional lighting, green and gold accents"},
+  {name: "Make It Fit", color: "#8b5cf6", prompt: "Modern website hero image for Make It Fit, Custom alterations, perfect fit solutions, personalized service, warm inviting atmosphere, professional lighting, purple and pink accents"},
+  {name: "Tina's Alterations", color: "#8b5cf6", prompt: "Modern website hero image for Tina's Alterations, Expert alterations, personalized service, warm inviting atmosphere, professional lighting, purple and orange accents"},
+  {name: "Perfit", color: "#8b5cf6", prompt: "Modern website hero image for Perfit, Perfect fit alterations, precision tailoring, warm inviting atmosphere, professional lighting, purple and pink accents"},
+  {name: "Sewing Sensations", color: "#8b5cf6", prompt: "Modern website hero image for Sewing Sensations, Quality sewing and alterations, creative services, warm inviting atmosphere, professional lighting, purple and pink accents"},
+  {name: "S & F Sewing And Alterations", color: "#8b5cf6", prompt: "Modern website hero image for S & F Sewing And Alterations, Professional sewing services, family owned, warm inviting atmosphere, professional lighting, purple and blue accents"},
+  {name: "T & S Cleaning", color: "#8b5cf6", prompt: "Modern website hero image for T & S Cleaning, Cleaning and alteration services, embroidery, warm inviting atmosphere, professional lighting, purple and cyan accents"},
+  {name: "T & T Tailor & Alterations", color: "#8b5cf6", prompt: "Modern website hero image for T & T Tailor & Alterations, Professional tailoring, warm inviting atmosphere, professional lighting, purple and indigo accents"},
+  {name: "Tailorite", color: "#8b5cf6", prompt: "Modern website hero image for Tailorite, Professional tailoring services, quality craftsmanship, warm inviting atmosphere, professional lighting, purple and deep purple accents"},
+  {name: "AAA Tailor Shop", color: "#8b5cf6", prompt: "Modern website hero image for AAA Tailor Shop, Quality tailoring, top rated, warm inviting atmosphere, professional lighting, purple and gold accents"},
+  {name: "Connie's Sewing Room", color: "#8b5cf6", prompt: "Modern website hero image for Connie's Sewing Room, Personalized sewing services, creative touch, warm inviting atmosphere, professional lighting, purple and pink accents"},
+  {name: "Final Stitch", color: "#8b5cf6", prompt: "Modern website hero image for Final Stitch Alterations & Clothing, Perfect finishing touches, alterations, warm inviting atmosphere, professional lighting, purple and orange accents"},
+  {name: "Jan's Cleaners & Alterations", color: "#8b5cf6", prompt: "Modern website hero image for Jan's Cleaners & Alterations, Full service cleaners, quick alterations, warm inviting atmosphere, professional lighting, purple and teal accents"},
+  {name: "McMurray Fabrics", color: "#8b5cf6", prompt: "Modern website hero image for McMurray Fabrics, Textile manufacturer, quality fabrics, wholesale, warm inviting atmosphere, professional lighting, purple and brown accents"},
+  {name: "Minh's Alteration Shop", color: "#8b5cf6", prompt: "Modern website hero image for Minh's Alteration Shop, Expert alterations, personalized tailoring, warm inviting atmosphere, professional lighting, purple and cyan accents"},
+  {name: "Spotless Cleaners & Alterations", color: "#8b5cf6", prompt: "Modern website hero image for Spotless Cleaners & Alterations, Cleaning and alteration specialists, thorough service, warm inviting atmosphere, professional lighting, purple and green accents"},
+  {name: "Mary's Alterations", color: "#8b5cf6", prompt: "Modern website hero image for Mary's Alterations, Formalwear specialist, wedding dresses, prom dresses, warm inviting atmosphere, professional lighting, purple and pink accents"}
+];
+
+function copyPrompt(text) {
+  navigator.clipboard.writeText(text);
+  event.target.textContent = '✓ Copied!';
+  setTimeout(() => event.target.textContent = 'Copy', 1500);
+}
+
+document.getElementById('grid').innerHTML = shops.map((s, i) => `
+  <div class="card">
+    <div class="card-header">
+      <div class="color-dot" style="background: ${s.color}"></div>
+      <div class="shop-name">${s.name}</div>
+    </div>
+    <div class="prompt">${s.prompt}</div>
+    <div class="buttons">
+      <button class="btn btn-copy" onclick="copyPrompt('${s.prompt.replace(/'/g, "\\'")}')">📋 Copy</button>
+      <a class="btn btn-midjourney" href="https://midjourney.com/imagine" target="_blank">Midjourney</a>
+      <a class="btn btn-leonardo" href="https://leonardo.ai/" target="_blank">Leonardo</a>
+      <a class="btn btn-bing" href="https://copilot.microsoft.com/images" target="_blank">Bing</a>
+    </div>
+  </div>
+`).join('');
+</script>
+</body>
+</html>

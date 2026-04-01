@@ -1,0 +1,10 @@
+{
+  "name": "SewRunner",
+  "short_name": "SewRunner",
+  "description": "Sewing delivery driver app",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e1528",
+  "theme_color": "#3a6ea5",
+  "orientation": "portrait"
+}

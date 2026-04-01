@@ -1,0 +1,47 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # D1 schema is applied manually via: npx wrangler d1 execute sewready-db --remote --file=schema.sql
+      # CI token lacks D1 write permissions, so schema changes are run locally with OAuth.
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=sewready
+
+      - name: Purge Cloudflare cache
+        if: success()
+        env:
+          ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$ZONE_ID" ]; then
+            echo "⚠️  CLOUDFLARE_ZONE_ID secret not set — skipping cache purge"
+            exit 0
+          fi
+
+          echo "Purging cache for zone $ZONE_ID..."
+          RESULT=$(curl -s -X POST \
+            "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/purge_cache" \
+            -H "Authorization: Bearer $CF_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}')
+
+          SUCCESS=$(echo "$RESULT" | jq -r '.success')
+          if [ "$SUCCESS" = "true" ]; then
+            echo "✅ Cache purged successfully"
+          else
+            echo "⚠️  Cache purge failed (token may need Zone:Cache Purge permission)"
+            echo "   Response: $RESULT"
+          fi
