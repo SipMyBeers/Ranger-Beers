@@ -1,5 +1,5 @@
 (function () {
-  const API_BASE = 'https://ranger-beers-api.beers-labs.workers.dev'; // placeholder — will update later
+  const API_BASE = 'https://ranger-beers-api.dzbeers747.workers.dev';
   const CALENDLY_URL = 'https://calendly.com/rangerbeers'; // placeholder
 
   const overlay = document.getElementById('modal-overlay');

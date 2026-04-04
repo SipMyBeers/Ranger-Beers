@@ -1,5 +1,5 @@
 (function () {
-  var API_BASE = 'https://ranger-beers-api.beers-labs.workers.dev'; // placeholder
+  var API_BASE = 'https://ranger-beers-api.dzbeers747.workers.dev';
   var adminPassword = '';
 
   var gate = document.getElementById('admin-gate');
