@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — Ranger Beers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .admin-gate {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .admin-gate-form { text-align: center; }
+        .admin-gate-form h1 {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+        .admin-gate-form input {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-family: var(--font);
+            font-size: 14px;
+            color: var(--text);
+            width: 280px;
+            text-align: center;
+        }
+        .admin-gate-form input:focus { outline: none; border-color: var(--gold); }
+        .admin-gate-form button {
+            display: block;
+            margin: 16px auto 0;
+            background: var(--gold);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 32px;
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+        .admin-dash { display: none; padding: 80px 24px 40px; max-width: var(--max-w); margin: 0 auto; }
+        .admin-dash.active { display: block; }
+        .admin-tabs { display: flex; gap: 8px; margin-bottom: 32px; }
+        .admin-tab {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+        .admin-tab.active { border-color: var(--gold); color: var(--gold); background: rgba(197,179,88,0.08); }
+        .lead-table { width: 100%; border-collapse: collapse; }
+        .lead-table th {
+            text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--text-muted); padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .lead-table td {
+            padding: 12px; font-size: 13px; color: var(--text-secondary);
+            border-bottom: 1px solid var(--border); cursor: pointer;
+        }
+        .lead-table tr:hover td { color: var(--text); }
+        .source-pill {
+            display: inline-block; padding: 2px 8px; border-radius: 4px;
+            font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .source-pill--new_site { background: rgba(59,130,246,0.15); color: #3b82f6; }
+        .source-pill--existing_site { background: rgba(168,85,247,0.15); color: #a855f7; }
+        .source-pill--referral { background: rgba(197,179,88,0.15); color: var(--gold); }
+        .status-pill {
+            display: inline-block; padding: 2px 8px; border-radius: 4px;
+            font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .status-pill--new { background: rgba(255,255,255,0.08); color: var(--text-secondary); }
+        .status-pill--contacted { background: rgba(59,130,246,0.15); color: #3b82f6; }
+        .status-pill--closed_won { background: rgba(34,197,94,0.15); color: #22c55e; }
+        .status-pill--closed_lost { background: rgba(239,68,68,0.15); color: #ef4444; }
+        .lead-detail {
+            display: none; background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 24px; margin-bottom: 24px;
+        }
+        .lead-detail.active { display: block; }
+        .lead-detail h3 { color: var(--gold); font-size: 16px; margin-bottom: 16px; }
+        .lead-detail p { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
+        .lead-detail p strong { color: var(--text); }
+        .lead-actions { margin-top: 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .lead-actions select, .lead-actions input {
+            background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+            border-radius: 6px; padding: 8px 12px; font-family: var(--font); font-size: 13px; color: var(--text);
+        }
+        .lead-actions select option { background: #0a0a0a; }
+        .lead-actions button {
+            background: var(--gold); color: #000; border: none; border-radius: 6px;
+            padding: 8px 16px; font-family: var(--font); font-size: 12px; font-weight: 700; cursor: pointer;
+        }
+        .invoice-table { width: 100%; border-collapse: collapse; }
+        .invoice-table th {
+            text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--text-muted); padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .invoice-table td { padding: 12px; font-size: 13px; color: var(--text-secondary); border-bottom: 1px solid var(--border); }
+        .invoice-table .amt { color: var(--gold); font-weight: 700; }
+        .invoice-actions { display: flex; gap: 8px; }
+        .invoice-actions a, .invoice-actions button {
+            font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 4px; cursor: pointer; text-decoration: none;
+        }
+        .invoice-actions a { color: var(--gold); border: 1px solid var(--gold-dim); }
+        .invoice-actions button {
+            background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); font-family: var(--font);
+        }
+    </style>
+</head>
+<body>
+    <nav class="topbar">
+        <a href="/" class="topbar-brand">RANGER BEERS</a>
+        <a href="/" class="topbar-admin">Home</a>
+    </nav>
+    <div class="admin-gate" id="admin-gate">
+        <div class="admin-gate-form">
+            <h1>ADMIN</h1>
+            <input type="password" id="admin-password" placeholder="Password" autofocus>
+            <button id="admin-login">Enter</button>
+        </div>
+    </div>
+    <div class="admin-dash" id="admin-dash">
+        <div class="admin-tabs">
+            <button class="admin-tab active" data-tab="leads">Leads</button>
+            <button class="admin-tab" data-tab="invoices">Invoices</button>
+        </div>
+        <div id="tab-leads">
+            <div class="lead-detail" id="lead-detail"></div>
+            <table class="lead-table">
+                <thead><tr><th>Source</th><th>Name</th><th>Email</th><th>Status</th><th>Date</th></tr></thead>
+                <tbody id="lead-list"></tbody>
+            </table>
+        </div>
+        <div id="tab-invoices" style="display:none;">
+            <table class="invoice-table">
+                <thead><tr><th>Referrer</th><th>Client</th><th>Deal</th><th>Commission</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+                <tbody id="invoice-list"></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="js/admin.js"></script>
+</body>
+</html>
