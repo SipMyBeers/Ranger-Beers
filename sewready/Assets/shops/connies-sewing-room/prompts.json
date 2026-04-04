@@ -1,0 +1,56 @@
+{
+  "name": "Connie's Sewing Room",
+  "slug": "connies-sewing-room",
+  "colors": [
+    "#8b5cf6",
+    "#f48fb1",
+    "#1a1a1a"
+  ],
+  "midjourney": {
+    "logo": "Minimalist logo for Connie's Sewing Room, personal, creative, warm style, #8b5cf6 and #f48fb1, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+    "hero": "Modern website hero image for Connie's Sewing Room, Personalized sewing services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+    "about": "Portrait of skilled tailor working at sewing machine, Connie's Sewing Room - Personalized sewing services, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+    "services": "Clean service menu graphic for Connie's Sewing Room, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+  },
+  "video": {
+    "hero": "Cinematic intro video for Connie's Sewing Room, Personalized sewing services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+    "about": "B-roll footage of tailor working, Connie's Sewing Room, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style"
+  },
+  "heygen_script": "Welcome to Connie's Sewing Room, your premier destination for Personalized sewing services.\n\nWhat sets us apart: Personal touch with sewing projects\n\nVisit us today and experience the quality that has made us a local favorite.\n\nConnie's Sewing Room - Quality Service, Every Time.",
+  "stock_keywords": {
+    "primary": [
+      "sewing machine",
+      "tailor working",
+      "alterations"
+    ],
+    "secondary": [
+      "fabric",
+      "thread",
+      "needle and thread"
+    ],
+    "background": [
+      "shop interior",
+      "clothing rack",
+      "military uniforms"
+    ],
+    "theme_specific": {
+      "military": [
+        "army uniform",
+        "tactical gear",
+        "military surplus"
+      ],
+      "sewing": [
+        "sewing workshop",
+        "dressmaker",
+        "clothing alteration"
+      ],
+      "cleaners": [
+        "dry cleaning",
+        "laundry service",
+        "ironing"
+      ]
+    },
+    "shop_name": "Connie's Sewing Room",
+    "specialty": "Personalized sewing services"
+  }
+}

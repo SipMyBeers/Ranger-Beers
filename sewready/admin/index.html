@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SewReady Admin</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e1528;
+      --surface: #161d2f;
+      --border: rgba(240,232,220,.08);
+      --text: #f0e8dc;
+      --text-muted: rgba(240,232,220,.5);
+      --accent: #a855f7;
+      --accent-dim: rgba(168,85,247,.15);
+      --green: #22c55e;
+      --red: #ef4444;
+      --orange: #f59e0b;
+      --radius: 10px;
+    }
+
+    body {
+      font-family: Inter, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Login Screen ──────────────────────────────────── */
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .login-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+    }
+
+    .login-card h1 { font-size: 24px; margin-bottom: 8px; }
+    .login-card p { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; }
+
+    .form-group { margin-bottom: 16px; text-align: left; }
+    .form-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .5px; }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 14px;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+    input[type="color"] { padding: 4px; height: 40px; cursor: pointer; }
+    textarea { resize: vertical; min-height: 60px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary { background: var(--border); color: var(--text); }
+    .btn-danger { background: var(--red); color: #fff; }
+    .btn-sm { padding: 6px 14px; font-size: 13px; }
+    .btn-full { width: 100%; }
+
+    .error-msg { color: var(--red); font-size: 13px; margin-top: 8px; }
+
+    /* ── Main Layout ───────────────────────────────────── */
+    #adminApp { display: none; }
+
+    .admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .admin-header h1 { font-size: 18px; }
+    .admin-header-right { display: flex; gap: 12px; align-items: center; }
+
+    .admin-body { padding: 24px; max-width: 1100px; margin: 0 auto; }
+
+    /* ── Tabs ──────────────────────────────────────────── */
+    .admin-tabs { display: flex; gap: 4px; margin-bottom: 24px; }
+    .admin-tab {
+      padding: 8px 18px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-muted);
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .admin-tab.active { background: var(--accent-dim); border-color: var(--accent); color: var(--text); }
+
+    /* ── Shop Table ───────────────────────────────────── */
+    .shop-table { width: 100%; border-collapse: collapse; }
+    .shop-table th {
+      text-align: left;
+      padding: 10px 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .shop-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .shop-table tr:hover td { background: rgba(168,85,247,.04); }
+    .shop-table tr { cursor: pointer; }
+
+    .tier-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .tier-storefront { background: rgba(249,115,22,.15); color: #f97316; }
+    .tier-online { background: rgba(59,130,246,.15); color: #3b82f6; }
+    .tier-full { background: rgba(34,197,94,.15); color: #22c55e; }
+
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+    .status-active { background: var(--green); }
+    .status-inactive { background: var(--red); }
+
+    /* ── Form Sections ────────────────────────────────── */
+    .form-section { margin-bottom: 28px; }
+    .form-section h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--accent);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Employee List ────────────────────────────────── */
+    .emp-list { margin-top: 12px; }
+    .emp-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .emp-row input { flex: 1; }
+    .emp-row .btn-sm { flex-shrink: 0; }
+
+    /* ── Hours Grid ───────────────────────────────────── */
+    .hours-grid { display: grid; gap: 8px; }
+    .hours-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 1fr auto;
+      gap: 10px;
+      align-items: center;
+      font-size: 14px;
+    }
+    .hours-row label { color: var(--text-muted); }
+
+    /* ── Shop Actions ─────────────────────────────────── */
+    .shop-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .shop-actions a {
+      color: var(--accent);
+      font-size: 13px;
+      text-decoration: none;
+    }
+    .shop-actions a:hover { text-decoration: underline; }
+
+    /* ── Toast ─────────────────────────────────────────── */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      color: var(--text);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all .3s;
+      z-index: 999;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+
+    /* ── Loading ───────────────────────────────────────── */
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--text-muted);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 640px) {
+      .form-row, .form-row-3 { grid-template-columns: 1fr; }
+      .admin-body { padding: 16px; }
+      .hours-row { grid-template-columns: 60px 1fr 1fr auto; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Screen -->
+  <div id="loginScreen">
+    <div class="login-card">
+      <h1>SewReady Admin</h1>
+      <p>Enter the master admin password</p>
+      <div class="form-group">
+        <input type="password" id="loginPassword" placeholder="Password" autofocus>
+      </div>
+      <button class="btn btn-primary btn-full" id="loginBtn">Sign In</button>
+      <div class="error-msg" id="loginError"></div>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="adminApp">
+    <header class="admin-header">
+      <h1>SewReady Admin</h1>
+      <div class="admin-header-right">
+        <span id="shopCount" style="font-size:13px;color:var(--text-muted)"></span>
+        <button class="btn btn-sm btn-secondary" id="logoutBtn">Sign Out</button>
+      </div>
+    </header>
+
+    <div class="admin-body">
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="list">All Shops</button>
+        <button class="admin-tab" data-tab="create">Create Shop</button>
+      </div>
+
+      <!-- Shop List -->
+      <div id="tabList">
+        <table class="shop-table">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Name</th>
+              <th>Slug</th>
+              <th>Tier</th>
+              <th>Billing</th>
+              <th>Owner</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody id="shopTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Create / Edit Shop -->
+      <div id="tabCreate" style="display:none">
+        <div id="shopForm">
+          <!-- Basic Info -->
+          <div class="form-section">
+            <h3>Basic Info</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Shop Name *</label>
+                <input type="text" id="fName" placeholder="Maria's Alterations">
+              </div>
+              <div class="form-group">
+                <label>Slug (URL) *</label>
+                <input type="text" id="fSlug" placeholder="marias-alterations">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Tier</label>
+                <select id="fTier">
+                  <option value="storefront">Storefront — Landing page only</option>
+                  <option value="online">Online — + Ordering & admin</option>
+                  <option value="full">Full — + SMS/Email notifications</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Admin Password</label>
+                <input type="text" id="fAdminPass" placeholder="Auto-generated">
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <div class="form-section">
+            <h3>Contact</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Owner Name</label>
+                <input type="text" id="fOwner" placeholder="Maria S.">
+              </div>
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="text" id="fPhone" placeholder="(910) 555-0100">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="fEmail" placeholder="owner@shop.com">
+              </div>
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" id="fAddress" placeholder="1234 Bragg Blvd, Fayetteville, NC">
+              </div>
+            </div>
+          </div>
+
+          <!-- Branding -->
+          <div class="form-section">
+            <h3>Branding</h3>
+            <div class="form-group">
+              <label>Tagline</label>
+              <textarea id="fTagline" placeholder="Professional uniform alterations..."></textarea>
+            </div>
+            <div class="form-row form-row-3">
+              <div class="form-group">
+                <label>Primary Color</label>
+                <input type="color" id="fColorPrimary" value="#a855f7">
+              </div>
+              <div class="form-group">
+                <label>Secondary Color</label>
+                <input type="color" id="fColorSecondary" value="#1c2833">
+              </div>
+              <div class="form-group">
+                <label>Accent Color</label>
+                <input type="color" id="fColorAccent" value="#06b6d4">
+              </div>
+            </div>
+          </div>
+
+          <!-- Employees -->
+          <div class="form-section">
+            <h3>Employees</h3>
+            <div class="emp-list" id="empList"></div>
+            <button class="btn btn-sm btn-secondary" id="addEmpBtn" style="margin-top:10px">+ Add Employee</button>
+          </div>
+
+          <!-- Shop Hours -->
+          <div class="form-section">
+            <h3>Shop Hours</h3>
+            <div class="hours-grid" id="hoursGrid"></div>
+          </div>
+
+          <!-- Trust Signals -->
+          <div class="form-section">
+            <h3>Trust Signals</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Orders Completed</label>
+                <input type="text" id="fTrustOrders" placeholder="500+" value="0">
+              </div>
+              <div class="form-group">
+                <label>Rating</label>
+                <input type="text" id="fTrustRating" placeholder="4.9" value="5.0">
+              </div>
+            </div>
+          </div>
+
+          <!-- Story -->
+          <div class="form-section">
+            <h3>Shop Story</h3>
+            <div class="form-group">
+              <textarea id="fStory" rows="3" placeholder="Tell customers about your shop..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" id="saveShopBtn">Create Shop</button>
+            <button class="btn btn-secondary" id="generateBtn" style="display:none">Generate & Deploy Files</button>
+            <button class="btn btn-danger btn-sm" id="deactivateBtn" style="display:none">Deactivate</button>
+            <button class="btn btn-secondary" id="cancelEditBtn" style="display:none">Cancel</button>
+          </div>
+
+          <!-- Shop links (edit mode only) -->
+          <div class="shop-actions" id="shopLinks" style="display:none">
+            <a id="linkCustomer" href="#" target="_blank">View Customer Page</a>
+            <a id="linkAdmin" href="#" target="_blank">View Admin Page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    // ── State ──────────────────────────────────────────
+    let token = sessionStorage.getItem('admin_token') || null;
+    let shops = [];
+    let editingSlug = null;
+    let empRows = [];
+
+    const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    // ── API Helper ─────────────────────────────────────
+    async function api(method, path, body) {
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = 'Bearer ' + token;
+      const resp = await fetch('/api/admin' + path, {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : undefined,
+      });
+      const data = await resp.json();
+      if (resp.status === 401) {
+        logout();
+        throw new Error('Unauthorized');
+      }
+      if (!resp.ok) throw new Error(data.error || 'Request failed');
+      return data;
+    }
+
+    // ── Toast ──────────────────────────────────────────
+    let toastTimer = null;
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('show'), 4000);
+    }
+
+    // ── Auth ───────────────────────────────────────────
+    document.getElementById('loginBtn').addEventListener('click', login);
+    document.getElementById('loginPassword').addEventListener('keydown', e => {
+      if (e.key === 'Enter') login();
+    });
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+
+    async function login() {
+      const pw = document.getElementById('loginPassword').value;
+      const errEl = document.getElementById('loginError');
+      errEl.textContent = '';
+      try {
+        const data = await fetch('/api/admin/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: pw })
+        }).then(r => r.json());
+
+        if (data.token) {
+          token = data.token;
+          sessionStorage.setItem('admin_token', token);
+          showApp();
+        } else {
+          errEl.textContent = data.error || 'Invalid password';
+        }
+      } catch {
+        errEl.textContent = 'Connection failed';
+      }
+    }
+
+    function logout() {
+      token = null;
+      sessionStorage.removeItem('admin_token');
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('adminApp').style.display = 'none';
+    }
+
+    async function showApp() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('adminApp').style.display = 'block';
+      await loadShops();
+    }
+
+    // ── Load Shops ─────────────────────────────────────
+    async function loadShops() {
+      try {
+        const data = await api('GET', '/shops');
+        shops = data.shops || [];
+        document.getElementById('shopCount').textContent = shops.length + ' shops';
+        renderShopTable();
+      } catch (err) {
+        showToast('Failed to load shops: ' + err.message);
+      }
+    }
+
+    function renderShopTable() {
+      const tbody = document.getElementById('shopTableBody');
+      if (shops.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:40px">No shops yet. Create one!</td></tr>';
+        return;
+      }
+      var billingColors = { 'active': 'var(--green)', 'past_due': 'var(--orange)', 'canceled': 'var(--red)', 'trialing': '#3b82f6', 'none': 'var(--text-muted)' };
+      tbody.innerHTML = shops.map(s => {
+        const active = s.active !== 0;
+        const tierCls = 'tier-' + s.tier;
+        const date = s.created_at ? new Date(s.created_at + 'Z').toLocaleDateString() : '';
+        const subStatus = s.subscription_status || 'none';
+        const billingColor = billingColors[subStatus] || 'var(--text-muted)';
+        const snipcartLink = s.snipcart_customer_email ? '<a href="https://app.snipcart.com/dashboard/customers?q=' + encodeURIComponent(s.snipcart_customer_email) + '" target="_blank" style="color:var(--accent);font-size:11px;margin-left:4px" title="View in Snipcart">&#8599;</a>' : '';
+        return '<tr data-slug="' + s.slug + '">' +
+          '<td><span class="status-dot ' + (active ? 'status-active' : 'status-inactive') + '"></span>' + (active ? 'Active' : 'Inactive') + '</td>' +
+          '<td><strong>' + esc(s.name) + '</strong></td>' +
+          '<td style="color:var(--text-muted)">' + s.slug + '</td>' +
+          '<td><span class="tier-badge ' + tierCls + '">' + s.tier + '</span></td>' +
+          '<td><span style="color:' + billingColor + ';font-size:13px">' + subStatus + '</span>' + snipcartLink + '</td>' +
+          '<td>' + esc(s.owner || '') + '</td>' +
+          '<td style="color:var(--text-muted)">' + date + '</td>' +
+        '</tr>';
+      }).join('');
+
+      tbody.querySelectorAll('tr').forEach(row => {
+        row.addEventListener('click', () => editShop(row.dataset.slug));
+      });
+    }
+
+    function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+    // ── Tabs ───────────────────────────────────────────
+    document.querySelectorAll('.admin-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const target = tab.dataset.tab;
+        document.getElementById('tabList').style.display = target === 'list' ? 'block' : 'none';
+        document.getElementById('tabCreate').style.display = target === 'create' ? 'block' : 'none';
+        if (target === 'create' && !editingSlug) resetForm();
+      });
+    });
+
+    // ── Auto-slug from name ────────────────────────────
+    document.getElementById('fName').addEventListener('input', () => {
+      if (editingSlug) return; // don't auto-slug when editing
+      const name = document.getElementById('fName').value;
+      document.getElementById('fSlug').value = name
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+    });
+
+    // ── Employee Rows ──────────────────────────────────
+    function renderEmpRows() {
+      const container = document.getElementById('empList');
+      container.innerHTML = '';
+      empRows.forEach((emp, i) => {
+        const row = document.createElement('div');
+        row.className = 'emp-row';
+        row.innerHTML =
+          '<input type="text" value="' + esc(emp.name) + '" placeholder="Name" data-field="name" data-idx="' + i + '">' +
+          '<input type="text" value="' + esc(emp.role) + '" placeholder="Role" data-field="role" data-idx="' + i + '" style="max-width:120px">' +
+          '<input type="color" value="' + (emp.color || '#a855f7') + '" data-field="color" data-idx="' + i + '" style="max-width:50px">' +
+          '<button class="btn btn-sm btn-danger" data-remove="' + i + '">&times;</button>';
+        container.appendChild(row);
+      });
+
+      container.querySelectorAll('input').forEach(input => {
+        input.addEventListener('input', () => {
+          const idx = parseInt(input.dataset.idx);
+          empRows[idx][input.dataset.field] = input.value;
+        });
+      });
+
+      container.querySelectorAll('[data-remove]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          empRows.splice(parseInt(btn.dataset.remove), 1);
+          renderEmpRows();
+        });
+      });
+    }
+
+    document.getElementById('addEmpBtn').addEventListener('click', () => {
+      empRows.push({ name: '', role: 'Seamstress', color: '#a855f7' });
+      renderEmpRows();
+    });
+
+    // ── Hours Grid ─────────────────────────────────────
+    let hoursData = {};
+    function renderHoursGrid() {
+      const grid = document.getElementById('hoursGrid');
+      grid.innerHTML = '';
+      DAY_NAMES.forEach((name, i) => {
+        const h = hoursData[i];
+        const closed = !h;
+        const row = document.createElement('div');
+        row.className = 'hours-row';
+        row.innerHTML =
+          '<label>' + name.slice(0, 3) + '</label>' +
+          '<input type="time" value="' + (closed ? '' : h.start) + '" data-day="' + i + '" data-field="start"' + (closed ? ' disabled' : '') + '>' +
+          '<input type="time" value="' + (closed ? '' : h.end) + '" data-day="' + i + '" data-field="end"' + (closed ? ' disabled' : '') + '>' +
+          '<label style="display:flex;align-items:center;gap:4px;cursor:pointer;font-size:12px"><input type="checkbox" data-day="' + i + '" data-toggle="closed"' + (closed ? ' checked' : '') + '> Closed</label>';
+        grid.appendChild(row);
+      });
+
+      grid.querySelectorAll('input[type="time"]').forEach(input => {
+        input.addEventListener('input', () => {
+          const day = parseInt(input.dataset.day);
+          if (!hoursData[day]) hoursData[day] = { start: '09:00', end: '18:00' };
+          hoursData[day][input.dataset.field] = input.value;
+        });
+      });
+
+      grid.querySelectorAll('input[data-toggle="closed"]').forEach(cb => {
+        cb.addEventListener('change', () => {
+          const day = parseInt(cb.dataset.day);
+          if (cb.checked) {
+            hoursData[day] = null;
+          } else {
+            hoursData[day] = { start: '09:00', end: '18:00' };
+          }
+          renderHoursGrid();
+        });
+      });
+    }
+
+    // ── Reset Form ─────────────────────────────────────
+    function resetForm() {
+      editingSlug = null;
+      document.getElementById('fName').value = '';
+      document.getElementById('fSlug').value = '';
+      document.getElementById('fSlug').disabled = false;
+      document.getElementById('fTier').value = 'storefront';
+      document.getElementById('fAdminPass').value = Math.random().toString(36).slice(2, 8);
+      document.getElementById('fOwner').value = '';
+      document.getElementById('fPhone').value = '';
+      document.getElementById('fEmail').value = '';
+      document.getElementById('fAddress').value = '';
+      document.getElementById('fTagline').value = '';
+      document.getElementById('fColorPrimary').value = '#a855f7';
+      document.getElementById('fColorSecondary').value = '#1c2833';
+      document.getElementById('fColorAccent').value = '#06b6d4';
+      document.getElementById('fTrustOrders').value = '0';
+      document.getElementById('fTrustRating').value = '5.0';
+      document.getElementById('fStory').value = '';
+
+      empRows = [{ name: '', role: 'Owner', color: '#a855f7' }];
+      renderEmpRows();
+
+      hoursData = {
+        0: null,
+        1: { start: '09:00', end: '18:00' },
+        2: { start: '09:00', end: '18:00' },
+        3: { start: '09:00', end: '18:00' },
+        4: { start: '09:00', end: '18:00' },
+        5: { start: '09:00', end: '18:00' },
+        6: { start: '10:00', end: '15:00' }
+      };
+      renderHoursGrid();
+
+      document.getElementById('saveShopBtn').textContent = 'Create Shop';
+      document.getElementById('generateBtn').style.display = 'none';
+      document.getElementById('deactivateBtn').style.display = 'none';
+      document.getElementById('cancelEditBtn').style.display = 'none';
+      document.getElementById('shopLinks').style.display = 'none';
+    }
+
+    // ── Edit Shop ──────────────────────────────────────
+    async function editShop(slug) {
+      try {
+        const data = await api('GET', '/shops/' + slug);
+        const s = data.shop;
+        const cfg = s.config || {};
+
+        editingSlug = slug;
+        document.getElementById('fName').value = s.name || '';
+        document.getElementById('fSlug').value = s.slug;
+        document.getElementById('fSlug').disabled = true;
+        document.getElementById('fTier').value = s.tier || 'storefront';
+        document.getElementById('fAdminPass').value = s.admin_password || '';
+        document.getElementById('fOwner').value = s.owner || '';
+        document.getElementById('fPhone').value = s.phone || '';
+        document.getElementById('fEmail').value = s.email || '';
+        document.getElementById('fAddress').value = s.address || '';
+        document.getElementById('fTagline').value = s.tagline || '';
+        document.getElementById('fColorPrimary').value = s.theme_primary || '#a855f7';
+        document.getElementById('fColorSecondary').value = s.theme_secondary || '#1c2833';
+        document.getElementById('fColorAccent').value = s.theme_accent || '#06b6d4';
+        document.getElementById('fTrustOrders').value = (cfg.trustSignals && cfg.trustSignals.orders) || '0';
+        document.getElementById('fTrustRating').value = (cfg.trustSignals && cfg.trustSignals.rating) || '5.0';
+        document.getElementById('fStory').value = cfg.story || '';
+
+        empRows = cfg.employees || [{ name: s.owner || '', role: 'Owner', color: s.theme_primary || '#a855f7' }];
+        renderEmpRows();
+
+        hoursData = cfg.shopHours || {
+          0: null,
+          1: { start: '09:00', end: '18:00' },
+          2: { start: '09:00', end: '18:00' },
+          3: { start: '09:00', end: '18:00' },
+          4: { start: '09:00', end: '18:00' },
+          5: { start: '09:00', end: '18:00' },
+          6: { start: '10:00', end: '15:00' }
+        };
+        renderHoursGrid();
+
+        document.getElementById('saveShopBtn').textContent = 'Save Changes';
+        document.getElementById('generateBtn').style.display = 'inline-flex';
+        document.getElementById('deactivateBtn').style.display = 'inline-flex';
+        document.getElementById('cancelEditBtn').style.display = 'inline-flex';
+        document.getElementById('shopLinks').style.display = 'flex';
+        document.getElementById('linkCustomer').href = '/shops/' + slug + '/';
+        document.getElementById('linkAdmin').href = '/shops/' + slug + '/index.html';
+
+        // Switch to create/edit tab
+        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.admin-tab')[1].classList.add('active');
+        document.getElementById('tabList').style.display = 'none';
+        document.getElementById('tabCreate').style.display = 'block';
+
+      } catch (err) {
+        showToast('Failed to load shop: ' + err.message);
+      }
+    }
+
+    // ── Cancel Edit ────────────────────────────────────
+    document.getElementById('cancelEditBtn').addEventListener('click', () => {
+      resetForm();
+      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.admin-tab')[0].classList.add('active');
+      document.getElementById('tabList').style.display = 'block';
+      document.getElementById('tabCreate').style.display = 'none';
+    });
+
+    // ── Save Shop ──────────────────────────────────────
+    document.getElementById('saveShopBtn').addEventListener('click', saveShop);
+
+    async function saveShop() {
+      const name = document.getElementById('fName').value.trim();
+      const slug = document.getElementById('fSlug').value.trim();
+
+      if (!name) { showToast('Shop name is required'); return; }
+      if (!slug) { showToast('Slug is required'); return; }
+
+      // Build employees with schedule
+      const employeesWithSchedule = empRows.filter(e => e.name.trim()).map((e, i) => ({
+        id: 'emp-' + (i + 1),
+        name: e.name.trim(),
+        role: e.role || 'Seamstress',
+        color: e.color || '#a855f7',
+        schedule: hoursData
+      }));
+
+      const payload = {
+        slug,
+        name,
+        tier: document.getElementById('fTier').value,
+        owner: document.getElementById('fOwner').value.trim(),
+        phone: document.getElementById('fPhone').value.trim(),
+        email: document.getElementById('fEmail').value.trim(),
+        address: document.getElementById('fAddress').value.trim(),
+        tagline: document.getElementById('fTagline').value.trim(),
+        theme_primary: document.getElementById('fColorPrimary').value,
+        theme_secondary: document.getElementById('fColorSecondary').value,
+        theme_accent: document.getElementById('fColorAccent').value,
+        admin_password: document.getElementById('fAdminPass').value.trim(),
+        config: {
+          employees: employeesWithSchedule,
+          shopHours: hoursData,
+          story: document.getElementById('fStory').value.trim(),
+          trustSignals: {
+            orders: document.getElementById('fTrustOrders').value.trim(),
+            rating: document.getElementById('fTrustRating').value.trim()
+          }
+        }
+      };
+
+      try {
+        if (editingSlug) {
+          await api('PATCH', '/shops/' + editingSlug, payload);
+          showToast('Shop updated');
+        } else {
+          await api('POST', '/shops', payload);
+          showToast('Shop created');
+          editingSlug = slug;
+          document.getElementById('fSlug').disabled = true;
+          document.getElementById('saveShopBtn').textContent = 'Save Changes';
+          document.getElementById('generateBtn').style.display = 'inline-flex';
+          document.getElementById('deactivateBtn').style.display = 'inline-flex';
+          document.getElementById('cancelEditBtn').style.display = 'inline-flex';
+          document.getElementById('shopLinks').style.display = 'flex';
+          document.getElementById('linkCustomer').href = '/shops/' + slug + '/';
+          document.getElementById('linkAdmin').href = '/shops/' + slug + '/index.html';
+        }
+        await loadShops();
+      } catch (err) {
+        showToast('Save failed: ' + err.message);
+      }
+    }
+
+    // ── Generate Files ─────────────────────────────────
+    document.getElementById('generateBtn').addEventListener('click', generateFiles);
+
+    async function generateFiles() {
+      if (!editingSlug) return;
+      const btn = document.getElementById('generateBtn');
+      const origText = btn.textContent;
+      btn.innerHTML = '<span class="spinner"></span> Generating...';
+      btn.disabled = true;
+
+      try {
+        const data = await api('POST', '/generate', { slug: editingSlug });
+        showToast(data.message || 'Files generated and committed!');
+      } catch (err) {
+        showToast('Generation failed: ' + err.message);
+      } finally {
+        btn.textContent = origText;
+        btn.disabled = false;
+      }
+    }
+
+    // ── Deactivate ─────────────────────────────────────
+    document.getElementById('deactivateBtn').addEventListener('click', async () => {
+      if (!editingSlug) return;
+      if (!confirm('Deactivate this shop? It will be hidden but not deleted.')) return;
+      try {
+        await api('DELETE', '/shops/' + editingSlug);
+        showToast('Shop deactivated');
+        resetForm();
+        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.admin-tab')[0].classList.add('active');
+        document.getElementById('tabList').style.display = 'block';
+        document.getElementById('tabCreate').style.display = 'none';
+        await loadShops();
+      } catch (err) {
+        showToast('Failed: ' + err.message);
+      }
+    });
+
+    // ── Init ───────────────────────────────────────────
+    if (token) {
+      showApp();
+    }
+  </script>
+</body>
+</html>

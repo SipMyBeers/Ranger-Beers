@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Maps Preview</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,-apple-system,sans-serif;background:#1a1b26;color:#e1e1e6;overflow:hidden}
+.header{background:rgba(20,24,32,.95);padding:16px 32px;border-bottom:1px solid rgba(255,255,255,.1)}
+.header h1{font-size:22px;font-weight:700;color:#e1e1e6}
+.header p{font-size:13px;color:rgba(245,245,245,.55);margin-top:4px}
+.content{padding:24px 32px}
+.section-title{font-size:16px;font-weight:700;color:rgba(245,245,245,.55);text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section-title::before{content:'';display:inline-block;width:4px;height:20px;background:#0047a0;border-radius:2px}
+.addr-row{display:flex;align-items:center;gap:12px;margin-bottom:16px;font-size:15px;color:#e1e1e6}
+.addr-icon{width:36px;height:36px;border-radius:10px;background:rgba(0,71,160,.15);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.map-frame{width:100%;height:480px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.1);position:relative;background:#2a2a3a}
+.map-frame iframe{width:100%;height:100%;border:none}
+.btns{display:flex;gap:12px;margin-top:16px}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:600;border:none;cursor:pointer;display:flex;align-items:center;gap:8px}
+.btn-primary{background:#0047a0;color:#fff}
+.btn-secondary{background:rgba(255,255,255,.08);color:#e1e1e6;border:1px solid rgba(255,255,255,.1)}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>AAA Tailor Shop</h1>
+  <p>5710 Bragg Blvd, Fayetteville, NC 28303</p>
+</div>
+<div class="content">
+  <div class="section-title">Location</div>
+  <div class="addr-row">
+    <div class="addr-icon">&#128205;</div>
+    <span>5710 Bragg Blvd, Fayetteville, NC 28303</span>
+  </div>
+  <div class="map-frame">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3248.0!2d-79.007!3d35.077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDA0JzM3LjIiTiA3OcKwMDAnMjUuMiJX!5e0!3m2!1sen!2sus!4v1" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <div class="btns">
+    <button class="btn btn-primary">&#128205; Get Directions</button>
+    <button class="btn btn-secondary">&#128222; Call Now</button>
+  </div>
+</div>
+</body>
+</html>

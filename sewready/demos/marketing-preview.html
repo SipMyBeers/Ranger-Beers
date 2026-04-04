@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Campaigns Preview</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0e0c0a;color:#f5f0eb;display:flex;align-items:center;justify-content:center;min-height:100vh;overflow:hidden}
+
+.scene{position:relative;width:100%;max-width:600px;margin:0 auto;padding:20px}
+
+/* AI Activated Overlay */
+.ai-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .3s}
+.ai-overlay.show{opacity:1}
+.ai-overlay-bg{position:absolute;inset:0;background:radial-gradient(circle,rgba(201,168,76,.15),transparent 70%)}
+.ai-text{font-size:28px;font-weight:900;color:#c9a84c;text-transform:uppercase;letter-spacing:6px;text-shadow:0 0 40px rgba(201,168,76,.5),0 0 80px rgba(201,168,76,.2);position:relative;z-index:1}
+
+/* Sparkles */
+.sparkle{position:absolute;width:4px;height:4px;background:#c9a84c;border-radius:50%;pointer-events:none;opacity:0}
+.sparkle.go{animation:sparkleAnim .8s ease-out forwards}
+@keyframes sparkleAnim{
+0%{opacity:1;transform:scale(0) translate(0,0)}
+50%{opacity:1;transform:scale(1.5)}
+100%{opacity:0;transform:scale(0) translate(var(--tx),var(--ty))}
+}
+
+/* ===== BEFORE STATE ===== */
+.before-wrap{text-align:center;padding:20px}
+.before-wrap .scene-icon{font-size:64px;margin-bottom:16px;display:block;filter:grayscale(.5);opacity:.7}
+.before-wrap .headline{font-size:22px;font-weight:800;color:#e74c3c;line-height:1.3;margin-bottom:20px}
+.before-wrap .headline span{color:rgba(245,240,235,.3)}
+
+.sad-stats{display:flex;flex-direction:column;gap:10px;max-width:320px;margin:0 auto}
+.sad-stat{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:rgba(231,76,60,.06);border:1px solid rgba(231,76,60,.12);border-radius:10px}
+.sad-stat-label{font-size:12px;color:rgba(245,240,235,.5)}
+.sad-stat-val{font-size:14px;font-weight:800;color:#e74c3c}
+.before-wrap{filter:saturate(.4) brightness(.85)}
+
+/* Door animation */
+.door-scene{position:relative;width:120px;height:80px;margin:0 auto 12px;overflow:hidden}
+.door{width:40px;height:60px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:4px 4px 0 0;position:absolute;left:40px;bottom:0}
+.door-handle{width:4px;height:4px;background:rgba(255,255,255,.15);border-radius:50%;position:absolute;right:6px;top:28px}
+.walker{font-size:20px;position:absolute;bottom:8px;animation:walkOut 3s linear infinite}
+@keyframes walkOut{0%{left:50px;opacity:1}70%{left:110px;opacity:.7}100%{left:130px;opacity:0}}
+
+/* ===== AFTER STATE ===== */
+.after-wrap{display:none}
+.split-view{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+
+/* Email Side */
+.email-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;overflow:hidden}
+.email-header{display:flex;align-items:center;gap:6px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)}
+.email-dot{width:8px;height:8px;border-radius:50%;background:#c9a84c}
+.email-label{font-size:9px;color:rgba(245,240,235,.4);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.email-subject{font-size:12px;font-weight:700;color:#f5f0eb;margin-bottom:8px;min-height:16px}
+.email-body{font-size:10px;color:rgba(245,240,235,.5);line-height:1.6;min-height:60px}
+.email-body .line{opacity:0;transform:translateY(4px)}
+.email-body .line.show{opacity:1;transform:translateY(0);transition:all .4s ease}
+.cta-btn{display:inline-block;margin-top:10px;padding:8px 16px;background:linear-gradient(135deg,#c9a84c,#b8943f);color:#0e0c0a;border-radius:8px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;opacity:0;transform:scale(.5)}
+.cta-btn.pop{opacity:1;transform:scale(1);transition:all .4s cubic-bezier(.175,.885,.32,1.275)}
+
+/* SMS Side */
+.sms-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px;display:flex;flex-direction:column}
+.sms-header{display:flex;align-items:center;gap:6px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)}
+.sms-icon{font-size:14px}
+.sms-label{font-size:9px;color:rgba(245,240,235,.4);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.sms-phone{background:#1a1714;border-radius:16px;padding:16px;flex:1;display:flex;flex-direction:column;justify-content:center;position:relative}
+.sms-bubble{background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.2);border-radius:12px 12px 12px 2px;padding:10px 12px;font-size:11px;color:rgba(245,240,235,.8);line-height:1.5;opacity:0;transform:translateY(10px)}
+.sms-bubble.show{opacity:1;transform:translateY(0);transition:all .5s ease}
+.sms-time{font-size:8px;color:rgba(245,240,235,.25);margin-top:6px;text-align:right;opacity:0}
+.sms-time.show{opacity:1;transition:opacity .3s ease}
+.sms-delivered{display:flex;align-items:center;gap:3px;justify-content:flex-end;margin-top:2px;opacity:0}
+.sms-delivered.show{opacity:1;transition:opacity .3s ease}
+.sms-delivered span{font-size:8px;color:#00ff41}
+.sms-check{font-size:8px;color:#00ff41}
+
+/* Stats Bar */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.stat-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.04);border-radius:10px;padding:10px 8px;text-align:center}
+.stat-card-num{font-size:16px;font-weight:800;font-variant-numeric:tabular-nums;color:#00ff41}
+.stat-card-label{font-size:8px;color:rgba(245,240,235,.35);text-transform:uppercase;letter-spacing:.3px;margin-top:3px;line-height:1.2}
+.stat-card:first-child .stat-card-num{color:#c9a84c}
+
+/* Activity Ticker */
+.ticker{display:flex;flex-direction:column;gap:6px}
+.tick-item{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(255,255,255,.04);border-radius:8px;font-size:11px;opacity:0;transform:translateX(-20px);border:1px solid rgba(255,255,255,.04)}
+.tick-item.show{opacity:1;transform:translateX(0);transition:all .5s ease}
+.tick-icon{font-size:14px;flex-shrink:0}
+.tick-text{color:rgba(245,240,235,.7);flex:1}
+.tick-time{font-size:9px;color:rgba(245,240,235,.3);white-space:nowrap}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* Responsive */
+@media(max-width:500px){
+.split-view{grid-template-columns:1fr;gap:10px}
+.stats-bar{grid-template-columns:repeat(2,1fr)}
+.before-wrap .headline{font-size:18px}
+.ai-text{font-size:20px;letter-spacing:3px}
+.scene{padding:12px}
+}
+@media(min-width:700px){
+.scene{max-width:680px}
+.stat-card-num{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="scene">
+  <!-- AI Overlay -->
+  <div class="ai-overlay" id="aiOverlay">
+    <div class="ai-overlay-bg"></div>
+    <div class="ai-text">AI Activated</div>
+  </div>
+
+  <!-- BEFORE STATE -->
+  <div id="beforeState">
+    <div class="before-wrap">
+      <div class="door-scene">
+        <div class="door"><div class="door-handle"></div></div>
+        <div class="walker">🚶</div>
+      </div>
+      <div class="scene-icon">📉</div>
+      <div class="headline">67% of customers never return<br><span>after their first visit</span></div>
+      <div class="sad-stats">
+        <div class="sad-stat">
+          <span class="sad-stat-label">Last email sent to customers</span>
+          <span class="sad-stat-val">Never</span>
+        </div>
+        <div class="sad-stat">
+          <span class="sad-stat-label">Revenue from repeat customers</span>
+          <span class="sad-stat-val">$0</span>
+        </div>
+        <div class="sad-stat">
+          <span class="sad-stat-label">Customer follow-ups this month</span>
+          <span class="sad-stat-val">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AFTER STATE -->
+  <div id="afterState" class="after-wrap">
+    <div class="split-view">
+      <!-- Email -->
+      <div class="email-card">
+        <div class="email-header">
+          <div class="email-dot"></div>
+          <div class="email-label">Email Campaign</div>
+        </div>
+        <div class="email-subject" id="emailSubject"></div>
+        <div class="email-body" id="emailBody">
+          <div class="line" id="eLine1">Hi SGT Miller,</div>
+          <div class="line" id="eLine2">Great news — your uniform alterations are complete and ready for pickup!</div>
+          <div class="line" id="eLine3">We're open today until 6pm. Just bring your ticket number.</div>
+        </div>
+        <div class="cta-btn" id="ctaBtn">Track My Order</div>
+      </div>
+
+      <!-- SMS -->
+      <div class="sms-card">
+        <div class="sms-header">
+          <span class="sms-icon">💬</span>
+          <div class="sms-label">SMS Notification</div>
+        </div>
+        <div class="sms-phone">
+          <div class="sms-bubble" id="smsBubble">Hi SGT Miller, your OCP top is ready! Pick up anytime before 6pm today.</div>
+          <div class="sms-time" id="smsTime">Delivered 2:34 PM</div>
+          <div class="sms-delivered" id="smsDelivered"><span class="sms-check">✓✓</span><span>Read</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-card-num" id="statEmails">0</div>
+        <div class="stat-card-label">Emails Sent</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num" id="statOpen">0%</div>
+        <div class="stat-card-label">Open Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num" id="statRepeat">0%</div>
+        <div class="stat-card-label">Repeat Customers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num" id="statRevenue">$0</div>
+        <div class="stat-card-label">Campaign Revenue</div>
+      </div>
+    </div>
+
+    <!-- Activity Ticker -->
+    <div class="ticker">
+      <div class="tick-item" id="tick1"><span class="tick-icon">📧</span><span class="tick-text">Pickup reminder sent to 12 customers</span><span class="tick-time">Just now</span></div>
+      <div class="tick-item" id="tick2"><span class="tick-icon">💬</span><span class="tick-text">SMS confirmation delivered</span><span class="tick-time">2 min ago</span></div>
+      <div class="tick-item" id="tick3"><span class="tick-icon">📊</span><span class="tick-text">Campaign report generated</span><span class="tick-time">5 min ago</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const CYCLE_MS = 14000;
+const BEFORE_DUR = 3000;
+const TRANSITION_DUR = 800;
+
+function animateCounter(el, from, to, duration, prefix, suffix) {
+  prefix = prefix || '';
+  suffix = suffix || '';
+  const start = performance.now();
+  function tick(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const val = Math.round(from + (to - from) * eased);
+    el.textContent = prefix + val.toLocaleString() + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function showSparkles() {
+  const overlay = document.getElementById('aiOverlay');
+  for (let i = 0; i < 14; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    const angle = (i / 14) * Math.PI * 2;
+    const dist = 60 + Math.random() * 90;
+    s.style.cssText = 'left:50%;top:50%;--tx:'+Math.cos(angle)*dist+'px;--ty:'+Math.sin(angle)*dist+'px';
+    overlay.appendChild(s);
+    setTimeout(() => s.classList.add('go'), 50 + i * 35);
+    setTimeout(() => s.remove(), 1000);
+  }
+}
+
+function typeText(el, text, speed, cb) {
+  el.textContent = '';
+  let i = 0;
+  const cursor = document.createElement('span');
+  cursor.className = 'tw-cursor';
+  cursor.style.cssText = 'display:inline-block;width:2px;height:11px;background:#c9a84c;animation:blink .6s step-end infinite;vertical-align:middle;margin-left:1px';
+  el.appendChild(cursor);
+  const iv = setInterval(() => {
+    if (i < text.length) {
+      el.insertBefore(document.createTextNode(text[i]), cursor);
+      i++;
+    } else {
+      clearInterval(iv);
+      setTimeout(() => cursor.remove(), 800);
+      if (cb) cb();
+    }
+  }, speed);
+  return iv;
+}
+
+let typeTimers = [];
+
+function showBefore() {
+  document.getElementById('beforeState').style.display = '';
+  document.getElementById('afterState').style.display = 'none';
+  document.getElementById('aiOverlay').classList.remove('show');
+  typeTimers.forEach(clearInterval);
+  typeTimers = [];
+}
+
+function showTransition() {
+  const overlay = document.getElementById('aiOverlay');
+  overlay.classList.add('show');
+  showSparkles();
+  setTimeout(() => overlay.classList.remove('show'), TRANSITION_DUR);
+}
+
+function resetAfter() {
+  document.getElementById('emailSubject').textContent = '';
+  ['eLine1','eLine2','eLine3'].forEach(id => document.getElementById(id).classList.remove('show'));
+  document.getElementById('ctaBtn').classList.remove('pop');
+  document.getElementById('smsBubble').classList.remove('show');
+  document.getElementById('smsTime').classList.remove('show');
+  document.getElementById('smsDelivered').classList.remove('show');
+  document.getElementById('statEmails').textContent = '0';
+  document.getElementById('statOpen').textContent = '0%';
+  document.getElementById('statRepeat').textContent = '0%';
+  document.getElementById('statRevenue').textContent = '$0';
+  ['tick1','tick2','tick3'].forEach(id => document.getElementById(id).classList.remove('show'));
+}
+
+function showAfter() {
+  resetAfter();
+  document.getElementById('beforeState').style.display = 'none';
+  const after = document.getElementById('afterState');
+  after.style.display = '';
+  after.style.opacity = '0';
+  after.style.transition = 'opacity .6s ease';
+  requestAnimationFrame(() => { after.style.opacity = '1'; });
+
+  // Typewriter email subject
+  const subjectTimer = typeText(
+    document.getElementById('emailSubject'),
+    "Your uniform is ready for pickup! 🪡",
+    40
+  );
+  typeTimers.push(subjectTimer);
+
+  // Email body lines
+  setTimeout(() => document.getElementById('eLine1').classList.add('show'), 800);
+  setTimeout(() => document.getElementById('eLine2').classList.add('show'), 1400);
+  setTimeout(() => document.getElementById('eLine3').classList.add('show'), 2000);
+
+  // CTA button pop
+  setTimeout(() => document.getElementById('ctaBtn').classList.add('pop'), 2600);
+
+  // SMS bubble
+  setTimeout(() => document.getElementById('smsBubble').classList.add('show'), 1200);
+  setTimeout(() => document.getElementById('smsTime').classList.add('show'), 2000);
+  setTimeout(() => document.getElementById('smsDelivered').classList.add('show'), 2600);
+
+  // Stats counters
+  setTimeout(() => {
+    animateCounter(document.getElementById('statEmails'), 0, 1247, 2000, '', '');
+    animateCounter(document.getElementById('statOpen'), 0, 34.2, 1800, '', '%');
+    animateCounter(document.getElementById('statRepeat'), 0, 23, 1600, '+', '%');
+    animateCounter(document.getElementById('statRevenue'), 0, 4820, 2200, '$', '');
+  }, 600);
+
+  // Ticker
+  setTimeout(() => document.getElementById('tick1').classList.add('show'), 1600);
+  setTimeout(() => document.getElementById('tick2').classList.add('show'), 2200);
+  setTimeout(() => document.getElementById('tick3').classList.add('show'), 2800);
+}
+
+function runCycle() {
+  showBefore();
+  setTimeout(() => {
+    showTransition();
+    setTimeout(showAfter, TRANSITION_DUR);
+  }, BEFORE_DUR);
+}
+
+// Fix counter for decimal Open Rate
+const origAnimateCounter = animateCounter;
+
+// Start
+runCycle();
+setInterval(runCycle, CYCLE_MS);
+
+// Add blink keyframes dynamically (for typewriter cursor)
+const style = document.createElement('style');
+style.textContent = '@keyframes blink{50%{opacity:0}}';
+document.head.appendChild(style);
+</script>
+</body>
+</html>

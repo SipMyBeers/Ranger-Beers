@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SewReady — Try the Demo</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-deep);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+
+.demo-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(14,21,40,.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.demo-nav .brand{font-size:20px;font-weight:700;color:var(--accent-cyan);letter-spacing:-.5px;text-decoration:none}
+.demo-nav .brand span{color:var(--text)}
+.demo-nav a{color:var(--text-muted);text-decoration:none;font-size:14px}
+.demo-nav a:hover{color:var(--text)}
+.demo-nav .nav-links{display:flex;gap:20px;align-items:center}
+
+.demo-hero{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px}
+.demo-card{text-align:center;max-width:520px}
+.demo-card h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 16px;line-height:1.2}
+.demo-card h1 em{font-style:normal;color:var(--accent-cyan)}
+.demo-card p{font-size:16px;color:var(--text-muted);margin:0 0 32px;line-height:1.6}
+
+.demo-features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:32px;text-align:left}
+.demo-feat{background:var(--glass);border:1px solid var(--glass-border);border-radius:10px;padding:14px 16px;font-size:13px;display:flex;align-items:center;gap:10px}
+.demo-feat .icon{font-size:20px}
+
+.demo-cta{display:inline-block;padding:16px 40px;background:var(--accent-blue);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.demo-cta:hover{transform:translateY(-2px);box-shadow:var(--glow-blue)}
+.demo-cta:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+
+.demo-note{font-size:12px;color:var(--text-dim);margin-top:16px}
+.demo-error{color:#e74c3c;font-size:13px;margin-top:12px;display:none}
+
+.demo-footer{text-align:center;padding:24px;font-size:12px;color:var(--text-dim);border-top:1px solid var(--border)}
+.demo-footer a{color:var(--accent-cyan);text-decoration:none}
+
+/* Tour tooltip */
+.tour-tooltip{position:fixed;z-index:100000;background:#141d33;border:2px solid var(--accent-cyan);border-radius:12px;padding:16px 20px;max-width:300px;box-shadow:0 8px 32px rgba(0,0,0,.4);display:none}
+.tour-tooltip h4{margin:0 0 6px;font-size:14px;color:var(--accent-cyan)}
+.tour-tooltip p{margin:0 0 12px;font-size:13px;color:var(--text-muted);line-height:1.5}
+.tour-tooltip .tour-actions{display:flex;gap:8px;justify-content:flex-end}
+.tour-tooltip .tour-btn{padding:6px 16px;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer}
+.tour-tooltip .tour-next{background:var(--accent-blue);color:#fff}
+.tour-tooltip .tour-skip{background:var(--glass-hover);color:var(--text)}
+.tour-dot{display:flex;gap:4px;margin-bottom:8px}
+.tour-dot span{width:6px;height:6px;border-radius:50%;background:var(--border)}
+.tour-dot span.active{background:var(--accent-cyan)}
+
+@media(max-width:640px){
+  .demo-features{grid-template-columns:1fr}
+  .demo-nav .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="demo-nav">
+  <a class="brand" href="/packages.html">Sew<span>Ready</span></a>
+  <div class="nav-links">
+    <a href="/packages.html">Pricing</a>
+    <a href="/onboard.html" style="background:var(--accent-blue);color:#fff;padding:8px 20px;border-radius:8px;font-weight:600">Sign Up Free</a>
+  </div>
+</nav>
+
+<div class="demo-hero">
+  <div class="demo-card">
+    <h1>See SewReady <em>in Action</em></h1>
+    <p>Try a fully-loaded demo shop with sample orders, employees, and notifications. No signup required — your demo expires in 24 hours.</p>
+
+    <div class="demo-features">
+      <div class="demo-feat"><span class="icon">&#128203;</span> 5 sample orders in different statuses</div>
+      <div class="demo-feat"><span class="icon">&#128276;</span> Live notifications &amp; alerts</div>
+      <div class="demo-feat"><span class="icon">&#128200;</span> Analytics dashboard with data</div>
+      <div class="demo-feat"><span class="icon">&#128241;</span> Customer portal &amp; chat</div>
+    </div>
+
+    <button class="demo-cta" id="demoBtn" onclick="launchDemo()">Launch Demo Shop</button>
+    <div class="demo-note">No account needed. Demo data resets after 24 hours.</div>
+    <div class="demo-error" id="demoError"></div>
+  </div>
+</div>
+
+<footer class="demo-footer">
+  &copy; 2026 SewReady &mdash; <a href="/legal/terms.html">Terms</a> &middot; <a href="/legal/privacy.html">Privacy</a>
+</footer>
+
+<script>
+function launchDemo() {
+  var btn = document.getElementById('demoBtn');
+  var err = document.getElementById('demoError');
+  btn.disabled = true;
+  btn.textContent = 'Creating demo shop...';
+  err.style.display = 'none';
+
+  fetch('/api/demo', {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: '{}'
+  })
+  .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+  .then(function (res) {
+    if (res.ok && res.data.ok) {
+      // Store demo flag for tour
+      sessionStorage.setItem('sewready_demo_tour', 'true');
+      sessionStorage.setItem('sewready_demo_slug', res.data.slug);
+      window.location.href = res.data.redirect;
+    } else {
+      err.textContent = res.data.error || 'Failed to create demo';
+      err.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Launch Demo Shop';
+    }
+  })
+  .catch(function () {
+    err.textContent = 'Connection error. Please try again.';
+    err.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Launch Demo Shop';
+  });
+}
+</script>
+
+</body>
+</html>

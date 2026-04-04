@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SewReady — Quick-Start Guide</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-deep);color:var(--text);min-height:100vh}
+
+@media print{
+  body{background:#fff;color:#111}
+  .guide-nav,.guide-footer,.no-print{display:none!important}
+  .guide-wrap{max-width:100%;padding:0}
+  .guide-section{background:#fff;border:1px solid #ddd;break-inside:avoid}
+  .guide-section h2{color:#1a1a2e}
+  .step-num{background:#1a1a2e;color:#fff}
+  a{color:#1a1a2e}
+}
+
+.guide-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(14,21,40,.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.guide-nav .brand{font-size:20px;font-weight:700;color:var(--accent-cyan);letter-spacing:-.5px;text-decoration:none}
+.guide-nav .brand span{color:var(--text)}
+.guide-nav .nav-actions{display:flex;gap:12px;align-items:center}
+.guide-nav a{color:var(--text-muted);text-decoration:none;font-size:14px}
+.guide-nav a:hover{color:var(--text)}
+.guide-nav .print-btn{background:var(--accent-blue);color:#fff;border:none;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer}
+
+.guide-wrap{max-width:760px;margin:0 auto;padding:48px 24px 80px}
+.guide-wrap>h1{font-size:32px;font-weight:800;margin:0 0 8px;text-align:center}
+.guide-wrap>.sub{font-size:15px;color:var(--text-muted);text-align:center;margin:0 0 48px}
+
+.guide-toc{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:24px 28px;margin-bottom:48px}
+.guide-toc h3{margin:0 0 12px;font-size:15px;font-weight:700}
+.guide-toc ol{margin:0;padding-left:20px}
+.guide-toc li{margin-bottom:6px}
+.guide-toc a{color:var(--accent-cyan);text-decoration:none;font-size:14px}
+.guide-toc a:hover{text-decoration:underline}
+
+.guide-section{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:32px;margin-bottom:24px}
+.guide-section h2{display:flex;align-items:center;gap:12px;font-size:20px;margin:0 0 16px;color:var(--accent-cyan)}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:var(--accent-blue);color:#fff;border-radius:50%;font-weight:700;font-size:14px;flex-shrink:0}
+.guide-section h3{font-size:15px;font-weight:600;margin:20px 0 8px}
+.guide-section p{font-size:14px;line-height:1.7;color:var(--text-muted);margin:0 0 12px}
+.guide-section ul,.guide-section ol{padding-left:20px;margin:0 0 12px}
+.guide-section li{font-size:14px;line-height:1.7;color:var(--text-muted);margin-bottom:4px}
+
+.guide-tip{background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);border-radius:8px;padding:12px 16px;margin:12px 0;font-size:13px;color:var(--text-muted);line-height:1.6}
+.guide-tip strong{color:var(--accent-cyan)}
+
+.guide-path{font-family:monospace;background:rgba(240,232,220,.06);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:13px;color:var(--text)}
+
+.guide-footer{text-align:center;padding:32px 24px;font-size:12px;color:var(--text-dim);border-top:1px solid var(--border)}
+.guide-footer a{color:var(--accent-cyan);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav class="guide-nav">
+  <a class="brand" href="/packages.html">Sew<span>Ready</span></a>
+  <div class="nav-actions">
+    <a href="/packages.html">Home</a>
+    <button class="print-btn no-print" onclick="window.print()">Print Guide</button>
+  </div>
+</nav>
+
+<div class="guide-wrap">
+
+<h1>Quick-Start Guide</h1>
+<p class="sub">Everything you need to get SewReady up and running in your shop</p>
+
+<div class="guide-toc no-print">
+  <h3>Contents</h3>
+  <ol>
+    <li><a href="#step1">Set Up Your Shop</a></li>
+    <li><a href="#step2">Add Employees</a></li>
+    <li><a href="#step3">Create Your First Order</a></li>
+    <li><a href="#step4">Enable Notifications</a></li>
+    <li><a href="#step5">Share With Customers</a></li>
+    <li><a href="#step6">Daily Operations</a></li>
+  </ol>
+</div>
+
+<!-- Step 1 -->
+<div class="guide-section" id="step1">
+  <h2><span class="step-num">1</span> Set Up Your Shop</h2>
+
+  <h3>Create Your Account</h3>
+  <p>Visit <span class="guide-path">/onboard.html</span> and fill in your shop details: name, address, phone, and your login email and password. Choose a brand color that matches your shop.</p>
+
+  <h3>Choose Your Plan</h3>
+  <ul>
+    <li><strong>Storefront (Free):</strong> Public landing page with your shop info, services, and contact form. Perfect to start.</li>
+    <li><strong>Online Orders ($79/mo):</strong> Adds the admin dashboard, online ordering, employee management, and receipt printing.</li>
+    <li><strong>Full Shop ($149/mo):</strong> Adds SMS/email notifications, analytics, driver coordination, and SOP library.</li>
+  </ul>
+
+  <h3>Configure Your Profile</h3>
+  <p>Go to <strong>Settings</strong> in the sidebar. Verify your shop name, address, phone, email, and business hours are correct. These appear on your customer-facing pages.</p>
+
+  <div class="guide-tip">
+    <strong>Tip:</strong> You can upgrade or downgrade your plan at any time from Settings → Billing & Plan.
+  </div>
+</div>
+
+<!-- Step 2 -->
+<div class="guide-section" id="step2">
+  <h2><span class="step-num">2</span> Add Employees</h2>
+
+  <h3>Add Team Members</h3>
+  <p>Go to <strong>Settings → Employee Schedules</strong> and click "Add Employee." Enter their name, role (Seamstress, Apprentice, or Driver), and assign a color for the calendar.</p>
+
+  <h3>Create Login Accounts</h3>
+  <p>Go to <strong>Settings → Account</strong> or use the admin users API. Each employee gets their own login with a role:</p>
+  <ul>
+    <li><strong>Owner:</strong> Full access to everything including billing and settings.</li>
+    <li><strong>Manager:</strong> Can manage orders, employees, and inventory. No billing access.</li>
+    <li><strong>Employee:</strong> Can view and update orders assigned to them. Limited settings access.</li>
+  </ul>
+
+  <h3>Set Schedules</h3>
+  <p>Each employee card shows their weekly schedule. Click to edit shifts. Add closed dates (holidays, vacations) at the bottom of the section.</p>
+
+  <div class="guide-tip">
+    <strong>Tip:</strong> Employee colors appear on the Calendar view, making it easy to see who's working when.
+  </div>
+</div>
+
+<!-- Step 3 -->
+<div class="guide-section" id="step3">
+  <h2><span class="step-num">3</span> Create Your First Order</h2>
+
+  <h3>Walk-In Orders (Admin Dashboard)</h3>
+  <ol>
+    <li>Click the <strong>"+ Walk-In"</strong> button on the Dashboard.</li>
+    <li>Enter customer info: name, phone, email (optional).</li>
+    <li>Select uniform type (OCP Top, AGSU, etc.).</li>
+    <li>Add alteration items from the checklist (name tape, hem pants, etc.).</li>
+    <li>Set a deadline and urgency level.</li>
+    <li>Click <strong>"Create Order"</strong> — the order gets an SR-XXXX ID automatically.</li>
+    <li>Print a receipt and/or garment label from the order detail view.</li>
+  </ol>
+
+  <h3>Online Orders (Customer Portal)</h3>
+  <p>Customers can place orders from your shop's customer page. These appear in your <strong>Incoming</strong> tab with an INC-XXXX ID. Review the order, then click <strong>"Accept"</strong> to create an active SR-XXXX order, or <strong>"Dismiss"</strong> to decline it.</p>
+
+  <h3>Order Lifecycle</h3>
+  <p>Orders flow through these statuses:</p>
+  <ol>
+    <li><strong>Received</strong> — Order is in the queue.</li>
+    <li><strong>In Progress</strong> — Work has started.</li>
+    <li><strong>Ready for Pickup</strong> — Alterations complete, customer notified.</li>
+    <li><strong>Picked Up / Completed</strong> — Customer has the garment.</li>
+  </ol>
+
+  <div class="guide-tip">
+    <strong>Tip:</strong> Click any order to open details. You can update status, add notes, upload photos, and print receipts or labels — all from one screen.
+  </div>
+</div>
+
+<!-- Step 4 -->
+<div class="guide-section" id="step4">
+  <h2><span class="step-num">4</span> Enable Notifications</h2>
+
+  <h3>SMS & Email (Full Plan)</h3>
+  <p>On the Full Shop plan, go to <strong>Settings → Notifications</strong> and toggle on:</p>
+  <ul>
+    <li><strong>SMS on status changes:</strong> Customer gets a text when their order moves to "Ready."</li>
+    <li><strong>Email on new orders:</strong> You get an email when a customer places an online order.</li>
+    <li><strong>Deadline reminders:</strong> Alert 24 hours before an order deadline.</li>
+  </ul>
+
+  <h3>In-App Notifications</h3>
+  <p>The bell icon in the header shows unread notifications. Click to see new orders, status updates, and system alerts. These work on all plans.</p>
+
+  <div class="guide-tip">
+    <strong>Tip:</strong> SMS messages are sent via Twilio. Make sure customers have given consent to receive text messages.
+  </div>
+</div>
+
+<!-- Step 5 -->
+<div class="guide-section" id="step5">
+  <h2><span class="step-num">5</span> Share With Customers</h2>
+
+  <h3>Your Shop URL</h3>
+  <p>Your customer-facing page lives at:</p>
+  <p><span class="guide-path">sewing.ranger-beers.com/shops/your-shop-slug/customer.html</span></p>
+
+  <h3>Where to Share</h3>
+  <ul>
+    <li><strong>Google Business Profile:</strong> Add the URL to your business listing so customers find you on Google Maps.</li>
+    <li><strong>Counter Sign / QR Code:</strong> Print a QR code that links to your customer page. Place it at your counter.</li>
+    <li><strong>Social Media:</strong> Share on Facebook or Instagram with a link to your page.</li>
+    <li><strong>Business Card:</strong> Add the URL to your business cards.</li>
+  </ul>
+
+  <h3>Customer Features</h3>
+  <p>Your customer page includes:</p>
+  <ul>
+    <li>Shop info, hours, and Google Maps</li>
+    <li>Services list with prices</li>
+    <li>Online order wizard (Online/Full plans)</li>
+    <li>Order tracker — customers check status with order # and phone</li>
+    <li>AI chat assistant for common questions</li>
+    <li>Contact form</li>
+    <li>Bilingual Korean/English toggle</li>
+  </ul>
+
+  <div class="guide-tip">
+    <strong>Tip:</strong> The customer page is a PWA (Progressive Web App). Customers can "Add to Home Screen" on their phone for an app-like experience.
+  </div>
+</div>
+
+<!-- Step 6 -->
+<div class="guide-section" id="step6">
+  <h2><span class="step-num">6</span> Daily Operations</h2>
+
+  <h3>Morning Routine</h3>
+  <ol>
+    <li>Open the Dashboard — check for new <strong>Incoming</strong> orders.</li>
+    <li>Review today's <strong>Calendar</strong> for scheduled appointments and deadlines.</li>
+    <li>Check <strong>Notifications</strong> for overnight orders or alerts.</li>
+  </ol>
+
+  <h3>During the Day</h3>
+  <ul>
+    <li>Create walk-in orders from the Dashboard.</li>
+    <li>Update order statuses as work progresses.</li>
+    <li>Print receipts for completed orders.</li>
+    <li>Accept or dismiss incoming online orders.</li>
+  </ul>
+
+  <h3>Weekly Review</h3>
+  <ul>
+    <li>Check <strong>Analytics</strong> for order volume, revenue, and turnaround times.</li>
+    <li>Review employee schedules for the upcoming week.</li>
+    <li>Update inventory counts if running low on supplies.</li>
+  </ul>
+
+  <h3>Useful Shortcuts</h3>
+  <ul>
+    <li><strong>Order Tracker:</strong> Customer can look up their order status anytime — no phone calls needed.</li>
+    <li><strong>Receipt Reprint:</strong> Open any order → click "Print Receipt" to reprint.</li>
+    <li><strong>Data Export:</strong> Settings → Export your orders as CSV for bookkeeping.</li>
+  </ul>
+</div>
+
+</div>
+
+<footer class="guide-footer">
+  &copy; 2026 SewReady &mdash; <a href="/packages.html">Home</a> &middot; <a href="/legal/terms.html">Terms</a> &middot; <a href="/legal/privacy.html">Privacy</a> &middot; <a href="mailto:owner@ranger-beers.com">owner@ranger-beers.com</a>
+</footer>
+
+</body>
+</html>

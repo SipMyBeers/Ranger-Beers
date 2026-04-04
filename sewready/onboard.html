@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SewReady — Create Your Shop</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg-deep);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+
+.ob-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(14,21,40,.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.ob-nav .brand{font-size:20px;font-weight:700;color:var(--accent-cyan);letter-spacing:-.5px;text-decoration:none}
+.ob-nav .brand span{color:var(--text)}
+.ob-nav a.back{color:var(--text-muted);text-decoration:none;font-size:14px}
+
+.ob-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:32px 24px}
+.ob-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:40px;max-width:480px;width:100%}
+.ob-card h1{font-size:24px;font-weight:800;margin:0 0 4px;text-align:center}
+.ob-card .ob-sub{font-size:13px;color:var(--text-muted);text-align:center;margin:0 0 32px}
+
+/* Progress steps */
+.ob-progress{display:flex;justify-content:center;gap:8px;margin-bottom:32px}
+.ob-dot{width:10px;height:10px;border-radius:50%;background:var(--border);transition:all .3s}
+.ob-dot.active{background:var(--accent-cyan);box-shadow:0 0 8px rgba(6,182,212,.4)}
+.ob-dot.done{background:var(--accent-green)}
+
+/* Steps */
+.ob-step{display:none}
+.ob-step.active{display:block}
+
+.ob-label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.ob-input{width:100%;box-sizing:border-box;padding:11px 14px;border-radius:10px;border:1px solid var(--glass-border);background:var(--bg-surface);color:var(--text);font-size:14px;font-family:inherit;outline:none;margin-bottom:16px}
+.ob-input:focus{border-color:var(--accent-blue);box-shadow:0 0 0 3px rgba(58,110,165,.15)}
+.ob-input::placeholder{color:var(--text-dim)}
+
+.ob-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* Color picker */
+.ob-colors{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.ob-color-swatch{width:40px;height:40px;border-radius:10px;cursor:pointer;border:3px solid transparent;transition:all .2s}
+.ob-color-swatch:hover{transform:scale(1.1)}
+.ob-color-swatch.selected{border-color:#fff;box-shadow:0 0 12px rgba(255,255,255,.3)}
+
+/* Tier cards */
+.ob-tiers{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.ob-tier{padding:14px 16px;border:1px solid var(--glass-border);border-radius:10px;cursor:pointer;transition:all .2s;display:flex;justify-content:space-between;align-items:center}
+.ob-tier:hover{border-color:var(--accent-blue)}
+.ob-tier.selected{border-color:var(--accent-blue);background:rgba(58,110,165,.1)}
+.ob-tier .tier-name{font-size:14px;font-weight:600}
+.ob-tier .tier-price{font-size:13px;color:var(--accent-cyan);font-weight:700}
+.ob-tier .tier-desc{font-size:12px;color:var(--text-muted);margin-top:2px}
+
+/* Buttons */
+.ob-actions{display:flex;gap:10px;margin-top:24px}
+.ob-btn{flex:1;padding:12px;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit}
+.ob-btn-primary{background:var(--accent-blue);color:#fff}
+.ob-btn-primary:hover{box-shadow:var(--glow-blue);transform:translateY(-1px)}
+.ob-btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.ob-btn-secondary{background:var(--glass-hover);color:var(--text);border:1px solid var(--glass-border)}
+.ob-btn-secondary:hover{background:var(--glass-strong)}
+
+.ob-error{color:#e74c3c;font-size:12px;margin-bottom:12px;display:none}
+.ob-hint{font-size:12px;color:var(--text-dim);margin-top:-8px;margin-bottom:16px}
+
+.ob-footer{text-align:center;padding:24px;font-size:12px;color:var(--text-dim);border-top:1px solid var(--border)}
+.ob-footer a{color:var(--accent-cyan);text-decoration:none}
+
+/* Success */
+.ob-success{text-align:center;padding:24px 0}
+.ob-success .check{font-size:64px;margin-bottom:16px}
+.ob-success h2{font-size:22px;margin:0 0 8px;color:var(--accent-green)}
+.ob-success p{font-size:14px;color:var(--text-muted);margin:0 0 24px;line-height:1.6}
+</style>
+</head>
+<body>
+
+<nav class="ob-nav">
+  <a class="brand" href="/packages.html">Sew<span>Ready</span></a>
+  <a class="back" href="/packages.html">&larr; View pricing</a>
+</nav>
+
+<div class="ob-wrap">
+  <div class="ob-card">
+    <h1>Create Your Shop</h1>
+    <p class="ob-sub">Get your SewReady storefront live in under 5 minutes</p>
+
+    <div class="ob-progress">
+      <div class="ob-dot active" data-step="0"></div>
+      <div class="ob-dot" data-step="1"></div>
+      <div class="ob-dot" data-step="2"></div>
+      <div class="ob-dot" data-step="3"></div>
+    </div>
+
+    <div id="obError" class="ob-error"></div>
+
+    <!-- Step 1: Shop Info -->
+    <div class="ob-step active" data-step="0">
+      <label class="ob-label">Shop Name *</label>
+      <input type="text" class="ob-input" id="obShopName" placeholder="e.g. Maria's Alterations">
+
+      <label class="ob-label">Tagline</label>
+      <input type="text" class="ob-input" id="obTagline" placeholder="e.g. Military uniforms & civilian alterations">
+
+      <div class="ob-actions">
+        <button class="ob-btn ob-btn-primary" onclick="obNext()">Next &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Location & Contact -->
+    <div class="ob-step" data-step="1">
+      <label class="ob-label">Address</label>
+      <input type="text" class="ob-input" id="obAddress" placeholder="e.g. 1247 Bragg Blvd, Fayetteville, NC 28301">
+
+      <div class="ob-row">
+        <div>
+          <label class="ob-label">Phone</label>
+          <input type="tel" class="ob-input" id="obPhone" placeholder="(910) 555-0100">
+        </div>
+        <div>
+          <label class="ob-label">Business Email</label>
+          <input type="email" class="ob-input" id="obShopEmail" placeholder="shop@email.com">
+        </div>
+      </div>
+
+      <div class="ob-actions">
+        <button class="ob-btn ob-btn-secondary" onclick="obPrev()">Back</button>
+        <button class="ob-btn ob-btn-primary" onclick="obNext()">Next &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Account & Theme -->
+    <div class="ob-step" data-step="2">
+      <label class="ob-label">Your Name *</label>
+      <input type="text" class="ob-input" id="obOwnerName" placeholder="Your full name">
+
+      <div class="ob-row">
+        <div>
+          <label class="ob-label">Login Email *</label>
+          <input type="email" class="ob-input" id="obEmail" placeholder="your@email.com">
+        </div>
+        <div>
+          <label class="ob-label">Password *</label>
+          <input type="password" class="ob-input" id="obPassword" placeholder="Min 6 characters">
+        </div>
+      </div>
+
+      <label class="ob-label">Shop Brand Color</label>
+      <div class="ob-colors" id="obColors"></div>
+
+      <div class="ob-actions">
+        <button class="ob-btn ob-btn-secondary" onclick="obPrev()">Back</button>
+        <button class="ob-btn ob-btn-primary" onclick="obNext()">Next &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Plan Selection -->
+    <div class="ob-step" data-step="3">
+      <label class="ob-label">Choose Your Plan</label>
+      <p class="ob-hint" style="margin-top:0">You can upgrade anytime from Settings</p>
+
+      <div class="ob-tiers">
+        <div class="ob-tier selected" data-tier="storefront" onclick="obSelectTier(this)">
+          <div>
+            <div class="tier-name">Storefront</div>
+            <div class="tier-desc">Website, services display, contact form</div>
+          </div>
+          <div class="tier-price">Free</div>
+        </div>
+        <div class="ob-tier" data-tier="online" onclick="obSelectTier(this)">
+          <div>
+            <div class="tier-name">Online Orders</div>
+            <div class="tier-desc">+ order wizard, tracking, employee mgmt</div>
+          </div>
+          <div class="tier-price">$79/mo</div>
+        </div>
+        <div class="ob-tier" data-tier="full" onclick="obSelectTier(this)">
+          <div>
+            <div class="tier-name">Full Shop</div>
+            <div class="tier-desc">+ SMS, email alerts, analytics, drivers</div>
+          </div>
+          <div class="tier-price">$149/mo</div>
+        </div>
+      </div>
+
+      <div class="ob-actions">
+        <button class="ob-btn ob-btn-secondary" onclick="obPrev()">Back</button>
+        <button class="ob-btn ob-btn-primary" id="obSubmitBtn" onclick="obSubmit()">Create My Shop</button>
+      </div>
+    </div>
+
+    <!-- Success -->
+    <div class="ob-step" data-step="4">
+      <div class="ob-success">
+        <div class="check">&#10003;</div>
+        <h2>Your Shop is Live!</h2>
+        <p id="obSuccessMsg">Your SewReady storefront has been created.</p>
+        <a id="obGoBtn" class="ob-btn ob-btn-primary" style="display:inline-block;padding:12px 32px;text-decoration:none" href="#">Go to Dashboard &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="ob-footer">
+  &copy; 2026 SewReady &mdash; <a href="/legal/terms.html">Terms</a> &middot; <a href="/legal/privacy.html">Privacy</a>
+</footer>
+
+<script>
+// ── Onboarding Wizard ──────────────────────────────────
+var obStep = 0;
+var obData = { tier: 'storefront', theme_primary: '#a855f7' };
+
+// Color options
+var colors = [
+  '#a855f7', '#3b82f6', '#06b6d4', '#10b981', '#f59e0b',
+  '#ef4444', '#ec4899', '#8b5cf6', '#f97316', '#14b8a6'
+];
+
+function initColors() {
+  var container = document.getElementById('obColors');
+  colors.forEach(function (c) {
+    var swatch = document.createElement('div');
+    swatch.className = 'ob-color-swatch' + (c === obData.theme_primary ? ' selected' : '');
+    swatch.style.background = c;
+    swatch.onclick = function () {
+      document.querySelectorAll('.ob-color-swatch').forEach(function (s) { s.classList.remove('selected'); });
+      swatch.classList.add('selected');
+      obData.theme_primary = c;
+    };
+    container.appendChild(swatch);
+  });
+}
+
+function obSelectTier(el) {
+  document.querySelectorAll('.ob-tier').forEach(function (t) { t.classList.remove('selected'); });
+  el.classList.add('selected');
+  obData.tier = el.getAttribute('data-tier');
+}
+
+function showError(msg) {
+  var el = document.getElementById('obError');
+  el.textContent = msg;
+  el.style.display = msg ? 'block' : 'none';
+}
+
+function obNext() {
+  showError('');
+
+  // Validate current step
+  if (obStep === 0) {
+    var name = document.getElementById('obShopName').value.trim();
+    if (!name) { showError('Shop name is required'); return; }
+  }
+  if (obStep === 2) {
+    var owner = document.getElementById('obOwnerName').value.trim();
+    var email = document.getElementById('obEmail').value.trim();
+    var pass = document.getElementById('obPassword').value;
+    if (!owner) { showError('Your name is required'); return; }
+    if (!email) { showError('Email is required'); return; }
+    if (pass.length < 6) { showError('Password must be at least 6 characters'); return; }
+  }
+
+  goToStep(obStep + 1);
+}
+
+function obPrev() {
+  showError('');
+  goToStep(obStep - 1);
+}
+
+function goToStep(n) {
+  obStep = n;
+  document.querySelectorAll('.ob-step').forEach(function (s) { s.classList.remove('active'); });
+  document.querySelector('.ob-step[data-step="' + n + '"]').classList.add('active');
+
+  document.querySelectorAll('.ob-dot').forEach(function (d, i) {
+    d.classList.remove('active', 'done');
+    if (i === n) d.classList.add('active');
+    else if (i < n) d.classList.add('done');
+  });
+}
+
+function obSubmit() {
+  showError('');
+  var btn = document.getElementById('obSubmitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Creating...';
+
+  var payload = {
+    shop_name: document.getElementById('obShopName').value.trim(),
+    address: document.getElementById('obAddress').value.trim(),
+    phone: document.getElementById('obPhone').value.trim(),
+    email: document.getElementById('obEmail').value.trim(),
+    password: document.getElementById('obPassword').value,
+    owner_name: document.getElementById('obOwnerName').value.trim(),
+    theme_primary: obData.theme_primary,
+    tier: obData.tier
+  };
+
+  fetch('/api/onboard', {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+  .then(function (res) {
+    if (res.ok && res.data.ok) {
+      document.getElementById('obSuccessMsg').textContent =
+        res.data.shop.name + ' is live! Your admin dashboard is ready.';
+      document.getElementById('obGoBtn').href = res.data.redirect;
+      goToStep(4);
+    } else {
+      showError(res.data.error || 'Failed to create shop');
+      btn.disabled = false;
+      btn.textContent = 'Create My Shop';
+    }
+  })
+  .catch(function () {
+    showError('Connection error. Please try again.');
+    btn.disabled = false;
+    btn.textContent = 'Create My Shop';
+  });
+}
+
+// Init
+initColors();
+</script>
+
+</body>
+</html>

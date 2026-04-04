@@ -1,0 +1,31 @@
+# Ranger Beers — Product Ideas from Notes
+
+## Items to Stock
+- Hairclippers
+- Dog tag chains
+- Voice pager
+- Staple gun
+- Scissors / trauma shears
+- Socks
+- Tan tees
+- Face paint
+- Chapstick
+- Wet wipes
+- Clear canteens
+- Knee pads
+- Whistle
+- Shoulder notes
+- Camelbacks
+- Air compressor
+- Face bug guard
+- Gaiter necks
+- Working hands
+- Field hygiene kit
+- Nic pouches / cigs
+- Ruck frames and mods
+- Lume tape stencils
+- Zip ties
+- Retractable wires
+- Measuring tape / ruler
+- Contractor bags
+- Headlamps

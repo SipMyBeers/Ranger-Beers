@@ -1,0 +1,56 @@
+{
+  "name": "Perfit",
+  "slug": "perfit",
+  "colors": [
+    "#8b5cf6",
+    "#e91e63",
+    "#1a1a1a"
+  ],
+  "midjourney": {
+    "logo": "Minimalist logo for Perfit, precise, quality, focused style, #8b5cf6 and #e91e63, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+    "hero": "Modern website hero image for Perfit, Perfect fit alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+    "about": "Portrait of skilled tailor working at sewing machine, Perfit - Perfect fit alterations, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+    "services": "Clean service menu graphic for Perfit, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+  },
+  "video": {
+    "hero": "Cinematic intro video for Perfit, Perfect fit alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+    "about": "B-roll footage of tailor working, Perfit, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style"
+  },
+  "heygen_script": "Welcome to Perfit, your premier destination for Perfect fit alterations.\n\nWhat sets us apart: Focus on precision fitting\n\nVisit us today and experience the quality that has made us a local favorite.\n\nPerfit - Quality Service, Every Time.",
+  "stock_keywords": {
+    "primary": [
+      "sewing machine",
+      "tailor working",
+      "alterations"
+    ],
+    "secondary": [
+      "fabric",
+      "thread",
+      "needle and thread"
+    ],
+    "background": [
+      "shop interior",
+      "clothing rack",
+      "military uniforms"
+    ],
+    "theme_specific": {
+      "military": [
+        "army uniform",
+        "tactical gear",
+        "military surplus"
+      ],
+      "sewing": [
+        "sewing workshop",
+        "dressmaker",
+        "clothing alteration"
+      ],
+      "cleaners": [
+        "dry cleaning",
+        "laundry service",
+        "ironing"
+      ]
+    },
+    "shop_name": "Perfit",
+    "specialty": "Perfect fit alterations"
+  }
+}

@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Voice Receptionist Preview</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:#0e0c0a;
+  color:#f5f0eb;
+  min-height:100vh;
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Layout ── */
+.container{
+  position:relative;
+  width:100%;height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+
+/* ── Scenes ── */
+.scene{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:16px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .6s ease,transform .6s ease;
+  transform:scale(.97);
+}
+.scene.active{
+  opacity:1;pointer-events:auto;
+  transform:scale(1);
+}
+
+/* ── BEFORE: Phone mockup ── */
+.phone-frame{
+  width:min(300px,90%);
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.phone-notch{
+  width:100px;height:5px;
+  background:rgba(255,255,255,.1);
+  border-radius:3px;
+  margin:10px auto 0;
+}
+.phone-screen{padding:16px 18px 20px}
+
+.phone-status-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:10px;color:rgba(245,240,235,.35);
+  margin-bottom:12px;
+  font-weight:600;
+}
+.phone-title{
+  font-size:13px;font-weight:600;color:rgba(245,240,235,.5);
+  margin-bottom:14px;
+  display:flex;align-items:center;gap:6px;
+}
+.phone-title svg{width:14px;height:14px;fill:rgba(245,240,235,.4)}
+
+.missed-count{
+  font-size:clamp(22px,5vw,32px);
+  font-weight:800;
+  color:#e74c3c;
+  text-align:center;
+  margin-bottom:4px;
+  text-shadow:0 0 20px rgba(231,76,60,.3);
+  animation:missedPulse 2s ease-in-out infinite;
+}
+@keyframes missedPulse{
+  0%,100%{opacity:1}
+  50%{opacity:.75}
+}
+.missed-sub{
+  font-size:10px;color:rgba(231,76,60,.6);
+  text-align:center;margin-bottom:16px;
+  letter-spacing:.5px;
+}
+
+.vm-list{display:flex;flex-direction:column;gap:6px}
+.vm-item{
+  background:rgba(231,76,60,.06);
+  border:1px solid rgba(231,76,60,.12);
+  border-radius:10px;
+  padding:9px 11px;
+  display:flex;align-items:flex-start;gap:8px;
+  opacity:0;
+  animation:vmSlide .4s ease forwards;
+}
+.vm-item:nth-child(1){animation-delay:.3s}
+.vm-item:nth-child(2){animation-delay:.6s}
+.vm-item:nth-child(3){animation-delay:.9s}
+.vm-item:nth-child(4){animation-delay:1.2s}
+@keyframes vmSlide{
+  from{opacity:0;transform:translateX(-8px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.vm-dot{
+  width:8px;height:8px;min-width:8px;
+  border-radius:50%;
+  background:#e74c3c;
+  margin-top:3px;
+  box-shadow:0 0 6px rgba(231,76,60,.4);
+}
+.vm-content{flex:1;min-width:0}
+.vm-text{
+  font-size:11px;color:rgba(245,240,235,.55);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  font-style:italic;
+}
+.vm-text.no-msg{color:rgba(245,240,235,.25);font-style:normal}
+.vm-time{
+  font-size:9px;color:rgba(245,240,235,.25);
+  margin-top:2px;
+  font-family:'Courier New',monospace;
+}
+
+.pain-stat{
+  margin-top:16px;
+  text-align:center;
+  font-size:clamp(11px,2.5vw,13px);
+  color:rgba(231,76,60,.7);
+  font-weight:500;
+  opacity:0;
+  animation:fadeUp .5s ease forwards 1.6s;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── TRANSITION ── */
+.scene-transition{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;
+}
+.ai-flash{
+  font-size:clamp(20px,5vw,28px);
+  font-weight:800;
+  color:#c9a84c;
+  text-shadow:0 0 30px rgba(201,168,76,.5),0 0 60px rgba(201,168,76,.2);
+  animation:goldPulse 1s ease-in-out;
+  letter-spacing:2px;
+}
+@keyframes goldPulse{
+  0%{opacity:0;transform:scale(.8)}
+  50%{opacity:1;transform:scale(1.05)}
+  100%{opacity:1;transform:scale(1)}
+}
+.ai-flash-ring{
+  width:60px;height:60px;
+  border-radius:50%;
+  border:2px solid rgba(201,168,76,.4);
+  animation:ringExpand 1s ease-out;
+  display:flex;align-items:center;justify-content:center;
+}
+@keyframes ringExpand{
+  0%{transform:scale(.3);opacity:0;border-width:6px}
+  60%{opacity:1}
+  100%{transform:scale(1);opacity:.6;border-width:2px}
+}
+.ai-flash-ring svg{width:28px;height:28px;fill:#c9a84c}
+
+/* ── AFTER: Live call ── */
+.scene-after{
+  justify-content:flex-start;
+  padding-top:12px;
+  overflow-y:auto;
+  -ms-overflow-style:none;
+  scrollbar-width:none;
+}
+.scene-after::-webkit-scrollbar{display:none}
+
+.after-wrap{
+  width:min(380px,100%);
+  display:flex;flex-direction:column;gap:10px;
+}
+
+.live-badge{
+  display:flex;align-items:center;gap:8px;
+  align-self:flex-start;
+  padding:6px 12px;
+  background:rgba(0,255,65,.08);
+  border:1px solid rgba(0,255,65,.2);
+  border-radius:20px;
+  font-size:11px;font-weight:700;
+  color:#00ff41;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.live-dot{
+  width:8px;height:8px;
+  border-radius:50%;
+  background:#00ff41;
+  box-shadow:0 0 8px rgba(0,255,65,.6);
+  animation:livePulse 1.5s ease-in-out infinite;
+}
+@keyframes livePulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(.8)}
+}
+
+/* Audio waveform */
+.waveform{
+  display:flex;align-items:center;gap:2px;
+  height:20px;
+  margin-left:auto;
+}
+.waveform .bar{
+  width:3px;
+  background:#00ff41;
+  border-radius:2px;
+  animation:wave 1s ease-in-out infinite;
+}
+.waveform .bar:nth-child(1){height:6px;animation-delay:0s}
+.waveform .bar:nth-child(2){height:14px;animation-delay:.1s}
+.waveform .bar:nth-child(3){height:8px;animation-delay:.2s}
+.waveform .bar:nth-child(4){height:18px;animation-delay:.3s}
+.waveform .bar:nth-child(5){height:10px;animation-delay:.15s}
+.waveform .bar:nth-child(6){height:16px;animation-delay:.25s}
+.waveform .bar:nth-child(7){height:6px;animation-delay:.35s}
+@keyframes wave{
+  0%,100%{transform:scaleY(1)}
+  50%{transform:scaleY(.3)}
+}
+
+.caller-info{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;
+  padding:10px 14px;
+  display:flex;align-items:center;gap:10px;
+}
+.caller-avatar{
+  width:34px;height:34px;min-width:34px;
+  border-radius:50%;
+  background:rgba(201,168,76,.12);
+  border:1px solid rgba(201,168,76,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;
+}
+.caller-name{font-size:13px;font-weight:600}
+.caller-number{font-size:10px;color:rgba(245,240,235,.35);font-family:'Courier New',monospace}
+.caller-duration{
+  margin-left:auto;
+  font-size:11px;
+  color:rgba(0,255,65,.7);
+  font-family:'Courier New',monospace;
+  font-weight:600;
+}
+
+/* Transcript */
+.transcript{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;
+  padding:10px 12px;
+  display:flex;flex-direction:column;gap:6px;
+  max-height:220px;
+  overflow-y:auto;
+  -ms-overflow-style:none;
+  scrollbar-width:none;
+}
+.transcript::-webkit-scrollbar{display:none}
+.t-line{
+  display:flex;gap:7px;
+  font-size:11px;
+  line-height:1.45;
+  opacity:0;
+  transform:translateY(4px);
+  transition:opacity .35s ease,transform .35s ease;
+}
+.t-line.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.t-label{
+  min-width:14px;
+  font-size:12px;
+  flex-shrink:0;
+  margin-top:1px;
+}
+.t-ai{color:rgba(0,255,65,.8)}
+.t-caller{color:rgba(245,240,235,.5)}
+
+/* ── Outbound section ── */
+.outbound-section{
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .5s ease,transform .5s ease;
+}
+.outbound-section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.outbound-header{
+  display:flex;align-items:center;gap:7px;
+  font-size:12px;font-weight:700;
+  color:#c9a84c;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.outbound-header svg{width:14px;height:14px;fill:#c9a84c}
+
+.ob-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:10px;
+  padding:9px 12px;
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;
+  margin-bottom:5px;
+  opacity:0;
+  transform:translateX(-10px);
+  transition:opacity .4s ease,transform .4s ease;
+}
+.ob-card.visible{
+  opacity:1;transform:translateX(0);
+}
+.ob-card .icon{font-size:13px;flex-shrink:0}
+.ob-card .text{flex:1;color:rgba(245,240,235,.6);line-height:1.35}
+.ob-card .check{
+  color:#00ff41;font-size:10px;font-weight:700;
+  white-space:nowrap;
+}
+
+/* ── Stats bar ── */
+.stats-bar{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
+  gap:6px;
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .5s ease,transform .5s ease;
+}
+.stats-bar.visible{
+  opacity:1;transform:translateY(0);
+}
+.stat-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:10px;
+  padding:8px 10px;
+  text-align:center;
+}
+.stat-num{
+  font-size:clamp(16px,3.5vw,22px);
+  font-weight:800;
+  color:#c9a84c;
+  font-family:'Courier New',monospace;
+}
+.stat-num.green{color:#00ff41}
+.stat-label{
+  font-size:8px;
+  color:rgba(245,240,235,.35);
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  margin-top:2px;
+}
+
+/* ── Call Now button ── */
+.call-btn{
+  position:fixed;
+  bottom:14px;
+  left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,#c9a84c,#a8893a);
+  color:#0e0c0a;
+  border:none;
+  border-radius:28px;
+  padding:10px 28px;
+  font-size:13px;
+  font-weight:700;
+  cursor:pointer;
+  display:flex;align-items:center;gap:8px;
+  box-shadow:0 4px 20px rgba(201,168,76,.3);
+  transition:transform .2s,box-shadow .2s;
+  z-index:100;
+  letter-spacing:.5px;
+}
+.call-btn:hover{
+  transform:translateX(-50%) scale(1.04);
+  box-shadow:0 6px 28px rgba(201,168,76,.4);
+}
+.call-btn:active{transform:translateX(-50%) scale(.97)}
+.call-btn svg{width:16px;height:16px;fill:#0e0c0a}
+
+/* ── Sim call overlay ── */
+.sim-overlay{
+  position:fixed;inset:0;
+  background:rgba(14,12,10,.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  z-index:200;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+}
+.sim-overlay.active{opacity:1;pointer-events:auto}
+
+.sim-ring{
+  width:80px;height:80px;
+  border-radius:50%;
+  border:3px solid #c9a84c;
+  display:flex;align-items:center;justify-content:center;
+  animation:ringAnim 1.5s ease-in-out infinite;
+  margin-bottom:16px;
+}
+@keyframes ringAnim{
+  0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.4)}
+  50%{box-shadow:0 0 0 16px rgba(201,168,76,0)}
+}
+.sim-ring svg{width:32px;height:32px;fill:#c9a84c}
+
+.sim-status{
+  font-size:14px;font-weight:600;
+  color:#c9a84c;
+  margin-bottom:4px;
+  text-align:center;
+}
+.sim-caller-id{
+  font-size:11px;color:rgba(245,240,235,.4);
+  font-family:'Courier New',monospace;
+  margin-bottom:20px;
+}
+
+.sim-transcript{
+  width:min(340px,100%);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:14px;
+  display:flex;flex-direction:column;gap:8px;
+  max-height:250px;
+  overflow-y:auto;
+  -ms-overflow-style:none;
+  scrollbar-width:none;
+}
+.sim-transcript::-webkit-scrollbar{display:none}
+
+.sim-close{
+  margin-top:20px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  color:#f5f0eb;
+  border-radius:20px;
+  padding:8px 24px;
+  font-size:12px;
+  cursor:pointer;
+  transition:background .2s;
+}
+.sim-close:hover{background:rgba(255,255,255,.1)}
+
+/* ── Responsive ── */
+@media(max-height:500px){
+  .phone-screen{padding:10px 14px 14px}
+  .missed-count{font-size:20px}
+  .vm-item{padding:6px 8px}
+  .transcript{max-height:140px}
+  .after-wrap{gap:6px}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- BEFORE scene -->
+  <div class="scene scene-before active" id="sceneBefore">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="phone-status-bar">
+          <span>9:41 AM</span>
+          <span>Phone</span>
+          <span>&#x1F50B; 64%</span>
+        </div>
+        <div class="phone-title">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          Voicemail
+        </div>
+        <div class="missed-count" id="missedCount">7 Missed Calls Today</div>
+        <div class="missed-sub">&#x26A0; Voicemail box almost full</div>
+        <div class="vm-list" id="vmList">
+          <div class="vm-item">
+            <div class="vm-dot"></div>
+            <div class="vm-content">
+              <div class="vm-text">"Hi, I was wondering if you're open tod&mdash;"</div>
+              <div class="vm-time">9:14 AM &bull; 0:08</div>
+            </div>
+          </div>
+          <div class="vm-item">
+            <div class="vm-dot"></div>
+            <div class="vm-content">
+              <div class="vm-text">"Can I get a price on sewing rank&mdash;"</div>
+              <div class="vm-time">10:42 AM &bull; 0:05</div>
+            </div>
+          </div>
+          <div class="vm-item">
+            <div class="vm-dot"></div>
+            <div class="vm-content">
+              <div class="vm-text no-msg">[No message left]</div>
+              <div class="vm-time">11:08 AM &bull; 0:00</div>
+            </div>
+          </div>
+          <div class="vm-item">
+            <div class="vm-dot"></div>
+            <div class="vm-content">
+              <div class="vm-text">"I've been trying to reach&mdash;"</div>
+              <div class="vm-time">1:33 PM &bull; 0:11</div>
+            </div>
+          </div>
+        </div>
+        <div class="pain-stat">Every missed call is <strong>$45</strong> walking out the door</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANSITION scene -->
+  <div class="scene scene-transition" id="sceneTrans">
+    <div class="ai-flash-ring">
+      <svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 110 2h-1.07A7 7 0 0113 22v-1a1 1 0 112 0v.93A5 5 0 0019 17H5a5 5 0 004 4.93V22a1 1 0 112 0v1a7 7 0 01-6.93-6H3a1 1 0 110-2h1a7 7 0 017-7h1V5.73A2 2 0 0112 2zm0 7a5 5 0 00-5 5h10a5 5 0 00-5-5z"/></svg>
+    </div>
+    <div class="ai-flash">AI ACTIVATED</div>
+  </div>
+
+  <!-- AFTER scene -->
+  <div class="scene scene-after" id="sceneAfter">
+    <div class="after-wrap">
+
+      <!-- Live badge + waveform -->
+      <div style="display:flex;align-items:center;gap:8px;width:100%">
+        <div class="live-badge">
+          <div class="live-dot"></div>
+          LIVE CALL
+        </div>
+        <div class="waveform">
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+      </div>
+
+      <!-- Caller info -->
+      <div class="caller-info">
+        <div class="caller-avatar">&#x1F396;</div>
+        <div>
+          <div class="caller-name">SGT Thompson</div>
+          <div class="caller-number">(910) 555-0142</div>
+        </div>
+        <div class="caller-duration" id="callTimer">0:00</div>
+      </div>
+
+      <!-- Transcript -->
+      <div class="transcript" id="transcript">
+        <div class="t-line" data-delay="400">
+          <span class="t-label">&#x1F7E2;</span>
+          <span class="t-ai">Thank you for calling AAA Tailor Shop! How can I help you today?</span>
+        </div>
+        <div class="t-line" data-delay="1600">
+          <span class="t-label">&#x1F464;</span>
+          <span class="t-caller">Yeah, I need a full OCP setup &mdash; name tapes, rank, unit patch, the works</span>
+        </div>
+        <div class="t-line" data-delay="3200">
+          <span class="t-label">&#x1F7E2;</span>
+          <span class="t-ai">Absolutely! A full OCP top setup is $45 and takes about 45 minutes. I can book you in &mdash; our next available slot is tomorrow at 10 AM. Would that work?</span>
+        </div>
+        <div class="t-line" data-delay="5200">
+          <span class="t-label">&#x1F464;</span>
+          <span class="t-caller">Can you do this afternoon?</span>
+        </div>
+        <div class="t-line" data-delay="6400">
+          <span class="t-label">&#x1F7E2;</span>
+          <span class="t-ai">Let me check... I have a 3:30 PM slot today. Should I reserve that for you, SGT Thompson?</span>
+        </div>
+        <div class="t-line" data-delay="7800">
+          <span class="t-label">&#x1F464;</span>
+          <span class="t-caller">Perfect, book it</span>
+        </div>
+        <div class="t-line" data-delay="9000">
+          <span class="t-label">&#x1F7E2;</span>
+          <span class="t-ai">Done! &#x2705; You're booked for 3:30 PM today. I'll send a text confirmation now. Is there anything else I can help with?</span>
+        </div>
+      </div>
+
+      <!-- Outbound section -->
+      <div class="outbound-section" id="outboundSection">
+        <div class="outbound-header">
+          <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a1 1 0 00-1.01.24l-1.57 1.97A15.05 15.05 0 017.97 10.1l1.97-1.56a1 1 0 00.24-1.02A11.36 11.36 0 019.62 4a1 1 0 00-1-1H5a1 1 0 00-1 1 17.01 17.01 0 0017 17 1 1 0 001-1v-3.62a1 1 0 00-1-1zM18 11h2V5h-6v2h2.59l-4.3 4.29 1.42 1.42L18 8.41V11z"/></svg>
+          Outbound Calls
+        </div>
+        <div class="ob-card" id="ob1">
+          <span class="icon">&#x1F4DE;</span>
+          <span class="text">Called <strong>SGT Miller</strong> &mdash; Order ready for pickup</span>
+          <span class="check">Completed &#x2713;</span>
+        </div>
+        <div class="ob-card" id="ob2">
+          <span class="icon">&#x1F4DE;</span>
+          <span class="text">Called <strong>PFC Davis</strong> &mdash; Appointment reminder tomorrow 10am</span>
+          <span class="check">Completed &#x2713;</span>
+        </div>
+        <div class="ob-card" id="ob3">
+          <span class="icon">&#x1F4DE;</span>
+          <span class="text">Called <strong>SPC Rodriguez</strong> &mdash; Follow-up: How was your service?</span>
+          <span class="check">Completed &#x2713;</span>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-bar" id="statsBar">
+        <div class="stat-card">
+          <div class="stat-num" data-target="34">0</div>
+          <div class="stat-label">Calls Answered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-target="11">0</div>
+          <div class="stat-label">Appts Booked</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-target="8">0</div>
+          <div class="stat-label">Outbound Calls</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num green" data-target="0">0</div>
+          <div class="stat-label">Missed Calls</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" data-target="2430" data-prefix="$" data-comma="true">$0</div>
+          <div class="stat-label">Revenue Protected</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Call Now button -->
+<button class="call-btn" id="callBtn">
+  <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+  Call Now
+</button>
+
+<!-- Sim call overlay -->
+<div class="sim-overlay" id="simOverlay">
+  <div class="sim-ring" id="simRing">
+    <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+  </div>
+  <div class="sim-status" id="simStatus">Incoming Call...</div>
+  <div class="sim-caller-id">(910) 555-0198 &bull; Unknown Caller</div>
+  <div class="sim-transcript" id="simTranscript"></div>
+  <button class="sim-close" id="simClose">End Call</button>
+</div>
+
+<script>
+(function(){
+  // Elements
+  const sceneBefore = document.getElementById('sceneBefore');
+  const sceneTrans = document.getElementById('sceneTrans');
+  const sceneAfter = document.getElementById('sceneAfter');
+  const transcript = document.getElementById('transcript');
+  const outboundSection = document.getElementById('outboundSection');
+  const statsBar = document.getElementById('statsBar');
+  const callBtn = document.getElementById('callBtn');
+  const simOverlay = document.getElementById('simOverlay');
+  const simTranscript = document.getElementById('simTranscript');
+  const simStatus = document.getElementById('simStatus');
+  const simClose = document.getElementById('simClose');
+  const callTimer = document.getElementById('callTimer');
+
+  let autoLoop = null;
+  let paused = false;
+  let timerInterval = null;
+  let callSeconds = 0;
+
+  function setScene(el){
+    [sceneBefore, sceneTrans, sceneAfter].forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function resetBefore(){
+    // Reset voicemail animations
+    document.querySelectorAll('.vm-item').forEach(v => {
+      v.style.animation = 'none';
+      v.offsetHeight; // reflow
+      v.style.animation = '';
+    });
+    document.querySelector('.pain-stat').style.animation = 'none';
+    document.querySelector('.pain-stat').offsetHeight;
+    document.querySelector('.pain-stat').style.animation = '';
+  }
+
+  function resetAfter(){
+    // Reset transcript lines
+    transcript.querySelectorAll('.t-line').forEach(l => l.classList.remove('visible'));
+    // Reset outbound
+    outboundSection.classList.remove('visible');
+    document.querySelectorAll('.ob-card').forEach(c => c.classList.remove('visible'));
+    // Reset stats
+    statsBar.classList.remove('visible');
+    statsBar.querySelectorAll('.stat-num').forEach(n => {
+      const prefix = n.dataset.prefix || '';
+      n.textContent = prefix + '0';
+    });
+    // Reset timer
+    callSeconds = 0;
+    callTimer.textContent = '0:00';
+    clearInterval(timerInterval);
+  }
+
+  function startCallTimer(){
+    callSeconds = 0;
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      callSeconds++;
+      const m = Math.floor(callSeconds / 60);
+      const s = (callSeconds % 60).toString().padStart(2,'0');
+      callTimer.textContent = m + ':' + s;
+    }, 1000);
+  }
+
+  function showTranscript(){
+    const lines = transcript.querySelectorAll('.t-line');
+    lines.forEach(line => {
+      const d = parseInt(line.dataset.delay);
+      setTimeout(() => {
+        line.classList.add('visible');
+        transcript.scrollTop = transcript.scrollHeight;
+      }, d);
+    });
+  }
+
+  function showOutbound(){
+    const baseDelay = 10000;
+    setTimeout(() => {
+      outboundSection.classList.add('visible');
+      ['ob1','ob2','ob3'].forEach((id, i) => {
+        setTimeout(() => document.getElementById(id).classList.add('visible'), i * 500);
+      });
+    }, baseDelay);
+  }
+
+  function animateStats(){
+    const baseDelay = 11800;
+    setTimeout(() => {
+      statsBar.classList.add('visible');
+      statsBar.querySelectorAll('.stat-num').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const prefix = el.dataset.prefix || '';
+        const useComma = el.dataset.comma === 'true';
+        if(target === 0){ el.textContent = prefix + '0'; return; }
+        let current = 0;
+        const step = Math.max(1, Math.floor(target / 30));
+        const iv = setInterval(() => {
+          current += step;
+          if(current >= target){ current = target; clearInterval(iv); }
+          const display = useComma ? current.toLocaleString() : current;
+          el.textContent = prefix + display;
+        }, 35);
+      });
+    }, baseDelay);
+  }
+
+  // Main auto-play sequence
+  function runSequence(){
+    // Phase 1: Before
+    resetBefore();
+    resetAfter();
+    setScene(sceneBefore);
+
+    // Phase 2: Transition at 3.5s
+    setTimeout(() => {
+      if(paused) return;
+      setScene(sceneTrans);
+    }, 3500);
+
+    // Phase 3: After at 5s
+    setTimeout(() => {
+      if(paused) return;
+      setScene(sceneAfter);
+      startCallTimer();
+      showTranscript();
+      showOutbound();
+      animateStats();
+    }, 5000);
+  }
+
+  function startAutoLoop(){
+    runSequence();
+    autoLoop = setInterval(() => {
+      if(!paused) runSequence();
+    }, 18000);
+  }
+
+  function pauseAuto(){
+    paused = true;
+    clearInterval(autoLoop);
+    clearInterval(timerInterval);
+  }
+
+  function resumeAuto(){
+    paused = false;
+    startAutoLoop();
+  }
+
+  // Start
+  startAutoLoop();
+
+  // ── Sim call ──
+  const simLines = [
+    { type:'status', text:'Ringing...', delay:0 },
+    { type:'status', text:'AI Answering...', delay:1500 },
+    { type:'ai', text:'Thank you for calling AAA Tailor Shop! How can I help you today?', delay:2200 },
+    { type:'caller', text:'Hi, do you do hemming on dress pants?', delay:4000 },
+    { type:'ai', text:'Yes, we do! Hemming for dress pants is $15, and it usually takes about 30 minutes. Would you like to schedule a drop-off?', delay:5500 },
+    { type:'caller', text:'Yeah, can I come in tomorrow morning?', delay:7500 },
+    { type:'ai', text:'Of course! I have a 9:00 AM slot available tomorrow. Should I book that for you?', delay:9000 },
+    { type:'caller', text:'Yes please', delay:10500 },
+    { type:'ai', text:'All set! \u2705 You\'re booked for 9:00 AM tomorrow. We\'ll send a text confirmation. See you then!', delay:11500 },
+    { type:'status', text:'Call Ended \u2014 1m 12s', delay:13500 }
+  ];
+
+  let simTimeouts = [];
+
+  callBtn.addEventListener('click', () => {
+    pauseAuto();
+    simOverlay.classList.add('active');
+    simTranscript.innerHTML = '';
+    simStatus.textContent = 'Incoming Call...';
+
+    simLines.forEach(line => {
+      const t = setTimeout(() => {
+        if(line.type === 'status'){
+          simStatus.textContent = line.text;
+          return;
+        }
+        const div = document.createElement('div');
+        div.className = 't-line visible';
+        div.style.opacity = '0';
+        div.style.transform = 'translateY(4px)';
+        const label = line.type === 'ai' ? '\uD83D\uDFE2' : '\uD83D\uDC64';
+        const cls = line.type === 'ai' ? 't-ai' : 't-caller';
+        div.innerHTML = '<span class="t-label">' + label + '</span><span class="' + cls + '">' + line.text + '</span>';
+        simTranscript.appendChild(div);
+        requestAnimationFrame(() => {
+          div.style.transition = 'opacity .35s ease,transform .35s ease';
+          div.style.opacity = '1';
+          div.style.transform = 'translateY(0)';
+        });
+        simTranscript.scrollTop = simTranscript.scrollHeight;
+      }, line.delay);
+      simTimeouts.push(t);
+    });
+  });
+
+  function closeSim(){
+    simOverlay.classList.remove('active');
+    simTimeouts.forEach(t => clearTimeout(t));
+    simTimeouts = [];
+    setTimeout(() => resumeAuto(), 500);
+  }
+
+  simClose.addEventListener('click', closeSim);
+
+  // Pause on any interaction with the after scene
+  sceneAfter.addEventListener('pointerdown', () => {
+    pauseAuto();
+    // Resume after 6s of no interaction
+    clearTimeout(sceneAfter._resumeTimer);
+    sceneAfter._resumeTimer = setTimeout(() => resumeAuto(), 6000);
+  });
+})();
+</script>
+</body>
+</html>

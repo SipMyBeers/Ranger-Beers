@@ -1,0 +1,17 @@
+# Cloudflare Pages headers
+
+# All pages — basic security
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Cache static assets (1hr TTL — cache is purged automatically on deploy)
+/*.css
+  Cache-Control: public, max-age=3600
+/*.js
+  Cache-Control: public, max-age=3600
+
+# Auth script must not be cached aggressively
+/admin-auth.js
+  Cache-Control: public, max-age=0, must-revalidate

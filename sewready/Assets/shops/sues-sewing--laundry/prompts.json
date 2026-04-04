@@ -1,0 +1,56 @@
+{
+  "name": "Sue's Sewing & Laundry",
+  "slug": "sues-sewing--laundry",
+  "colors": [
+    "#8b5cf6",
+    "#e91e63",
+    "#1a1a1a"
+  ],
+  "midjourney": {
+    "logo": "Minimalist logo for Sue's Sewing & Laundry, family, fast, veteran-friendly style, #8b5cf6 and #e91e63, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+    "hero": "Modern website hero image for Sue's Sewing & Laundry, One-stop: alterations, sewing, boot repair, dry cleaning, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+    "about": "Portrait of skilled tailor working at sewing machine, Sue's Sewing & Laundry - One-stop: alterations, sewing, boot repair, dry cleaning, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+    "services": "Clean service menu graphic for Sue's Sewing & Laundry, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+  },
+  "video": {
+    "hero": "Cinematic intro video for Sue's Sewing & Laundry, One-stop: alterations, sewing, boot repair, dry cleaning, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+    "about": "B-roll footage of tailor working, Sue's Sewing & Laundry, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style"
+  },
+  "heygen_script": "Welcome to Sue's Sewing & Laundry, your premier destination for One-stop: alterations, sewing, boot repair, dry cleaning.\n\nWhat sets us apart: Since 1998, military discounts, 24-hour turnaround\n\nVisit us today and experience the quality that has made us a local favorite.\n\nSue's Sewing & Laundry - Quality Service, Every Time.",
+  "stock_keywords": {
+    "primary": [
+      "sewing machine",
+      "tailor working",
+      "alterations"
+    ],
+    "secondary": [
+      "fabric",
+      "thread",
+      "needle and thread"
+    ],
+    "background": [
+      "shop interior",
+      "clothing rack",
+      "military uniforms"
+    ],
+    "theme_specific": {
+      "military": [
+        "army uniform",
+        "tactical gear",
+        "military surplus"
+      ],
+      "sewing": [
+        "sewing workshop",
+        "dressmaker",
+        "clothing alteration"
+      ],
+      "cleaners": [
+        "dry cleaning",
+        "laundry service",
+        "ironing"
+      ]
+    },
+    "shop_name": "Sue's Sewing & Laundry",
+    "specialty": "One-stop: alterations, sewing, boot repair, dry cleaning"
+  }
+}

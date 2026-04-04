@@ -1,0 +1,16 @@
+.DS_Store
+*.swp
+*.swo
+*~
+.wrangler/
+
+# Large media files — serve from R2/CDN, not git
+*.mp4
+*.mov
+*.avi
+*.mkv
+Clients/
+background-video.*
+
+# Test files
+customer_test.html

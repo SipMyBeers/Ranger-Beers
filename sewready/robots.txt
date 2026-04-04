@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Sitemap: https://sewing.ranger-beers.com/sitemap.xml
+
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+Disallow: /functions/

@@ -1,0 +1,56 @@
+{
+  "name": "One Stop Sewing & Cleaning",
+  "slug": "one-stop-sewing--cleaning",
+  "colors": [
+    "#8b5cf6",
+    "#4caf50",
+    "#1a1a1a"
+  ],
+  "midjourney": {
+    "logo": "Minimalist logo for One Stop Sewing & Cleaning, community, dedicated, full-service style, #8b5cf6 and #4caf50, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+    "hero": "Modern website hero image for One Stop Sewing & Cleaning, Fort Bragg soldiers - uniform setup, boot shining, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+    "about": "Portrait of skilled tailor working at sewing machine, One Stop Sewing & Cleaning - Fort Bragg soldiers - uniform setup, boot shining, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+    "services": "Clean service menu graphic for One Stop Sewing & Cleaning, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+  },
+  "video": {
+    "hero": "Cinematic intro video for One Stop Sewing & Cleaning, Fort Bragg soldiers - uniform setup, boot shining, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+    "about": "B-roll footage of tailor working, One Stop Sewing & Cleaning, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style"
+  },
+  "heygen_script": "Welcome to One Stop Sewing & Cleaning, your premier destination for Fort Bragg soldiers - uniform setup, boot shining.\n\nWhat sets us apart: Since 2008, made cloth masks during COVID\n\nVisit us today and experience the quality that has made us a local favorite.\n\nOne Stop Sewing & Cleaning - Quality Service, Every Time.",
+  "stock_keywords": {
+    "primary": [
+      "sewing machine",
+      "tailor working",
+      "alterations"
+    ],
+    "secondary": [
+      "fabric",
+      "thread",
+      "needle and thread"
+    ],
+    "background": [
+      "shop interior",
+      "clothing rack",
+      "military uniforms"
+    ],
+    "theme_specific": {
+      "military": [
+        "army uniform",
+        "tactical gear",
+        "military surplus"
+      ],
+      "sewing": [
+        "sewing workshop",
+        "dressmaker",
+        "clothing alteration"
+      ],
+      "cleaners": [
+        "dry cleaning",
+        "laundry service",
+        "ironing"
+      ]
+    },
+    "shop_name": "One Stop Sewing & Cleaning",
+    "specialty": "Fort Bragg soldiers - uniform setup, boot shining"
+  }
+}

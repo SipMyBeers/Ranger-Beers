@@ -1,0 +1,506 @@
+================================================================================
+🎬 SEWING OPS - ASSET GENERATION PROMPTS
+================================================================================
+
+HOW TO USE:
+1. Copy prompts below
+2. Paste into Midjourney (https://midjourney.com/imagine)
+3. Or use HeyGen for videos (https://heygen.com)
+4. Download free stock footage from Pixabay, Mixkit
+
+================================================================================
+📋 MIDJOURNEY PROMPTS (copy this entire section)
+================================================================================
+
+### AAA Tailor Shop
+Colors: #8b5cf6, #ffd700, #1a1a1a
+Modern website hero image for AAA Tailor Shop, Quality tailoring services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Choi's Sewing & Cleaning
+Colors: #8b5cf6, #ff5722, #1a1a1a
+Modern website hero image for Choi's Sewing & Cleaning, Dry cleaning, sewing, alterations, custom sewing, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Connie's Sewing Room
+Colors: #8b5cf6, #f48fb1, #1a1a1a
+Modern website hero image for Connie's Sewing Room, Personalized sewing services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Final Stitch: Alterations & Clothing
+Colors: #8b5cf6, #ff5722, #1a1a1a
+Modern website hero image for Final Stitch: Alterations & Clothing, Final touch alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Jan's Cleaners & Alterations
+Colors: #8b5cf6, #009688, #1a1a1a
+Modern website hero image for Jan's Cleaners & Alterations, Full-service cleaners and alterations near Fort Bragg, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Jin Sewing
+Colors: #8b5cf6, #1a1a1a, #f0f0f0
+Modern website hero image for Jin Sewing, Professional sewing, precise alterations, military uniform services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Kim's #1 Sewing & Dry Cleaning
+Colors: #8b5cf6, #ffd700, #1a1a1a
+Modern website hero image for Kim's #1 Sewing & Dry Cleaning, Fort Bragg's #1 sewing shop - uniform setup, shaped berets, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Kim's Speedy Sewing Shop
+Colors: #8b5cf6, #00ff41, #1a1a1a
+Modern website hero image for Kim's Speedy Sewing Shop, Speedy alterations, wedding apparel, leather work, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Lee's Alterations & Sewing
+Colors: #8b5cf6, #ff69b4, #1a1a1a
+Modern website hero image for Lee's Alterations & Sewing, Alterations, sewing, dry cleaning - same day service, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Lee's Tailors
+Colors: #8b5cf6, #4a90d9, #1a1a1a
+Modern website hero image for Lee's Tailors, Professional tailoring and alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Lone Wolf Tactical, Inc.
+Colors: #ff6f00, #1a1a1a, #333
+Modern website hero image for Lone Wolf Tactical, Inc., Tactical gear, military surplus, outdoor equipment, warm inviting atmosphere, professional lighting, #ff6f00 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Make It Fit
+Colors: #8b5cf6, #ff4081, #1a1a1a
+Modern website hero image for Make It Fit, Custom alterations and fittings, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Mary's Alterations
+Colors: #8b5cf6, #e91e63, #1a1a1a
+Modern website hero image for Mary's Alterations, Formalwear alterations, bridesmaid dresses, prom dresses, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### McMurray Fabrics
+Colors: #8b5cf6, #8b4513, #1a1a1a
+Modern website hero image for McMurray Fabrics, Textile manufacturer - nets, webbing, automotive textiles, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Minh's Alteration Shop
+Colors: #8b5cf6, #00bcd4, #1a1a1a
+Modern website hero image for Minh's Alteration Shop, Expert alterations and tailoring, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Monarch Cleaners
+Colors: #8b5cf6, #9c27b0, #1a1a1a
+Modern website hero image for Monarch Cleaners, Military uniform care, wedding dresses, leather, fur, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Nan's Cleaners
+Colors: #8b5cf6, #00bcd4, #1a1a1a
+Modern website hero image for Nan's Cleaners, Army uniform dry cleaning & services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### North Carolina Military Supplies
+Colors: #1b5e20, #1a1a1a, #c5b358
+Modern website hero image for North Carolina Military Supplies, Military supplies, wholesale durable goods, warm inviting atmosphere, professional lighting, #1b5e20 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### One Stop Sewing & Cleaning
+Colors: #8b5cf6, #4caf50, #1a1a1a
+Modern website hero image for One Stop Sewing & Cleaning, Fort Bragg soldiers - uniform setup, boot shining, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Otrebla's Tailoring
+Colors: #8b5cf6, #795548, #1a1a1a
+Modern website hero image for Otrebla's Tailoring, Full-service custom tailoring & haberdashery, tuxedo rentals, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Pak Cleaners
+Colors: #8b5cf6, #607d8b, #1a1a1a
+Modern website hero image for Pak Cleaners, Military and civilian tailoring, alterations, dry cleaning, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Perfit
+Colors: #8b5cf6, #e91e63, #1a1a1a
+Modern website hero image for Perfit, Perfect fit alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### S & F Sewing And Alterations
+Colors: #8b5cf6, #2196f3, #1a1a1a
+Modern website hero image for S & F Sewing And Alterations, Professional sewing services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### S.A.S. Military Surplus
+Colors: #b71c1c, #1a1a1a, #c5b358
+Modern website hero image for S.A.S. Military Surplus, Military surplus buy/sell/trade - Cash for military gear, warm inviting atmosphere, professional lighting, #b71c1c accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### STAR Sewing & Cleaners
+Colors: #8b5cf6, #ff9800, #1a1a1a
+Modern website hero image for STAR Sewing & Cleaners, Uniform tailoring, military supply, express service, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Sewing Sensations
+Colors: #8b5cf6, #ff4081, #1a1a1a
+Modern website hero image for Sewing Sensations, Quality sewing and alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Spotless Cleaners & Alterations
+Colors: #8b5cf6, #4caf50, #1a1a1a
+Modern website hero image for Spotless Cleaners & Alterations, Cleaning and alteration specialists, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Sue's Sewing & Laundry
+Colors: #8b5cf6, #e91e63, #1a1a1a
+Modern website hero image for Sue's Sewing & Laundry, One-stop: alterations, sewing, boot repair, dry cleaning, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### T & S Cleaning
+Colors: #8b5cf6, #00acc1, #1a1a1a
+Modern website hero image for T & S Cleaning, Cleaning and alteration services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### T & T Tailor & Alterations
+Colors: #8b5cf6, #5c6bc0, #1a1a1a
+Modern website hero image for T & T Tailor & Alterations, Professional tailoring and alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Tailorite
+Colors: #8b5cf6, #673ab7, #1a1a1a
+Modern website hero image for Tailorite, Professional tailoring, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+### Tina's Alterations
+Colors: #8b5cf6, #ff9800, #1a1a1a
+Modern website hero image for Tina's Alterations, Expert alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250
+
+================================================================================
+📹 HEYGEN VIDEO SCRIPTS
+================================================================================
+
+### AAA Tailor Shop
+Welcome to AAA Tailor Shop, your premier destination for Quality tailoring services.
+
+What sets us apart: Top-rated local tailor
+
+Visit us today and experience the quality that has made us a local favorite.
+
+AAA Tailor Shop - Quality Service, Every Time.
+
+----------------------------------------
+
+### Choi's Sewing & Cleaning
+Welcome to Choi's Sewing & Cleaning, your premier destination for Dry cleaning, sewing, alterations, custom sewing.
+
+What sets us apart: Praised as affordable and reliable on neighborhood forums
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Choi's Sewing & Cleaning - Quality Service, Every Time.
+
+----------------------------------------
+
+### Connie's Sewing Room
+Welcome to Connie's Sewing Room, your premier destination for Personalized sewing services.
+
+What sets us apart: Personal touch with sewing projects
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Connie's Sewing Room - Quality Service, Every Time.
+
+----------------------------------------
+
+### Final Stitch: Alterations & Clothing
+Welcome to Final Stitch: Alterations & Clothing, your premier destination for Final touch alterations.
+
+What sets us apart: Focus on perfect finishing
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Final Stitch: Alterations & Clothing - Quality Service, Every Time.
+
+----------------------------------------
+
+### Jan's Cleaners & Alterations
+Welcome to Jan's Cleaners & Alterations, your premier destination for Full-service cleaners and alterations near Fort Bragg.
+
+What sets us apart: Personalized approach, quick alterations
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Jan's Cleaners & Alterations - Quality Service, Every Time.
+
+----------------------------------------
+
+### Jin Sewing
+Welcome to Jin Sewing, your premier destination for Professional sewing, precise alterations, military uniform services.
+
+What sets us apart: Husband is retired Army AND ordained Deacon at his church
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Jin Sewing - Quality Service, Every Time.
+
+----------------------------------------
+
+### Kim's #1 Sewing & Dry Cleaning
+Welcome to Kim's #1 Sewing & Dry Cleaning, your premier destination for Fort Bragg's #1 sewing shop - uniform setup, shaped berets.
+
+What sets us apart: 58+ years, 360+ 5-star reviews, 'Home of Inspection'
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Kim's #1 Sewing & Dry Cleaning - Quality Service, Every Time.
+
+----------------------------------------
+
+### Kim's Speedy Sewing Shop
+Welcome to Kim's Speedy Sewing Shop, your premier destination for Speedy alterations, wedding apparel, leather work.
+
+What sets us apart: Fast turnaround - 'lived up to their name, speedy!'
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Kim's Speedy Sewing Shop - Quality Service, Every Time.
+
+----------------------------------------
+
+### Lee's Alterations & Sewing
+Welcome to Lee's Alterations & Sewing, your premier destination for Alterations, sewing, dry cleaning - same day service.
+
+What sets us apart: Family-owned, specializes in wedding dresses
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Lee's Alterations & Sewing - Quality Service, Every Time.
+
+----------------------------------------
+
+### Lee's Tailors
+Welcome to Lee's Tailors, your premier destination for Professional tailoring and alterations.
+
+What sets us apart: Experienced seamstress, quality craftsmanship
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Lee's Tailors - Quality Service, Every Time.
+
+----------------------------------------
+
+### Lone Wolf Tactical, Inc.
+Welcome to Lone Wolf Tactical, Inc., your premier destination for Tactical gear, military surplus, outdoor equipment.
+
+What sets us apart: Veteran owned - 'Gear Up for Adventure'
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Lone Wolf Tactical, Inc. - Quality Service, Every Time.
+
+----------------------------------------
+
+### Make It Fit
+Welcome to Make It Fit, your premier destination for Custom alterations and fittings.
+
+What sets us apart: Focus on custom fit solutions
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Make It Fit - Quality Service, Every Time.
+
+----------------------------------------
+
+### Mary's Alterations
+Welcome to Mary's Alterations, your premier destination for Formalwear alterations, bridesmaid dresses, prom dresses.
+
+What sets us apart: Specialist in military dress uniforms - 'sweet lady'
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Mary's Alterations - Quality Service, Every Time.
+
+----------------------------------------
+
+### McMurray Fabrics
+Welcome to McMurray Fabrics, your premier destination for Textile manufacturer - nets, webbing, automotive textiles.
+
+What sets us apart: Established 1968 - 58+ years in textile manufacturing
+
+Visit us today and experience the quality that has made us a local favorite.
+
+McMurray Fabrics - Quality Service, Every Time.
+
+----------------------------------------
+
+### Minh's Alteration Shop
+Welcome to Minh's Alteration Shop, your premier destination for Expert alterations and tailoring.
+
+What sets us apart: Personalized tailoring approach
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Minh's Alteration Shop - Quality Service, Every Time.
+
+----------------------------------------
+
+### Monarch Cleaners
+Welcome to Monarch Cleaners, your premier destination for Military uniform care, wedding dresses, leather, fur.
+
+What sets us apart: 3 locations, 34+ years, 4.8/5 rating
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Monarch Cleaners - Quality Service, Every Time.
+
+----------------------------------------
+
+### Nan's Cleaners
+Welcome to Nan's Cleaners, your premier destination for Army uniform dry cleaning & services.
+
+What sets us apart: Military uniform specialists
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Nan's Cleaners - Quality Service, Every Time.
+
+----------------------------------------
+
+### North Carolina Military Supplies
+Welcome to North Carolina Military Supplies, your premier destination for Military supplies, wholesale durable goods.
+
+What sets us apart: SF Veteran owned - Jeffrey Cormier, retired US Army Special Forces
+
+Visit us today and experience the quality that has made us a local favorite.
+
+North Carolina Military Supplies - Quality Service, Every Time.
+
+----------------------------------------
+
+### One Stop Sewing & Cleaning
+Welcome to One Stop Sewing & Cleaning, your premier destination for Fort Bragg soldiers - uniform setup, boot shining.
+
+What sets us apart: Since 2008, made cloth masks during COVID
+
+Visit us today and experience the quality that has made us a local favorite.
+
+One Stop Sewing & Cleaning - Quality Service, Every Time.
+
+----------------------------------------
+
+### Otrebla's Tailoring
+Welcome to Otrebla's Tailoring, your premier destination for Full-service custom tailoring & haberdashery, tuxedo rentals.
+
+What sets us apart: One of the last true bench tailors - high-end craftsmanship
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Otrebla's Tailoring - Quality Service, Every Time.
+
+----------------------------------------
+
+### Pak Cleaners
+Welcome to Pak Cleaners, your premier destination for Military and civilian tailoring, alterations, dry cleaning.
+
+What sets us apart: WiFi available for waiting customers
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Pak Cleaners - Quality Service, Every Time.
+
+----------------------------------------
+
+### Perfit
+Welcome to Perfit, your premier destination for Perfect fit alterations.
+
+What sets us apart: Focus on precision fitting
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Perfit - Quality Service, Every Time.
+
+----------------------------------------
+
+### S & F Sewing And Alterations
+Welcome to S & F Sewing And Alterations, your premier destination for Professional sewing services.
+
+What sets us apart: Local family-run business
+
+Visit us today and experience the quality that has made us a local favorite.
+
+S & F Sewing And Alterations - Quality Service, Every Time.
+
+----------------------------------------
+
+### S.A.S. Military Surplus
+Welcome to S.A.S. Military Surplus, your premier destination for Military surplus buy/sell/trade - Cash for military gear.
+
+What sets us apart: High-traffic Yadkin Rd location - prime military corridor
+
+Visit us today and experience the quality that has made us a local favorite.
+
+S.A.S. Military Surplus - Quality Service, Every Time.
+
+----------------------------------------
+
+### STAR Sewing & Cleaners
+Welcome to STAR Sewing & Cleaners, your premier destination for Uniform tailoring, military supply, express service.
+
+What sets us apart: 20+ years, complete military uniform services
+
+Visit us today and experience the quality that has made us a local favorite.
+
+STAR Sewing & Cleaners - Quality Service, Every Time.
+
+----------------------------------------
+
+### Sewing Sensations
+Welcome to Sewing Sensations, your premier destination for Quality sewing and alterations.
+
+What sets us apart: Community sewing shop with personal service
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Sewing Sensations - Quality Service, Every Time.
+
+----------------------------------------
+
+### Spotless Cleaners & Alterations
+Welcome to Spotless Cleaners & Alterations, your premier destination for Cleaning and alteration specialists.
+
+What sets us apart: Combined cleaning and alterations service
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Spotless Cleaners & Alterations - Quality Service, Every Time.
+
+----------------------------------------
+
+### Sue's Sewing & Laundry
+Welcome to Sue's Sewing & Laundry, your premier destination for One-stop: alterations, sewing, boot repair, dry cleaning.
+
+What sets us apart: Since 1998, military discounts, 24-hour turnaround
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Sue's Sewing & Laundry - Quality Service, Every Time.
+
+----------------------------------------
+
+### T & S Cleaning
+Welcome to T & S Cleaning, your premier destination for Cleaning and alteration services.
+
+What sets us apart: Located near Benjamin Martin School, embroidery services
+
+Visit us today and experience the quality that has made us a local favorite.
+
+T & S Cleaning - Quality Service, Every Time.
+
+----------------------------------------
+
+### T & T Tailor & Alterations
+Welcome to T & T Tailor & Alterations, your premier destination for Professional tailoring and alterations.
+
+What sets us apart: Combined tailoring service
+
+Visit us today and experience the quality that has made us a local favorite.
+
+T & T Tailor & Alterations - Quality Service, Every Time.
+
+----------------------------------------
+
+### Tailorite
+Welcome to Tailorite, your premier destination for Professional tailoring.
+
+What sets us apart: Quality tailoring services
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Tailorite - Quality Service, Every Time.
+
+----------------------------------------
+
+### Tina's Alterations
+Welcome to Tina's Alterations, your premier destination for Expert alterations.
+
+What sets us apart: Personalized service approach
+
+Visit us today and experience the quality that has made us a local favorite.
+
+Tina's Alterations - Quality Service, Every Time.
+
+----------------------------------------
+
+================================================================================
+🔗 STOCK FOOTAGE SEARCH LINKS
+================================================================================
+
+Pixabay: https://pixabay.com/videos/
+Mixkit: https://mixkit.co/free-stock-video/
+Videezy: https://videezy.com/
+Search terms: sewing machine, tailor, alterations, military uniform

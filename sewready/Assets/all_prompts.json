@@ -1,0 +1,2082 @@
+{
+  "S.A.S. Military Surplus": {
+    "shop_name": "S.A.S. Military Surplus",
+    "slug": "sas-military-surplus",
+    "theme_colors": [
+      "#b71c1c",
+      "#1a1a1a",
+      "#c5b358"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for S.A.S. Military Surplus, tactical, authentic, veteran-owned style, #b71c1c and #1a1a1a, vector, clean lines, professional",
+      "hero": "Modern website hero image for S.A.S. Military Surplus, Military surplus buy/sell/trade - Cash for military gear, warm inviting atmosphere, professional lighting, #b71c1c accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, S.A.S. Military Surplus - Military surplus buy/sell/trade - Cash for military gear, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for S.A.S. Military Surplus, alterations and sewing services, modern minimalist design, #b71c1c and white",
+      "contact": "Professional business card design for S.A.S. Military Surplus, contact information layout, #b71c1c and #1a1a1a, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for S.A.S. Military Surplus, Military surplus buy/sell/trade - Cash for military gear, slow motion sewing machine needle, warm golden light, #b71c1c color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, S.A.S. Military Surplus, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for S.A.S. Military Surplus, smooth transitions between sewing, fitting, finishing shots, #b71c1c accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for S.A.S. Military Surplus, subtle bokeh of sewing supplies, warm inviting atmosphere, #b71c1c tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for S.A.S. Military Surplus, tactical, authentic, veteran-owned style, #b71c1c and #1a1a1a, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for S.A.S. Military Surplus, Military surplus buy/sell/trade - Cash for military gear, warm inviting atmosphere, professional lighting, #b71c1c accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, S.A.S. Military Surplus - Military surplus buy/sell/trade - Cash for military gear, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for S.A.S. Military Surplus, alterations and sewing services, modern minimalist design, #b71c1c and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to S.A.S. Military Surplus, your premier destination for Military surplus buy/sell/trade - Cash for military gear.\n\nWhat sets us apart: High-traffic Yadkin Rd location - prime military corridor\n\nVisit us today and experience the quality that has made us a local favorite.\n\nS.A.S. Military Surplus - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "S.A.S. Military Surplus",
+      "specialty": "Military surplus buy/sell/trade - Cash for military gear"
+    }
+  },
+  "Lone Wolf Tactical, Inc.": {
+    "shop_name": "Lone Wolf Tactical, Inc.",
+    "slug": "lone-wolf-tactical,-inc",
+    "theme_colors": [
+      "#ff6f00",
+      "#1a1a1a",
+      "#333"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Lone Wolf Tactical, Inc., adventure, tactical, bold style, #ff6f00 and #1a1a1a, vector, clean lines, professional",
+      "hero": "Modern website hero image for Lone Wolf Tactical, Inc., Tactical gear, military surplus, outdoor equipment, warm inviting atmosphere, professional lighting, #ff6f00 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Lone Wolf Tactical, Inc. - Tactical gear, military surplus, outdoor equipment, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Lone Wolf Tactical, Inc., alterations and sewing services, modern minimalist design, #ff6f00 and white",
+      "contact": "Professional business card design for Lone Wolf Tactical, Inc., contact information layout, #ff6f00 and #1a1a1a, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Lone Wolf Tactical, Inc., Tactical gear, military surplus, outdoor equipment, slow motion sewing machine needle, warm golden light, #ff6f00 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Lone Wolf Tactical, Inc., alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Lone Wolf Tactical, Inc., smooth transitions between sewing, fitting, finishing shots, #ff6f00 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Lone Wolf Tactical, Inc., subtle bokeh of sewing supplies, warm inviting atmosphere, #ff6f00 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Lone Wolf Tactical, Inc., adventure, tactical, bold style, #ff6f00 and #1a1a1a, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Lone Wolf Tactical, Inc., Tactical gear, military surplus, outdoor equipment, warm inviting atmosphere, professional lighting, #ff6f00 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Lone Wolf Tactical, Inc. - Tactical gear, military surplus, outdoor equipment, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Lone Wolf Tactical, Inc., alterations and sewing services, modern minimalist design, #ff6f00 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Lone Wolf Tactical, Inc., your premier destination for Tactical gear, military surplus, outdoor equipment.\n\nWhat sets us apart: Veteran owned - 'Gear Up for Adventure'\n\nVisit us today and experience the quality that has made us a local favorite.\n\nLone Wolf Tactical, Inc. - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Lone Wolf Tactical, Inc.",
+      "specialty": "Tactical gear, military surplus, outdoor equipment"
+    }
+  },
+  "North Carolina Military Supplies": {
+    "shop_name": "North Carolina Military Supplies",
+    "slug": "north-carolina-military-supplies",
+    "theme_colors": [
+      "#1b5e20",
+      "#1a1a1a",
+      "#c5b358"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for North Carolina Military Supplies, professional, elite, military-grade style, #1b5e20 and #1a1a1a, vector, clean lines, professional",
+      "hero": "Modern website hero image for North Carolina Military Supplies, Military supplies, wholesale durable goods, warm inviting atmosphere, professional lighting, #1b5e20 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, North Carolina Military Supplies - Military supplies, wholesale durable goods, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for North Carolina Military Supplies, alterations and sewing services, modern minimalist design, #1b5e20 and white",
+      "contact": "Professional business card design for North Carolina Military Supplies, contact information layout, #1b5e20 and #1a1a1a, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for North Carolina Military Supplies, Military supplies, wholesale durable goods, slow motion sewing machine needle, warm golden light, #1b5e20 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, North Carolina Military Supplies, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for North Carolina Military Supplies, smooth transitions between sewing, fitting, finishing shots, #1b5e20 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for North Carolina Military Supplies, subtle bokeh of sewing supplies, warm inviting atmosphere, #1b5e20 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for North Carolina Military Supplies, professional, elite, military-grade style, #1b5e20 and #1a1a1a, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for North Carolina Military Supplies, Military supplies, wholesale durable goods, warm inviting atmosphere, professional lighting, #1b5e20 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, North Carolina Military Supplies - Military supplies, wholesale durable goods, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for North Carolina Military Supplies, alterations and sewing services, modern minimalist design, #1b5e20 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to North Carolina Military Supplies, your premier destination for Military supplies, wholesale durable goods.\n\nWhat sets us apart: SF Veteran owned - Jeffrey Cormier, retired US Army Special Forces\n\nVisit us today and experience the quality that has made us a local favorite.\n\nNorth Carolina Military Supplies - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "North Carolina Military Supplies",
+      "specialty": "Military supplies, wholesale durable goods"
+    }
+  },
+  "Jin Sewing": {
+    "shop_name": "Jin Sewing",
+    "slug": "jin-sewing",
+    "theme_colors": [
+      "#8b5cf6",
+      "#1a1a1a",
+      "#f0f0f0"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Jin Sewing, family, trustworthy, precise style, #8b5cf6 and #1a1a1a, vector, clean lines, professional",
+      "hero": "Modern website hero image for Jin Sewing, Professional sewing, precise alterations, military uniform services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Jin Sewing - Professional sewing, precise alterations, military uniform services, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Jin Sewing, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Jin Sewing, contact information layout, #8b5cf6 and #1a1a1a, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Jin Sewing, Professional sewing, precise alterations, military uniform services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Jin Sewing, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Jin Sewing, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Jin Sewing, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Jin Sewing, family, trustworthy, precise style, #8b5cf6 and #1a1a1a, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Jin Sewing, Professional sewing, precise alterations, military uniform services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Jin Sewing - Professional sewing, precise alterations, military uniform services, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Jin Sewing, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Jin Sewing, your premier destination for Professional sewing, precise alterations, military uniform services.\n\nWhat sets us apart: Husband is retired Army AND ordained Deacon at his church\n\nVisit us today and experience the quality that has made us a local favorite.\n\nJin Sewing - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Jin Sewing",
+      "specialty": "Professional sewing, precise alterations, military uniform services"
+    }
+  },
+  "Kim's #1 Sewing & Dry Cleaning": {
+    "shop_name": "Kim's #1 Sewing & Dry Cleaning",
+    "slug": "kims-1-sewing--dry-cleaning",
+    "theme_colors": [
+      "#8b5cf6",
+      "#ffd700",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Kim's #1 Sewing & Dry Cleaning, established, premium, military-focused style, #8b5cf6 and #ffd700, vector, clean lines, professional",
+      "hero": "Modern website hero image for Kim's #1 Sewing & Dry Cleaning, Fort Bragg's #1 sewing shop - uniform setup, shaped berets, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Kim's #1 Sewing & Dry Cleaning - Fort Bragg's #1 sewing shop - uniform setup, shaped berets, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Kim's #1 Sewing & Dry Cleaning, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Kim's #1 Sewing & Dry Cleaning, contact information layout, #8b5cf6 and #ffd700, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Kim's #1 Sewing & Dry Cleaning, Fort Bragg's #1 sewing shop - uniform setup, shaped berets, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Kim's #1 Sewing & Dry Cleaning, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Kim's #1 Sewing & Dry Cleaning, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Kim's #1 Sewing & Dry Cleaning, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Kim's #1 Sewing & Dry Cleaning, established, premium, military-focused style, #8b5cf6 and #ffd700, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Kim's #1 Sewing & Dry Cleaning, Fort Bragg's #1 sewing shop - uniform setup, shaped berets, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Kim's #1 Sewing & Dry Cleaning - Fort Bragg's #1 sewing shop - uniform setup, shaped berets, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Kim's #1 Sewing & Dry Cleaning, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Kim's #1 Sewing & Dry Cleaning, your premier destination for Fort Bragg's #1 sewing shop - uniform setup, shaped berets.\n\nWhat sets us apart: 58+ years, 360+ 5-star reviews, 'Home of Inspection'\n\nVisit us today and experience the quality that has made us a local favorite.\n\nKim's #1 Sewing & Dry Cleaning - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Kim's #1 Sewing & Dry Cleaning",
+      "specialty": "Fort Bragg's #1 sewing shop - uniform setup, shaped berets"
+    }
+  },
+  "Kim's Speedy Sewing Shop": {
+    "shop_name": "Kim's Speedy Sewing Shop",
+    "slug": "kims-speedy-sewing-shop",
+    "theme_colors": [
+      "#8b5cf6",
+      "#00ff41",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Kim's Speedy Sewing Shop, fast, efficient, reliable style, #8b5cf6 and #00ff41, vector, clean lines, professional",
+      "hero": "Modern website hero image for Kim's Speedy Sewing Shop, Speedy alterations, wedding apparel, leather work, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Kim's Speedy Sewing Shop - Speedy alterations, wedding apparel, leather work, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Kim's Speedy Sewing Shop, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Kim's Speedy Sewing Shop, contact information layout, #8b5cf6 and #00ff41, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Kim's Speedy Sewing Shop, Speedy alterations, wedding apparel, leather work, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Kim's Speedy Sewing Shop, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Kim's Speedy Sewing Shop, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Kim's Speedy Sewing Shop, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Kim's Speedy Sewing Shop, fast, efficient, reliable style, #8b5cf6 and #00ff41, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Kim's Speedy Sewing Shop, Speedy alterations, wedding apparel, leather work, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Kim's Speedy Sewing Shop - Speedy alterations, wedding apparel, leather work, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Kim's Speedy Sewing Shop, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Kim's Speedy Sewing Shop, your premier destination for Speedy alterations, wedding apparel, leather work.\n\nWhat sets us apart: Fast turnaround - 'lived up to their name, speedy!'\n\nVisit us today and experience the quality that has made us a local favorite.\n\nKim's Speedy Sewing Shop - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Kim's Speedy Sewing Shop",
+      "specialty": "Speedy alterations, wedding apparel, leather work"
+    }
+  },
+  "Lee's Alterations & Sewing": {
+    "shop_name": "Lee's Alterations & Sewing",
+    "slug": "lees-alterations--sewing",
+    "theme_colors": [
+      "#8b5cf6",
+      "#ff69b4",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Lee's Alterations & Sewing, family, elegant, detail-oriented style, #8b5cf6 and #ff69b4, vector, clean lines, professional",
+      "hero": "Modern website hero image for Lee's Alterations & Sewing, Alterations, sewing, dry cleaning - same day service, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Lee's Alterations & Sewing - Alterations, sewing, dry cleaning - same day service, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Lee's Alterations & Sewing, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Lee's Alterations & Sewing, contact information layout, #8b5cf6 and #ff69b4, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Lee's Alterations & Sewing, Alterations, sewing, dry cleaning - same day service, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Lee's Alterations & Sewing, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Lee's Alterations & Sewing, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Lee's Alterations & Sewing, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Lee's Alterations & Sewing, family, elegant, detail-oriented style, #8b5cf6 and #ff69b4, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Lee's Alterations & Sewing, Alterations, sewing, dry cleaning - same day service, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Lee's Alterations & Sewing - Alterations, sewing, dry cleaning - same day service, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Lee's Alterations & Sewing, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Lee's Alterations & Sewing, your premier destination for Alterations, sewing, dry cleaning - same day service.\n\nWhat sets us apart: Family-owned, specializes in wedding dresses\n\nVisit us today and experience the quality that has made us a local favorite.\n\nLee's Alterations & Sewing - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Lee's Alterations & Sewing",
+      "specialty": "Alterations, sewing, dry cleaning - same day service"
+    }
+  },
+  "Lee's Tailors": {
+    "shop_name": "Lee's Tailors",
+    "slug": "lees-tailors",
+    "theme_colors": [
+      "#8b5cf6",
+      "#4a90d9",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Lee's Tailors, professional, classic, skilled style, #8b5cf6 and #4a90d9, vector, clean lines, professional",
+      "hero": "Modern website hero image for Lee's Tailors, Professional tailoring and alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Lee's Tailors - Professional tailoring and alterations, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Lee's Tailors, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Lee's Tailors, contact information layout, #8b5cf6 and #4a90d9, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Lee's Tailors, Professional tailoring and alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Lee's Tailors, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Lee's Tailors, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Lee's Tailors, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Lee's Tailors, professional, classic, skilled style, #8b5cf6 and #4a90d9, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Lee's Tailors, Professional tailoring and alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Lee's Tailors - Professional tailoring and alterations, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Lee's Tailors, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Lee's Tailors, your premier destination for Professional tailoring and alterations.\n\nWhat sets us apart: Experienced seamstress, quality craftsmanship\n\nVisit us today and experience the quality that has made us a local favorite.\n\nLee's Tailors - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Lee's Tailors",
+      "specialty": "Professional tailoring and alterations"
+    }
+  },
+  "Make It Fit": {
+    "shop_name": "Make It Fit",
+    "slug": "make-it-fit",
+    "theme_colors": [
+      "#8b5cf6",
+      "#ff4081",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Make It Fit, custom, personal, precise style, #8b5cf6 and #ff4081, vector, clean lines, professional",
+      "hero": "Modern website hero image for Make It Fit, Custom alterations and fittings, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Make It Fit - Custom alterations and fittings, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Make It Fit, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Make It Fit, contact information layout, #8b5cf6 and #ff4081, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Make It Fit, Custom alterations and fittings, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Make It Fit, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Make It Fit, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Make It Fit, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Make It Fit, custom, personal, precise style, #8b5cf6 and #ff4081, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Make It Fit, Custom alterations and fittings, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Make It Fit - Custom alterations and fittings, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Make It Fit, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Make It Fit, your premier destination for Custom alterations and fittings.\n\nWhat sets us apart: Focus on custom fit solutions\n\nVisit us today and experience the quality that has made us a local favorite.\n\nMake It Fit - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Make It Fit",
+      "specialty": "Custom alterations and fittings"
+    }
+  },
+  "Mary's Alterations": {
+    "shop_name": "Mary's Alterations",
+    "slug": "marys-alterations",
+    "theme_colors": [
+      "#8b5cf6",
+      "#e91e63",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Mary's Alterations, elegant, caring, detail-focused style, #8b5cf6 and #e91e63, vector, clean lines, professional",
+      "hero": "Modern website hero image for Mary's Alterations, Formalwear alterations, bridesmaid dresses, prom dresses, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Mary's Alterations - Formalwear alterations, bridesmaid dresses, prom dresses, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Mary's Alterations, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Mary's Alterations, contact information layout, #8b5cf6 and #e91e63, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Mary's Alterations, Formalwear alterations, bridesmaid dresses, prom dresses, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Mary's Alterations, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Mary's Alterations, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Mary's Alterations, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Mary's Alterations, elegant, caring, detail-focused style, #8b5cf6 and #e91e63, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Mary's Alterations, Formalwear alterations, bridesmaid dresses, prom dresses, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Mary's Alterations - Formalwear alterations, bridesmaid dresses, prom dresses, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Mary's Alterations, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Mary's Alterations, your premier destination for Formalwear alterations, bridesmaid dresses, prom dresses.\n\nWhat sets us apart: Specialist in military dress uniforms - 'sweet lady'\n\nVisit us today and experience the quality that has made us a local favorite.\n\nMary's Alterations - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Mary's Alterations",
+      "specialty": "Formalwear alterations, bridesmaid dresses, prom dresses"
+    }
+  },
+  "Monarch Cleaners": {
+    "shop_name": "Monarch Cleaners",
+    "slug": "monarch-cleaners",
+    "theme_colors": [
+      "#8b5cf6",
+      "#9c27b0",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Monarch Cleaners, established, premium, comprehensive style, #8b5cf6 and #9c27b0, vector, clean lines, professional",
+      "hero": "Modern website hero image for Monarch Cleaners, Military uniform care, wedding dresses, leather, fur, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Monarch Cleaners - Military uniform care, wedding dresses, leather, fur, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Monarch Cleaners, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Monarch Cleaners, contact information layout, #8b5cf6 and #9c27b0, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Monarch Cleaners, Military uniform care, wedding dresses, leather, fur, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Monarch Cleaners, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Monarch Cleaners, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Monarch Cleaners, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Monarch Cleaners, established, premium, comprehensive style, #8b5cf6 and #9c27b0, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Monarch Cleaners, Military uniform care, wedding dresses, leather, fur, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Monarch Cleaners - Military uniform care, wedding dresses, leather, fur, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Monarch Cleaners, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Monarch Cleaners, your premier destination for Military uniform care, wedding dresses, leather, fur.\n\nWhat sets us apart: 3 locations, 34+ years, 4.8/5 rating\n\nVisit us today and experience the quality that has made us a local favorite.\n\nMonarch Cleaners - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Monarch Cleaners",
+      "specialty": "Military uniform care, wedding dresses, leather, fur"
+    }
+  },
+  "Nan's Cleaners": {
+    "shop_name": "Nan's Cleaners",
+    "slug": "nans-cleaners",
+    "theme_colors": [
+      "#8b5cf6",
+      "#00bcd4",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Nan's Cleaners, reliable, military-focused style, #8b5cf6 and #00bcd4, vector, clean lines, professional",
+      "hero": "Modern website hero image for Nan's Cleaners, Army uniform dry cleaning & services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Nan's Cleaners - Army uniform dry cleaning & services, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Nan's Cleaners, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Nan's Cleaners, contact information layout, #8b5cf6 and #00bcd4, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Nan's Cleaners, Army uniform dry cleaning & services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Nan's Cleaners, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Nan's Cleaners, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Nan's Cleaners, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Nan's Cleaners, reliable, military-focused style, #8b5cf6 and #00bcd4, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Nan's Cleaners, Army uniform dry cleaning & services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Nan's Cleaners - Army uniform dry cleaning & services, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Nan's Cleaners, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Nan's Cleaners, your premier destination for Army uniform dry cleaning & services.\n\nWhat sets us apart: Military uniform specialists\n\nVisit us today and experience the quality that has made us a local favorite.\n\nNan's Cleaners - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Nan's Cleaners",
+      "specialty": "Army uniform dry cleaning & services"
+    }
+  },
+  "One Stop Sewing & Cleaning": {
+    "shop_name": "One Stop Sewing & Cleaning",
+    "slug": "one-stop-sewing--cleaning",
+    "theme_colors": [
+      "#8b5cf6",
+      "#4caf50",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for One Stop Sewing & Cleaning, community, dedicated, full-service style, #8b5cf6 and #4caf50, vector, clean lines, professional",
+      "hero": "Modern website hero image for One Stop Sewing & Cleaning, Fort Bragg soldiers - uniform setup, boot shining, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, One Stop Sewing & Cleaning - Fort Bragg soldiers - uniform setup, boot shining, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for One Stop Sewing & Cleaning, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for One Stop Sewing & Cleaning, contact information layout, #8b5cf6 and #4caf50, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for One Stop Sewing & Cleaning, Fort Bragg soldiers - uniform setup, boot shining, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, One Stop Sewing & Cleaning, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for One Stop Sewing & Cleaning, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for One Stop Sewing & Cleaning, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for One Stop Sewing & Cleaning, community, dedicated, full-service style, #8b5cf6 and #4caf50, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for One Stop Sewing & Cleaning, Fort Bragg soldiers - uniform setup, boot shining, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, One Stop Sewing & Cleaning - Fort Bragg soldiers - uniform setup, boot shining, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for One Stop Sewing & Cleaning, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to One Stop Sewing & Cleaning, your premier destination for Fort Bragg soldiers - uniform setup, boot shining.\n\nWhat sets us apart: Since 2008, made cloth masks during COVID\n\nVisit us today and experience the quality that has made us a local favorite.\n\nOne Stop Sewing & Cleaning - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "One Stop Sewing & Cleaning",
+      "specialty": "Fort Bragg soldiers - uniform setup, boot shining"
+    }
+  },
+  "Otrebla's Tailoring": {
+    "shop_name": "Otrebla's Tailoring",
+    "slug": "otreblas-tailoring",
+    "theme_colors": [
+      "#8b5cf6",
+      "#795548",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Otrebla's Tailoring, luxury, craftsmanship, bespoke style, #8b5cf6 and #795548, vector, clean lines, professional",
+      "hero": "Modern website hero image for Otrebla's Tailoring, Full-service custom tailoring & haberdashery, tuxedo rentals, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Otrebla's Tailoring - Full-service custom tailoring & haberdashery, tuxedo rentals, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Otrebla's Tailoring, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Otrebla's Tailoring, contact information layout, #8b5cf6 and #795548, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Otrebla's Tailoring, Full-service custom tailoring & haberdashery, tuxedo rentals, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Otrebla's Tailoring, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Otrebla's Tailoring, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Otrebla's Tailoring, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Otrebla's Tailoring, luxury, craftsmanship, bespoke style, #8b5cf6 and #795548, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Otrebla's Tailoring, Full-service custom tailoring & haberdashery, tuxedo rentals, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Otrebla's Tailoring - Full-service custom tailoring & haberdashery, tuxedo rentals, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Otrebla's Tailoring, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Otrebla's Tailoring, your premier destination for Full-service custom tailoring & haberdashery, tuxedo rentals.\n\nWhat sets us apart: One of the last true bench tailors - high-end craftsmanship\n\nVisit us today and experience the quality that has made us a local favorite.\n\nOtrebla's Tailoring - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Otrebla's Tailoring",
+      "specialty": "Full-service custom tailoring & haberdashery, tuxedo rentals"
+    }
+  },
+  "STAR Sewing & Cleaners": {
+    "shop_name": "STAR Sewing & Cleaners",
+    "slug": "star-sewing--cleaners",
+    "theme_colors": [
+      "#8b5cf6",
+      "#ff9800",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for STAR Sewing & Cleaners, star-quality, reliable, comprehensive style, #8b5cf6 and #ff9800, vector, clean lines, professional",
+      "hero": "Modern website hero image for STAR Sewing & Cleaners, Uniform tailoring, military supply, express service, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, STAR Sewing & Cleaners - Uniform tailoring, military supply, express service, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for STAR Sewing & Cleaners, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for STAR Sewing & Cleaners, contact information layout, #8b5cf6 and #ff9800, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for STAR Sewing & Cleaners, Uniform tailoring, military supply, express service, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, STAR Sewing & Cleaners, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for STAR Sewing & Cleaners, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for STAR Sewing & Cleaners, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for STAR Sewing & Cleaners, star-quality, reliable, comprehensive style, #8b5cf6 and #ff9800, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for STAR Sewing & Cleaners, Uniform tailoring, military supply, express service, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, STAR Sewing & Cleaners - Uniform tailoring, military supply, express service, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for STAR Sewing & Cleaners, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to STAR Sewing & Cleaners, your premier destination for Uniform tailoring, military supply, express service.\n\nWhat sets us apart: 20+ years, complete military uniform services\n\nVisit us today and experience the quality that has made us a local favorite.\n\nSTAR Sewing & Cleaners - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "STAR Sewing & Cleaners",
+      "specialty": "Uniform tailoring, military supply, express service"
+    }
+  },
+  "Sue's Sewing & Laundry": {
+    "shop_name": "Sue's Sewing & Laundry",
+    "slug": "sues-sewing--laundry",
+    "theme_colors": [
+      "#8b5cf6",
+      "#e91e63",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Sue's Sewing & Laundry, family, fast, veteran-friendly style, #8b5cf6 and #e91e63, vector, clean lines, professional",
+      "hero": "Modern website hero image for Sue's Sewing & Laundry, One-stop: alterations, sewing, boot repair, dry cleaning, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Sue's Sewing & Laundry - One-stop: alterations, sewing, boot repair, dry cleaning, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Sue's Sewing & Laundry, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Sue's Sewing & Laundry, contact information layout, #8b5cf6 and #e91e63, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Sue's Sewing & Laundry, One-stop: alterations, sewing, boot repair, dry cleaning, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Sue's Sewing & Laundry, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Sue's Sewing & Laundry, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Sue's Sewing & Laundry, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Sue's Sewing & Laundry, family, fast, veteran-friendly style, #8b5cf6 and #e91e63, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Sue's Sewing & Laundry, One-stop: alterations, sewing, boot repair, dry cleaning, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Sue's Sewing & Laundry - One-stop: alterations, sewing, boot repair, dry cleaning, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Sue's Sewing & Laundry, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Sue's Sewing & Laundry, your premier destination for One-stop: alterations, sewing, boot repair, dry cleaning.\n\nWhat sets us apart: Since 1998, military discounts, 24-hour turnaround\n\nVisit us today and experience the quality that has made us a local favorite.\n\nSue's Sewing & Laundry - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Sue's Sewing & Laundry",
+      "specialty": "One-stop: alterations, sewing, boot repair, dry cleaning"
+    }
+  },
+  "Pak Cleaners": {
+    "shop_name": "Pak Cleaners",
+    "slug": "pak-cleaners",
+    "theme_colors": [
+      "#8b5cf6",
+      "#607d8b",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Pak Cleaners, modern, convenient style, #8b5cf6 and #607d8b, vector, clean lines, professional",
+      "hero": "Modern website hero image for Pak Cleaners, Military and civilian tailoring, alterations, dry cleaning, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Pak Cleaners - Military and civilian tailoring, alterations, dry cleaning, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Pak Cleaners, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Pak Cleaners, contact information layout, #8b5cf6 and #607d8b, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Pak Cleaners, Military and civilian tailoring, alterations, dry cleaning, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Pak Cleaners, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Pak Cleaners, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Pak Cleaners, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Pak Cleaners, modern, convenient style, #8b5cf6 and #607d8b, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Pak Cleaners, Military and civilian tailoring, alterations, dry cleaning, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Pak Cleaners - Military and civilian tailoring, alterations, dry cleaning, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Pak Cleaners, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Pak Cleaners, your premier destination for Military and civilian tailoring, alterations, dry cleaning.\n\nWhat sets us apart: WiFi available for waiting customers\n\nVisit us today and experience the quality that has made us a local favorite.\n\nPak Cleaners - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Pak Cleaners",
+      "specialty": "Military and civilian tailoring, alterations, dry cleaning"
+    }
+  },
+  "Choi's Sewing & Cleaning": {
+    "shop_name": "Choi's Sewing & Cleaning",
+    "slug": "chois-sewing--cleaning",
+    "theme_colors": [
+      "#8b5cf6",
+      "#ff5722",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Choi's Sewing & Cleaning, friendly, affordable, quality style, #8b5cf6 and #ff5722, vector, clean lines, professional",
+      "hero": "Modern website hero image for Choi's Sewing & Cleaning, Dry cleaning, sewing, alterations, custom sewing, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Choi's Sewing & Cleaning - Dry cleaning, sewing, alterations, custom sewing, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Choi's Sewing & Cleaning, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Choi's Sewing & Cleaning, contact information layout, #8b5cf6 and #ff5722, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Choi's Sewing & Cleaning, Dry cleaning, sewing, alterations, custom sewing, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Choi's Sewing & Cleaning, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Choi's Sewing & Cleaning, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Choi's Sewing & Cleaning, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Choi's Sewing & Cleaning, friendly, affordable, quality style, #8b5cf6 and #ff5722, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Choi's Sewing & Cleaning, Dry cleaning, sewing, alterations, custom sewing, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Choi's Sewing & Cleaning - Dry cleaning, sewing, alterations, custom sewing, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Choi's Sewing & Cleaning, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Choi's Sewing & Cleaning, your premier destination for Dry cleaning, sewing, alterations, custom sewing.\n\nWhat sets us apart: Praised as affordable and reliable on neighborhood forums\n\nVisit us today and experience the quality that has made us a local favorite.\n\nChoi's Sewing & Cleaning - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Choi's Sewing & Cleaning",
+      "specialty": "Dry cleaning, sewing, alterations, custom sewing"
+    }
+  },
+  "Jan's Cleaners & Alterations": {
+    "shop_name": "Jan's Cleaners & Alterations",
+    "slug": "jans-cleaners--alterations",
+    "theme_colors": [
+      "#8b5cf6",
+      "#009688",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Jan's Cleaners & Alterations, personal, quick, meticulous style, #8b5cf6 and #009688, vector, clean lines, professional",
+      "hero": "Modern website hero image for Jan's Cleaners & Alterations, Full-service cleaners and alterations near Fort Bragg, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Jan's Cleaners & Alterations - Full-service cleaners and alterations near Fort Bragg, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Jan's Cleaners & Alterations, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Jan's Cleaners & Alterations, contact information layout, #8b5cf6 and #009688, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Jan's Cleaners & Alterations, Full-service cleaners and alterations near Fort Bragg, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Jan's Cleaners & Alterations, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Jan's Cleaners & Alterations, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Jan's Cleaners & Alterations, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Jan's Cleaners & Alterations, personal, quick, meticulous style, #8b5cf6 and #009688, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Jan's Cleaners & Alterations, Full-service cleaners and alterations near Fort Bragg, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Jan's Cleaners & Alterations - Full-service cleaners and alterations near Fort Bragg, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Jan's Cleaners & Alterations, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Jan's Cleaners & Alterations, your premier destination for Full-service cleaners and alterations near Fort Bragg.\n\nWhat sets us apart: Personalized approach, quick alterations\n\nVisit us today and experience the quality that has made us a local favorite.\n\nJan's Cleaners & Alterations - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Jan's Cleaners & Alterations",
+      "specialty": "Full-service cleaners and alterations near Fort Bragg"
+    }
+  },
+  "McMurray Fabrics": {
+    "shop_name": "McMurray Fabrics",
+    "slug": "mcmurray-fabrics",
+    "theme_colors": [
+      "#8b5cf6",
+      "#8b4513",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for McMurray Fabrics, industrial, established, B2B style, #8b5cf6 and #8b4513, vector, clean lines, professional",
+      "hero": "Modern website hero image for McMurray Fabrics, Textile manufacturer - nets, webbing, automotive textiles, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, McMurray Fabrics - Textile manufacturer - nets, webbing, automotive textiles, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for McMurray Fabrics, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for McMurray Fabrics, contact information layout, #8b5cf6 and #8b4513, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for McMurray Fabrics, Textile manufacturer - nets, webbing, automotive textiles, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, McMurray Fabrics, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for McMurray Fabrics, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for McMurray Fabrics, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for McMurray Fabrics, industrial, established, B2B style, #8b5cf6 and #8b4513, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for McMurray Fabrics, Textile manufacturer - nets, webbing, automotive textiles, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, McMurray Fabrics - Textile manufacturer - nets, webbing, automotive textiles, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for McMurray Fabrics, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to McMurray Fabrics, your premier destination for Textile manufacturer - nets, webbing, automotive textiles.\n\nWhat sets us apart: Established 1968 - 58+ years in textile manufacturing\n\nVisit us today and experience the quality that has made us a local favorite.\n\nMcMurray Fabrics - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "McMurray Fabrics",
+      "specialty": "Textile manufacturer - nets, webbing, automotive textiles"
+    }
+  },
+  "Minh's Alteration Shop": {
+    "shop_name": "Minh's Alteration Shop",
+    "slug": "minhs-alteration-shop",
+    "theme_colors": [
+      "#8b5cf6",
+      "#00bcd4",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Minh's Alteration Shop, precise, personal, skilled style, #8b5cf6 and #00bcd4, vector, clean lines, professional",
+      "hero": "Modern website hero image for Minh's Alteration Shop, Expert alterations and tailoring, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Minh's Alteration Shop - Expert alterations and tailoring, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Minh's Alteration Shop, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Minh's Alteration Shop, contact information layout, #8b5cf6 and #00bcd4, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Minh's Alteration Shop, Expert alterations and tailoring, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Minh's Alteration Shop, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Minh's Alteration Shop, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Minh's Alteration Shop, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Minh's Alteration Shop, precise, personal, skilled style, #8b5cf6 and #00bcd4, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Minh's Alteration Shop, Expert alterations and tailoring, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Minh's Alteration Shop - Expert alterations and tailoring, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Minh's Alteration Shop, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Minh's Alteration Shop, your premier destination for Expert alterations and tailoring.\n\nWhat sets us apart: Personalized tailoring approach\n\nVisit us today and experience the quality that has made us a local favorite.\n\nMinh's Alteration Shop - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Minh's Alteration Shop",
+      "specialty": "Expert alterations and tailoring"
+    }
+  },
+  "Perfit": {
+    "shop_name": "Perfit",
+    "slug": "perfit",
+    "theme_colors": [
+      "#8b5cf6",
+      "#e91e63",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Perfit, precise, quality, focused style, #8b5cf6 and #e91e63, vector, clean lines, professional",
+      "hero": "Modern website hero image for Perfit, Perfect fit alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Perfit - Perfect fit alterations, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Perfit, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Perfit, contact information layout, #8b5cf6 and #e91e63, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Perfit, Perfect fit alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Perfit, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Perfit, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Perfit, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Perfit, precise, quality, focused style, #8b5cf6 and #e91e63, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Perfit, Perfect fit alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Perfit - Perfect fit alterations, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Perfit, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Perfit, your premier destination for Perfect fit alterations.\n\nWhat sets us apart: Focus on precision fitting\n\nVisit us today and experience the quality that has made us a local favorite.\n\nPerfit - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Perfit",
+      "specialty": "Perfect fit alterations"
+    }
+  },
+  "Sewing Sensations": {
+    "shop_name": "Sewing Sensations",
+    "slug": "sewing-sensations",
+    "theme_colors": [
+      "#8b5cf6",
+      "#ff4081",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Sewing Sensations, creative, community, quality style, #8b5cf6 and #ff4081, vector, clean lines, professional",
+      "hero": "Modern website hero image for Sewing Sensations, Quality sewing and alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Sewing Sensations - Quality sewing and alterations, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Sewing Sensations, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Sewing Sensations, contact information layout, #8b5cf6 and #ff4081, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Sewing Sensations, Quality sewing and alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Sewing Sensations, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Sewing Sensations, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Sewing Sensations, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Sewing Sensations, creative, community, quality style, #8b5cf6 and #ff4081, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Sewing Sensations, Quality sewing and alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Sewing Sensations - Quality sewing and alterations, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Sewing Sensations, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Sewing Sensations, your premier destination for Quality sewing and alterations.\n\nWhat sets us apart: Community sewing shop with personal service\n\nVisit us today and experience the quality that has made us a local favorite.\n\nSewing Sensations - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Sewing Sensations",
+      "specialty": "Quality sewing and alterations"
+    }
+  },
+  "S & F Sewing And Alterations": {
+    "shop_name": "S & F Sewing And Alterations",
+    "slug": "s--f-sewing-and-alterations",
+    "theme_colors": [
+      "#8b5cf6",
+      "#2196f3",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for S & F Sewing And Alterations, family, professional, reliable style, #8b5cf6 and #2196f3, vector, clean lines, professional",
+      "hero": "Modern website hero image for S & F Sewing And Alterations, Professional sewing services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, S & F Sewing And Alterations - Professional sewing services, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for S & F Sewing And Alterations, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for S & F Sewing And Alterations, contact information layout, #8b5cf6 and #2196f3, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for S & F Sewing And Alterations, Professional sewing services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, S & F Sewing And Alterations, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for S & F Sewing And Alterations, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for S & F Sewing And Alterations, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for S & F Sewing And Alterations, family, professional, reliable style, #8b5cf6 and #2196f3, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for S & F Sewing And Alterations, Professional sewing services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, S & F Sewing And Alterations - Professional sewing services, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for S & F Sewing And Alterations, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to S & F Sewing And Alterations, your premier destination for Professional sewing services.\n\nWhat sets us apart: Local family-run business\n\nVisit us today and experience the quality that has made us a local favorite.\n\nS & F Sewing And Alterations - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "S & F Sewing And Alterations",
+      "specialty": "Professional sewing services"
+    }
+  },
+  "Spotless Cleaners & Alterations": {
+    "shop_name": "Spotless Cleaners & Alterations",
+    "slug": "spotless-cleaners--alterations",
+    "theme_colors": [
+      "#8b5cf6",
+      "#4caf50",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Spotless Cleaners & Alterations, clean, professional, thorough style, #8b5cf6 and #4caf50, vector, clean lines, professional",
+      "hero": "Modern website hero image for Spotless Cleaners & Alterations, Cleaning and alteration specialists, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Spotless Cleaners & Alterations - Cleaning and alteration specialists, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Spotless Cleaners & Alterations, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Spotless Cleaners & Alterations, contact information layout, #8b5cf6 and #4caf50, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Spotless Cleaners & Alterations, Cleaning and alteration specialists, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Spotless Cleaners & Alterations, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Spotless Cleaners & Alterations, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Spotless Cleaners & Alterations, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Spotless Cleaners & Alterations, clean, professional, thorough style, #8b5cf6 and #4caf50, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Spotless Cleaners & Alterations, Cleaning and alteration specialists, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Spotless Cleaners & Alterations - Cleaning and alteration specialists, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Spotless Cleaners & Alterations, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Spotless Cleaners & Alterations, your premier destination for Cleaning and alteration specialists.\n\nWhat sets us apart: Combined cleaning and alterations service\n\nVisit us today and experience the quality that has made us a local favorite.\n\nSpotless Cleaners & Alterations - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Spotless Cleaners & Alterations",
+      "specialty": "Cleaning and alteration specialists"
+    }
+  },
+  "Tailorite": {
+    "shop_name": "Tailorite",
+    "slug": "tailorite",
+    "theme_colors": [
+      "#8b5cf6",
+      "#673ab7",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Tailorite, classic, professional, skilled style, #8b5cf6 and #673ab7, vector, clean lines, professional",
+      "hero": "Modern website hero image for Tailorite, Professional tailoring, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Tailorite - Professional tailoring, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Tailorite, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Tailorite, contact information layout, #8b5cf6 and #673ab7, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Tailorite, Professional tailoring, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Tailorite, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Tailorite, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Tailorite, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Tailorite, classic, professional, skilled style, #8b5cf6 and #673ab7, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Tailorite, Professional tailoring, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Tailorite - Professional tailoring, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Tailorite, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Tailorite, your premier destination for Professional tailoring.\n\nWhat sets us apart: Quality tailoring services\n\nVisit us today and experience the quality that has made us a local favorite.\n\nTailorite - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Tailorite",
+      "specialty": "Professional tailoring"
+    }
+  },
+  "Tina's Alterations": {
+    "shop_name": "Tina's Alterations",
+    "slug": "tinas-alterations",
+    "theme_colors": [
+      "#8b5cf6",
+      "#ff9800",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Tina's Alterations, personal, caring, skilled style, #8b5cf6 and #ff9800, vector, clean lines, professional",
+      "hero": "Modern website hero image for Tina's Alterations, Expert alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Tina's Alterations - Expert alterations, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Tina's Alterations, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Tina's Alterations, contact information layout, #8b5cf6 and #ff9800, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Tina's Alterations, Expert alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Tina's Alterations, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Tina's Alterations, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Tina's Alterations, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Tina's Alterations, personal, caring, skilled style, #8b5cf6 and #ff9800, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Tina's Alterations, Expert alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Tina's Alterations - Expert alterations, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Tina's Alterations, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Tina's Alterations, your premier destination for Expert alterations.\n\nWhat sets us apart: Personalized service approach\n\nVisit us today and experience the quality that has made us a local favorite.\n\nTina's Alterations - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Tina's Alterations",
+      "specialty": "Expert alterations"
+    }
+  },
+  "T & S Cleaning": {
+    "shop_name": "T & S Cleaning",
+    "slug": "t--s-cleaning",
+    "theme_colors": [
+      "#8b5cf6",
+      "#00acc1",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for T & S Cleaning, local, convenient, thorough style, #8b5cf6 and #00acc1, vector, clean lines, professional",
+      "hero": "Modern website hero image for T & S Cleaning, Cleaning and alteration services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, T & S Cleaning - Cleaning and alteration services, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for T & S Cleaning, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for T & S Cleaning, contact information layout, #8b5cf6 and #00acc1, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for T & S Cleaning, Cleaning and alteration services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, T & S Cleaning, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for T & S Cleaning, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for T & S Cleaning, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for T & S Cleaning, local, convenient, thorough style, #8b5cf6 and #00acc1, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for T & S Cleaning, Cleaning and alteration services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, T & S Cleaning - Cleaning and alteration services, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for T & S Cleaning, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to T & S Cleaning, your premier destination for Cleaning and alteration services.\n\nWhat sets us apart: Located near Benjamin Martin School, embroidery services\n\nVisit us today and experience the quality that has made us a local favorite.\n\nT & S Cleaning - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "T & S Cleaning",
+      "specialty": "Cleaning and alteration services"
+    }
+  },
+  "T & T Tailor & Alterations": {
+    "shop_name": "T & T Tailor & Alterations",
+    "slug": "t--t-tailor--alterations",
+    "theme_colors": [
+      "#8b5cf6",
+      "#5c6bc0",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for T & T Tailor & Alterations, professional, reliable, skilled style, #8b5cf6 and #5c6bc0, vector, clean lines, professional",
+      "hero": "Modern website hero image for T & T Tailor & Alterations, Professional tailoring and alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, T & T Tailor & Alterations - Professional tailoring and alterations, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for T & T Tailor & Alterations, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for T & T Tailor & Alterations, contact information layout, #8b5cf6 and #5c6bc0, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for T & T Tailor & Alterations, Professional tailoring and alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, T & T Tailor & Alterations, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for T & T Tailor & Alterations, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for T & T Tailor & Alterations, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for T & T Tailor & Alterations, professional, reliable, skilled style, #8b5cf6 and #5c6bc0, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for T & T Tailor & Alterations, Professional tailoring and alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, T & T Tailor & Alterations - Professional tailoring and alterations, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for T & T Tailor & Alterations, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to T & T Tailor & Alterations, your premier destination for Professional tailoring and alterations.\n\nWhat sets us apart: Combined tailoring service\n\nVisit us today and experience the quality that has made us a local favorite.\n\nT & T Tailor & Alterations - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "T & T Tailor & Alterations",
+      "specialty": "Professional tailoring and alterations"
+    }
+  },
+  "AAA Tailor Shop": {
+    "shop_name": "AAA Tailor Shop",
+    "slug": "aaa-tailor-shop",
+    "theme_colors": [
+      "#8b5cf6",
+      "#ffd700",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for AAA Tailor Shop, premium, professional, reliable style, #8b5cf6 and #ffd700, vector, clean lines, professional",
+      "hero": "Modern website hero image for AAA Tailor Shop, Quality tailoring services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, AAA Tailor Shop - Quality tailoring services, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for AAA Tailor Shop, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for AAA Tailor Shop, contact information layout, #8b5cf6 and #ffd700, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for AAA Tailor Shop, Quality tailoring services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, AAA Tailor Shop, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for AAA Tailor Shop, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for AAA Tailor Shop, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for AAA Tailor Shop, premium, professional, reliable style, #8b5cf6 and #ffd700, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for AAA Tailor Shop, Quality tailoring services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, AAA Tailor Shop - Quality tailoring services, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for AAA Tailor Shop, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to AAA Tailor Shop, your premier destination for Quality tailoring services.\n\nWhat sets us apart: Top-rated local tailor\n\nVisit us today and experience the quality that has made us a local favorite.\n\nAAA Tailor Shop - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "AAA Tailor Shop",
+      "specialty": "Quality tailoring services"
+    }
+  },
+  "Connie's Sewing Room": {
+    "shop_name": "Connie's Sewing Room",
+    "slug": "connies-sewing-room",
+    "theme_colors": [
+      "#8b5cf6",
+      "#f48fb1",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Connie's Sewing Room, personal, creative, warm style, #8b5cf6 and #f48fb1, vector, clean lines, professional",
+      "hero": "Modern website hero image for Connie's Sewing Room, Personalized sewing services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Connie's Sewing Room - Personalized sewing services, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Connie's Sewing Room, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Connie's Sewing Room, contact information layout, #8b5cf6 and #f48fb1, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Connie's Sewing Room, Personalized sewing services, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Connie's Sewing Room, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Connie's Sewing Room, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Connie's Sewing Room, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Connie's Sewing Room, personal, creative, warm style, #8b5cf6 and #f48fb1, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Connie's Sewing Room, Personalized sewing services, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Connie's Sewing Room - Personalized sewing services, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Connie's Sewing Room, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Connie's Sewing Room, your premier destination for Personalized sewing services.\n\nWhat sets us apart: Personal touch with sewing projects\n\nVisit us today and experience the quality that has made us a local favorite.\n\nConnie's Sewing Room - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Connie's Sewing Room",
+      "specialty": "Personalized sewing services"
+    }
+  },
+  "Final Stitch: Alterations & Clothing": {
+    "shop_name": "Final Stitch: Alterations & Clothing",
+    "slug": "final-stitch:-alterations--clothing",
+    "theme_colors": [
+      "#8b5cf6",
+      "#ff5722",
+      "#1a1a1a"
+    ],
+    "image_prompts": {
+      "logo": "Minimalist logo for Final Stitch: Alterations & Clothing, detail-oriented, precise, quality style, #8b5cf6 and #ff5722, vector, clean lines, professional",
+      "hero": "Modern website hero image for Final Stitch: Alterations & Clothing, Final touch alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color",
+      "about": "Portrait of skilled tailor working at sewing machine, Final Stitch: Alterations & Clothing - Final touch alterations, warm natural lighting, professional setting",
+      "services": "Clean service menu graphic for Final Stitch: Alterations & Clothing, alterations and sewing services, modern minimalist design, #8b5cf6 and white",
+      "contact": "Professional business card design for Final Stitch: Alterations & Clothing, contact information layout, #8b5cf6 and #ff5722, clean modern style"
+    },
+    "video_prompts": {
+      "hero_video": "Cinematic intro video for Final Stitch: Alterations & Clothing, Final touch alterations, slow motion sewing machine needle, warm golden light, #8b5cf6 color grade, 10 seconds, professional commercial",
+      "about_video": "B-roll footage of tailor working, Final Stitch: Alterations & Clothing, alterations shop interior, skilled hands sewing, natural window light, 15 seconds, documentary style",
+      "service_video": "Animated service showcase for Final Stitch: Alterations & Clothing, smooth transitions between sewing, fitting, finishing shots, #8b5cf6 accent, 20 seconds, modern motion graphics",
+      "testimonial": "Customer testimonial background for Final Stitch: Alterations & Clothing, subtle bokeh of sewing supplies, warm inviting atmosphere, #8b5cf6 tint, 30 seconds loop"
+    },
+    "midjourney_prompts": {
+      "logo": "Minimalist logo for Final Stitch: Alterations & Clothing, detail-oriented, precise, quality style, #8b5cf6 and #ff5722, vector, clean lines, professional --ar 16:9 --v 6 --q 2 --stylize 250",
+      "hero": "Modern website hero image for Final Stitch: Alterations & Clothing, Final touch alterations, warm inviting atmosphere, professional lighting, #8b5cf6 accent color --ar 16:9 --v 6 --q 2 --stylize 250",
+      "about": "Portrait of skilled tailor working at sewing machine, Final Stitch: Alterations & Clothing - Final touch alterations, warm natural lighting, professional setting --ar 16:9 --v 6 --q 2 --stylize 250",
+      "services": "Clean service menu graphic for Final Stitch: Alterations & Clothing, alterations and sewing services, modern minimalist design, #8b5cf6 and white --ar 16:9 --v 6 --q 2 --stylize 250"
+    },
+    "heygen_script": "Welcome to Final Stitch: Alterations & Clothing, your premier destination for Final touch alterations.\n\nWhat sets us apart: Focus on perfect finishing\n\nVisit us today and experience the quality that has made us a local favorite.\n\nFinal Stitch: Alterations & Clothing - Quality Service, Every Time.",
+    "stock_keywords": {
+      "primary": [
+        "sewing machine",
+        "tailor working",
+        "alterations"
+      ],
+      "secondary": [
+        "fabric",
+        "thread",
+        "needle and thread"
+      ],
+      "background": [
+        "shop interior",
+        "clothing rack",
+        "military uniforms"
+      ],
+      "theme_specific": {
+        "military": [
+          "army uniform",
+          "tactical gear",
+          "military surplus"
+        ],
+        "sewing": [
+          "sewing workshop",
+          "dressmaker",
+          "clothing alteration"
+        ],
+        "cleaners": [
+          "dry cleaning",
+          "laundry service",
+          "ironing"
+        ]
+      },
+      "shop_name": "Final Stitch: Alterations & Clothing",
+      "specialty": "Final touch alterations"
+    }
+  }
+}
