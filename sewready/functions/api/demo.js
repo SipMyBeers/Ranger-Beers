@@ -22,7 +22,7 @@ const DEMO_ORDERS = [
   {
     customer: 'SGT Rodriguez, J.',
     phone: '(910) 555-0142',
-    email: 'rodriguez.j@army.mil',
+    email: 'demo@example.com',
     uniform: 'OCP Top',
     status: 'ready',
     urgency: 'on-track',
@@ -152,7 +152,7 @@ export async function onRequestPost(context) {
 
     // Create demo admin user
     const userId = crypto.randomUUID();
-    const passwordHash = await hashPassword('demo123');
+    const passwordHash = await hashPassword(process.env.DEMO_PASSWORD || '<demo-password>');
     await context.env.DB.prepare(`
       INSERT INTO admin_users (id, shop_slug, email, password_hash, name, role, active)
       VALUES (?, ?, 'demo@sewing.ranger-beers.com', ?, 'Demo Owner', 'owner', 1)
@@ -192,7 +192,7 @@ export async function onRequestPost(context) {
       ok: true,
       slug,
       redirect: `/shops/${slug}/index.html`,
-      credentials: { email: 'demo@sewing.ranger-beers.com', password: 'demo123' },
+      credentials: { email: 'demo@sewing.ranger-beers.com', password: '<demo-password>' },
       expires: expiresAt,
     }, 201, { 'Set-Cookie': cookie });
 

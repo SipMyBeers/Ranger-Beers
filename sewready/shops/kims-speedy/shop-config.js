@@ -23,7 +23,7 @@ const shopConfig = {
     rating: '4.9'
   },
   enabledServiceIds: null,
-  adminPassword: '3saf39'
+  adminPassword: process.env.ADMIN_PASSWORD || ''
 };
 
 const employees = [

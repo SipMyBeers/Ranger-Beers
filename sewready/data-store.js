@@ -84,12 +84,12 @@ const DataStore = (function () {
   };
 
   const DEFAULT_CUSTOMERS = [
-    { id: 'C-001', name: 'SGT Rodriguez', rank: 'SGT', phone: '(555) 201-4488', email: 'rodriguez.j@army.mil', unit: '82nd Airborne' },
-    { id: 'C-002', name: 'SPC Chen', rank: 'SPC', phone: '(555) 339-7102', email: 'chen.w@army.mil', unit: '3rd Infantry' },
-    { id: 'C-003', name: '1LT Adams', rank: '1LT', phone: '(555) 442-8830', email: 'adams.r@army.mil', unit: '75th Ranger' },
-    { id: 'C-004', name: 'SSG Petrov', rank: 'SSG', phone: '(555) 581-2269', email: 'petrov.a@army.mil', unit: '10th Mountain' },
-    { id: 'C-005', name: 'PFC Williams', rank: 'PFC', phone: '(555) 773-0154', email: 'williams.t@army.mil', unit: '1st Cavalry' },
-    { id: 'C-006', name: 'CPT Hayes', rank: 'CPT', phone: '(555) 604-9917', email: 'hayes.m@army.mil', unit: '4th Infantry' }
+    { id: 'C-001', name: 'SGT Rodriguez', rank: 'SGT', phone: '(555) 201-4488', email: 'demo@example.com', unit: '82nd Airborne' },
+    { id: 'C-002', name: 'SPC Chen', rank: 'SPC', phone: '(555) 339-7102', email: 'demo2@example.com', unit: '3rd Infantry' },
+    { id: 'C-003', name: '1LT Adams', rank: '1LT', phone: '(555) 442-8830', email: 'demo3@example.com', unit: '75th Ranger' },
+    { id: 'C-004', name: 'SSG Petrov', rank: 'SSG', phone: '(555) 581-2269', email: 'demo4@example.com', unit: '10th Mountain' },
+    { id: 'C-005', name: 'PFC Williams', rank: 'PFC', phone: '(555) 773-0154', email: 'demo5@example.com', unit: '1st Cavalry' },
+    { id: 'C-006', name: 'CPT Hayes', rank: 'CPT', phone: '(555) 604-9917', email: 'demo6@example.com', unit: '4th Infantry' }
   ];
 
   const DEFAULT_NOTIFICATIONS = [
@@ -116,7 +116,7 @@ const DataStore = (function () {
   const DEFAULT_ORDERS = [
     {
       id: 'SR-001', customer: 'SGT Rodriguez', phone: '(555) 201-4488',
-      email: 'rodriguez.j@army.mil', unit: '82nd Airborne',
+      email: 'demo@example.com', unit: '82nd Airborne',
       uniform: 'OCP Top', uniformKey: 'ocp-top',
       modifications: ['Rank Insignia', 'Name Tape', 'US Army Tape', 'Unit Patch', 'Skill Badges'],
       deadline: '2026-03-02', urgency: 'urgent',

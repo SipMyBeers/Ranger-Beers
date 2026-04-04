@@ -112,7 +112,7 @@ The deploy workflow purges all cache after each deploy. This requires the `CLOUD
 ### Manual (CLI)
 ```bash
 # Requires an API token with Zone:Cache Purge permission
-ZONE_ID="8a4dbcb14d9d4b8f798937ffc0ef4b62"
+ZONE_ID="<your-zone-id>"
 curl -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/purge_cache" \
   -H "Authorization: Bearer YOUR_API_TOKEN" \
   -H "Content-Type: application/json" \
@@ -123,9 +123,9 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/purge_cache" \
 
 | Secret | Purpose |
 |--------|---------|
-| `CLOUDFLARE_ACCOUNT_ID` | `744bfb33248c0cfcf366989496008f63` |
+| `CLOUDFLARE_ACCOUNT_ID` | `<your-account-id>` |
 | `CLOUDFLARE_API_TOKEN` | Cloudflare API token (needs Pages:Edit + Zone:Cache Purge) |
-| `CLOUDFLARE_ZONE_ID` | Zone ID for `ranger-beers.com`: `8a4dbcb14d9d4b8f798937ffc0ef4b62` |
+| `CLOUDFLARE_ZONE_ID` | Zone ID for `ranger-beers.com`: `<your-zone-id>` |
 
 ## API Token Permissions
 

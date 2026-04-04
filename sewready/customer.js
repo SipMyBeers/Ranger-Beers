@@ -104,12 +104,12 @@ function seedDemoAccounts() {
   const existing = JSON.parse(localStorage.getItem(_ck('customers')) || '[]');
   if (existing.length > 0) return;
   const demos = [
-    { id: 'C-001', name: 'SGT Rodriguez', phone: '(555) 201-4488', email: 'rodriguez.j@army.mil', password: 'demo123', unit: '82nd Airborne' },
-    { id: 'C-002', name: 'SPC Chen', phone: '(555) 339-7102', email: 'chen.w@army.mil', password: 'demo123', unit: '3rd Infantry' },
-    { id: 'C-003', name: '1LT Adams', phone: '(555) 442-8830', email: 'adams.r@army.mil', password: 'demo123', unit: '75th Ranger' },
-    { id: 'C-004', name: 'SSG Petrov', phone: '(555) 581-2269', email: 'petrov.a@army.mil', password: 'demo123', unit: '10th Mountain' },
-    { id: 'C-005', name: 'PFC Williams', phone: '(555) 773-0154', email: 'williams.t@army.mil', password: 'demo123', unit: '1st Cavalry' },
-    { id: 'C-006', name: 'CPT Hayes', phone: '(555) 604-9917', email: 'hayes.m@army.mil', password: 'demo123', unit: '4th Infantry' }
+    { id: 'C-001', name: 'SGT Rodriguez', phone: '(555) 201-4488', email: 'demo@example.com', password: '<demo-password>', unit: '82nd Airborne' },
+    { id: 'C-002', name: 'SPC Chen', phone: '(555) 339-7102', email: 'demo2@example.com', password: '<demo-password>', unit: '3rd Infantry' },
+    { id: 'C-003', name: '1LT Adams', phone: '(555) 442-8830', email: 'demo3@example.com', password: '<demo-password>', unit: '75th Ranger' },
+    { id: 'C-004', name: 'SSG Petrov', phone: '(555) 581-2269', email: 'demo4@example.com', password: '<demo-password>', unit: '10th Mountain' },
+    { id: 'C-005', name: 'PFC Williams', phone: '(555) 773-0154', email: 'demo5@example.com', password: '<demo-password>', unit: '1st Cavalry' },
+    { id: 'C-006', name: 'CPT Hayes', phone: '(555) 604-9917', email: 'demo6@example.com', password: '<demo-password>', unit: '4th Infantry' }
   ];
   localStorage.setItem(_ck('customers'), JSON.stringify(demos));
 }
