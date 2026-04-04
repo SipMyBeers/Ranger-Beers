@@ -98,5 +98,14 @@
 
     <script src="js/forms.js"></script>
     <script src="js/portfolio.js"></script>
+    <script type="module">
+        import { mountSummon } from './js/summon.js';
+        const container = document.getElementById('summon-container');
+        if (container) {
+            mountSummon(container).catch(() => {
+                // WebGPU not supported — hero stays black, that's fine
+            });
+        }
+    </script>
 </body>
 </html>
