@@ -6,12 +6,12 @@
     <title>Ranger Beers — Web Development</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <meta name="theme-color" content="#0a0a0a">
-    <meta name="description" content="Ranger Beers — websites and web apps built by an Army Ranger and combat medic. Fast, clean, no BS.">
+    <meta name="theme-color" content="#050505">
+    <meta name="description" content="Ranger Beers — websites and web apps built by an Army Ranger. Custom code, AI integrations, SEO, lead generation.">
     <meta property="og:title" content="Ranger Beers — Web Development">
-    <meta property="og:description" content="Websites and web apps built by an Army Ranger. Fast, clean, no BS.">
+    <meta property="og:description" content="Custom websites and web apps. Army Ranger precision, full-stack execution.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ranger-beers.com">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
@@ -25,20 +25,34 @@
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#work">Work</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact" class="nav-cta">Get in touch</a></li>
         </ul>
         <a href="/admin.html" class="nav-admin" id="topbar-admin">Admin</a>
     </nav>
 
     <!-- Hero -->
     <section class="hero" id="hero">
-        <div class="hero-content">
+        <div class="hero-content fade-up">
             <p class="hero-label">BEERS LABS LLC</p>
-            <h1 class="hero-title">I build websites<br>for people who<br>need them <em>done right.</em></h1>
-            <p class="hero-desc">Army Ranger. Combat medic. Full-stack developer. I build fast, clean websites and web apps for small businesses and startups — no fluff, no templates, no BS.</p>
+            <h1 class="hero-title">I build websites for<br>people who need them<br><em>done right.</em></h1>
+            <p class="hero-desc">Army Ranger. Full-stack developer. I build custom websites, web apps, and AI-powered tools for businesses that need more than a template.</p>
             <div class="hero-ctas">
                 <button class="btn btn-primary" data-flow="new_site">Start a project</button>
                 <button class="btn btn-secondary" data-flow="referral">Refer someone</button>
+            </div>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <span class="hero-meta-value">8+</span>
+                    <span class="hero-meta-label">Products shipped</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-value">0</span>
+                    <span class="hero-meta-label">Templates used</span>
+                </div>
+                <div class="hero-meta-item">
+                    <span class="hero-meta-value">100%</span>
+                    <span class="hero-meta-label">Custom code</span>
+                </div>
             </div>
         </div>
     </section>
@@ -47,28 +61,28 @@
 
     <!-- About -->
     <section class="section" id="about">
-        <p class="section-label">ABOUT</p>
-        <h2 class="section-title">Built different.</h2>
-        <div class="about-grid">
+        <div class="section-header fade-up">
+            <p class="section-label">01 — ABOUT</p>
+            <h2 class="section-title">Built different.</h2>
+        </div>
+        <div class="about-grid fade-up">
             <div class="about-bio">
-                <p><strong>Dylan "Beers" — </strong>Army Ranger, combat medic, and self-taught developer. I spent years in the 75th Ranger Regiment where attention to detail isn't optional — it's survival. Now I apply that same discipline to building on the web.</p>
-                <br>
-                <p>Every project I take on gets the same treatment: clean code, fast load times, and zero shortcuts. I don't use page builders or drag-and-drop templates. Your site is built from scratch, exactly how it needs to be.</p>
-                <br>
+                <p><strong>Dylan "Beers"</strong> — Army Ranger, combat medic, and full-stack developer. I spent years in the 75th Ranger Regiment where attention to detail isn't optional — it's survival.</p>
+                <p>Now I apply that same discipline to building on the web. Every project gets the same treatment: clean code, fast load times, zero shortcuts. No page builders. No drag-and-drop. Your site is built from scratch, exactly how it needs to be.</p>
                 <p>Based in the U.S. Available worldwide.</p>
             </div>
             <div class="about-stats">
                 <div class="stat">
-                    <span class="stat-number">8+</span>
-                    <span class="stat-text">Live products shipped</span>
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Products shipped</div>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">5</span>
-                    <span class="stat-text">Years building for the web</span>
+                    <div class="stat-number">5yr</div>
+                    <div class="stat-label">Building for the web</div>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">0</span>
-                    <span class="stat-text">Templates used</span>
+                    <div class="stat-number">75th</div>
+                    <div class="stat-label">Ranger Regiment</div>
                 </div>
             </div>
         </div>
@@ -78,105 +92,139 @@
 
     <!-- Services -->
     <section class="section" id="services">
-        <p class="section-label">SERVICES</p>
-        <h2 class="section-title">What I build.</h2>
-        <p class="section-desc">Everything custom. No WordPress, no Squarespace. Real code, real performance, full ownership.</p>
-        <div class="services-grid">
+        <div class="section-header fade-up">
+            <p class="section-label">02 — SERVICES</p>
+            <h2 class="section-title">What I build.</h2>
+            <p class="section-desc">Everything custom. No WordPress, no Squarespace. Real code, real performance, full ownership.</p>
+        </div>
+        <div class="services-grid fade-up">
             <div class="service-card">
+                <div class="service-num">01</div>
                 <h3 class="service-name">Custom Websites</h3>
-                <p class="service-desc">Clean, fast, mobile-first sites built from scratch. No templates, no page builders — just real code that performs.</p>
+                <p class="service-desc">Fast, mobile-first sites built from scratch. Clean code, SEO-ready from day one, designed to convert.</p>
             </div>
             <div class="service-card">
+                <div class="service-num">02</div>
                 <h3 class="service-name">Web Applications</h3>
-                <p class="service-desc">Dashboards, platforms, internal tools. Full-stack from database to deploy — built to scale with your business.</p>
+                <p class="service-desc">Dashboards, platforms, internal tools. Full-stack from database to deploy — built to scale.</p>
             </div>
             <div class="service-card">
-                <h3 class="service-name">E-Commerce & Fulfillment</h3>
-                <p class="service-desc">Online stores wired end-to-end. Inventory management, payments, shipping, and order fulfillment — all connected.</p>
-            </div>
-            <div class="service-card">
-                <h3 class="service-name">SEO & Performance</h3>
-                <p class="service-desc">Search engine optimization baked into every build. Fast load times, structured data, and content strategy that ranks.</p>
-            </div>
-            <div class="service-card">
+                <div class="service-num">03</div>
                 <h3 class="service-name">AI Integrations</h3>
-                <p class="service-desc">Smart automations, AI-powered chat, content generation, and intelligent workflows built directly into your site or app.</p>
+                <p class="service-desc">Smart automations, AI-powered chat, content generation, and intelligent workflows built into your product.</p>
             </div>
             <div class="service-card">
+                <div class="service-num">04</div>
+                <h3 class="service-name">SEO & Performance</h3>
+                <p class="service-desc">Search optimization, structured data, content strategy, and sub-second load times that rank.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-num">05</div>
                 <h3 class="service-name">Lead Gen & Outreach</h3>
-                <p class="service-desc">Client scheduling, automated outreach, CRM organization, and lead capture systems that turn visitors into customers.</p>
+                <p class="service-desc">Client scheduling, automated outreach, CRM organization, and capture systems that turn traffic into revenue.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-num">06</div>
+                <h3 class="service-name">E-Commerce & Fulfillment</h3>
+                <p class="service-desc">Online stores wired end-to-end. Inventory, payments, shipping, and order fulfillment — all connected.</p>
             </div>
         </div>
     </section>
 
     <div class="divider"><hr></div>
 
-    <!-- Work / Portfolio -->
+    <!-- Work -->
     <section class="section" id="work">
-        <p class="section-label">WORK</p>
-        <h2 class="section-title">Recent builds.</h2>
-        <p class="section-desc">Products and sites I've designed, built, and shipped.</p>
-        <div class="portfolio-grid">
+        <div class="section-header fade-up">
+            <p class="section-label">03 — WORK</p>
+            <h2 class="section-title">Recent builds.</h2>
+            <p class="section-desc">Products and sites I've designed, built, and shipped.</p>
+        </div>
+        <div class="portfolio-grid fade-up">
             <div class="portfolio-card" data-url="https://www.boarhogllc.com/" data-name="Boarhog LLC" data-desc="Defense contracting &amp; technical services">
                 <img src="images/portfolio/boarhog.png" alt="Boarhog LLC" loading="lazy">
                 <div class="portfolio-card-info">
-                    <span class="portfolio-card-name">Boarhog LLC</span>
-                    <span class="portfolio-card-desc">Defense contracting & technical services</span>
-                </div>
-            </div>
-            <div class="portfolio-card" data-url="https://gormers.com/" data-name="Gormers" data-desc="AI knowledge ecosystem — personalized mini language models">
-                <img src="images/portfolio/gormers.png" alt="Gormers" loading="lazy">
-                <div class="portfolio-card-info">
-                    <span class="portfolio-card-name">Gormers</span>
-                    <span class="portfolio-card-desc">AI knowledge ecosystem</span>
+                    <div class="portfolio-card-text">
+                        <span class="portfolio-card-name">Boarhog LLC</span>
+                        <span class="portfolio-card-desc">Defense contracting & technical services</span>
+                    </div>
+                    <span class="portfolio-card-arrow">&rarr;</span>
                 </div>
             </div>
             <div class="portfolio-card" data-url="https://killsesh.com/" data-name="KillSesh" data-desc="Cybersecurity — remote session termination &amp; breach scanning">
                 <img src="images/portfolio/killsesh.png" alt="KillSesh" loading="lazy">
                 <div class="portfolio-card-info">
-                    <span class="portfolio-card-name">KillSesh</span>
-                    <span class="portfolio-card-desc">Cybersecurity — session kill switch</span>
+                    <div class="portfolio-card-text">
+                        <span class="portfolio-card-name">KillSesh</span>
+                        <span class="portfolio-card-desc">Cybersecurity session kill switch</span>
+                    </div>
+                    <span class="portfolio-card-arrow">&rarr;</span>
+                </div>
+            </div>
+            <div class="portfolio-card" data-url="https://gormers.com/" data-name="Gormers" data-desc="AI knowledge ecosystem — personalized mini language models">
+                <img src="images/portfolio/gormers.png" alt="Gormers" loading="lazy">
+                <div class="portfolio-card-info">
+                    <div class="portfolio-card-text">
+                        <span class="portfolio-card-name">Gormers</span>
+                        <span class="portfolio-card-desc">AI knowledge ecosystem</span>
+                    </div>
+                    <span class="portfolio-card-arrow">&rarr;</span>
                 </div>
             </div>
             <div class="portfolio-card" data-url="https://dittomethis.com/" data-name="DittoMeThis" data-desc="Knowledge capture &amp; replication platform">
                 <img src="images/portfolio/dittomethis.png" alt="DittoMeThis" loading="lazy">
                 <div class="portfolio-card-info">
-                    <span class="portfolio-card-name">DittoMeThis</span>
-                    <span class="portfolio-card-desc">Knowledge capture & replication</span>
+                    <div class="portfolio-card-text">
+                        <span class="portfolio-card-name">DittoMeThis</span>
+                        <span class="portfolio-card-desc">Knowledge capture & replication</span>
+                    </div>
+                    <span class="portfolio-card-arrow">&rarr;</span>
                 </div>
             </div>
             <div class="portfolio-card" data-url="https://rollick.bet/" data-name="Rollick" data-desc="Multi-platform reseller command center">
                 <img src="images/portfolio/rollick.png" alt="Rollick" loading="lazy">
                 <div class="portfolio-card-info">
-                    <span class="portfolio-card-name">Rollick</span>
-                    <span class="portfolio-card-desc">Reseller command center</span>
+                    <div class="portfolio-card-text">
+                        <span class="portfolio-card-name">Rollick</span>
+                        <span class="portfolio-card-desc">Reseller command center</span>
+                    </div>
+                    <span class="portfolio-card-arrow">&rarr;</span>
                 </div>
             </div>
             <div class="portfolio-card" data-url="https://lootlens.ai/" data-name="LootLens" data-desc="AI-powered marketplace scanner &amp; pricing">
                 <img src="images/portfolio/lootlens.png" alt="LootLens" loading="lazy">
                 <div class="portfolio-card-info">
-                    <span class="portfolio-card-name">LootLens</span>
-                    <span class="portfolio-card-desc">AI marketplace scanner</span>
+                    <div class="portfolio-card-text">
+                        <span class="portfolio-card-name">LootLens</span>
+                        <span class="portfolio-card-desc">AI marketplace scanner</span>
+                    </div>
+                    <span class="portfolio-card-arrow">&rarr;</span>
                 </div>
             </div>
             <div class="portfolio-card" data-url="https://pomoborrow.com/" data-name="PomoBorrow" data-desc="Zero-friction time tracking — privacy first">
                 <img src="images/portfolio/pomoborrow.png" alt="PomoBorrow" loading="lazy">
                 <div class="portfolio-card-info">
-                    <span class="portfolio-card-name">PomoBorrow</span>
-                    <span class="portfolio-card-desc">Privacy-first time tracking</span>
+                    <div class="portfolio-card-text">
+                        <span class="portfolio-card-name">PomoBorrow</span>
+                        <span class="portfolio-card-desc">Privacy-first time tracking</span>
+                    </div>
+                    <span class="portfolio-card-arrow">&rarr;</span>
                 </div>
             </div>
             <div class="portfolio-card" data-url="https://aurajam.com/" data-name="AuraJam" data-desc="AI-powered DJ transition tool">
                 <img src="images/portfolio/aurajam.png" alt="AuraJam" loading="lazy">
                 <div class="portfolio-card-info">
-                    <span class="portfolio-card-name">AuraJam</span>
-                    <span class="portfolio-card-desc">AI DJ transition tool</span>
+                    <div class="portfolio-card-text">
+                        <span class="portfolio-card-name">AuraJam</span>
+                        <span class="portfolio-card-desc">AI DJ transition tool</span>
+                    </div>
+                    <span class="portfolio-card-arrow">&rarr;</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Lightbox -->
+    <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" id="lightbox-close">&times;</button>
         <img class="lightbox-img" id="lightbox-img" alt="">
@@ -190,14 +238,16 @@
     <div class="divider"><hr></div>
 
     <!-- CTA -->
-    <section class="cta-banner" id="contact">
-        <p class="section-label">LET'S WORK</p>
-        <h2>Got a project? Let's talk.</h2>
-        <p>Whether you need a new site, help with an existing one, or want to refer someone — I'm one form away.</p>
-        <div class="hero-ctas">
-            <button class="btn btn-primary" data-flow="new_site">Start a project</button>
-            <button class="btn btn-secondary" data-flow="existing_site">Fix my site</button>
-            <button class="btn btn-secondary" data-flow="referral">Refer someone</button>
+    <section class="cta-section" id="contact">
+        <div class="fade-up">
+            <p class="section-label">LET'S WORK</p>
+            <h2 class="cta-title">Got a project?</h2>
+            <p class="cta-desc">Whether you need a new site, help with an existing one, or want to refer someone — I'm one form away.</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" data-flow="new_site">Start a project</button>
+                <button class="btn btn-secondary" data-flow="existing_site">Fix my site</button>
+                <button class="btn btn-secondary" data-flow="referral">Refer someone</button>
+            </div>
         </div>
     </section>
 
@@ -211,19 +261,37 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div>
-            <div class="footer-brand">RANGER BEERS</div>
-            <p class="footer-copy">BEERS LABS LLC &copy; 2026</p>
+        <div class="footer-left">
+            <span class="footer-brand">RANGER BEERS</span>
+            <span class="footer-copy">BEERS LABS LLC &copy; 2026</span>
         </div>
         <div class="footer-links">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#work">Work</a>
             <a href="mailto:hello@ranger-beers.com">Email</a>
+            <a href="tel:+15035923451">503.592.3451</a>
+            <a href="#work">Work</a>
         </div>
     </footer>
 
     <script src="js/forms.js"></script>
     <script src="js/portfolio.js"></script>
+    <script>
+    // Scroll fade-in
+    (function() {
+        var els = document.querySelectorAll('.fade-up');
+        if (!('IntersectionObserver' in window)) {
+            els.forEach(function(el) { el.classList.add('visible'); });
+            return;
+        }
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        els.forEach(function(el) { observer.observe(el); });
+    })();
+    </script>
 </body>
 </html>
