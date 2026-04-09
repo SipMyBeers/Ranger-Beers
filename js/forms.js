@@ -1,6 +1,5 @@
 (function () {
   const API_BASE = 'https://ranger-beers-api.dzbeers747.workers.dev';
-  const CALENDLY_URL = 'https://calendly.com/rangerbeers'; // placeholder
 
   const overlay = document.getElementById('modal-overlay');
   const modal = document.getElementById('modal');
@@ -80,7 +79,6 @@
     }
 
     html += '<button type="submit" class="modal-submit">Submit</button>';
-    html += '<div class="modal-calendly"><a href="' + CALENDLY_URL + '" target="_blank" rel="noopener">Or book a call instead</a></div>';
     html += '</form>';
 
     modalBody.innerHTML = html;
@@ -128,7 +126,7 @@
     overlay.classList.remove('active');
   }
 
-  document.querySelectorAll('.hero-btn').forEach(function (btn) {
+  document.querySelectorAll('[data-flow]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       openModal(this.dataset.flow);
     });

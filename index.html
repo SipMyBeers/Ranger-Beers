@@ -3,79 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranger Beers — I Build Websites</title>
+    <title>Ranger Beers — Web Development</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <meta name="theme-color" content="#000000">
-    <meta name="description" content="Ranger Beers — Army Ranger, Combat Medic, Website Builder. Need a site? Have a referral? Let's talk.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Ranger Beers — websites and web apps built by an Army Ranger and combat medic. Fast, clean, no BS.">
+    <meta property="og:title" content="Ranger Beers — Web Development">
+    <meta property="og:description" content="Websites and web apps built by an Army Ranger. Fast, clean, no BS.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ranger-beers.com">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
 
-    <!-- Top Bar -->
-    <nav class="topbar">
-        <a href="/" class="topbar-brand">RANGER BEERS</a>
-        <a href="/admin.html" class="topbar-admin" id="topbar-admin" style="display:none;">Admin</a>
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="/" class="nav-brand">RANGER BEERS</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="/admin.html" class="nav-admin" id="topbar-admin">Admin</a>
     </nav>
 
-    <!-- SUMMON Hero Background -->
+    <!-- Hero -->
     <section class="hero" id="hero">
-        <div id="summon-container" class="hero-bg"></div>
         <div class="hero-content">
-            <h1 class="hero-title">RANGER BEERS</h1>
-            <p class="hero-tagline">Army Ranger. Combat Medic. I build websites.</p>
-            <div class="hero-buttons">
-                <button class="hero-btn" data-flow="new_site">Need a site?</button>
-                <button class="hero-btn" data-flow="existing_site">Have a site?</button>
-                <button class="hero-btn hero-btn--referral" data-flow="referral">Have a referral?</button>
+            <p class="hero-label">BEERS LABS LLC</p>
+            <h1 class="hero-title">I build websites<br>for people who<br>need them <em>done right.</em></h1>
+            <p class="hero-desc">Army Ranger. Combat medic. Full-stack developer. I build fast, clean websites and web apps for small businesses and startups — no fluff, no templates, no BS.</p>
+            <div class="hero-ctas">
+                <button class="btn btn-primary" data-flow="new_site">Start a project</button>
+                <button class="btn btn-secondary" data-flow="referral">Refer someone</button>
             </div>
         </div>
     </section>
 
-    <!-- Modal Overlay for Forms -->
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal" id="modal">
-            <button class="modal-close" id="modal-close">&times;</button>
-            <div class="modal-body" id="modal-body"></div>
-        </div>
-    </div>
+    <div class="divider"><hr></div>
 
-    <!-- Portfolio -->
-    <section class="portfolio" id="portfolio">
-        <h2 class="portfolio-heading">BUILT BY RANGER BEERS</h2>
+    <!-- About -->
+    <section class="section" id="about">
+        <p class="section-label">ABOUT</p>
+        <h2 class="section-title">Built different.</h2>
+        <div class="about-grid">
+            <div class="about-bio">
+                <p><strong>Dylan "Beers" — </strong>Army Ranger, combat medic, and self-taught developer. I spent years in the 75th Ranger Regiment where attention to detail isn't optional — it's survival. Now I apply that same discipline to building on the web.</p>
+                <br>
+                <p>Every project I take on gets the same treatment: clean code, fast load times, and zero shortcuts. I don't use page builders or drag-and-drop templates. Your site is built from scratch, exactly how it needs to be.</p>
+                <br>
+                <p>Based in the U.S. Available worldwide.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat">
+                    <span class="stat-number">8+</span>
+                    <span class="stat-text">Live products shipped</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5</span>
+                    <span class="stat-text">Years building for the web</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">0</span>
+                    <span class="stat-text">Templates used</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <!-- Services -->
+    <section class="section" id="services">
+        <p class="section-label">SERVICES</p>
+        <h2 class="section-title">What I build.</h2>
+        <p class="section-desc">Everything custom. No WordPress, no Squarespace. Real code, real performance, full ownership.</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="service-name">Custom Websites</h3>
+                <p class="service-desc">Clean, fast, mobile-first sites built from scratch. No templates, no page builders — just real code that performs.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-name">Web Applications</h3>
+                <p class="service-desc">Dashboards, platforms, internal tools. Full-stack from database to deploy — built to scale with your business.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-name">E-Commerce & Fulfillment</h3>
+                <p class="service-desc">Online stores wired end-to-end. Inventory management, payments, shipping, and order fulfillment — all connected.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-name">SEO & Performance</h3>
+                <p class="service-desc">Search engine optimization baked into every build. Fast load times, structured data, and content strategy that ranks.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-name">AI Integrations</h3>
+                <p class="service-desc">Smart automations, AI-powered chat, content generation, and intelligent workflows built directly into your site or app.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-name">Lead Gen & Outreach</h3>
+                <p class="service-desc">Client scheduling, automated outreach, CRM organization, and lead capture systems that turn visitors into customers.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"><hr></div>
+
+    <!-- Work / Portfolio -->
+    <section class="section" id="work">
+        <p class="section-label">WORK</p>
+        <h2 class="section-title">Recent builds.</h2>
+        <p class="section-desc">Products and sites I've designed, built, and shipped.</p>
         <div class="portfolio-grid">
             <div class="portfolio-card" data-url="https://www.boarhogllc.com/" data-name="Boarhog LLC" data-desc="Defense contracting &amp; technical services">
                 <img src="images/portfolio/boarhog.png" alt="Boarhog LLC" loading="lazy">
-                <span class="portfolio-card-name">Boarhog LLC</span>
+                <div class="portfolio-card-info">
+                    <span class="portfolio-card-name">Boarhog LLC</span>
+                    <span class="portfolio-card-desc">Defense contracting & technical services</span>
+                </div>
             </div>
             <div class="portfolio-card" data-url="https://gormers.com/" data-name="Gormers" data-desc="AI knowledge ecosystem — personalized mini language models">
                 <img src="images/portfolio/gormers.png" alt="Gormers" loading="lazy">
-                <span class="portfolio-card-name">Gormers</span>
+                <div class="portfolio-card-info">
+                    <span class="portfolio-card-name">Gormers</span>
+                    <span class="portfolio-card-desc">AI knowledge ecosystem</span>
+                </div>
             </div>
-            <div class="portfolio-card" data-url="https://pomoborrow.com/" data-name="PomoBorrow" data-desc="Zero-friction time tracking — privacy first">
-                <img src="images/portfolio/pomoborrow.png" alt="PomoBorrow" loading="lazy">
-                <span class="portfolio-card-name">PomoBorrow</span>
-            </div>
-            <div class="portfolio-card" data-url="https://dittomethis.com/" data-name="DittoMeThis" data-desc="URL analyzer &amp; content replication planner">
-                <img src="images/portfolio/dittomethis.png" alt="DittoMeThis" loading="lazy">
-                <span class="portfolio-card-name">DittoMeThis</span>
-            </div>
-            <div class="portfolio-card" data-url="https://killsesh.com/" data-name="KillSesh" data-desc="Cybersecurity — remote session termination">
+            <div class="portfolio-card" data-url="https://killsesh.com/" data-name="KillSesh" data-desc="Cybersecurity — remote session termination &amp; breach scanning">
                 <img src="images/portfolio/killsesh.png" alt="KillSesh" loading="lazy">
-                <span class="portfolio-card-name">KillSesh</span>
+                <div class="portfolio-card-info">
+                    <span class="portfolio-card-name">KillSesh</span>
+                    <span class="portfolio-card-desc">Cybersecurity — session kill switch</span>
+                </div>
+            </div>
+            <div class="portfolio-card" data-url="https://dittomethis.com/" data-name="DittoMeThis" data-desc="Knowledge capture &amp; replication platform">
+                <img src="images/portfolio/dittomethis.png" alt="DittoMeThis" loading="lazy">
+                <div class="portfolio-card-info">
+                    <span class="portfolio-card-name">DittoMeThis</span>
+                    <span class="portfolio-card-desc">Knowledge capture & replication</span>
+                </div>
             </div>
             <div class="portfolio-card" data-url="https://rollick.bet/" data-name="Rollick" data-desc="Multi-platform reseller command center">
                 <img src="images/portfolio/rollick.png" alt="Rollick" loading="lazy">
-                <span class="portfolio-card-name">Rollick</span>
+                <div class="portfolio-card-info">
+                    <span class="portfolio-card-name">Rollick</span>
+                    <span class="portfolio-card-desc">Reseller command center</span>
+                </div>
             </div>
             <div class="portfolio-card" data-url="https://lootlens.ai/" data-name="LootLens" data-desc="AI-powered marketplace scanner &amp; pricing">
                 <img src="images/portfolio/lootlens.png" alt="LootLens" loading="lazy">
-                <span class="portfolio-card-name">LootLens</span>
+                <div class="portfolio-card-info">
+                    <span class="portfolio-card-name">LootLens</span>
+                    <span class="portfolio-card-desc">AI marketplace scanner</span>
+                </div>
+            </div>
+            <div class="portfolio-card" data-url="https://pomoborrow.com/" data-name="PomoBorrow" data-desc="Zero-friction time tracking — privacy first">
+                <img src="images/portfolio/pomoborrow.png" alt="PomoBorrow" loading="lazy">
+                <div class="portfolio-card-info">
+                    <span class="portfolio-card-name">PomoBorrow</span>
+                    <span class="portfolio-card-desc">Privacy-first time tracking</span>
+                </div>
             </div>
             <div class="portfolio-card" data-url="https://aurajam.com/" data-name="AuraJam" data-desc="AI-powered DJ transition tool">
                 <img src="images/portfolio/aurajam.png" alt="AuraJam" loading="lazy">
-                <span class="portfolio-card-name">AuraJam</span>
+                <div class="portfolio-card-info">
+                    <span class="portfolio-card-name">AuraJam</span>
+                    <span class="portfolio-card-desc">AI DJ transition tool</span>
+                </div>
             </div>
         </div>
     </section>
@@ -91,21 +187,43 @@
         </div>
     </div>
 
+    <div class="divider"><hr></div>
+
+    <!-- CTA -->
+    <section class="cta-banner" id="contact">
+        <p class="section-label">LET'S WORK</p>
+        <h2>Got a project? Let's talk.</h2>
+        <p>Whether you need a new site, help with an existing one, or want to refer someone — I'm one form away.</p>
+        <div class="hero-ctas">
+            <button class="btn btn-primary" data-flow="new_site">Start a project</button>
+            <button class="btn btn-secondary" data-flow="existing_site">Fix my site</button>
+            <button class="btn btn-secondary" data-flow="referral">Refer someone</button>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
-        <p class="footer-copy">BEERS LABS LLC &copy; 2026</p>
+        <div>
+            <div class="footer-brand">RANGER BEERS</div>
+            <p class="footer-copy">BEERS LABS LLC &copy; 2026</p>
+        </div>
+        <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="mailto:hello@ranger-beers.com">Email</a>
+        </div>
     </footer>
 
     <script src="js/forms.js"></script>
     <script src="js/portfolio.js"></script>
-    <script type="module">
-        import { mountSummon } from './js/summon.js';
-        const container = document.getElementById('summon-container');
-        if (container) {
-            mountSummon(container).catch(() => {
-                // WebGPU not supported — hero stays black, that's fine
-            });
-        }
-    </script>
 </body>
 </html>
