@@ -14,7 +14,7 @@
   --text-dim: #888;
   --text-muted: #444;
   --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --mono: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
+  --mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
   --radius: 8px;
   --max-w: 1100px;
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -145,63 +145,75 @@ body::before {
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  padding: 140px 40px 100px;
+  align-items: flex-end;
+  padding: 0 40px 80px;
   max-width: var(--max-w);
   margin: 0 auto;
   position: relative;
 }
 
 .hero-content {
-  max-width: 800px;
+  width: 100%;
   position: relative;
 }
 
-.hero-label {
+.hero-intro {
+  padding-top: 160px;
+  margin-bottom: 64px;
+}
+
+.hero-name {
   font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-  margin-bottom: 32px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.hero-label::before {
-  content: '';
-  width: 24px;
-  height: 1px;
-  background: var(--gold);
-}
-
-.hero-title {
-  font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -1.5px;
+  letter-spacing: 4px;
   color: var(--text);
+  margin-bottom: 32px;
 }
 
-.hero-title em {
-  font-style: normal;
-  color: var(--gold);
-  position: relative;
+.hero-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero-role {
+  font-family: var(--mono);
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.hero-role s {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  margin-right: 8px;
+}
+
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
 }
 
 .hero-desc {
-  font-size: 16px;
-  color: var(--text-dim);
-  margin-top: 28px;
-  max-width: 520px;
-  line-height: 1.75;
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 480px;
+  line-height: 1.7;
 }
 
 .hero-ctas {
   display: flex;
   gap: 12px;
-  margin-top: 44px;
+  flex-shrink: 0;
   flex-wrap: wrap;
 }
 
@@ -242,35 +254,6 @@ body::before {
   background: rgba(255,255,255,0.03);
 }
 
-.hero-meta {
-  margin-top: 64px;
-  display: flex;
-  gap: 40px;
-  padding-top: 32px;
-  border-top: 1px solid var(--border);
-}
-
-.hero-meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.hero-meta-value {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.5px;
-}
-
-.hero-meta-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
 
 /* ── Section ── */
 .section {
@@ -797,8 +780,9 @@ body::before {
   .nav { padding: 0 20px; }
   .nav-links { display: none; }
 
-  .hero { padding: 100px 20px 60px; }
-  .hero-meta { flex-wrap: wrap; gap: 24px; }
+  .hero { padding: 0 20px 60px; }
+  .hero-intro { padding-top: 100px; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; }
 
   .section { padding: 80px 20px; }
 
