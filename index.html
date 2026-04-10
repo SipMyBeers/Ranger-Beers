@@ -3,248 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranger Beers — Web Development</title>
+    <title>Ranger Beers</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <meta name="theme-color" content="#050505">
-    <meta name="description" content="Ranger Beers — websites and web apps built by an Army Ranger. Custom code, AI integrations, SEO, lead generation.">
-    <meta property="og:title" content="Ranger Beers — Web Development">
-    <meta property="og:description" content="Custom websites and web apps. Army Ranger precision, full-stack execution.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="description" content="Ranger Beers — force multiplier. Custom websites, AI integrations, lead generation, SEO, e-commerce.">
+    <meta property="og:title" content="Ranger Beers">
+    <meta property="og:description" content="Force multiplier. Custom websites, AI, lead gen, SEO, e-commerce.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ranger-beers.com">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
 
-    <!-- Nav -->
-    <nav class="nav">
-        <a href="/" class="nav-brand">RANGER BEERS</a>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#contact" class="nav-cta">Get in touch</a></li>
-        </ul>
-        <a href="/admin.html" class="nav-admin" id="topbar-admin">Admin</a>
-    </nav>
-
-    <!-- Hero -->
+    <!-- ═══ HERO — full viewport ═══ -->
     <section class="hero" id="hero">
-        <div class="hero-content fade-up">
-            <div class="hero-intro">
-                <h1 class="hero-name">RANGER BEERS</h1>
-                <div class="hero-roles">
-                    <p class="hero-role">FORCE MULTIPLIER,</p>
-                    <p class="hero-role"><s>VIBE CODER</s> FULL-STACK BUILDER,</p>
-                    <p class="hero-role">RANGER MEDIC,</p>
-                    <p class="hero-role">SOLO FOUNDER.</p>
-                </div>
-            </div>
-            <div class="hero-bottom">
-                <p class="hero-desc">Custom websites, web apps, AI integrations, lead generation, SEO, outreach, e-commerce — built from scratch. Every site has a game hidden in it.</p>
-                <div class="hero-ctas">
-                    <button class="btn btn-primary" data-flow="new_site">Start a project</button>
-                    <button class="btn btn-secondary" data-flow="referral">Refer someone</button>
-                </div>
+        <!-- Game canvas lives here -->
+        <div class="hero-game" id="game-container"></div>
+
+        <!-- Intro text — top left like traf -->
+        <div class="hero-intro">
+            <h1 class="intro-name">RANGER BEERS</h1>
+            <div class="intro-roles">
+                <p>FORCE MULTIPLIER,</p>
+                <p><s>VIBE CODER</s> FULL-STACK BUILDER,</p>
+                <p>RANGER MEDIC,</p>
+                <p>SOLO MULTI-FOUNDER.</p>
             </div>
         </div>
+
+        <!-- Bottom left — links -->
+        <div class="hero-footer-left">
+            <a href="mailto:hello@ranger-beers.com" class="icon-link" title="Email">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </a>
+            <a href="tel:+15035923451" class="icon-link" title="Call">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </a>
+        </div>
+
+        <!-- Bottom right — scroll arrow -->
+        <a href="#work" class="hero-scroll" title="Scroll down">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </a>
     </section>
 
-    <div class="divider"><hr></div>
-
-    <!-- About -->
-    <section class="section" id="about">
-        <div class="section-header fade-up">
-            <p class="section-label">01 — ABOUT</p>
-            <h2 class="section-title">Built different.</h2>
-        </div>
-        <div class="about-grid fade-up">
-            <div class="about-bio">
-                <p><strong>Dylan "Beers"</strong> — 82nd Airborne, Expert Field Medic, Ranger Tab. I went from saving lives under fire to building products that make businesses money.</p>
-                <p>I taught myself to code and started shipping immediately. Every project gets the same treatment I learned in the military: no shortcuts, no excuses, no templates. Your site is built from scratch, exactly how it needs to be.</p>
-                <p>Based in the U.S. Available worldwide.</p>
-            </div>
-            <div class="about-stats">
-                <div class="stat">
-                    <div class="stat-number">8+</div>
-                    <div class="stat-label">Products shipped</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">82nd</div>
-                    <div class="stat-label">Airborne Division</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">EFMB</div>
-                    <div class="stat-label">Expert Field Medic</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"><hr></div>
-
-    <!-- Services -->
-    <section class="section" id="services">
-        <div class="section-header fade-up">
-            <p class="section-label">02 — SERVICES</p>
-            <h2 class="section-title">What I build.</h2>
-            <p class="section-desc">Everything custom. No WordPress, no Squarespace. Real code, real performance, full ownership.</p>
-        </div>
-        <div class="services-grid fade-up">
-            <div class="service-card">
-                <div class="service-num">01</div>
-                <h3 class="service-name">Custom Websites</h3>
-                <p class="service-desc">Fast, mobile-first sites built from scratch. Clean code, SEO-ready from day one, designed to convert.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-num">02</div>
-                <h3 class="service-name">Web Applications</h3>
-                <p class="service-desc">Dashboards, platforms, internal tools. Full-stack from database to deploy — built to scale.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-num">03</div>
-                <h3 class="service-name">AI Integrations</h3>
-                <p class="service-desc">Smart automations, AI-powered chat, content generation, and intelligent workflows built into your product.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-num">04</div>
-                <h3 class="service-name">SEO & Performance</h3>
-                <p class="service-desc">Search optimization, structured data, content strategy, and sub-second load times that rank.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-num">05</div>
-                <h3 class="service-name">Lead Gen & Outreach</h3>
-                <p class="service-desc">Client scheduling, automated outreach, CRM organization, and capture systems that turn traffic into revenue.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-num">06</div>
-                <h3 class="service-name">E-Commerce & Fulfillment</h3>
-                <p class="service-desc">Online stores wired end-to-end. Inventory, payments, shipping, and order fulfillment — all connected.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"><hr></div>
-
-    <!-- Work -->
+    <!-- ═══ WORK ═══ -->
     <section class="section" id="work">
-        <div class="section-header fade-up">
-            <p class="section-label">03 — WORK</p>
-            <h2 class="section-title">Recent builds.</h2>
-            <p class="section-desc">Products and sites I've designed, built, and shipped.</p>
+        <div class="section-row fade-up">
+            <span class="section-label">WORK</span>
         </div>
-        <div class="portfolio-grid fade-up">
-            <div class="portfolio-card" data-url="https://www.boarhogllc.com/" data-name="Boarhog LLC" data-desc="Defense contracting &amp; technical services">
-                <img src="images/portfolio/boarhog.png" alt="Boarhog LLC" loading="lazy">
-                <div class="portfolio-card-info">
-                    <div class="portfolio-card-text">
-                        <span class="portfolio-card-name">Boarhog LLC</span>
-                        <span class="portfolio-card-desc">Defense contracting & technical services</span>
-                    </div>
-                    <span class="portfolio-card-arrow">&rarr;</span>
-                </div>
+        <div class="work-list fade-up">
+            <a class="work-item" href="https://www.boarhogllc.com/" target="_blank" rel="noopener">
+                <span class="work-name">BOARHOG LLC</span>
+                <span class="work-desc">_defense, _contracting</span>
+                <span class="work-arrow">&rarr;</span>
+            </a>
+            <a class="work-item" href="https://killsesh.com/" target="_blank" rel="noopener">
+                <span class="work-name">KILLSESH</span>
+                <span class="work-desc">_cybersecurity, _breach_scanning</span>
+                <span class="work-arrow">&rarr;</span>
+            </a>
+            <a class="work-item" href="https://gormers.com/" target="_blank" rel="noopener">
+                <span class="work-name">GORMERS</span>
+                <span class="work-desc">_ai, _knowledge_ecosystem</span>
+                <span class="work-arrow">&rarr;</span>
+            </a>
+            <a class="work-item" href="https://dittomethis.com/" target="_blank" rel="noopener">
+                <span class="work-name">DITTOMETHIS</span>
+                <span class="work-desc">_capture, _replication</span>
+                <span class="work-arrow">&rarr;</span>
+            </a>
+            <a class="work-item" href="https://rollick.bet/" target="_blank" rel="noopener">
+                <span class="work-name">ROLLICK</span>
+                <span class="work-desc">_reseller, _command_center</span>
+                <span class="work-arrow">&rarr;</span>
+            </a>
+            <a class="work-item" href="https://lootlens.ai/" target="_blank" rel="noopener">
+                <span class="work-name">LOOTLENS</span>
+                <span class="work-desc">_ai, _marketplace_scanner</span>
+                <span class="work-arrow">&rarr;</span>
+            </a>
+            <a class="work-item" href="https://pomoborrow.com/" target="_blank" rel="noopener">
+                <span class="work-name">POMOBORROW</span>
+                <span class="work-desc">_time_tracking, _privacy</span>
+                <span class="work-arrow">&rarr;</span>
+            </a>
+            <a class="work-item" href="https://aurajam.com/" target="_blank" rel="noopener">
+                <span class="work-name">AURAJAM</span>
+                <span class="work-desc">_ai, _dj_transitions</span>
+                <span class="work-arrow">&rarr;</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ═══ SERVICES ═══ -->
+    <section class="section" id="services">
+        <div class="section-row fade-up">
+            <span class="section-label">CAPABILITIES</span>
+        </div>
+        <div class="capabilities fade-up">
+            <div class="cap-row">
+                <span class="cap">CUSTOM WEBSITES</span>
+                <span class="cap">WEB APPLICATIONS</span>
+                <span class="cap">AI INTEGRATIONS</span>
             </div>
-            <div class="portfolio-card" data-url="https://killsesh.com/" data-name="KillSesh" data-desc="Cybersecurity — remote session termination &amp; breach scanning">
-                <img src="images/portfolio/killsesh.png" alt="KillSesh" loading="lazy">
-                <div class="portfolio-card-info">
-                    <div class="portfolio-card-text">
-                        <span class="portfolio-card-name">KillSesh</span>
-                        <span class="portfolio-card-desc">Cybersecurity session kill switch</span>
-                    </div>
-                    <span class="portfolio-card-arrow">&rarr;</span>
-                </div>
+            <div class="cap-row">
+                <span class="cap">SEO &amp; SEARCH</span>
+                <span class="cap">LEAD GENERATION</span>
+                <span class="cap">AUTOMATED OUTREACH</span>
             </div>
-            <div class="portfolio-card" data-url="https://gormers.com/" data-name="Gormers" data-desc="AI knowledge ecosystem — personalized mini language models">
-                <img src="images/portfolio/gormers.png" alt="Gormers" loading="lazy">
-                <div class="portfolio-card-info">
-                    <div class="portfolio-card-text">
-                        <span class="portfolio-card-name">Gormers</span>
-                        <span class="portfolio-card-desc">AI knowledge ecosystem</span>
-                    </div>
-                    <span class="portfolio-card-arrow">&rarr;</span>
-                </div>
+            <div class="cap-row">
+                <span class="cap">E-COMMERCE</span>
+                <span class="cap">FULFILLMENT</span>
+                <span class="cap">CLIENT SCHEDULING</span>
             </div>
-            <div class="portfolio-card" data-url="https://dittomethis.com/" data-name="DittoMeThis" data-desc="Knowledge capture &amp; replication platform">
-                <img src="images/portfolio/dittomethis.png" alt="DittoMeThis" loading="lazy">
-                <div class="portfolio-card-info">
-                    <div class="portfolio-card-text">
-                        <span class="portfolio-card-name">DittoMeThis</span>
-                        <span class="portfolio-card-desc">Knowledge capture & replication</span>
-                    </div>
-                    <span class="portfolio-card-arrow">&rarr;</span>
-                </div>
-            </div>
-            <div class="portfolio-card" data-url="https://rollick.bet/" data-name="Rollick" data-desc="Multi-platform reseller command center">
-                <img src="images/portfolio/rollick.png" alt="Rollick" loading="lazy">
-                <div class="portfolio-card-info">
-                    <div class="portfolio-card-text">
-                        <span class="portfolio-card-name">Rollick</span>
-                        <span class="portfolio-card-desc">Reseller command center</span>
-                    </div>
-                    <span class="portfolio-card-arrow">&rarr;</span>
-                </div>
-            </div>
-            <div class="portfolio-card" data-url="https://lootlens.ai/" data-name="LootLens" data-desc="AI-powered marketplace scanner &amp; pricing">
-                <img src="images/portfolio/lootlens.png" alt="LootLens" loading="lazy">
-                <div class="portfolio-card-info">
-                    <div class="portfolio-card-text">
-                        <span class="portfolio-card-name">LootLens</span>
-                        <span class="portfolio-card-desc">AI marketplace scanner</span>
-                    </div>
-                    <span class="portfolio-card-arrow">&rarr;</span>
-                </div>
-            </div>
-            <div class="portfolio-card" data-url="https://pomoborrow.com/" data-name="PomoBorrow" data-desc="Zero-friction time tracking — privacy first">
-                <img src="images/portfolio/pomoborrow.png" alt="PomoBorrow" loading="lazy">
-                <div class="portfolio-card-info">
-                    <div class="portfolio-card-text">
-                        <span class="portfolio-card-name">PomoBorrow</span>
-                        <span class="portfolio-card-desc">Privacy-first time tracking</span>
-                    </div>
-                    <span class="portfolio-card-arrow">&rarr;</span>
-                </div>
-            </div>
-            <div class="portfolio-card" data-url="https://aurajam.com/" data-name="AuraJam" data-desc="AI-powered DJ transition tool">
-                <img src="images/portfolio/aurajam.png" alt="AuraJam" loading="lazy">
-                <div class="portfolio-card-info">
-                    <div class="portfolio-card-text">
-                        <span class="portfolio-card-name">AuraJam</span>
-                        <span class="portfolio-card-desc">AI DJ transition tool</span>
-                    </div>
-                    <span class="portfolio-card-arrow">&rarr;</span>
-                </div>
+            <div class="cap-row">
+                <span class="cap">CRM &amp; ORGANIZATION</span>
+                <span class="cap">LANDING PAGES</span>
+                <span class="cap">SITE MAINTENANCE</span>
             </div>
         </div>
     </section>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightbox-close">&times;</button>
-        <img class="lightbox-img" id="lightbox-img" alt="">
-        <div class="lightbox-info">
-            <h3 class="lightbox-name" id="lightbox-name"></h3>
-            <p class="lightbox-desc" id="lightbox-desc"></p>
-            <a class="lightbox-link" id="lightbox-link" href="#" target="_blank" rel="noopener">Visit Site &rarr;</a>
+    <!-- ═══ ABOUT ═══ -->
+    <section class="section" id="about">
+        <div class="section-row fade-up">
+            <span class="section-label">ABOUT</span>
         </div>
-    </div>
+        <div class="about-text fade-up">
+            <p>82ND AIRBORNE. EXPERT FIELD MEDIC BADGE. RANGER TAB.</p>
+            <p>SELF-TAUGHT DEVELOPER. EVERY PROJECT BUILT FROM SCRATCH — NO TEMPLATES, NO PAGE BUILDERS, NO SHORTCUTS. 8+ PRODUCTS SHIPPED. EVERY SITE HAS A GAME HIDDEN IN IT.</p>
+            <p>BEERS LABS LLC. BASED IN THE U.S.</p>
+        </div>
+    </section>
 
-    <div class="divider"><hr></div>
-
-    <!-- CTA -->
-    <section class="cta-section" id="contact">
-        <div class="fade-up">
-            <p class="section-label">LET'S WORK</p>
-            <h2 class="cta-title">Got a project?</h2>
-            <p class="cta-desc">Whether you need a new site, help with an existing one, or want to refer someone — I'm one form away.</p>
-            <div class="cta-buttons">
-                <button class="btn btn-primary" data-flow="new_site">Start a project</button>
-                <button class="btn btn-secondary" data-flow="existing_site">Fix my site</button>
-                <button class="btn btn-secondary" data-flow="referral">Refer someone</button>
+    <!-- ═══ CONTACT ═══ -->
+    <section class="section" id="contact">
+        <div class="section-row fade-up">
+            <span class="section-label">CONTACT</span>
+        </div>
+        <div class="contact-block fade-up">
+            <div class="contact-actions">
+                <button class="contact-btn" data-flow="new_site">START A PROJECT</button>
+                <button class="contact-btn" data-flow="existing_site">FIX MY SITE</button>
+                <button class="contact-btn" data-flow="referral">REFER SOMEONE — 10%</button>
+            </div>
+            <div class="contact-info">
+                <a href="mailto:hello@ranger-beers.com">HELLO@RANGER-BEERS.COM</a>
+                <a href="tel:+15035923451">503.592.3451</a>
             </div>
         </div>
     </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <span>BEERS LABS LLC &copy; 2026</span>
+        <span>RANGER-BEERS.COM</span>
+    </footer>
 
     <!-- Modal -->
     <div class="modal-overlay" id="modal-overlay">
@@ -254,22 +172,13 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-left">
-            <span class="footer-brand">RANGER BEERS</span>
-            <span class="footer-copy">BEERS LABS LLC &copy; 2026</span>
-        </div>
-        <div class="footer-links">
-            <a href="mailto:hello@ranger-beers.com">Email</a>
-            <a href="tel:+15035923451">503.592.3451</a>
-            <a href="#work">Work</a>
-        </div>
-    </footer>
-
+    <script src="js/barfight.js"></script>
     <script src="js/forms.js"></script>
-    <script src="js/portfolio.js"></script>
     <script>
+    // Init bar fight game
+    var gc = document.getElementById('game-container');
+    if (gc) initBarFight(gc);
+
     // Scroll fade-in
     (function() {
         var els = document.querySelectorAll('.fade-up');
