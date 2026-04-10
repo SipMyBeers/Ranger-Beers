@@ -18,12 +18,10 @@
 </head>
 <body>
 
-    <!-- ═══ HERO — full viewport ═══ -->
+    <!-- ═══ HERO ═══ -->
     <section class="hero" id="hero">
-        <!-- Game canvas lives here -->
         <div class="hero-game" id="game-container"></div>
 
-        <!-- Intro text — top left like traf -->
         <div class="hero-intro">
             <h1 class="intro-name">RANGER BEERS</h1>
             <div class="intro-roles">
@@ -34,120 +32,174 @@
             </div>
         </div>
 
-        <!-- Bottom left — links -->
-        <div class="hero-footer-left">
-            <a href="mailto:hello@ranger-beers.com" class="icon-link" title="Email">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            </a>
-            <a href="tel:+15035923451" class="icon-link" title="Call">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </a>
+        <div class="hero-bar">
+            <div class="hero-bar-left">
+                <a href="mailto:hello@ranger-beers.com" class="icon-link" title="Email">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </a>
+                <a href="tel:+15035923451" class="icon-link" title="Call">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </a>
+            </div>
+            <div class="hero-bar-right">
+                <a href="#work" class="hero-scroll" title="Scroll down">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </a>
+            </div>
         </div>
-
-        <!-- Bottom right — scroll arrow -->
-        <a href="#work" class="hero-scroll" title="Scroll down">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-        </a>
     </section>
 
     <!-- ═══ WORK ═══ -->
     <section class="section" id="work">
-        <div class="section-row fade-up">
-            <span class="section-label">WORK</span>
-        </div>
-        <div class="work-list fade-up">
-            <a class="work-item" href="https://www.boarhogllc.com/" target="_blank" rel="noopener">
-                <span class="work-name">BOARHOG LLC</span>
-                <span class="work-desc">_defense, _contracting</span>
-                <span class="work-arrow">&rarr;</span>
+        <div class="section-label reveal">WORK</div>
+        <div class="work-grid">
+            <a class="work-card reveal" href="https://www.boarhogllc.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+                <img class="work-card-img" src="images/portfolio/boarhog.png" alt="Boarhog LLC" loading="lazy">
+                <div class="work-card-overlay"></div>
+                <div class="work-card-info">
+                    <div>
+                        <div class="work-card-name">Boarhog LLC</div>
+                        <div class="work-card-tags">_defense _contracting _services</div>
+                    </div>
+                    <span class="work-card-arrow">&rarr;</span>
+                </div>
             </a>
-            <a class="work-item" href="https://killsesh.com/" target="_blank" rel="noopener">
-                <span class="work-name">KILLSESH</span>
-                <span class="work-desc">_cybersecurity, _breach_scanning</span>
-                <span class="work-arrow">&rarr;</span>
+            <a class="work-card reveal reveal-delay-1" href="https://killsesh.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+                <img class="work-card-img" src="images/portfolio/killsesh.png" alt="KillSesh" loading="lazy">
+                <div class="work-card-overlay"></div>
+                <div class="work-card-info">
+                    <div>
+                        <div class="work-card-name">KillSesh</div>
+                        <div class="work-card-tags">_cybersecurity _breach_scanning _kill_switch</div>
+                    </div>
+                    <span class="work-card-arrow">&rarr;</span>
+                </div>
             </a>
-            <a class="work-item" href="https://gormers.com/" target="_blank" rel="noopener">
-                <span class="work-name">GORMERS</span>
-                <span class="work-desc">_ai, _knowledge_ecosystem</span>
-                <span class="work-arrow">&rarr;</span>
+            <a class="work-card reveal" href="https://gormers.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+                <img class="work-card-img" src="images/portfolio/gormers.png" alt="Gormers" loading="lazy">
+                <div class="work-card-overlay"></div>
+                <div class="work-card-info">
+                    <div>
+                        <div class="work-card-name">Gormers</div>
+                        <div class="work-card-tags">_ai _knowledge _ecosystem</div>
+                    </div>
+                    <span class="work-card-arrow">&rarr;</span>
+                </div>
             </a>
-            <a class="work-item" href="https://dittomethis.com/" target="_blank" rel="noopener">
-                <span class="work-name">DITTOMETHIS</span>
-                <span class="work-desc">_capture, _replication</span>
-                <span class="work-arrow">&rarr;</span>
+            <a class="work-card reveal reveal-delay-1" href="https://dittomethis.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+                <img class="work-card-img" src="images/portfolio/dittomethis.png" alt="DittoMeThis" loading="lazy">
+                <div class="work-card-overlay"></div>
+                <div class="work-card-info">
+                    <div>
+                        <div class="work-card-name">DittoMeThis</div>
+                        <div class="work-card-tags">_capture _replication _knowledge</div>
+                    </div>
+                    <span class="work-card-arrow">&rarr;</span>
+                </div>
             </a>
-            <a class="work-item" href="https://rollick.bet/" target="_blank" rel="noopener">
-                <span class="work-name">ROLLICK</span>
-                <span class="work-desc">_reseller, _command_center</span>
-                <span class="work-arrow">&rarr;</span>
+            <a class="work-card reveal" href="https://rollick.bet/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+                <img class="work-card-img" src="images/portfolio/rollick.png" alt="Rollick" loading="lazy">
+                <div class="work-card-overlay"></div>
+                <div class="work-card-info">
+                    <div>
+                        <div class="work-card-name">Rollick</div>
+                        <div class="work-card-tags">_reseller _command_center</div>
+                    </div>
+                    <span class="work-card-arrow">&rarr;</span>
+                </div>
             </a>
-            <a class="work-item" href="https://lootlens.ai/" target="_blank" rel="noopener">
-                <span class="work-name">LOOTLENS</span>
-                <span class="work-desc">_ai, _marketplace_scanner</span>
-                <span class="work-arrow">&rarr;</span>
+            <a class="work-card reveal reveal-delay-1" href="https://lootlens.ai/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+                <img class="work-card-img" src="images/portfolio/lootlens.png" alt="LootLens" loading="lazy">
+                <div class="work-card-overlay"></div>
+                <div class="work-card-info">
+                    <div>
+                        <div class="work-card-name">LootLens</div>
+                        <div class="work-card-tags">_ai _marketplace _scanner</div>
+                    </div>
+                    <span class="work-card-arrow">&rarr;</span>
+                </div>
             </a>
-            <a class="work-item" href="https://pomoborrow.com/" target="_blank" rel="noopener">
-                <span class="work-name">POMOBORROW</span>
-                <span class="work-desc">_time_tracking, _privacy</span>
-                <span class="work-arrow">&rarr;</span>
+            <a class="work-card reveal" href="https://pomoborrow.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+                <img class="work-card-img" src="images/portfolio/pomoborrow.png" alt="PomoBorrow" loading="lazy">
+                <div class="work-card-overlay"></div>
+                <div class="work-card-info">
+                    <div>
+                        <div class="work-card-name">PomoBorrow</div>
+                        <div class="work-card-tags">_time_tracking _privacy</div>
+                    </div>
+                    <span class="work-card-arrow">&rarr;</span>
+                </div>
             </a>
-            <a class="work-item" href="https://aurajam.com/" target="_blank" rel="noopener">
-                <span class="work-name">AURAJAM</span>
-                <span class="work-desc">_ai, _dj_transitions</span>
-                <span class="work-arrow">&rarr;</span>
+            <a class="work-card reveal reveal-delay-1" href="https://aurajam.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+                <img class="work-card-img" src="images/portfolio/aurajam.png" alt="AuraJam" loading="lazy">
+                <div class="work-card-overlay"></div>
+                <div class="work-card-info">
+                    <div>
+                        <div class="work-card-name">AuraJam</div>
+                        <div class="work-card-tags">_ai _dj _transitions</div>
+                    </div>
+                    <span class="work-card-arrow">&rarr;</span>
+                </div>
             </a>
         </div>
     </section>
 
-    <!-- ═══ SERVICES ═══ -->
+    <!-- ═══ CAPABILITIES ═══ -->
     <section class="section" id="services">
-        <div class="section-row fade-up">
-            <span class="section-label">CAPABILITIES</span>
-        </div>
-        <div class="capabilities fade-up">
-            <div class="cap-row">
-                <span class="cap">CUSTOM WEBSITES</span>
-                <span class="cap">WEB APPLICATIONS</span>
-                <span class="cap">AI INTEGRATIONS</span>
-            </div>
-            <div class="cap-row">
-                <span class="cap">SEO &amp; SEARCH</span>
-                <span class="cap">LEAD GENERATION</span>
-                <span class="cap">AUTOMATED OUTREACH</span>
-            </div>
-            <div class="cap-row">
-                <span class="cap">E-COMMERCE</span>
-                <span class="cap">FULFILLMENT</span>
-                <span class="cap">CLIENT SCHEDULING</span>
-            </div>
-            <div class="cap-row">
-                <span class="cap">CRM &amp; ORGANIZATION</span>
-                <span class="cap">LANDING PAGES</span>
-                <span class="cap">SITE MAINTENANCE</span>
-            </div>
+        <div class="section-label reveal">CAPABILITIES</div>
+        <div class="cap-grid reveal">
+            <div class="cap-item"><div class="cap-num">01</div><div class="cap-name">Custom Websites</div></div>
+            <div class="cap-item"><div class="cap-num">02</div><div class="cap-name">Web Applications</div></div>
+            <div class="cap-item"><div class="cap-num">03</div><div class="cap-name">AI Integrations</div></div>
+            <div class="cap-item"><div class="cap-num">04</div><div class="cap-name">SEO & Search</div></div>
+            <div class="cap-item"><div class="cap-num">05</div><div class="cap-name">Lead Generation</div></div>
+            <div class="cap-item"><div class="cap-num">06</div><div class="cap-name">Automated Outreach</div></div>
+            <div class="cap-item"><div class="cap-num">07</div><div class="cap-name">E-Commerce</div></div>
+            <div class="cap-item"><div class="cap-num">08</div><div class="cap-name">Order Fulfillment</div></div>
+            <div class="cap-item"><div class="cap-num">09</div><div class="cap-name">Client Scheduling</div></div>
+            <div class="cap-item"><div class="cap-num">10</div><div class="cap-name">CRM & Organization</div></div>
+            <div class="cap-item"><div class="cap-num">11</div><div class="cap-name">Landing Pages</div></div>
+            <div class="cap-item"><div class="cap-num">12</div><div class="cap-name">Site Maintenance</div></div>
         </div>
     </section>
 
     <!-- ═══ ABOUT ═══ -->
     <section class="section" id="about">
-        <div class="section-row fade-up">
-            <span class="section-label">ABOUT</span>
-        </div>
-        <div class="about-text fade-up">
-            <p>82ND AIRBORNE. EXPERT FIELD MEDIC BADGE. RANGER TAB.</p>
-            <p>SELF-TAUGHT DEVELOPER. EVERY PROJECT BUILT FROM SCRATCH — NO TEMPLATES, NO PAGE BUILDERS, NO SHORTCUTS. 8+ PRODUCTS SHIPPED. EVERY SITE HAS A GAME HIDDEN IN IT.</p>
-            <p>BEERS LABS LLC. BASED IN THE U.S.</p>
+        <div class="section-label reveal">ABOUT</div>
+        <div class="about-content reveal">
+            <div class="about-text">
+                <p><strong>Dylan "Beers"</strong> — 82nd Airborne, Expert Field Medic Badge, Ranger Tab. Went from saving lives under fire to building products that make businesses money.</p>
+                <p>Self-taught developer. Every project built from scratch — no templates, no page builders, no shortcuts. 8+ products shipped. Every site has a game hidden in it.</p>
+                <p>BEERS LABS LLC. Based in the U.S. Available worldwide.</p>
+            </div>
+            <div class="about-badges">
+                <div class="badge">
+                    <div class="badge-value">82nd</div>
+                    <div class="badge-label">Airborne Division</div>
+                </div>
+                <div class="badge">
+                    <div class="badge-value">EFMB</div>
+                    <div class="badge-label">Expert Field Medic</div>
+                </div>
+                <div class="badge">
+                    <div class="badge-value">8+</div>
+                    <div class="badge-label">Products Shipped</div>
+                </div>
+                <div class="badge">
+                    <div class="badge-value">0</div>
+                    <div class="badge-label">Templates Used</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- ═══ CONTACT ═══ -->
     <section class="section" id="contact">
-        <div class="section-row fade-up">
-            <span class="section-label">CONTACT</span>
-        </div>
-        <div class="contact-block fade-up">
+        <div class="section-label reveal">CONTACT</div>
+        <div class="contact-content reveal">
+            <h2 class="contact-headline">Got a project?<br>Let's build it.</h2>
             <div class="contact-actions">
-                <button class="contact-btn" data-flow="new_site">START A PROJECT</button>
+                <button class="contact-btn contact-btn-primary" data-flow="new_site">START A PROJECT</button>
                 <button class="contact-btn" data-flow="existing_site">FIX MY SITE</button>
                 <button class="contact-btn" data-flow="referral">REFER SOMEONE — 10%</button>
             </div>
@@ -158,12 +210,6 @@
         </div>
     </section>
 
-    <!-- ═══ FOOTER ═══ -->
-    <footer class="footer">
-        <span>BEERS LABS LLC &copy; 2026</span>
-        <span>RANGER-BEERS.COM</span>
-    </footer>
-
     <!-- Modal -->
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal" id="modal">
@@ -172,16 +218,23 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <span>BEERS LABS LLC &copy; 2026</span>
+        <span>RANGER-BEERS.COM</span>
+    </footer>
+
     <script src="js/barfight.js"></script>
+    <script src="js/tilt.js"></script>
     <script src="js/forms.js"></script>
     <script>
-    // Init bar fight game
+    // Init bar fight
     var gc = document.getElementById('game-container');
     if (gc) initBarFight(gc);
 
-    // Scroll fade-in
+    // Scroll reveal
     (function() {
-        var els = document.querySelectorAll('.fade-up');
+        var els = document.querySelectorAll('.reveal');
         if (!('IntersectionObserver' in window)) {
             els.forEach(function(el) { el.classList.add('visible'); });
             return;
@@ -193,7 +246,7 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
         els.forEach(function(el) { observer.observe(el); });
     })();
     </script>
