@@ -222,45 +222,51 @@ a:hover { color: var(--text-bright); }
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 16px;
 }
 
 .work-card {
   position: relative;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--border);
   background: var(--bg-card);
   cursor: pointer;
   transform-style: preserve-3d;
   will-change: transform;
-  transition: box-shadow 0.4s var(--ease), border-color 0.3s;
+  transition: box-shadow 0.35s var(--ease), border-color 0.25s, transform 0.25s;
 }
 
 .work-card:hover {
-  border-color: var(--border-hover);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border-hover);
+  border-color: rgba(197, 179, 88, 0.4);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(197, 179, 88, 0.25);
 }
 
 .work-card-img {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  object-position: top;
   display: block;
-  filter: brightness(0.65) saturate(0.85);
-  transition: all 0.5s var(--ease);
+  filter: brightness(0.78) saturate(0.9);
+  transition: all 0.45s var(--ease);
 }
 
 .work-card:hover .work-card-img {
-  filter: brightness(0.85) saturate(1);
-  transform: scale(1.03);
+  filter: brightness(1) saturate(1.05);
+  transform: scale(1.04);
 }
 
 .work-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 45%, transparent 70%);
   pointer-events: none;
+  transition: opacity 0.35s;
+}
+
+.work-card:hover .work-card-overlay {
+  opacity: 0.7;
 }
 
 .work-card-info {
@@ -268,7 +274,7 @@ a:hover { color: var(--text-bright); }
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 24px;
+  padding: 20px 22px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -276,32 +282,39 @@ a:hover { color: var(--text-bright); }
 }
 
 .work-card-name {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--text-bright);
+  letter-spacing: 2.5px;
+  color: #fff;
   text-transform: uppercase;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
 }
 
 .work-card-tags {
   font-size: 10px;
   font-weight: 400;
   letter-spacing: 1px;
-  color: var(--text-muted);
-  margin-top: 4px;
+  color: rgba(197, 179, 88, 0.7);
+  margin-top: 5px;
+  transition: color 0.3s;
+}
+
+.work-card:hover .work-card-tags {
+  color: rgba(197, 179, 88, 1);
 }
 
 .work-card-arrow {
-  font-size: 18px;
-  color: var(--text-muted);
+  font-size: 20px;
+  color: rgba(255,255,255,0.3);
   transition: all 0.3s var(--ease);
   opacity: 0;
-  transform: translateX(-8px);
+  transform: translate(-6px, 4px);
+  flex-shrink: 0;
 }
 
 .work-card:hover .work-card-arrow {
   opacity: 1;
-  transform: translateX(0);
+  transform: translate(0, 0);
   color: var(--gold);
 }
 
