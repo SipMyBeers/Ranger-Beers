@@ -13,6 +13,11 @@
   var levelUpFlash = 0;
   var lastLevel = 1;
 
+  // City backdrop
+  var cityImg = new Image();
+  cityImg.src = 'images/city-backdrop.jpg';
+  var bgOffsetX = 0;  // parallax camera offset
+
   var COL = {
     bg: '#0a0a0a',
     floorLine: '#222',
@@ -113,6 +118,7 @@
     score = 0; gameOver = false;
     spawnTimer = 60; combo = 0;
     levelUpFlash = 0; lastLevel = 1;
+    bgOffsetX = 0;
   }
 
   function spawnEnemy() {
@@ -214,6 +220,9 @@
     player.y += player.vy;
     if (player.y >= floorY) { player.y = floorY; player.vy = 0; player.grounded = true; }
     player.x = Math.max(10, Math.min(W - 10, player.x));
+
+    // Advance parallax with player movement
+    bgOffsetX += player.vx;
     if (player.punching > 0) player.punching--;
     if (player.kicking  > 0) player.kicking--;
     if (player.hit      > 0) player.hit--;
@@ -417,11 +426,35 @@
     if (shake > 0.5) ctx.translate((Math.random() - 0.5) * shake, (Math.random() - 0.5) * shake);
     ctx.clearRect(-10, -10, W + 20, H + 20);
 
+    // ── City backdrop with parallax ──
+    if (cityImg.complete && cityImg.naturalWidth) {
+      var parallax = bgOffsetX * 0.25;
+      // Tile the image horizontally so it scrolls forever
+      var imgW = cityImg.naturalWidth;
+      var scale = H / cityImg.naturalHeight;
+      var tileW = imgW * scale;
+      var startX = ((-parallax % tileW) - tileW) % tileW;
+      if (startX > 0) startX -= tileW;
+      for (var tx = startX; tx < W + tileW; tx += tileW) {
+        ctx.drawImage(cityImg, tx, 0, tileW, H);
+      }
+      // Dark overlay — keeps text/characters readable
+      ctx.fillStyle = 'rgba(0,0,0,0.52)';
+      ctx.fillRect(0, 0, W, H);
+    } else {
+      ctx.fillStyle = COL.bg;
+      ctx.fillRect(0, 0, W, H);
+    }
+
     var floorY = H * 0.72;
-    drawRect(0, floorY, W, 2, COL.floorLine);
+    // Glowing floor line matching city warmth
+    ctx.fillStyle = 'rgba(197,150,40,0.35)';
+    ctx.fillRect(0, floorY, W, 2);
+    ctx.fillStyle = 'rgba(197,150,40,0.08)';
+    ctx.fillRect(0, floorY + 2, W, H - floorY - 2);
     for (var i = 0; i < 8; i++) {
       var ly = floorY + 20 + i * 30;
-      if (ly < H) { ctx.fillStyle = 'rgba(255,255,255,0.02)'; ctx.fillRect(0, ly, W, 1); }
+      if (ly < H) { ctx.fillStyle = 'rgba(255,200,80,0.03)'; ctx.fillRect(0, ly, W, 1); }
     }
 
     // Beers — with glow
