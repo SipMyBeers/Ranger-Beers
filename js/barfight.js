@@ -101,8 +101,100 @@
     });
     document.addEventListener('keyup', function (e) { keys[e.key.toLowerCase()] = false; });
 
+    // Mobile / touch — only attach if the device actually has touch.
+    var hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (hasTouch) setupTouchControls(container);
+    // Prevent pinch-zoom + scroll-on-drag on the game canvas, even on desktop
+    // (a stylus/trackpad gesture would otherwise scroll the page mid-fight).
+    canvas.style.touchAction = 'none';
+
+    // Re-fit on orientation flip (resize fires on most mobile browsers, but
+    // some only fire orientationchange — bind both).
+    window.addEventListener('orientationchange', resize);
+
     resetGame();
     loop();
+  }
+
+  // ─── Touch controls ─────────────────────────────────────────────────────────
+  // Builds an in-canvas overlay with virtual D-pad + jump + punch. Each button
+  // toggles the same `keys` flags the keyboard handlers do, so the game logic
+  // doesn't need to know about touch at all. Tap-anywhere-on-canvas starts /
+  // restarts the game (mirroring SPACE/F).
+  function setupTouchControls(container) {
+    // Inject styles once
+    if (!document.getElementById('bf-touch-style')) {
+      var style = document.createElement('style');
+      style.id = 'bf-touch-style';
+      style.textContent = [
+        '.bf-touch{position:absolute;inset:0;pointer-events:none;z-index:5;font-family:monospace;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;}',
+        '.bf-touch .bf-side{position:absolute;bottom:14px;display:flex;gap:10px;pointer-events:auto;}',
+        '.bf-touch .bf-side.bf-left{left:14px;}',
+        '.bf-touch .bf-side.bf-right{right:14px;}',
+        '.bf-touch .bf-btn{width:62px;height:62px;border-radius:14px;background:rgba(0,0,0,0.55);color:#C5B358;border:1.5px solid rgba(197,179,88,0.55);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;letter-spacing:1px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);box-shadow:0 0 18px rgba(197,179,88,0.12);transition:transform .08s ease,background .08s ease,box-shadow .12s ease;}',
+        '.bf-touch .bf-btn.bf-active{background:rgba(197,179,88,0.22);transform:scale(0.92);box-shadow:0 0 24px rgba(197,179,88,0.45);color:#fff;}',
+        '.bf-touch .bf-btn.bf-jump{background:rgba(0,0,0,0.4);}',
+        '.bf-touch .bf-btn.bf-punch{background:rgba(0,0,0,0.4);font-size:22px;}',
+        '.bf-touch .bf-tapstart{position:absolute;inset:0;pointer-events:auto;display:flex;align-items:center;justify-content:center;color:rgba(197,179,88,0.85);font-size:13px;letter-spacing:3px;text-transform:uppercase;text-shadow:0 0 8px rgba(197,179,88,0.4);background:linear-gradient(180deg,rgba(0,0,0,0) 60%,rgba(0,0,0,0.35) 100%);}',
+        '.bf-touch .bf-tapstart.bf-hidden{display:none;}',
+        // shrink slightly in cramped landscape (phones held sideways)
+        '@media (orientation:landscape) and (max-height:500px){.bf-touch .bf-btn{width:54px;height:54px;font-size:20px;}.bf-touch .bf-side{bottom:8px;}}',
+      ].join('\n');
+      document.head.appendChild(style);
+    }
+
+    var overlay = document.createElement('div');
+    overlay.className = 'bf-touch';
+    overlay.innerHTML = [
+      '<div class="bf-side bf-left">',
+      '  <div class="bf-btn" data-key="arrowleft" aria-label="Move left">◀</div>',
+      '  <div class="bf-btn" data-key="arrowright" aria-label="Move right">▶</div>',
+      '</div>',
+      '<div class="bf-side bf-right">',
+      '  <div class="bf-btn bf-jump" data-key="arrowup" aria-label="Jump">↑</div>',
+      '  <div class="bf-btn bf-punch" data-key="f" aria-label="Punch">F</div>',
+      '</div>',
+      '<div class="bf-tapstart bf-hidden">tap to fight</div>',
+    ].join('');
+    container.appendChild(overlay);
+
+    // Each button binds touchstart→keys[k]=true, touchend/cancel→false.
+    // Also pointerdown for stylus/desktop-touch fallback.
+    var buttons = overlay.querySelectorAll('.bf-btn');
+    buttons.forEach(function (btn) {
+      var k = btn.getAttribute('data-key');
+      var press = function (e) {
+        if (e.cancelable) e.preventDefault();
+        keys[k] = true;
+        btn.classList.add('bf-active');
+        // Tapping any control while idle/dead also kicks off a game
+        if (idleMode || gameOver) startGame();
+      };
+      var release = function (e) {
+        if (e.cancelable) e.preventDefault();
+        keys[k] = false;
+        btn.classList.remove('bf-active');
+      };
+      btn.addEventListener('touchstart', press, { passive: false });
+      btn.addEventListener('touchend',   release, { passive: false });
+      btn.addEventListener('touchcancel', release, { passive: false });
+      // Prevent context-menu / accidental scroll
+      btn.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+    });
+
+    // Tap-to-start overlay: visible only while idle or after game over.
+    // Tapping anywhere on the canvas fires startGame().
+    var tapStart = overlay.querySelector('.bf-tapstart');
+    setInterval(function () {
+      var visible = (idleMode || gameOver);
+      tapStart.classList.toggle('bf-hidden', !visible);
+      tapStart.textContent = gameOver ? 'tap to retry' : 'tap to fight';
+    }, 250);
+
+    tapStart.addEventListener('touchstart', function (e) {
+      if (e.cancelable) e.preventDefault();
+      if (idleMode || gameOver) startGame();
+    }, { passive: false });
   }
 
   function resize() {
