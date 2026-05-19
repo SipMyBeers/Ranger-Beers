@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=3">
     <meta name="theme-color" content="#0a0a0a">
     <meta name="description" content="Ranger Beers — force multiplier. Custom websites, AI integrations, lead generation, SEO, e-commerce.">
     <meta property="og:title" content="Ranger Beers">
@@ -18,8 +18,8 @@
 </head>
 <body>
 
-    <!-- Matrix code-rain background (gold) -->
-    <canvas id="matrix-bg" aria-hidden="true"></canvas>
+    <!-- Matrix code-rain background (gold) — inline styles are belt-and-suspenders against cached CSS pushing the canvas inline -->
+    <canvas id="matrix-bg" aria-hidden="true" style="display:block;position:fixed;inset:0;width:100vw;height:100vh;z-index:0;pointer-events:none;"></canvas>
 
     <!-- ═══ HERO ═══ -->
     <section class="hero" id="hero">
@@ -217,7 +217,7 @@
         <span>RANGER-BEERS.COM</span>
     </footer>
 
-    <script src="js/matrix.js"></script>
+    <script src="js/matrix.js?v=2"></script>
     <script src="js/barfight.js"></script>
     <script src="js/tilt.js"></script>
     <script src="js/forms.js"></script>
