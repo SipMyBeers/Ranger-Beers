@@ -48,30 +48,34 @@
 
   function draw() {
     // Trailing fade — leaves a fading tail of glyphs
-    ctx.fillStyle = 'rgba(10, 10, 10, 0.085)';
+    ctx.fillStyle = 'rgba(10, 10, 10, 0.06)';
     ctx.fillRect(0, 0, w, h);
 
-    ctx.font = '600 ' + fontSize + 'px JetBrains Mono, ui-monospace, monospace';
+    ctx.font = '700 ' + fontSize + 'px JetBrains Mono, ui-monospace, monospace';
     ctx.textBaseline = 'top';
 
     for (var i = 0; i < cols; i++) {
       var x = i * fontSize;
       var y = drops[i];
 
-      // Head — bright pale gold
-      ctx.fillStyle = 'rgba(229, 211, 130, 0.92)';
+      // Head — bright pale gold, near-white at the tip
+      ctx.fillStyle = 'rgba(255, 240, 180, 1)';
       ctx.fillText(pick(), x, y);
 
       // Mid-trail — saturated gold one cell above
-      ctx.fillStyle = 'rgba(197, 179, 88, 0.55)';
+      ctx.fillStyle = 'rgba(220, 195, 110, 0.85)';
       ctx.fillText(pick(), x, y - fontSize);
 
-      drops[i] += fontSize * speeds[i] * 0.5;
+      // Deep-trail — dim gold two cells above for depth
+      ctx.fillStyle = 'rgba(170, 145, 70, 0.55)';
+      ctx.fillText(pick(), x, y - fontSize * 2);
+
+      drops[i] += fontSize * speeds[i] * 0.7;
 
       // Reset stream off-screen with random chance for staggered streams
-      if (drops[i] > h + fontSize * 2 && Math.random() > 0.972) {
-        drops[i] = Math.random() * -h * 0.4;
-        speeds[i] = 0.6 + Math.random() * 1.4;
+      if (drops[i] > h + fontSize * 2 && Math.random() > 0.965) {
+        drops[i] = Math.random() * -h * 0.5;
+        speeds[i] = 0.7 + Math.random() * 1.6;
       }
     }
   }

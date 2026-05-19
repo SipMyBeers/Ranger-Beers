@@ -38,7 +38,7 @@ body {
   height: 100vh;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.95;
 }
 
 /* Lift every top-level region above the matrix canvas */
