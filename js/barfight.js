@@ -101,12 +101,20 @@
     });
     document.addEventListener('keyup', function (e) { keys[e.key.toLowerCase()] = false; });
 
-    // Mobile / touch — only attach if the device actually has touch.
+    // Mobile / touch — attach controls only on tablet+ touch devices, never on
+    // phone-narrow viewports where the overlay would eat the entire bottom of
+    // the hero and block the page-scroll gesture. Bar Fight stays a desktop +
+    // tablet easter egg; phones get the idle city render without the d-pad.
     var hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    if (hasTouch) setupTouchControls(container);
-    // Prevent pinch-zoom + scroll-on-drag on the game canvas, even on desktop
-    // (a stylus/trackpad gesture would otherwise scroll the page mid-fight).
-    canvas.style.touchAction = 'none';
+    var isPhone = window.innerWidth < 768;
+    if (hasTouch && !isPhone) {
+      setupTouchControls(container);
+      // Block native scroll on the canvas only when controls are mounted.
+      canvas.style.touchAction = 'none';
+    } else {
+      // Phones / no-touch: let vertical swipes scroll the page through the canvas.
+      canvas.style.touchAction = 'pan-y';
+    }
 
     // Re-fit on orientation flip (resize fires on most mobile browsers, but
     // some only fire orientationchange — bind both).

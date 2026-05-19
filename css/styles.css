@@ -209,6 +209,43 @@ a:hover { color: var(--text-bright); }
   50% { transform: translateY(4px); }
 }
 
+/* Centered scroll cue — visible only on phones where the corner chevron
+   is too easy to miss. Tappable, scrolls to #work. */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 88px; /* sits above .hero-bar (64px tall) with a little breathing room */
+  transform: translateX(-50%);
+  z-index: 12;
+  display: none; /* shown via media query below */
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: 0 0 12px rgba(197, 179, 88, 0.45);
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.55);
+  border: 1px solid rgba(197, 179, 88, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: cueBounce 1.6s var(--ease) infinite;
+  pointer-events: auto;
+}
+.scroll-cue svg { display: block; }
+@keyframes cueBounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 6px); }
+}
+@media (max-width: 768px) {
+  .scroll-cue { display: inline-flex; }
+}
+
 /* ═══════════════════════════════════
    SECTIONS
    ═══════════════════════════════════ */
@@ -688,6 +725,12 @@ a:hover { color: var(--text-bright); }
    RESPONSIVE
    ═══════════════════════════════════ */
 @media (max-width: 768px) {
+  /* Shorter hero so the next section peeks below the fold, hinting scroll */
+  .hero { height: 88svh; min-height: 540px; }
+  /* The tiny chevron icon in the corner is invisible on phones — hide it
+     and use the centered .scroll-cue instead. */
+  .hero-bar-right .hero-scroll { display: none; }
+
   .work-grid { grid-template-columns: 1fr; }
 
   .cap-grid { grid-template-columns: repeat(2, 1fr); }
