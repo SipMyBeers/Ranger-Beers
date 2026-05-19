@@ -246,6 +246,43 @@ a:hover { color: var(--text-bright); }
   .scroll-cue { display: inline-flex; }
 }
 
+/* ── Bar Fight PLAY / EXIT pills ── */
+.bf-play, .bf-exit {
+  position: absolute;
+  top: clamp(16px, 3vh, 28px);
+  right: clamp(16px, 4vw, 32px);
+  z-index: 12;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(8, 8, 8, 0.7);
+  border: 1px solid rgba(197, 179, 88, 0.45);
+  border-radius: 999px;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  transition: color .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease), transform .15s var(--ease);
+}
+.bf-play:hover, .bf-exit:hover {
+  color: #fff;
+  background: rgba(197, 179, 88, 0.18);
+  border-color: rgba(197, 179, 88, 0.85);
+  transform: translateY(-1px);
+}
+.bf-play svg, .bf-exit svg { display: block; }
+
+/* Toggle visibility based on game state — body gets .bf-playing while a fight is on */
+.bf-exit { display: none; }
+body.bf-playing .bf-play { display: none; }
+body.bf-playing .bf-exit { display: inline-flex; }
+
 /* ═══════════════════════════════════
    SECTIONS
    ═══════════════════════════════════ */
@@ -253,6 +290,13 @@ a:hover { color: var(--text-bright); }
   padding: clamp(64px, 10vh, 120px) clamp(24px, 4vw, 48px);
   max-width: 1100px;
   margin: 0 auto;
+  /* Dark backing so section text reads cleanly over the gold matrix.
+     On desktop the centered section leaves gutters for matrix; on mobile
+     the slab spans full-width and matrix shows in the gaps between sections. */
+  background: rgba(8, 8, 8, 0.78);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  border-radius: 14px;
 }
 
 .section-label {

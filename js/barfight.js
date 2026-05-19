@@ -1,6 +1,6 @@
 // Bar Fight — retro hero game with rooms & bosses
 (function () {
-  var canvas, ctx, W, H, dpr;
+  var canvas, ctx, W, H, dpr, touchContainer;
   var player, enemies, boss, beers, bottles, particles, score, gameOver, frameId;
   var keys = {};
   var combo = 0, comboTimer = 0, shake = 0;
@@ -101,18 +101,17 @@
     });
     document.addEventListener('keyup', function (e) { keys[e.key.toLowerCase()] = false; });
 
-    // Mobile / touch — attach controls only on tablet+ touch devices, never on
-    // phone-narrow viewports where the overlay would eat the entire bottom of
-    // the hero and block the page-scroll gesture. Bar Fight stays a desktop +
-    // tablet easter egg; phones get the idle city render without the d-pad.
+    // Mobile / touch — attach controls only on tablet+ touch devices at init.
+    // Phones get controls lazily mounted when the player taps the external PLAY
+    // pill (see window.startBarFight below). That keeps the hero scrollable in
+    // idle and the d-pad available only while actually playing.
     var hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
     var isPhone = window.innerWidth < 768;
+    touchContainer = container;
     if (hasTouch && !isPhone) {
       setupTouchControls(container);
-      // Block native scroll on the canvas only when controls are mounted.
       canvas.style.touchAction = 'none';
     } else {
-      // Phones / no-touch: let vertical swipes scroll the page through the canvas.
       canvas.style.touchAction = 'pan-y';
     }
 
@@ -879,8 +878,8 @@
 
     if (!idleMode) drawHUD();
 
-    // Idle
-    if (idleMode) {
+    // Idle — skip the canvas text on phones; the HTML PLAY pill replaces it.
+    if (idleMode && window.innerWidth >= 768) {
       ctx.textAlign = 'center';
       ctx.font = '800 15px "JetBrains Mono", monospace';
       ctx.fillStyle = 'rgba(197,179,88,0.75)';
@@ -913,4 +912,26 @@
   function loop() { update(); draw(); frameId = requestAnimationFrame(loop); }
 
   window.initBarFight = init;
+
+  // External controls used by the HTML PLAY/EXIT pills. On phones the touch
+  // overlay is mounted only when the player taps PLAY, and unmounted on EXIT
+  // so the page becomes scrollable again.
+  window.startBarFight = function () {
+    if (!canvas) return;
+    var hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (hasTouch && touchContainer && !touchContainer.querySelector('.bf-touch')) {
+      setupTouchControls(touchContainer);
+    }
+    canvas.style.touchAction = 'none';
+    document.body.classList.add('bf-playing');
+    if (typeof startGame === 'function') startGame();
+  };
+  window.exitBarFight = function () {
+    if (!canvas) return;
+    var existing = touchContainer && touchContainer.querySelector('.bf-touch');
+    if (existing && window.innerWidth < 768) existing.remove();
+    canvas.style.touchAction = window.innerWidth < 768 ? 'pan-y' : 'none';
+    document.body.classList.remove('bf-playing');
+    if (typeof resetGame === 'function') resetGame();
+  };
 })();
