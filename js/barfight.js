@@ -6,6 +6,8 @@
   var combo = 0, comboTimer = 0, shake = 0;
   var idleMode = true, idleTimer = 0;
   var levelUpFlash = 0, lastLevel = 1;
+  var gameWon = false;
+  var berserkInvuln = 0; // LVL 5 reward window after each kill
 
   // Room system
   var worldRoom = 1;
@@ -20,26 +22,42 @@
   cityImg.src = 'images/city-backdrop.jpg';
   var bgOffsetX = 0;
 
+  // 10-room campaign. mix encodes the enemy roster for the room — keys must
+  // sum to 1.0 across spawn weights. final:true marks the last room, which
+  // triggers the win state after its boss falls.
   var ROOMS = [
-    { name: 'CITY STREET',  tint: null,                  enemies: 5,  bossRoom: false },
-    { name: 'DARK ALLEY',   tint: 'rgba(0,0,60,0.35)',   enemies: 7,  bossRoom: false },
-    { name: 'BAR INTERIOR', tint: 'rgba(80,20,0,0.40)',  enemies: 0,  bossRoom: true,  bossName: 'THE BOUNCER', bossHp: 18 },
-    { name: 'ROOFTOP',      tint: 'rgba(0,30,60,0.35)',  enemies: 9,  bossRoom: false },
-    { name: 'PENTHOUSE',    tint: 'rgba(50,0,70,0.40)',  enemies: 0,  bossRoom: true,  bossName: 'THE KINGPIN', bossHp: 28 },
+    { name: 'CITY STREET',    tint: null,                  enemies: 5,  bossRoom: false,                                          mix: { normal: 1.0 } },
+    { name: 'DARK ALLEY',     tint: 'rgba(0,0,60,0.35)',   enemies: 7,  bossRoom: false,                                          mix: { normal: 0.6, runner: 0.4 } },
+    { name: 'BAR INTERIOR',   tint: 'rgba(80,20,0,0.40)',  enemies: 0,  bossRoom: true,  bossName: 'THE BOUNCER',   bossHp: 22,  mix: { normal: 1 } },
+    { name: 'SUBWAY',         tint: 'rgba(10,40,10,0.35)', enemies: 9,  bossRoom: false,                                          mix: { runner: 0.7, normal: 0.3 } },
+    { name: 'ROOFTOP',        tint: 'rgba(0,30,60,0.35)',  enemies: 10, bossRoom: false,                                          mix: { normal: 0.4, runner: 0.3, thug: 0.3 } },
+    { name: 'CHINATOWN',      tint: 'rgba(70,0,30,0.40)',  enemies: 0,  bossRoom: true,  bossName: 'THE DEALER',    bossHp: 30,  mix: { thug: 1 } },
+    { name: 'WAREHOUSE',      tint: 'rgba(40,20,0,0.35)',  enemies: 12, bossRoom: false,                                          mix: { big: 0.5, thug: 0.3, normal: 0.2 } },
+    { name: 'NEON DISTRICT',  tint: 'rgba(40,0,60,0.40)',  enemies: 14, bossRoom: false,                                          mix: { runner: 0.4, thug: 0.3, big: 0.2, normal: 0.1 } },
+    { name: 'PENTHOUSE',      tint: 'rgba(50,0,70,0.40)',  enemies: 0,  bossRoom: true,  bossName: 'THE KINGPIN',   bossHp: 36,  mix: { big: 1 } },
+    { name: 'HELIPAD',        tint: 'rgba(60,40,0,0.40)',  enemies: 0,  bossRoom: true,  bossName: 'THE WARLORD',   bossHp: 60,  mix: { big: 1 }, final: true },
   ];
 
   function getRoomCfg(n) {
     var idx   = (n - 1) % ROOMS.length;
-    var scale = Math.floor((n - 1) / ROOMS.length);
+    var scale = Math.floor((n - 1) / ROOMS.length); // NG+ cycles add this
     var r     = ROOMS[idx];
     return {
       name:     r.name,
       tint:     r.tint,
-      enemies:  r.bossRoom ? 0 : r.enemies + scale * 3,
+      enemies:  r.bossRoom ? 0 : Math.round(r.enemies * (1 + scale * 0.4)),
       bossRoom: r.bossRoom,
       bossName: r.bossName || null,
-      bossHp:   r.bossRoom ? r.bossHp + scale * 10 : 0,
+      bossHp:   r.bossRoom ? Math.round(r.bossHp * (1 + scale * 0.5)) : 0,
+      mix:      r.mix || { normal: 1 },
+      final:    !!r.final,
     };
+  }
+
+  // Damage the player takes from a basic enemy melee. Scales by room so room 10
+  // feels meaningfully more dangerous than room 1.
+  function enemyMeleeDmg() {
+    return 1 + Math.floor((worldRoom - 1) / 3); // 1 (r1-3) → 2 (r4-6) → 3 (r7-9) → 4 (r10)
   }
 
   var COL = {
@@ -62,23 +80,25 @@
     { body: '#44aaff', dark: '#2266aa' },
     { body: '#ff8844', dark: '#cc5522' },
     { body: '#dd44ff', dark: '#882299' },
+    { body: '#ff2222', dark: '#aa0000' },
   ];
-  var LEVEL_NAMES = ['ROOKIE', 'BUZZED', 'HAMMERED', 'LEGENDARY'];
-  var LVL_COL     = ['#C5B358', '#44aaff', '#ff8844', '#dd44ff'];
+  var LEVEL_NAMES = ['ROOKIE', 'BUZZED', 'HAMMERED', 'LEGENDARY', 'BERSERK'];
+  var LVL_COL     = ['#C5B358', '#44aaff', '#ff8844', '#dd44ff', '#ff2222'];
 
   function getLevel() {
     if (!player) return 1;
-    return Math.min(4, 1 + Math.floor(player.beersDrunk / 3));
+    return Math.min(5, 1 + Math.floor(player.beersDrunk / 3));
   }
 
   function getLevelStats(lv) {
     return {
       speed:       3.5 + (lv - 1) * 0.8,
-      punchDamage: lv >= 2 ? 2 : 1,
+      punchDamage: lv >= 5 ? 4 : (lv >= 2 ? 2 : 1),
       punchRange:  28  + (lv - 1) * 6,
       maxHp:       5   + (lv - 1) * 2,
       canKick:     lv >= 3,
       canThrow:    lv >= 4,
+      canBerserk:  lv >= 5, // unlocks short invuln window after each kill
     };
   }
 
@@ -98,6 +118,7 @@
       }
       if (idleMode && (e.key === ' ' || e.key.toLowerCase() === 'f')) startGame();
       if (gameOver && (e.key === ' ' || e.key.toLowerCase() === 'f')) startGame();
+      if (gameWon  && (e.key === ' ' || e.key.toLowerCase() === 'f')) startGame();
     });
     document.addEventListener('keyup', function (e) { keys[e.key.toLowerCase()] = false; });
 
@@ -175,7 +196,7 @@
         keys[k] = true;
         btn.classList.add('bf-active');
         // Tapping any control while idle/dead also kicks off a game
-        if (idleMode || gameOver) startGame();
+        if (idleMode || gameOver || gameWon) startGame();
       };
       var release = function (e) {
         if (e.cancelable) e.preventDefault();
@@ -193,14 +214,14 @@
     // Tapping anywhere on the canvas fires startGame().
     var tapStart = overlay.querySelector('.bf-tapstart');
     setInterval(function () {
-      var visible = (idleMode || gameOver);
+      var visible = (idleMode || gameOver || gameWon);
       tapStart.classList.toggle('bf-hidden', !visible);
-      tapStart.textContent = gameOver ? 'tap to retry' : 'tap to fight';
+      tapStart.textContent = gameWon ? 'tap for NG+' : (gameOver ? 'tap to retry' : 'tap to fight');
     }, 250);
 
     tapStart.addEventListener('touchstart', function (e) {
       if (e.cancelable) e.preventDefault();
-      if (idleMode || gameOver) startGame();
+      if (idleMode || gameOver || gameWon) startGame();
     }, { passive: false });
   }
 
@@ -225,9 +246,9 @@
       grounded: true, beersDrunk: 0,
     };
     enemies = []; boss = null; beers = []; bottles = []; particles = [];
-    score = 0; gameOver = false;
+    score = 0; gameOver = false; gameWon = false;
     combo = 0; comboTimer = 0; shake = 0;
-    levelUpFlash = 0; lastLevel = 1;
+    levelUpFlash = 0; lastLevel = 1; berserkInvuln = 0;
     worldRoom = 1; roomState = 'playing';
     transitionTimer = 0; roomNameTimer = 0;
     bgOffsetX = 0; idleMode = true;
@@ -238,8 +259,8 @@
     idleMode = false;
     player.hp = 5; player.maxHp = 5; player.beersDrunk = 0;
     enemies = []; boss = null; beers = []; bottles = []; particles = [];
-    score = 0; gameOver = false;
-    combo = 0; levelUpFlash = 0; lastLevel = 1;
+    score = 0; gameOver = false; gameWon = false;
+    combo = 0; levelUpFlash = 0; lastLevel = 1; berserkInvuln = 0;
     worldRoom = 1; roomState = 'playing';
     transitionTimer = 0; roomNameTimer = 90;
     bgOffsetX = 0;
@@ -271,30 +292,53 @@
   }
 
   // ─── Spawning ─────────────────────────────────────────────────────────────────
+  // Pick a type via weighted roll against the current room's mix.
+  function pickEnemyType() {
+    var mix = getRoomCfg(worldRoom).mix;
+    var r = Math.random(), cum = 0;
+    for (var k in mix) {
+      cum += mix[k];
+      if (r <= cum) return k;
+    }
+    return 'normal';
+  }
+
   function spawnEnemy() {
     var floorY = H * 0.72;
     var fromRight = Math.random() > 0.3;
-    var big = Math.random() > 0.7;
-    var hp = 1 + Math.floor(score / 8) + Math.floor((worldRoom - 1) / 2);
+    var type = pickEnemyType();
+    var roomHp = 1 + Math.floor(score / 10) + Math.floor((worldRoom - 1) / 2);
+    var sizeW, sizeH, baseSpeed, hpMult;
+    switch (type) {
+      case 'big':    sizeW = 22; sizeH = 36; baseSpeed = 0.6; hpMult = 2;    break;
+      case 'runner': sizeW = 14; sizeH = 26; baseSpeed = 2.0; hpMult = 0.5;  break;
+      case 'thug':   sizeW = 19; sizeH = 32; baseSpeed = 0.9; hpMult = 1.2;  break;
+      default:       sizeW = 18; sizeH = 30; baseSpeed = 1.0; hpMult = 1;    break;
+    }
+    var hp = Math.max(1, Math.round(roomHp * hpMult));
     enemies.push({
       x: fromRight ? W + 20 : -20, y: floorY,
-      w: big ? 22 : 18, h: big ? 36 : 30,
-      vx: (fromRight ? -1 : 1) * (0.8 + Math.random() * 0.9),
+      w: sizeW, h: sizeH,
+      vx: (fromRight ? -1 : 1) * (baseSpeed + Math.random() * 0.4),
       hp: hp, maxHp: hp,
-      hit: 0, attackCd: 0,
-      type: big ? 'big' : 'normal',
+      hit: 0, attackCd: 0, dodgeCd: 0,
+      type: type,
     });
   }
 
   function spawnBoss(hp, name) {
     var floorY = H * 0.72;
+    var cfg = getRoomCfg(worldRoom);
     boss = {
       x: W * 0.8, y: floorY,
-      w: 30, h: 48,
+      w: cfg.final ? 36 : 30, h: cfg.final ? 56 : 48,
       hp: hp, maxHp: hp,
       hit: 0, attackCd: 0,
       chargeDir: 1, chargeTimer: 0,
       berserk: false,
+      phase2: false, // <25% HP — barrage mode
+      barrageCd: 0,
+      isFinal: !!cfg.final,
       name: name || 'BOSS',
     };
   }
@@ -333,36 +377,60 @@
     if (!boss) return;
     var floorY = H * 0.72;
     var dx = player.x - boss.x;
-    var speed = boss.berserk ? 2.8 : 1.6;
 
+    var wasPhase2 = boss.phase2;
     boss.berserk = boss.hp < boss.maxHp * 0.5;
+    boss.phase2  = boss.hp < boss.maxHp * 0.25;
+    if (boss.phase2 && !wasPhase2) {
+      // Phase-2 entry flash — short flicker + heal-tick particle burst
+      addParticles(boss.x, boss.y - 24, '#ff4444', 28, 12);
+      shake = 14;
+      boss.barrageCd = 30;
+    }
+
+    var speed = boss.phase2 ? 3.4 : (boss.berserk ? 2.8 : 1.6);
 
     if (boss.chargeTimer > 0) {
       boss.chargeTimer--;
-      boss.x += boss.chargeDir * (boss.berserk ? 6 : 4.5);
+      boss.x += boss.chargeDir * (boss.phase2 ? 7.5 : (boss.berserk ? 6 : 4.5));
     } else {
       if (Math.abs(dx) > 60) boss.x += (dx > 0 ? 1 : -1) * speed;
-      if (Math.random() < (boss.berserk ? 0.012 : 0.005)) {
+      var chargeChance = boss.phase2 ? 0.022 : (boss.berserk ? 0.012 : 0.005);
+      if (Math.random() < chargeChance) {
         boss.chargeDir = dx > 0 ? 1 : -1;
-        boss.chargeTimer = 18;
+        boss.chargeTimer = boss.phase2 ? 26 : 18;
       }
     }
     boss.x = Math.max(30, Math.min(W - 30, boss.x));
 
     if (boss.attackCd > 0) boss.attackCd--;
+    if (boss.barrageCd > 0) boss.barrageCd--;
+
+    // Phase-2 barrage: lobs an arc of 3 bottles independent of melee CD.
+    if (boss.phase2 && boss.barrageCd === 0) {
+      var dir = dx > 0 ? 1 : -1;
+      spawnBottle(boss.x,           dir, false);
+      spawnBottle(boss.x + dir * 6, dir, false);
+      spawnBottle(boss.x + dir * 12, dir, false);
+      boss.barrageCd = boss.isFinal ? 60 : 90;
+    }
 
     var dist = Math.abs(player.x - boss.x);
     if (dist < 60 && boss.attackCd === 0) {
-      if (Math.random() > (boss.berserk ? 0.35 : 0.65) && dist > 35) {
+      var throwGate = boss.phase2 ? 0.20 : (boss.berserk ? 0.35 : 0.65);
+      if (Math.random() > throwGate && dist > 35) {
         spawnBottle(boss.x, dx > 0 ? 1 : -1, false);
         if (boss.berserk) spawnBottle(boss.x + 8, dx > 0 ? 1 : -1, false);
-        boss.attackCd = boss.berserk ? 28 : 50;
+        boss.attackCd = boss.phase2 ? 20 : (boss.berserk ? 28 : 50);
       } else if (dist < 48) {
-        player.hp -= boss.berserk ? 2 : 1;
-        player.hit = 12; shake = 8;
-        addParticles(player.x, player.y - 16, COL.ko, 8, 5);
-        boss.attackCd = boss.berserk ? 32 : 52;
-        if (player.hp <= 0) { gameOver = true; addParticles(player.x, player.y - 16, COL.ko, 20, 8); }
+        var meleeDmg = boss.phase2 ? 3 : (boss.berserk ? 2 : 1);
+        if (berserkInvuln <= 0) {
+          player.hp -= meleeDmg;
+          player.hit = 12; shake = 8;
+          addParticles(player.x, player.y - 16, COL.ko, 8 + meleeDmg * 2, 5);
+          if (player.hp <= 0) { gameOver = true; addParticles(player.x, player.y - 16, COL.ko, 20, 8); }
+        }
+        boss.attackCd = boss.phase2 ? 24 : (boss.berserk ? 32 : 52);
       }
     }
 
@@ -391,11 +459,14 @@
   }
 
   function killBoss() {
-    score += 5; combo += 5; comboTimer = 120;
-    addParticles(boss.x, boss.y - 24, COL.boss,  30, 10);
-    addParticles(boss.x, boss.y - 24, '#fff', 20, 8);
+    var wasFinal = boss && boss.isFinal;
+    score += wasFinal ? 25 : 5;
+    combo += 5; comboTimer = 120;
+    addParticles(boss.x, boss.y - 24, COL.boss,  wasFinal ? 80 : 30, wasFinal ? 16 : 10);
+    addParticles(boss.x, boss.y - 24, '#fff',    wasFinal ? 50 : 20, wasFinal ? 14 : 8);
     boss = null;
     roomState = 'cleared';
+    if (wasFinal) { gameWon = true; }
   }
 
   // ─── Update ───────────────────────────────────────────────────────────────────
@@ -420,12 +491,14 @@
     }
 
     if (gameOver) return;
+    if (gameWon)  return;
 
-    if (shake > 0)       shake     *= 0.85;
-    if (comboTimer > 0)  comboTimer--;
-    if (comboTimer === 0) combo = 0;
-    if (levelUpFlash > 0) levelUpFlash--;
+    if (shake > 0)         shake     *= 0.85;
+    if (comboTimer > 0)    comboTimer--;
+    if (comboTimer === 0)  combo = 0;
+    if (levelUpFlash > 0)  levelUpFlash--;
     if (roomNameTimer > 0) roomNameTimer--;
+    if (berserkInvuln > 0) berserkInvuln--;
 
     var lv    = getLevel();
     var stats = getLevelStats(lv);
@@ -505,19 +578,50 @@
       var e  = enemies[i];
       var dx = player.x - e.x;
       var dist = Math.abs(dx);
+      var sign = dx > 0 ? 1 : -1;
 
-      if (dist > 40) e.x += (dx > 0 ? 1 : -1) * Math.abs(e.vx);
+      // Per-type movement
+      if (e.type === 'runner') {
+        // Sprint in and out — closes faster, retreats briefly after attacking.
+        var sprint = e.attackCd > 30 ? -1.4 : 1.6; // retreat right after attacking
+        if (dist > 26) e.x += sign * Math.abs(e.vx) * sprint;
+      } else if (e.type === 'thug') {
+        // Prefers mid-range to throw bottles. Backs off if you get too close.
+        if (dist < 50)      e.x -= sign * Math.abs(e.vx) * 0.6;
+        else if (dist > 90) e.x += sign * Math.abs(e.vx);
+      } else if (e.type === 'big') {
+        if (dist > 36) e.x += sign * Math.abs(e.vx);
+      } else {
+        if (dist > 40) e.x += sign * Math.abs(e.vx);
+      }
+
       if (e.attackCd > 0) e.attackCd--;
+      if (e.dodgeCd  > 0) e.dodgeCd--;
 
-      if (dist < 45 && e.attackCd === 0) {
-        if (Math.random() > 0.7 && dist > 25) {
-          spawnBottle(e.x, dx > 0 ? 1 : -1, false);
-          e.attackCd = 60;
-        } else if (dist < 35) {
-          player.hp--; player.hit = 10; shake = 6;
-          addParticles(player.x, player.y - 16, COL.ko, 5, 4);
-          e.attackCd = 45;
-          if (player.hp <= 0) { gameOver = true; addParticles(player.x, player.y - 16, COL.ko, 20, 8); }
+      // Runner dodge: hop back when player is punching and close.
+      if (e.type === 'runner' && e.dodgeCd === 0 && player.punching > 0 && dist < 36) {
+        e.x -= sign * 18;
+        e.dodgeCd = 50;
+      }
+
+      var meleeRange  = e.type === 'big' ? 40 : (e.type === 'runner' ? 30 : 35);
+      var throwRange  = e.type === 'thug' ? 130 : 60;
+      var throwChance = e.type === 'thug' ? 0.85 : (e.type === 'big' ? 0.15 : 0.35);
+      var thugDouble  = e.type === 'thug' && Math.random() < 0.35;
+      var thisDmg     = enemyMeleeDmg() * (e.type === 'big' ? 2 : 1);
+
+      if (e.attackCd === 0) {
+        if (dist < throwRange && dist > meleeRange && Math.random() < throwChance) {
+          spawnBottle(e.x, sign, false);
+          if (thugDouble) spawnBottle(e.x + sign * 6, sign, false);
+          e.attackCd = e.type === 'thug' ? 55 : 70;
+        } else if (dist < meleeRange) {
+          if (berserkInvuln <= 0) {
+            player.hp -= thisDmg; player.hit = 10; shake = 6;
+            addParticles(player.x, player.y - 16, COL.ko, 5 + thisDmg * 2, 4);
+            if (player.hp <= 0) { gameOver = true; addParticles(player.x, player.y - 16, COL.ko, 20, 8); }
+          }
+          e.attackCd = e.type === 'runner' ? 65 : 50;
         }
       }
       if (e.hit > 0) e.hit--;
@@ -527,7 +631,7 @@
         if (Math.abs(px - e.x) < 25 && Math.abs(player.y - e.y) < 30) {
           e.hp -= stats.punchDamage; e.hit = 8; e.x += player.punchDir * 12; shake = 4;
           addParticles(e.x, e.y - 16, '#fff', 4, 3);
-          if (e.hp <= 0) { score++; combo++; comboTimer = 90; addParticles(e.x, e.y - 16, COL.particle, 12, 6); enemies.splice(i, 1); continue; }
+          if (e.hp <= 0) { score++; combo++; comboTimer = 90; addParticles(e.x, e.y - 16, COL.particle, 12, 6); if (stats.canBerserk) berserkInvuln = 36; enemies.splice(i, 1); continue; }
         }
       }
       if (player.kicking > 7 && player.kicking < 13) {
@@ -535,7 +639,7 @@
         if (Math.abs(kx - e.x) < 34 && Math.abs(player.y - e.y) < 22) {
           e.hp -= 2; e.hit = 14; e.x += player.punchDir * 22; shake = 5;
           addParticles(e.x, e.y - 8, '#ffaa44', 7, 5);
-          if (e.hp <= 0) { score++; combo++; comboTimer = 90; addParticles(e.x, e.y - 8, '#ffaa44', 14, 7); enemies.splice(i, 1); continue; }
+          if (e.hp <= 0) { score++; combo++; comboTimer = 90; addParticles(e.x, e.y - 8, '#ffaa44', 14, 7); if (stats.canBerserk) berserkInvuln = 36; enemies.splice(i, 1); continue; }
         }
       }
     }
@@ -563,7 +667,7 @@
           if (Math.abs(b.x - e.x) < 18 && Math.abs(b.y - (e.y - 16)) < 20) {
             e.hp -= 2; e.hit = 14; e.x += b.vx * 2;
             addParticles(b.x, b.y, '#66aaff', 8, 5);
-            if (e.hp <= 0) { score++; combo++; comboTimer = 90; addParticles(e.x, e.y - 16, COL.particle, 12, 6); enemies.splice(j, 1); }
+            if (e.hp <= 0) { score++; combo++; comboTimer = 90; addParticles(e.x, e.y - 16, COL.particle, 12, 6); if (stats.canBerserk) berserkInvuln = 36; enemies.splice(j, 1); }
             bottles.splice(i, 1); hit = true; break;
           }
         }
@@ -577,10 +681,14 @@
         }
       } else {
         if (Math.abs(player.x - b.x) < 15 && Math.abs((player.y - 16) - b.y) < 18) {
-          player.hp--; player.hit = 10; shake = 5;
-          addParticles(b.x, b.y, COL.bottle, 6, 5);
+          if (berserkInvuln <= 0) {
+            player.hp--; player.hit = 10; shake = 5;
+            addParticles(b.x, b.y, COL.bottle, 6, 5);
+            if (player.hp <= 0) { gameOver = true; addParticles(player.x, player.y - 16, COL.ko, 20, 8); }
+          } else {
+            addParticles(b.x, b.y, '#ff2222', 8, 6); // deflected by berserk aura
+          }
           bottles.splice(i, 1);
-          if (player.hp <= 0) { gameOver = true; addParticles(player.x, player.y - 16, COL.ko, 20, 8); }
           continue;
         }
       }
@@ -841,13 +949,17 @@
       ctx.restore();
     }
 
-    // Enemies
+    // Enemies — per-type palette so the threat type is readable at a glance
+    var ENEMY_COL = {
+      normal: { body: '#cc4444', dark: '#882222' },
+      big:    { body: '#dd6644', dark: '#994422' },
+      runner: { body: '#aa44aa', dark: '#66226a' },
+      thug:   { body: '#ddaa33', dark: '#996611' },
+    };
     for (var i = 0; i < enemies.length; i++) {
       var e = enemies[i];
-      drawPixelChar(e.x, e.y, e.w, e.h,
-        e.type === 'big' ? '#dd6644' : '#cc4444',
-        e.type === 'big' ? '#994422' : '#882222',
-        e.hit > 0, 0, 0, 0);
+      var pal = ENEMY_COL[e.type] || ENEMY_COL.normal;
+      drawPixelChar(e.x, e.y, e.w, e.h, pal.body, pal.dark, e.hit > 0, 0, 0, 0);
     }
 
     drawBoss();
@@ -855,11 +967,14 @@
     // Player
     var lv = idleMode ? 1 : getLevel();
     var lc = LEVEL_COLORS[lv - 1];
+    var pBody = lc.body, pDark = lc.dark;
+    if (player.hit > 0) { pBody = '#fff'; pDark = '#ccc'; }
+    else if (berserkInvuln > 0 && Math.floor(Date.now() / 60) % 2 === 0) {
+      pBody = '#ff2222'; pDark = '#fff';
+    }
     if (!gameOver || Math.floor(Date.now() / 150) % 2 === 0) {
       drawPixelChar(player.x, player.y, player.w, player.h,
-        player.hit > 0 ? '#fff' : lc.body,
-        player.hit > 0 ? '#ccc' : lc.dark,
-        false, player.punchDir, player.punching, player.kicking || 0);
+        pBody, pDark, false, player.punchDir, player.punching, player.kicking || 0);
     }
 
     // Particles
@@ -900,10 +1015,25 @@
       ctx.font = '700 16px "JetBrains Mono", monospace';
       ctx.fillStyle = COL.text;
       ctx.fillText('K.O. — SCORE: ' + score + '   ROOM: ' + worldRoom, W / 2, H / 2);
-      var blink = Math.floor(Date.now() / 800) % 2 === 0;
+      var blinkKO = Math.floor(Date.now() / 800) % 2 === 0;
       ctx.font = '500 10px "JetBrains Mono", monospace';
-      ctx.fillStyle = blink ? 'rgba(255,255,255,0.6)' : COL.textDim;
+      ctx.fillStyle = blinkKO ? 'rgba(255,255,255,0.6)' : COL.textDim;
       ctx.fillText('[ PRESS F OR SPACE TO FIGHT AGAIN ]', W / 2, H / 2 + 22);
+    }
+
+    // Victory — final boss defeated
+    if (gameWon) {
+      ctx.textAlign = 'center';
+      ctx.font = '800 20px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#C5B358';
+      ctx.fillText('CITY CLEARED', W / 2, H / 2 - 14);
+      ctx.font = '600 12px "JetBrains Mono", monospace';
+      ctx.fillStyle = 'rgba(255,255,255,0.75)';
+      ctx.fillText('THE WARLORD IS DOWN — SCORE: ' + score, W / 2, H / 2 + 8);
+      var blinkW = Math.floor(Date.now() / 800) % 2 === 0;
+      ctx.font = '500 10px "JetBrains Mono", monospace';
+      ctx.fillStyle = blinkW ? 'rgba(197,179,88,0.9)' : COL.textDim;
+      ctx.fillText('[ PRESS F OR SPACE FOR NG+ ]', W / 2, H / 2 + 32);
     }
 
     ctx.restore();
