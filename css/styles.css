@@ -283,6 +283,15 @@ a:hover { color: var(--text-bright); }
 body.bf-playing .bf-play { display: none; }
 body.bf-playing .bf-exit { display: inline-flex; }
 
+/* While a fight is on, lift the game (canvas + touch d-pad) above the hero
+   chrome. The d-pad overlay lives inside #game-container (z-index:0); its own
+   z-index can't escape that stacking context, so on phones the .hero-bar
+   (z-index:10) sat on top of the movement buttons and swallowed every tap —
+   the game started but was uncontrollable. Raising the container lifts the
+   whole subtree; EXIT stays above it so the player can always quit. */
+body.bf-playing #game-container { z-index: 15; }
+body.bf-playing .bf-exit { z-index: 16; }
+
 /* ═══════════════════════════════════
    SECTIONS
    ═══════════════════════════════════ */
