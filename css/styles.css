@@ -327,6 +327,44 @@ body.bf-playing .bf-exit { z-index: 16; }
   background: var(--border);
 }
 
+.section-sublabel {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-top: -32px;
+  margin-bottom: clamp(28px, 4vh, 40px);
+}
+
+/* ── Section divide — full-width rule between own products and client work ── */
+.section-divide {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 clamp(20px, 5vw, 60px);
+  margin-block: 16px;
+}
+.section-divide-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 40%, var(--gold) 60%, transparent);
+  opacity: 0.25;
+}
+.section-divide-text {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: var(--gold);
+  text-transform: uppercase;
+  opacity: 0.45;
+  white-space: nowrap;
+}
+
+/* ── Client section — hide the redundant section-label (divide already labels it) ── */
+.section--clients .section-label { display: none; }
+
 /* ═══════════════════════════════════
    WORK — 3D tilt cards
    ═══════════════════════════════════ */

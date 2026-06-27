@@ -1,5 +1,2 @@
-*.png filter=lfs diff=lfs merge=lfs -text
-*.jpg filter=lfs diff=lfs merge=lfs -text
-*.jpeg filter=lfs diff=lfs merge=lfs -text
-*.mp4 filter=lfs diff=lfs merge=lfs -text
-*.mov filter=lfs diff=lfs merge=lfs -text
+# Unused screenshot dumps stay in Git LFS (not served on the site; keeps the push lean).
+media/screenshots/** filter=lfs diff=lfs merge=lfs -text

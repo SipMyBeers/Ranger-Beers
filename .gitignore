@@ -17,6 +17,9 @@ dist/
 .DS_Store
 Thumbs.db
 
+# Large files (exceed CF Pages 25MB limit)
+docs/claymore.pdf
+
 # Logs
 *.log
 npm-debug.log*
