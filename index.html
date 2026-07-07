@@ -37,9 +37,34 @@
                    'RNGRBEERSAIRBORNERANGERMEDIC' +
                    '╱╲│─┼╳░▒▓█' +
                    'アイウエオカキクケコサシスセソタチツテト').split('');
+      var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Glyphs are pre-rendered once into an atlas (3 brightness tiers), then
+      // blitted with drawImage — an order of magnitude cheaper than per-frame
+      // fillText glyph rasterization.
+      var atlas = null, cellW = 0, cellH = 0;
+      var tiers = ['rgba(255, 240, 180, 1)', 'rgba(220, 195, 110, 0.85)', 'rgba(170, 145, 70, 0.55)'];
+      function buildAtlas() {
+        cellW = Math.ceil(fontSize * dpr);
+        cellH = Math.ceil((fontSize + 4) * dpr);
+        atlas = document.createElement('canvas');
+        atlas.width = cellW * chars.length;
+        atlas.height = cellH * tiers.length;
+        var a = atlas.getContext('2d');
+        a.font = '700 ' + (fontSize * dpr) + 'px JetBrains Mono, ui-monospace, monospace';
+        a.textBaseline = 'top';
+        for (var t = 0; t < tiers.length; t++) {
+          a.fillStyle = tiers[t];
+          for (var c = 0; c < chars.length; c++) a.fillText(chars[c], c * cellW, t * cellH);
+        }
+      }
+      function blit(tier, x, y) {
+        var c = (Math.random() * chars.length) | 0;
+        ctx.drawImage(atlas, c * cellW, tier * cellH, cellW, cellH, x, y, fontSize, fontSize + 4);
+      }
 
       function resize() {
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        dpr = Math.min(window.devicePixelRatio || 1, 1.5);
         w = window.innerWidth;
         h = window.innerHeight;
         canvas.width = Math.floor(w * dpr);
@@ -55,41 +80,49 @@
           drops[i] = Math.random() * -h;
           speeds[i] = 0.7 + Math.random() * 1.6;
         }
+        buildAtlas();
         ctx.fillStyle = '#0a0a0a';
         ctx.fillRect(0, 0, w, h);
       }
-      function pick() { return chars[(Math.random() * chars.length) | 0]; }
 
+      // Simulation steps at a fixed 30Hz regardless of display refresh —
+      // same fall speed and trail length as the old 60fps tuning (advance
+      // and fade are doubled per step), half the draw work, and no 2× speedup
+      // on 120Hz ProMotion screens.
       var running = true;
       function draw() {
-        ctx.fillStyle = 'rgba(10, 10, 10, 0.06)';
+        ctx.fillStyle = 'rgba(10, 10, 10, 0.12)';
         ctx.fillRect(0, 0, w, h);
-        ctx.font = '700 ' + fontSize + 'px JetBrains Mono, ui-monospace, monospace';
-        ctx.textBaseline = 'top';
         for (var i = 0; i < cols; i++) {
           var x = i * fontSize;
           var y = drops[i];
-          ctx.fillStyle = 'rgba(255, 240, 180, 1)';
-          ctx.fillText(pick(), x, y);
-          ctx.fillStyle = 'rgba(220, 195, 110, 0.85)';
-          ctx.fillText(pick(), x, y - fontSize);
-          ctx.fillStyle = 'rgba(170, 145, 70, 0.55)';
-          ctx.fillText(pick(), x, y - fontSize * 2);
-          drops[i] += fontSize * speeds[i] * 0.7;
-          if (drops[i] > h + fontSize * 2 && Math.random() > 0.965) {
+          blit(0, x, y);
+          blit(1, x, y - fontSize);
+          blit(2, x, y - fontSize * 2);
+          drops[i] += fontSize * speeds[i] * 1.4;
+          if (drops[i] > h + fontSize * 2 && Math.random() > 0.93) {
             drops[i] = Math.random() * -h * 0.5;
             speeds[i] = 0.7 + Math.random() * 1.6;
           }
         }
       }
-      function loop() {
-        if (running) draw();
+      var STEP = 1000 / 30, last = 0;
+      function loop(now) {
         requestAnimationFrame(loop);
+        if (!running) { last = now; return; }
+        if (now - last < STEP - 1) return;
+        last = now;
+        draw();
       }
       document.addEventListener('visibilitychange', function () { running = !document.hidden; });
       window.addEventListener('resize', function () { requestAnimationFrame(resize); }, { passive: true });
       resize();
-      requestAnimationFrame(loop);
+      if (reduced) {
+        // Static rain frame — keeps the aesthetic without motion.
+        for (var s = 0; s < 60; s++) draw();
+      } else {
+        requestAnimationFrame(loop);
+      }
     })();
     </script>
 

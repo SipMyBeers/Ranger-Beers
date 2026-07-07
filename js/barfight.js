@@ -141,7 +141,12 @@
     window.addEventListener('orientationchange', resize);
 
     resetGame();
-    loop();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        heroVisible = entries[0].isIntersecting;
+      }, { threshold: 0 }).observe(container);
+    }
+    frameId = requestAnimationFrame(loop);
   }
 
   // ─── Touch controls ─────────────────────────────────────────────────────────
@@ -1039,7 +1044,20 @@
     ctx.restore();
   }
 
-  function loop() { update(); draw(); frameId = requestAnimationFrame(loop); }
+  // Frame pacing: the game simulation is tuned per-frame at 60fps, so cap at
+  // ~60 (stops 2x-speed gameplay on 120Hz ProMotion). In idle/attract mode
+  // drop to 30fps, and skip rendering entirely while the hero is scrolled
+  // out of view — the idle scene was previously burning a full game loop
+  // behind the rest of the page.
+  var lastFrame = 0, heroVisible = true;
+  function loop(now) {
+    frameId = requestAnimationFrame(loop);
+    if (idleMode && !heroVisible) { lastFrame = now; return; }
+    var minInterval = idleMode ? 1000 / 30 : 1000 / 60;
+    if (now - lastFrame < minInterval - 1) return;
+    lastFrame = now;
+    update(); draw();
+  }
 
   window.initBarFight = init;
 
