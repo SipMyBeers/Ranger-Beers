@@ -97,3 +97,22 @@ licence are unknown.
   battalions (ARTB), not the Regiment.
 - "Rangers Lead the Way" (hero headline) is the general Ranger motto from Omaha Beach, not a
   Regiment mark.
+
+## 3. Ranger Tab as logo
+
+- `ranger/index.html` hero: the `images/ranger-tab.png` logo is replaced by a plain text wordmark,
+  "Ranger Beers Supply Co.", in the site's existing display face (Inter via `--font-display`),
+  solid site gold, no gradient, no glow (`.hero-wordmark` in `css/military.css`).
+- `images/ranger-tab.png` deleted (nothing references it now).
+- `images/icon-192.png` and `images/icon-512.png` were the Ranger Tab too (PWA icons in
+  `manifest.json`). Deleted, and the manifest's icon list emptied rather than inventing a new
+  emblem.
+- The nav brand was already text ("Ranger Beers") and is unchanged.
+
+**Still for Dylan** (insignia, but not the Ranger Tab used as our logo, so left alone):
+
+- Shop product "Lume Tape - Ranger Tab Stencil (Peel & Stick)" reproduces the Tab. 32 CFR 507.9(b)
+  needs written Army Trademark Licensing approval for any colourable imitation of an insignia.
+- Other school pages use their own tab and badge art as page imagery (`images/badges/`: Sapper,
+  Mountain, SF, Jungle, Arctic tabs, Airborne wings and more). Same rule applies.
+- The hero video opens on a large Ranger Tab sign (see section 2).
