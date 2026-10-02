@@ -163,3 +163,20 @@ and rendered as an unstyled link list, and the shop showed "Shop Coming Soon" ov
 - Reduced motion: `css/military.css` already shortened transitions; it now also lands every
   `.fade-in` at full opacity. Checked red/green with JS off: 204 of 204 shop reveals at opacity 0
   without the block, 0 of 204 with it.
+
+## 6. Verification (2026-10-01)
+
+- Deployed with `deploy.sh` (Cloudflare Pages project `ranger-beers`) from a clean `git archive`
+  of HEAD, so the uncommitted `index.html` edits in the working tree were not shipped. Last
+  deployment: https://64ff35bb.ranger-beers.pages.dev
+- Live, cache-busted: 200 on `/ranger/index.html`, `/ranger/shop.html`, `/ranger/inventory.html`,
+  `/ranger/courses.html`, `/ranger/standards.html`, `/airborne/index.html`, `/mos/68w/index.html`,
+  `/shop.html`; every restored `.js` is `application/javascript`, `.css` is `text/css`;
+  `/media/75th-ranger-day1.mp4` and `/images/ranger-tab.png` now 404.
+- Headless at 390px with reduced motion: shop shows 188 products, the disclaimer is present, no
+  "75th" in the HTML of any of the 33 Ranger pages, zero console errors, zero content elements at
+  opacity 0.
+- Known leftovers, not fixed here: `ranger/resources.html` embeds three DVIDS videos that answer
+  403 to the browser; decorative hover arrows and falling-leaf particles sit at opacity 0 by design.
+- iOS Simulator (iPhone 17, iOS 26.5, live URL): hero wordmark, shop catalog with "Checkout opens
+  soon", and the footer disclaimer all render.
