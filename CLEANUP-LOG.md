@@ -116,3 +116,12 @@ licence are unknown.
 - Other school pages use their own tab and badge art as page imagery (`images/badges/`: Sapper,
   Mountain, SF, Jungle, Arctic tabs, Airborne wings and more). Same rule applies.
 - The hero video opens on a large Ranger Tab sign (see section 2).
+
+## 4. Non-affiliation disclaimer
+
+"Ranger Beers Supply Co. is not affiliated with or endorsed by the U.S. Army or the Department of
+Defense." added to all 510 school, MOS and Ranger pages, including every school `shop.html` and
+`ranger/shop.html`. There is no shared footer include (each page is static HTML), so it is written
+into each page: inside the existing `<footer>` on 502 pages, and as a small footer of its own on
+the 8 `auth-callback.html` pages that had none. Style: `.site-disclaimer` in `css/military.css`.
+Not added to the root portfolio (`index.html`), `business-card.html`, `admin.html` or `sewready/`.

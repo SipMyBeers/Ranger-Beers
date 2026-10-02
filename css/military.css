@@ -2725,3 +2725,19 @@ a:focus-visible,
     color: var(--color-gold);
     margin-bottom: var(--space-xl);
 }
+
+/* ── NON-AFFILIATION DISCLAIMER (every school, MOS and Ranger page) ── */
+.site-disclaimer {
+    max-width: 720px;
+    margin: var(--space-lg) auto 0;
+    padding: 0 20px;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+    color: var(--color-text-muted);
+}
+
+.site-disclaimer-footer {
+    padding: var(--space-xl) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
