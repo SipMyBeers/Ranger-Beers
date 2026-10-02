@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/military.css">
     <link rel="stylesheet" href="../css/course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
     <link rel="manifest" href="../manifest.json">
@@ -937,8 +937,8 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
         }
     </style>
     <script>
-        // Fade-in observer
-        const observer = new IntersectionObserver((entries) => {
+        // Fade-in observer (staggered; named apart from the page's first observer)
+        const staggerObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
                     setTimeout(() => {
@@ -948,7 +948,7 @@ window.addEventListener('scroll', () => { document.getElementById('nav').classLi
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        document.querySelectorAll('.fade-in').forEach(el => staggerObserver.observe(el));
     </script>
 </body>
 </html>
