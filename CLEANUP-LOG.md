@@ -1,0 +1,71 @@
+# Ranger Beers Supply Co. - Phase 0 cleanup log
+
+Started 2026-10-01. Scope: PLAN.md Phase 0 ("Strip ranger-tab.png from the logo, pull the 75th
+video and caption, remove banned and admin product cards, add the disclaimer") plus restoring the
+shop JS deleted in ffa9ec9. Reference list: `docs/ARTB-Packing-List-V11.pdf` (V11, 2025-09-01).
+
+## 1. Products removed
+
+V11's "UNAUTHORIZED and grounds for" list prohibits, among others: cellular telephones or any
+electronic items; any product with caffeine; tobacco or nicotine products of any type; vitamins,
+energy pills, caffeine pills and other supplements of any kind. V11 item 119 allows stick gum only.
+Admin documents and the CAC are V11 admin items a student brings, not things we sell.
+
+| Page | Product | Item id | Reason |
+|---|---|---|---|
+| `ranger/shop.html` | ID Card | `id-card-cac` | Admin item, not a product (V11 admin: ID card / CAC, military issued) |
+| `ranger/shop.html` | Ranger Physical (DA 2808 & 2807-1) | `ranger-physical` | Admin document, not a product (V11 admin: Ranger physical DA 2808/2807-1) |
+| `ranger/shop.html` | Airborne Certificate/Orders (if applicable) | `airborne-certificate` | Admin document, not a product (V11 admin: Airborne certificate/orders) |
+| `ranger/shop.html` | STP (Soldier Training Publication) | `stp-soldier-training` | Admin document, not a product (V11 admin: STP) |
+| `ranger/shop.html` | DD-93/SGLV | `dd93-sglv` | Admin document, not a product (V11 admin: DD-93/SGLV) |
+| `ranger/shop.html` | Orders to Ranger School (5 copies) | `orders-ranger-school` | Admin document, not a product (V11 admin: Orders to Ranger School) |
+| `ranger/shop.html` | Prepaid Phone Cards | `prepaid-phone-cards` | V11 unauthorized: cellular telephone or any electronic items (TracFone service card) |
+| `ranger/shop.html` | ZERO Long Cut - Mint | `zero-long-cut-mint` | V11 unauthorized: tobacco or nicotine products of any type (nicotine-free dip substitute) |
+| `ranger/shop.html` | ZERO Pouches - Wintergreen | `zero-pouches-wintergreen` | V11 unauthorized: tobacco or nicotine products of any type (nicotine-free dip substitute) |
+| `ranger/shop.html` | Energy Pouches - Cool Mint | `energy-pouches-cool-mint` | V11 unauthorized: any product with caffeine (50-100mg caffeine per pouch) |
+| `ranger/shop.html` | Energy Pouches - Wintergreen | `energy-pouches-wintergreen` | V11 unauthorized: any product with caffeine (50-100mg caffeine per pouch) |
+| `ranger/shop.html` | Herbal Snuff - Arctic Mint (Pouches) | `herbal-snuff-arctic-mint-pouches` | V11 unauthorized: any product with caffeine (listed as caffeinated) |
+| `ranger/shop.html` | Herbal Snuff - Straight (Long Cut) | `herbal-snuff-straight-long-cut` | V11 unauthorized: tobacco or nicotine products of any type (herbal dip substitute) |
+| `ranger/shop.html` | Herbal Snuff - Mint (Pouches) | `herbal-snuff-mint-pouches` | V11 unauthorized: tobacco or nicotine products of any type (herbal dip substitute) |
+| `ranger/shop.html` | Herbal Snuff - Wintergreen (Long Cut) | `herbal-snuff-wintergreen-long-cut` | V11 unauthorized: tobacco or nicotine products of any type (herbal dip substitute) |
+| `ranger/shop.html` | Hubba Bubba Bubble Tape (6-Pack) | `hubba-bubba-bubble-tape-6-pack` | V11 item 119: only stick gum authorized (bubble tape is not stick gum) |
+| `ranger/shop.html` | Chem Lights (10-Pack) | `chem-lights-10-pack` | Not on V11; variant list includes IR, which PLAN 1.3 flags as contraband |
+| `ranger/shop.html` | Electrolyte Packets (30ct) | `electrolyte-packets-30ct` | V11 unauthorized: vitamins, energy pills and other supplements of any kind |
+| `ranger/shop.html` | Chem Lights - All Colors (10-Pack) | `chem-lights-all-colors-10-pack` | Not on V11; includes IR light sticks, which PLAN 1.3 flags as contraband |
+| `ranger/spring.html` | Chem Lights - All Colors (10-Pack) | `chem-lights-all-colors-10-pack` | Not on V11; includes IR light sticks, which PLAN 1.3 flags as contraband |
+| `ranger/summer.html` | Electrolyte Packets (30ct) | `electrolyte-packets-30ct` | V11 unauthorized: vitamins, energy pills and other supplements of any kind |
+
+21 cards removed in total (19 on the shop page, including its hidden season panels, plus one each on
+`spring.html` and `summer.html`). The shop grid now holds 188 products (the header said 205).
+
+### Related text removed (packing lists and shop links for the same items)
+
+- "Electrolyte Packets" and "Chem Lights (All Colors)" packing-list rows: `shop.html` season panels
+  (5), `winter.html`, `spring.html`, `summer.html` (2), `fall.html`. They were tagged "Essential" or
+  "Seasonal" as things to pack.
+- "electrolytes" dropped from the summer blurb (`shop.html`, `summer.html`).
+- `index.html` summer gear list: "Electrolyte packets - add to every canteen".
+- `tiedown-sops.html`: ruck-lid rows for electrolyte packets and chem lights, and "chem lights" in
+  the lid zone description.
+- `course-ranger-prep.html`: "chem lights" dropped from the tactical packing line.
+- `course-tmk.html`: the "Shop" link beside chem lights (product no longer sold). The training
+  advice itself is unchanged.
+
+### Kept, for Dylan and the panel to decide
+
+These are not on V11, or are issued/controlled, but V11 does not name them as unauthorized, so they
+were left in place:
+
+- Issued or controlled items: ACH helmet and pad set, M4 magazines (V11 says students must bring
+  them), blank-firing adapter, bolt-retaining pin, Rhino mount. PLAN 1.3 says the helmet and BFA go
+  through the panel and JAG before they are offered.
+- Not on V11: UV black-light flashlight and UV pen light (electronic), Lume Tape Infrared roll,
+  G-Shock watch, spray paint, and the fixed-blade option on "Knives" (V11 #130 allows a folding
+  blade of 4 inches or less).
+- Laminated range card, sector sketch and OPORD planning boards: V11 bans *filled in* OPORD, FRAGO
+  or annex formats. Blank boards are not named, but a panel member should confirm.
+- "ID Tags with Breakaway Chain" stays: dog tags are a real product a student can buy.
+- Training advice that mentions electrolytes (course-medical, course-workout-ruck, resources) is
+  about training at home, not packing for the course, and was not changed.
+- Product photos: `images/products/` does not exist, so every product `<img>` returned 404. The
+  `<img>` tags were removed; each card keeps its text label until real photos exist.
