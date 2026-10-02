@@ -69,3 +69,31 @@ were left in place:
   about training at home, not packing for the course, and was not changed.
 - Product photos: `images/products/` does not exist, so every product `<img>` returned 404. The
   `<img>` tags were removed; each card keeps its text label until real photos exist.
+
+## 2. 75th Ranger Regiment references
+
+Dylan was never in the 75th. `grep -rniE "75th|ranger regiment|regt"` over html/js/css, handled:
+
+| Where | Was | Now |
+|---|---|---|
+| `media/75th-ranger-day1.mp4` (hero on `ranger/index.html`, phase/season backgrounds on `index`, `standards`, `courses`, `shop`, `resources`) | file name implied Regiment footage | renamed `media/best-ranger-buddy-run.mp4`, all 12 references updated |
+| `ranger/shop.html` Ranger Medic Handbook card | label "75th Ranger Regt 2022", variant "Official 2022 edition, 75th Ranger Regiment" | "Ranger Medic Handbook 2022", "2022 edition" |
+| `ranger/index.html`, `ranger/resources.html` Ranger Creed stanza 1 | "...esprit de corps of my Ranger Regiment." | "...esprit de corps of the Rangers.", matching the site's own `course-ranger-creed.html` |
+
+**The video.** I looked at it frame by frame (30 s, 1280x720). It is Best Ranger Competition
+footage at Camp Rogers, Fort Benning: the night buddy-run start and the water confidence event.
+It is not 75th-specific, so per the brief it was renamed, not replaced with a still. Two things
+Dylan should still know: the first two seconds are a large Ranger Tab sign, and a third-party
+channel's round logo is burned into the top-right corner of every frame. The footage source and
+licence are unknown.
+
+**Kept on purpose** (not on a Ranger page, no affiliation implied):
+
+- `sewready/sop-library.js`: uniform regulation facts ("Tan beret: 75th Ranger Regiment", scroll
+  patch placement per AR 670-1). These are reference data for a sewing shop.
+- `sewready/customer.js`, `sewready/data-store.js`: a fake demo customer whose unit is "75th
+  Ranger". Swap the string if Dylan wants zero hits site-wide.
+- "4th/5th/6th Ranger Training Battalion" on `ranger/index.html` are the Ranger School training
+  battalions (ARTB), not the Regiment.
+- "Rangers Lead the Way" (hero headline) is the general Ranger motto from Omaha Beach, not a
+  Regiment mark.
