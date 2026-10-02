@@ -142,13 +142,20 @@ and rendered as an unstyled link list, and the shop showed "Shop Coming Soon" ov
 - `ranger/shop.html`: the 188-product grid is visible; the "Coming Soon" block is replaced by a
   one-line notice that checkout is not open yet.
 - **Checkout is off on purpose.** `CONFIG.CHECKOUT_ENABLED = false` in `js/config.js`. While false,
-  `js/shared.js` disables every product-card Add to Cart button ("Checkout opens soon") and stops
-  any click before Snipcart sees it. No payment keys were added or changed. Course purchase buttons
-  are not product cards and are untouched.
+  `js/shared.js` does not load Snipcart at all, disables every Add to Cart and course enroll button
+  (label "Checkout opens soon"), hides the nav Cart button, and stops any click on them. No payment
+  keys were added or changed. Setting the flag to true loads Snipcart again from `shared.js`.
+- **Why Snipcart is not loaded:** the Snipcart public key already in the pages does not work. On
+  the live site its session call failed in the browser, and a direct
+  `POST https://app.snipcart.com/api/sessions` with that key returns HTTP 500
+  `{"message":"An error has occurred."}`. A comment in `ranger/index.html` also marks it as a
+  "TODO: Replace ... with your key". So checkout (products and course enrollment) was already
+  broken before this cleanup; now it fails visibly and quietly instead of throwing errors. The
+  static `snipcart.js` tag was removed from 502 pages; the 10 Jungle and Arctic course pages that
+  did not load `shared.js` now load `config.js` and `shared.js`.
 - To open checkout later, Dylan needs: the payment rail decision (PLAN decision 5: Stripe Checkout
-  on Cloudflare, or Shopify Basic), live keys for it, supplier accounts, and product liability
-  cover. The existing Snipcart public key in the pages is from before this cleanup; whether that
-  Snipcart account is live or test mode is unknown.
+  on Cloudflare, or Shopify Basic, or a working Snipcart account with this domain allowed), live
+  keys for it, supplier accounts, and product liability cover.
 - Bugs fixed while verifying: duplicate `const observer` in `ranger/courses.html`,
   `ranger/standards.html` and `ranger/resources.html` threw a SyntaxError that stopped the second
   script; `gear-modal.js` no longer requests the 95 gear photos that do not exist

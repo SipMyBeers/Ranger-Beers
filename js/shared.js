@@ -154,27 +154,43 @@
     });
   }
 
-  // ── Catalog Mode (physical products) ──
-  // Product cards stay visible, but until CONFIG.CHECKOUT_ENABLED is true their
-  // Add to Cart buttons are disabled and any click is stopped before Snipcart.
+  // ── Catalog Mode ──
+  // Snipcart is loaded only when CONFIG.CHECKOUT_ENABLED is true. Until then every
+  // Add to Cart / enroll button is disabled, the cart button is hidden, and any
+  // click on either is stopped. The site keeps working as a catalog.
+  var SNIPCART_JS = 'https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js';
+
   function checkoutOpen() {
     return typeof CONFIG !== 'undefined' && CONFIG.CHECKOUT_ENABLED === true;
   }
 
+  function loadSnipcart() {
+    if (document.querySelector('script[src="' + SNIPCART_JS + '"]')) return;
+    var tag = document.createElement('script');
+    tag.src = SNIPCART_JS;
+    tag.async = true;
+    document.body.appendChild(tag);
+  }
+
+  function closeCheckoutButton(btn) {
+    btn.disabled = true;
+    btn.setAttribute('aria-disabled', 'true');
+    btn.classList.add('checkout-closed');
+    btn.textContent = 'Checkout opens soon';
+  }
+
+  function blockCheckoutClicks(e) {
+    var hit = e.target.closest && e.target.closest('.snipcart-add-item, .snipcart-checkout');
+    if (!hit) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
+
   function initCatalogMode() {
-    if (checkoutOpen()) return;
-    document.querySelectorAll('.product-card .snipcart-add-item').forEach(function(btn) {
-      btn.disabled = true;
-      btn.setAttribute('aria-disabled', 'true');
-      btn.classList.add('checkout-closed');
-      btn.textContent = 'Checkout opens soon';
-    });
-    document.addEventListener('click', function(e) {
-      var btn = e.target.closest && e.target.closest('.product-card .snipcart-add-item');
-      if (!btn) return;
-      e.preventDefault();
-      e.stopImmediatePropagation();
-    }, true);
+    if (checkoutOpen()) { loadSnipcart(); return; }
+    document.querySelectorAll('.snipcart-add-item').forEach(closeCheckoutButton);
+    document.querySelectorAll('.snipcart-checkout').forEach(function(btn) { btn.hidden = true; });
+    document.addEventListener('click', blockCheckoutClicks, true);
   }
 
   // ── Initialize All ──
