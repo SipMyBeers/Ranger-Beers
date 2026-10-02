@@ -32,6 +32,11 @@ const CONFIG = {
     OFFLINE_QUEUE: 'rb_offline_queue'
   },
   
+  // Checkout. Physical-product checkout stays off until a payment rail, supplier
+  // accounts and product liability cover exist (PLAN.md Phase 0/1). While false,
+  // shop cards show the catalog but their Add to Cart buttons are disabled.
+  CHECKOUT_ENABLED: false,
+
   // Feature Flags
   FEATURES: {
     OFFLINE_SUPPORT: true,

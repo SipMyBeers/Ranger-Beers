@@ -1764,7 +1764,16 @@ a:focus-visible,
     text-align: center;
 }
 
-.snipcart-add-item:hover {
+.snipcart-add-item.checkout-closed,
+.snipcart-add-item.checkout-closed:hover {
+    color: var(--color-text-muted);
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.snipcart-add-item:not(.checkout-closed):hover {
     background: var(--color-gold-bright);
     box-shadow: 0 0 20px rgba(197, 179, 88, 0.25);
 }

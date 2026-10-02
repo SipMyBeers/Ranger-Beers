@@ -154,8 +154,32 @@
     });
   }
 
+  // ── Catalog Mode (physical products) ──
+  // Product cards stay visible, but until CONFIG.CHECKOUT_ENABLED is true their
+  // Add to Cart buttons are disabled and any click is stopped before Snipcart.
+  function checkoutOpen() {
+    return typeof CONFIG !== 'undefined' && CONFIG.CHECKOUT_ENABLED === true;
+  }
+
+  function initCatalogMode() {
+    if (checkoutOpen()) return;
+    document.querySelectorAll('.product-card .snipcart-add-item').forEach(function(btn) {
+      btn.disabled = true;
+      btn.setAttribute('aria-disabled', 'true');
+      btn.classList.add('checkout-closed');
+      btn.textContent = 'Checkout opens soon';
+    });
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest && e.target.closest('.product-card .snipcart-add-item');
+      if (!btn) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }, true);
+  }
+
   // ── Initialize All ──
   function init() {
+    initCatalogMode();
     initFadeIn();
     initPhaseToggle();
     initSeasonToggle();

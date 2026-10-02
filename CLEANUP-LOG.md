@@ -125,3 +125,34 @@ Defense." added to all 510 school, MOS and Ranger pages, including every school 
 into each page: inside the existing `<footer>` on 502 pages, and as a small footer of its own on
 the 8 `auth-callback.html` pages that had none. Style: `.site-disclaimer` in `css/military.css`.
 Not added to the root portfolio (`index.html`), `business-card.html`, `admin.html` or `sewready/`.
+
+## 5. Shop and checkout restored (catalog mode)
+
+What was broken: commit ffa9ec9 (2026-04-04) deleted the hub JS, and commit 11ad6dd the same day
+replaced `css/styles.css` with the portfolio's stylesheet. Every school page loaded 404 scripts
+and rendered as an unstyled link list, and the shop showed "Shop Coming Soon" over a hidden grid.
+
+- Restored from `ffa9ec9^`: `js/config.js`, `js/shared.js`, `js/course-auth.js`,
+  `js/course-engine.js`, `js/gear-data.js`, `js/gear-modal.js`, `css/course-styles.css`,
+  `css/school-landing.css`, `manifest.json`, root `shop.html` (redirect to `/ranger/shop.html`).
+- Hub stylesheet recovered from `11ad6dd^` as `css/military.css`; the 502 school, MOS and Ranger
+  pages now link it. The root portfolio keeps `css/styles.css`.
+- Root `sw.js` added as a no-op worker that clears old caches (403 pages register `/sw.js`, which
+  404'd). It caches nothing.
+- `ranger/shop.html`: the 188-product grid is visible; the "Coming Soon" block is replaced by a
+  one-line notice that checkout is not open yet.
+- **Checkout is off on purpose.** `CONFIG.CHECKOUT_ENABLED = false` in `js/config.js`. While false,
+  `js/shared.js` disables every product-card Add to Cart button ("Checkout opens soon") and stops
+  any click before Snipcart sees it. No payment keys were added or changed. Course purchase buttons
+  are not product cards and are untouched.
+- To open checkout later, Dylan needs: the payment rail decision (PLAN decision 5: Stripe Checkout
+  on Cloudflare, or Shopify Basic), live keys for it, supplier accounts, and product liability
+  cover. The existing Snipcart public key in the pages is from before this cleanup; whether that
+  Snipcart account is live or test mode is unknown.
+- Bugs fixed while verifying: duplicate `const observer` in `ranger/courses.html`,
+  `ranger/standards.html` and `ranger/resources.html` threw a SyntaxError that stopped the second
+  script; `gear-modal.js` no longer requests the 95 gear photos that do not exist
+  (`GEAR_PHOTOS_READY = false`).
+- Reduced motion: `css/military.css` already shortened transitions; it now also lands every
+  `.fade-in` at full opacity. Checked red/green with JS off: 204 of 204 shop reveals at opacity 0
+  without the block, 0 of 204 with it.

@@ -1984,7 +1984,7 @@
         });
 
         // Fade-in observer
-        const observer = new IntersectionObserver((entries) => {
+        const staggerObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
                     setTimeout(() => {
@@ -1994,7 +1994,7 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        document.querySelectorAll('.fade-in').forEach(el => staggerObserver.observe(el));
 
         // Prep Checklist functionality
         (function() {
