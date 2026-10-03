@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+Disallow: /sewready/
+Disallow: /sewing-ops/
+Disallow: /admin.html
+Disallow: /admin$
+Disallow: /business-card.html
+Disallow: /business-card$
+Disallow: /*/auth-callback
 
 Sitemap: https://ranger-beers.com/sitemap.xml
