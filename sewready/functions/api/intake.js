@@ -31,7 +31,7 @@ function buildConfirmationEmail(shopName, ownerName, tier, siteUrl) {
     `  3. Your full ${tier || ''} site goes live — most within 24 hours`,
     '',
     `If you need to make changes or have questions, just reply to this email`,
-    `or text/call Dylan at (503) 592-3451.`,
+    `or email Dylan at dylan@beers.cash.`,
     '',
     `— Ranger Beers Sites`,
     `   sites.ranger-beers.com`,

@@ -131,7 +131,7 @@
                     </div>
                 </div>
 
-                <!-- AIT 1 Detail Panel -->
+                <!-- AIT 1 Detail Panel (enlisted entry MOS only: officer codes get a BOLC panel, senior/Z/capstone codes get the feeder-MOS panels, see mos/11z) -->
                 <div class="phase-detail-panel" id="detail-ait1">
                     <div class="phase-detail-inner">
                         <div class="phase-detail-header">
@@ -140,12 +140,14 @@
                         </div>
                         <div class="phase-detail-grid">
                             <div class="phase-detail-standards">
-                                <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">{{AIT_WEEKS}} Weeks</span></div>
-                                <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">{{TRAINING_LOC}}</span></div>
+                                <!-- Do not fill a duration or location here unless an official Army source confirms it for this MOS; cite the source in a comment. -->
+                                <div class="pd-item"><span class="pd-item-name">Duration</span><span class="pd-item-value">Check goarmy.com</span></div>
+                                <div class="pd-item"><span class="pd-item-name">Location</span><span class="pd-item-value">Check goarmy.com</span></div>
                                 <div class="pd-item"><span class="pd-item-name">Certs</span><span class="pd-item-value">{{CERTS_P1}}</span></div>
                             </div>
                             <div class="phase-detail-desc">
                                 <p>{{AIT1_DESC}}</p>
+                                <p>AIT length and location vary by MOS and change over time, so this page does not list them. Check <a href="{{GOARMY_URL}}" target="_blank" rel="noopener">the {{MOS}} page on goarmy.com</a> or DA Pam 611-21 for the current {{MOS}} course.</p>
                                 <div class="phase-detail-bullets">
                                     <div class="pdb-title">Technical Training</div>
                                     <ul>

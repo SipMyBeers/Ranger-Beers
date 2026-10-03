@@ -379,7 +379,7 @@
 /* ── COURSE OVERVIEW STATS (6-col grid) ────── */
 .ix-stats-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: var(--space-md);
     margin-bottom: var(--space-2xl);
 }
@@ -641,14 +641,14 @@
 
 /* ── RESPONSIVE ────────────────────────────── */
 @media (max-width: 1024px) {
-    .ix-stats-grid { grid-template-columns: repeat(3, 1fr); }
+    .ix-stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .ix-attrition-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 768px) {
     .phase-selector-grid { grid-template-columns: repeat(2, 1fr); }
     .phase-detail-grid { grid-template-columns: 1fr; }
     .phase-selector { padding-left: 20px; padding-right: 20px; }
-    .ix-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .ix-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .ix-attrition-grid { grid-template-columns: repeat(2, 1fr); }
     .ix-failure-grid { grid-template-columns: 1fr; }
     .school-hero { padding: var(--space-3xl) 20px; min-height: 90vh; }
@@ -656,4 +656,6 @@
 }
 @media (max-width: 480px) {
     .phase-selector-grid { grid-template-columns: 1fr; }
+    .ix-stat-card { padding: var(--space-md); }
+    .ix-stat-number { font-size: 22px; overflow-wrap: anywhere; }
 }

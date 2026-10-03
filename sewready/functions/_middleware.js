@@ -33,7 +33,7 @@ const MOVED_HTML = `<!DOCTYPE html>
     <h1>We've <span>Moved</span></h1>
     <p>Our sites platform has a new home. Same great service, new address. All sewing shops, surplus stores, smoke shops, and more are now at:</p>
     <a href="https://sites.ranger-beers.com" class="btn">sites.ranger-beers.com</a>
-    <div class="sub">Questions? <a href="mailto:owner@ranger-beers.com">owner@ranger-beers.com</a> &middot; (503) 592-3451</div>
+    <div class="sub">Questions? <a href="mailto:dylan@beers.cash">dylan@beers.cash</a></div>
   </div>
 </body>
 </html>`;

@@ -9,7 +9,7 @@ const shopConfig = {
   tagline: 'Your shop. Online. In 24 hours.',
   motto: 'Beautiful websites for sewing & alteration shops.',
   address: '123 Main Street, Fayetteville, NC 28301',
-  phone: '(503) 592-3451',
+  phone: '',
   email: 'owner@ranger-beers.com',
   owner: 'Dylan B.',
   themeColors: {

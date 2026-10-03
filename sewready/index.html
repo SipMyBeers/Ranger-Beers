@@ -2279,18 +2279,11 @@ async function aiChatSend(){
         <h3>Dylan Beers</h3>
         <div class="contact-sub">SewReady &mdash; Ranger Beers</div>
         <div class="contact-methods">
-          <a href="tel:+15035923451" class="contact-row">
-            <div class="contact-icon">&#128222;</div>
-            <div class="contact-info">
-              <div class="contact-label">Phone</div>
-              <div class="contact-value">(503) 592-3451</div>
-            </div>
-          </a>
-          <a href="mailto:owner@ranger-beers.com" class="contact-row">
+          <a href="mailto:dylan@beers.cash" class="contact-row">
             <div class="contact-icon">&#9993;</div>
             <div class="contact-info">
               <div class="contact-label">Email</div>
-              <div class="contact-value">owner@ranger-beers.com</div>
+              <div class="contact-value">dylan@beers.cash</div>
             </div>
           </a>
         </div>
@@ -2659,8 +2652,6 @@ async function aiChatSend(){
     <div class="success-actions">
       <button class="btn-success-copy" onclick="copySubmission()">&#128203; Copy</button>
       <a class="btn-success-email" id="successEmail" href="#">&#9993; Email</a>
-      <a class="btn-success-whatsapp" id="successWhatsApp" href="#" target="_blank">&#128172; WhatsApp</a>
-      <a class="btn-success-sms" id="successSMS" href="#">&#128172; SMS</a>
     </div>
     <button style="margin-top:16px;background:none;border:none;color:rgba(245,240,235,.4);font-size:.85rem;cursor:pointer" onclick="closeSuccessModal()">Close</button>
   </div>
@@ -3475,10 +3466,6 @@ function submitIntake(e) {
     `Shop: ${shopName}\nOwner: ${ownerName}\nPhone: ${phone}\nEmail: ${email}\nPlan: ${tierLabels[tier]}`;
   document.getElementById('successEmail').href =
     `mailto:owner@ranger-beers.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  document.getElementById('successWhatsApp').href =
-    `https://wa.me/15035923451?text=${encodeURIComponent(body.substring(0,2000))}`;
-  document.getElementById('successSMS').href =
-    `sms:+15035923451?body=${encodeURIComponent(`SewReady Intake: ${shopName} (${tierLabels[tier]}). Details emailed to owner@ranger-beers.com`)}`;
 
   closeIntake();
   document.getElementById('successModal').classList.add('active');
@@ -3926,7 +3913,7 @@ const CHAT_RULES = [
   { keys:['contract','cancel','commitment','lock'], reply:'No contracts! All plans are month-to-month. Cancel anytime with no fees or penalties.' },
   { keys:['how long','timeline','when','fast','24','hours','time'], reply:'Most sites go live within 24 hours of submitting the intake form. Complex builds may take 2-3 days.' },
   { keys:['hardware','pos','tablet','printer','scanner'], reply:'We offer 3 optional hardware bundles: Starter ($299-$449), Pro ($549-$799), and Full Shop Kit ($899-$1,299). All come pre-configured.' },
-  { keys:['contact','call','phone','email','reach','talk'], reply:'Contact Dylan Beers: Phone (503) 592-3451, Email owner@ranger-beers.com. Call or text anytime!' },
+  { keys:['contact','call','phone','email','reach','talk'], reply:'Contact Dylan Beers by email at dylan@beers.cash. He replies to every message.' },
   { keys:['pay','payment','zelle','venmo','cashapp','cash'], reply:'We accept Zelle, CashApp, Venmo, bank transfer, cash, check, or card/invoice. Pick whatever works for you.' },
   { keys:['migrat','existing','current site','move','transfer'], reply:'Yes! Share your current website URL and we\'ll rebuild it on our platform. We keep your content, photos, and branding. No downtime.' },
   { keys:['domain','url','website name'], reply:'Standard and Premium plans include a custom domain (yourshop.com). You own it and can take it with you anytime.' },
@@ -3940,7 +3927,7 @@ function getBotReply(msg) {
   for (const rule of CHAT_RULES) {
     if (rule.keys.some(k => lower.includes(k))) return rule.reply;
   }
-  return "I'm not sure about that one. Contact Dylan directly at (503) 592-3451 or owner@ranger-beers.com and he'll get you sorted out!";
+  return "I'm not sure about that one. Email Dylan at dylan@beers.cash and he'll get you sorted out!";
 }
 
 function sendChat() {
