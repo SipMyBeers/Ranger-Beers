@@ -6,11 +6,14 @@
 //   intro   cells scan on bottom-left to top-right over 1.2s while cells ease 3x -> 1x
 //   pointer tilt toward the cursor (critically damped spring) + a velocity smear
 //   scroll  as the hero leaves, the tab pitches back 25deg and cells coarsen to 2.5x
+//   ambient ~250 desktop / ~120 phone dust particles drift up through the same cell grid
 // Reduced motion renders one static frame unless opts.motion === true.
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { buildTab } from './geometry.js';
 import { makeAtlas, makeDitherPass, MAX_PTS } from './dither.js';
+import { makeParticles } from './particles.js';
+import { makeBloom } from './bloom.js';
 
 const SVG_URL = new URL('../../images/badges/src/ranger-tab-wikimedia.svg', import.meta.url);
 export const FALLBACK_URL = new URL('../../images/badges/ranger-tab-dither.png', import.meta.url).href;
@@ -59,10 +62,12 @@ function showFallback(container) {
 function makeMaterials() {
   return {
     gold: new THREE.MeshStandardMaterial({ color: 0xc99a14, metalness: 0.9, roughness: 0.42 }),
-    goldSide: new THREE.MeshStandardMaterial({ color: 0x8c6a0e, metalness: 0.85, roughness: 0.55 }),
-    // Letters run hotter than the body so RANGER lands a level above the rim.
-    letters: new THREE.MeshStandardMaterial({ color: 0xffcc33, metalness: 0.9, roughness: 0.3, emissive: 0x5a3c00 }),
-    field: new THREE.MeshStandardMaterial({ color: 0x0c0b09, metalness: 0.25, roughness: 0.55 }),
+    // Material ids ride in alpha (body 1, wall .9, letters .75, field .5). With
+    // NoBlending and transparent off, three skips the OPAQUE define, so opacity
+    // reaches the target untouched and the dither pass can tell them apart.
+    goldSide: new THREE.MeshStandardMaterial({ color: 0x8c6a0e, metalness: 0.85, roughness: 0.55, opacity: 0.9, blending: THREE.NoBlending }),
+    letters: new THREE.MeshStandardMaterial({ color: 0xffcc33, metalness: 0.9, roughness: 0.3, emissive: 0x5a3c00, opacity: 0.75, blending: THREE.NoBlending }),
+    field: new THREE.MeshStandardMaterial({ color: 0x0c0b09, metalness: 0.25, roughness: 0.55, opacity: 0.5, blending: THREE.NoBlending }),
   };
 }
 
@@ -110,8 +115,15 @@ export function mount(container, opts = {}) {
   const sceneRT = new THREE.WebGLRenderTarget(1, 1, {
     minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: true,
   });
+  // Particles: own target with its own depth, primed by a depth-only tab pass.
+  const partRT = new THREE.WebGLRenderTarget(1, 1, {
+    minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: true,
+  });
+  const depthMat = new THREE.MeshBasicMaterial({ colorWrite: false });
+  const particles = makeParticles(container.clientWidth < 700 ? 120 : 250);
+  const bloom = makeBloom(0.7);
   let atlas = makeAtlas(baseCell() * dpr);
-  const pass = makeDitherPass(sceneRT.texture, atlas);
+  const pass = makeDitherPass(sceneRT.texture, partRT.texture, atlas);
   const U = pass.uniforms;
 
   const pivot = new THREE.Group(); // tilt + yaw
@@ -121,7 +133,7 @@ export function mount(container, opts = {}) {
 
   const st = {
     tiltX: { x: 0, v: 0 }, tiltY: { x: 0, v: 0 },
-    pointer: { nx: 0, ny: 0, active: false },
+    pointer: { nx: 0, ny: 0, px: 0, py: 0, active: false },
     trail: [], scroll: 0, running: false, visible: true, raf: 0,
     clockOffset: 0, last: 0, frames: [], errors: 0, sweepOverride: null,
   };
@@ -133,6 +145,8 @@ export function mount(container, opts = {}) {
     const h = Math.max(1, container.clientHeight);
     renderer.setSize(w, h, false);
     sceneRT.setSize(w, h);
+    partRT.setSize(w, h);
+    bloom.setSize(renderer.domElement.width, renderer.domElement.height);
     const aspect = w / h;
     camera.aspect = aspect;
     const frac = w <= 600 ? 0.88 : w >= 1200 ? 0.56 : 0.88 - ((w - 600) / 600) * 0.32;
@@ -141,7 +155,7 @@ export function mount(container, opts = {}) {
     const tabH = tab ? tab.h : TAB_W * 0.41;
     if (tabH / (2 * dist * tanH) > 0.5) dist = tabH / 0.5 / (2 * tanH);
     const visH = 2 * dist * tanH;
-    view = { visW: visH * aspect, visH, cssH: h };
+    view = { visW: visH * aspect, visH, cssW: w, cssH: h, dist, tanH, aspect, lift: 0.06 * visH };
     const lift = 0.06 * visH; // tab sits slightly above centre
     camera.position.set(0, -lift, dist);
     camera.lookAt(0, -lift, 0);
@@ -159,6 +173,14 @@ export function mount(container, opts = {}) {
       atlas = makeAtlas(slot);
       U.tAtlas.value = atlas;
     }
+  }
+
+  // Optional overlay (name + roles) to keep clear of bright dust.
+  function quietRect() {
+    if (!opts.quietEl) return null;
+    const c = container.getBoundingClientRect();
+    const r = opts.quietEl.getBoundingClientRect();
+    return { x0: r.left - c.left - 16, y0: r.top - c.top - 16, x1: r.right - c.left + 16, y1: r.bottom - c.top + 16 };
   }
 
   function sweepPhase(t) {
@@ -218,6 +240,12 @@ export function mount(container, opts = {}) {
       U.uBand.value = -1;
     }
     updateTrail(t);
+    particles.update({
+      t, dt, w: view.cssW, h: view.cssH, cell: baseCell() * (U.uCell.value / (baseCell() * dpr)),
+      camDist: view.dist, camY: -view.lift, tanH: view.tanH, aspect: view.aspect,
+      pointer: { x: st.pointer.px, y: st.pointer.py, active: st.pointer.active },
+      scroll: st.scroll, sweepX: U.uBand.value, motion, quiet: quietRect(),
+    });
   }
 
   function render() {
@@ -225,9 +253,20 @@ export function mount(container, opts = {}) {
     renderer.setClearColor(0x000000, 0);
     renderer.clear(true, true, true);
     renderer.render(scene, camera);
-    renderer.setRenderTarget(null);
+    // particles, depth-tested against the tab
+    renderer.setRenderTarget(partRT);
+    renderer.clear(true, true, true);
+    scene.overrideMaterial = depthMat;
+    renderer.render(scene, camera);
+    scene.overrideMaterial = null;
+    renderer.autoClear = false;
+    renderer.render(particles.scene, camera);
+    renderer.autoClear = true;
+    // dither into the bloom base, then glow and composite to screen
     renderer.setClearColor(0x0a0a0a, 1);
+    renderer.setRenderTarget(bloom.target);
     renderer.render(pass.scene, camera);
+    bloom.finish(renderer);
   }
 
   function frame() {
@@ -274,6 +313,8 @@ export function mount(container, opts = {}) {
     st.pointer.nx = clamp(((cx - r.left) / r.width) * 2 - 1, -1, 1);
     st.pointer.ny = clamp(((cy - r.top) / r.height) * 2 - 1, -1, 1);
     st.pointer.active = true;
+    st.pointer.px = cx - r.left;
+    st.pointer.py = cy - r.top;
     const t = now();
     const x = (cx - r.left) * dpr;
     const y = (r.height - (cy - r.top)) * dpr;
@@ -372,6 +413,10 @@ export function mount(container, opts = {}) {
     scene.traverse((o) => { if (o.geometry) o.geometry.dispose(); });
     Object.values(mats).forEach((m) => m.dispose());
     pass.dispose();
+    particles.dispose();
+    bloom.dispose();
+    partRT.dispose();
+    depthMat.dispose();
     atlas.dispose();
     sceneRT.dispose();
     envRT.dispose();

@@ -58,7 +58,9 @@
     import { mount } from '../../js/ranger-tab/hero.js';
     const q = new URLSearchParams(location.search);
     const cell = Number(q.get('cell')) || undefined;
-    const hero = mount(document.getElementById('game-container'), { motion: q.get('motion') === 'on', cell });
+    const hero = mount(document.getElementById('game-container'), {
+      motion: q.get('motion') === 'on', cell, quietEl: document.querySelector('.hero-intro'),
+    });
     window.__rangerTab = hero;
   </script>
 </body>
