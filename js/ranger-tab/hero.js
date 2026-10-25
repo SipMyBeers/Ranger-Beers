@@ -1,17 +1,20 @@
-// Ranger tab hero: a real-time 3D Ranger tab rendered through a glyph-cell
-// dither. Mountable: mount(containerEl, opts) -> { destroy, ready, api }.
+// Ranger tab hero: a real-time 3D Ranger tab rendered as glowing wavy
+// scanline stipple (after Dither Boy v3 "Glitch Art").
+// Mountable: mount(containerEl, opts) -> { destroy, ready, api }.
+// opts: { motion, palette: 'reference' | 'gold', quietEl }
 //
 // Clocks:
 //   time    idle yaw +/-24deg on a 9s period with a constant 8deg pitch, a small float, a light sweep every 5s
-//   intro   cells scan on bottom-left to top-right over 1.2s while cells ease 3x -> 1x
-//   pointer tilt toward the cursor (critically damped spring) + a velocity smear
-//   scroll  as the hero leaves, the tab pitches back 25deg and cells coarsen to 2.5x
-//   ambient ~250 desktop / ~120 phone dust particles drift up through the same cell grid
+//   intro   rows scan on bottom-left to top-right over 1.2s
+//   pointer tilt toward the cursor (critically damped spring); rows ripple harder and ridge lines bump near it
+//   scroll  as the hero leaves, the tab pitches back 25deg and ridge lines stretch and stream up
+//   glitch  every 6-9s (never in the first 2s) a 120-250ms band offset with a stronger chroma split
+//   ambient 40 glitter dots drift up
 // Reduced motion renders one static frame unless opts.motion === true.
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { buildTab } from './geometry.js';
-import { makeAtlas, makeDitherPass, MAX_PTS } from './dither.js';
+import { makeScanlinePass, MAX_PTS, ROW, DOT } from './scanline.js';
 import { makeParticles } from './particles.js';
 import { makeBloom } from './bloom.js';
 
@@ -85,11 +88,7 @@ export function mount(container, opts = {}) {
   if (!webglAvailable()) return showFallback(container);
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches && opts.motion !== true;
-  // Cells are sized from the tab's on-screen width so RANGER's cap height is
-  // at least 7 cells at every viewport: cell = clamp(floor(capPx / 7), 5, 12).
-  // ?cell= (opts.cell) overrides.
-  let autoCell = 12;
-  const baseCell = () => opts.cell || autoCell;
+  const palette = opts.palette === 'gold' ? 'gold' : 'reference';
 
   let renderer;
   try {
@@ -120,11 +119,12 @@ export function mount(container, opts = {}) {
     minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: true,
   });
   const depthMat = new THREE.MeshBasicMaterial({ colorWrite: false });
-  const particles = makeParticles(container.clientWidth < 700 ? 120 : 250);
-  const bloom = makeBloom(0.7);
-  let atlas = makeAtlas(baseCell() * dpr);
-  const pass = makeDitherPass(sceneRT.texture, partRT.texture, atlas);
+  const particles = makeParticles(40);
+  const pass = makeScanlinePass(sceneRT.texture, partRT.texture, palette);
+  const bloom = makeBloom(pass.ground);
   const U = pass.uniforms;
+  const G = bloom.uniforms;
+  G.uSwap.value = palette === 'gold' ? 0 : 1;
 
   const pivot = new THREE.Group(); // tilt + yaw
   scene.add(pivot);
@@ -136,6 +136,7 @@ export function mount(container, opts = {}) {
     pointer: { nx: 0, ny: 0, px: 0, py: 0, active: false },
     trail: [], scroll: 0, running: false, visible: true, raf: 0,
     clockOffset: 0, last: 0, frames: [], errors: 0, sweepOverride: null,
+    glitchAt: 2 + 6 + Math.random() * 3, glitchLen: 0.18, glitchSeed: 1, glitchOverride: null,
   };
   const t0 = performance.now() / 1000;
   const now = () => performance.now() / 1000 - t0 + st.clockOffset;
@@ -146,7 +147,8 @@ export function mount(container, opts = {}) {
     renderer.setSize(w, h, false);
     sceneRT.setSize(w, h);
     partRT.setSize(w, h);
-    bloom.setSize(renderer.domElement.width, renderer.domElement.height);
+    bloom.setSize(renderer.domElement.width, renderer.domElement.height, dpr);
+    pass.setSize(w, h, dpr);
     const aspect = w / h;
     camera.aspect = aspect;
     const frac = w <= 600 ? 0.88 : w >= 1200 ? 0.56 : 0.88 - ((w - 600) / 600) * 0.32;
@@ -160,19 +162,19 @@ export function mount(container, opts = {}) {
     camera.position.set(0, -lift, dist);
     camera.lookAt(0, -lift, 0);
     camera.updateProjectionMatrix();
-    U.uRes.value.set(renderer.domElement.width, renderer.domElement.height);
     U.uRadius.value = 120 * dpr;
-    if (tab) {
-      const tabPx = (TAB_W / view.visW) * w;
-      autoCell = clamp(Math.floor((tab.capRatio * tabPx) / 7), 5, 12);
-      st.capCells = (tab.capRatio * tabPx) / baseCell();
+    if (tab) st.capRows = (tab.capRatio * (TAB_W / view.visW) * w) / ROW;
+  }
+
+  // Glitch: 120-250ms every 6-9s, never in the first 2s.
+  function glitchLevel(t) {
+    if (st.glitchOverride !== null) return st.glitchOverride;
+    if (t >= st.glitchAt + st.glitchLen) {
+      st.glitchAt = t + 6 + Math.random() * 3;
+      st.glitchLen = 0.12 + Math.random() * 0.13;
+      st.glitchSeed = Math.random() * 100;
     }
-    const slot = Math.round(baseCell() * dpr);
-    if (atlas.image.height !== slot) {
-      atlas.dispose();
-      atlas = makeAtlas(slot);
-      U.tAtlas.value = atlas;
-    }
+    return t >= st.glitchAt && t >= 2 ? 1 : 0;
   }
 
   // Optional overlay (name + roles) to keep clear of bright dust.
@@ -209,10 +211,12 @@ export function mount(container, opts = {}) {
   function step(t, dt) {
     const motion = !reduce;
     const intro = motion ? clamp(t / INTRO_S, 0, 1) : 1;
-    const introScale = 1 + 2 * (1 - easeOut(intro));
-    const scrollScale = 1 + 1.5 * st.scroll;
     U.uIntro.value = motion ? easeOut(intro) : 1;
-    U.uCell.value = baseCell() * dpr * introScale * scrollScale;
+    U.uT.value = motion ? t : 3.7;
+    U.uScroll.value = st.scroll;
+    pass.setRidge(view.cssH, st.scroll);
+    G.uGlitch.value = motion ? glitchLevel(t) : 0;
+    G.uSeed.value = st.glitchSeed;
 
     // Pointer tilt (max ~10deg) through the spring.
     const tx = st.pointer.active ? -st.pointer.ny * 10 * DEG : 0;
@@ -241,7 +245,7 @@ export function mount(container, opts = {}) {
     }
     updateTrail(t);
     particles.update({
-      t, dt, w: view.cssW, h: view.cssH, cell: baseCell() * (U.uCell.value / (baseCell() * dpr)),
+      t, dt, w: view.cssW, h: view.cssH, cell: DOT,
       camDist: view.dist, camY: -view.lift, tanH: view.tanH, aspect: view.aspect,
       pointer: { x: st.pointer.px, y: st.pointer.py, active: st.pointer.active },
       scroll: st.scroll, sweepX: U.uBand.value, motion, quiet: quietRect(),
@@ -262,10 +266,8 @@ export function mount(container, opts = {}) {
     renderer.autoClear = false;
     renderer.render(particles.scene, camera);
     renderer.autoClear = true;
-    // dither into the bloom base, then glow and composite to screen
-    renderer.setClearColor(0x0a0a0a, 1);
-    renderer.setRenderTarget(bloom.target);
-    renderer.render(pass.scene, camera);
+    // stipple into the glow base, then halo, chroma split and composite to screen
+    pass.render(renderer, bloom.target);
     bloom.finish(renderer);
   }
 
@@ -383,10 +385,11 @@ export function mount(container, opts = {}) {
   const api = {
     get mode() { return renderer.capabilities.isWebGL2 ? 'webgl2' : 'webgl1'; },
     reduce,
-    get cell() { return baseCell(); },
-    get capCells() { return st.capCells; },
+    palette,
+    get capRows() { return st.capRows; },
     seek(t) { st.clockOffset += t - now(); st.last = 0; },
     setSweep(p) { st.sweepOverride = p; },
+    setGlitch(level, seed = 7) { st.glitchOverride = level; st.glitchSeed = seed; },
     frameStats() {
       const a = [...st.frames].sort((x, y) => x - y);
       const q = (p) => a[Math.min(a.length - 1, Math.floor(p * a.length))];
@@ -417,7 +420,6 @@ export function mount(container, opts = {}) {
     bloom.dispose();
     partRT.dispose();
     depthMat.dispose();
-    atlas.dispose();
     sceneRT.dispose();
     envRT.dispose();
     pmrem.dispose();

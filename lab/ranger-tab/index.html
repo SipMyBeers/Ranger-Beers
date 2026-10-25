@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#0a0006">
   <title>Ranger Tab Hero</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0a;
+      --bg: #0a0006;
       --text: #999;
       --text-bright: #e5e5e5;
       --text-muted: #444;
@@ -57,9 +57,9 @@
   <script type="module">
     import { mount } from '../../js/ranger-tab/hero.js';
     const q = new URLSearchParams(location.search);
-    const cell = Number(q.get('cell')) || undefined;
     const hero = mount(document.getElementById('game-container'), {
-      motion: q.get('motion') === 'on', cell, quietEl: document.querySelector('.hero-intro'),
+      motion: q.get('motion') === 'on', palette: q.get('palette') || 'reference',
+      quietEl: document.querySelector('.hero-intro'),
     });
     window.__rangerTab = hero;
   </script>
