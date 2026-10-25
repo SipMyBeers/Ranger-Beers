@@ -121,8 +121,11 @@ void main() {
   }
   float gl = clamp(lum + band * 0.75 * gold, 0.0, 1.0);
 
-  float levelGold = clamp(floor(gl * 5.0), 2.0, 4.0);
-  float levelField = clamp(1.0 + floor(lum * 12.0), 1.0, 2.0);
+  // Small cells (phones) need more size contrast between gold and field dots,
+  // so gold starts a level higher and the field stays at the tiny dot.
+  float small = step(uCell, 19.5);
+  float levelGold = clamp(floor(gl * 5.0), 2.0 + small, 4.0);
+  float levelField = mix(clamp(1.0 + floor(lum * 12.0), 1.0, 2.0), 1.0, small);
   float level = mix(levelField, levelGold, step(0.5, gold));
 
   // Glyph from the atlas, with a 1 cell-pixel gutter so glyphs never touch.

@@ -85,7 +85,8 @@ export function buildTab(svgText, mats) {
     group.add(m);
     return m;
   };
-  add(bodyGeo, mats.gold, 0);
+  // ExtrudeGeometry groups: 0 = caps, 1 = side walls. A darker wall reads as its own dot band.
+  add(bodyGeo, [mats.gold, mats.goldSide || mats.gold], 0);
   add(rimGeo, mats.gold, front - 1); // rim stands ~8.5 proud of the body face
   add(fieldGeo, mats.field, front - 1); // field top at front+3: recessed under the rim
   add(lettersGeo, mats.letters, front + 2); // letters stand proud of field and rim
@@ -95,5 +96,9 @@ export function buildTab(svgText, mats) {
   const c = box.getCenter(new THREE.Vector3());
   for (const m of group.children) m.position.sub(c);
   const size = box.getSize(new THREE.Vector3());
-  return { group, width: size.x, height: size.y, depth: size.z };
+  // Cap height of RANGER as a fraction of tab width (median letter height),
+  // so the dither can size its cells from the letters actually on screen.
+  const hs = p.letterOutlines.map((l) => bbox(l.pts).getSize(new THREE.Vector2()).y).sort((a, b) => a - b);
+  const capRatio = hs[Math.floor(hs.length / 2)] / size.x;
+  return { group, width: size.x, height: size.y, depth: size.z, capRatio };
 }

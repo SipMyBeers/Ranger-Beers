@@ -2,7 +2,7 @@
 // dither. Mountable: mount(containerEl, opts) -> { destroy, ready, api }.
 //
 // Clocks:
-//   time    idle yaw +/-16deg on a 9s period, a small float, a light sweep every 5s
+//   time    idle yaw +/-24deg on a 9s period with a constant 8deg pitch, a small float, a light sweep every 5s
 //   intro   cells scan on bottom-left to top-right over 1.2s while cells ease 3x -> 1x
 //   pointer tilt toward the cursor (critically damped spring) + a velocity smear
 //   scroll  as the hero leaves, the tab pitches back 25deg and cells coarsen to 2.5x
@@ -18,6 +18,7 @@ export const FALLBACK_URL = new URL('../../images/badges/ranger-tab-dither.png',
 const DEG = Math.PI / 180;
 const TAB_W = 10; // world units
 const FOV = 28;
+const PITCH = 8 * DEG; // constant tilt: top edge toward the viewer so the top wall shows
 const INTRO_S = 1.2;
 const SWEEP_EVERY = 5;
 const SWEEP_S = 1.4;
@@ -50,7 +51,7 @@ function showFallback(container) {
   img.alt = 'Ranger tab';
   const w = container.clientWidth;
   const frac = w <= 600 ? 88 : w >= 1200 ? 56 : 88 - ((w - 600) / 600) * 32;
-  img.style.cssText = `position:absolute;left:50%;top:44%;width:${frac}%;height:auto;transform:translate(-50%,-50%);image-rendering:pixelated;`;
+  img.style.cssText = `position:absolute;left:50%;top:44%;width:${frac}%;height:auto;transform:translate(-50%,-50%);`;
   container.appendChild(img);
   return { destroy: () => img.remove(), ready: Promise.resolve('fallback'), api: { mode: 'fallback' } };
 }
@@ -58,6 +59,7 @@ function showFallback(container) {
 function makeMaterials() {
   return {
     gold: new THREE.MeshStandardMaterial({ color: 0xc99a14, metalness: 0.9, roughness: 0.42 }),
+    goldSide: new THREE.MeshStandardMaterial({ color: 0x8c6a0e, metalness: 0.85, roughness: 0.55 }),
     // Letters run hotter than the body so RANGER lands a level above the rim.
     letters: new THREE.MeshStandardMaterial({ color: 0xffcc33, metalness: 0.9, roughness: 0.3, emissive: 0x5a3c00 }),
     field: new THREE.MeshStandardMaterial({ color: 0x0c0b09, metalness: 0.25, roughness: 0.55 }),
@@ -78,8 +80,11 @@ export function mount(container, opts = {}) {
   if (!webglAvailable()) return showFallback(container);
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches && opts.motion !== true;
-  const isMobile = () => container.clientWidth < 700;
-  const baseCell = () => opts.cell || (isMobile() ? 10 : 12);
+  // Cells are sized from the tab's on-screen width so RANGER's cap height is
+  // at least 7 cells at every viewport: cell = clamp(floor(capPx / 7), 5, 12).
+  // ?cell= (opts.cell) overrides.
+  let autoCell = 12;
+  const baseCell = () => opts.cell || autoCell;
 
   let renderer;
   try {
@@ -143,6 +148,11 @@ export function mount(container, opts = {}) {
     camera.updateProjectionMatrix();
     U.uRes.value.set(renderer.domElement.width, renderer.domElement.height);
     U.uRadius.value = 120 * dpr;
+    if (tab) {
+      const tabPx = (TAB_W / view.visW) * w;
+      autoCell = clamp(Math.floor((tab.capRatio * tabPx) / 7), 5, 12);
+      st.capCells = (tab.capRatio * tabPx) / baseCell();
+    }
     const slot = Math.round(baseCell() * dpr);
     if (atlas.image.height !== slot) {
       atlas.dispose();
@@ -189,10 +199,10 @@ export function mount(container, opts = {}) {
       spring(st.tiltX, tx, 7, dt);
       spring(st.tiltY, ty, 7, dt);
     }
-    const yaw = motion ? 16 * DEG * Math.sin((2 * Math.PI * t) / 9) : -9 * DEG;
+    const yaw = motion ? 24 * DEG * Math.sin((2 * Math.PI * t) / 9) : -18 * DEG;
     const worldPerPx = view.visH / view.cssH;
     const float = motion ? Math.sin((2 * Math.PI * t) / 6.3) * 2.5 * worldPerPx : 0;
-    pivot.rotation.set(st.tiltX.x - 25 * DEG * st.scroll, yaw + st.tiltY.x, 0);
+    pivot.rotation.set(PITCH + st.tiltX.x - 25 * DEG * st.scroll, yaw + st.tiltY.x, 0);
     pivot.position.y = float;
 
     // Light sweep: a point light crossing left to right plus a screen band.
@@ -314,7 +324,7 @@ export function mount(container, opts = {}) {
       const built = buildTab(svg, mats);
       const s = TAB_W / built.width;
       built.group.scale.setScalar(s);
-      tab = { group: built.group, h: built.height * s };
+      tab = { group: built.group, h: built.height * s, capRatio: built.capRatio };
       pivot.add(built.group);
       layout();
       onScroll();
@@ -332,6 +342,8 @@ export function mount(container, opts = {}) {
   const api = {
     get mode() { return renderer.capabilities.isWebGL2 ? 'webgl2' : 'webgl1'; },
     reduce,
+    get cell() { return baseCell(); },
+    get capCells() { return st.capCells; },
     seek(t) { st.clockOffset += t - now(); st.last = 0; },
     setSweep(p) { st.sweepOverride = p; },
     frameStats() {
