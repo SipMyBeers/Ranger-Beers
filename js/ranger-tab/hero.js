@@ -10,6 +10,12 @@
 //   scroll  as the hero leaves, the tab pitches back 25deg and ridge lines stretch and stream up
 //   glitch  every 6-9s (never in the first 2s) a 120-250ms band offset with a stronger chroma split
 //   ambient 40 glitter dots drift up
+//   reveal  opts.pinEl (a tall wrapper around a sticky hero) gives progress p 0..1,
+//           smoothed by the spring: the tab stills (0-.15), unravels row by row into
+//           the ridge field (.15-.8), then the ridge lines part like curtains (.8-1).
+//           Pure function of p, so scrolling back rebuilds it. opts.onProgress(p).
+//   input   the key light follows the pointer (flashlight); a tap sends a shockwave
+//           through the ridge lines plus a 150ms glitch; a drag spins the tab with inertia.
 // Reduced motion renders one static frame unless opts.motion === true.
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
@@ -31,6 +37,8 @@ const SWEEP_S = 1.4;
 const SWEEP_FIRST = 2.0;
 
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+const KEY_REST = new THREE.Vector3(-9, 2.5, 3.2);
 const easeOut = (t) => 1 - Math.pow(1 - t, 3);
 
 // Implicit critically damped spring (stable at any dt).
@@ -151,9 +159,14 @@ export function mount(container, opts = {}) {
     trail: [], scroll: 0, running: false, visible: true, raf: 0,
     clockOffset: 0, last: 0, frames: [], errors: 0, sweepOverride: null,
     glitchAt: 2 + 6 + Math.random() * 3, glitchLen: 0.18, glitchSeed: 1, glitchOverride: null,
+    p: { x: 0, v: 0 }, pRaw: 0, frozen: null,
+    keyX: { x: KEY_REST.x, v: 0 }, keyY: { x: KEY_REST.y, v: 0 },
+    spin: { x: 0, v: 0 }, drag: null, shocks: [], burstUntil: -1,
   };
+  const box = new THREE.Box3();
+  const corner = new THREE.Vector3();
   const t0 = performance.now() / 1000;
-  const now = () => performance.now() / 1000 - t0 + st.clockOffset;
+  const now = () => (st.frozen !== null ? st.frozen : performance.now() / 1000 - t0 + st.clockOffset);
 
   function layout() {
     const w = Math.max(1, container.clientWidth);
@@ -166,17 +179,18 @@ export function mount(container, opts = {}) {
     pass.setSize(w, h, dpr);
     const aspect = w / h;
     camera.aspect = aspect;
-    // The subject fills the frame: ~90% of a phone (the sway swings one end nearer), ~82% of a desktop.
-    const frac = w <= 600 ? 0.9 : w >= 1200 ? 0.82 : 0.9 - ((w - 600) / 600) * 0.08;
+    // Set back in the field: ~75% of a phone, ~55% of a desktop, so ridge lines frame it.
+    const frac = w <= 600 ? 0.75 : w >= 1200 ? 0.55 : 0.75 - ((w - 600) / 600) * 0.2;
     const tanH = Math.tan((FOV / 2) * DEG);
     let dist = TAB_W / frac / (2 * tanH * aspect);
     const tabH = tab ? tab.h : TAB_W * 0.41;
     if (tabH / (2 * dist * tanH) > 0.62) dist = tabH / 0.62 / (2 * tanH);
     const visH = 2 * dist * tanH;
-    // Desktop: the tab sits low and a little right so the copy block clears it.
+    // Camera a touch low so the tab sits above centre with more lines below it;
+    // on desktop a little right so the copy block clears it.
     const desk = clamp((w - 700) / 500, 0, 1);
-    const lift = (0.02 - 0.1 * desk) * visH;
-    const shift = 0.02 * desk * visH * aspect;
+    const lift = (0.07 - 0.04 * desk) * visH;
+    const shift = 0.05 * desk * visH * aspect;
     view = { visW: visH * aspect, visH, cssW: w, cssH: h, dist, tanH, aspect, lift };
     camera.position.set(-shift, -lift, dist);
     camera.lookAt(-shift, -lift, 0);
@@ -229,15 +243,37 @@ export function mount(container, opts = {}) {
     }
   }
 
+  // Tab extent on screen (css px), from its world bounding box.
+  function tabRect() {
+    if (!tab) return null;
+    box.setFromObject(tab.group);
+    let x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
+    for (let i = 0; i < 8; i++) {
+      corner.set(i & 1 ? box.max.x : box.min.x, i & 2 ? box.max.y : box.min.y, i & 4 ? box.max.z : box.min.z).project(camera);
+      const x = (corner.x * 0.5 + 0.5) * view.cssW;
+      const y = (0.5 - corner.y * 0.5) * view.cssH;
+      x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y);
+    }
+    return { x0, x1, y0, y1 };
+  }
+
   function step(t, dt) {
     const motion = !reduce;
+    if (motion && dt > 0) spring(st.p, st.pRaw, 9, dt);
+    const p = motion ? clamp(st.p.x, 0, 1) : 0;
+    const still = smooth(0, 0.15, p); // sway damps to still before the unravel
     const intro = motion ? clamp(t / INTRO_S, 0, 1) : 1;
     U.uIntro.value = motion ? easeOut(intro) : 1;
     U.uT.value = motion ? t : 3.7;
     U.uScroll.value = st.scroll;
     pass.setRidge(view.cssH, st.scroll);
-    G.uGlitch.value = motion ? glitchLevel(t) : 0;
+    const burst = t < st.burstUntil ? 1 : 0;
+    G.uGlitch.value = motion ? Math.max(glitchLevel(t) * (1 - still), burst) : 0;
     G.uSeed.value = st.glitchSeed;
+    // Anticipation: the wide glow pulls in a little while the tab stills.
+    const tight = still * (1 - smooth(0.6, 0.8, p));
+    G.uWide.value = 1.15 * (1 - 0.3 * tight);
+    G.uTight.value = 0.8 * (1 + 0.1 * tight);
 
     // Pointer tilt (max ~10deg) through the spring.
     const tx = st.pointer.active ? -st.pointer.ny * 10 * DEG : 0;
@@ -245,12 +281,34 @@ export function mount(container, opts = {}) {
     if (motion && dt > 0) {
       spring(st.tiltX, tx, 7, dt);
       spring(st.tiltY, ty, 7, dt);
+      // Flashlight: the key light chases the pointer, so the hue bands slide across the face.
+      const kx = st.pointer.active ? st.pointer.nx * 11 : KEY_REST.x;
+      const ky = st.pointer.active ? -st.pointer.ny * 7 : KEY_REST.y;
+      spring(st.keyX, kx, 6, dt);
+      spring(st.keyY, ky, 6, dt);
+      // Spin: free while dragging; after release the spring carries the throw then settles on the nearest turn.
+      if (!st.drag || !st.drag.spinning) spring(st.spin, Math.round(st.spin.x / (2 * Math.PI)) * 2 * Math.PI, 2.4, dt);
     }
-    const yaw = motion ? 24 * DEG * Math.sin((2 * Math.PI * t) / 9) : -18 * DEG;
+    lights.key.position.set(motion ? st.keyX.x : KEY_REST.x, motion ? st.keyY.x : KEY_REST.y, KEY_REST.z);
+    const sway = 1 - still;
+    const yaw = motion ? 24 * DEG * Math.sin((2 * Math.PI * t) / 9) * sway : -18 * DEG;
     const worldPerPx = view.visH / view.cssH;
-    const float = motion ? Math.sin((2 * Math.PI * t) / 6.3) * 2.5 * worldPerPx : 0;
-    pivot.rotation.set(PITCH + st.tiltX.x - 25 * DEG * st.scroll, yaw + st.tiltY.x, 0);
+    const float = motion ? Math.sin((2 * Math.PI * t) / 6.3) * 2.5 * worldPerPx * sway : 0;
+    pivot.rotation.set(PITCH + (st.tiltX.x - 25 * DEG * st.scroll) * sway, yaw + st.tiltY.x * sway + st.spin.x, 0);
     pivot.position.y = float;
+    pivot.updateMatrixWorld(true);
+
+    // Unravel + curtains.
+    const r = p > 0.149 ? tabRect() : null;
+    st.shocks = st.shocks.filter((s) => t - s.t < 0.7);
+    pass.setUnravel({
+      p,
+      tabTop: r ? r.y0 : 0, tabBottom: r ? r.y1 : 0, x0: r ? r.x0 : 0, x1: r ? r.x1 : 1,
+      part: (() => { const c = smooth(0.8, 1, p); return c * c * (3 - 2 * c); })(),
+      liftK: 1 - smooth(0.2, 0.6, p),
+      shocks: st.shocks.slice(0, 4).map((s) => [s.x, s.y, t - s.t]),
+    });
+    if (opts.onProgress) opts.onProgress(p);
 
     // Light sweep: a point light crossing left to right plus a screen band.
     const sp = motion ? sweepPhase(t) : -1;
@@ -363,15 +421,68 @@ export function mount(container, opts = {}) {
   const onPointerMove = (e) => onPoint(e.clientX, e.clientY);
   const onTouchMove = (e) => { const t = e.touches[0]; if (t) onPoint(t.clientX, t.clientY); };
   const onLeave = () => { st.pointer.active = false; lastPt = null; };
+  function readProgress() {
+    if (!opts.pinEl) return 0;
+    const r = opts.pinEl.getBoundingClientRect();
+    const run = r.height - window.innerHeight;
+    return run > 1 ? clamp(-r.top / run, 0, 1) : 0;
+  }
   const onScroll = () => {
     const r = container.getBoundingClientRect();
     st.scroll = clamp(-r.top / Math.max(1, r.height), 0, 1);
+    st.pRaw = readProgress();
     if (reduce) renderStatic();
   };
+
+  // Tap = shockwave + glitch burst; drag = spin. Never blocks scrolling: no
+  // preventDefault anywhere, and touch-action: pan-y hands vertical drags to the page.
+  const live = () => !reduce && st.p.x <= 0.15;
+  const onDown = (e) => {
+    if (!live() || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    st.drag = { id: e.pointerId, type: e.pointerType, x0: e.clientX, y0: e.clientY, x: e.clientX, t: now(), moved: 0, spinning: false, vel: 0 };
+  };
+  const onDragMove = (e) => {
+    const d = st.drag;
+    if (!d || e.pointerId !== d.id) return;
+    const dx = e.clientX - d.x0, dy = e.clientY - d.y0;
+    d.moved = Math.max(d.moved, Math.hypot(dx, dy));
+    if (!d.spinning && live()) {
+      if (d.type === 'mouse' ? d.moved > 4 : Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)) d.spinning = true;
+    }
+    if (d.spinning) {
+      const t = now();
+      const k = 0.011; // rad per css px
+      const step = (e.clientX - d.x) * k;
+      st.spin.x += step;
+      const dt = Math.max(1 / 240, t - d.t);
+      d.vel = d.vel * 0.5 + (step / dt) * 0.5;
+      d.t = t;
+    }
+    d.x = e.clientX;
+  };
+  const onUp = (e) => {
+    const d = st.drag;
+    if (!d || e.pointerId !== d.id) return;
+    st.drag = null;
+    if (d.spinning) { st.spin.v = clamp(d.vel, -14, 14); return; }
+    if (d.moved < 8 && live()) tap(e.clientX, e.clientY);
+  };
+  const onCancel = () => { if (st.drag && st.drag.spinning) st.spin.v = st.drag.vel; st.drag = null; };
+  function tap(cx, cy) {
+    const r = container.getBoundingClientRect();
+    const t = now();
+    st.shocks.unshift({ x: cx - r.left, y: cy - r.top, t });
+    st.burstUntil = t + 0.15;
+    st.glitchSeed = Math.random() * 100;
+  }
   const onResize = () => { layout(); if (!st.running) renderStatic(); };
   const onVis = () => setRunning();
 
   window.addEventListener('pointermove', onPointerMove, { passive: true });
+  container.addEventListener('pointerdown', onDown, { passive: true });
+  window.addEventListener('pointermove', onDragMove, { passive: true });
+  window.addEventListener('pointerup', onUp, { passive: true });
+  window.addEventListener('pointercancel', onCancel, { passive: true });
   window.addEventListener('touchmove', onTouchMove, { passive: true });
   document.addEventListener('pointerleave', onLeave, { passive: true });
   window.addEventListener('blur', onLeave);
@@ -380,6 +491,11 @@ export function mount(container, opts = {}) {
   document.addEventListener('visibilitychange', onVis);
   const io = new IntersectionObserver((ents) => {
     st.visible = ents.some((e) => e.isIntersecting);
+    // Leaving the screen stops the loop, so land the reveal where the scroll is.
+    if (!st.visible && !reduce) {
+      st.pRaw = readProgress(); st.p.x = st.pRaw; st.p.v = 0;
+      if (opts.onProgress) opts.onProgress(st.p.x);
+    }
     setRunning();
   });
   io.observe(container);
@@ -418,6 +534,19 @@ export function mount(container, opts = {}) {
     seek(t) { st.clockOffset += t - now(); st.last = 0; },
     setSweep(p) { st.sweepOverride = p; },
     setGlitch(level, seed = 7) { st.glitchOverride = level; st.glitchSeed = seed; },
+    // Verification hooks: pin the clock, jump the reveal, fire input without a real pointer.
+    freeze(t) { st.frozen = t; st.last = 0; },
+    setProgress(p) { st.pRaw = p; st.p.x = p; st.p.v = 0; },
+    get progress() { return st.p.x; },
+    get progressRaw() { return st.pRaw; },
+    tap(cx, cy) { tap(cx, cy); },
+    setSpin(x, v = 0) { st.spin.x = x; st.spin.v = v; },
+    setPointer(nx, ny) {
+      if (nx === null) { st.pointer.active = false; return; }
+      st.pointer.nx = nx; st.pointer.ny = ny; st.pointer.active = true;
+      st.keyX.x = nx * 11; st.keyY.x = -ny * 7; st.keyX.v = st.keyY.v = 0;
+    },
+    settle() { st.tiltX.x = st.tiltX.v = st.tiltY.x = st.tiltY.v = 0; st.keyX.x = KEY_REST.x; st.keyY.x = KEY_REST.y; st.keyX.v = st.keyY.v = 0; st.spin.x = st.spin.v = 0; st.shocks = []; st.burstUntil = -1; st.pointer.active = false; st.trail.length = 0; },
     frameStats() {
       const a = [...st.frames].sort((x, y) => x - y);
       const q = (p) => a[Math.min(a.length - 1, Math.floor(p * a.length))];
@@ -435,6 +564,10 @@ export function mount(container, opts = {}) {
     cancelAnimationFrame(st.raf);
     io.disconnect();
     window.removeEventListener('pointermove', onPointerMove);
+    container.removeEventListener('pointerdown', onDown);
+    window.removeEventListener('pointermove', onDragMove);
+    window.removeEventListener('pointerup', onUp);
+    window.removeEventListener('pointercancel', onCancel);
     window.removeEventListener('touchmove', onTouchMove);
     document.removeEventListener('pointerleave', onLeave);
     window.removeEventListener('blur', onLeave);

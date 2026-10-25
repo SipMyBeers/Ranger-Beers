@@ -12,6 +12,7 @@ export const ROW = 4.0; // css px between rows
 export const DOT = 3.0; // css px between dots along a row (dots are 2x2)
 
 // Raw sRGB values: ShaderMaterial output is not colour-managed, so no conversion.
+const clamp01 = (v) => Math.min(1, Math.max(0, v));
 const raw = (h) => { const c = new THREE.Color(); c.setHex(h, THREE.LinearSRGBColorSpace); return c; };
 
 // Dark to bright. Reference palette measured off the Dither Boy screenshot.
@@ -32,6 +33,28 @@ float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
 float hash3(vec3 p) { return fract(sin(dot(p, vec3(127.1, 311.7, 74.7))) * 43758.5453); }
 `;
 
+// Unravel timing, shared by the mask in the main pass and the falling strips.
+// Body rows leave top to bottom from p .15; the letters leave last.
+export const UNRAVEL = /* glsl */ `
+const float DUR = 0.28;
+float startOf(float j, float letter) {
+  float f = uRowsN > 1.0 ? clamp(j / (uRowsN - 1.0), 0.0, 1.0) : 0.0;
+  // A little per-row scatter so neighbouring rows peel apart instead of moving as a sheet.
+  float jit = (fract(sin(j * 12.9898 + letter * 4.1) * 43758.5453) - 0.5) * 0.035;
+  return letter > 0.5 ? 0.40 + 0.12 * f + jit * 0.5 : 0.15 + 0.30 * f + jit;
+}
+`;
+
+// Ridge line k's resting height (css px, top origin), parted like curtains
+// from the middle as uPart goes 0 to 1.
+const LINE_BASE = /* glsl */ `
+float lineBase(float k) {
+  float b = uTop + k * uSpacing;
+  float sh = uPart * uCss.y * 0.6;
+  return b < uCss.y * 0.5 ? b - sh : b + sh;
+}
+`;
+
 // ── Ridge lift: one texel per (x, line). R = how far the line climbs, css px.
 // Two terms, taking the larger: lines that pass behind the tab rise over its
 // silhouette (coverage above), and lines below the tab climb toward its
@@ -40,12 +63,14 @@ const ridgeFrag = /* glsl */ `
 precision highp float;
 uniform sampler2D tScene;
 uniform vec2 uCss;
-uniform float uTop, uSpacing, uLines, uScroll, uT;
+uniform float uTop, uSpacing, uLines, uScroll, uT, uPart, uLiftK;
 uniform vec4 uPts[${MAX_PTS}]; // device px, bottom-left origin
 uniform float uAge[${MAX_PTS}];
+uniform vec4 uShock[4];        // css px x, y (top origin), age s
 uniform float uDpr;
 varying vec2 vUv;
 ${common}
+${LINE_BASE}
 float covered(float x, float yTop) {
   if (yTop < 0.0 || yTop > uCss.y || x < 0.0 || x > uCss.x) return 0.0;
   return step(0.25, texture2D(tScene, vec2(x / uCss.x, 1.0 - yTop / uCss.y)).a);
@@ -53,7 +78,7 @@ float covered(float x, float yTop) {
 void main() {
   float x = vUv.x * uCss.x;
   float k = floor(vUv.y * uLines);
-  float baseY = uTop + k * uSpacing;
+  float baseY = lineBase(k);
   float range = 0.3 * uCss.y;
   float stepY = range / 24.0;
   float urange = 0.5 * uCss.y;
@@ -79,7 +104,7 @@ void main() {
     wsum += wx;
   }
   lift /= wsum;
-  lift *= 1.0 + 0.8 * uScroll;
+  lift *= (1.0 + 0.8 * uScroll) * uLiftK;
   // Pointer bump travelling outward along nearby lines.
   float bump = 0.0;
   for (int i = 0; i < ${MAX_PTS}; i++) {
@@ -89,6 +114,13 @@ void main() {
     bump += near * exp(-d * d / 1600.0) * exp(-uAge[i] / 0.7);
   }
   lift += 22.0 * min(bump, 1.5);
+  // Tap shockwave: a ring travelling out from the hit point, ~600ms.
+  for (int i = 0; i < 4; i++) {
+    vec4 s = uShock[i];
+    if (s.z > 0.6) continue;
+    float d = length(vec2(x, baseY) - s.xy) - s.z * 1300.0;
+    lift += 34.0 * exp(-d * d / 1600.0) * exp(-s.z / 0.2);
+  }
   gl_FragColor = vec4(lift, 0.0, 0.0, 1.0);
 }
 `;
@@ -102,6 +134,7 @@ uniform sampler2D tRidge;   // ridge lift per (x, line)
 uniform vec2 uCss;
 uniform float uDpr, uT, uIntro, uBand, uExposure, uScroll;
 uniform float uTop, uSpacing, uLines, uRidgeT;
+uniform float uP, uTabTop, uRowsN, uPart; // unravel progress, tab row grid, curtain
 uniform vec4 uPts[${MAX_PTS}];
 uniform float uAge[${MAX_PTS}];
 uniform float uRadius;      // device px
@@ -110,6 +143,8 @@ uniform float uTopo;        // css px of row lift per world unit of depth
 uniform vec3 uPal[9];
 varying vec2 vUv;
 ${common}
+${UNRAVEL}
+${LINE_BASE}
 const float ROW = ${ROW.toFixed(3)};
 const float DOT = ${DOT.toFixed(3)};
 
@@ -168,7 +203,16 @@ void main() {
   float xc = (di + 0.5) * DOT;
 
   vec4 here = texture2D(tScene, suv);
-  if (here.a >= 0.25) {
+  bool tabHere = here.a >= 0.25;
+  bool isLetter = here.a >= 0.62 && here.a < 0.82;
+#ifndef TAB_ONLY
+  // Rows that have unravelled leave a hole the ridge field shows through.
+  if (tabHere && uP > 0.149) {
+    float j = clamp(floor((y - uTabTop) / ROW), 0.0, max(uRowsN - 1.0, 0.0));
+    if (uP >= startOf(j, isLetter ? 1.0 : 0.0)) tabHere = false;
+  }
+#endif
+  if (tabHere) {
     // ── Tab: rows are contours of v = y + wave + surface height, so they bend
     // over the bevels and letters like a topographic scan.
     vec4 nz = texture2D(tNorm, suv);
@@ -217,10 +261,11 @@ void main() {
       }
     }
   } else {
+#ifndef TAB_ONLY
     // ── Background: stippled ridge lines climbing the tab silhouette.
     for (int k = 0; k < ${RIDGE_LINES}; k++) {
       float fk = float(k);
-      float base = uTop + fk * uSpacing;
+      float base = lineBase(fk);
       float lift = texture2D(tRidge, vec2(xc / uCss.x, (fk + 0.5) / uLines)).r;
       float jit = 3.5 * sin(xc * 0.02 + fk * 1.7 + uT * 0.25)
                 + 1.5 * sin(xc * 0.085 + fk * 3.1 + uT * 0.6)
@@ -233,7 +278,12 @@ void main() {
       float tt = uRidgeT + 0.08 * (hash(vec2(fk, 4.0)) - 0.5) + 0.05 * sin(xc * 0.004 + fk);
       col = max(col, pal(tt) * 1.15);
     }
+#endif
   }
+#ifdef TAB_ONLY
+  gl_FragColor = vec4(col, tabHere ? (isLetter ? 0.5 : 1.0) : 0.0);
+  return;
+#endif
 
   // Glitter: a few dots drifting through.
   vec3 pc = texture2D(tPart, suv).rgb;
@@ -243,6 +293,61 @@ void main() {
   gl_FragColor = vec4(uPal[0] + col, 1.0);
 }
 `;
+
+// Unravelled rows: one screen-wide strip per tab row (bodies, then letters),
+// sampling the tab-only stipple at its source row while it falls to a ridge
+// line, stretching to the full width and cooling to the ridge amber.
+const stripVert = /* glsl */ `
+attribute float aIdx;
+uniform vec2 uCss;
+uniform float uP, uTabTop, uRowsN, uTop, uSpacing, uKmin, uKmax;
+varying float vE, vSrcTop, vCurTop, vLetter, vDx;
+const float ROW = ${ROW.toFixed(3)};
+${UNRAVEL}
+float back(float t) { float c1 = 1.0; float c3 = c1 + 1.0; float u = t - 1.0; return 1.0 + c3 * u * u * u + c1 * u * u; }
+void main() {
+  float letter = step(uRowsN - 0.5, aIdx);
+  float j = aIdx - letter * uRowsN;
+  float e = clamp((uP - startOf(j, letter)) / DUR, 0.0, 1.0);
+  float f = uRowsN > 1.0 ? j / (uRowsN - 1.0) : 0.0;
+  float k = floor(mix(uKmax, uKmin, f) + 0.5);
+  float landY = uTop + k * uSpacing - ROW * 0.5;
+  float srcTop = uTabTop + j * ROW;
+  float curTop = mix(srcTop, landY, back(e));
+  vE = e; vSrcTop = srcTop; vCurTop = curTop; vLetter = letter;
+  // Each row drifts sideways in flight, so the sheet visibly comes apart.
+  vDx = sin(3.14159 * e) * (fract(sin(j * 78.233 + letter) * 12345.678) - 0.5) * 90.0;
+  float yy = curTop + position.y * ROW;
+  bool off = e <= 0.0 || j >= uRowsN;
+  gl_Position = off ? vec4(2.0, 2.0, 2.0, 1.0) : vec4(position.x * 2.0 - 1.0, 1.0 - yy / uCss.y * 2.0, 0.0, 1.0);
+}
+`;
+const stripFrag = /* glsl */ `
+precision highp float;
+uniform sampler2D tTab;
+uniform vec2 uCss;
+uniform float uDpr, uTabX0, uTabX1;
+uniform vec3 uAmber;
+varying float vE, vSrcTop, vCurTop, vLetter, vDx;
+void main() {
+  float x = gl_FragCoord.x / uDpr - vDx;
+  float y = uCss.y - gl_FragCoord.y / uDpr;
+  float srcY = vSrcTop + (y - vCurTop);
+  float s = smoothstep(0.05, 0.6, vE);
+  float k = uCss.x / max(1.0, uTabX1 - uTabX0);
+  float srcX = (x + s * uTabX0 * k) / ((1.0 - s) + s * k);
+  if (srcX < 0.0 || srcX > uCss.x) discard;
+  vec4 t = texture2D(tTab, vec2(srcX / uCss.x, 1.0 - srcY / uCss.y));
+  bool isL = t.a > 0.3 && t.a < 0.7;
+  bool isB = t.a > 0.7;
+  if (vLetter > 0.5 ? !isL : !isB) discard;
+  float m = max(t.r, max(t.g, t.b));
+  float land = smoothstep(0.45, 1.0, vE);
+  vec3 c = mix(t.rgb, uAmber * step(0.02, m), land);
+  gl_FragColor = vec4(c * (1.0 - smoothstep(0.8, 1.0, vE)), 1.0);
+}
+`;
+const MAX_STRIPS = 640;
 
 function fsScene(material) {
   const geo = new THREE.BufferGeometry();
@@ -271,6 +376,12 @@ export function makeScanlinePass(sceneTex, normTex, partTex, paletteName = 'refe
     uLines: { value: RIDGE_LINES },
     uPts: { value: pts },
     uAge: { value: ages },
+    uP: { value: 0 },
+    uTabTop: { value: 0 },
+    uRowsN: { value: 0 },
+    uPart: { value: 0 },
+    uLiftK: { value: 1 },
+    uShock: { value: Array.from({ length: 4 }, () => new THREE.Vector4(0, 0, 99, 0)) },
   };
   const ridgeMat = new THREE.ShaderMaterial({
     vertexShader: vert, fragmentShader: ridgeFrag, depthTest: false, depthWrite: false,
@@ -299,11 +410,50 @@ export function makeScanlinePass(sceneTex, normTex, partTex, paletteName = 'refe
   const main = fsScene(mainMat);
   const cam = new THREE.Camera();
 
+  // Tab-only stipple (rgb) with its kind in alpha (1 body, .5 letters), sampled by the strips.
+  const tabRT = new THREE.WebGLRenderTarget(1, 1, {
+    type: THREE.HalfFloatType, minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: false,
+  });
+  const tabMat = new THREE.ShaderMaterial({
+    vertexShader: vert, fragmentShader: mainFrag, depthTest: false, depthWrite: false,
+    uniforms: mainMat.uniforms, defines: { TAB_ONLY: 1 },
+  });
+  const tabOnly = fsScene(tabMat);
+  const stripGeo = new THREE.InstancedBufferGeometry();
+  stripGeo.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0], 3));
+  stripGeo.setAttribute('aIdx', new THREE.InstancedBufferAttribute(new Float32Array(MAX_STRIPS).map((_, i) => i), 1));
+  stripGeo.instanceCount = 0;
+  const stripMat = new THREE.ShaderMaterial({
+    vertexShader: stripVert, fragmentShader: stripFrag, depthTest: false, depthWrite: false,
+    transparent: true, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, // y is flipped into clip space, so the winding is reversed
+    uniforms: {
+      tTab: { value: tabRT.texture }, uCss: shared.uCss, uDpr: shared.uDpr, uP: shared.uP,
+      uTabTop: shared.uTabTop, uRowsN: shared.uRowsN, uTop: shared.uTop, uSpacing: shared.uSpacing,
+      uKmin: { value: 0 }, uKmax: { value: RIDGE_LINES - 2 },
+      uTabX0: { value: 0 }, uTabX1: { value: 1 },
+      uAmber: { value: pal[0].clone() },
+    },
+  });
+  {
+    // Ridge amber as the main pass draws it: pal(uRidgeT) * 1.15.
+    const t = clamp01(mainMat.uniforms.uRidgeT.value) * 8;
+    const i = Math.floor(t), w = t - i;
+    const a = pal[i], b = pal[Math.min(i + 1, 8)];
+    const sw = w <= 0.25 ? 0 : w >= 0.75 ? 1 : ((x) => x * x * (3 - 2 * x))((w - 0.25) / 0.5);
+    stripMat.uniforms.uAmber.value.copy(a).lerp(b, sw).multiplyScalar(1.15);
+  }
+  const stripMesh = new THREE.Mesh(stripGeo, stripMat);
+  stripMesh.frustumCulled = false;
+  const stripScene = new THREE.Scene();
+  stripScene.add(stripMesh);
+  let unravelOn = false;
+
   return {
     uniforms: mainMat.uniforms,
     ground: pal[0],
     setSize(cssW, cssH, dpr) {
       ridgeRT.setSize(Math.max(1, Math.ceil(cssW / 2)), RIDGE_LINES);
+      tabRT.setSize(Math.max(1, Math.round(cssW * dpr)), Math.max(1, Math.round(cssH * dpr)));
       shared.uCss.value.set(cssW, cssH);
       shared.uDpr.value = dpr;
     },
@@ -313,15 +463,49 @@ export function makeScanlinePass(sceneTex, normTex, partTex, paletteName = 'refe
       shared.uSpacing.value = spacing * (1 + 1.1 * scroll);
       shared.uTop.value = cssH * 0.06 - scroll * cssH * 0.35;
     },
+    // u: { p, tabTop, tabBottom, x0, x1, part, liftK, shocks: [[x, y, age]] }
+    setUnravel(u) {
+      shared.uP.value = u.p;
+      shared.uPart.value = u.part;
+      shared.uLiftK.value = u.liftK;
+      const rows = Math.max(0, Math.min(MAX_STRIPS / 2, Math.ceil((u.tabBottom - u.tabTop) / ROW)));
+      shared.uTabTop.value = u.tabTop;
+      shared.uRowsN.value = rows;
+      stripMat.uniforms.uTabX0.value = u.x0;
+      stripMat.uniforms.uTabX1.value = u.x1;
+      // Rows land on the ridge lines below the tab (the top row on the lowest).
+      const sp = shared.uSpacing.value, top = shared.uTop.value;
+      const kmax = RIDGE_LINES - 2;
+      const kmin = Math.min(kmax, Math.max(0, Math.ceil((u.tabBottom - top) / sp + 0.4)));
+      stripMat.uniforms.uKmin.value = kmin;
+      stripMat.uniforms.uKmax.value = kmax;
+      unravelOn = u.p > 0.15 && rows > 0;
+      stripGeo.instanceCount = unravelOn ? rows * 2 : 0;
+      const sh = shared.uShock.value;
+      for (let i = 0; i < 4; i++) {
+        const s = u.shocks[i];
+        if (s) sh[i].set(s[0], s[1], s[2], 0); else sh[i].set(0, 0, 99, 0);
+      }
+    },
     render(renderer, target) {
       renderer.setRenderTarget(ridgeRT);
       renderer.render(ridge.scene, cam);
+      if (unravelOn) {
+        renderer.setRenderTarget(tabRT);
+        renderer.render(tabOnly.scene, cam);
+      }
       renderer.setRenderTarget(target);
       renderer.render(main.scene, cam);
+      if (unravelOn) {
+        renderer.autoClear = false;
+        renderer.render(stripScene, cam);
+        renderer.autoClear = true;
+      }
     },
     dispose() {
       ridgeRT.dispose(); ridgeMat.dispose(); mainMat.dispose();
       ridge.geo.dispose(); main.geo.dispose();
+      tabRT.dispose(); tabMat.dispose(); tabOnly.geo.dispose(); stripGeo.dispose(); stripMat.dispose();
     },
   };
 }

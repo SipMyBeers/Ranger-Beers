@@ -8,43 +8,188 @@
   <title>Ranger Tab Hero</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <!-- The live site stylesheet, read only, so the WORK section below is the real reveal target. -->
+  <link rel="stylesheet" href="../../css/styles.css">
   <style>
-    :root {
-      --bg: #0a0006;
-      --text: #999;
-      --text-bright: #e5e5e5;
-      --text-muted: #444;
-      --gold: #C5B358;
-      --font: 'JetBrains Mono', monospace;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { background: var(--bg); overflow-x: clip; }
-    body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 13px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    .hero { position: relative; width: 100%; height: 100svh; min-height: 540px; overflow: hidden; background: var(--bg); }
-    .hero-game { position: absolute; inset: 0; z-index: 0; }
-    .hero-intro { position: absolute; top: clamp(32px, 6vh, 56px); left: clamp(16px, 4vw, 48px); z-index: 10; pointer-events: none; }
-    .intro-name { font-size: clamp(14px, 1.8vw, 18px); font-weight: 800; letter-spacing: 4px; color: var(--text-bright); margin-bottom: clamp(16px, 3vh, 28px); }
-    .intro-roles p { font-size: clamp(11px, 1.4vw, 14px); font-weight: 500; letter-spacing: 2px; line-height: 1.8; text-transform: uppercase; }
-    .intro-roles s { color: var(--text-muted); text-decoration-thickness: 1.5px; margin-right: 8px; }
-    .after { min-height: 120vh; padding: 64px clamp(16px, 4vw, 48px); border-top: 1px solid rgba(255,255,255,0.06); }
-    .after h2 { color: var(--gold); font-size: 12px; letter-spacing: 3px; font-weight: 500; }
+    :root { --rt-bg: #0a0006; }
+    /* styles.css puts overflow-x: hidden on body, which turns body into a scroll
+       container and kills position: sticky. Clip on html instead. */
+    html { background: var(--rt-bg); overflow-x: clip; scroll-behavior: auto; }
+    body { background: var(--rt-bg); overflow-x: visible; }
+    .rt-pin { position: relative; height: 250vh; }
+    .rt-hero { position: sticky; top: 0; width: 100%; height: 100svh; min-height: 540px; overflow: hidden; background: var(--rt-bg); z-index: 1; }
+    .rt-game { position: absolute; inset: 0; z-index: 0; }
+    .rt-intro { position: absolute; top: clamp(32px, 6vh, 56px); left: clamp(16px, 4vw, 48px); z-index: 10; pointer-events: none; }
+    .rt-name { font-size: clamp(14px, 1.8vw, 18px); font-weight: 800; letter-spacing: 4px; color: var(--text-bright); margin-bottom: clamp(16px, 3vh, 28px); }
+    .rt-roles p { font-size: clamp(11px, 1.4vw, 14px); font-weight: 500; letter-spacing: 2px; line-height: 1.8; text-transform: uppercase; }
+    .rt-roles s { color: var(--text-muted); text-decoration-thickness: 1.5px; margin-right: 8px; }
+    /* WORK sits over the last pinned screen and comes in through the parted lines. */
+    .rt-work { position: relative; z-index: 3; margin-top: -100svh; min-height: 100svh; background: var(--rt-bg); padding-top: clamp(24px, 6vh, 64px); }
+    .rt-motion .rt-work { opacity: 0; visibility: hidden; will-change: opacity, clip-path, transform; }
+    .rt-work .section { margin-top: 0; }
+    .rt-tail { height: 40vh; }
+    /* Reduce Motion: no pin, no unravel; WORK simply follows a static hero. */
+    html:not(.rt-motion) .rt-pin { height: auto; }
+    html:not(.rt-motion) .rt-hero { position: relative; }
+    html:not(.rt-motion) .rt-work { margin-top: 0; animation: rt-fade 0.4s ease-out both; }
+    @keyframes rt-fade { from { opacity: 0; } to { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { html:not(.rt-motion) .rt-work { animation: none; } }
   </style>
+  <script>
+    // Decide motion before first paint: Reduce Motion wins unless ?motion=on.
+    (function () {
+      var on = new URLSearchParams(location.search).get('motion') === 'on';
+      var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (on || !rm) document.documentElement.classList.add('rt-motion');
+    })();
+  </script>
 </head>
 <body>
-  <section class="hero" id="hero">
-    <div class="hero-game" id="game-container"></div>
-    <div class="hero-intro">
-      <h1 class="intro-name">RANGER BEERS</h1>
-      <div class="intro-roles">
-        <p><s>VIBE CODER</s> FULL-STACK BUILDER.</p>
-        <p>AIRBORNE RANGER MEDIC.</p>
-        <p>SOLO FOUNDER, 11 PRODUCTS SHIPPED.</p>
-        <p>FORCE MULTIPLIER.</p>
+  <div class="rt-pin" id="rt-pin">
+    <section class="rt-hero" id="hero">
+      <div class="rt-game" id="game-container"></div>
+      <div class="rt-intro">
+        <h1 class="rt-name">RANGER BEERS</h1>
+        <div class="rt-roles">
+          <p><s>VIBE CODER</s> FULL-STACK BUILDER.</p>
+          <p>AIRBORNE RANGER MEDIC.</p>
+          <p>SOLO FOUNDER, 11 PRODUCTS SHIPPED.</p>
+          <p>FORCE MULTIPLIER.</p>
+        </div>
       </div>
+    </section>
+  </div>
+  <div class="rt-work" id="rt-work">
+<section class="section" id="work">
+    <div class="section-label reveal">WORK</div>
+    <div class="section-sublabel reveal">Products we own and operate</div>
+    <div class="work-grid">
+        <a class="work-card reveal" href="https://ironparse.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+            <img class="work-card-img" src="../../images/portfolio/ironparse.png?v=1" alt="IronParse" loading="lazy">
+            <div class="work-card-overlay"></div>
+            <div class="work-card-info">
+                <div>
+                    <div class="work-card-name">IronParse</div>
+                    <div class="work-card-tags">_mainframe _cobol _api_modernization</div>
+                </div>
+                <span class="work-card-arrow">&rarr;</span>
+            </div>
+        </a>
+        <a class="work-card reveal" href="https://killsesh.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+            <img class="work-card-img" src="../../images/portfolio/killsesh.png?v=4" alt="KillSesh" loading="lazy">
+            <div class="work-card-overlay"></div>
+            <div class="work-card-info">
+                <div>
+                    <div class="work-card-name">KillSesh</div>
+                    <div class="work-card-tags">_cybersecurity _breach_scanning _kill_switch</div>
+                </div>
+                <span class="work-card-arrow">&rarr;</span>
+            </div>
+        </a>
+        <a class="work-card reveal" href="https://lootlens.ai/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+            <img class="work-card-img" src="../../images/portfolio/lootlens.png?v=4" alt="LootLens" loading="lazy">
+            <div class="work-card-overlay"></div>
+            <div class="work-card-info">
+                <div>
+                    <div class="work-card-name">LootLens</div>
+                    <div class="work-card-tags">_ai _marketplace _scanner _ios</div>
+                </div>
+                <span class="work-card-arrow">&rarr;</span>
+            </div>
+        </a>
+        <a class="work-card reveal reveal-delay-1" href="https://gormers.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+            <img class="work-card-img" src="../../images/portfolio/gormers.png?v=3" alt="Gormers" loading="lazy">
+            <div class="work-card-overlay"></div>
+            <div class="work-card-info">
+                <div>
+                    <div class="work-card-name">Gormers</div>
+                    <div class="work-card-tags">_ai _knowledge _colony _ecosystem</div>
+                </div>
+                <span class="work-card-arrow">&rarr;</span>
+            </div>
+        </a>
+        <a class="work-card reveal reveal-delay-1" href="https://dittomethis.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+            <img class="work-card-img" src="../../images/portfolio/dittomethis.png?v=4" alt="DittoMeThis" loading="lazy">
+            <div class="work-card-overlay"></div>
+            <div class="work-card-info">
+                <div>
+                    <div class="work-card-name">DittoMeThis</div>
+                    <div class="work-card-tags">_reverse_engineering _ai _tools</div>
+                </div>
+                <span class="work-card-arrow">&rarr;</span>
+            </div>
+        </a>
+        <a class="work-card reveal" href="https://bullpenlm.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+            <img class="work-card-img" src="../../images/portfolio/bullpenlm.png?v=4" alt="BullpenLM" loading="lazy">
+            <div class="work-card-overlay"></div>
+            <div class="work-card-info">
+                <div>
+                    <div class="work-card-name">BullpenLM</div>
+                    <div class="work-card-tags">_ai _sales_operator _platform</div>
+                </div>
+                <span class="work-card-arrow">&rarr;</span>
+            </div>
+        </a>
+        <a class="work-card reveal" href="https://rollick.bet/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+            <img class="work-card-img" src="../../images/portfolio/rollick.png?v=3" alt="Rollick" loading="lazy">
+            <div class="work-card-overlay"></div>
+            <div class="work-card-info">
+                <div>
+                    <div class="work-card-name">Rollick</div>
+                    <div class="work-card-tags">_reseller _command_center</div>
+                </div>
+                <span class="work-card-arrow">&rarr;</span>
+            </div>
+        </a>
+        <a class="work-card reveal reveal-delay-1" href="https://scopecreeper.ai/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+            <img class="work-card-img" src="../../images/portfolio/scopecreeper.png?v=3" alt="ScopeCreeper" loading="lazy">
+            <div class="work-card-overlay"></div>
+            <div class="work-card-info">
+                <div>
+                    <div class="work-card-name">ScopeCreeper</div>
+                    <div class="work-card-tags">_ai _spec _payload</div>
+                </div>
+                <span class="work-card-arrow">&rarr;</span>
+            </div>
+        </a>
+        <a class="work-card reveal reveal-delay-1" href="https://aurajam.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+            <img class="work-card-img" src="../../images/portfolio/aurajam.png?v=4" alt="AuraJam" loading="lazy">
+            <div class="work-card-overlay"></div>
+            <div class="work-card-info">
+                <div>
+                    <div class="work-card-name">AuraJam</div>
+                    <div class="work-card-tags">_ai _dj _transitions</div>
+                </div>
+                <span class="work-card-arrow">&rarr;</span>
+            </div>
+        </a>
+        <a class="work-card reveal" href="https://coachwasright.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+            <img class="work-card-img" src="../../images/portfolio/coachwasright.png?v=3" alt="Coach Was Right" loading="lazy">
+            <div class="work-card-overlay"></div>
+            <div class="work-card-info">
+                <div>
+                    <div class="work-card-name">Coach Was Right</div>
+                    <div class="work-card-tags">_coaching _calisthenics _platform</div>
+                </div>
+                <span class="work-card-arrow">&rarr;</span>
+            </div>
+        </a>
+        <a class="work-card reveal reveal-delay-1" href="https://gifstix.com/" target="_blank" rel="noopener" data-tilt data-tilt-max="6" data-tilt-glare>
+            <img class="work-card-img" src="../../images/portfolio/gifstix.png?v=3" alt="GifStix / MemeStix" loading="lazy">
+            <div class="work-card-overlay"></div>
+            <div class="work-card-info">
+                <div>
+                    <div class="work-card-name">GifStix / MemeStix</div>
+                    <div class="work-card-tags">_gifs _memes _stickers _merch</div>
+                </div>
+                <span class="work-card-arrow">&rarr;</span>
+            </div>
+        </a>
     </div>
-  </section>
-  <section class="after"><h2>WORK</h2></section>
+</section>
+  </div>
+  <div class="rt-tail"></div>
 
   <script type="importmap">
   {
@@ -57,9 +202,40 @@
   <script type="module">
     import { mount } from '../../js/ranger-tab/hero.js';
     const q = new URLSearchParams(location.search);
+    const motion = document.documentElement.classList.contains('rt-motion');
+    const work = document.getElementById('rt-work');
+    // The page owns its own reveal, so the site's .reveal items show at once.
+    work.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+    const smooth = (a, b, v) => { const t = Math.min(1, Math.max(0, (v - a) / (b - a))); return t * t * (3 - 2 * t); };
+    let lastKey = '';
+    function onProgress(p) {
+      if (!motion) return;
+      const o = smooth(0.8, 0.95, p);
+      const c = smooth(0.8, 1, p);
+      const part = c * c * (3 - 2 * c);
+      let clip = 'none';
+      if (p < 0.999) {
+        // The gap between the parted lines, mapped into the section's own box.
+        const H = window.innerHeight;
+        const r = work.getBoundingClientRect();
+        const half = part * H * 0.6;
+        const top = Math.max(0, H / 2 - half - r.top);
+        const bot = Math.max(0, r.bottom - (H / 2 + half));
+        clip = `inset(${top.toFixed(1)}px 0 ${bot.toFixed(1)}px 0)`;
+      }
+      const key = o.toFixed(3) + clip;
+      if (key === lastKey) return;
+      lastKey = key;
+      work.style.opacity = o.toFixed(3);
+      work.style.visibility = o > 0.001 ? 'visible' : 'hidden';
+      work.style.clipPath = clip;
+      work.style.transform = o < 1 ? `translateY(${((1 - o) * 32).toFixed(1)}px)` : '';
+    }
     const hero = mount(document.getElementById('game-container'), {
       motion: q.get('motion') === 'on', palette: q.get('palette') || 'reference',
-      quietEl: document.querySelector('.hero-intro'),
+      quietEl: document.querySelector('.rt-intro'),
+      pinEl: motion ? document.getElementById('rt-pin') : null,
+      onProgress,
     });
     window.__rangerTab = hero;
   </script>
