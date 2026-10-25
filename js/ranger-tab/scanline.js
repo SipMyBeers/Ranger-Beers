@@ -180,9 +180,12 @@ void main() {
     float dv = 1.0 + dTopo + amp * (0.65 * 0.012 * cos(x * 0.085 + y * 0.012 + uT * 0.8)
                                   - 0.35 * 0.021 * cos(x * 0.142 - y * 0.021 - uT * 1.15));
     float g = clamp(abs(dv), 0.35, 3.0);
-    float r = floor(v / ROW);
-    float vc = (r + 0.5) * ROW + (hash(vec2(di, r)) - 0.5) * 1.0; // 1px jitter
-    if (abs(v - vc) / g <= 0.7 && onIntro(x, y) > 0.5) { // rows ~1.4 css tall: the glow needs a dark gap to read as lines
+    // Letters carry denser rows so RANGER stays legible on a phone.
+    bool letter = here.a >= 0.62 && here.a < 0.82;
+    float rp = letter ? (uCss.x < 700.0 ? 2.75 : 3.25) : ROW;
+    float r = floor(v / rp);
+    float vc = (r + 0.5) * rp + (hash(vec2(di, r)) - 0.5) * 1.0; // 1px jitter
+    if (abs(v - vc) / g <= (letter ? 0.6 : 0.7) && onIntro(x, y) > 0.5) { // rows ~1.4 css tall: the glow needs a dark gap to read as lines
       vec3 c = pow(1.0 - exp(-here.rgb * uExposure), vec3(1.0 / 2.2));
       float L = dot(c, vec3(0.2126, 0.7152, 0.0722));
       float ndl = dot(n, uKey);
@@ -192,13 +195,17 @@ void main() {
       if (here.a < 0.62) {           // black recess
         t = 0.13 + 0.1 * clamp(ndl, 0.0, 1.0); dens = 0.1; gain = 0.5;
       } else if (here.a < 0.82) {    // raised letters: violet to white
-        t = 0.66 + 0.34 * smoothstep(-0.2, 1.0, ndl);
-        dens = 0.9; gain = 1.1;
+        t = 0.7 + 0.3 * smoothstep(-0.2, 0.9, ndl); // lavender to white cores
+        dens = 0.97; gain = 1.25;
       } else {                        // body face, bevels and walls
-        t = 0.12 + 0.88 * smoothstep(-0.25, 1.6, ndl);
-        if (L > 0.93) t = max(t, 0.8 + 0.2 * (L - 0.93) / 0.07);
-        dens = 0.18 + 0.82 * smoothstep(-0.35, 0.55, ndl);
-        gain = here.a < 0.95 ? 0.85 : 1.0;
+        if (here.a < 0.95) {         // side wall and bevels: magenta-red owns them
+          t = 0.12 + 0.16 * smoothstep(-0.4, 0.9, ndl);
+          dens = 0.45 + 0.45 * smoothstep(-0.4, 0.6, ndl); gain = 1.0;
+        } else {
+          t = 0.12 + 0.88 * smoothstep(-0.25, 1.6, ndl);
+          if (L > 0.93) t = max(t, 0.8 + 0.2 * (L - 0.93) / 0.07);
+          dens = 0.18 + 0.82 * smoothstep(-0.35, 0.55, ndl); gain = 1.0;
+        }
       }
       t = clamp(t + band * 0.35, 0.0, 1.0);
       dens = clamp(dens + band * 0.6 + ptr * 0.2, 0.0, 1.0);
@@ -206,7 +213,7 @@ void main() {
       float run = 0.8 * vnoise(vec2(xc * 0.07, r * 5.31 + uT * 0.12)) + 0.2 * hash(vec2(di + 0.37, r * 1.13));
       if (run < dens * 1.05) {
         float halfx = mix(1.0, 1.55, smoothstep(0.6, 0.95, dens));
-        if (abs(x - xc) <= halfx) col = mix(pal(t), vec3(1.0), 0.18 * dens) * gain * (1.0 + 0.45 * dens); // hot cores, coloured glow
+        if (abs(x - xc) <= halfx) col = mix(pal(t), vec3(1.0), (letter ? 0.25 : 0.06) * dens) * gain * (1.35 + 0.6 * dens); // hot cores, coloured glow
       }
     }
   } else {

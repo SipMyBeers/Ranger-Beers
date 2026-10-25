@@ -92,20 +92,24 @@ export function makeBloom(ground) {
   const comp = fsPass(compFrag, {
     tBase: { value: base.texture }, tTight: { value: q1.texture }, tWide: { value: e1.texture },
     uRes: { value: new THREE.Vector2() }, uChroma: { value: 3 },
-    uTight: { value: 1.9 }, uWide: { value: 1.6 }, uGlitch: { value: 0 }, uSeed: { value: 0 }, uSwap: { value: 1 },
+    uTight: { value: 0.55 }, uWide: { value: 0.2 }, uGlitch: { value: 0 }, uSeed: { value: 0 }, uSwap: { value: 1 },
   });
   const cam = new THREE.Camera();
   const size = { w: 1, h: 1, qw: 1, qh: 1, ew: 1, eh: 1 };
+  let dprNow = 1;
 
   function setSize(w, h, dpr) {
     base.setSize(w, h);
     size.w = w; size.h = h;
-    size.qw = Math.max(1, Math.round(w / 4)); size.qh = Math.max(1, Math.round(h / 4));
-    size.ew = Math.max(1, Math.round(w / 8)); size.eh = Math.max(1, Math.round(h / 8));
+    // Tight halo at half res (~2-3 css px), wide at quarter res (~8-10 css px):
+    // small enough that the gaps between rows stay dark.
+    size.qw = Math.max(1, Math.round(w / 2)); size.qh = Math.max(1, Math.round(h / 2));
+    size.ew = Math.max(1, Math.round(w / 4)); size.eh = Math.max(1, Math.round(h / 4));
     q1.setSize(size.qw, size.qh); q2.setSize(size.qw, size.qh);
     e1.setSize(size.ew, size.eh); e2.setSize(size.ew, size.eh);
     comp.material.uniforms.uRes.value.set(w, h);
     comp.material.uniforms.uChroma.value = 1.75 * dpr;
+    dprNow = dpr / 2; // kernels were tuned at dpr 2
   }
 
   function run(renderer, rt, src, texel, ground) {
@@ -124,10 +128,10 @@ export function makeBloom(ground) {
   const zero = new THREE.Vector3();
   const g = down.material.uniforms.uGround.value.clone();
   function finish(renderer) {
-    run(renderer, q1, base.texture, new THREE.Vector2(1 / size.w, 1 / size.h), g);
+    run(renderer, q1, base.texture, new THREE.Vector2(0.5 / size.w, 0.5 / size.h), g); // 2x2 box: keep row structure
     run(renderer, e1, q1.texture, new THREE.Vector2(1 / size.qw, 1 / size.qh), zero);
-    blur2(renderer, q1, q2, size.qw, size.qh, 1.0);
-    blur2(renderer, e1, e2, size.ew, size.eh, 1.6);
+    blur2(renderer, q1, q2, size.qw, size.qh, 0.3 * dprNow);
+    blur2(renderer, e1, e2, size.ew, size.eh, 1.4 * dprNow);
     renderer.setRenderTarget(null); renderer.render(comp.scene, cam);
   }
 
