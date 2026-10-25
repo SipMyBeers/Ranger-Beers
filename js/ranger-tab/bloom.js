@@ -92,7 +92,7 @@ export function makeBloom(ground) {
   const comp = fsPass(compFrag, {
     tBase: { value: base.texture }, tTight: { value: q1.texture }, tWide: { value: e1.texture },
     uRes: { value: new THREE.Vector2() }, uChroma: { value: 3 },
-    uTight: { value: 0.55 }, uWide: { value: 0.2 }, uGlitch: { value: 0 }, uSeed: { value: 0 }, uSwap: { value: 1 },
+    uTight: { value: 0.8 }, uWide: { value: 1.15 }, uGlitch: { value: 0 }, uSeed: { value: 0 }, uSwap: { value: 1 },
   });
   const cam = new THREE.Camera();
   const size = { w: 1, h: 1, qw: 1, qh: 1, ew: 1, eh: 1 };
