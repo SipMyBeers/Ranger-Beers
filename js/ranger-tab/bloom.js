@@ -59,7 +59,10 @@ void main() {
   c += split(tWide, uv, o * 2.5) * uWide;
   // Struck bands flash: orange swaps to violet-blue (reference palette), or just lifts (gold).
   if (struck > 0.0) c = mix(c, mix(c * 1.5, c.bgr * 1.35, uSwap), 0.6 * struck);
-  c = 1.0 - exp(-c * 1.15); // soft shoulder so stacked halos do not clip flat
+  // Soft shoulder on the brightest channel only, so stacked halos never clip
+  // flat and saturated hues stay saturated instead of washing toward white.
+  float m = max(max(c.r, c.g), max(c.b, 1e-4));
+  c *= (1.0 - exp(-m * 1.15)) / m;
   gl_FragColor = vec4(c, 1.0);
 }
 `;
@@ -89,7 +92,7 @@ export function makeBloom(ground) {
   const comp = fsPass(compFrag, {
     tBase: { value: base.texture }, tTight: { value: q1.texture }, tWide: { value: e1.texture },
     uRes: { value: new THREE.Vector2() }, uChroma: { value: 3 },
-    uTight: { value: 2.2 }, uWide: { value: 1.4 }, uGlitch: { value: 0 }, uSeed: { value: 0 }, uSwap: { value: 1 },
+    uTight: { value: 1.9 }, uWide: { value: 1.6 }, uGlitch: { value: 0 }, uSeed: { value: 0 }, uSwap: { value: 1 },
   });
   const cam = new THREE.Camera();
   const size = { w: 1, h: 1, qw: 1, qh: 1, ew: 1, eh: 1 };

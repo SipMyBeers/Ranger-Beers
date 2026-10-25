@@ -119,8 +119,22 @@ export function mount(container, opts = {}) {
     minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: true,
   });
   const depthMat = new THREE.MeshBasicMaterial({ colorWrite: false });
+  // Normals + relative depth: drives row bending and the hue-by-normal map.
+  const normRT = new THREE.WebGLRenderTarget(1, 1, {
+    type: THREE.HalfFloatType, minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: true,
+  });
+  const normMat = new THREE.ShaderMaterial({
+    blending: THREE.NoBlending,
+    uniforms: { uZRef: { value: 0 } },
+    vertexShader: `varying vec3 vN; varying float vZ;
+      void main() { vN = normalize(normalMatrix * normal); vec4 mv = modelViewMatrix * vec4(position, 1.0);
+        vZ = mv.z; gl_Position = projectionMatrix * mv; }`,
+    fragmentShader: `uniform float uZRef; varying vec3 vN; varying float vZ;
+      void main() { gl_FragColor = vec4(normalize(vN), vZ - uZRef); }`,
+  });
+  const keyView = new THREE.Vector3();
   const particles = makeParticles(40);
-  const pass = makeScanlinePass(sceneRT.texture, partRT.texture, palette);
+  const pass = makeScanlinePass(sceneRT.texture, normRT.texture, partRT.texture, palette);
   const bloom = makeBloom(pass.ground);
   const U = pass.uniforms;
   const G = bloom.uniforms;
@@ -146,23 +160,30 @@ export function mount(container, opts = {}) {
     const h = Math.max(1, container.clientHeight);
     renderer.setSize(w, h, false);
     sceneRT.setSize(w, h);
+    normRT.setSize(w, h);
     partRT.setSize(w, h);
     bloom.setSize(renderer.domElement.width, renderer.domElement.height, dpr);
     pass.setSize(w, h, dpr);
     const aspect = w / h;
     camera.aspect = aspect;
-    const frac = w <= 600 ? 0.88 : w >= 1200 ? 0.56 : 0.88 - ((w - 600) / 600) * 0.32;
+    // The subject fills the frame: ~90% of a phone (the sway swings one end nearer), ~82% of a desktop.
+    const frac = w <= 600 ? 0.9 : w >= 1200 ? 0.82 : 0.9 - ((w - 600) / 600) * 0.08;
     const tanH = Math.tan((FOV / 2) * DEG);
     let dist = TAB_W / frac / (2 * tanH * aspect);
     const tabH = tab ? tab.h : TAB_W * 0.41;
-    if (tabH / (2 * dist * tanH) > 0.5) dist = tabH / 0.5 / (2 * tanH);
+    if (tabH / (2 * dist * tanH) > 0.62) dist = tabH / 0.62 / (2 * tanH);
     const visH = 2 * dist * tanH;
-    view = { visW: visH * aspect, visH, cssW: w, cssH: h, dist, tanH, aspect, lift: 0.06 * visH };
-    const lift = 0.06 * visH; // tab sits slightly above centre
-    camera.position.set(0, -lift, dist);
-    camera.lookAt(0, -lift, 0);
+    // Desktop: the tab sits low and a little right so the copy block clears it.
+    const desk = clamp((w - 700) / 500, 0, 1);
+    const lift = (0.02 - 0.1 * desk) * visH;
+    const shift = 0.02 * desk * visH * aspect;
+    view = { visW: visH * aspect, visH, cssW: w, cssH: h, dist, tanH, aspect, lift };
+    camera.position.set(-shift, -lift, dist);
+    camera.lookAt(-shift, -lift, 0);
     camera.updateProjectionMatrix();
     U.uRadius.value = 120 * dpr;
+    normMat.uniforms.uZRef.value = -dist;
+    U.uTopo.value = (h / visH) * 0.18;
     if (tab) st.capRows = (tab.capRatio * (TAB_W / view.visW) * w) / ROW;
   }
 
@@ -257,6 +278,13 @@ export function mount(container, opts = {}) {
     renderer.setClearColor(0x000000, 0);
     renderer.clear(true, true, true);
     renderer.render(scene, camera);
+    renderer.setRenderTarget(normRT);
+    renderer.clear(true, true, true);
+    scene.overrideMaterial = normMat;
+    renderer.render(scene, camera);
+    scene.overrideMaterial = null;
+    keyView.copy(lights.key.position).transformDirection(camera.matrixWorldInverse);
+    U.uKey.value.copy(keyView);
     // particles, depth-tested against the tab
     renderer.setRenderTarget(partRT);
     renderer.clear(true, true, true);
@@ -420,6 +448,8 @@ export function mount(container, opts = {}) {
     bloom.dispose();
     partRT.dispose();
     depthMat.dispose();
+    normMat.dispose();
+    normRT.dispose();
     sceneRT.dispose();
     envRT.dispose();
     pmrem.dispose();
