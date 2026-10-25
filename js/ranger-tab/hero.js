@@ -48,7 +48,9 @@ function showFallback(container) {
   const img = document.createElement('img');
   img.src = FALLBACK_URL;
   img.alt = 'Ranger tab';
-  img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+  const w = container.clientWidth;
+  const frac = w <= 600 ? 88 : w >= 1200 ? 56 : 88 - ((w - 600) / 600) * 32;
+  img.style.cssText = `position:absolute;left:50%;top:44%;width:${frac}%;height:auto;transform:translate(-50%,-50%);image-rendering:pixelated;`;
   container.appendChild(img);
   return { destroy: () => img.remove(), ready: Promise.resolve('fallback'), api: { mode: 'fallback' } };
 }
@@ -339,6 +341,8 @@ export function mount(container, opts = {}) {
     },
     resetFrames() { st.frames.length = 0; },
     renderOnce: renderStatic,
+    // Render and read back in one task (no preserveDrawingBuffer needed).
+    snapshot() { renderStatic(); return renderer.domElement.toDataURL('image/png'); },
     canvas: renderer.domElement,
   };
 

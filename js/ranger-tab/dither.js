@@ -134,7 +134,7 @@ void main() {
   float mask = texture2D(tAtlas, auv).r * inside;
 
   vec3 goldCol = mix(GOLD_LO, GOLD_HI, smoothstep(0.45, 0.85, gl));
-  float hot = step(3.5, levelGold) * smoothstep(0.55, 0.9, band) * step(0.93, gl);
+  float hot = step(3.5, levelGold) * smoothstep(0.8, 0.97, band) * step(0.95, gl);
   goldCol = mix(goldCol, HOT, hot);
   vec3 fieldCol = FIELD * (0.85 + lum * 1.2);
   vec3 col = mix(fieldCol, goldCol, step(0.5, gold));
