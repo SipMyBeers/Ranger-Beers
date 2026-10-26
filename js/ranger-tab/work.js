@@ -58,14 +58,16 @@ void main() {
   float ndl = max(dot(normalize(vN), uKey), 0.0);
   float s;
   if (uPart < 0.5) {            // ring: lit, plus a light sweeping round the rim
-    s = 0.22 + 0.7 * pow(ndl, 1.3);
+    vec3 n = normalize(vN);
+    float lit = max(dot(n, normalize(uKey + vec3(0.0, 0.5, 1.3))), 0.0);
+    s = 0.2 + 0.78 * pow(lit, 1.6);
     float da = mod(atan(vP.y, vP.x) - uSweep + PI, 2.0 * PI) - PI;
     s += 0.5 * exp(-da * da / 0.06);
   } else if (uPart < 1.5) {     // glass: faint, with a specular arc upper left
     float r = length(vP.xy) / 0.86;
     float a = atan(vP.y, vP.x);
     float arc = exp(-pow((r - 0.72) / 0.06, 2.0)) * smoothstep(1.15, 1.35, a) * (1.0 - smoothstep(2.4, 2.65, a));
-    s = 0.08 + 0.85 * arc + 0.05 * (1.0 - r);
+    s = 0.13 + 0.85 * arc + 0.06 * (1.0 - r);
   } else {                      // handle: grip bands along its length
     float q = vP.y / uLen + 0.5;
     s = 0.18 + 0.62 * ndl - (sin(q * 40.0) > 0.7 ? 0.2 : 0.0);
@@ -82,14 +84,14 @@ void main() {
   float s;
   if (abs(vN.y) < 0.5 && r > 0.9) { s = 0.32; }  // rim
   else if (r < 0.04) { s = 0.0; }               // spindle hole
-  else if (r < 0.34) { s = 0.5 + 0.3 * cos(3.0 * (a - uSpin)); } // label shows the spin
+  else if (r < 0.34) { s = 0.62 + 0.36 * cos(2.0 * (a - uSpin)); } // label shows the spin
   else {
     // Grooves pulse on a 120 BPM beat; a ring of light runs out from the label on each hit.
     float beat = exp(-fract(uT * 2.0) * 4.0);
     float wave = exp(-pow((r - 0.34 - fract(uT * 2.0) * 0.8) * 9.0, 2.0));
-    float groove = 0.5 + 0.5 * sin(r * 150.0) * (0.75 + 0.5 * beat);
+    float groove = 0.55 + 0.45 * sin(r * 150.0) * (0.75 + 0.5 * beat);
     float sheen = pow(max(cos(2.0 * (a - 0.6)), 0.0), 6.0) * 0.85;   // fixed in the room: the disc turns under it
-    s = 0.16 + sheen * groove + 0.22 * wave + 0.06 * beat;
+    s = 0.2 + sheen * groove * 0.95 + 0.14 * wave + 0.05 * beat;
   }
   gl_FragColor = vec4(clamp(s, 0.0, 1.0), 0.0, 0.0, 1.0);
 }
@@ -153,7 +155,7 @@ float terrainH(float u, float i) {
        + 0.25 * sin(u * 15.0 + i * 0.9 - uT * 0.5)
        + 0.14 * sin(i * 0.45 - uT * 0.9 + u * 2.0); // the slow swell rolling toward you
 }
-bool isStray(float id) { return id == 3.0 || id == 1.0 ? aRnd.w > 0.86 : id == 2.0 ? aRnd.w > 0.93 : false; }
+bool isStray(float id) { return id == 3.0 || id == 1.0 ? aRnd.w > 0.955 : id == 2.0 ? aRnd.w > 0.97 : false; }
 // Where this dot sits on shape 'id': ndc, palette position, brightness, size (css px).
 void target(float id, out vec2 n, out float tt, out float b, out float sz) {
   sz = 2.0;
@@ -161,7 +163,7 @@ void target(float id, out vec2 n, out float tt, out float b, out float sz) {
     // Loose dots drifting up around the object, as in the hero.
     float x = fract(aRnd.z + uT * 0.002 * (aRnd.x - 0.5));
     float y = fract(aRnd.x * 1.7 + aRnd.y - uT * 0.004 * (0.3 + aRnd.y));
-    n = toNdc(vec2(x, y) * uCss); tt = 0.45 + 0.55 * aRnd.y; b = 0.25 + 0.6 * aRnd.x; return;
+    n = toNdc(vec2(x, y) * uCss); tt = 0.55 + 0.45 * aRnd.y; b = 0.35 + 0.65 * aRnd.x; return;
   }
   if (id == 0.0) {
     if (aRnd.w < 0.6) {          // on a lower ridge line, exactly where the stipple draws it
@@ -179,7 +181,8 @@ void target(float id, out vec2 n, out float tt, out float b, out float sz) {
     n = proj(uWLL, aLL);
     vec3 nv = normalize(mat3(viewMatrix) * mat3(uWLL) * aNLL);
     float ndl = max(dot(nv, uKey), 0.0);
-    tt = aPartLL < 0.5 ? 0.22 + 0.75 * pow(ndl, 1.3) : aPartLL < 1.5 ? 0.14 : 0.18 + 0.62 * ndl;
+    float lit = max(dot(nv, normalize(uKey + vec3(0.0, 0.5, 1.3))), 0.0);
+    tt = aPartLL < 0.5 ? 0.2 + 0.78 * pow(lit, 1.6) : aPartLL < 1.5 ? 0.14 : 0.18 + 0.62 * ndl;
     b = aPartLL > 0.5 && aPartLL < 1.5 ? 0.5 : 1.0; return;
   }
   if (id == 3.0) {
@@ -192,8 +195,8 @@ void target(float id, out vec2 n, out float tt, out float b, out float sz) {
     float q = aIdx / uPathN;
     float wob = uMob > 0.5 ? 0.0 : 30.0 * sin(q * 5.0);
     vec2 p = mix(uPathA.xy, uPathA.zw, vec2(pow(q, 1.5), q)) * uCss + vec2(0.0, wob);
-    p.x += (aRnd.z - 0.5) * 2.0 * (4.0 * (1.0 - q) + 1.6);
-    n = toNdc(p); tt = 0.8 + 0.2 * q; b = q <= uPath ? 2.0 : 0.0; return;
+    p.x += (aRnd.z - 0.5) * 2.0 * (5.0 * (1.0 - q) + 2.6);
+    n = toNdc(p); tt = 0.85 + 0.15 * q; b = q <= uPath ? 1.15 : 0.0; return;
   }
   float rows = uIP.w;
   float i = floor(aRnd.x * (rows - 0.001));
@@ -215,13 +218,14 @@ void main() {
   vec2 nA, nB; float tA, tB, bA, bB, sA, sB;
   target(uFrom, nA, tA, bA, sA);
   target(uTo, nB, tB, bB, sB);
-  float ed = clamp((uE - aRnd.y * 0.35) / 0.65, 0.0, 1.0);
-  float k = ed * ed * (3.0 - 2.0 * ed);
+  float ed = clamp((uE - aRnd.y * 0.3) / 0.7, 0.0, 1.0);
+  // Fast out, slow in: most of the flight is spent closing on the new shape, so it reads early.
+  float k = 1.0 - pow(1.0 - ed, 3.0);
   vec2 p = mix(nA, nB, k);
-  // Tear loose: each dot swings out on its own arc, rows shred sideways.
-  float arc = sin(3.14159 * ed);
-  p += arc * vec2(0.55 * (aRnd.x - 0.5) + 0.12 * sin(aRnd.z * 40.0 + uT * 0.4),
-                  0.3 * (aRnd.z - 0.5) + 0.08 * cos(aRnd.x * 31.0 + uT * 0.33));
+  // Tear loose: each dot swings out on its own arc (early in the flight), rows shred sideways.
+  float arc = sin(3.14159 * ed) * (1.0 - ed) * 1.6;
+  p += arc * vec2(0.32 * (aRnd.x - 0.5) + 0.08 * sin(aRnd.z * 40.0 + uT * 0.4),
+                  0.16 * (aRnd.z - 0.5) + 0.05 * cos(aRnd.x * 31.0 + uT * 0.33));
   vec3 c = mix(palOf(uPalA, tA) * bA, palOf(uPalB, tB) * bB, smoothstep(0.25, 0.75, ed));
   // Mesh shapes hand over to the stipple: dots vanish as it forms, appear as it dissolves.
   float m = 1.0;
@@ -397,7 +401,7 @@ export function makeWork({ scene, U, lights, camera }) {
       at(view, cx, cy, disc.group.position);
       disc.group.scale.setScalar(R);
       const hold = to === AJ ? ph.h : 0;
-      disc.group.rotation.set(0.466 + 0.04 * Math.sin(t * 0.6) + 0.12 * hold, 0, 0.05 * Math.sin(t * 0.4) - 0.08);
+      disc.group.rotation.set(0.44 + 0.035 * Math.sin(t * 0.6) + 0.04 * (hold - 0.5), 0, 0.05 * Math.sin(t * 0.4) - 0.08);
       disc.mat.uniforms.uSpin.value = t * 1.6;
       disc.mat.uniforms.uT.value = t;
       disc.group.visible = true;

@@ -236,8 +236,10 @@ void main() {
     vec4 nz = texture2D(tNorm, suv);
     vec3 n = normalize(nz.xyz + vec3(0.0, 0.0, 1e-4));
     float h = 1.5 / uCss.y;
-    float topo = nz.a * uTopo;
-    float dTopo = (texture2D(tNorm, suv - vec2(0.0, h)).a - texture2D(tNorm, suv + vec2(0.0, h)).a) * uTopo / 3.0;
+    // Work objects are big and steeply tilted: a gentler bend keeps their rows whole.
+    float topoK = uWorkObj > 0.5 ? 0.3 : 1.0;
+    float topo = nz.a * uTopo * topoK;
+    float dTopo = (texture2D(tNorm, suv - vec2(0.0, h)).a - texture2D(tNorm, suv + vec2(0.0, h)).a) * uTopo * topoK / 3.0;
     float v = y + amp * wave(x, y) + topo;
     float dv = 1.0 + dTopo + amp * (0.65 * 0.012 * cos(x * 0.085 + y * 0.012 + uT * 0.8)
                                   - 0.35 * 0.021 * cos(x * 0.142 - y * 0.021 - uT * 1.15));
@@ -258,7 +260,7 @@ void main() {
       if (uWorkObj > 0.5) {           // work object: its own material wrote a 0..1 shade into r
         float s = here.r;
         t = s; gain = 1.0;
-        dens = s < 0.02 ? 0.0 : 0.12 + 0.88 * smoothstep(0.04, 0.55, s);
+        dens = s < 0.02 ? 0.0 : 0.38 + 0.62 * smoothstep(0.05, 0.6, s); // even dim fill, never blotchy
       } else if (here.a < 0.62) {           // black recess
         t = 0.13 + 0.1 * clamp(ndl, 0.0, 1.0); dens = 0.1; gain = 0.5;
       } else if (here.a < 0.82) {    // raised letters: violet to white
