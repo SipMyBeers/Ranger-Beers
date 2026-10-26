@@ -321,6 +321,7 @@ export function mount(container, opts = {}) {
     if (opts.onProgress) opts.onProgress(p);
     if (work) {
       work.update({ u, t: motion ? t : 3.7, view, dpr, pointer: st.pointer });
+      G.uChroma.value = 1.75 * dpr * work.chromaK;
       if (opts.onWork) opts.onWork(u);
     }
 
@@ -571,7 +572,7 @@ export function mount(container, opts = {}) {
     workStill(i) {
       if (!work || !tab) return null;
       const keep = { x: st.u.x, raw: st.uRaw, p: st.p.x };
-      st.u.x = st.uRaw = work.holdU(i);
+      st.u.x = st.uRaw = work.stillU(i);
       st.p.x = 1;
       step(reduce ? INTRO_S + 0.01 : now(), 0);
       render();
@@ -581,6 +582,9 @@ export function mount(container, opts = {}) {
       return url;
     },
     tap(cx, cy) { tap(cx, cy); },
+    // A click on the work run's held object (css px); true when it took it.
+    workTap(cx, cy) { return work ? work.tap(cx, cy) : false; },
+    workHoldU: (i) => (work ? work.holdU(i) : 0),
     setSpin(x, v = 0) { st.spin.x = x; st.spin.v = v; },
     setPointer(nx, ny) {
       if (nx === null) { st.pointer.active = false; return; }

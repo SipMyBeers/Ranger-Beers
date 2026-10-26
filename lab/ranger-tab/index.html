@@ -12,12 +12,13 @@
   <!-- The live site stylesheet, read only, so the WORK section below is the real reveal target. -->
   <link rel="stylesheet" href="../../css/styles.css">
   <style>
-    :root { --rt-bg: #0a0006; }
+    :root { --rt-bg: #0a0006; --rt-ink: #fff4fa; }
     /* styles.css puts overflow-x: hidden on body, which turns body into a scroll
        container and kills position: sticky. Clip on html instead. */
     html { background: var(--rt-bg); overflow-x: clip; scroll-behavior: auto; }
     body { background: var(--rt-bg); overflow-x: visible; }
-    /* One pin: 150vh of unravel, then the work run (3 x 100vh plus 30vh home). */
+    /* One pin: 150vh of unravel, then the work run (100vh per project plus 30vh
+       home). Heights are set from the projects array by work-ui.js sizePin. */
     .rt-pin { position: relative; height: 580vh; }
     .rt-mark { position: absolute; left: 0; width: 1px; pointer-events: none; visibility: hidden; }
     #rt-unravel { top: 0; height: 250vh; }
@@ -31,21 +32,59 @@
     .rt-intro { will-change: transform; }
     /* Work run copy: each block slides up into its own clip box, transform only. */
     .rt-proj { position: absolute; left: 0; right: 0; top: 74%; z-index: 10; overflow: hidden; pointer-events: none;
-      padding: 4px clamp(16px, 3.4vw, 48px) 12px; }
-    .rt-proj-in { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; transform: translateY(110%); will-change: transform; }
+      padding: 4px clamp(16px, 3.4vw, 48px) 36px; }
+    .rt-proj-in { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; transform: translateY(calc(110% + 44px)); will-change: transform; }
     .rt-proj-idx { font-size: 15px; font-weight: 700; letter-spacing: 1px; color: var(--rt-ink); margin: 0 0 6px; }
     .rt-proj-name { font-size: clamp(36px, 4.45vw, 64px); font-weight: 800; letter-spacing: 1px; line-height: 1.05; margin: 0; color: var(--acc);
       text-shadow: 0 0 6px var(--acc), 0 0 22px var(--glow); }
     .rt-proj-line { font-size: clamp(13px, 1.4vw, 20px); font-weight: 500; color: #f0e8f0; margin: 6px 0 0; text-shadow: 0 0 3px rgba(240, 232, 240, 0.45); }
-    .rt-proj-link { font-size: 16px; font-weight: 700; letter-spacing: 1px; color: var(--acc); text-decoration: none; white-space: nowrap;
-      text-shadow: 0 0 8px var(--glow); padding: 6px 0; }
-    .rt-proj-link:hover, .rt-proj-link:focus-visible { color: var(--rt-ink); }
+    /* The project button: a solid capsule in the project's own accent, ink from its ground. */
+    .rt-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px 0 24px; border-radius: 999px;
+      background: var(--acc); color: var(--ink); text-decoration: none; white-space: nowrap; flex: none;
+      font-size: 15px; font-weight: 800; letter-spacing: 1.5px; line-height: 1;
+      box-shadow: 0 0 0 1px var(--hot) inset, 0 0 18px var(--glow), 0 6px 22px rgba(0, 0, 0, 0.5);
+      transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease; touch-action: manipulation; }
+    .rt-btn-arrow { width: 16px; height: 16px; transition: transform 160ms ease; }
+    .rt-btn:hover { background: var(--hot); transform: translateY(-2px); box-shadow: 0 0 0 1px var(--hot) inset, 0 0 30px var(--glow), 0 10px 26px rgba(0, 0, 0, 0.55); }
+    .rt-btn:hover .rt-btn-arrow, .rt-btn:focus-visible .rt-btn-arrow { transform: translateX(3px); }
+    .rt-btn:active { transform: translateY(0) scale(0.97); }
+    .rt-btn:focus-visible { outline: 2px solid var(--hot); outline-offset: 4px; }
     .rt-proj.is-on { pointer-events: auto; }
+    /* Side tracker: one tick per project, a fill that follows scroll, the counter on top. */
+    .rt-track { position: absolute; z-index: 12; right: clamp(16px, 2.4vw, 36px); top: 50%; height: min(46vh, 380px);
+      display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+      transform: translate(calc(100% + 60px), -50%); visibility: hidden;
+      transition: transform 380ms cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s linear 380ms; }
+    .rt-track.is-on { transform: translate(0, -50%); visibility: visible; transition: transform 380ms cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s; }
+    .rt-track-count { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; color: var(--acc); text-shadow: 0 0 8px var(--glow); }
+    .rt-track-rail { position: relative; flex: 1; width: 2px; margin-right: 7px; background: rgba(255, 244, 250, 0.16); }
+    .rt-track-fill { position: absolute; inset: 0; background: var(--acc); box-shadow: 0 0 8px var(--glow); transform-origin: 50% 0; transform: scaleY(0); }
+    .rt-tick { position: absolute; right: -21px; height: 44px; min-width: 44px; margin-top: -22px; padding: 0 14px 0 8px; border: 0; background: none;
+      display: flex; align-items: center; justify-content: flex-end; gap: 12px; cursor: pointer; font: inherit; color: rgba(240, 232, 240, 0.55); touch-action: manipulation; }
+    .rt-tick-dot { width: 10px; height: 10px; flex: none; border-radius: 50%; background: #0a0006; box-shadow: 0 0 0 2px rgba(255, 244, 250, 0.4); transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease; }
+    .rt-tick-name { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; white-space: nowrap; transition: color 200ms ease, transform 200ms ease; }
+    .rt-tick:hover { color: #fff4fa; }
+    .rt-tick:hover .rt-tick-dot { transform: scale(1.25); }
+    .rt-tick:focus-visible { outline: 2px solid var(--acc); outline-offset: -4px; border-radius: 22px; }
+    .rt-tick.is-active { color: var(--acc); }
+    .rt-tick.is-active .rt-tick-name { transform: translateX(-4px); text-shadow: 0 0 8px var(--glow); }
+    .rt-tick.is-active .rt-tick-dot { background: var(--acc); box-shadow: 0 0 0 2px var(--acc), 0 0 14px var(--glow); transform: scale(1.3); }
+    .rt-track-now { display: none; }
     @media (max-width: 699px) {
-      .rt-proj { top: 79%; }
+      .rt-proj { top: 71%; padding-right: 40px; }
       .rt-proj-in { display: block; }
       .rt-proj-idx { font-size: 12px; margin-bottom: 4px; }
-      .rt-proj-link { display: inline-block; font-size: 13px; margin-top: 6px; }
+      .rt-btn { margin-top: 12px; min-height: 48px; font-size: 14px; }
+      /* Phone tracker: slim, ticks only, the active name runs down the edge. */
+      .rt-track { right: 6px; top: 13%; height: 46%; transform: translateX(calc(100% + 30px)); gap: 8px; }
+      .rt-track.is-on { transform: none; }
+      .rt-track-count { font-size: 10px; letter-spacing: 1px; writing-mode: vertical-rl; }
+      .rt-track-rail { margin-right: 6px; }
+      .rt-tick { right: -21px; padding: 0; justify-content: center; }
+      .rt-tick-name { display: none; }
+      .rt-tick-dot { width: 8px; height: 8px; }
+      .rt-track-now { display: block; margin: 0; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+        writing-mode: vertical-rl; color: var(--acc); text-shadow: 0 0 8px var(--glow); }
     }
     /* Reduce Motion: the same three objects as stills, each with its name and link. */
     .rt-workstill { display: none; background: var(--rt-bg); }
@@ -84,57 +123,11 @@
           <p>FORCE MULTIPLIER.</p>
         </div>
       </div>
-      <div class="rt-proj" data-i="0" style="--acc:#f4b020;--glow:rgba(244,176,32,0.55);--rt-ink:#fff4fa">
-        <div class="rt-proj-in">
-          <div><p class="rt-proj-idx">01 / 15</p><h2 class="rt-proj-name">LOOTLENS</h2><p class="rt-proj-line">AI resale scanner for iOS.</p></div>
-          <a class="rt-proj-link" href="https://lootlens.ai/" target="_blank" rel="noopener" tabindex="-1">VISIT SITE &nbsp;-&gt;</a>
-        </div>
-      </div>
-      <div class="rt-proj" data-i="1" style="--acc:#64e6f0;--glow:rgba(100,230,240,0.5);--rt-ink:#fff4fa">
-        <div class="rt-proj-in">
-          <div><p class="rt-proj-idx">02 / 15</p><h2 class="rt-proj-name">IRONPARSE</h2><p class="rt-proj-line">Mainframe COBOL, modernized.</p></div>
-          <a class="rt-proj-link" href="https://ironparse.com/" target="_blank" rel="noopener" tabindex="-1">VISIT SITE &nbsp;-&gt;</a>
-        </div>
-      </div>
-      <div class="rt-proj" data-i="2" style="--acc:#ff8cc8;--glow:rgba(255,140,200,0.55);--rt-ink:#fff4fa">
-        <div class="rt-proj-in">
-          <div><p class="rt-proj-idx">03 / 15</p><h2 class="rt-proj-name">AURAJAM</h2><p class="rt-proj-line">AI DJ transitions.</p></div>
-          <a class="rt-proj-link" href="https://aurajam.com/" target="_blank" rel="noopener" tabindex="-1">VISIT SITE &nbsp;-&gt;</a>
-        </div>
-      </div>
     </section>
     <div class="rt-mark" id="rt-unravel"></div>
     <div class="rt-mark" id="rt-workrun"></div>
   </div>
-  <section class="rt-workstill" id="rt-workstill" aria-label="Work">
-    <figure class="rt-still" data-i="0">
-      <img alt="LootLens, drawn in scanline dots" width="1440" height="900">
-      <div class="rt-proj" data-i="0" style="--acc:#f4b020;--glow:rgba(244,176,32,0.55);--rt-ink:#fff4fa">
-        <div class="rt-proj-in">
-          <div><p class="rt-proj-idx">01 / 15</p><h2 class="rt-proj-name">LOOTLENS</h2><p class="rt-proj-line">AI resale scanner for iOS.</p></div>
-          <a class="rt-proj-link" href="https://lootlens.ai/" target="_blank" rel="noopener" >VISIT SITE &nbsp;-&gt;</a>
-        </div>
-      </div>
-    </figure>
-    <figure class="rt-still" data-i="1">
-      <img alt="IronParse, drawn in scanline dots" width="1440" height="900">
-      <div class="rt-proj" data-i="1" style="--acc:#64e6f0;--glow:rgba(100,230,240,0.5);--rt-ink:#fff4fa">
-        <div class="rt-proj-in">
-          <div><p class="rt-proj-idx">02 / 15</p><h2 class="rt-proj-name">IRONPARSE</h2><p class="rt-proj-line">Mainframe COBOL, modernized.</p></div>
-          <a class="rt-proj-link" href="https://ironparse.com/" target="_blank" rel="noopener" >VISIT SITE &nbsp;-&gt;</a>
-        </div>
-      </div>
-    </figure>
-    <figure class="rt-still" data-i="2">
-      <img alt="AuraJam, drawn in scanline dots" width="1440" height="900">
-      <div class="rt-proj" data-i="2" style="--acc:#ff8cc8;--glow:rgba(255,140,200,0.55);--rt-ink:#fff4fa">
-        <div class="rt-proj-in">
-          <div><p class="rt-proj-idx">03 / 15</p><h2 class="rt-proj-name">AURAJAM</h2><p class="rt-proj-line">AI DJ transitions.</p></div>
-          <a class="rt-proj-link" href="https://aurajam.com/" target="_blank" rel="noopener" >VISIT SITE &nbsp;-&gt;</a>
-        </div>
-      </div>
-    </figure>
-  </section>
+  <section class="rt-workstill" id="rt-workstill" aria-label="Work"></section>
   <div class="rt-work" id="rt-work">
 <section class="section" id="work">
     <div class="section-label reveal">WORK</div>
@@ -276,6 +269,8 @@
   </script>
   <script type="module">
     import { mount } from '../../js/ranger-tab/hero.js';
+    import { WORK_LEN } from '../../js/ranger-tab/work.js';
+    import { sizePin, buildCopy, buildStills, buildTracker, slide } from '../../js/ranger-tab/work-ui.js';
     const q = new URLSearchParams(location.search);
     const motion = document.documentElement.classList.contains('rt-motion');
     const work = document.getElementById('rt-work');
@@ -283,16 +278,21 @@
     work.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
     const smooth = (a, b, v) => { const t = Math.min(1, Math.max(0, (v - a) / (b - a))); return t * t * (3 - 2 * t); };
     const intro = document.querySelector('.rt-intro');
-    const projs = [...document.querySelectorAll('#hero .rt-proj')];
-    // Copy for project i: rises in over the last 40% of its scatter, leaves over the first 40% of the next.
-    function slide(i, u) {
-      const s = u - i;
-      if (s < 0.5) return 1 - smooth(0.18, 0.3, s);
-      if (s < 1.5) return -smooth(1.0, 1.12, s);
-      return -1;
-    }
+    const heroEl = document.getElementById('hero');
+    const run = document.getElementById('rt-workrun');
+    sizePin({ pin: document.getElementById('rt-pin'), run, unravel: document.getElementById('rt-unravel') });
+    const projs = motion ? buildCopy(heroEl) : [];
+    const stills = motion ? [] : buildStills(document.getElementById('rt-workstill'));
+    // One vh unit of the run, read off the marker (iOS toolbar safe).
+    const unit = () => run.offsetHeight / (WORK_LEN + 1);
+    const runTop = () => run.getBoundingClientRect().top + scrollY;
+    // ?motion=on overrides Reduce Motion everywhere on this page, the tracker jump included.
+    const reduce = () => !(q.get('motion') === 'on') && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const scrollToU = (u, instant) => scrollTo({ top: Math.round(runTop() + u * unit()), behavior: instant ? 'auto' : 'smooth' });
+    let tracker = null;
     let lastKey = '';
     function onWork(u) {
+      if (tracker) tracker.update(u);
       const k = smooth(0, 0.2, u);
       const vals = projs.map((_, i) => slide(i, u));
       const key = k.toFixed(3) + vals.map((v) => v.toFixed(3)).join();
@@ -301,7 +301,7 @@
       intro.style.transform = k > 0 ? `translateY(calc(${k.toFixed(3)} * (-100% - 90px)))` : '';
       projs.forEach((el, i) => {
         const v = vals[i];
-        el.firstElementChild.style.transform = `translateY(${(v * 110).toFixed(1)}%)`;
+        el.firstElementChild.style.transform = `translateY(calc(${(v * 110).toFixed(1)}% + ${(v * 44).toFixed(1)}px))`;
         const on = Math.abs(v) < 0.05;
         el.classList.toggle('is-on', on);
         el.querySelector('a').tabIndex = on ? 0 : -1;
@@ -319,7 +319,7 @@
       // Reduce Motion: draw each object once through the same renderer and show it still.
       hero.ready.then((mode) => {
         if (mode === 'fallback') return;
-        document.querySelectorAll('.rt-still').forEach((fig, i) => {
+        stills.forEach((fig, i) => {
           const url = hero.api.workStill(i);
           if (url) fig.querySelector('img').src = url;
         });
@@ -327,10 +327,12 @@
     }
     window.__rangerTab = hero;
     // Lab hook for device captures: ?at=<u> scrolls to that point of the work run.
-    if (motion && q.has('at')) hero.ready.then(() => {
-      const m = document.getElementById('rt-workrun');
-      scrollTo(0, m.getBoundingClientRect().top + scrollY + +q.get('at') * (m.offsetHeight / 4.3));
-    });
+    if (motion && q.has('at')) hero.ready.then(() => scrollToU(+q.get('at'), true));
+    if (motion) {
+      tracker = buildTracker(heroEl, { holdU: (i) => hero.api.workHoldU(i), scrollToU, reduce });
+      // A click on the held object (the Rollick coin flips), never on the copy or tracker.
+      document.getElementById('game-container').addEventListener('click', (e) => hero.api.workTap(e.clientX, e.clientY));
+    }
   </script>
 </body>
 </html>
