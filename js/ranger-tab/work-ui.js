@@ -64,6 +64,12 @@ export function buildTracker(hero, { holdU, scrollToU, reduce }) {
   const count = nav.querySelector('.rt-track-count');
   const now = nav.querySelector('.rt-track-now');
   ticks.forEach((b, i) => b.addEventListener('click', () => scrollToU(holdU(i), reduce())));
+  // Hit areas are 44px tall unless the ticks sit closer than that; then each
+  // takes exactly its share of the rail, so neighbours never overlap.
+  const rail = nav.querySelector('.rt-track-rail');
+  const fit = () => { nav.style.setProperty('--tick-h', Math.min(44, Math.floor(rail.clientHeight / WORK_LEN)) + 'px'); };
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(rail);
+  fit();
   let last = { on: null, act: -2, f: -1 };
   function update(u) {
     const on = u > 0.12 && u < WORK_LEN - 0.08;
@@ -79,7 +85,7 @@ export function buildTracker(hero, { holdU, scrollToU, reduce }) {
       const p = PROJECTS[act < 0 ? PROJECTS.length - 1 : act];
       count.textContent = counterOf(act < 0 ? PROJECTS.length - 1 : act);
       now.textContent = p.name;
-      nav.style.cssText = vars(p);
+      for (const [k, v] of vars(p).split(';').map((d) => d.split(':'))) nav.style.setProperty(k, v);
     }
     if (Math.abs(f - last.f) > 0.0005) fill.style.transform = `scaleY(${f.toFixed(4)})`;
     last = { on, act, f };

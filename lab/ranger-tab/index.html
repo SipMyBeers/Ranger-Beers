@@ -51,7 +51,7 @@
     .rt-btn:focus-visible { outline: 2px solid var(--hot); outline-offset: 4px; }
     .rt-proj.is-on { pointer-events: auto; }
     /* Side tracker: one tick per project, a fill that follows scroll, the counter on top. */
-    .rt-track { position: absolute; z-index: 12; right: clamp(16px, 2.4vw, 36px); top: 50%; height: min(46vh, 380px);
+    .rt-track { position: absolute; z-index: 12; right: clamp(16px, 2.4vw, 36px); top: 50%; height: min(72vh, 600px);
       display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
       transform: translate(calc(100% + 60px), -50%); visibility: hidden;
       transition: transform 380ms cubic-bezier(0.2, 0.7, 0.2, 1), visibility 0s linear 380ms; }
@@ -59,7 +59,7 @@
     .rt-track-count { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; color: var(--acc); text-shadow: 0 0 8px var(--glow); }
     .rt-track-rail { position: relative; flex: 1; width: 2px; margin-right: 7px; background: rgba(255, 244, 250, 0.16); }
     .rt-track-fill { position: absolute; inset: 0; background: var(--acc); box-shadow: 0 0 8px var(--glow); transform-origin: 50% 0; transform: scaleY(0); }
-    .rt-tick { position: absolute; right: -21px; height: 44px; min-width: 44px; margin-top: -22px; padding: 0 14px 0 8px; border: 0; background: none;
+    .rt-tick { position: absolute; right: -21px; height: var(--tick-h, 44px); min-width: 44px; margin-top: calc(var(--tick-h, 44px) / -2); padding: 0 14px 0 8px; border: 0; background: none;
       display: flex; align-items: center; justify-content: flex-end; gap: 12px; cursor: pointer; font: inherit; color: rgba(240, 232, 240, 0.55); touch-action: manipulation; }
     .rt-tick-dot { width: 10px; height: 10px; flex: none; border-radius: 50%; background: #0a0006; box-shadow: 0 0 0 2px rgba(255, 244, 250, 0.4); transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease; }
     .rt-tick-name { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; white-space: nowrap; transition: color 200ms ease, transform 200ms ease; }
@@ -76,7 +76,7 @@
       .rt-proj-idx { font-size: 12px; margin-bottom: 4px; }
       .rt-btn { margin-top: 12px; min-height: 48px; font-size: 14px; }
       /* Phone tracker: slim, ticks only, the active name runs down the edge. */
-      .rt-track { right: 6px; top: 13%; height: 46%; transform: translateX(calc(100% + 30px)); gap: 8px; }
+      .rt-track { right: 6px; top: 8%; height: 66%; transform: translateX(calc(100% + 30px)); gap: 8px; }
       .rt-track.is-on { transform: none; }
       .rt-track-count { font-size: 10px; letter-spacing: 1px; writing-mode: vertical-rl; }
       .rt-track-rail { margin-right: 6px; }

@@ -147,7 +147,7 @@ function drum(key) {
   const R0 = -Math.PI / 2 - 0.03;
   return meshBase(group, { d: [0.6, 0.44, 0.25], m: [0.5, 0.37, 0.36] }, (c) => {
     const amp = inHold(c);
-    spin.rotation.set(0, R0 + 1.0 * Math.sin(c.t * 0.33) * amp, 0);
+    spin.rotation.set(0, R0 + 1.0 * Math.sin((c.t - 3.7) * 0.33) * amp, 0); // Reduce Motion clock (3.7) rests on R0
     group.rotation.set(0.2 + 0.03 * Math.sin(c.t * 0.5), 0, -0.05);
   }, (x) => x.userData.sh);
 }
