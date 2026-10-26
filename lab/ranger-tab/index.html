@@ -280,7 +280,8 @@
     const intro = document.querySelector('.rt-intro');
     const heroEl = document.getElementById('hero');
     const run = document.getElementById('rt-workrun');
-    sizePin({ pin: document.getElementById('rt-pin'), run, unravel: document.getElementById('rt-unravel') });
+    // The tab stills over 60vh, then the work run tears it straight into the first project.
+    sizePin({ pin: document.getElementById('rt-pin'), run, unravel: document.getElementById('rt-unravel'), lead: 60 });
     const projs = motion ? buildCopy(heroEl) : [];
     const stills = motion ? [] : buildStills(document.getElementById('rt-workstill'));
     // One vh unit of the run, read off the marker (iOS toolbar safe).
@@ -313,6 +314,7 @@
       pinEl: motion ? document.getElementById('rt-unravel') : null,
       workEl: motion ? document.getElementById('rt-workrun') : null,
       work: !motion,
+      tear: true,
       onWork: motion ? onWork : null,
     });
     if (!motion) {

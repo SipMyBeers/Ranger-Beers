@@ -21,11 +21,14 @@ function block(p, i, live) {
 }
 
 // Pin lengths follow the array: 150vh of unravel, then (WORK_LEN + 1) x 100vh of run.
-export function sizePin({ pin, run, unravel }) {
+// lead: vh of scroll before the work run starts (the unravel, or with tear
+// only the tab stilling and the lines laying flat).
+export function sizePin({ pin, run, unravel, lead = 150 }) {
   const runVh = (WORK_LEN + 1) * 100;
   run.style.height = runVh + 'vh';
-  pin.style.height = 150 + runVh + 'vh';
-  if (unravel) unravel.style.height = '250vh';
+  run.style.top = lead + 'vh';
+  pin.style.height = lead + runVh + 'vh';
+  if (unravel) unravel.style.height = 100 + lead + 'vh';
 }
 
 export function buildCopy(hero) {

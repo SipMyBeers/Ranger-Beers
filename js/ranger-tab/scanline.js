@@ -153,6 +153,9 @@ uniform float uDpr, uT, uIntro, uBand, uExposure, uScroll;
 uniform float uTop, uSpacing, uLines, uRidgeT;
 uniform float uP, uTabTop, uRowsN, uPart, uPartUp; // unravel progress, tab row grid, curtain
 uniform float uWorkObj, uForm, uRidgeRamp; // work run: shade-coded object, dissolve, per-line ramp
+uniform float uTabHole;     // >= 0: the tab is handing its dots to the flock; torn pixels stay dark, dissolving away as uTabHole falls
+uniform float uTearE;       // work scatter progress e while the tab tears
+uniform sampler2D tTabDepth; // per pixel depth inside the tab's outline (0 edge, 1 core), from the seed read-back
 uniform vec4 uPts[${MAX_PTS}];
 uniform float uAge[${MAX_PTS}];
 uniform float uRadius;      // device px
@@ -223,13 +226,22 @@ void main() {
   vec4 here = texture2D(tScene, suv);
   bool tabHere = here.a >= 0.25;
   bool isLetter = here.a >= 0.62 && here.a < 0.82;
+  bool tabLive = false;
 #ifndef TAB_ONLY
   // Rows that have unravelled leave a hole the ridge field shows through.
   if (tabHere && uP > 0.149 && uWorkObj < 0.5) {
     float j = clamp(floor((y - uTabTop) / ROW), 0.0, max(uRowsN - 1.0, 0.0));
     if (uP >= startOf(j, isLetter ? 1.0 : 0.0)) tabHere = false;
   }
+  // Tear: a tab pixel stays as drawn until its own moment (outline first,
+  // the same rule its flock dot uses to appear), then goes dark.
+  if (tabHere && uTabHole >= 0.0) {
+    if (uTearE < 0.02 + 0.3 * texture2D(tTabDepth, suv).r) tabLive = true;
+    else if (hash(vec2(di + 3.1, floor(y / ROW))) < uTabHole) { gl_FragColor = vec4(uPal[0], 1.0); return; }
+    else tabHere = false;
+  }
 #endif
+  float wObj = tabLive ? 0.0 : uWorkObj;
   if (tabHere) {
     // ── Tab: rows are contours of v = y + wave + surface height, so they bend
     // over the bevels and letters like a topographic scan.
@@ -237,7 +249,7 @@ void main() {
     vec3 n = normalize(nz.xyz + vec3(0.0, 0.0, 1e-4));
     float h = 1.5 / uCss.y;
     // Work objects are big and steeply tilted: a gentler bend keeps their rows whole.
-    float topoK = uWorkObj > 0.5 ? 0.3 : 1.0;
+    float topoK = wObj > 0.5 ? 0.3 : 1.0;
     float topo = nz.a * uTopo * topoK;
     float dTopo = (texture2D(tNorm, suv - vec2(0.0, h)).a - texture2D(tNorm, suv + vec2(0.0, h)).a) * uTopo * topoK / 3.0;
     float v = y + amp * wave(x, y) + topo;
@@ -250,14 +262,14 @@ void main() {
     float r = floor(v / rp);
     float vc = (r + 0.5) * rp + (hash(vec2(di, r)) - 0.5) * 1.0; // 1px jitter
     if (abs(v - vc) / g <= (letter ? 0.6 : 0.7) && onIntro(x, y) > 0.5
-        && (uWorkObj < 0.5 || hash(vec2(di + 7.3, floor(y / ROW))) < uForm)) { // rows ~1.4 css tall: the glow needs a dark gap to read as lines
+        && (wObj < 0.5 || hash(vec2(di + 7.3, floor(y / ROW))) < uForm)) { // rows ~1.4 css tall: the glow needs a dark gap to read as lines
       vec3 c = pow(1.0 - exp(-here.rgb * uExposure), vec3(1.0 / 2.2));
       float L = dot(c, vec3(0.2126, 0.7152, 0.0722));
       float ndl = dot(n, uKey);
       // Hue from the lit normal: toward the key = violet to white, sideways =
       // saturated orange, grazing/shadowed = magenta-red.
       float t, dens, gain;
-      if (uWorkObj > 0.5) {           // work object: its own material wrote a 0..1 shade into r
+      if (wObj > 0.5) {           // work object: its own material wrote a 0..1 shade into r
         float s = here.r;
         t = s; gain = 1.0;
         dens = s < 0.02 ? 0.0 : 0.38 + 0.62 * smoothstep(0.05, 0.6, s); // even dim fill, never blotchy
@@ -411,6 +423,9 @@ export function makeScanlinePass(sceneTex, normTex, partTex, paletteName = 'refe
     uForm: { value: 1 },
     uRidgeRamp: { value: 0 },
     uLiftK: { value: 1 },
+    uTabHole: { value: -1 },
+    uTearE: { value: 0 },
+    tTabDepth: { value: null },
     uShock: { value: Array.from({ length: 4 }, () => new THREE.Vector4(0, 0, 99, 0)) },
   };
   const ridgeMat = new THREE.ShaderMaterial({
@@ -472,6 +487,12 @@ export function makeScanlinePass(sceneTex, normTex, partTex, paletteName = 'refe
     const sw = w <= 0.25 ? 0 : w >= 0.75 ? 1 : ((x) => x * x * (3 - 2 * x))((w - 0.25) / 0.5);
     stripMat.uniforms.uAmber.value.copy(a).lerp(b, sw).multiplyScalar(1.15);
   }
+  // The tab as the stipple draws it, one texel per css px, read back once so
+  // the work flock can start on exactly those dots (work.js seedFromTab).
+  const seedRT = new THREE.WebGLRenderTarget(1, 1, {
+    type: THREE.FloatType, minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, depthBuffer: false,
+  });
+  let seedBuf = new Float32Array(4);
   const stripMesh = new THREE.Mesh(stripGeo, stripMat);
   stripMesh.frustumCulled = false;
   const stripScene = new THREE.Scene();
@@ -518,6 +539,21 @@ export function makeScanlinePass(sceneTex, normTex, partTex, paletteName = 'refe
         if (s) sh[i].set(s[0], s[1], s[2], 0); else sh[i].set(0, 0, 99, 0);
       }
     },
+    // Tab-only stipple at k texels per css px: { data (rgba, rows bottom-up), w, h }.
+    readTab(renderer, k = 1) {
+      const w = Math.max(1, Math.round(shared.uCss.value.x * k)), h = Math.max(1, Math.round(shared.uCss.value.y * k));
+      if (seedRT.width !== w || seedRT.height !== h) seedRT.setSize(w, h);
+      if (seedBuf.length !== w * h * 4) seedBuf = new Float32Array(w * h * 4);
+      const keep = [shared.uDpr.value, shared.uWorkObj.value];
+      shared.uDpr.value = k; shared.uWorkObj.value = 0;
+      renderer.setRenderTarget(seedRT);
+      renderer.setClearColor(0x000000, 0);
+      renderer.clear(true, false, false);
+      renderer.render(tabOnly.scene, cam);
+      [shared.uDpr.value, shared.uWorkObj.value] = keep;
+      renderer.readRenderTargetPixels(seedRT, 0, 0, w, h, seedBuf);
+      return { data: seedBuf, w, h };
+    },
     render(renderer, target) {
       renderer.setRenderTarget(ridgeRT);
       renderer.render(ridge.scene, cam);
@@ -536,7 +572,7 @@ export function makeScanlinePass(sceneTex, normTex, partTex, paletteName = 'refe
     dispose() {
       ridgeRT.dispose(); ridgeMat.dispose(); mainMat.dispose();
       ridge.geo.dispose(); main.geo.dispose();
-      tabRT.dispose(); tabMat.dispose(); tabOnly.geo.dispose(); stripGeo.dispose(); stripMat.dispose();
+      tabRT.dispose(); seedRT.dispose(); tabMat.dispose(); tabOnly.geo.dispose(); stripGeo.dispose(); stripMat.dispose();
     },
   };
 }

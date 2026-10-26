@@ -152,7 +152,10 @@ export function mount(container, opts = {}) {
   const U = pass.uniforms;
   const G = bloom.uniforms;
   G.uSwap.value = palette === 'gold' ? 0 : 1;
-  const work = opts.workEl || opts.work ? makeWork({ scene, U, lights, camera }) : null;
+  // opts.tear: the work run starts on the whole, stilled tab and tears it apart
+  // (no unravel); see work.js seedFromTab.
+  const tear = !!opts.tear;
+  const work = opts.workEl || opts.work ? makeWork({ scene, U, lights, camera, tear }) : null;
 
   const pivot = new THREE.Group(); // tilt + yaw
   scene.add(pivot);
@@ -267,7 +270,8 @@ export function mount(container, opts = {}) {
     const motion = !reduce;
     if (motion && dt > 0) spring(st.p, st.pRaw, 9, dt);
     const p = motion ? clamp(st.p.x, 0, 1) : 0;
-    const still = smooth(0, 0.15, p); // sway damps to still before the unravel
+    // Sway damps to still before the unravel (tear: before the work run tears the tab).
+    const still = tear ? smooth(0, 0.5, p) : smooth(0, 0.15, p);
     const intro = motion ? clamp(t / INTRO_S, 0, 1) : 1;
     U.uIntro.value = motion ? easeOut(intro) : 1;
     U.uT.value = motion ? t : 3.7;
@@ -309,18 +313,21 @@ export function mount(container, opts = {}) {
     const u = work ? clamp(st.u.x, 0, WORK_LEN) : 0;
     const inWork = u > 0.0005;
     if (tab) tab.group.visible = !inWork;
-    const r = p > 0.149 && !inWork ? tabRect() : null;
+    // Tear: no unravel rows, no curtains; p only stills the tab and lays the lines flat.
+    const pU = tear ? Math.min(p, 0.149) : p;
+    const r = pU > 0.149 && !inWork ? tabRect() : null;
     st.shocks = st.shocks.filter((s) => t - s.t < 0.7);
     pass.setUnravel({
-      p,
+      p: pU,
       tabTop: r ? r.y0 : 0, tabBottom: r ? r.y1 : 0, x0: r ? r.x0 : 0, x1: r ? r.x1 : 1,
-      part: (() => { const c = smooth(0.8, 1, p); return c * c * (3 - 2 * c); })(),
-      liftK: 1 - smooth(0.2, 0.6, p),
+      part: tear ? 0 : (() => { const c = smooth(0.8, 1, p); return c * c * (3 - 2 * c); })(),
+      liftK: tear ? 1 - smooth(0.3, 1, p) : 1 - smooth(0.2, 0.6, p),
       shocks: st.shocks.slice(0, 4).map((s) => [s.x, s.y, t - s.t]),
     });
     if (opts.onProgress) opts.onProgress(p);
     if (work) {
       work.update({ u, t: motion ? t : 3.7, view, dpr, pointer: st.pointer });
+      if (tab) tab.group.visible = !inWork || work.tabShown;
       G.uChroma.value = 1.75 * dpr * work.chromaK;
       if (opts.onWork) opts.onWork(u);
     }
@@ -368,6 +375,7 @@ export function mount(container, opts = {}) {
     renderer.render(particles.scene, camera);
     renderer.autoClear = true;
     // stipple into the glow base, then halo, chroma split and composite to screen
+    if (work) work.preRender(renderer, pass, now());
     pass.render(renderer, bloom.target);
     if (work) work.renderFlock(renderer, camera, bloom.target);
     bloom.finish(renderer);
@@ -568,6 +576,7 @@ export function mount(container, opts = {}) {
     get progressRaw() { return st.pRaw; },
     get work() { return st.u.x; },
     setWork(u) { st.uRaw = u; st.u.x = u; st.u.v = 0; },
+    get workSeed() { return work ? work.seedInfo : null; },
     // A still of project i fully formed (Reduce Motion list); leaves the hero as it was.
     workStill(i) {
       if (!work || !tab) return null;
