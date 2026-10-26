@@ -384,13 +384,14 @@ export function makeWork({ scene, U, lights, camera }) {
     const S = Math.min(W, H * 1.4);
     const px = view.visH / H;
     // LootLens: magnifier. Turns slowly at rest, a light runs round the rim, scroll adds a little yaw.
+    // The yaw phase is set so the Reduce Motion clock (t 3.7) lands face on.
     if (from === LL || to === LL) {
       const cx = mobile ? W * 0.45 : W * 0.56, cy = mobile ? H * 0.36 : H * 0.40;
       const R = S * (mobile ? 0.26 : 0.17) * px;
       at(view, cx, cy, lens.group.position);
       lens.group.scale.setScalar(R);
       const hold = to === LL ? ph.h : 0;
-      lens.group.rotation.set(0.38 + 0.06 * Math.sin(t * 0.5), 0.42 * Math.sin((2 * Math.PI * t) / 11) + 0.5 * (hold - 0.5), 0.04 * Math.sin(t * 0.37));
+      lens.group.rotation.set(0.38 + 0.06 * Math.sin(t * 0.5), 0.42 * Math.sin((2 * Math.PI * (t - 3.7)) / 11) + 0.5 * (hold - 0.5), 0.04 * Math.sin(t * 0.37));
       lens.ringM.uniforms.uSweep.value = t * 1.5;
       lens.group.visible = true;
     }
@@ -445,7 +446,8 @@ export function makeWork({ scene, U, lights, camera }) {
     update, renderFlock,
     get active() { return active; },
     // u that holds project i (0 LootLens, 1 IronParse, 2 AuraJam) fully formed.
-    holdU: (i) => i + 0.95,
+    // (0.65 = mid hold, the rest pose; IronParse later so its path is drawn.)
+    holdU: (i) => [0.65, 1.97, 2.65][i],
     dispose() {
       if (flock) flock.dispose();
       lens.group.traverse((o) => { if (o.geometry) o.geometry.dispose(); });
