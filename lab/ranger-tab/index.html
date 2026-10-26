@@ -17,24 +17,50 @@
        container and kills position: sticky. Clip on html instead. */
     html { background: var(--rt-bg); overflow-x: clip; scroll-behavior: auto; }
     body { background: var(--rt-bg); overflow-x: visible; }
-    .rt-pin { position: relative; height: 250vh; }
+    /* One pin: 150vh of unravel, then the work run (3 x 100vh plus 30vh home). */
+    .rt-pin { position: relative; height: 580vh; }
+    .rt-mark { position: absolute; left: 0; width: 1px; pointer-events: none; visibility: hidden; }
+    #rt-unravel { top: 0; height: 250vh; }
+    #rt-workrun { top: 150vh; height: 430vh; }
     .rt-hero { position: sticky; top: 0; width: 100%; height: 100svh; min-height: 540px; overflow: hidden; background: var(--rt-bg); z-index: 1; }
     .rt-game { position: absolute; inset: 0; z-index: 0; }
     .rt-intro { position: absolute; top: clamp(32px, 6vh, 56px); left: clamp(16px, 4vw, 48px); z-index: 10; pointer-events: none; }
     .rt-name { font-size: clamp(14px, 1.8vw, 18px); font-weight: 800; letter-spacing: 4px; color: var(--text-bright); margin-bottom: clamp(16px, 3vh, 28px); }
     .rt-roles p { font-size: clamp(11px, 1.4vw, 14px); font-weight: 500; letter-spacing: 2px; line-height: 1.8; text-transform: uppercase; }
     .rt-roles s { color: var(--text-muted); text-decoration-thickness: 1.5px; margin-right: 8px; }
-    /* WORK sits over the last pinned screen and comes in through the parted lines. */
-    .rt-work { position: relative; z-index: 3; margin-top: -100svh; min-height: 100svh; background: var(--rt-bg); padding-top: clamp(24px, 6vh, 64px); }
-    .rt-motion .rt-work { opacity: 0; visibility: hidden; will-change: opacity, clip-path, transform; }
+    .rt-intro { will-change: transform; }
+    /* Work run copy: each block slides up into its own clip box, transform only. */
+    .rt-proj { position: absolute; left: 0; right: 0; top: 74%; z-index: 10; overflow: hidden; pointer-events: none;
+      padding: 4px clamp(16px, 3.4vw, 48px) 12px; }
+    .rt-proj-in { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; transform: translateY(110%); will-change: transform; }
+    .rt-proj-idx { font-size: 15px; font-weight: 700; letter-spacing: 1px; color: var(--rt-ink); margin: 0 0 6px; }
+    .rt-proj-name { font-size: clamp(36px, 4.45vw, 64px); font-weight: 800; letter-spacing: 1px; line-height: 1.05; margin: 0; color: var(--acc);
+      text-shadow: 0 0 6px var(--acc), 0 0 22px var(--glow); }
+    .rt-proj-line { font-size: clamp(13px, 1.4vw, 20px); font-weight: 500; color: #f0e8f0; margin: 6px 0 0; text-shadow: 0 0 3px rgba(240, 232, 240, 0.45); }
+    .rt-proj-link { font-size: 16px; font-weight: 700; letter-spacing: 1px; color: var(--acc); text-decoration: none; white-space: nowrap;
+      text-shadow: 0 0 8px var(--glow); padding: 6px 0; }
+    .rt-proj-link:hover, .rt-proj-link:focus-visible { color: var(--rt-ink); }
+    .rt-proj.is-on { pointer-events: auto; }
+    @media (max-width: 699px) {
+      .rt-proj { top: 79%; }
+      .rt-proj-in { display: block; }
+      .rt-proj-idx { font-size: 12px; margin-bottom: 4px; }
+      .rt-proj-link { display: inline-block; font-size: 13px; margin-top: 6px; }
+    }
+    /* Reduce Motion: the same three objects as stills, each with its name and link. */
+    .rt-workstill { display: none; background: var(--rt-bg); }
+    .rt-still { position: relative; margin: 0; }
+    .rt-still img { display: block; width: 100%; height: auto; }
+    .rt-still .rt-proj { position: absolute; pointer-events: auto; }
+    .rt-still .rt-proj-in { transform: none; }
+    html:not(.rt-motion) .rt-workstill { display: block; }
+    html:not(.rt-motion) .rt-mark { display: none; }
+    .rt-work { position: relative; z-index: 3; background: var(--rt-bg); padding-top: clamp(24px, 6vh, 64px); }
     .rt-work .section { margin-top: 0; }
     .rt-tail { height: 40vh; }
     /* Reduce Motion: no pin, no unravel; WORK simply follows a static hero. */
     html:not(.rt-motion) .rt-pin { height: auto; }
     html:not(.rt-motion) .rt-hero { position: relative; }
-    html:not(.rt-motion) .rt-work { margin-top: 0; animation: rt-fade 0.4s ease-out both; }
-    @keyframes rt-fade { from { opacity: 0; } to { opacity: 1; } }
-    @media (prefers-reduced-motion: reduce) { html:not(.rt-motion) .rt-work { animation: none; } }
   </style>
   <script>
     // Decide motion before first paint: Reduce Motion wins unless ?motion=on.
@@ -58,8 +84,57 @@
           <p>FORCE MULTIPLIER.</p>
         </div>
       </div>
+      <div class="rt-proj" data-i="0" style="--acc:#f4b020;--glow:rgba(244,176,32,0.55);--rt-ink:#fff4fa">
+        <div class="rt-proj-in">
+          <div><p class="rt-proj-idx">01 / 15</p><h2 class="rt-proj-name">LOOTLENS</h2><p class="rt-proj-line">AI resale scanner for iOS.</p></div>
+          <a class="rt-proj-link" href="https://lootlens.ai/" target="_blank" rel="noopener" tabindex="-1">VISIT SITE &nbsp;-&gt;</a>
+        </div>
+      </div>
+      <div class="rt-proj" data-i="1" style="--acc:#64e6f0;--glow:rgba(100,230,240,0.5);--rt-ink:#fff4fa">
+        <div class="rt-proj-in">
+          <div><p class="rt-proj-idx">02 / 15</p><h2 class="rt-proj-name">IRONPARSE</h2><p class="rt-proj-line">Mainframe COBOL, modernized.</p></div>
+          <a class="rt-proj-link" href="https://ironparse.com/" target="_blank" rel="noopener" tabindex="-1">VISIT SITE &nbsp;-&gt;</a>
+        </div>
+      </div>
+      <div class="rt-proj" data-i="2" style="--acc:#ff8cc8;--glow:rgba(255,140,200,0.55);--rt-ink:#fff4fa">
+        <div class="rt-proj-in">
+          <div><p class="rt-proj-idx">03 / 15</p><h2 class="rt-proj-name">AURAJAM</h2><p class="rt-proj-line">AI DJ transitions.</p></div>
+          <a class="rt-proj-link" href="https://aurajam.com/" target="_blank" rel="noopener" tabindex="-1">VISIT SITE &nbsp;-&gt;</a>
+        </div>
+      </div>
     </section>
+    <div class="rt-mark" id="rt-unravel"></div>
+    <div class="rt-mark" id="rt-workrun"></div>
   </div>
+  <section class="rt-workstill" id="rt-workstill" aria-label="Work">
+    <figure class="rt-still" data-i="0">
+      <img alt="LootLens, drawn in scanline dots" width="1440" height="900">
+      <div class="rt-proj" data-i="0" style="--acc:#f4b020;--glow:rgba(244,176,32,0.55);--rt-ink:#fff4fa">
+        <div class="rt-proj-in">
+          <div><p class="rt-proj-idx">01 / 15</p><h2 class="rt-proj-name">LOOTLENS</h2><p class="rt-proj-line">AI resale scanner for iOS.</p></div>
+          <a class="rt-proj-link" href="https://lootlens.ai/" target="_blank" rel="noopener" >VISIT SITE &nbsp;-&gt;</a>
+        </div>
+      </div>
+    </figure>
+    <figure class="rt-still" data-i="1">
+      <img alt="IronParse, drawn in scanline dots" width="1440" height="900">
+      <div class="rt-proj" data-i="1" style="--acc:#64e6f0;--glow:rgba(100,230,240,0.5);--rt-ink:#fff4fa">
+        <div class="rt-proj-in">
+          <div><p class="rt-proj-idx">02 / 15</p><h2 class="rt-proj-name">IRONPARSE</h2><p class="rt-proj-line">Mainframe COBOL, modernized.</p></div>
+          <a class="rt-proj-link" href="https://ironparse.com/" target="_blank" rel="noopener" >VISIT SITE &nbsp;-&gt;</a>
+        </div>
+      </div>
+    </figure>
+    <figure class="rt-still" data-i="2">
+      <img alt="AuraJam, drawn in scanline dots" width="1440" height="900">
+      <div class="rt-proj" data-i="2" style="--acc:#ff8cc8;--glow:rgba(255,140,200,0.55);--rt-ink:#fff4fa">
+        <div class="rt-proj-in">
+          <div><p class="rt-proj-idx">03 / 15</p><h2 class="rt-proj-name">AURAJAM</h2><p class="rt-proj-line">AI DJ transitions.</p></div>
+          <a class="rt-proj-link" href="https://aurajam.com/" target="_blank" rel="noopener" >VISIT SITE &nbsp;-&gt;</a>
+        </div>
+      </div>
+    </figure>
+  </section>
   <div class="rt-work" id="rt-work">
 <section class="section" id="work">
     <div class="section-label reveal">WORK</div>
@@ -207,36 +282,49 @@
     // The page owns its own reveal, so the site's .reveal items show at once.
     work.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
     const smooth = (a, b, v) => { const t = Math.min(1, Math.max(0, (v - a) / (b - a))); return t * t * (3 - 2 * t); };
+    const intro = document.querySelector('.rt-intro');
+    const projs = [...document.querySelectorAll('#hero .rt-proj')];
+    // Copy for project i: rises in over the last 40% of its scatter, leaves over the first 40% of the next.
+    function slide(i, u) {
+      const s = u - i;
+      if (s < 0.5) return 1 - smooth(0.18, 0.3, s);
+      if (s < 1.5) return -smooth(1.0, 1.12, s);
+      return -1;
+    }
     let lastKey = '';
-    function onProgress(p) {
-      if (!motion) return;
-      const o = smooth(0.8, 0.95, p);
-      const c = smooth(0.8, 1, p);
-      const part = c * c * (3 - 2 * c);
-      let clip = 'none';
-      if (p < 0.999) {
-        // The gap between the parted lines, mapped into the section's own box.
-        const H = window.innerHeight;
-        const r = work.getBoundingClientRect();
-        const half = part * H * 0.6;
-        const top = Math.max(0, H / 2 - half - r.top);
-        const bot = Math.max(0, r.bottom - (H / 2 + half));
-        clip = `inset(${top.toFixed(1)}px 0 ${bot.toFixed(1)}px 0)`;
-      }
-      const key = o.toFixed(3) + clip;
+    function onWork(u) {
+      const k = smooth(0, 0.2, u);
+      const vals = projs.map((_, i) => slide(i, u));
+      const key = k.toFixed(3) + vals.map((v) => v.toFixed(3)).join();
       if (key === lastKey) return;
       lastKey = key;
-      work.style.opacity = o.toFixed(3);
-      work.style.visibility = o > 0.001 ? 'visible' : 'hidden';
-      work.style.clipPath = clip;
-      work.style.transform = o < 1 ? `translateY(${((1 - o) * 32).toFixed(1)}px)` : '';
+      intro.style.transform = k > 0 ? `translateY(calc(${k.toFixed(3)} * (-100% - 90px)))` : '';
+      projs.forEach((el, i) => {
+        const v = vals[i];
+        el.firstElementChild.style.transform = `translateY(${(v * 110).toFixed(1)}%)`;
+        const on = Math.abs(v) < 0.05;
+        el.classList.toggle('is-on', on);
+        el.querySelector('a').tabIndex = on ? 0 : -1;
+      });
     }
     const hero = mount(document.getElementById('game-container'), {
       motion: q.get('motion') === 'on', palette: q.get('palette') || 'reference',
-      quietEl: document.querySelector('.rt-intro'),
-      pinEl: motion ? document.getElementById('rt-pin') : null,
-      onProgress,
+      quietEl: intro,
+      pinEl: motion ? document.getElementById('rt-unravel') : null,
+      workEl: motion ? document.getElementById('rt-workrun') : null,
+      work: !motion,
+      onWork: motion ? onWork : null,
     });
+    if (!motion) {
+      // Reduce Motion: draw each object once through the same renderer and show it still.
+      hero.ready.then((mode) => {
+        if (mode === 'fallback') return;
+        document.querySelectorAll('.rt-still').forEach((fig, i) => {
+          const url = hero.api.workStill(i);
+          if (url) fig.querySelector('img').src = url;
+        });
+      });
+    }
     window.__rangerTab = hero;
   </script>
 </body>

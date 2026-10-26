@@ -20,6 +20,22 @@ export const PALETTES = {
   reference: [0x0a0006, 0x600040, 0xc04020, 0xe06020, 0xe08040, 0x8080e0, 0xa0a0e0, 0xe0c0e0, 0xf0f0f0],
   gold: [0x050302, 0x1e1000, 0x3a2200, 0x7d4e08, 0xc07a10, 0xda9e18, 0xf4c220, 0xffe9a0, 0xffffff],
 };
+// Same blend as the main pass pal(), for any 9-stop ramp (work flock, stills).
+export const PAL_GLSL = /* glsl */ `
+vec3 palOf(vec3 P[9], float t) {
+  float f = clamp(t, 0.0, 1.0) * 8.0;
+  float i = floor(f);
+  float w = f - i;
+  vec3 a = P[0], b = P[0];
+  for (int k = 0; k < 9; k++) {
+    if (float(k) == i) a = P[k];
+    if (float(k) == min(i + 1.0, 8.0)) b = P[k];
+  }
+  return mix(a, b, smoothstep(0.25, 0.75, w));
+}
+`;
+export const paletteColors = (name) => (PALETTES[name] || PALETTES.reference).map(raw);
+
 // Where the ridge lines sit on each ramp (amber in both).
 const RIDGE_T = { reference: 0.43, gold: 0.55 };
 
@@ -50,8 +66,9 @@ float startOf(float j, float letter) {
 const LINE_BASE = /* glsl */ `
 float lineBase(float k) {
   float b = uTop + k * uSpacing;
-  float sh = uPart * uCss.y * 0.6;
-  return b < uCss.y * 0.5 ? b - sh : b + sh;
+  // Upper and lower halves part separately, so the work run can bring the
+  // lower lines back up while the upper ones stay gone.
+  return b < uCss.y * 0.5 ? b - uPartUp * uCss.y * 0.6 : b + uPart * uCss.y * 0.6;
 }
 `;
 
@@ -63,7 +80,7 @@ const ridgeFrag = /* glsl */ `
 precision highp float;
 uniform sampler2D tScene;
 uniform vec2 uCss;
-uniform float uTop, uSpacing, uLines, uScroll, uT, uPart, uLiftK;
+uniform float uTop, uSpacing, uLines, uScroll, uT, uPart, uPartUp, uLiftK;
 uniform vec4 uPts[${MAX_PTS}]; // device px, bottom-left origin
 uniform float uAge[${MAX_PTS}];
 uniform vec4 uShock[4];        // css px x, y (top origin), age s
@@ -134,7 +151,8 @@ uniform sampler2D tRidge;   // ridge lift per (x, line)
 uniform vec2 uCss;
 uniform float uDpr, uT, uIntro, uBand, uExposure, uScroll;
 uniform float uTop, uSpacing, uLines, uRidgeT;
-uniform float uP, uTabTop, uRowsN, uPart; // unravel progress, tab row grid, curtain
+uniform float uP, uTabTop, uRowsN, uPart, uPartUp; // unravel progress, tab row grid, curtain
+uniform float uWorkObj, uForm, uRidgeRamp; // work run: shade-coded object, dissolve, per-line ramp
 uniform vec4 uPts[${MAX_PTS}];
 uniform float uAge[${MAX_PTS}];
 uniform float uRadius;      // device px
@@ -207,7 +225,7 @@ void main() {
   bool isLetter = here.a >= 0.62 && here.a < 0.82;
 #ifndef TAB_ONLY
   // Rows that have unravelled leave a hole the ridge field shows through.
-  if (tabHere && uP > 0.149) {
+  if (tabHere && uP > 0.149 && uWorkObj < 0.5) {
     float j = clamp(floor((y - uTabTop) / ROW), 0.0, max(uRowsN - 1.0, 0.0));
     if (uP >= startOf(j, isLetter ? 1.0 : 0.0)) tabHere = false;
   }
@@ -229,14 +247,19 @@ void main() {
     float rp = letter ? (uCss.x < 700.0 ? 2.75 : 3.25) : ROW;
     float r = floor(v / rp);
     float vc = (r + 0.5) * rp + (hash(vec2(di, r)) - 0.5) * 1.0; // 1px jitter
-    if (abs(v - vc) / g <= (letter ? 0.6 : 0.7) && onIntro(x, y) > 0.5) { // rows ~1.4 css tall: the glow needs a dark gap to read as lines
+    if (abs(v - vc) / g <= (letter ? 0.6 : 0.7) && onIntro(x, y) > 0.5
+        && (uWorkObj < 0.5 || hash(vec2(di + 7.3, floor(y / ROW))) < uForm)) { // rows ~1.4 css tall: the glow needs a dark gap to read as lines
       vec3 c = pow(1.0 - exp(-here.rgb * uExposure), vec3(1.0 / 2.2));
       float L = dot(c, vec3(0.2126, 0.7152, 0.0722));
       float ndl = dot(n, uKey);
       // Hue from the lit normal: toward the key = violet to white, sideways =
       // saturated orange, grazing/shadowed = magenta-red.
       float t, dens, gain;
-      if (here.a < 0.62) {           // black recess
+      if (uWorkObj > 0.5) {           // work object: its own material wrote a 0..1 shade into r
+        float s = here.r;
+        t = s; gain = 1.0;
+        dens = s < 0.02 ? 0.0 : 0.12 + 0.88 * smoothstep(0.04, 0.55, s);
+      } else if (here.a < 0.62) {           // black recess
         t = 0.13 + 0.1 * clamp(ndl, 0.0, 1.0); dens = 0.1; gain = 0.5;
       } else if (here.a < 0.82) {    // raised letters: violet to white
         t = 0.7 + 0.3 * smoothstep(-0.2, 0.9, ndl); // lavender to white cores
@@ -276,6 +299,7 @@ void main() {
       if (0.8 * vnoise(vec2(xc * 0.05, fk * 7.7 + uT * 0.1)) + 0.2 * hash(vec2(di * 1.7, fk + 9.0)) > 0.78) continue;
       if (onIntro(xc, yl) < 0.5) continue;
       float tt = uRidgeT + 0.08 * (hash(vec2(fk, 4.0)) - 0.5) + 0.05 * sin(xc * 0.004 + fk);
+      tt = mix(tt, 0.22 + 0.78 * clamp((fk - 7.0) / 6.0, 0.0, 1.0), uRidgeRamp);
       col = max(col, pal(tt) * 1.15);
     }
 #endif
@@ -380,6 +404,10 @@ export function makeScanlinePass(sceneTex, normTex, partTex, paletteName = 'refe
     uTabTop: { value: 0 },
     uRowsN: { value: 0 },
     uPart: { value: 0 },
+    uPartUp: { value: 0 },
+    uWorkObj: { value: 0 },
+    uForm: { value: 1 },
+    uRidgeRamp: { value: 0 },
     uLiftK: { value: 1 },
     uShock: { value: Array.from({ length: 4 }, () => new THREE.Vector4(0, 0, 99, 0)) },
   };
@@ -467,6 +495,7 @@ export function makeScanlinePass(sceneTex, normTex, partTex, paletteName = 'refe
     setUnravel(u) {
       shared.uP.value = u.p;
       shared.uPart.value = u.part;
+      shared.uPartUp.value = u.partUp ?? u.part;
       shared.uLiftK.value = u.liftK;
       const rows = Math.max(0, Math.min(MAX_STRIPS / 2, Math.ceil((u.tabBottom - u.tabTop) / ROW)));
       shared.uTabTop.value = u.tabTop;

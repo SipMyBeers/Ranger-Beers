@@ -14,6 +14,10 @@
 //           smoothed by the spring: the tab stills (0-.15), unravels row by row into
 //           the ridge field (.15-.8), then the ridge lines part like curtains (.8-1).
 //           Pure function of p, so scrolling back rebuilds it. opts.onProgress(p).
+//   work    opts.workEl (a marker whose top is where the unravel ends) gives u 0..3.3
+//           viewports of scroll: the dots fly into LootLens, IronParse, AuraJam,
+//           then home. opts.work = true builds it without scroll (Reduce Motion stills).
+//           opts.onWork(u). See work.js.
 //   input   the key light follows the pointer (flashlight); a tap sends a shockwave
 //           through the ridge lines plus a 150ms glitch; a drag spins the tab with inertia.
 // Reduced motion renders one static frame unless opts.motion === true.
@@ -23,6 +27,7 @@ import { buildTab } from './geometry.js';
 import { makeScanlinePass, MAX_PTS, ROW, DOT } from './scanline.js';
 import { makeParticles } from './particles.js';
 import { makeBloom } from './bloom.js';
+import { makeWork, WORK_LEN } from './work.js';
 
 const SVG_URL = new URL('../../images/badges/src/ranger-tab-wikimedia.svg', import.meta.url);
 export const FALLBACK_URL = new URL('../../images/badges/ranger-tab-dither.png', import.meta.url).href;
@@ -147,6 +152,7 @@ export function mount(container, opts = {}) {
   const U = pass.uniforms;
   const G = bloom.uniforms;
   G.uSwap.value = palette === 'gold' ? 0 : 1;
+  const work = opts.workEl || opts.work ? makeWork({ scene, U, lights, camera }) : null;
 
   const pivot = new THREE.Group(); // tilt + yaw
   scene.add(pivot);
@@ -159,7 +165,7 @@ export function mount(container, opts = {}) {
     trail: [], scroll: 0, running: false, visible: true, raf: 0,
     clockOffset: 0, last: 0, frames: [], errors: 0, sweepOverride: null,
     glitchAt: 2 + 6 + Math.random() * 3, glitchLen: 0.18, glitchSeed: 1, glitchOverride: null,
-    p: { x: 0, v: 0 }, pRaw: 0, frozen: null,
+    p: { x: 0, v: 0 }, pRaw: 0, frozen: null, u: { x: 0, v: 0 }, uRaw: 0,
     keyX: { x: KEY_REST.x, v: 0 }, keyY: { x: KEY_REST.y, v: 0 },
     spin: { x: 0, v: 0 }, drag: null, shocks: [], burstUntil: -1,
   };
@@ -191,7 +197,7 @@ export function mount(container, opts = {}) {
     const desk = clamp((w - 700) / 500, 0, 1);
     const lift = (0.07 - 0.04 * desk) * visH;
     const shift = 0.05 * desk * visH * aspect;
-    view = { visW: visH * aspect, visH, cssW: w, cssH: h, dist, tanH, aspect, lift };
+    view = { visW: visH * aspect, visH, cssW: w, cssH: h, dist, tanH, aspect, lift, shift };
     camera.position.set(-shift, -lift, dist);
     camera.lookAt(-shift, -lift, 0);
     camera.updateProjectionMatrix();
@@ -299,7 +305,11 @@ export function mount(container, opts = {}) {
     pivot.updateMatrixWorld(true);
 
     // Unravel + curtains.
-    const r = p > 0.149 ? tabRect() : null;
+    if (work && motion && dt > 0) spring(st.u, st.uRaw, 9, dt);
+    const u = work ? clamp(st.u.x, 0, WORK_LEN) : 0;
+    const inWork = u > 0.0005;
+    if (tab) tab.group.visible = !inWork;
+    const r = p > 0.149 && !inWork ? tabRect() : null;
     st.shocks = st.shocks.filter((s) => t - s.t < 0.7);
     pass.setUnravel({
       p,
@@ -309,6 +319,10 @@ export function mount(container, opts = {}) {
       shocks: st.shocks.slice(0, 4).map((s) => [s.x, s.y, t - s.t]),
     });
     if (opts.onProgress) opts.onProgress(p);
+    if (work) {
+      work.update({ u, t: motion ? t : 3.7, view, dpr, pointer: st.pointer });
+      if (opts.onWork) opts.onWork(u);
+    }
 
     // Light sweep: a point light crossing left to right plus a screen band.
     const sp = motion ? sweepPhase(t) : -1;
@@ -354,6 +368,7 @@ export function mount(container, opts = {}) {
     renderer.autoClear = true;
     // stipple into the glow base, then halo, chroma split and composite to screen
     pass.render(renderer, bloom.target);
+    if (work) work.renderFlock(renderer, camera, bloom.target);
     bloom.finish(renderer);
   }
 
@@ -427,10 +442,16 @@ export function mount(container, opts = {}) {
     const run = r.height - window.innerHeight;
     return run > 1 ? clamp(-r.top / run, 0, 1) : 0;
   }
+  function readWork() {
+    if (!opts.workEl) return 0;
+    const r = opts.workEl.getBoundingClientRect();
+    return clamp(-r.top / Math.max(1, window.innerHeight), 0, WORK_LEN);
+  }
   const onScroll = () => {
     const r = container.getBoundingClientRect();
     st.scroll = clamp(-r.top / Math.max(1, r.height), 0, 1);
     st.pRaw = readProgress();
+    st.uRaw = readWork();
     if (reduce) renderStatic();
   };
 
@@ -494,6 +515,7 @@ export function mount(container, opts = {}) {
     // Leaving the screen stops the loop, so land the reveal where the scroll is.
     if (!st.visible && !reduce) {
       st.pRaw = readProgress(); st.p.x = st.pRaw; st.p.v = 0;
+      st.uRaw = readWork(); st.u.x = st.uRaw; st.u.v = 0;
       if (opts.onProgress) opts.onProgress(st.p.x);
     }
     setRunning();
@@ -539,6 +561,21 @@ export function mount(container, opts = {}) {
     setProgress(p) { st.pRaw = p; st.p.x = p; st.p.v = 0; },
     get progress() { return st.p.x; },
     get progressRaw() { return st.pRaw; },
+    get work() { return st.u.x; },
+    setWork(u) { st.uRaw = u; st.u.x = u; st.u.v = 0; },
+    // A still of project i fully formed (Reduce Motion list); leaves the hero as it was.
+    workStill(i) {
+      if (!work || !tab) return null;
+      const keep = { x: st.u.x, raw: st.uRaw, p: st.p.x };
+      st.u.x = st.uRaw = work.holdU(i);
+      st.p.x = 1;
+      step(reduce ? INTRO_S + 0.01 : now(), 0);
+      render();
+      const url = renderer.domElement.toDataURL('image/png');
+      st.u.x = keep.x; st.uRaw = keep.raw; st.p.x = keep.p;
+      renderStatic();
+      return url;
+    },
     tap(cx, cy) { tap(cx, cy); },
     setSpin(x, v = 0) { st.spin.x = x; st.spin.v = v; },
     setPointer(nx, ny) {
@@ -577,6 +614,7 @@ export function mount(container, opts = {}) {
     scene.traverse((o) => { if (o.geometry) o.geometry.dispose(); });
     Object.values(mats).forEach((m) => m.dispose());
     pass.dispose();
+    if (work) work.dispose();
     particles.dispose();
     bloom.dispose();
     partRT.dispose();
