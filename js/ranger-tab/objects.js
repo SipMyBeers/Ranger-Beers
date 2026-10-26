@@ -1,107 +1,23 @@
 // Signature objects for the work run. Each is built lazily (only the outgoing
-// and incoming objects exist at once) and drawn by the hero's own stipple:
-// materials write a 0..1 shade into r of the scene target, alpha 1, and the
-// scanline pass maps it through the live palette.
+// and incoming objects exist at once) and drawn by the hero's own stipple.
+// Shared helpers live in obj-core.js; product objects in obj-products.js and
+// brand-mark objects in obj-marks.js. makeObject() is the one entry point.
 //
 // A factory returns:
 //   group               THREE.Group in object units (radius about 1, facing +z)
 //   size                { d: [cx, cy, R], m: [cx, cy, R] } desktop / phone, as
 //                       fractions of the viewport (cx, cy of W, H; R of S)
 //   tick(c)             per frame: { t, hold, e, isTo, isFrom, mobile }
+//                       (the outgoing object gets hold 1: it finished its hold)
 //   sample(n, R)        n flock targets in group space: { pos, nrm, sh }
 //                       (sh: vec2 base shade, brightness; base < 0 means lit)
 //   tap?()              optional, a click on the object
 //   kind                'mesh' (default) or 'terrain' (flock-drawn, no group)
 //   dispose()
 import * as THREE from 'three';
-
-const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
-
-export const objVert = /* glsl */ `
-varying vec3 vN; varying vec3 vP; varying vec3 vW;
-void main() {
-  vN = normalize(normalMatrix * normal); vP = position;
-  vW = normalize(mat3(modelMatrix) * normal);
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-}
-`;
-// Lambert toward the key plus a front fill, as every object is lit.
-const LIT = /* glsl */ `
-uniform vec3 uKey;
-float litOf(vec3 n) { return max(dot(normalize(n), normalize(uKey + vec3(0.0, 0.5, 1.3))), 0.0); }
-`;
-
-export function shadeMat(frag, uniforms = {}, key, opts = {}) {
-  return new THREE.ShaderMaterial({
-    vertexShader: opts.vert || objVert, fragmentShader: LIT + frag, blending: THREE.NoBlending,
-    side: opts.side ?? THREE.FrontSide,
-    uniforms: { uKey: { value: key }, ...uniforms },
-  });
-}
-
-// Area-weighted points on every mesh of a group, in group space.
-// shadeOf(mesh) gives [base, bright] for that part (base < 0: lit in the shader).
-// front: drop faces turned away from the viewer (z normal below the limit).
-export function sampleGroup(group, n, R, shadeOf, front = -0.15) {
-  group.updateMatrixWorld(true);
-  const inv = new THREE.Matrix4().copy(group.matrixWorld).invert();
-  const tris = [];
-  let total = 0;
-  const a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3(), nr = new THREE.Vector3();
-  group.traverse((m) => {
-    if (!m.isMesh || m.userData.noSample) return;
-    const g = m.geometry.index ? m.geometry.toNonIndexed() : m.geometry;
-    const p = g.attributes.position;
-    const mat = new THREE.Matrix4().multiplyMatrices(inv, m.matrixWorld);
-    const sh = shadeOf(m);
-    for (let i = 0; i < p.count; i += 3) {
-      a.fromBufferAttribute(p, i).applyMatrix4(mat);
-      b.fromBufferAttribute(p, i + 1).applyMatrix4(mat);
-      c.fromBufferAttribute(p, i + 2).applyMatrix4(mat);
-      nr.subVectors(b, a).cross(c.clone().sub(a));
-      const area = nr.length() / 2;
-      if (area < 1e-9) continue;
-      nr.normalize();
-      if (nr.z < front && !m.userData.twoSided) continue;
-      total += area;
-      tris.push({ a: a.clone(), b: b.clone(), c: c.clone(), n: nr.clone(), sh, acc: total });
-    }
-    if (g !== m.geometry) g.dispose();
-  });
-  const pos = new Float32Array(n * 3), nrm = new Float32Array(n * 3), sh = new Float32Array(n * 2);
-  if (!tris.length) return { pos, nrm, sh };
-  const p = new THREE.Vector3();
-  for (let i = 0; i < n; i++) {
-    const x = R() * total;
-    let lo = 0, hi = tris.length - 1;
-    while (lo < hi) { const mid = (lo + hi) >> 1; if (tris[mid].acc < x) lo = mid + 1; else hi = mid; }
-    const t = tris[lo];
-    let u = R(), v = R();
-    if (u + v > 1) { u = 1 - u; v = 1 - v; }
-    p.copy(t.a).addScaledVector(t.b.clone().sub(t.a), u).addScaledVector(t.c.clone().sub(t.a), v);
-    pos.set([p.x, p.y, p.z], i * 3);
-    nrm.set([t.n.x, t.n.y, t.n.z], i * 3);
-    sh.set(t.sh, i * 2);
-  }
-  return { pos, nrm, sh };
-}
-
-function disposeGroup(group) {
-  group.traverse((o) => {
-    if (o.geometry) o.geometry.dispose();
-    if (o.material) (Array.isArray(o.material) ? o.material : [o.material]).forEach((m) => {
-      if (m.uniforms) Object.values(m.uniforms).forEach((u) => { if (u.value && u.value.isTexture) u.value.dispose(); });
-      m.dispose();
-    });
-  });
-}
-export const meshBase = (group, size, tick, shadeOf, extra = {}) => ({
-  kind: 'mesh', group, size, tick,
-  sample: (n, R) => sampleGroup(group, n, R, shadeOf, extra.front),
-  dispose: () => disposeGroup(group),
-  ...extra,
-});
+import { shadeMat, meshBase } from './obj-core.js';
+import { PRODUCT_FACTORIES } from './obj-products.js';
+import { MARK_FACTORIES } from './obj-marks.js';
 
 // ── LootLens: magnifier. Turns slowly, a light runs round the rim. ──
 const lensFrag = /* glsl */ `
@@ -192,9 +108,9 @@ function terrain() {
   return { kind: 'terrain', size: { d: [0.6, 0.45, 0.3], m: [0.5, 0.3, 0.3] }, tick() {}, sample: null, dispose() {} };
 }
 
-export const FACTORIES = { magnifier, record, terrain };
-export function makeObject(type, key, palette) {
-  const f = FACTORIES[type];
-  if (!f) throw new Error('unknown work object: ' + type);
-  return f(key, palette);
+export const FACTORIES = { magnifier, record, terrain, ...PRODUCT_FACTORIES, ...MARK_FACTORIES };
+export function makeObject(project, key) {
+  const f = FACTORIES[project.object];
+  if (!f) throw new Error('unknown work object: ' + project.object);
+  return f(key, project);
 }

@@ -253,7 +253,7 @@ export function makeWork({ scene, U, lights, camera }) {
     if (slot < 0) return null;
     let o = live.get(slot);
     if (!o) {
-      o = makeObject(PROJECTS[slot].object, keyView, PROJECTS[slot].palette);
+      o = makeObject(PROJECTS[slot], keyView);
       if (o.group) { o.group.visible = false; scene.add(o.group); }
       live.set(slot, o);
     }
@@ -344,7 +344,7 @@ export function makeWork({ scene, U, lights, camera }) {
         o.group.scale.setScalar(c[2] * px);
         o.group.visible = !!show;
       }
-      o.tick({ t, hold: isTo ? ph.h : 0, e, isTo, isFrom: !isTo, mobile });
+      o.tick({ t, hold: isTo ? ph.h : 1, e, isTo, isFrom: !isTo, mobile });
       if (o.group) o.group.updateMatrixWorld(true);
     }
     if (oB) { toObj = oB; toCenter = cB; toR = cB[2]; }
