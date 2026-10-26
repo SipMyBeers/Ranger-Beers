@@ -326,6 +326,11 @@
       });
     }
     window.__rangerTab = hero;
+    // Lab hook for device captures: ?at=<u> scrolls to that point of the work run.
+    if (motion && q.has('at')) hero.ready.then(() => {
+      const m = document.getElementById('rt-workrun');
+      scrollTo(0, m.getBoundingClientRect().top + scrollY + +q.get('at') * (m.offsetHeight / 4.3));
+    });
   </script>
 </body>
 </html>

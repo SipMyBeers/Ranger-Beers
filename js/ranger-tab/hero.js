@@ -445,7 +445,11 @@ export function mount(container, opts = {}) {
   function readWork() {
     if (!opts.workEl) return 0;
     const r = opts.workEl.getBoundingClientRect();
-    return clamp(-r.top / Math.max(1, window.innerHeight), 0, WORK_LEN);
+    // One unit = one CSS vh, read off the marker (WORK_LEN + 1 vh tall). Not
+    // innerHeight: iOS Safari shrinks that with its toolbar while vh stays put,
+    // so u would jump as the toolbar collapses.
+    const unit = r.height / (WORK_LEN + 1);
+    return clamp(-r.top / Math.max(1, unit), 0, WORK_LEN);
   }
   const onScroll = () => {
     const r = container.getBoundingClientRect();

@@ -171,7 +171,7 @@ void target(float id, out vec2 n, out float tt, out float b, out float sz) {
       float x = aRnd.z * uCss.x;
       float y = uTop + k * uSpacing + uPartLow * uCss.y * 0.6
               + 3.5 * sin(x * 0.02 + k * 1.7 + uT * 0.25) + 1.5 * sin(x * 0.085 + k * 3.1 + uT * 0.6);
-      n = toNdc(vec2(x, y)); tt = 0.22 + 0.78 * (k - 7.0) / 6.0; b = 1.0;
+      n = toNdc(vec2(x, y)); tt = 0.22 + 0.78 * (k - 7.0) / 6.0; b = 0.45; // over the stipple line, not doubling it
     } else {                     // Ranger glitter field
       n = toNdc(vec2(aRnd.z, fract(aRnd.x * 3.1 - uT * 0.003)) * uCss); tt = 0.3 + 0.7 * aRnd.y; b = 0.18 + 0.3 * aRnd.y;
     }
