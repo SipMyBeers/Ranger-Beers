@@ -343,95 +343,37 @@ function sticker(key) {
   }, () => [-1, 1], { front: -0.15 });
 }
 
-// ── DittoMeThis: a pixel Ditto, one solid pillow-domed slab (no per-cube
-// boxes: only outward faces are built, so nothing inside can show through),
-// with two matching dot eyes and a smile on its face. It wobbles, blinks and
-// turns to show its side, which is one wall all the way round.
-const PET = [
-  '....XXXXX....',
-  '..XXXXXXXXX..',
-  '.XXXXXXXXXXX.',
-  '.XXXXXXXXXXX.',
-  'XXXXXXXXXXXXX',
-  'XXXXXXXXXXXXX',
-  'XXXXXXXXXXXXX',
-  'XXXXXXXXXXXXX',
-  '.XXXXXXXXXXX.',
-  'XXXXXXXXXXXXX',
-  'XXXXXXXXXXXXX',
-  '.XXXX...XXXX.',
+// ── DittoMeThis: a Ditto, one soft rounded blob (a smooth outline extruded
+// with a deep round bevel, so it reads as a pillow, never as cells or boxes),
+// with two dot eyes and a thin smile. It wobbles, blinks and turns slowly.
+const DITTO = [
+  [-0.95, -0.82], [-0.45, -0.9], [0, -0.86], [0.45, -0.9], [0.95, -0.82],
+  [1.02, -0.4], [1.1, -0.02], [0.86, 0.32], [0.62, 0.7], [0.22, 0.9],
+  [-0.12, 0.84], [-0.5, 0.74], [-0.82, 0.4], [-1.08, 0.04], [-1.02, -0.42],
 ];
-// Face features drawn on the dome: E eyes (1 x 2 dots, mirror-symmetric about
-// column 6), M the smile.
-const FACE = [
-  [4, 4, 'E'], [4, 5, 'E'], [8, 4, 'E'], [8, 5, 'E'],
-  [3, 7, 'M'], [9, 7, 'M'], [4, 8, 'M'], [5, 8, 'M'], [6, 8, 'M'], [7, 8, 'M'], [8, 8, 'M'],
-];
-function petShape(v, depth, bulge) {
-  const on = (i, j) => j >= 0 && j < PET.length && i >= 0 && i < 13 && PET[j][i] === 'X';
-  const A = 6.9 * v, B = 6.4 * v, cy = 0;
-  const zf = depth / 2;
-  // Front surface: a pillow dome over the whole silhouette, continuous across
-  // cells, so the light falls on it as one body.
-  const z = (x, y) => zf + bulge * Math.max(0, 1 - (x * x) / (A * A) - ((y - cy) * (y - cy)) / (B * B));
-  const n = (x, y) => {
-    const d = 1 - (x * x) / (A * A) - ((y - cy) * (y - cy)) / (B * B);
-    if (d <= 0) return [0, 0, 1];
-    const gx = (-2 * bulge * x) / (A * A), gy = (-2 * bulge * (y - cy)) / (B * B);
-    const l = Math.hypot(gx, gy, 1);
-    return [-gx / l, -gy / l, 1 / l];
-  };
-  const X = (i) => (i - 6) * v, Y = (j) => (5.5 - j) * v;
-  return { on, z, n, X, Y, zf };
+function dittoShape() {
+  const sh = new THREE.Shape();
+  sh.moveTo(...DITTO[0]);
+  sh.splineThru([...DITTO.slice(1), DITTO[0]].map(([x, y]) => new THREE.Vector2(x, y)));
+  return sh;
 }
-function petGeometry(v, depth, bulge) {
-  const { on, z, n, X, Y, zf } = petShape(v, depth, bulge);
-  const pos = [], nrm = [];
-  const tri = (p, q, r, np, nq, nr) => { pos.push(...p, ...q, ...r); nrm.push(...np, ...nq, ...nr); };
-  const quad = (a, b, c, d, na, nb, nc, nd) => { tri(a, b, c, na, nb, nc); tri(a, c, d, na, nc, nd); };
-  const h = v / 2;
-  PET.forEach((row, j) => [...row].forEach((ch, i) => {
-    if (ch !== 'X') return;
-    const x0 = X(i) - h, x1 = X(i) + h, y0 = Y(j) - h, y1 = Y(j) + h;
-    const P = (x, y) => [x, y, z(x, y)];
-    // front (counter-clockwise seen from +z), back
-    quad(P(x0, y0), P(x1, y0), P(x1, y1), P(x0, y1), n(x0, y0), n(x1, y0), n(x1, y1), n(x0, y1));
-    const bz = -zf, B = [0, 0, -1];
-    quad([x0, y0, bz], [x0, y1, bz], [x1, y1, bz], [x1, y0, bz], B, B, B, B);
-    // walls only where the neighbour is empty: no interior faces at all
-    if (!on(i - 1, j)) { const N = [-1, 0, 0]; quad([x0, y0, bz], [x0, y0, z(x0, y0)], [x0, y1, z(x0, y1)], [x0, y1, bz], N, N, N, N); }
-    if (!on(i + 1, j)) { const N = [1, 0, 0]; quad([x1, y0, bz], [x1, y1, bz], [x1, y1, z(x1, y1)], [x1, y0, z(x1, y0)], N, N, N, N); }
-    if (!on(i, j - 1)) { const N = [0, 1, 0]; quad([x0, y1, bz], [x0, y1, z(x0, y1)], [x1, y1, z(x1, y1)], [x1, y1, bz], N, N, N, N); }
-    if (!on(i, j + 1)) { const N = [0, -1, 0]; quad([x0, y0, bz], [x1, y0, bz], [x1, y0, z(x1, y0)], [x0, y0, z(x0, y0)], N, N, N, N); }
-  }));
-  const g = new THREE.BufferGeometry();
-  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-  g.setAttribute('normal', new THREE.Float32BufferAttribute(nrm, 3));
-  g.setAttribute('uv', new THREE.Float32BufferAttribute(new Float32Array((pos.length / 3) * 2), 2));
-  return g;
-}
-// Face plates lying on the dome a hair above it. Eyes are centred on their
-// own row pair so the mesh can blink by scaling y.
-function faceGeometry(kind, v, depth, bulge, yC) {
-  const { z, n, X, Y } = petShape(v, depth, bulge);
-  const pos = [], nrm = [];
-  const h = v / 2, lift = 0.006;
-  for (const [i, j, k] of FACE) {
-    if (k !== kind) continue;
-    const x0 = X(i) - h, x1 = X(i) + h, y0 = Y(j) - h, y1 = Y(j) + h;
-    const P = (x, y) => [x, y - yC, z(x, y) + lift];
-    const c = [P(x0, y0), P(x1, y0), P(x1, y1), P(x0, y1)];
-    const ns = [n(x0, y0), n(x1, y0), n(x1, y1), n(x0, y1)];
-    for (const t of [0, 1, 2, 0, 2, 3]) { pos.push(...c[t]); nrm.push(...ns[t]); }
+const FACE_Z = 0.305; // just above the flat front cap (z 0.30)
+function faceGeometry(kind) {
+  const shapes = [];
+  if (kind === 'E') {
+    for (const x of [-0.3, 0.3]) { const e = new THREE.Shape(); e.absellipse(x, 0, 0.075, 0.11, 0, TAU, false, 0); shapes.push(e); }
+  } else {
+    const m = new THREE.Shape(), cy = 0.3, R = 0.36, r = 0.3, a0 = Math.PI * 1.22, a1 = Math.PI * 1.78;
+    m.absarc(0, cy, R, a0, a1, false);
+    m.absarc(0, cy, r, a1, a0, true);
+    shapes.push(m);
   }
-  const g = new THREE.BufferGeometry();
-  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-  g.setAttribute('normal', new THREE.Float32BufferAttribute(nrm, 3));
-  g.setAttribute('uv', new THREE.Float32BufferAttribute(new Float32Array((pos.length / 3) * 2), 2));
+  const g = new THREE.ShapeGeometry(shapes, 24);
+  g.translate(0, 0, FACE_Z);
   return g;
 }
-// Body: one even fill (no per-cell edges, so no grid), its range kept inside
-// the pink stops so the lit side never jumps to the white highlight band.
+// Body: one even fill, its range kept inside the pink stops so the lit side
+// never jumps to the white highlight band.
 const petFrag = /* glsl */ `
 uniform float uBase;
 varying vec3 vN;
@@ -441,17 +383,19 @@ void main() {
 }`;
 function mirror(key) {
   const group = new THREE.Group();
-  const v = 2 / 13, depth = v * 3, bulge = v * 1.5;
-  const eyeY = (5.5 - 4.5) * v;
-  const geoBody = petGeometry(v, depth, bulge);
-  const geoEye = faceGeometry('E', v, depth, bulge, eyeY);
-  const geoMouth = faceGeometry('M', v, depth, bulge, 0);
+  const geoBody = new THREE.ExtrudeGeometry(dittoShape(), {
+    depth: 0.12, bevelEnabled: true, bevelThickness: 0.24, bevelSize: 0.16, bevelSegments: 10, curveSegments: 64,
+  });
+  geoBody.translate(0, 0, -0.06);
+  geoBody.computeVertexNormals();
+  const geoEye = faceGeometry('E');
+  const geoMouth = faceGeometry('M');
   const pet = new THREE.Group();
   const mk = (g, b, sh) => { const m = new THREE.Mesh(g, shadeMat(petFrag, { uBase: { value: b } }, key)); m.userData.sh = sh; return m; };
   const body = mk(geoBody, -1, [-1, 1]);
   // Eyes and smile carry no dots (shade 0 reads as a dark hole in the stipple).
   const eyes = mk(geoEye, 0, [0.02, 0.15]);
-  eyes.position.y = eyeY;
+  eyes.position.y = 0.24;
   const mouth = mk(geoMouth, 0, [0.02, 0.15]);
   pet.add(body, eyes, mouth);
   group.add(pet);
@@ -464,7 +408,7 @@ function mirror(key) {
     // A blink every 3.6 s.
     const b = (c.t % 3.6) / 3.6;
     eyes.scale.y = 1 - 0.85 * amp * Math.max(0, 1 - Math.abs(b - 0.96) / 0.03);
-    group.rotation.set(0.1, 0.34 * Math.sin(c.t * 0.45) * amp, 0);
+    group.rotation.set(0.1, 0.3 * Math.sin(c.t * 0.45) * amp, 0);
   }, (m) => m.userData.sh);
   o.dispose = () => { [geoBody, geoEye, geoMouth].forEach((g) => g.dispose()); group.traverse((m) => m.material && m.material.dispose()); };
   return o;
