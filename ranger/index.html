@@ -8,11 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/school.css">
     <link rel="stylesheet" href="../css/course-styles.css">
     <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" /></noscript>
-    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#000000">
     <meta name="view-transition" content="same-origin">
 </head>
@@ -21,7 +20,7 @@
     <!-- NAV: Shop | Winter Spring Summer Fall | Resources -->
     <nav class="nav" id="nav">
         <div class="nav-inner">
-            <a href="/" class="nav-brand">Ranger Beers</a>
+            <a href="/" class="nav-brand wordmark" aria-label="Ranger Beers Supply Co."><span class="wm-main">Ranger Beers</span><span class="wm-sub">Supply Co.</span></a>
 
                         <ul class="nav-center">
                 <li class="nav-dropdown">
@@ -125,15 +124,13 @@
     <!-- FULL-VIEWPORT HERO -->
     <section class="hero" id="hero">
         <div class="hero-video-wrap">
-            <video autoplay muted loop playsinline>
-                <source src="../media/75th-ranger-day1.mp4" type="video/mp4">
-            </video>
+            <img src="../images/phases/swamp-phase.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block">
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <img src="../images/ranger-tab.png" alt="Ranger Tab" class="hero-tab-img" />
+            <p class="hero-wordmark" aria-label="Ranger Beers Supply Co."><span class="wm-main">Ranger Beers</span><span class="wm-sub">Supply Co.</span></p>
             <h1 class="hero-headline">Rangers Lead the Way</h1>
-            <p class="hero-sub">Everything you need to earn the tab. Gear, courses, and training — built by Rangers, for Rangers.</p>
+            <p class="hero-sub">Everything you need to earn the tab. Gear, courses, and training, built by a Ranger School graduate.</p>
             <div class="hero-cta">
                 <a href="shop.html" class="btn btn-primary">Shop Gear</a>
                 <a href="courses.html" class="btn btn-outline">Start Training</a>
@@ -1588,7 +1585,7 @@
             <div class="footer-top">
                 <div>
                     <div class="footer-brand">Ranger Beers</div>
-                    <div class="footer-brand-sub">Ranger School Supply Co.</div>
+                    <div class="footer-brand-sub">Supply Co.</div>
                 </div>
                 <div class="footer-nav">
                     <div class="footer-col"><div class="footer-col-title">Seasons</div><ul><li><a href="shop.html?season=winter">Winter</a></li><li><a href="shop.html?season=spring">Spring</a></li><li><a href="shop.html?season=summer">Summer</a></li><li><a href="shop.html?season=fall">Fall</a></li></ul></div>
@@ -1600,6 +1597,7 @@
                 <div class="footer-copy">&copy; 2026 Ranger Beers Supply Co. — ranger-beers.com</div>
                 <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
             </div>
+            <p class="site-disclaimer">Ranger Beers Supply Co. is not affiliated with or endorsed by the U.S. Army or the Department of Defense.</p>
         </div>
     </footer>
 
@@ -1699,7 +1697,6 @@
     <script src="../js/course-auth.js"></script>
     <script>
         RangerAuth.initAuthUI();
-        if('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
     </script>
 
     <!-- Snipcart E-Commerce -->
@@ -1711,16 +1708,16 @@
 
     <script>
         var phaseVideos = {
-            'surt': '../media/75th-ranger-day1.mp4',
-            'rap': '../media/75th-ranger-day1.mp4',
-            'darby': '../media/75th-ranger-day1.mp4',
+            'surt': '../media/mountain-phase.mp4',
+            'rap': '../media/mountain-phase.mp4',
+            'darby': '../media/mountain-phase.mp4',
             'mountains': '../media/mountain-phase.mp4',
-            'swamp': '../media/the-creed-intro.mp4'
+            'swamp': '../media/mountain-phase.mp4'
         };
         var seasonVideos = {
             'winter': '../media/mountain-phase.mp4',
-            'spring': '../media/the-creed-intro.mp4',
-            'summer': '../media/75th-ranger-day1.mp4',
+            'spring': '../media/mountain-phase.mp4',
+            'summer': '../media/mountain-phase.mp4',
             'fall': '../media/mountain-phase.mp4'
         };
         var currentBgType = 'phase'; // 'phase' or 'season'
